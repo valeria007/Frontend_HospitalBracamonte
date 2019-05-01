@@ -1,5 +1,6 @@
-import Users from '../controllers/user';
-import Books from '../controllers/book';
+import Serv from '../controllers/servicios';
+import Salas from '../controllers/salas';
+import Camas from '../controllers/camas';
 
 export default (app) => {
 
@@ -7,14 +8,16 @@ app.get('/api', (req, res) => res.status(200).send({
     message: 'Welcome to the bookStore API!',
 }));
 
-app.post('/api/users', Users.signUp); // API route for user to signup
-app.post('/api/users/:userId/books', Books.create); // API route for user to create a book
-app.get('/api/users', Users.list); // API route for user to get all books in the database
+//servicios
+app.post('/api/service', Serv.serv); 
+app.get('/api/verServ', Serv.ver);
 
 
-//libros
-app.get('/api/books', Books.list); // API route for user to get all books in the database
-app.put('/api/books/:bookId', Books.modify); // API route for user to edit a book
-app.delete('/api/books/:bookId', Books.delete); // API route for user to delete a book
-app.get('/api/idLib/:id', Books.listOne);
+//salas
+app.post('/api/sala', Salas.enviarSala);
+app.get('/api/sala', Salas.listSala);
+
+//camas
+app.post('/api/cama', Camas.sendCama);
+app.get('/api/cama', Camas.getCamas);
 };
