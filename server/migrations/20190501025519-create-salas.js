@@ -19,7 +19,6 @@ module.exports = {
       },
       descripcion: {
         allowNull: false,
-        unique: true,
         type: Sequelize.STRING
       },
       piso: {

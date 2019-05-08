@@ -9,14 +9,19 @@ app.get('/api', (req, res) => res.status(200).send({
 }));
 
 //servicios
-app.post('/api/service', Serv.serv); 
-app.get('/api/verServ', Serv.ver);
-
+app.post('/api/servicios', Serv.serv); 
+app.get('/api/servicios', Serv.ver);
+app.get('/api/servOne/:id', Serv.listOne);
+app.post('/api/UpdateServicios/:id', Serv.modify); 
+app.get('/api/DElserv/:id', Serv.delete);
 
 //salas
 app.post('/api/sala', Salas.enviarSala);
 app.get('/api/sala', Salas.listSala);
-
+app.get('/api/salaOne/:id', Salas.one);
+app.post('/api/UpdateSalas/:id', Salas.update); 
+app.get('/api/DElsala/:id', Salas.del);
+app.get('/api/ServSalas/:id', Salas.oneSala);
 //camas
 app.post('/api/cama', Camas.sendCama);
 app.get('/api/cama', Camas.getCamas);
