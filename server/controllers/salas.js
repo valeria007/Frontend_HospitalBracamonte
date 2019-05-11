@@ -1,22 +1,29 @@
 import model from '../models';
 
 const { Salas } = model;
+const { Especialidad } = model;
 
 //servicio para insertar salas con id de servicio
 class Sala {
     static enviarSala(req, res){
-        if(req.body.descripcion == ""){
-            res.status(400).send("por favor introdusca una descripcion")
-            
-        }if(req.body.piso == ""){
+      
+        if(req.body.piso == ""){
             res.status(400).send("posrfavor introdusca un piso")
         }else{
-            const { servico, descripcion, piso } = req.body
+          Especialidad.findAll({
+            where: {nombre : req.body.nombre}
+          })
+          .then((datos) => {            
+            console.log(datos[0].id)
+            var id = datos[0].id;
+            const { nombre, descripcionSala, piso } = req.body
+            var  especialidadID  = id
             return Salas
             .create({
-                    servico,
-                    descripcion,
-                    piso
+              nombre, 
+              descripcionSala, 
+              piso,
+              especialidadID
             })
             .then(data => res.status(200).send({
                 success: true,
@@ -24,6 +31,8 @@ class Sala {
                 data
             }))
             .catch(error => res.status(400).send(error));
+          })
+            
         }
        
     }
@@ -54,20 +63,22 @@ class Sala {
    }
     
     static update(req, res) {
-        const { descripcion, piso } = req.body
+        const { nombre,descripcionSala, piso } = req.body
         return Salas
           .findByPk(req.params.id)
           .then((data) => {
             data.update({
-                descripcion: descripcion || data.descripcion,
-                piso: piso || data.piso                    
+              nombre: nombre || data.nombre,
+              descripcionSala: descripcionSala || data.descripcionSala,
+              piso: piso || data.piso                    
             })
             .then(update => {
               res.status(200).send({
                 message: 'Sala actualizado',
                 data: {
-                    descripcion: descripcion || update.descripcion,
-                    piso: piso || update.piso
+                  nombre: nombre || update.nombre,
+                  descripcionSala: descripcionSala || update.descripcionSala,
+                  piso: piso || update.piso
                 }
               })
             })

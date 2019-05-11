@@ -1,15 +1,18 @@
 import model from '../models';
 //import { QueryInterface } from 'sequelize/types';
 
-    const { Servicios } = model;
-
+    const { Especialidad } = model;
+    
     class Servicio {
         static serv(req, res) {
-            const { descripcion, sigla } = req.body
-                return Servicios
+            const { nombre,sigla,descripcion,especilidadSNSIS,establecimientoSNIS } = req.body
+                return Especialidad
                 .create({
-                    descripcion,
-                    sigla                    
+                  nombre,
+                  sigla,
+                  descripcion,
+                  especilidadSNSIS,
+                  establecimientoSNIS
                 })
                 .then(serviceData => res.status(200).send ({
                     success: true,
@@ -19,16 +22,16 @@ import model from '../models';
         }
         //para mostrar todo
         static ver(req, res) {
-            return Servicios
-              .findAll()
-              .then(serv => res.status(200).send(serv))
-              .catch(error => res.status(400).send(error));
+          return Especialidad
+            .findAll()
+            .then(serv => res.status(200).send(serv))
+            .catch(error => res.status(400).send(error));
           }
         //para mostrar solo uno
         static listOne(req, res){                
             var id = req.params.id;  
             console.log(id + " este es");
-            Servicios.findAll({
+            Especialidad.findAll({
                 where: {id: id}
                 //attributes: ['id', ['description', 'descripcion']]
               }).then((one) => {
@@ -36,20 +39,26 @@ import model from '../models';
               });     
         }
         static modify(req, res) {
-          const { descripcion, sigla } = req.body
-          return Servicios
+          const { nombre,sigla,descripcion,especilidadSNSIS,establecimientoSNIS } = req.body
+          return Especialidad
             .findByPk(req.params.id)
             .then((data) => {
               data.update({
-                  descripcion: descripcion || data.descripcion,
-                  sigla: sigla || data.sigla                    
+                  nombre: nombre || data.nombre,
+                  sigla: sigla || data.sigla,
+                  descripcion: descripcion || data.descripcion, 
+                  especilidadSNSIS: especilidadSNSIS || data.especilidadSNSIS,
+                  establecimientoSNIS: establecimientoSNIS || data.establecimientoSNIS
               })
               .then(update => {
                 res.status(200).send({
                   message: 'Servcio actualizado',
                   data: {
-                      descripcion: descripcion || update.descripcion,
-                      sigla: sigla || update.sigla
+                    nombre: nombre || update.nombre,
+                    sigla: sigla || update.sigla,
+                    descripcion: descripcion || update.descripcion, 
+                    especilidadSNSIS: especilidadSNSIS || update.especilidadSNSIS,
+                    establecimientoSNIS: establecimientoSNIS || update.establecimientoSNIS
                   }
                 })
               })
@@ -58,7 +67,7 @@ import model from '../models';
             .catch(error => res.status(400).send(error));
         }
         static delete(req, res) {
-          return Servicios
+          return Especialidad
             .findByPk(req.params.id)
             .then(data => {
               if(!data) {

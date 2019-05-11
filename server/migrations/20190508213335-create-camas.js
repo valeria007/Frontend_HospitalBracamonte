@@ -1,29 +1,29 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Salas', {
+    return queryInterface.createTable('Camas', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      servico: {
-        type: Sequelize.STRING,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Servicios',
-          key: 'descripcion',
-          as: 'servico',
-        }
-      },
       descripcion: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      piso: {
-        allowNull:true,
+      numeroCama: {
+        allowNull: false,
         type: Sequelize.INTEGER
+      },
+      salaID: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Salas',
+          key: 'id',
+          as: 'salaID',
+        }
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +36,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Salas');
+    return queryInterface.dropTable('Camas');
   }
 };

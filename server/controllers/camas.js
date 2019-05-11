@@ -4,12 +4,13 @@ import model from '../models';
 
     class Cama {
         static sendCama(req, res){
-            const { id_salas, descripcion } = req.body
-            
+            const { descripcion, numeroCama } = req.body
+            const { salaID } = req.params
             return Camas
             .create({
-                id_salas,
-                descripcion                
+                descripcion,
+                numeroCama,
+                salaID               
             })
             .then(data => res.status(200).send({
                 success: true,
