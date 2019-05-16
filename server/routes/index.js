@@ -23,6 +23,10 @@ app.post('/api/UpdateSalas/:id', Salas.update);
 app.get('/api/DElsala/:id', Salas.del);
 app.get('/api/ServSalas/:id', Salas.oneSala);
 //camas
-app.post('/api/cama', Camas.sendCama);
+app.post('/api/camaSala/:salaID', Camas.sendCama);
 app.get('/api/cama', Camas.getCamas);
+app.get('/api/camaSala/:id', Camas.only);
+app.get('/api/OnlyCama/:id', Camas.onlyCama);
+app.post('/api/OnlyCama/:id', Camas.updateCama);
+app.get('/api/DElcama/:id', Camas.delCama);
 };

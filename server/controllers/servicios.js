@@ -29,14 +29,14 @@ import model from '../models';
           }
         //para mostrar solo uno
         static listOne(req, res){                
-            var id = req.params.id;  
-            console.log(id + " este es");
-            Especialidad.findAll({
-                where: {id: id}
-                //attributes: ['id', ['description', 'descripcion']]
-              }).then((one) => {
-                res.status(200).json(one);
-              });     
+          var id = req.params.id;  
+          console.log(id + " este es");
+          Especialidad.findAll({
+              where: {id: id}
+              //attributes: ['id', ['description', 'descripcion']]
+            }).then((one) => {
+              res.status(200).json(one);
+            });     
         }
         static modify(req, res) {
           const { nombre,sigla,descripcion,especilidadSNSIS,establecimientoSNIS } = req.body

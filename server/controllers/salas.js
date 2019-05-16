@@ -53,9 +53,9 @@ class Sala {
     }
     //para mostrar que salas tiene un servico
     static oneSala(req, res){                
-      var descripcion = req.params.id;  
+      var id = req.params.id;  
       Salas.findAll({
-          where: {servico : descripcion}
+          where: {especialidadID : id}
           //attributes: ['id', ['description', 'descripcion']]
         }).then((data) => {
           res.status(200).json(data);
