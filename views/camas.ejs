@@ -27,7 +27,7 @@
 		<!-- Content page -->
 		<div class="container-fluid">
             <div class="page-header">
-                <h1 class="text-titles"><i class="zmdi zmdi-home zmdi-hc-fw"></i>Salas</h1>
+                <h1 class="text-titles"><i class="zmdi zmdi-home zmdi-hc-fw"></i>Camas</h1>
             </div>
         </div>
         <!-- Nueva Sala-->
@@ -54,14 +54,6 @@
                             <option>Sala H.- Cirugia General</option>
                         </select>
                     </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">Piso</label>
-                        <input class="form-control" type="text">
-                    </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">Camas</label>
-                        <input class="form-control" type="text" >
-                    </div>
                     <p class="text-center">
                         <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                         <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
@@ -71,44 +63,30 @@
                 <div class="table-responsive">
 					<div class="table-responsive">
                         <div class="table-wrapper">
+							<p class="text-center">
+								<button type="submit" class="btn btn-success btn-lg" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Nueva Cama </button>
+								<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
+							</p>
                             <table class="fl-table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Especilidad</th>
+                                        <th>Cama</th>
                                         <th>Descripcion</th>
-                                        <th>Piso</th>
-                                        <th>Camas</th>
-                                        <th>Ver Sala</th>
+                                        <th>Ver Estado</th>
                                         <th>Modificar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Pediatria</td>
+                                        <td>Cama 1</td>
                                         <td>Sala H.- Niños</td>
-                                        <td>Piso 4</td>
-                                        <td>10</td>
-                                        <td><a href="/camas" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-home"></i></a></td>
+                                        <td><a href="/historial" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-home"></i></a></td>
                                         <td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
                                     </tr>
                                 <tbody>
                             </table>
                         </div>
-                        <ul class="pagination pagination-sm">
-                            <li class="disabled"><a href="#!">«</a></li>
-                            <li class="active"><a href="#!">1</a></li>
-                            <li><a href="#!">2</a></li>
-                            <li><a href="#!">3</a></li>
-                            <li><a href="#!">4</a></li>
-                            <li><a href="#!">5</a></li>
-                            <li><a href="#!">»</a></li>
-                        </ul>
-                    </div>
-                    <p class="text-center">
-                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
-                    </p>
+                        </div>
                 </div>
             </div>
             </div>

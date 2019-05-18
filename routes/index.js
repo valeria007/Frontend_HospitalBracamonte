@@ -21,9 +21,20 @@ router.get('/cuadernos',(req, res) => {
 router.get('/expediente',(req, res) => {
   res.render('expediente')
 });
+
+// Internacion
 router.get('/salas',(req, res) => {
   res.render('salas')
 });
+
+router.get('/camas',(req, res) => {
+  res.render('camas')
+});
+
+router.get('/Pac_Inter',(req, res) => {
+  res.render('Pac_Inter')
+});
+
 
 
 
