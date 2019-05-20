@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage">
+		<!-- NavBar -->
+		<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+				<li>
+					<a href="#!" class="btn-search">
+						<i class="zmdi zmdi-search"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+				<h1 class="text-titles"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Solicitudes</h1>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+						<li class="active"><a href="#new" data-toggle="tab">Solicitud Trimestral</a></li>
+						<li><a href="#list" data-toggle="tab">Solicitud de Emergencia</a></li>
+					</ul>
+					<!-- Solicitud Trimestral-->
+					<div id="myTabContent" class="tab-content">
+						<div class="tab-pane fade active in" id="new">
+							<div class="container-fluid">
+								<form action="">
+									<h2 class="text-center all-tittles">REGISTRO DE SOLICITUDES</h2>
+									<div class="col-md-12 panel-body">
+										<div class="col-md-12">
+											<div class="col-md-6">
+												<div class="form-group label-floating">
+													<label class="control-label">Establecimiento</label>
+													<select class="form-control">
+														<option>HOSP. D. BRACAMONTE</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label class="control-label">Farmacia</label>
+													<select class="form-control">
+														<option>FARMACIA HOSP. D. BRACAMONTE</option>
+														<option>ALMACEN</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label class="control-label">Gestion</label>
+													<select class="form-control">
+														<option>2019</option>
+														<option>2018</option>
+														<option>2017</option>
+													</select>
+												</div>
+												<div class="form-group label-floating">
+													<label class="control-label">Busqueda (Nro. cotización - Fecha - Concepto):</label>
+													<input class="form-control" type="text">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group label-floating">
+													<label class="control-label">Trimestre a Reportar</label>
+													<select class="form-control">
+														<option>Primer Trimestre</option>
+														<option>Segundo Trimestre</option>
+														<option>Tercer Trimestre</option>
+														<option>Cuarto Trimestre</option>
+													</select>
+												</div>
+												<div class="form-group form-animate-checkbox">
+													<h3 class="text-titles"> Farmacias</h3>							
+													<input type="checkbox" class="checkbox"  id="validate_agree" name="validate_agree">
+													<label>FARMACIA HOSP. D. BRACAMONTE</label>
+												</div>
+												<div class="form-group form-animate-checkbox">
+													<h3 class="text-titles"> Vigente</h3>							
+													<input type="checkbox" class="checkbox"  id="validate_agree" name="validate_agree">
+												</div>
+												<div class="form-group label-floating">
+													<label class="control-label">Nro. de Solicitud</label>
+													<input class="form-control" type="text">
+												</div>
+											</div>
+											<table class="table table-hover text-center">
+												<thead>
+													<tr>
+														<th class="text-center">Nro.</th>
+														<th class="text-center">Nro. Cotizacion</th>
+														<th class="text-center">Fecha</th>
+														<th class="text-center">Concepto</th>
+														<th class="text-center">Estado</th>
+														<th class="text-center">Modificar</th>
+														<th class="text-center">Eliminar</th>
+													</tr>
+												</thead>
+											</table>
+											<p class="text-center">
+												<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+												<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+												<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+											</p>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- Listas de Medicamentos-->
+						<div class="tab-pane fade" id="list">
+							<div class="container-fluid">
+								<form action="">
+									<div class="container-fluid">
+										<h2 class="text-center all-tittles">REGISTRO DE SOLICITUDES</h2>
+										<div class="col-md-12 panel-body">
+											<div class="col-md-12">
+												<div class="col-md-6">
+													<div class="form-group label-floating">
+														<label class="control-label">Establecimiento</label>
+														<select class="form-control">
+															<option>HOSP. D. BRACAMONTE</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<label class="control-label">Farmacia</label>
+														<select class="form-control">
+															<option>FARMACIA HOSP. D. BRACAMONTE</option>
+															<option>ALMACEN</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<label class="control-label">Gestion</label>
+														<select class="form-control">
+															<option>2019</option>
+															<option>2018</option>
+															<option>2017</option>
+														</select>
+													</div>
+													<div class="form-group form-animate-checkbox">
+														<h4 class="text-titles"> Vigente</h4>							
+														<input type="checkbox" class="checkbox"  id="validate_agree" name="validate_agree">
+													</div>
+													<div class="form-group label-floating">
+														<label class="control-label">Busqueda (Nro. cotización - Fecha - Concepto):</label>
+														<input class="form-control" type="text">
+													</div>
+													<div class="form-group label-floating">
+														<label class="control-label">Nro. de Solicitud</label>
+														<input class="form-control" type="text">
+													</div>
+												</div>
+												<table class="table table-hover text-center">
+													<thead>
+														<tr>
+															<th class="text-center">Nro.</th>
+															<th class="text-center">Nro. Cotizacion</th>
+															<th class="text-center">Fecha</th>
+															<th class="text-center">Concepto</th>
+															<th class="text-center">Estado</th>
+															<th class="text-center">Modificar</th>
+															<th class="text-center">Eliminar</th>
+														</tr>
+													</thead>
+												</table>
+												<p class="text-center">
+													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+													<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+												</p>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	<!--====== Scripts -->
+	<%- include("partials/scripts") -%>
+</body>
+</html>
