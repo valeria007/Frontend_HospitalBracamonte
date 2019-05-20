@@ -38,6 +38,11 @@ router.get('/citas_fichas',(req, res) => {
 router.get('/citas',(req, res) => {
   res.render('citas')
 });
+//hospitalizacion 
+router.get('/hospitalizacion',(req, res) => {
+  res.render('hospitalizacion')
+});
+
 // Internacion
 router.get('/salas',(req, res) => {
   res.render('salas')
