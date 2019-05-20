@@ -57,7 +57,8 @@
                     <p class="text-center">
                         <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                         <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                    </p>
+                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
+					</p>
                 </form>
                 <!-- Lista de Salas-->
                 <div class="table-responsive">
@@ -65,23 +66,28 @@
                         <div class="table-wrapper">
 							<p class="text-center">
 								<button type="submit" class="btn btn-success btn-lg" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Nueva Cama </button>
-								<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
 							</p>
                             <table class="fl-table">
                                 <thead>
                                     <tr>
                                         <th>Cama</th>
                                         <th>Descripcion</th>
-                                        <th>Ver Estado</th>
-                                        <th>Modificar</th>
+                                        <th>Estado</th>
+                                        <th>Ver Cama</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Cama 1</td>
                                         <td>Sala H.- Niños</td>
+                                        <td>Ocupado</td>
                                         <td><a href="/historial" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-home"></i></a></td>
-                                        <td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cama 2</td>
+                                        <td>Sala H.- Niños</td>
+                                        <td>Libre</td>
+                                        <td><a href="/historial" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-home"></i></a></td>
                                     </tr>
                                 <tbody>
                             </table>

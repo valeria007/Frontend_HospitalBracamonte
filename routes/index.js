@@ -31,8 +31,8 @@ router.get('/camas',(req, res) => {
   res.render('camas')
 });
 
-router.get('/Pac_Inter',(req, res) => {
-  res.render('Pac_Inter')
+router.get('/paciente_Inter',(req, res) => {
+  res.render('paciente_Inter')
 });
 
 
