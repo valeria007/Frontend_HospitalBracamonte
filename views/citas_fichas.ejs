@@ -38,15 +38,13 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Registro <small>De Paciente</small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Recerva <small>Ficha</small></h1>
 			</div>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#newSchool" data-toggle="tab"><i class="zmdi zmdi-account-add"></i> Nuevo Paciente</a></li>
-					</ul>
+					
 					<div class="tab-content">
 						<div class="tab-pane fade active in" id="newSchool">
 							<div class="container-fluid">
@@ -55,8 +53,17 @@
 										<div class="container-fluid">
 											<div class="col-md-12 panel-body">
 												
-													<!-- daros personales-->
-													<p class="lead">Datos Personales </p>
+                                                    <!-- daros personales-->
+                                                    <div class="col-md-6">
+                                                            <p class="lead">Datos Personales </p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                            <div class="form-group label-floating">
+																	<label class="control-label">N° de Historia</label>
+																	<input class="form-control" type="text" name="apPaterno">
+															</div>
+                                                    </div>
+													
 																													
 															<!-- lado hizquierdo -->
 															
@@ -107,16 +114,16 @@
 																	</div>
 															</div>
 														<!-- lugar donde nacio colum1 -->
-														
+														<p class="lead">Datos de la Recerva </p>
 															<div class="col-md-6">
-																	<p class="lead">Lugar donde nació </p>
+																	
 																<div class="form-group label-floating">
-																	<label class="control-label">Departamento donde Nació</label>
+																	<label class="control-label">Grupo de Seguro</label>
 																	<select class="form-control" name="depNacio">	
 																		<option></option>
-																		<option>BENI</option>
-																		<option>CHUQUISACA</option>
-																		<option>COCHABAMBA</option>
+																		<option>SUS</option>
+																		<option>Caja Petrolera</option>
+																		<option>BOMBEROS</option>
 																		<option>LA PAZ</option>
 																		<option>ORURO</option>
 																		<option>POTOSÍ</option>
@@ -127,20 +134,19 @@
 																		</select>
 																</div>
 																<div class="form-group label-floating">
-																	<label class="control-label">Municipio Donde Nació</label>
+																	<label class="control-label">Especialidad</label>
 																	<input class="form-control" type="text" name="munipNacio">
 																</div>
 															</div>
 
 															<!-- lugar donde vive columna 2-->
 															<div class="col-md-6">
-																<p class="lead">Lugar donde vive </p>
 																<div class="form-group label-floating">
-																	<label class="control-label">Dirección</label>
+																	<label class="control-label">Doctor </label>
 																	<input class="form-control" type="text" name="direccion">
 																</div>
 																<div class="form-group label-floating">
-																	<label class="control-label">Zona</label>
+																	<label class="control-label">Turno</label>
 																	<input class="form-control" type="text" name="zona">
 																</div>
 															</div>
