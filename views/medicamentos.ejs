@@ -84,44 +84,57 @@
                     </div>
                     <!-- lista Medicamento -->
 				  	<div class="tab-pane fade" id="list">
+						<p class="text-center">
+                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
+                        </p>
 						<div class="table-responsive">
-							<table class="table table-hover text-center">
-								
-								<thead>
-									<tr>
-										<th class="text-center">#</th>
-										<th class="text-center">Grupo de Asignación</th>
-										<th class="text-center">Codificación</th>
-										<th class="text-center">Nombre</th>
-										<th class="text-center">Generico</th>
-										<th class="text-center">Unidad de Medida</th>
-										<th class="text-center">Presentacion</th>
-                                        <th class="text-center">Concentracion</th>
-                                        <th class="text-center">Modificar</th>
-                                        <th class="text-center">Eliminar</th>
-									</tr>
+							<div class="table-wrapper">
+								<table class="fl-table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Grupo de Asignación</th>
+											<th>Codificación</th>
+											<th>Nombre</th>
+											<th>Generico</th>
+											<th>Unidad de Medida</th>
+											<th>Presentacion</th>
+											<th>Concentracion</th>
+											<th>Tipo de Usuario</th>
+											<th>Modificar</th>
+										</tr>
 									</thead>
 									<tbody>
-									</tbody>
-                                </table>
-                                <p class="text-center">
-                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
-                                </p>
-								<ul class="pagination pagination-sm">
-								  	<li class="disabled"><a href="#!">«</a></li>
-								  	<li class="active"><a href="#!">1</a></li>
-								  	<li><a href="#!">2</a></li>
-								  	<li><a href="#!">3</a></li>
-								  	<li><a href="#!">4</a></li>
-								  	<li><a href="#!">5</a></li>
-								  	<li><a href="#!">»</a></li>
-								</ul>
+										<tr>
+											<td>1</td>
+											<td>Luis</td>
+											<td>Choque</td>
+											<td>Mamani C.</td>
+											<td>12345678</td>
+											<td>Calle La Paz # 1</td>
+											<td>9874561</td>
+											<td>Estudiante</td>
+											<td>Medico</td>
+											<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+										</tr>
+									<tbody>
+								</table>
 							</div>
-					  	</div>
-					</div>
+						</div>
+					</div>       
+					<ul class="pagination pagination-sm">
+						<li class="disabled"><a href="#!">«</a></li>
+					  	<li class="active"><a href="#!">1</a></li>
+						<li><a href="#!">2</a></li>
+					  	<li><a href="#!">3</a></li>
+					  	<li><a href="#!">4</a></li>
+						<li><a href="#!">5</a></li>
+					  	<li><a href="#!">»</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
+	</div>
 	</section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>

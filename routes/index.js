@@ -34,6 +34,7 @@ router.get('/vistaPrimPaciente',(req, res) => {
 router.get('/citas',(req, res) => {
   res.render('citas')
 });
+
 // Internacion
 router.get('/salas',(req, res) => {
   res.render('salas')
