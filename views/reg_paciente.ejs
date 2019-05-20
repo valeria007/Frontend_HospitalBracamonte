@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+	<!-- NavBar -->
+	<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+				<li>
+					<a href="#!" class="btn-Notifications-area">
+						<i class="zmdi zmdi-notifications-none"></i>
+						<span class="badge">7</span>
+					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-search">
+						<i class="zmdi zmdi-search"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-modal-help">
+						<i class="zmdi zmdi-help-outline"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> Registro <small>De Paciente</small></h1>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+					  	<li class="active"><a href="#newSchool" data-toggle="tab"><i class="zmdi zmdi-balance"></i> Nuevo Paciente</a></li>
+					   	<li><a href="#newYear" data-toggle="tab"><i class="zmdi zmdi-calendar-note"></i> List Year</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="newSchool">
+							<div class="container-fluid">
+								<div class="row">
+										<form action="" class="formulario">
+										<div class="container-fluid">
+											<div class="col-md-12 panel-body">
+												<div class="col-md-12">
+													<div class="col-md-6">
+														<p class="lead">Datos Personales </p>
+														<div class="form-group label-floating">
+															<label class="control-label">Nombre</label>
+															<input class="form-control" type="text" name="nombre">
+														</div>
+														<div class="form-group label-floating">
+															<label class="control-label">Apellido Paterno</label>
+															<input class="form-control" type="text" name="apPaterno">
+														</div>
+														<div class="form-group label-floating">
+															<label class="control-label">Apellido Materno</label>
+															<input class="form-control" type="text" name="apMaterno">
+														</div>
+														<div class="form-group label-floating">
+															<label class="control-label">CI</label>
+															<input class="form-control" type="text" name="ci">
+														</div>
+														<div class="form-group label-floating">
+															<label class="control-label">Fecha de Nacimiento</label>
+															<input class="form-control" type="text" name="fechNacimien">
+														</div>
+														<div class="checkbox">
+															<h4 class="text-titles"> Sexo</h4>			 
+															<input type="radio" name="sexo" id="hombre">
+															<label for="hombre">Hombre</label>
+															<input type="radio" name="sexo" id="mujer">
+															<label for="mujer">Mujer</label>
+															</div>
+														<div class="form-group label-floating">
+															<label class="control-label">Estado Civil</label>
+															<select class="form-control" name="estadoCivil">
+																<option></option>
+																<option>Casado(a)</option>
+																<option>Divorciado(a)</option>
+																<option>Soltero(a)</option>
+																<option>Viudo(a)</option>
+																</select>
+														</div>
+														<div class="form-group label-floating">
+															<label class="control-label">Ocupación</label>
+															<input class="form-control" type="text" name="ocupacion">
+														</div>
+															<p class="lead">Lugar donde nació </p>
+														<div class="form-group label-floating">
+															<label class="control-label">Departamento donde Nació</label>
+															<select class="form-control" name="depNacio">	
+																<option></option>
+																<option>BENI</option>
+																<option>CHUQUISACA</option>
+																<option>COCHABAMBA</option>
+																<option>LA PAZ</option>
+																<option>ORURO</option>
+																<option>POTOSÍ</option>
+																<option>TARIJA</option>
+																<option>SANTA CRUZ</option>
+																<option>PANDO</option>
+																<option>EXTRANJERO</option>
+															</select>
+														</div>
+														<div class="form-group label-floating">
+															<label class="control-label">Municipio Donde Nació</label>
+															<input class="form-control" type="text" name="munipNacio">
+														</div>
+													</div>
+												<div class="col-md-6">
+												<p class="lead">Lugar donde vive </p>
+													<div class="form-group label-floating">
+														<label class="control-label">Dirección</label>
+														<input class="form-control" type="text" name="direccion">
+													</div>
+													<div class="form-group label-floating">
+														<label class="control-label">Zona</label>
+														<input class="form-control" type="text" name="zona">
+													</div>
+												<p class="lead">Datos Familiares</p>
+													<div class="form-group label-floating">
+														<label class="control-label">Responsable de Familia</label>
+														<input class="form-control" type="text" name="respfamiliar">
+													</div>
+													<div class="form-group label-floating">
+														<label class="control-label">Nombre del Padre</label>
+														<input class="form-control" type="text" name="nombreP">
+													</div>
+													<div class="form-group label-floating">
+														<label class="control-label">Nombre de la Madre</label>
+														<input class="form-control" type="text" name="nombreM">
+													</div>
+													<div class="form-group label-floating">
+														<label class="control-label">Teléfono de Referencia</label>
+														<input class="form-control" type="text" name="telefonorRef">
+													</div>
+												<p class="lead">Lugar Donde Trabaja </p>
+													<div class="form-group">
+														<label class="control-label">Lugar de Trabajo</label>
+														<input class="form-control" type="text" name="lugTrabajo">
+													</div>
+													<div class="form-group">
+														<label class="control-label">Dirección</label>
+														<input class="form-control" type="text" name="directrabajo">
+													</div>
+													<div class="form-group">
+														<label class="control-label">Teléfono</label>
+														<input class="form-control" type="text" name="telef">
+													</div>
+												</div>
+												<table class="table table-hover text-center">
+													<thead>
+													</table>
+												<p class="text-center">
+													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+													<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+												</p>
+												</div>
+											</div>
+										</div>
+										</form>
+									
+								</div>
+	          	</div>
+						</div>
+		
+		<div class="tab-pane fade" id="newYear">
+			<div class="table-responsive">
+				<table class="table table-hover text-center">
+					<thead>
+						<tr>
+							<th class="text-center">#</th>
+							<th class="text-center">Name</th>
+							<th class="text-center">Status</th>
+							<th class="text-center">Start Date</th>
+							<th class="text-center">End Date</th>
+							<th class="text-center">Amount</th>
+							<th class="text-center">Year</th>
+							<th class="text-center">Update</th>
+							<th class="text-center">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Period 1</td>
+							<td>Active</td>
+							<td>23/01/2017</td>
+							<td>23/03/2017</td>
+							<td>$40</td>
+							<td>2017</td>
+							<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+							<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Period 2</td>
+							<td>Active</td>
+							<td>24/03/2017</td>
+							<td>23/06/2017</td>
+							<td>$40</td>
+							<td>2017</td>
+							<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+							<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Period 3</td>
+							<td>Active</td>
+							<td>24/06/2017</td>
+							<td>23/09/2017</td>
+							<td>$40</td>
+							<td>2017</td>
+							<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+							<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="pagination pagination-sm">
+						<li class="disabled"><a href="#!">«</a></li>
+						<li class="active"><a href="#!">1</a></li>
+						<li><a href="#!">2</a></li>
+						<li><a href="#!">3</a></li>
+						<li><a href="#!">4</a></li>
+						<li><a href="#!">5</a></li>
+						<li><a href="#!">»</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+	<!--====== Scripts -->
+	<%- include("partials/scripts") -%>
+</body>
+</html>

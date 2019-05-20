@@ -22,6 +22,14 @@ router.get('/expediente',(req, res) => {
   res.render('expediente')
 });
 
+router.get('/reg_paciente',(req, res) => {
+  res.render('reg_paciente')
+});
+
+router.get('/vistaPrimPaciente',(req, res) => {
+  res.render('vistaPrimPaciente')
+});
+
 // Internacion
 router.get('/salas',(req, res) => {
   res.render('salas')
