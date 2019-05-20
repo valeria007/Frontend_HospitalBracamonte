@@ -51,7 +51,41 @@ router.get('/paciente_Inter',(req, res) => {
   res.render('paciente_Inter')
 });
 
+// Farmacia
+router.get('/almacen',(req, res) => {
+  res.render('almacen')
+});
 
+router.get('/medicamentos',(req, res) => {
+  res.render('medicamentos')
+});
 
+router.get('/grupoAsig',(req, res) => {
+  res.render('grupoAsig')
+});
+
+router.get('/proveedores',(req, res) => {
+  res.render('proveedores')
+});
+
+router.get('/distribucion',(req, res) => {
+  res.render('distribucion')
+});
+
+router.get('/stock',(req, res) => {
+  res.render('stock')
+});
+
+router.get('/pedidos',(req, res) => {
+  res.render('pedidos')
+});
+
+router.get('/inventariosFar',(req, res) => {
+  res.render('inventariosFar')
+});
+
+router.get('/solicitudes',(req, res) => {
+  res.render('solicitudes')
+});
 
 module.exports = router;
