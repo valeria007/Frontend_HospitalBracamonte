@@ -1,13 +1,13 @@
 import model from '../models';
 
-const { pacientes} = model;
+const { Pacientes} = model;
 
-  class Pacientes {
+  class Paciente {
     static registroPaciente(req, res) {
-      const { nombre,apellidop,apellidom,ci,fechanacimiento,sexo,estadocivil,direccion,zona,
+      const { nombre,apellidop,apellidom,ci,fechanacimiento,edad,sexo,estadocivil,direccion,zona,
     telef,ocupacion,idiomas,lugranacimiento,departameto,provincia,municipio,npadre,apspadre,nmadre,apsmadre,
     nomrespon,aperespon,telefres,direcres} = req.body
-        return paciente
+        return Pacientes
           .create({
             nombre,
             apellidop,
@@ -42,10 +42,10 @@ const { pacientes} = model;
             }))
        }
   static getPaciente(req, res) {
-       return pacientes
+       return Pacientes
     .findAll()
     .then(Pacientes => res.status(200).send(Pacientes));
   }
 }
         
-export default Pacientes;
+export default Paciente;

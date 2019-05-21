@@ -9,79 +9,104 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nombre: {
-        type: Sequelize.TEXT
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      apellidop: {
-        type: Sequelize.TEXT
+      apellidop:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      apellidom: {
-        type: Sequelize.TEXT
+      apellidom:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
       ci: {
-        type: Sequelize.TEXT
+        allowNull:false,
+        type: Sequelize.STRING
       },
       fechanacimiento: {
-        type: Sequelize.DATE
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      edad: {
+      edad:  {
+        allowNull:false,
         type: Sequelize.INTEGER
       },
-      sexo: {
-        type: Sequelize.BOOLEAN
+      sexo:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      estadocivil: {
-        type: Sequelize.TEXT
+      estadocivil:  {
+        //allowNull:faslse,
+        type: Sequelize.STRING
       },
-      direccion: {
-        type: Sequelize.TEXT
+      direccion:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      zona: {
-        type: Sequelize.TEXT
+      zona:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
       telef: {
+        allowNull:false,
         type: Sequelize.INTEGER
       },
-      ocupacion: {
-        type: Sequelize.TEXT
+      ocupacion:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      idiomas: {
-        type: Sequelize.TEXT
+      idiomas:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      lugranacimiento: {
-        type: Sequelize.TEXT
+      lugranacimiento:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
       departameto: {
-        type: Sequelize.TEXT
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      provincia: {
-        type: Sequelize.TEXT
+      provincia:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
       municipio: {
-        type: Sequelize.TEXT
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      npadre: {
-        type: Sequelize.TEXT
+      npadre:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
       apspadre: {
-        type: Sequelize.TEXT
+        allowNull:false,
+        type: Sequelize.STRING
       },
       nmadre: {
-        type: Sequelize.TEXT
+        allowNull:false,
+        type: Sequelize.STRING
       },
       apsmadre: {
-        type: Sequelize.TEXT
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      nomrespon: {
-        type: Sequelize.TEXT
+      nomrespon:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      aperespon: {
-        type: Sequelize.TEXT
+      aperespon:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
-      telefres: {
+      telefres:  {
+        allowNull:false,
         type: Sequelize.INTEGER
       },
-      direcres: {
-        type: Sequelize.TEXT
+      direcres:  {
+        allowNull:false,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

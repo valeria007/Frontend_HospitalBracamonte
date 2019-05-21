@@ -33,4 +33,5 @@ app.get('/api/DElcama/:id', Camas.delCama);
 
 ///reg_pacientes
 app.post('/api/pacientes', Pacientes.registroPaciente);
+app.get('/api/pacientes', Pacientes.getPaciente);
 };
