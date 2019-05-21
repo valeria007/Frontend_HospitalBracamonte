@@ -1,6 +1,7 @@
 import Serv from '../controllers/servicios';
 import Salas from '../controllers/salas';
 import Camas from '../controllers/camas';
+import Pacientes from '../controllers/pacientes';
 
 export default (app) => {
 
@@ -29,4 +30,7 @@ app.get('/api/camaSala/:id', Camas.only);
 app.get('/api/OnlyCama/:id', Camas.onlyCama);
 app.post('/api/OnlyCama/:id', Camas.updateCama);
 app.get('/api/DElcama/:id', Camas.delCama);
+
+///reg_pacientes
+app.post('/api/pacientes', Pacientes.registroPaciente);
 };
