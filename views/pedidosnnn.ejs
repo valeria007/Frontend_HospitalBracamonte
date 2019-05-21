@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage">
+		<!-- NavBar -->
+		<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+				<li>
+					<a href="#!" class="btn-search">
+						<i class="zmdi zmdi-search"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+				<h1 class="text-titles"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Pedidos</h1>
+			</div>
+		</div>
+		<!-- Registro de Pedidos-->
+		<div class="container-fluid">
+			<div class="row">
+				<form action="">
+					<h2 class="text-center all-tittles">REGISTRO DE COMPRA</h2>
+					<div class="col-md-12 panel-body">
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="form-group label-floating">
+									<label class="control-label">Codigo de Compra</label>
+									<input class="form-control" type="text">
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">Especifique el status de la compra</label>
+									<select class="form-control">
+										<option>FACTURA</option>
+										<option>BOLETA DE VENTA</option>
+										<option>NOTA DE CREDITO</option>
+										<option>NOTA DE DEBITO</option>
+										<option>CONTROL INTERNO </option>
+									</select>
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">Tipo de Material</label>
+									<select class="form-control">
+										<option>Medicamentos</option>
+										<option>Insumos</option>
+									</select>
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">Proveedor</label>
+									<select class="form-control">
+										<option>Proveedor 1</option>
+										<option>Proveedor 2</option>
+										<option>Proveedor 3</option>
+										<option>Proveedor 4</option>
+									</select>
+								</div>
+							</div>
+						 </div>
+					</div>
+					<div class="col-md-12 panel-body">
+						<div class="col-md-12">
+							<div class="col-md-1">
+								<div class="form-group label-floating">
+									<label class="control-label">Cantidad</label>
+									<select class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-7">
+								<div class="form-group label-floating">
+									<label class="control-label">Cód. Producto:</label>
+									<input class="form-control" type="text">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group label-floating">
+									<button type="reset" class="btn btn-search" style="margin-right: 20px;"><i class="zmdi zmdi zmdi-search"></i> &nbsp;&nbsp; Buscar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-10 col-md-offset-1">
+						<div class="table-wrapper">
+							<table class="fl-table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Codigo</th>
+										<th>Descripcion</th>
+										<th>Cantidad</th>
+										<th>Unidad</th>
+										<th>Precio</th>
+										<th>Eliminar</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>123</td>
+										<td>Paracetamol</td>
+										<td>10</td>
+										<td>8</td>
+										<td>20</td>
+										<td class="text-center"><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+									</tr>
+								<tbody>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-12 panel-body">
+						<div class="col-md-12">
+							<h5>Notas importantes del Comprovante</h5>
+							<div class="col-md-9">
+								<div class="form-group label-floating">
+									<label class="control-label">Observaciones</label>
+									<input class="form-control" type="text">	
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group label-floating">
+									<label class="control-label">Sub Total</label>
+									<input class="form-control" type="text">
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">IVA</label>
+									<input class="form-control" type="text">
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">Total</label>
+									<input class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+					</div>
+					<p class="text-center">
+						<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+						<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+					</p>
+				</form>	
+			</div>
+		</div>
+	</section>
+	<!--====== Scripts -->
+	<%- include("partials/scripts") -%>
+</body>
+</html>
