@@ -2,6 +2,7 @@ import Serv from '../controllers/servicios';
 import Salas from '../controllers/salas';
 import Camas from '../controllers/camas';
 import Pacientes from '../controllers/pacientes';
+import Citas_medica from '../controllers/cita_medicas';
 
 export default (app) => {
 
@@ -34,4 +35,9 @@ app.get('/api/DElcama/:id', Camas.delCama);
 ///reg_pacientes
 app.post('/api/pacientes', Pacientes.registroPaciente);
 app.get('/api/pacientes', Pacientes.getPaciente);
+
+////citas
+app.post('/api/reg_cita', Citas_medica.reg_cita);
+app.get('/api/reg_citas', Citas_medica.getCitas);
+
 };
