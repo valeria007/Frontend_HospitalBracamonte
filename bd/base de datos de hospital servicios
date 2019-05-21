@@ -19,7 +19,12 @@ numeroDeEC:string,fechaIngreso:date,hora:string,nombres:text,apellido1:text,apel
 lugarNacimineto:text,sexo:string,raza:string,lugarProcendencia:text,domicilio:text,ocupacion:text,telefono:integer,datosPadres:text,personaResponsable:text,
 seguroMedico:string
 
-sequelize model:create --name antecedentesPersonales --attributes
- 
 
+
+<<< tablahistorial Clinico >>>>>>>>>
+sequelize model:create --name Internaciones --attributes historial:integer,nombre:text,apellido1:text,apellido2:text,edad:integer,tipoPaciente:string,institucion:string,provieneDE:string,observacion:text,especialidad:string,sala:string,cama:string,doctor:string,diagnostico:text,IDemergencia:integer,IDConsulta:integer,IDsala:integer
+
+
+
+ 
 
