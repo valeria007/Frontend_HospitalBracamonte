@@ -1,0 +1,30 @@
+sequelize model:create --name User --attributes name:string,username:string,email:string,password:string
+
+sequelize model:create --name Book --attributes title:string,author:string,description:string,quantity:integer,userId:integer
+
+
+
+sequelize model:create --name Especialidad --attributes nombre:string,sigla:string,descripcion:string,idEspecilidadSNIS:integer,idEstablecimientoSNIS:integer
+
+sequelize model:create --name Salas --attributes nombre:string,descripcionSala:string,piso:integer,especialidadID:integer  
+
+sequelize model:create --name Camas --attributes descripcion:string,numeroCama:integer,salaID:integer
+
+sequelize model:create --name Especialidadsnis --attributes nombreEspecialidad:string,descripcion:string,sigla:string
+
+sequelize model:create --name Establecimientosnis --attributes departamento:string,municipio:string,establecimiento:string,direccion:string
+
+sequelize model:create --name HistorialCinico --attributes 
+numeroDeEC:string,fechaIngreso:date,hora:string,nombres:text,apellido1:text,apellido2:text,ocupacion:string,edad:integer,fechaNacimineto:date,
+lugarNacimineto:text,sexo:string,raza:string,lugarProcendencia:text,domicilio:text,ocupacion:text,telefono:integer,datosPadres:text,personaResponsable:text,
+seguroMedico:string
+
+
+
+<<< tablahistorial Clinico >>>>>>>>>
+sequelize model:create --name Internaciones --attributes historial:integer,nombre:text,apellido1:text,apellido2:text,edad:integer,tipoPaciente:string,institucion:string,provieneDE:string,observacion:text,especialidad:string,sala:string,cama:string,doctor:string,diagnostico:text,IDemergencia:integer,IDConsulta:integer,IDsala:integer
+
+
+
+ 
+
