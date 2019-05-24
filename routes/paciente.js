@@ -89,17 +89,11 @@ router.get('/EnviarCita/:id', (req,res) => {
   .then(resp => resp.json())
   .then(resp =>{
     historialPaciente = resp
-    console.log(error,"<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>")
-    if(error.message != ""){
-      res.send("no hay coneccion con el servidor")
-    }else{
-      res.render('citas',{
-        resp
-      });
-    }
-    
-  })
-  
+    //console.log(error,"<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>")
+    res.render('citas',{
+      resp
+    });    
+  });  
 });
 
 
