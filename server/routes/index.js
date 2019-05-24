@@ -39,5 +39,6 @@ app.get('/api/pacientes', Paciente.getPaciente);
 ////citas
 app.post('/api/reg_cita', Citas_medica.reg_cita);
 app.get('/api/reg_citas', Citas_medica.getCitas);
+app.get('/api/OnlyCita/:id', Citas_medica.oneCita)
 
 };

@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      numeroHistorial: {
+        allowNull:false,
+        type: Sequelize.INTEGER
+      },      
       nombre: {
         allowNull:false,
         type: Sequelize.STRING
@@ -76,6 +80,7 @@ module.exports = {
         allowNull:false,
         type: Sequelize.STRING
       },
+      
       npadre:  {
         allowNull:false,
         type: Sequelize.STRING

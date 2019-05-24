@@ -17,6 +17,9 @@ module.exports = {
       medico: {
         type: Sequelize.TEXT
       },
+      especialidad: {
+        type: Sequelize.STRING
+      },
       id_especialidad: {
         type: Sequelize.TEXT
       },
