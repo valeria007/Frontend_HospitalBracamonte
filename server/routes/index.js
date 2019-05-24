@@ -3,6 +3,8 @@ import Salas from '../controllers/salas';
 import Camas from '../controllers/camas';
 import Pacientes from '../controllers/pacientes';
 import Citas_medica from '../controllers/cita_medicas';
+import Consulta from '../controllers/consultas';
+import Receta from '../controllers/recetas';
 
 export default (app) => {
 
@@ -39,5 +41,13 @@ app.get('/api/pacientes', Pacientes.getPaciente);
 ////citas
 app.post('/api/reg_cita', Citas_medica.reg_cita);
 app.get('/api/reg_citas', Citas_medica.getCitas);
+
+///consultas
+app.post('/api/reg_consulta', Consulta.reg_consulta);
+app.get('/api/reg_consultas', Consulta.getConsulta);
+
+///recetas
+app.post('/api/reg_consulta', Receta.post_receta);
+app.get('/api/reg_consultas', Receta.getReceta);
 
 };
