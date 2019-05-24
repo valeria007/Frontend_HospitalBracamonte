@@ -23,9 +23,6 @@ router.get('/expediente',(req, res) => {
   res.render('expediente')
 });
 
-router.get('/reg_paciente',(req, res) => {
-  res.render('reg_paciente')
-});
 
 router.get('/vistaPrimPaciente',(req, res) => {
   res.render('vistaPrimPaciente')
@@ -35,9 +32,7 @@ router.get('/citas_fichas',(req, res) => {
   res.render('citas_fichas')
 });
 
-router.get('/citas',(req, res) => {
-  res.render('citas')
-});
+;
 //hospitalizacion 
 router.get('/hospitalizacion',(req, res) => {
   res.render('hospitalizacion')

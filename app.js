@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //routas
 app.use('/', require('./routes/index'));
+app.use('/paciente', require('./routes/paciente'));
 
 
 app.listen(app.get('port'), () => {
