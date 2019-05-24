@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     codigo_p: DataTypes.STRING,
     turno: DataTypes.TEXT,
     medico: DataTypes.TEXT,
+    especialidad : DataTypes.STRING,
     id_especialidad: DataTypes.TEXT,
     hora: DataTypes.TEXT,
     saldo_total:DataTypes.DOUBLE

@@ -1,7 +1,7 @@
 import Serv from '../controllers/servicios';
 import Salas from '../controllers/salas';
 import Camas from '../controllers/camas';
-import Pacientes from '../controllers/pacientes';
+import Paciente from '../controllers/pacientes';
 import Citas_medica from '../controllers/cita_medicas';
 import Consulta from '../controllers/consultas';
 import Receta from '../controllers/recetas';
@@ -35,12 +35,13 @@ app.post('/api/OnlyCama/:id', Camas.updateCama);
 app.get('/api/DElcama/:id', Camas.delCama);
 
 ///reg_pacientes
-app.post('/api/pacientes', Pacientes.registroPaciente);
-app.get('/api/pacientes', Pacientes.getPaciente);
+app.post('/api/pacientes', Paciente.registroPaciente);
+app.get('/api/pacientes', Paciente.getPaciente);
 
 ////citas
 app.post('/api/reg_cita', Citas_medica.reg_cita);
 app.get('/api/reg_citas', Citas_medica.getCitas);
+app.get('/api/OnlyCita/:id', Citas_medica.oneCita)
 
 ///consultas
 app.post('/api/reg_consulta', Consulta.reg_consulta);
