@@ -17,6 +17,10 @@ router.get('/usuarios',(req, res) => {
 router.get('/cuadernos',(req, res) => {
   res.render('cuadernos')
 });
+ //vista de doctor
+ router.get('/HomeVistDoctor',(req, res) => {
+  res.render('HomeVistDoctor')
+})
  
 // Historiales Clinicos
 router.get('/expediente',(req, res) => {
@@ -37,6 +41,14 @@ router.get('/citas_fichas',(req, res) => {
 
 router.get('/citas',(req, res) => {
   res.render('citas')
+});
+
+router.get('/ListaPacienteDoc',(req, res) => {
+  res.render('ListaPacienteDoc')
+});
+
+router.get('/consultaMedica',(req, res) => {
+  res.render('consultaMedica')
 });
 
 //hospitalizacion 
