@@ -42,40 +42,39 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row contenedor">
 				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#newSchool" data-toggle="tab"><i class="zmdi zmdi-account-add"></i> Nuevo Paciente</a></li>
-					</ul>
+					
 					<div class="tab-content">
-						<div class="tab-pane fade active in" id="newSchool">
-							<div class="container-fluid">
+						<div class="tab-pane fade active in" id="reg_paciente">
+							<div class="container-fluid ">
 								<div class="row">
-										
-										<div class="container-fluid">
-											<div class="col-md-12 panel-body">
-												
+									
+									<form class="">
+
+										<div class=" container-fluid ">
+											<div class="col-md-12 ">
 													<!-- daros personales-->
 													<p class="lead">Datos Personales </p>
 																													
 															<!-- lado hizquierdo -->
 															
-															<div class="col-md-6">
-																<div class="form-group label-floating">
+															<div class="col-md-6 formm">
+																<div class="form-group label-floating form-text">
 																	<label class="control-label">Apellido Paterno</label>
-																	<input class="form-control" type="text" name="apPaterno">
+																	<input class="form-control label-txte" type="text" name="apPaterno">
 																</div>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																		<label class="control-label">Nombre</label>
-																		<input class="form-control" type="text" name="nombre">
+																		<input class="form-control label-txte" type="text" name="nombre">
 																</div>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																		<label class="control-label">Fecha de Nacimiento</label>
-																		<input class="form-control" type="text" name="fechNacimien">
+																		<input class="form-control label-txte" type="text" name="fechNacimien">
 																</div>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																		<label class="control-label">Estado Civil</label>
-																		<select class="form-control" name="estadoCivil">
+																		<select class="form-control label-txte" name="estadoCivil">
 																			<option></option>
 																			<option>Casado(a)</option>
 																			<option>Divorciado(a)</option>
@@ -83,36 +82,38 @@
 																			<option>Viudo(a)</option>
 																			</select>
 																	</div>
+																
 															</div>
 															<!--   lado derecho-->
-															<div class="col-md-6">
-																<div class="form-group label-floating">
+															<div class="col-md-6 formm">
+																<div class="form-group label-floating form-text">
 																	<label class="control-label">Apellido Materno</label>
-																	<input class="form-control" type="text" name="apMaterno">
+																	<input class="form-control label-txte" type="text" name="apMaterno">
 																</div>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																		<label class="control-label">CI</label>
-																		<input class="form-control" type="text" name="ci">
+																		<input class="form-control label-txte" type="text" name="ci">
 																</div>
-																<div class="checkbox" style=" height: 70px;">
+																<div class="checkbox form-text" style=" height: 70px;">
 																	<h4 class="text-titles"> Sexo</h4>			 
 																	<input type="radio" name="sexo" id="hombre">
 																	<label for="hombre">Hombre</label>
 																	<input type="radio" name="sexo" id="mujer">
 																	<label for="mujer">Mujer</label>
 																</div>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																		<label class="control-label">Ocupación</label>
-																		<input class="form-control" type="text" name="ocupacion">
-																	</div>
+																		<input class="form-control label-txte" type="text" name="ocupacion">
+																</div>
+																
 															</div>
 														<!-- lugar donde nacio colum1 -->
 														
-															<div class="col-md-6">
+															<div class="col-md-6 formm ">
 																	<p class="lead">Lugar donde nació </p>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																	<label class="control-label">Departamento donde Nació</label>
-																	<select class="form-control" name="depNacio">	
+																	<select class="form-control label-txte" name="depNacio">	
 																		<option></option>
 																		<option>BENI</option>
 																		<option>CHUQUISACA</option>
@@ -126,67 +127,73 @@
 																		<option>EXTRANJERO</option>
 																		</select>
 																</div>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																	<label class="control-label">Municipio Donde Nació</label>
-																	<input class="form-control" type="text" name="munipNacio">
+																	<input class="form-control label-txte" type="text" name="munipNacio">
 																</div>
+																<br>
 															</div>
 
 															<!-- lugar donde vive columna 2-->
-															<div class="col-md-6">
+															<div class="col-md-6 formm">
 																<p class="lead">Lugar donde vive </p>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																	<label class="control-label">Dirección</label>
-																	<input class="form-control" type="text" name="direccion">
+																	<input class="form-control label-txte" type="text" name="direccion">
 																</div>
-																<div class="form-group label-floating">
+																<div class="form-group label-floating form-text">
 																	<label class="control-label">Zona</label>
-																	<input class="form-control" type="text" name="zona">
+																	<input class="form-control label-txte" type="text" name="zona">
 																</div>
+																<br>
 															</div>
 													
 												<!-- datos familiares  -->			
 												<p class="lead">Datos Familiares</p>
-												<div class="col-md-6">
+												<div class="col-md-6 formm">
 													
-													<div class="form-group label-floating">
+													<div class="form-group label-floating form-text">
 														<label class="control-label">Responsable de Familia</label>
-														<input class="form-control" type="text" name="respfamiliar">
+														<input class="form-control label-txte" type="text" name="respfamiliar">
 													</div>
-													<div class="form-group label-floating">
+													<div class="form-group label-floating form-text">
 														<label class="control-label">Nombre del Padre</label>
-														<input class="form-control" type="text" name="nombreP">
+														<input class="form-control label-txte" type="text" name="nombreP">
 													</div>
+													<br>
 												</div>
-												<div class="col-md-6">
-													<div class="form-group label-floating">
+												<div class="col-md-6 formm">
+													<div class="form-group label-floating form-text">
 														<label class="control-label">Teléfono de Referencia</label>
-														<input class="form-control" type="text" name="telefonorRef">
+														<input class="form-control label-txte" type="text" name="telefonorRef">
 													</div>
-													<div class="form-group label-floating">
+													<div class="form-group label-floating form-text">
 															<label class="control-label">Nombre de la Madre</label>
-															<input class="form-control" type="text" name="nombreM">
+															<input class="form-control label-txte" type="text" name="nombreM">
 													</div>
+													<br>
 												</div>
 												<!-- lugar donde trabajacolum 1-->
 												<p class="lead">Lugar Donde Trabaja </p>
-												<div class="col-md-6">
+												<div class="col-md-6 formm">
 													
-													<div class="form-group">
+													<div class="form-group label-floating form-text">
 														<label class="control-label">Lugar de Trabajo</label>
-														<input class="form-control" type="text" name="lugTrabajo">
+														<input class="form-control label-txte" type="text" name="lugTrabajo">
 													</div>
-													<div class="form-group">
+													<div class="form-group label-floating form-text">
 															<label class="control-label">Teléfono</label>
-															<input class="form-control" type="text" name="telef">
+															<input class="form-control label-txte" type="text" name="telef">
 													</div>
+													<br>
 												</div>
 												<!-- lugar donde trabaja colum 2-->
-												<div class="col-md-6">
-													<div class="form-group">
+												<div class="col-md-6 formm">
+													<div class="form-group label-floating form-text">
 														<label class="control-label">Dirección</label>
-														<input class="form-control" type="text" name="directrabajo">
+														<input class="form-control label-txte" type="text" name="directrabajo">
 													</div>
+												<br>
 												</div>
 														
 											</div>
@@ -199,6 +206,8 @@
 													<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
 												</p>
 										</div>
+									</form>
+									
 								</div>
 							</div>
 									

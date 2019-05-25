@@ -48,164 +48,121 @@
 					<div class="tab-content">
 						<div class="tab-pane fade active in" id="newSchool">
 							<div class="container-fluid">
-								<div class="row">
-										
-										<div class="container-fluid">
-											<div class="col-md-12 panel-body">
-												
-                                                    <!-- daros personales-->
-                                                    <div class="col-md-6">
-                                                            <p class="lead">Datos Personales </p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                            <div class="form-group label-floating">
-																	<label class="control-label">N° de Historia</label>
-																	<input class="form-control" type="text" name="apPaterno">
-															</div>
-                                                    </div>
+								<div class="row contenedor">
+										<form >
+											<div class="container-fluid">
+												<div class="col-md-12 panel-body ">
 													
-																													
-															<!-- lado hizquierdo -->
-															
-															<div class="col-md-6">
+														<!-- daros personales-->
+														<div class="col-md-6">
+																<p class="lead">Datos Personales </p>
+														</div>
+														<div class="col-md-6">
 																<div class="form-group label-floating">
-																	<label class="control-label">Apellido Paterno</label>
-																	<input class="form-control" type="text" name="apPaterno">
+																		<label class="control-label">N° de Historia</label>
+																		<input class="form-control" type="text" name="apPaterno">
 																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Nombre</label>
-																		<input class="form-control" type="text" name="nombre">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Fecha de Nacimiento</label>
-																		<input class="form-control" type="text" name="fechNacimien">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Estado Civil</label>
-																		<select class="form-control" name="estadoCivil">
-																			<option></option>
-																			<option>Casado(a)</option>
-																			<option>Divorciado(a)</option>
-																			<option>Soltero(a)</option>
-																			<option>Viudo(a)</option>
+														</div>
+														
+																														
+																<!-- lado hizquierdo -->
+																
+																<div class="col-md-6 formm">
+																	<div class="form-group label-floating  form-text">
+																		<label class="control-label ">Apellido Paterno</label>
+																		<input class="form-control label-txte" type="text" name="apPaterno">
+																	</div>
+																	<div class="form-group label-floating form-text">
+																			<label class="control-label">Nombre</label>
+																			<input class="form-control label-txte" type="text" name="nombre">
+																	</div>
+																	<div class="form-group label-floating form-text">
+																			<label class="control-label">Fecha de Nacimiento</label>
+																			<input class="form-control label-txte" type="text" name="fechNacimien">
+																	</div>
+																	<div class="form-group label-floating form-text">
+																			<label class="control-label ">Estado Civil</label>
+																			<select class="form-control label-txte " name="estadoCivil">
+																				<option ></option>
+																				<option>Casado(a)</option>
+																				<option>Divorciado(a)</option>
+																				<option>Soltero(a)</option>
+																				<option>Viudo(a)</option>
 																			</select>
 																	</div>
-															</div>
-															<!--   lado derecho-->
-															<div class="col-md-6">
-																<div class="form-group label-floating">
-																	<label class="control-label">Apellido Materno</label>
-																	<input class="form-control" type="text" name="apMaterno">
+																	<br>
 																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">CI</label>
-																		<input class="form-control" type="text" name="ci">
-																</div>
-																<div class="checkbox" style=" height: 70px;">
-																	<h4 class="text-titles"> Sexo</h4>			 
-																	<input type="radio" name="sexo" id="hombre">
-																	<label for="hombre">Hombre</label>
-																	<input type="radio" name="sexo" id="mujer">
-																	<label for="mujer">Mujer</label>
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Ocupación</label>
-																		<input class="form-control" type="text" name="ocupacion">
-																	</div>
-															</div>
-														<!-- lugar donde nacio colum1 -->
-														<p class="lead">Datos de la Recerva </p>
-															<div class="col-md-6">
-																	
-																<div class="form-group label-floating">
-																	<label class="control-label">Grupo de Seguro</label>
-																	<select class="form-control" name="depNacio">	
-																		<option></option>
-																		<option>SUS</option>
-																		<option>Caja Petrolera</option>
-																		<option>BOMBEROS</option>
-																		<option>LA PAZ</option>
-																		<option>ORURO</option>
-																		<option>POTOSÍ</option>
-																		<option>TARIJA</option>
-																		<option>SANTA CRUZ</option>
-																		<option>PANDO</option>
-																		<option>EXTRANJERO</option>
-																		</select>
-																</div>
-																<div class="form-group label-floating">
-																	<label class="control-label">Especialidad</label>
-																	<input class="form-control" type="text" name="munipNacio">
-																</div>
-															</div>
-
-															<!-- lugar donde vive columna 2-->
-															<div class="col-md-6">
 																
-																<div class="form-group label-floating">
-																	<label class="control-label">Doctor </label>
-																	<input class="form-control" type="text" name="direccion">
+																<!--   lado derecho-->
+																<div class="col-md-6 formm">
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Apellido Materno</label>
+																		<input class="form-control label-txte" type="text" name="apMaterno">
+																	</div>
+																	<div class="form-group label-floating form-text">
+																			<label class="control-label">CI</label>
+																			<input class="form-control label-txte" type="text" name="ci">
+																	</div>
+																	<div class="checkbox form-text" style=" height: 70px;">
+																		<h4 class="text-titles"> Sexo</h4>			 
+																		<input type="radio" name="sexo" id="hombre">
+																		<label for="hombre">Hombre</label>
+																		<input type="radio" name="sexo" id="mujer">
+																		<label for="mujer">Mujer</label>
+																	</div>
+																	<div class="form-group label-floating form-text">
+																			<label class="control-label">Ocupación</label>
+																			<input class="form-control label-txte" type="text" name="ocupacion">
+																		</div>
+																<br>
+																
 																</div>
-																<div class="form-group label-floating">
-																	<label class="control-label">Turno</label>
-																	<input class="form-control" type="text" name="zona">
+															<!-- lugar donde nacio colum1 -->
+															<p class="lead">Datos de la Recerva </p>
+																<div class="col-md-6 formm">
+																		
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Grupo de Seguro</label>
+																		<select class="form-control label-txte" name="depNacio">	
+																			<option></option>
+																			<option>SUS</option>
+																			<option>Caja Petrolera</option>
+																			
+																			</select>
+																	</div>
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Especialidad</label>
+																		<input class="form-control label-txte" type="text" name="munipNacio">
+																	</div>
+																	<br>
 																</div>
-															</div>
-													
-												<!-- datos familiares  -->			
-												<p class="lead">Datos Familiares</p>
-												<div class="col-md-6">
-													
-													<div class="form-group label-floating">
-														<label class="control-label">Responsable de Familia</label>
-														<input class="form-control" type="text" name="respfamiliar">
-													</div>
-													<div class="form-group label-floating">
-														<label class="control-label">Nombre del Padre</label>
-														<input class="form-control" type="text" name="nombreP">
-													</div>
+	
+																<!-- lugar donde vive columna 2-->
+																<div class="col-md-6 formm">
+																	
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Doctor </label>
+																		<input class="form-control label-txte" type="text" name="direccion">
+																	</div>
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Turno</label>
+																		<input class="form-control label-txte" type="text" name="zona">
+																	</div>
+																	<br>
+																</div>
+																									
 												</div>
-												<div class="col-md-6">
-													<div class="form-group label-floating">
-														<label class="control-label">Teléfono de Referencia</label>
-														<input class="form-control" type="text" name="telefonorRef">
-													</div>
-													<div class="form-group label-floating">
-															<label class="control-label">Nombre de la Madre</label>
-															<input class="form-control" type="text" name="nombreM">
-													</div>
-												</div>
-												<!-- lugar donde trabajacolum 1-->
-												<p class="lead">Lugar Donde Trabaja </p>
-												<div class="col-md-6">
-													
-													<div class="form-group">
-														<label class="control-label">Lugar de Trabajo</label>
-														<input class="form-control" type="text" name="lugTrabajo">
-													</div>
-													<div class="form-group">
-															<label class="control-label">Teléfono</label>
-															<input class="form-control" type="text" name="telef">
-													</div>
-												</div>
-												<!-- lugar donde trabaja colum 2-->
-												<div class="col-md-6">
-													<div class="form-group">
-														<label class="control-label">Dirección</label>
-														<input class="form-control" type="text" name="directrabajo">
-													</div>
-												</div>
-														
+													<table class="table table-hover text-center">
+														<thead>
+													</table>
+													<p class="text-center">
+														<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+														<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+														<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+													</p>
 											</div>
-												<table class="table table-hover text-center">
-													<thead>
-												</table>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-													<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-												</p>
-										</div>
+										</form>
+										
 								</div>
 							</div>
 									
