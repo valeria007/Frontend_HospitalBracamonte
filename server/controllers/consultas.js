@@ -4,12 +4,15 @@ const { Consultas} = model;
 class Consulta {
     
     static reg_consulta(req, res) {
-        const { id_cita,diagnostico,tratamiento} = req.body
+        const { anamnesis,diagnostico,tratamiento,observaciones} = req.body
+        const { id_cita } = req.params
         return Consultas
           .create({
             id_cita,
+            anamnesis,
             diagnostico,
-            tratamiento
+            tratamiento,
+            observaciones
           })
            .then(consultaData => res.status(201).send({
               success: true,
@@ -24,3 +27,6 @@ class Consulta {
      }
     }
     export default Consulta;
+
+
+    

@@ -11,10 +11,16 @@ module.exports = {
       id_cita: {
         type: Sequelize.INTEGER
       },
+      anamnesis: {
+        type: Sequelize.TEXT
+      },
       diagnostico: {
         type: Sequelize.TEXT
       },
       tratamiento: {
+        type: Sequelize.TEXT
+      },
+      observaciones: {
         type: Sequelize.TEXT
       },
       createdAt: {

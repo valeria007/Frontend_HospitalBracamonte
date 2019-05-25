@@ -47,6 +47,16 @@ const { Pacientes } = model;
     .findAll()
     .then(Pacientes => res.status(200).send(Pacientes));
   }
+//Only paciente
+  static OnlyPaciente(req, res){
+    var id = req.params.id;  
+    Pacientes.findAll({
+      where: {numeroHistorial : id}
+        //attributes: ['id', ['description', 'descripcion']]
+        }).then((data) => {
+          res.status(200).json(data);
+        });  
+  }
 }
         
 export default Paciente;

@@ -37,6 +37,7 @@ app.get('/api/DElcama/:id', Camas.delCama);
 ///reg_pacientes
 app.post('/api/pacientes', Paciente.registroPaciente);
 app.get('/api/pacientes', Paciente.getPaciente);
+app.get('/api/onlyPaciente/:id', Paciente.OnlyPaciente);
 
 ////citas
 app.post('/api/reg_cita', Citas_medica.reg_cita);
@@ -44,11 +45,11 @@ app.get('/api/reg_citas', Citas_medica.getCitas);
 app.get('/api/OnlyCita/:id', Citas_medica.oneCita)
 
 ///consultas
-app.post('/api/reg_consulta', Consulta.reg_consulta);
+app.post('/api/reg_consulta/:id_cita', Consulta.reg_consulta);
 app.get('/api/reg_consultas', Consulta.getConsulta);
 
 ///recetas
-app.post('/api/reg_consulta', Receta.post_receta);
-app.get('/api/reg_consultas', Receta.getReceta);
+app.post('/api/reg_Receta', Receta.post_receta);
+app.get('/api/reg_Receta', Receta.getReceta);
 
 };
