@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+	<%- include("partials/menudoc") -%>
+	<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+	<!-- NavBar -->
+	<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+				<li>
+					<a href="#!" class="btn-Notifications-area">
+						<i class="zmdi zmdi-notifications-none"></i>
+						<span class="badge">7</span>
+					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-search">
+						<i class="zmdi zmdi-search"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#!" class="btn-modal-help">
+						<i class="zmdi zmdi-help-outline"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Papeleta  <small>de internacion</small></h1>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="newSchool">
+							<div class="container-fluid">
+								<div class="row contenedor">
+										<form >
+											<div class="container-fluid">
+												<div class="col-md-12 panel-body ">
+													
+														<!-- daros personales-->
+														<div class="col-md-6">
+                                                            <br>
+																<p class="lead">Datos Personales </p>
+														</div>
+														<div class="col-md-6">
+																<div class="form-group label-floating">
+																		<label class="control-label">N° de Historia</label>
+																		<input class="form-control" type="text" name="apPaterno">
+																</div>
+														</div>
+														
+																														
+																<!-- lado hizquierdo -->
+																
+																<div class="col-md-6 formm">
+																	<div class="form-group label-floating  form-text">
+																		<label class="control-label ">Apellido Paterno</label>
+																		<input class="form-control label-txte" type="text" name="apPaterno">
+																	</div>
+																	<div class="form-group label-floating form-text">
+																			<label class="control-label">Nombre</label>
+																			<input class="form-control label-txte" type="text" name="nombre">
+																	</div>
+																	
+																	<br>
+																</div>
+																
+																<!--   lado derecho-->
+																<div class="col-md-6 formm">
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Apellido Materno</label>
+																		<input class="form-control label-txte" type="text" name="apMaterno">
+																	</div>
+																	<div class="form-group label-floating form-text">
+																			<label class="control-label">CI</label>
+																			<input class="form-control label-txte" type="text" name="ci">
+																	</div>
+																	
+																<br>
+																
+																</div>
+															<!-- lugar donde nacio colum1 -->
+															<p class="lead">Datos de Orden de Internacion </p>
+																<div class="col-md-6 formm">
+																		
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Grupo de Seguro</label>
+																		<select class="form-control label-txte" name="depNacio">	
+																			<option></option>
+																			<option>SUS</option>
+																			<option>Caja Petrolera</option>
+																			
+																			</select>
+																	</div>
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Especialidad</label>
+																		<input class="form-control label-txte" type="text" name="munipNacio">
+																	</div>
+																	<br>
+																</div>
+	
+																<!-- lugar donde vive columna 2-->
+																<div class="col-md-6 formm">
+																	
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Doctor </label>
+																		<input class="form-control label-txte" type="text" name="direccion">
+																	</div>
+																	<div class="form-group label-floating form-text">
+																		<label class="control-label">Fecha de Ingreso</label>
+																		<input class="form-control label-txte" type="text" name="zona">
+																	</div>
+																	<br>
+                                                                </div>
+                                                                <div class="form-group label-floating col-md-12">
+                                                                        <label class="control-label">Diagnostico</label>
+                                                                        <textarea  class="textarea text-center" name="comentarios" rows="10" cols="80"></textarea>
+                                                                    
+                                                                </div>
+																									
+												</div>
+													<table class="table table-hover text-center">
+														<thead>
+													</table>
+													<p class="text-center">
+														<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+														<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+														<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+													</p>
+											</div>
+										</form>
+										
+								</div>
+							</div>
+									
+									
+						</div>
+	          		</div>
+				</div>
+			</div>
+		</div>
+</section>
+	<!--====== Scripts -->
+	<%- include("partials/scripts") -%>
+</body>
+</html>
