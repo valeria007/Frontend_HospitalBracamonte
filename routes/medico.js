@@ -9,9 +9,12 @@ router.get('/HomeVistDoctor',(req, res) => {
         
         .then(resp => resp.json())
         .then(resp =>{
-            idCIta = resp[0].id;
-            console.log(idCIta)
-            res.render('HomeVistDoctor',{resp});
+            if(resp == ""){                
+                res.render('HomeVistDoctor',{resp});
+            }else{
+                idCIta = resp[0].id;
+                res.render('HomeVistDoctor',{resp});
+            }
     })
     .catch(error => {
         console.error('Error:', error)
@@ -57,6 +60,10 @@ router.post('/regConsulta/:id', (req, res) => {
     .then(data => {      
       res.redirect('/medico/renderConsulta');
     })
+});
+
+router.get('/recetas', (req,res) => {
+    res.render('recetas');
 });
 
 module.exports = router;
