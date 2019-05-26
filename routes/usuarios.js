@@ -7,7 +7,11 @@ router.get('/usuarios',(req, res) => {
         .then(resp => resp.json())
         .then(resp =>{
         res.render('usuarios',{resp});
-     });
+     })
+     .catch(error => {
+      console.error('Error:', error)
+      res.send("no hay coneccion con el servidor de usurios");
+  })
 });
 
   router.post('/usuarios', (req,res) => {

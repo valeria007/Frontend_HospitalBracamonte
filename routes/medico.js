@@ -4,13 +4,19 @@ const fetch = require('node-fetch');
 
 var idCIta
 router.get('/HomeVistDoctor',(req, res) => {
+    
     fetch('http://localhost:3000/api/reg_citas/')
-      .then(resp => resp.json())
-      .then(resp =>{
-          idCIta = resp[0].id;
-          console.log(idCIta)
-        res.render('HomeVistDoctor',{resp});
-    });
+        
+        .then(resp => resp.json())
+        .then(resp =>{
+            idCIta = resp[0].id;
+            console.log(idCIta)
+            res.render('HomeVistDoctor',{resp});
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
 });
 var dataPaciente
 router.get('/consulta/:id', (req,res) => {

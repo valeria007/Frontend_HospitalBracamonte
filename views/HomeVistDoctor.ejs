@@ -69,18 +69,25 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% for(var i=0; i< resp.length; i++) { %>
-								<tr>
-									<td><%= i + 1 %></td>
-									<td><%=resp[i].codigo_p %></td>
-									<td>algun nombre del paciente</td>
-									<td>algun apellido Paterno del paciente</td>
-									<td>algun apellido Materno del paciente</td>
-									<td><%=resp[i].hora %></td>
-									<td class="text-center"><a href="/medico/consulta/<%=resp[i].codigo_p %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									<td class="text-center" ><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-								</tr>
+								<% if(resp.length != null) { %>
+								
+									<% for(var i=0; i< resp.length; i++) { %>
+										<tr>
+											<td><%= i + 1 %></td>
+											<td><%=resp[i].codigo_p %></td>
+											<td>algun nombre del paciente</td>
+											<td>algun apellido Paterno del paciente</td>
+											<td>algun apellido Materno del paciente</td>
+											<td><%=resp[i].hora %></td>
+											<td class="text-center"><a href="/medico/consulta/<%=resp[i].codigo_p %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td class="text-center" ><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+										</tr>
+										<% } %>
+								<% } else { %>
+									<tr>
+										<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
+									</tr>
 								<% } %>
 							</tbody>
 						</table>

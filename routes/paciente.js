@@ -93,7 +93,11 @@ router.get('/EnviarCita/:id', (req,res) => {
     res.render('citas',{
       resp
     });    
-  });  
+  })
+  .catch(error => {
+    console.error('Error:', error)
+    res.send("no hay coneccion con el servidor");
+}) 
 });
 
 
