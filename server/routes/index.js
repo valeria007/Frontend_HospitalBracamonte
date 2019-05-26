@@ -49,7 +49,8 @@ app.post('/api/reg_consulta/:id_cita', Consulta.reg_consulta);
 app.get('/api/reg_consultas', Consulta.getConsulta);
 
 ///recetas
-app.post('/api/reg_Receta', Receta.post_receta);
+app.post('/api/reg_Receta/:id_consulta', Receta.post_receta);
 app.get('/api/reg_Receta', Receta.getReceta);
+app.get('/api/OnlyReceta/:id', Receta.onlyReceta);
 
 };

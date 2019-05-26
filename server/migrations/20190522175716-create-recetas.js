@@ -11,14 +11,26 @@ module.exports = {
       id_consulta: {
         type: Sequelize.INTEGER
       },
+      historiaClinica: {
+        type: Sequelize.INTEGER
+      },
+      fecha: {
+        type: Sequelize.DATE
+      },
+      posologia:{
+        type: Sequelize.TEXT
+      },
       farmaco: {
+        type: Sequelize.TEXT
+      },
+      viaAdmincion: {
+        type: Sequelize.TEXT
+      },
+      doctor:{
         type: Sequelize.TEXT
       },
       indicaciones: {
         type: Sequelize.TEXT
-      },
-      fecha: {
-        type: Sequelize.DATE
       },
       unidades: {
         type: Sequelize.INTEGER
