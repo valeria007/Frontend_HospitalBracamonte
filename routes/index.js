@@ -20,7 +20,15 @@ router.get('/cuadernos',(req, res) => {
  //vista de doctor
  router.get('/HomeVistDoctor',(req, res) => {
   res.render('HomeVistDoctor')
-})
+});
+router.get('/Papeleta_Inter',(req, res) => {
+  res.render('Papeleta_Inter')
+});
+router.get('/recetas',(req, res) => {
+  res.render('recetas')
+});
+
+
  
 // Historiales Clinicos
 router.get('/expediente',(req, res) => {
