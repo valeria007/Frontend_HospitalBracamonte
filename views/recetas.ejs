@@ -38,9 +38,11 @@
 											<div class="container-fluid">
 												<div class="col-md-12 panel-body ">
 													
-														<!-- daros personales-->
+														<!-- daros de receta-->
 														<div class="col-md-6">
-																<p class="lead">Datos Personales </p>
+                                                            <br>
+                                                                <p class="lead">Datos Personales </p>
+                                                                
 														</div>
 														<div class="col-md-6">
 																<div class="form-group label-floating">
@@ -52,75 +54,67 @@
 																														
 																<!-- lado hizquierdo -->
 																
-																<div class="col-md-6 formm">
+																<div class="col-md-4 formm">
+
 																	<div class="form-group label-floating  form-text">
 																		<label class="control-label ">Apellido Paterno</label>
 																		<input class="form-control label-txte" type="text" name="apPaterno">
-																	</div>
-																	<div class="form-group label-floating form-text">
-																			<label class="control-label">Nombre</label>
-																			<input class="form-control label-txte" type="text" name="nombre">
-																	</div>
-																	<div class="form-group label-floating form-text">
-																			<label class="control-label">Fecha de Nacimiento</label>
-																			<input class="form-control label-txte" type="text" name="fechNacimien">
-																	</div>
-																	<div class="form-group label-floating form-text">
-																			<label class="control-label ">Estado Civil</label>
-																			<select class="form-control label-txte " name="estadoCivil">
-																				<option ></option>
-																				<option>Casado(a)</option>
-																				<option>Divorciado(a)</option>
-																				<option>Soltero(a)</option>
-																				<option>Viudo(a)</option>
-																			</select>
-																	</div>
-																	<br>
-																</div>
+                                                                    </div>
+                                                                   
+																	
+                                                                    
+																<br>
+                                                                </div>
+                                                              
 																
 																<!--   lado derecho-->
-																<div class="col-md-6 formm">
+																<div class="col-md-4 formm">
 																	<div class="form-group label-floating form-text">
 																		<label class="control-label">Apellido Materno</label>
 																		<input class="form-control label-txte" type="text" name="apMaterno">
 																	</div>
-																	<div class="form-group label-floating form-text">
-																			<label class="control-label">CI</label>
-																			<input class="form-control label-txte" type="text" name="ci">
-																	</div>
-																	<div class="checkbox form-text" style=" height: 70px;">
-																		<h4 class="text-titles"> Sexo</h4>			 
-																		<input type="radio" name="sexo" id="hombre">
-																		<label for="hombre">Hombre</label>
-																		<input type="radio" name="sexo" id="mujer">
-																		<label for="mujer">Mujer</label>
-																	</div>
-																	<div class="form-group label-floating form-text">
-																			<label class="control-label">Ocupación</label>
-																			<input class="form-control label-txte" type="text" name="ocupacion">
-																		</div>
+                                                                    
 																<br>
 																
-																</div>
-															<!-- lugar donde nacio colum1 -->
+                                                                </div>
+                                                                <div class="col-md-4 formm">
+                                                                        <div class="form-group label-floating form-text">
+                                                                            <label class="control-label">Nombre</label>
+                                                                            <input class="form-control label-txte" type="text" name="nombre">
+                                                                        </div>
+                                                                        <br>
+                                                                </div>
+															<!-- medicamentos colum1 -->
 															<p class="lead">Datos de la Medicamento</p>
-																<div class="col-md-6 formm">
+																<div class="col-md-2 formm">
 																		
 																	<div class="form-group label-floating form-text">
-																		<label class="control-label">Tipo de                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </label>
-																		<select class="form-control label-txte" name="depNacio">	
-																			<option></option>
-																			<option>SUS</option>
-																			<option>Caja Petrolera</option>
-																			
-																			</select>
+																		<label class="control-label">Fecha Prescripción                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </label>
+																		<input class="form-control label-txte" type="text" name="fecha">
 																	</div>
 																	<div class="form-group label-floating form-text">
-																		<label class="control-label">Especialidad</label>
+																		<label class="control-label">Posologia </label>
 																		<input class="form-control label-txte" type="text" name="munipNacio">
 																	</div>
 																	<br>
-																</div>
+                                                                </div>
+                                                                <div class="col-md-4 formm">
+																		
+                                                                        <div class="form-group label-floating form-text">
+                                                                            <label class="control-label">Fármaco                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
+                                                                            <select class="form-control label-txte" name="dfarmaco">	
+                                                                                <option></option>
+                                                                                <option>SUS</option>
+                                                                                <option>Caja Petrolera</option>
+                                                                                
+                                                                                </select>
+                                                                        </div>
+                                                                        <div class="form-group label-floating form-text">
+                                                                            <label class="control-label">Via de Administración</label>
+                                                                            <input class="form-control label-txte" type="text" name="munipNacio">
+                                                                        </div>
+                                                                        <br>
+                                                                    </div>
 	
 																<!-- lugar donde vive columna 2-->
 																<div class="col-md-6 formm">
@@ -130,7 +124,7 @@
 																		<input class="form-control label-txte" type="text" name="direccion">
 																	</div>
 																	<div class="form-group label-floating form-text">
-																		<label class="control-label">Turno</label>
+																		<label class="control-label">Duracion Tratamiento</label>
 																		<input class="form-control label-txte" type="text" name="zona">
 																	</div>
 																	<br>
