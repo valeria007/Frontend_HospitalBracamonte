@@ -10,9 +10,27 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
-router.get('/usuarios',(req, res) => {
-  res.render('usuarios')
-});
+router.post('/login', (req,res)  => {
+  var data = req.body;
+  var enviar = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type' : "application/json"
+    }
+  }
+  fetch('http://localhost:4500/api/login',enviar)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    if(resp.success == false){
+      res.send('usted no esta registrado')
+    }else{
+      res.redirect('/home')
+    }
+    
+  })
+})
 
 router.get('/cuadernos',(req, res) => {
   res.render('cuadernos')
