@@ -79,17 +79,15 @@ router.get('/EnviarCita/:id', (req,res) => {
   fetch('http://localhost:3000/api/OnlyCita/'+id.id)
   .then(resp => resp.json())
   .then(resp =>{
-    res.render('citas_fichas',{historialPaciente});
+    res.render('citas_fichas',{id});
   });
  });
 
- var historialPaciente
+ 
  router.get('/citas',(req, res) => {
   fetch('http://localhost:3000/api/pacientes/')
   .then(resp => resp.json())
   .then(resp =>{
-    historialPaciente = resp
-    //console.log(error,"<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>")
     res.render('citas',{
       resp
     });    
