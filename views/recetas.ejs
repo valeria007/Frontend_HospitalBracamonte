@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+	<%- include("partials/menudoc") -%>
+	<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+	<!-- NavBar -->
+	<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+			
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Receta <small></small></h1>
+			</div>
+		</div>
+		<div class="container-fluid">
+		    <div class="container-fluid">
+				<div class="row contenedor">
+					<form action="/medico/receta/<%=id.id%>" method="POST">
+						<div class="container-fluid">
+							<div class="col-md-12 panel-body ">
+							
+								<!-- daros de receta-->
+								<div class="col-md-6">
+                                    <br>
+                                     <p class="lead">Datos Personales </p>
+                                                                
+								</div>
+				        		<div class="col-md-6">
+									<div class="form-group label-floating">
+										<label class="control-label">N° de Historia</label>
+										<input class="form-control" type="text"  value="<%=dataPaciente[0].numeroHistorial%>" name="historiaClinica">
+									</div>
+								</div>
+														
+																						
+								<!-- lado hizquierdo -->
+															
+								<div class="col-md-4 formm">
+
+									<div class="form-group label-floating  form-text">
+										<label class="control-label ">Apellido Paterno</label>
+										<input class="form-control label-txte" type="text" value="<%=dataPaciente[0].apellidop%>" >
+                                    </div>
+                                 	<br>
+                                </div>
+                                                            
+																
+								<!--   lado derecho-->
+								<div class="col-md-4 formm">
+								    <div class="form-group label-floating form-text">
+										<label class="control-label">Apellido Materno</label>
+										<input class="form-control label-txte" type="text" value="<%=dataPaciente[0].apellidom%>">
+									</div>
+                                                                  
+									<br>
+																
+                                </div>
+                                <div class="col-md-4 formm">
+                                    <div class="form-group label-floating form-text">
+                                        <label class="control-label">Nombre</label>
+                                       <input class="form-control label-txte" type="text" value="<%=dataPaciente[0].nombre%>">
+                                    </div>
+                                    <br>
+                                </div>
+								<!-- medicamentos colum1 -->
+									<p class="lead">Datos de la Medicamento</p>
+								<div class="col-md-2 formm">
+																		
+									<div class="form-group label-floating form-text">
+										<label class="control-label">Fecha Prescripción                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </label>
+								    	<input class="form-control label-txte" type="text" name="fecha">
+									</div>
+									<div class="form-group label-floating form-text">
+										<label class="control-label">Posologia </label>
+										<input class="form-control label-txte" type="text" name="posologia">
+									</div>
+										<br>
+                                </div>
+                                    <div class="col-md-4 formm">
+                                       <div class="form-group label-floating form-text">
+                                            <label class="control-label">Fármaco                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
+                                               <select class="form-control label-txte" name="farmaco">	
+                                                    <option></option>
+													<option>paracetamol</option>                                                      
+													<option>algun otra medicina</option>
+                                                                                
+                                                </select>
+                                        </div>
+                                        <div class="form-group label-floating form-text">
+                                                
+                                            <label class="control-label">Via de Administración</label>
+                                            <input class="form-control label-txte" type="text" name="viaAdmincion">
+                                        </div>
+                                         <br>
+                                    </div>
+	
+									<!-- lugar donde vive columna 2-->
+									<div class="col-md-6 formm">
+																	
+										<div class="form-group label-floating form-text">
+											<label class="control-label">Doctor </label>
+											<input class="form-control label-txte" type="text" name="doctor">
+										</div>
+									    <div class="form-group label-floating form-text">
+											<label class="control-label">Duracion Tratamiento</label>
+											<input class="form-control label-txte" type="text" name="indicaciones">
+										</div>
+								
+									</div>
+									<div class="col-md-6 formm">
+										<div class="form-group label-floating form-text">
+											<label class="control-label">Unidades</label>
+											<input class="form-control label-txte" type="text" name="unidades">
+										</div>
+										 
+									</div>
+									<br>
+								</div>
+									<table class="table table-hover text-center">
+														<thead>
+										</table>
+										<p class="text-center">
+										<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+										<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+										<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+								</p>
+					</div>
+				</form>
+										
+			</div>
+		</div>
+									
+									
+					
+			
+</section>
+	<!--====== Scripts -->
+	<%- include("partials/scripts") -%>
+</body>
+</html>

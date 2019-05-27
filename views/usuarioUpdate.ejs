@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Actualizar Personal</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
@@ -40,34 +40,35 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-										<form action="/usuarios/usuarios" method="POST">					
+
+										<form action="/usuarios/updatePersonal/<%=resp[0].id%>" method="POST">					
 											<div class="form-group label-floating">
 												<label class="control-label">Nombre</label>
-												<input class="form-control" type="text" name="nombre">
+												<input class="form-control" type="text" name="nombre" value="<%=resp[0].nombre%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Apellido Paterno</label>
-												<input class="form-control" type="text" name="apellidop">
+												<input class="form-control" type="text" name="apellidop" value="<%=resp[0].apellidop%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Apellidos Meterno</label>
-												<input class="form-control" type="text" name="apellidom">
+												<input class="form-control" type="text" name="apellidom" value="<%=resp[0].apellidom%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">CI.</label>
-												<input class="form-control" type="text" name="ci">
+												<input class="form-control" type="text" name="ci" value="<%=resp[0].ci%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Cargo</label>
-												<input class="form-control" type="text" name="cargo">
+												<input class="form-control" type="text" name="cargo" value="<%=resp[0].cargo%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Direccion</label>
-												<input class="form-control" type="text" name="direcion">
+												<input class="form-control" type="text" name="direcion" value="<%=resp[0].direcion%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Telefono</label>
-												<input class="form-control" type="text" name="telefono">
+												<input class="form-control" type="text" name="telefono" value="<%=resp[0].telefono%>">
 											</div>
 											<!-- 
 											<div class="form-group">
@@ -89,55 +90,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- Tabla Usuarios-->
-						<div class="tab-pane fade" id="list">
-							<div class="table-responsive">
-								<div class="table-wrapper">
-									<table class="fl-table">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>Nombre</th>
-												<th>Apellido Paterno</th>
-												<th>Apellido Materno</th>
-												<th>C.I.</th>
-												<th>Cargo</th>
-												
-												<th>Modificar</th>
-												<th>Dar de Baja</th>
-												<th>Registtrar Cuenta</th>
-											</tr>
-										</thead>
-										<tbody>
-											<% for(var i=0; i< resp.length; i++) { %>
-											<tr>
-												<td><%= i + 1 %></td>
-												<td><%=resp[i].nombre %></td>
-												<td><%=resp[i].apellidop %></td>
-												<td><%=resp[i].apellidom %></td>
-												<td><%=resp[i].ci %></td>
-												<td><%=resp[i].cargo %></td>										
-												<td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-												<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-												<td><a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-
-											</tr>
-											<% } %>
-										<tbody>
-									</table>
-								</div>
-								<ul class="pagination pagination-sm">
-									<li class="disabled"><a href="#!">«</a></li>
-								  	<li class="active"><a href="#!">1</a></li>
-									<li><a href="#!">2</a></li>
-									<li><a href="#!">3</a></li>
-									<li><a href="#!">4</a></li>
-									<li><a href="#!">5</a></li>
-									<li><a href="#!">»</a></li>
-								</ul>
-							</div>
-						</div>
+						</div>											
 					</div>
 				</div>
 			</div>

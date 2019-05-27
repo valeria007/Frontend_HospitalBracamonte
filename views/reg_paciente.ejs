@@ -40,176 +40,252 @@
 			<div class="page-header">
 			  <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Registro <small>De Paciente</small></h1>
 			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#newSchool" data-toggle="tab"><i class="zmdi zmdi-account-add"></i> Nuevo Paciente</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane fade active in" id="newSchool">
-							<div class="container-fluid">
-								<div class="row">
-										
-										<div class="container-fluid">
-											<div class="col-md-12 panel-body">
-												
-													<!-- daros personales-->
-													<p class="lead">Datos Personales </p>
-																													
-															<!-- lado hizquierdo -->
-															
-															<div class="col-md-6">
-																<div class="form-group label-floating">
-																	<label class="control-label">Apellido Paterno</label>
-																	<input class="form-control" type="text" name="apPaterno">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Nombre</label>
-																		<input class="form-control" type="text" name="nombre">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Fecha de Nacimiento</label>
-																		<input class="form-control" type="text" name="fechNacimien">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Estado Civil</label>
-																		<select class="form-control" name="estadoCivil">
-																			<option></option>
-																			<option>Casado(a)</option>
-																			<option>Divorciado(a)</option>
-																			<option>Soltero(a)</option>
-																			<option>Viudo(a)</option>
-																			</select>
-																	</div>
-															</div>
-															<!--   lado derecho-->
-															<div class="col-md-6">
-																<div class="form-group label-floating">
-																	<label class="control-label">Apellido Materno</label>
-																	<input class="form-control" type="text" name="apMaterno">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">CI</label>
-																		<input class="form-control" type="text" name="ci">
-																</div>
-																<div class="checkbox" style=" height: 70px;">
-																	<h4 class="text-titles"> Sexo</h4>			 
-																	<input type="radio" name="sexo" id="hombre">
-																	<label for="hombre">Hombre</label>
-																	<input type="radio" name="sexo" id="mujer">
-																	<label for="mujer">Mujer</label>
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Ocupación</label>
-																		<input class="form-control" type="text" name="ocupacion">
-																	</div>
-															</div>
-														<!-- lugar donde nacio colum1 -->
-														
-															<div class="col-md-6">
-																	<p class="lead">Lugar donde nació </p>
-																<div class="form-group label-floating">
-																	<label class="control-label">Departamento donde Nació</label>
-																	<select class="form-control" name="depNacio">	
-																		<option></option>
-																		<option>BENI</option>
-																		<option>CHUQUISACA</option>
-																		<option>COCHABAMBA</option>
-																		<option>LA PAZ</option>
-																		<option>ORURO</option>
-																		<option>POTOSÍ</option>
-																		<option>TARIJA</option>
-																		<option>SANTA CRUZ</option>
-																		<option>PANDO</option>
-																		<option>EXTRANJERO</option>
-																		</select>
-																</div>
-																<div class="form-group label-floating">
-																	<label class="control-label">Municipio Donde Nació</label>
-																	<input class="form-control" type="text" name="munipNacio">
-																</div>
-															</div>
-
-															<!-- lugar donde vive columna 2-->
-															<div class="col-md-6">
-																<p class="lead">Lugar donde vive </p>
-																<div class="form-group label-floating">
-																	<label class="control-label">Dirección</label>
-																	<input class="form-control" type="text" name="direccion">
-																</div>
-																<div class="form-group label-floating">
-																	<label class="control-label">Zona</label>
-																	<input class="form-control" type="text" name="zona">
-																</div>
-															</div>
-													
-												<!-- datos familiares  -->			
-												<p class="lead">Datos Familiares</p>
-												<div class="col-md-6">
-													
-													<div class="form-group label-floating">
-														<label class="control-label">Responsable de Familia</label>
-														<input class="form-control" type="text" name="respfamiliar">
-													</div>
-													<div class="form-group label-floating">
-														<label class="control-label">Nombre del Padre</label>
-														<input class="form-control" type="text" name="nombreP">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group label-floating">
-														<label class="control-label">Teléfono de Referencia</label>
-														<input class="form-control" type="text" name="telefonorRef">
-													</div>
-													<div class="form-group label-floating">
-															<label class="control-label">Nombre de la Madre</label>
-															<input class="form-control" type="text" name="nombreM">
-													</div>
-												</div>
-												<!-- lugar donde trabajacolum 1-->
-												<p class="lead">Lugar Donde Trabaja </p>
-												<div class="col-md-6">
-													
-													<div class="form-group">
-														<label class="control-label">Lugar de Trabajo</label>
-														<input class="form-control" type="text" name="lugTrabajo">
-													</div>
-													<div class="form-group">
-															<label class="control-label">Teléfono</label>
-															<input class="form-control" type="text" name="telef">
-													</div>
-												</div>
-												<!-- lugar donde trabaja colum 2-->
-												<div class="col-md-6">
-													<div class="form-group">
-														<label class="control-label">Dirección</label>
-														<input class="form-control" type="text" name="directrabajo">
-													</div>
-												</div>
-														
+		</div>	
+			<div class="col-xs-12">
+				<div class="page-wrapper">
+					<div class="wrapper wrapper--w680">
+						<div class="card card-4">
+							<div class="card-body">
+								<h2 class="title">Registration Form</h2>
+								<form action="/paciente/postPaciente" method="POST">
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Nombre</label>
+												<input class="input--style-4" type="text" name="nombre">
 											</div>
-												<table class="table table-hover text-center">
-													<thead>
-												</table>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-													<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-												</p>
 										</div>
-								</div>
+										
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Apellido Paterno</label>
+												<input class="input--style-4" type="text" name="apellidop">
+											</div>
+										</div>
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Apellido Materno</label>
+												<input class="input--style-4" type="text" name="apellidom">
+											</div>
+										</div>
+										
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">CI.</label>
+												<input class="input--style-4" type="text" name="ci">
+											</div>
+										</div>
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Fecha de Nacimiento</label>
+												<div class="input-group-icon">
+													<input class="input--style-4 js-datepicker" type="text" name="fechanacimiento">
+													<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+												</div>
+											</div>
+										</div>
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Edad</label>
+												<input class="input--style-4" type="text" name="edad">
+											</div>
+										</div>
+										
+										
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Sexo</label>
+												<div class="p-t-10">
+													<label class="radio-container m-r-45">Male
+														<input type="radio" checked="checked" name="sexo">
+														<span class="checkmark"></span>
+													</label>
+													<label class="radio-container">Female
+														<input type="radio" name="sexo">
+														<span class="checkmark"></span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="input-group">
+											<label class="label1">Estado Civil</label>
+											<div class="rs-select2 js-select-simple select--no-search">
+												<select name="estadocivil">
+													<option disabled="disabled" selected="selected">Selecione una opcion</option>
+													<option>Soltero     </option>
+													<option>Casado		</option>
+													<option>Viudo		</option>
+													<option>Viuda		</option>
+												</select>
+												<div class="select-dropdown"></div>
+											</div>
+										</div>							
+											
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Direccion</label>
+												<input class="input--style-4" type="text" name="direccion">
+											</div>
+										</div>
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Zona</label>
+												<input class="input--style-4" type="text" name="zona">
+											</div>
+										</div>
+									</div>									
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Telefono</label>
+												<input class="input--style-4" type="text" name="telef">
+											</div>
+										</div>
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Ocupacion</label>
+												<input class="input--style-4" type="text" name="ocupacion">
+											</div>
+										</div>
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Idiomas</label>
+												<div class="rs-select2 js-select-simple select--no-search">
+													<select name="idiomas">
+														<option disabled="disabled" selected="selected">Selecione una opcion</option>
+														<option>Español Bolivia     </option>
+														<option>Ingles		</option>
+														<option>Quechua		</option>
+														<option>Aymara		</option>
+														<option>Guarani		</option>
+													</select>
+													<div class="select-dropdown"></div>
+												</div>
+											</div>	
+										</div>
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Lugar de Nacimiento</label>
+												<input class="input--style-4" type="text" name="lugranacimiento">
+											</div>
+										</div>
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Departamento</label>
+												<input class="input--style-4" type="text" name="departameto">
+											</div>
+										</div>
+										
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Provincia</label>
+												<input class="input--style-4" type="text" name="provincia">
+											</div>
+										</div>
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Municipio</label>
+												<input class="input--style-4" type="text" name="municipio">
+											</div>
+										</div>
+										
+										
+									</div>
+									<h3 class="title">Datos De los Parientes</h3>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Nombre del Padre</label>
+												<input class="input--style-4" type="text" name="npadre">
+											</div>
+										</div>
+										
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Apellido del Padre</label>
+												<input class="input--style-4" type="text" name="apspadre">
+											</div>
+										</div>
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Nombre de la Madre</label>
+												<input class="input--style-4" type="text" name="nmadre">
+											</div>
+										</div>
+										
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Apellido de la Madre</label>
+												<input class="input--style-4" type="text" name="apsmadre">
+											</div>
+										</div>
+									</div>
+									<h3 class="title">Responsable externo al paciente</h3>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">NOmbre del Responsable</label>
+												<input class="input--style-4" type="text" name="nomrespon">
+											</div>
+										</div>
+										
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Apellido del Responsable</label>
+												<input class="input--style-4" type="text" name="aperespon">
+											</div>
+										</div>
+									</div>
+									<div class="row row-space">
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Telefono del Responsable</label>
+												<input class="input--style-4" type="text" name="telefres">
+											</div>
+										</div>
+										
+										<div class="col-2">
+											<div class="input-group">
+												<label class="label1">Direccion del Responsable</label>
+												<input class="input--style-4" type="text" name="direcres">
+											</div>
+										</div>
+									</div>
+									
+									<div class="p-t-15">
+											<button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+									</div>
+								</form>
 							</div>
-									
-									
 						</div>
-	          		</div>
-				</div>
+					</div>
+				</div>					
 			</div>
-		</div>
 </section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
+	<!-- Jquery JS-->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<!-- Vendor JS-->
+	<script src="/vendor/select2/select2.min.js"></script>
+	<script src="/vendor/datepicker/moment.min.js"></script>
+	<script src="/vendor/datepicker/daterangepicker.js"></script>
+	<script src="/js/form.js"></script>
 </body>
 </html>

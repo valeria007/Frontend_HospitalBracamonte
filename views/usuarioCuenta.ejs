@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Usuario</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
@@ -40,34 +40,26 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-										<form action="/usuarios/usuarios" method="POST">					
+										<form action="/usuarios/crearCuenta/<%=id.id%>" method="POST">					
 											<div class="form-group label-floating">
-												<label class="control-label">Nombre</label>
-												<input class="form-control" type="text" name="nombre">
+												<label class="control-label">ID Usuario</label>
+												<input class="form-control" type="text" name="nombre" required>
 											</div>
 											<div class="form-group label-floating">
-												<label class="control-label">Apellido Paterno</label>
-												<input class="form-control" type="text" name="apellidop">
+												<label class="control-label">Correo</label>
+												<input class="form-control" type="email" name="correo" required>
 											</div>
 											<div class="form-group label-floating">
-												<label class="control-label">Apellidos Meterno</label>
-												<input class="form-control" type="text" name="apellidom">
+												<label class="control-label">Contraceña</label>
+												<input class="form-control" type="password" name="contraseña" required>
 											</div>
 											<div class="form-group label-floating">
-												<label class="control-label">CI.</label>
-												<input class="form-control" type="text" name="ci">
+												<label class="control-label">repita contraceña Contraceña por favor</label>
+												<input class="form-control" type="password" required>
 											</div>
 											<div class="form-group label-floating">
-												<label class="control-label">Cargo</label>
-												<input class="form-control" type="text" name="cargo">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Direccion</label>
-												<input class="form-control" type="text" name="direcion">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Telefono</label>
-												<input class="form-control" type="text" name="telefono">
+												<label class="control-label">Tipo de Usuario</label>
+												<input class="form-control" type="text" name="tipo_usuario" required>
 											</div>
 											<!-- 
 											<div class="form-group">
@@ -98,32 +90,29 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Nombre</th>
-												<th>Apellido Paterno</th>
-												<th>Apellido Materno</th>
-												<th>C.I.</th>
-												<th>Cargo</th>
+												<th>ID Usuario</th>
+												<th>Correo</th>
+												<th>Contraceña</th>
+												<th>Tipo de Usuario</th>
+																					
+                                                <th>Dar de Baja</th>
+                                                <th>Modificar Cuenta</th>
 												
-												<th>Modificar</th>
-												<th>Dar de Baja</th>
-												<th>Registtrar Cuenta</th>
 											</tr>
 										</thead>
 										<tbody>
-											<% for(var i=0; i< resp.length; i++) { %>
-											<tr>
-												<td><%= i + 1 %></td>
-												<td><%=resp[i].nombre %></td>
-												<td><%=resp[i].apellidop %></td>
-												<td><%=resp[i].apellidom %></td>
-												<td><%=resp[i].ci %></td>
-												<td><%=resp[i].cargo %></td>										
-												<td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-												<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-												<td><a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-
-											</tr>
-											<% } %>
+                                            <% for(var i=0; i< resp.length; i++) { %>
+                                            <tr>
+                                                <td><%= i + 1 %></td>
+                                                <td><%=resp[i].nombre %></td>
+                                                <td><%=resp[i].correo %></td>
+                                                <td><%=resp[i].contraseña %></td>
+                                                <td><%=resp[i].tipo_usuario %></td>
+                                                
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <% } %>
 										<tbody>
 									</table>
 								</div>

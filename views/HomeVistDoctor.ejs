@@ -8,7 +8,7 @@
 </head>
 <body>
 	<!-- SideBar -->
-	<%- include("partials/menu") -%>
+	<%- include("partials/menudoc") -%>
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage">
 	<!-- NavBar -->
@@ -29,9 +29,6 @@
             <div class="col-md-12 panel-body">
                 <tr>
                 	<th>
-                      <div class="col-md-6">
-                            <button type="button" class="btn btn-info" onclick=location="/paciente/reg_paciente"> Nuevo Paciente</button> &nbsp;&nbsp; 
-                      </div>
                    	</th>
                   	<th>
                        	<form class="example" action="">
@@ -60,27 +57,37 @@
                             <thead>
 								<tr>
 									<th class="text-center">#</th>
-									<th class="" WIDTH="30%">Name </th>
-									<th class="" WIDTH="30%">Apellido </th>
-									<th class="" WIDTH="20%">ci</th>
-									
-									<th class="text-center" WIDTH="20%">Fichaje</th>
+									<th class="" WIDTH="30%">N° de historia </th>
+									<th class="" WIDTH="20%">Nombre del Paciente</th>
+									<th class="" WIDTH="20%">Pellido paterno del Paciente</th>
+									<th class="" WIDTH="20%">Pellido materno del Paciento</th>	
+									<th class="" WIDTH="20%">Hora de Atencion</th>	
+
+									<th class="text-center" WIDTH="20%">Registrar Consulta Medica</th>
                   <th class="text-center" WIDTH="20%">Modificar</th>
                   <th class="text-center" WIDTH="20%">Darde Baja</th>
 								</tr>
 							</thead>
 							<tbody>
-									<% for(var i=0; i < resp.length; i++) { %>
-								<tr>
-									<td><%= i + 1 %></td>
-									<td><%=resp[i].nombre %></td>
-									<td><%=resp[i].apellidop %></td>
-									<td><%=resp[i].ci %></td>
+								<% if(resp.length != null) { %>
 								
-									<td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].numeroHistorial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									<td class="text-center" ><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-								</tr>
+									<% for(var i=0; i< resp.length; i++) { %>
+										<tr>
+											<td><%= i + 1 %></td>
+											<td><%=resp[i].codigo_p %></td>
+											<td>algun nombre del paciente</td>
+											<td>algun apellido Paterno del paciente</td>
+											<td>algun apellido Materno del paciente</td>
+											<td><%=resp[i].hora %></td>
+											<td class="text-center"><a href="/medico/consulta/<%=resp[i].codigo_p %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td class="text-center" ><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+										</tr>
+										<% } %>
+								<% } else { %>
+									<tr>
+										<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
+									</tr>
 								<% } %>
 							</tbody>
 						</table>

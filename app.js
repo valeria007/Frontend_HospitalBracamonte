@@ -16,7 +16,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //routas
 app.use('/', require('./routes/index'));
-
+app.use('/paciente', require('./routes/paciente'));
+app.use('/medico', require('./routes/medico'));
+app.use('/usuarios', require('./routes/usuarios'));
 
 app.listen(app.get('port'), () => {
     console.log(`servidor en puerto ${app.get('port')}`)

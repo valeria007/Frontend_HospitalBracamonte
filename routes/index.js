@@ -10,33 +10,46 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
-router.get('/usuarios',(req, res) => {
-  res.render('usuarios')
-});
+router.post('/login', (req,res)  => {
+  var data = req.body;
+  var enviar = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type' : "application/json"
+    }
+  }
+  fetch('http://localhost:4500/api/login',enviar)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    if(resp.success == false){
+      res.send('usted no esta registrado')
+    }else{
+      res.redirect('/home')
+    }
+    
+  })
+})
 
 router.get('/cuadernos',(req, res) => {
   res.render('cuadernos')
 });
+ //vista de doctor
+
  
 // Historiales Clinicos
 router.get('/expediente',(req, res) => {
   res.render('expediente')
 });
 
-router.get('/reg_paciente',(req, res) => {
-  res.render('reg_paciente')
-});
 
 router.get('/vistaPrimPaciente',(req, res) => {
   res.render('vistaPrimPaciente')
 });
 
-router.get('/citas_fichas',(req, res) => {
-  res.render('citas_fichas')
-});
-
-router.get('/citas',(req, res) => {
-  res.render('citas')
+router.get('/ListaPacienteDoc',(req, res) => {
+  res.render('ListaPacienteDoc')
 });
 
 //hospitalizacion 

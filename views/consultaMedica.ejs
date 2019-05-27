@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+	<%- include("partials/menudoc") -%>
+	<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+	<!-- NavBar -->
+	<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+			
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Consulta <small>Médica</small></h1>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="newSchool">
+							<div class="container-fluid">
+								<div class="row">
+										
+										<div class="container-fluid">
+											<div class="col-md-12 panel-body">
+												
+                             <!-- daros personales-->
+                             <div class="col-md-6">
+                                     <p class="lead">Datos Personales </p>
+														 </div>
+														 <form action="/medico/regConsulta/<%=idCIta%>" method="POST">
+                             <div class="col-md-6">
+                                     <div class="form-group label-floating">
+															<label class="control-label">N° de Historia</label>
+															<input class="form-control" type="text" value="<%=dataPaciente[0].numeroHistorial%>" >
+															</div>
+                              </div>
+													
+																													
+															<!-- lado hizquierdo -->
+															
+															<div class="col-md-6">
+																<div class="form-group label-floating">
+																	<label class="control-label">Apellido Paterno</label>
+																	<input class="form-control" type="text" value="<%=dataPaciente[0].apellidop%>" >
+																</div>
+																<div class="form-group label-floating">
+																		<label class="control-label">Nombre</label>
+																		<input class="form-control" type="text" value="<%=dataPaciente[0].nombre%>" >
+																</div>
+																<div class="form-group label-floating">
+																		<label class="control-label">Fecha de Nacimiento</label>
+																		<input class="form-control" type="text" value="<%=dataPaciente[0].fechanacimiento%>">
+																</div>
+																<div class="form-group label-floating">
+																		<label class="control-label">Estado Civil</label>
+																		<select class="form-control" name="estadoCivil">
+																			<option><%=dataPaciente[0].estadocivil%></option>
+																			
+																			</select>
+																	</div>
+															</div>
+															<!--   lado derecho-->
+															<div class="col-md-6">
+																<div class="form-group label-floating">
+																	<label class="control-label">Apellido Materno</label>
+																	<input class="form-control" type="text" value="<%=dataPaciente[0].apellidom%>" >
+																</div>
+																<div class="form-group label-floating">
+																		<label class="control-label">CI</label>
+																		<input class="form-control" type="text" value="<%=dataPaciente[0].ci%>" >
+																</div>
+																<div class="form-group label-floating">
+																	<label class="control-label">Sexo</label>
+																	<select class="form-control" name="estadoCivil">
+																		<option><%=dataPaciente[0].sexo%></option>
+																		
+																		</select>
+																</div>
+																<div class="form-group label-floating">
+																		<label class="control-label">Ocupación</label>
+																		<input class="form-control" type="text" value="<%=dataPaciente[0].ocupacion%>" >
+																	</div>
+																</div>
+															</div>
+															<h3>Estodo del paciente</h3>
+															<div class="form-group label-floating">
+																	<label class="control-label">Anamnesis</label>
+																	<textarea class="form-control" name="anamnesis"></textarea>
+															</div>
+															<div class="form-group label-floating">
+																	<label class="control-label">Diagnostico</label>
+																	<textarea class="form-control" name="diagnostico"></textarea>
+															</div>
+															<div class="form-group label-floating">
+																	<label class="control-label">Tratamiento</label>
+																	<textarea class="form-control" name="tratamiento"></textarea>
+															</div>
+															<div class="form-group label-floating">
+																	<label class="control-label">Observaciones</label>
+																	<textarea class="form-control" name="observaciones"></textarea>
+															</div>
+															<p class="text-center">
+																	<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+																	<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+																	<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+																</p>
+														</form>
+
+                                <!-- botones  -->
+                                                    
+																
+                                            </div>
+                                          <!-- menu-->
+                                            <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                                                 
+                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Datos generales</a></li>
+                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecendentes Personales</a></li>
+                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecentes Famliares</a></li>
+                                             
+                                                              
+                                                               
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+																						</div>
+																						<!-- diagnostico-->
+																						<div class="form-group label-floating col-md-12">
+																							<label class="control-label">Diagnostico</label>
+																							<textarea  class="textarea text-center" name="comentarios" rows="10" cols="80"></textarea>
+																						
+																					</div>
+
+																						<!--formularios-->
+																						
+																					  <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+																													<button type="button" class="btn btn-raised btn-success" onclick=location="/Papeleta_Inter">Papeleta de Internacion</button>
+																													<button type="button" class="btn btn-raised btn-success" onclick=location="/medico/recetas/<%=dataPaciente[0].id%>">Receta</button>
+																												
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            
+
+
+                                               
+                                            </div>
+
+												<table class="table table-hover text-center">
+													<thead>
+												</table>
+												
+										</div>
+								</div>
+							</div>
+									
+									
+						</div>
+	          		</div>
+				</div>
+			</div>
+		</div>
+</section>
+	<!--====== Scripts -->
+	<%- include("partials/scripts") -%>
+</body>
+</html>
