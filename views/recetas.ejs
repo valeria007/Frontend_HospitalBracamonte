@@ -29,7 +29,7 @@
 		<div class="container-fluid">
 		    <div class="container-fluid">
 				<div class="row contenedor">
-					<form >
+					<form action="/medico/receta/<%=id.id%>" method="POST">
 						<div class="container-fluid">
 							<div class="col-md-12 panel-body ">
 							
@@ -42,7 +42,7 @@
 				        		<div class="col-md-6">
 									<div class="form-group label-floating">
 										<label class="control-label">N° de Historia</label>
-										<input class="form-control" type="text" name="apPaterno">
+										<input class="form-control" type="text"  value="<%=dataPaciente[0].numeroHistorial%>" name="historiaClinica">
 									</div>
 								</div>
 														
@@ -53,7 +53,7 @@
 
 									<div class="form-group label-floating  form-text">
 										<label class="control-label ">Apellido Paterno</label>
-										<input class="form-control label-txte" type="text" name="apPaterno">
+										<input class="form-control label-txte" type="text" value="<%=dataPaciente[0].apellidop%>" >
                                     </div>
                                  	<br>
                                 </div>
@@ -63,7 +63,7 @@
 								<div class="col-md-4 formm">
 								    <div class="form-group label-floating form-text">
 										<label class="control-label">Apellido Materno</label>
-										<input class="form-control label-txte" type="text" name="apMaterno">
+										<input class="form-control label-txte" type="text" value="<%=dataPaciente[0].apellidom%>">
 									</div>
                                                                   
 									<br>
@@ -72,7 +72,7 @@
                                 <div class="col-md-4 formm">
                                     <div class="form-group label-floating form-text">
                                         <label class="control-label">Nombre</label>
-                                       <input class="form-control label-txte" type="text" name="nombre">
+                                       <input class="form-control label-txte" type="text" value="<%=dataPaciente[0].nombre%>">
                                     </div>
                                     <br>
                                 </div>
@@ -86,23 +86,24 @@
 									</div>
 									<div class="form-group label-floating form-text">
 										<label class="control-label">Posologia </label>
-										<input class="form-control label-txte" type="text" name="munipNacio">
+										<input class="form-control label-txte" type="text" name="posologia">
 									</div>
 										<br>
                                 </div>
                                     <div class="col-md-4 formm">
                                        <div class="form-group label-floating form-text">
                                             <label class="control-label">Fármaco                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
-                                               <select class="form-control label-txte" name="dfarmaco">	
+                                               <select class="form-control label-txte" name="farmaco">	
                                                     <option></option>
-                                                    <option>SUS</option>                                                      <option>Caja Petrolera</option>
+													<option>paracetamol</option>                                                      
+													<option>algun otra medicina</option>
                                                                                 
-                                                                                </select>
+                                                </select>
                                         </div>
                                         <div class="form-group label-floating form-text">
                                                 
                                             <label class="control-label">Via de Administración</label>
-                                            <input class="form-control label-txte" type="text" name="munipNacio">
+                                            <input class="form-control label-txte" type="text" name="viaAdmincion">
                                         </div>
                                          <br>
                                     </div>
@@ -112,14 +113,22 @@
 																	
 										<div class="form-group label-floating form-text">
 											<label class="control-label">Doctor </label>
-											<input class="form-control label-txte" type="text" name="direccion">
+											<input class="form-control label-txte" type="text" name="doctor">
 										</div>
 									    <div class="form-group label-floating form-text">
 											<label class="control-label">Duracion Tratamiento</label>
-											<input class="form-control label-txte" type="text" name="zona">
+											<input class="form-control label-txte" type="text" name="indicaciones">
 										</div>
-										<br>
+								
 									</div>
+									<div class="col-md-6 formm">
+										<div class="form-group label-floating form-text">
+											<label class="control-label">Unidades</label>
+											<input class="form-control label-txte" type="text" name="unidades">
+										</div>
+										 
+									</div>
+									<br>
 								</div>
 									<table class="table table-hover text-center">
 														<thead>
