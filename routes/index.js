@@ -57,6 +57,10 @@ router.get('/hospitalizacion',(req, res) => {
   res.render('hospitalizacion')
 });
 
+router.get('/Papeleta_Inter',(req, res) => {
+  res.render('Papeleta_Inter')
+});
+
 // Internacion
 router.get('/salas',(req, res) => {
   res.render('salas')
