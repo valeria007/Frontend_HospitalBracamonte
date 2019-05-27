@@ -62,8 +62,37 @@ router.post('/regConsulta/:id', (req, res) => {
     })
 });
 
-router.get('/recetas', (req,res) => {
-    res.render('recetas');
+router.get('/recetas/:id', (req,res) => {
+    var id = req.params
+    fetch('http://localhost:3000/api/OnlyReceta/'+id.id)        
+        .then(resp => resp.json())
+        .then(resp =>{
+            res.render('recetas',{
+                dataPaciente,
+                id
+            });
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+});
+router.post('/receta/:id', (req,res) => {
+    var id = req.params
+    var datos = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/reg_Receta/'+id.id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {      
+      res.redirect('/medico/renderConsulta');
+    })
 });
 
 module.exports = router;
