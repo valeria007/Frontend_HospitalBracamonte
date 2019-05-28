@@ -75,13 +75,11 @@ router.get('/almacen',(req, res) => {
   res.render('almacen')
 });
 
-router.get('/medicamentos',(req, res) => {
-  res.render('medicamentos')
-});
+//medicamento se movio a medicamento.js
 
-router.get('/grupoAsig',(req, res) => {
-  res.render('grupoAsig')
-});
+
+// esta ruta se mando a almacen.js
+
 
 router.get('/proveedores',(req, res) => {
   res.render('proveedores')
@@ -91,8 +89,8 @@ router.get('/distribucion',(req, res) => {
   res.render('distribucion')
 });
 
-router.get('/stock',(req, res) => {
-  res.render('stock')
+router.get('/stock_almacen',(req, res) => {
+  res.render('stock_almacen')
 });
 
 router.get('/pedidos',(req, res) => {
