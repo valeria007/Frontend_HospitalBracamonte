@@ -75,13 +75,11 @@ router.get('/almacen',(req, res) => {
   res.render('almacen')
 });
 
-router.get('/medicamentos',(req, res) => {
-  res.render('medicamentos')
-});
+//medicamento se movio a medicamento.js
 
-router.get('/grupoAsig',(req, res) => {
-  res.render('grupoAsig')
-});
+
+// esta ruta se mando a almacen.js
+
 
 router.get('/proveedores',(req, res) => {
   res.render('proveedores')
