@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Actualizar Proveedor</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
@@ -44,70 +44,32 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-										<form action="/proveedores/proveedores" method="POST">
+										<form action="/proveedores/UpdateProveedor/<%=resp[0].id%>" method="POST">
 											<div class="form-group label-floating">
 											  <label class="control-label">Nombre Proveedor</label>
-											  <input class="form-control" type="text" name="nombre">
+											  <input class="form-control" type="text" name="nombre" value="<%=resp[0].nombre%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label"> Email </label>
-												<input class="form-control" type="email" name="email">
+												<input class="form-control" type="email" name="email" value="<%=resp[0].email%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Direccion</label>
-												<input class="form-control" type="text"  name="direccion">
+												<input class="form-control" type="text"  name="direccion" value="<%=resp[0].direccion%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Telefono</label>
-												<input class="form-control" type="text" name="telefono">
+												<input class="form-control" type="text" name="telefono" value="<%=resp[0].telefono%>">
 											</div>
 											<div class="form-group label-floating">
 											  <label class="control-label">Responsable de atención</label>
-											  <input class="form-control" type="text" name="empresa">
+											  <input class="form-control" type="text" name="empresa" value="<%=resp[0].empresa%>">
 											</div>
 											<p class="text-center">
 												<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
 												<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
 											</p>
 										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Listas de Proveedores-->
-						<div class="tab-pane fade" id="list">
-							<div class="table-responsive">
-								<p class="text-center">
-									<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
-								</p>
-								<div class="table-responsive">
-									<div class="table-wrapper">
-										<table class="fl-table">
-											<thead>
-											<tr>
-												<th>#</th>
-												<th>Nombre Proveedor</th>
-												<th>Email</th>
-												<th>Direccion</th>
-												<th>Telefono</th>
-												<th>Responsable de atención</th>
-												<th>Modificar</th>
-											</tr>
-											</thead>
-											<tbody>
-											<% for (var i = 0; i< resp.length; i++) { %>
-											<tr>
-												<td><%= i+1%></td>
-												<td><%=resp[i].nombre%></td>
-												<td><%=resp[i].email%></td>
-												<td><%=resp[i].direccion%></td>
-												<td><%=resp[i].telefono%></td>
-												<td><%=resp[i].empresa%></td>
-												<td><a href="/proveedores/OnlyProveedor/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											</tr>
-											<% } %>
-											<tbody>
-										</table>
 									</div>
 								</div>
 							</div>

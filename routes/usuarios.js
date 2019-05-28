@@ -81,6 +81,7 @@ router.get('/UsuraioCuenta/:id', (req,res) => {
 
 router.post('/crearCuenta/:id', (req,res) => {
   var id = req.params
+  console.log(id, "    este es el id >>>>>>>>>>>>>>>>>>>>>>>>><" )
   var data = req.body
   var enviar = {
     method: 'POST',

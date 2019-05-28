@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+
+///estos serv son para añadir a la tabla o al modelo grupo Asignacion
+
 router.get('/grupoAsig',(req, res) => {
     fetch('http://localhost:3500/api/asignacion')   
         .then(resp => resp.json())
@@ -27,8 +30,12 @@ router.post('/grupoAsig', (req, res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-        res.send(data);     
-      res.redirect('/almacen/grupoAsig');
+        if(data.success == false){
+            res.send(data.message)
+        }else{
+            console.log(data)
+            res.redirect('/almacen/grupoAsig'); 
+        }
     })
 });
 

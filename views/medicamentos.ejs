@@ -72,6 +72,19 @@
 									<tbody>
 										<% for(var i=0; i< resp.length; i++) { %>
 										<tr>
+											<td><%= i+1%></td>
+											<td><%=resp[i].grupoAsig%></td>
+											<td><%=resp[i].codificacion%></td>
+											<td><%=resp[i].nombre%></td>
+											<td><%=resp[i].generico%></td>
+											<td><%=resp[i].concentracion%></td>
+											<td><%=resp[i].unidadMedida%></td>
+											<td><%=resp[i].presentacion%></td>
+											<td><%=resp[i].fechaLLEgada%></td>
+											<td><%=resp[i].fechaVencimiento%></td>
+											<td><%=resp[i].cantidad%></td>
+											<td><%=resp[i].precio%></td>
+											<td><a href="/medicamento/OnlyMedicamento/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 										</tr>
 										<% } %>
 									<tbody>
