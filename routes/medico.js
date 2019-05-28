@@ -9,9 +9,11 @@ router.get('/HomeVistDoctor',(req, res) => {
         
         .then(resp => resp.json())
         .then(resp =>{
+            
             if(resp == ""){                
                 res.render('HomeVistDoctor',{resp});
             }else{
+                console.log(resp)
                 idCIta = resp[0].id;
                 res.render('HomeVistDoctor',{resp});
             }
