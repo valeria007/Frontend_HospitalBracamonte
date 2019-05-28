@@ -30,8 +30,79 @@
 				<h1 class="text-titles"><i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Registros de Cuadernos </h1>
 			</div>
 		</div>
-		
-				
+		<!--Cuadernos-->
+		<div class="container-fluid">
+            <div class="row">
+				<form action="" method="">
+					<div class="col-md-12 panel-body">
+						<div class="form-group">
+							<div class="col-md-12">
+								<div class="col-md-9">
+									<div class="form-group label-floating">
+										<label class="control-label">Titulo de Cuadernos</label>
+										<input class="form-control" type="text" >
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group label-floating">
+										<label class="control-label">Codigo</label>
+										<input class="form-control" type="text" >
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="form-group label-floating">
+										<label class="control-label">Grupo de Asignacion</label>
+										<input class="form-control" type="text" >
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group label-floating">
+										<label class="control-label">Pago</label>
+										<input class="form-control" type="text" >
+									</div>
+								</div>
+							</div>
+							<p class="text-center">
+								<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+								<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+							</p>
+						</div>
+					</div>
+				</form>
+            </div>
+            <!-- Lista de Cuadernos-->
+            <div class="table-responsive">
+				<div class="table-responsive">
+					<h3 class="text-center all-tittles">LISTA DE CUADERNOS VIGENTES</h3>
+                    <div class="table-wrapper">
+                        <table class="fl-table">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Nombre de Cuaderno</th>
+									<th>Pago</th>
+									<th>Grupo de Asignacion</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Pediatria</td>
+									<td>Piso 4</td>
+									<td>Piso 4</td>
+                    	            <td><a href="/edit_cuadernos" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-eye"></i></a>
+    								<a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
+                                </tr>
+                            <tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
