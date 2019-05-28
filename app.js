@@ -21,6 +21,7 @@ app.use('/medico', require('./routes/medico'));
 app.use('/usuarios', require('./routes/usuarios'));
 app.use('/almacen', require('./routes/almacen'));
 app.use('/medicamento', require('./routes/medicamento'));
+app.use('/proveedores', require('./routes/proveedores'));
 
 app.listen(app.get('port'), () => {
     console.log(`servidor en puerto ${app.get('port')}`)

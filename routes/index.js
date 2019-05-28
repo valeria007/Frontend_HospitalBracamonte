@@ -80,10 +80,8 @@ router.get('/almacen',(req, res) => {
 
 // esta ruta se mando a almacen.js
 
+// esta se movio a proveedores
 
-router.get('/proveedores',(req, res) => {
-  res.render('proveedores')
-});
 
 router.get('/distribucion',(req, res) => {
   res.render('distribucion')
