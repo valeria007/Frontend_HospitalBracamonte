@@ -49,12 +49,27 @@
 											<div class="col-md-6">
 												<div class="form-group label-floating">
 													<label class="control-label">Grupo de Asignación</label>
+<<<<<<< HEAD
+													<select class="form-control">
+														<option>Medicamento</option>
+														<option>Insumo</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group label-floating">
+													<label class="control-label">Tipo de adquisicion</label>
+													<select class="form-control">
+														<option>Comprado</option>
+														<option>Donado</option>
+=======
 													<select class="form-control" name="grupoAsig">
 													
 														<% for(var i=0; i< dataGRUPOa.length; i++) {%>
 														<option><%=dataGRUPOa[i].descripcion%></option>
 														<% } %>
 														
+>>>>>>> 992ce3bb69fc80deee1be686b67bfb8d1b78582e
 													</select>
 												</div>
 											</div>
@@ -127,6 +142,10 @@
 											</div>
 										</div>
 										<div class="col-md-6">
+											<div class="form-group label-floating">
+												<label class="control-label">Cantidad Unidad</label>
+												<input class="form-control" type="text">
+											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Precio</label>
 												<input class="form-control" type="text" name="precio">
