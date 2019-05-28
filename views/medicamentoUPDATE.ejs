@@ -42,7 +42,7 @@
 			    <div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="new">
 						<div class="container-fluid">
-							<form action="/medicamento/medicamentos" method="POST">
+							<form action="/medicamento/updateMedicamento/<%=resp[0].id%>" method="POST">
 								<div class="col-md-12 panel-body">
 									<div class="form-group">
 										<div class="col-md-12">
@@ -50,7 +50,7 @@
 												<div class="form-group label-floating">
 													<label class="control-label">Grupo de Asignación</label>
 													<select class="form-control" name="grupoAsig">
-													
+														<option ><%=resp[0].grupoAsig%></option>
 														<% for(var i=0; i< dataGRUPOa.length; i++) {%>
 														<option><%=dataGRUPOa[i].descripcion%></option>
 														<% } %>
@@ -67,13 +67,13 @@
 										<div class="col-md-3">
 											<div class="form-group label-floating">
 												<label class="control-label">Codificación</label>
-												<input class="form-control" type="text" name="codificacion">
+												<input class="form-control" type="text" value="<%=resp[0].codificacion%>" name="codificacion" >
 											</div>
 										</div>
 										<div class="col-md-9">
 											<div class="form-group label-floating">
 												<label class="control-label">Nombre</label>
-												<input class="form-control" type="text" name="nombre">
+												<input class="form-control" type="text" name="nombre" value="<%=resp[0].nombre%>" >
 											</div>	
 										</div>
 									</div>
@@ -83,21 +83,21 @@
 										<div class="col-md-6">
 											<div class="form-group label-floating">
 												<label class="control-label">Generico</label>
-												<input class="form-control" type="text" name="generico">
+												<input class="form-control" type="text" name="generico" value="<%=resp[0].generico%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Concentracion</label>
-												<input class="form-control" type="text" name="concentracion">
+												<input class="form-control" type="text" name="concentracion" value="<%=resp[0].concentracion%>">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group label-floating">
 												<label class="control-label">Unidad de Medida</label>
-												<input class="form-control" type="text" name="unidadMedida">
+												<input class="form-control" type="text" name="unidadMedida" value="<%=resp[0].unidadMedida%>">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Presentacion</label>
-												<input class="form-control" type="text" name="presentacion">
+												<input class="form-control" type="text" name="presentacion" value="<%=resp[0].presentacion%>">
 											</div>
 										</div>
 									</div>
@@ -107,13 +107,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="control-label">Fecha de Llegada</label>
-												<input class="form-control" type="date" name="fechaLLEgada">
+												<input class="form-control" type="date" name="fechaLLEgada" value="<%=resp[0].fechaLLEgada%>">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="control-label">Fecha de Vencimiento</label>
-												<input class="form-control" type="date" name="fechaVencimiento">
+												<input class="form-control" type="date" name="fechaVencimiento" value="<%=resp[0].fechaVencimiento%>">
 											</div>
 										</div>
 									</div>
@@ -123,13 +123,13 @@
 										<div class="col-md-6">
 											<div class="form-group label-floating">
 												<label class="control-label">Cantidad</label>
-												<input class="form-control" type="text" name="cantidad">
+												<input class="form-control" type="text" name="cantidad" value="<%=resp[0].cantidad%>">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group label-floating">
 												<label class="control-label">Precio</label>
-												<input class="form-control" type="text" name="precio">
+												<input class="form-control" type="text" name="precio" value="<%=resp[0].precio%>">
 											</div>	
 										</div>
 									</div>
@@ -141,55 +141,7 @@
 							    </form>
 							</div>
 						</div>
-				<% } %>
-                <!-- lista Medicamento -->
-			  	<div class="tab-pane fade" id="list">
-						<p class="text-center">
-                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
-                        </p>
-						<div class="table-responsive">
-							<div class="table-wrapper">
-								<table class="fl-table">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Grupo de Asignación</th>
-											<th>Codificación</th>
-											<th>Nombre</th>
-											<th>Generico</th>
-											<th>Unidad de Medida</th>
-											<th>Presentacion</th>
-											<th>Concentracion</th>
-											<th>Fecha de Llegada</th>
-											<th>Fecha de Vencimiento</th>
-											<th>Cantidad</th>
-											<th>Precio</th>
-											<th>Opciones</th>
-										</tr>
-									</thead>
-									<tbody>
-										<% for(var i=0; i< resp.length; i++) { %>
-										<tr>
-											<td><%= i+1%></td>
-											<td><%=resp[i].grupoAsig%></td>
-											<td><%=resp[i].codificacion%></td>
-											<td><%=resp[i].nombre%></td>
-											<td><%=resp[i].generico%></td>
-											<td><%=resp[i].concentracion%></td>
-											<td><%=resp[i].unidadMedida%></td>
-											<td><%=resp[i].presentacion%></td>
-											<td><%=resp[i].fechaLLEgada%></td>
-											<td><%=resp[i].fechaVencimiento%></td>
-											<td><%=resp[i].cantidad%></td>
-											<td><%=resp[i].precio%></td>
-											<td><a href="/medicamento/OnlyMedicamento/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-										</tr>
-										<% } %>
-									<tbody>
-								</table>
-							</div>
-						</div>
-					</div>       
+				<% } %>  
 				</div>
 			</div>
 		</div>
