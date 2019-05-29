@@ -49,11 +49,11 @@
 						</p>
 					</form>
                     <div class="table-responsive">
+						<div class="form-group pull-left">
+							<input type="text" class="search form-control" placeholder="Buscar">
+						</div>
+						<span class="counter pull-left"></span>
 						<div class="table-wrapper">
-							<div class="form-group pull-right">
-								<input type="text" class="search form-control" placeholder="Buscar">
-							</div>
-							<span class="counter pull-right"></span>
 							<table class="table table-hover table-bordered results fl-table">
 								<thead>
 									<tr>
@@ -63,8 +63,8 @@
 										<th>Modificar</th>
 									</tr>
 									<tr class="warning no-result">
-											<td colspan="4"><i class="fa fa-warning"></i> No result</td>
-										  </tr>
+										<td colspan="4"><i class="fa fa-warning"></i> No result</td>
+									</tr>
 								</thead>
 								<tbody>
 									<% for(var i=0; i < resp.length; i++) { %>
