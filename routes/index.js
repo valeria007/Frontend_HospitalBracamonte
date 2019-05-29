@@ -90,10 +90,8 @@ router.get('/distribucion',(req, res) => {
 router.get('/stock_almacen',(req, res) => {
   res.render('stock_almacen')
 });
+// se movio a pedidos.js
 
-router.get('/pedidos',(req, res) => {
-  res.render('pedidos')
-});
 
 router.get('/inventariosFar',(req, res) => {
   res.render('inventariosFar')
