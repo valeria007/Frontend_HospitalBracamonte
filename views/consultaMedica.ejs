@@ -21,9 +21,17 @@
 			</ul>
 		</nav>
 		<!-- Content page -->
+		<% if (idCIta == null) {%>
+			<h1>Algo sucedio con el servidor porfavor intente entrar denuevo a esta pagian desde una pagina anterior</h1>
+		<% } else {%>	
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Consulta <small>Médica</small></h1>
+				<% if(resp[0].especialidad == "consultaMedica") {%>
+					<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Consulta <small>Médica</small></h1>
+				<% } else if(resp[0].especialidad == "emergencia") {%>
+					<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Emergencia <small></small></h1>
+				<% } %>
+			  
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -179,6 +187,7 @@
 				</div>
 			</div>
 		</div>
+		<% } %>
 </section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
