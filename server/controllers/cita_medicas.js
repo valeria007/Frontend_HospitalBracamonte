@@ -37,5 +37,14 @@ class Citas_medica {
            res.status(200).json(Citas);
          });     
       }
+      static citaLugar(req,res){
+        var url = req.params.id;
+        Citas_Medicas.findAll({
+          where : { especialidad : url }
+        })
+        .then((data) => {
+          res.status(200).json(data);
+        })
+      }
     }
     export default Citas_medica;

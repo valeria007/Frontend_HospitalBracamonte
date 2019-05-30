@@ -43,6 +43,9 @@ app.get('/api/onlyPaciente/:id', Paciente.OnlyPaciente);
 app.post('/api/reg_cita', Citas_medica.reg_cita);
 app.get('/api/reg_citas', Citas_medica.getCitas);
 app.get('/api/OnlyCita/:id', Citas_medica.oneCita)
+//cita segun consulta medica emergencia
+app.get('/api/citas/:id', Citas_medica.citaLugar);
+
 
 ///consultas
 app.post('/api/reg_consulta/:id_cita', Consulta.reg_consulta);
