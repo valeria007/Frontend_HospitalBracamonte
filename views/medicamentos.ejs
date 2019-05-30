@@ -41,16 +41,14 @@
 						<div class="container-fluid">
 			  			<p class="text-center">
 							<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-                        </p>
+						</p>
 						<div class="table-responsive">
+							<div class="form-group pull-left">
+								<input type="text" class="search form-control" placeholder="Buscar">
+							</div>
+							<span class="counter pull-left"></span>
 							<div class="table-wrapper">
-								<div class="box">
-									<div class="container-1">
-										<span class="icon"><i class="fa fa-search"></i></span>
-										<input type="search" id="search" placeholder="Search..." />
-									</div>
-							    </div>
-								<table class="fl-table">
+								<table class="table table-hover table-bordered results fl-table">
 									<thead>
 										<tr>
 											<th>#</th>
@@ -67,6 +65,9 @@
 											<th>Cantidad Unid.</th>
 											<th>Precio</th>
 											<th>Opciones</th>
+										</tr>
+										<tr class="warning no-result">
+											<td colspan="14"><i class="fa fa-warning"></i> No result</td>
 										</tr>
 									</thead>
 									<tbody>
