@@ -46,43 +46,34 @@
 					<div class="tab-content">
 						
 					  <div class="table-responsive" id="newSchool">
-                        <table class="table table-hover ">
-                            <thead>
+            <table class="table table-hover ">
+                <thead>
 								<tr>
 									<th class="text-center">#</th>
-									<th class="" WIDTH="30%">Name </th>
-									<th class="" WIDTH="20%">ci</th>
-							
+									<th class="" WIDTH="30%">N° de historia </th>
+									<th class="" WIDTH="20%">Nombre del Paciente</th>
+									<th class="" WIDTH="20%">Pellido paterno del Paciente</th>
+									<th class="" WIDTH="20%">Pellido materno del Paciento</th>	
+									<th class="" WIDTH="20%">Hora de Atencion</th>	
 									<th class="text-center" WIDTH="20%">Registrar Consulta Medica</th>
-                    	<th class="text-center" WIDTH="20%">Modificar</th>
-                    	<th class="text-center" WIDTH="20%">Darde Baja</th>
+                  <th class="text-center" WIDTH="20%">Modificar</th>
+                  <th class="text-center" WIDTH="20%">Darde Baja</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Period 1</td>
-									<td>Active</td>
-									<td class="text-center"><a href="consultaMedica" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-storage"></i></a></td>
-									<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									<td class="text-center" ><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Period 2</td>
-                  <td>Active</td>
-                  <td class="text-center"><a href="citas_fichas" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-storage"></i></a></td>
-									<td class="text-center"><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									<td class="text-center"><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Period 3</td>
-									<td>Active</td>
-                            		<td class="text-center"><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									<td class="text-center"><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									<td class="text-center"><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-								</tr>
+								<% for(var i=0; i< resp.length; i++) { %>
+									<tr>
+										<td><%= i + 1 %></td>
+										<td><%=resp[i].codigo_p %></td>
+										<td>algun nombre del paciente</td>
+										<td>algun apellido Paterno del paciente</td>
+										<td>algun apellido Materno del paciente</td>
+										<td><%=resp[i].hora %></td>
+										<td class="text-center"><a href="/medico//<%=resp[i].codigo_p %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+										<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+										<td class="text-center" ><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+									</tr>
+									<% } %>
 							</tbody>
 						</table>
 						<ul class="pagination pagination-sm">

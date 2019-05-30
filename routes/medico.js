@@ -3,19 +3,19 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 var idCIta
-router.get('/HomeVistDoctor',(req, res) => {
-    
-    fetch('http://localhost:3000/api/reg_citas/')
+router.get('/ConsultaMedica/:id',(req, res) => {
+    var id = req.params
+    fetch('http://localhost:3000/api/citas/'+id.id)
         
         .then(resp => resp.json())
         .then(resp =>{
             
             if(resp == ""){                
-                res.render('HomeVistDoctor',{resp});
+                res.render('ListaConsultaMedicaDoc',{resp});
             }else{
                 console.log(resp)
                 idCIta = resp[0].id;
-                res.render('HomeVistDoctor',{resp});
+                res.render('ListaConsultaMedicaDoc',{resp});
             }
     })
     .catch(error => {
@@ -30,6 +30,7 @@ router.get('/consulta/:id', (req,res) => {
       .then(resp => resp.json())
       .then(resp =>{
         dataPaciente = resp;
+        console.log(resp);
         res.redirect('/medico/renderConsulta');       
     });
 });

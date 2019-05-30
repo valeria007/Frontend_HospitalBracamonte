@@ -22,7 +22,8 @@ router.get('/carrito/:id', (req,res)=>{
         .then(resp => resp.json())
         .then(resp =>{
             carrito = resp;
-            res.redirect('/pedidos/pedidos');
+            res.send(carrito);
+            //res.redirect('/pedidos/pedidos');
     })
     .catch(error => {
         console.error('Error:', error)

@@ -23,6 +23,8 @@ app.use('/almacen', require('./routes/almacen'));
 app.use('/medicamento', require('./routes/medicamento'));
 app.use('/proveedores', require('./routes/proveedores'));
 app.use('/pedidos', require('./routes/pedidos'));
+app.use('/emergencia', require('./routes/emergencia'));
+
 
 app.listen(app.get('port'), () => {
     console.log(`servidor en puerto ${app.get('port')}`)
