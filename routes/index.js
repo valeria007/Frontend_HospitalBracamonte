@@ -60,14 +60,9 @@ router.get('/hospitalizacion',(req, res) => {
   res.render('hospitalizacion')
 });
 
-// Internacion
-router.get('/salas',(req, res) => {
-  res.render('salas')
-});
+// Internacion salas 
 
-router.get('/camas',(req, res) => {
-  res.render('camas')
-});
+//Se movio a routas salas
 
 router.get('/paciente_Inter',(req, res) => {
   res.render('paciente_Inter')

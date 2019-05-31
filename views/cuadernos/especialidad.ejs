@@ -4,7 +4,7 @@
 	<title>Inicio</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+	<%- include("../partials/head") -%>
 </head>
 <body>
 	<!-- SideBar -->
@@ -34,42 +34,24 @@
 		<div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-md-10 col-md-offset-1">
-                <%if (dataSala == null) { %>
-                    <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
-                <% } else { %>
-                <form action="/salas/salas" method="POST">
+                <form action="/cuaderno/especilidad" method="POST">
                     <div class="form-group label-floating">
-                        <label class="control-label">Especilidad</label>
-                        <select class="form-control" name="nombre">
-                            <% for (var i=0; i < dataSala.length; i++) { %>
-                            <option><%=dataSala[i].nombre%></option>
-                            <% } %>   
-                        </select>
+                        <label class="control-label">Nombre de Especialidad</label>
+                        <input class="form-control" type="text" name="nombre">
                     </div>
                     <div class="form-group label-floating">
-                        <label class="control-label">Descricion</label>
-                        <select class="form-control" name="descripcionSala">
-                            <option>Sala H.- Niños</option>
-                            <option>Sala H.- Hombres</option>
-                            <option>Sala H.- Mujeres</option>
-                            <option>Sala H.- 3ra. Edad</option>
-                            <option>Sala H.- Cirugia General</option>
-                        </select>
+                        <label class="control-label">Sigla</label>
+                        <input class="form-control" type="text" name="sigla">
                     </div>
                     <div class="form-group label-floating">
-                        <label class="control-label">Piso</label>
-                        <input class="form-control" type="text" name="piso">
-                    </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">Camas</label>
-                        <input class="form-control" type="text" >
+                        <label class="control-label">Descripcion</label>
+                        <input class="form-control" type="descripcion" name="descripcion">
                     </div>
                     <p class="text-center">
                         <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                         <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                     </p>
                 </form>
-                <% } %>
                 <!-- Lista de Salas-->
                 <div class="table-responsive">
 					<div class="table-responsive">
@@ -81,21 +63,17 @@
                                         <th>Especilidad</th>
                                         <th>Descripcion</th>
                                         <th>Piso</th>
-                                        <th>Camas</th>
-                                        <th>Ver Sala</th>
                                         <th>Modificar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for (var i=0; i< resp.length; i++) { %>
+                                    <% for(var i = 0; i < resp.length; i++) { %>
                                     <tr>
-                                        <td><%=i+1%></td>
+                                        <td><%= i+1%></td>
                                         <td><%=resp[i].nombre%></td>
-                                        <td><%=resp[i].descripcionSala%></td>
-                                        <td><%=resp[i].piso%></td>
-                                        <td>poner cantidad maxima de camas en la tabla salas</td>
-                                        <td><a href="/salas/renderCamas/<%=resp[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-eye"></i></a></td>
-                                        <td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
+                                        <td><%=resp[i].sigla%></td>
+                                        <td><%=resp[i].descripcion%></td>
+                                        <td><a href="/cuaderno/OnlyEspecialidad/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
                                     </tr>
                                     <% } %>
                                 <tbody>
@@ -108,9 +86,9 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 	</section>
 	<!--====== Scripts -->
-	<%- include("partials/scripts") -%>
+	<%- include("../partials/scripts") -%>
 </body>
 </html>

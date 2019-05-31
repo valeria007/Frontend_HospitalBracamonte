@@ -3,7 +3,6 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 //servicio para traer datos de citas medicas o fichas pero que solo muestre los de emergencia
-var data;
 router.get('/ListaEmergenciaDoc/:id',(req, res) => {
     var id = req.params;
     fetch('http://localhost:3000/api/citas/'+id.id)        
@@ -12,7 +11,6 @@ router.get('/ListaEmergenciaDoc/:id',(req, res) => {
         if(resp == ""){                
             res.render('ListaConsultaMedicaDoc',{resp});
         }else{
-            data = resp;
             res.render('ListaConsultaMedicaDoc',{resp});
         }
     })
