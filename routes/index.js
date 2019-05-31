@@ -75,6 +75,10 @@ router.get('/almacen',(req, res) => {
   res.render('almacen')
 });
 
+router.get('/ventas',(req, res) => {
+  res.render('ventas')
+});
+
 //medicamento se movio a medicamento.js
 
 
