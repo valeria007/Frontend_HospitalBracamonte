@@ -18,14 +18,6 @@ module.exports = {
       descripcion: {
         type: Sequelize.STRING
       },
-      especilidadSNSIS: {
-        allowNull:false,
-        type: Sequelize.STRING
-      },
-      establecimientoSNIS: {
-        allowNull:false,
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

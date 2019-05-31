@@ -3,9 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Especialidad = sequelize.define('Especialidad', {
     nombre: DataTypes.STRING,
     sigla: DataTypes.STRING,
-    descripcion: DataTypes.STRING,
-    especilidadSNSIS: DataTypes.STRING,
-    establecimientoSNIS: DataTypes.STRING
+    descripcion: DataTypes.STRING
   }, {});
   Especialidad.associate = function(models) {
     // associations can be defined here

@@ -10,9 +10,7 @@ import model from '../models';
                 .create({
                   nombre,
                   sigla,
-                  descripcion,
-                  especilidadSNSIS,
-                  establecimientoSNIS
+                  descripcion
                 })
                 .then(serviceData => res.status(200).send ({
                     success: true,
@@ -46,9 +44,7 @@ import model from '../models';
               data.update({
                   nombre: nombre || data.nombre,
                   sigla: sigla || data.sigla,
-                  descripcion: descripcion || data.descripcion, 
-                  especilidadSNSIS: especilidadSNSIS || data.especilidadSNSIS,
-                  establecimientoSNIS: establecimientoSNIS || data.establecimientoSNIS
+                  descripcion: descripcion || data.descripcion
               })
               .then(update => {
                 res.status(200).send({
@@ -56,9 +52,7 @@ import model from '../models';
                   data: {
                     nombre: nombre || update.nombre,
                     sigla: sigla || update.sigla,
-                    descripcion: descripcion || update.descripcion, 
-                    especilidadSNSIS: especilidadSNSIS || update.especilidadSNSIS,
-                    establecimientoSNIS: establecimientoSNIS || update.establecimientoSNIS
+                    descripcion: descripcion || update.descripcion
                   }
                 })
               })
