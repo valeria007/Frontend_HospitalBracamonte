@@ -37,6 +37,10 @@ router.get('/cuadernos',(req, res) => {
 });
  //vista de doctor
 
+ router.get('/HomeVistDoctor',(req,res) =>{
+   res.render('HomeVistDoctor');
+ });
+
  
 // Historiales Clinicos
 router.get('/expediente',(req, res) => {
@@ -48,9 +52,8 @@ router.get('/vistaPrimPaciente',(req, res) => {
   res.render('vistaPrimPaciente')
 });
 
-router.get('/ListaPacienteDoc',(req, res) => {
-  res.render('ListaPacienteDoc')
-});
+// se movio esta ruta  a emergencia
+
 
 //hospitalizacion 
 router.get('/hospitalizacion',(req, res) => {
