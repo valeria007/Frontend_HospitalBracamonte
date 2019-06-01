@@ -25,7 +25,8 @@ router.get('/renderSalas', (req,res) => {
   .then(resp =>{
     res.render('salas',{
       dataSala,
-      resp
+      resp,
+      OnlySala
     });
   })
 .catch(error => {
@@ -55,6 +56,42 @@ router.post('/salas', (req,res) => {
           res.redirect('/salas/salas'); 
       }
   })
+});
+
+/// Actualizar Salas  pero en la misma vista 
+var OnlySala
+router.get('/updateSalas/:id', (req,res) => {
+  var id = req.params;
+  fetch('http://localhost:3000/api/salaOne/'+id.id)   
+  .then(resp => resp.json())
+  .then(resp =>{
+     OnlySala = resp;
+      res.redirect('/salas/renderSalas');
+  })
+.catch(error => {
+  console.error('Error:', error)
+  res.send("no hay coneccion con el servidor");
+  })
+});
+
+router.post('/updateSalas/:id',(req,res) => {
+  var id = req.params.id;
+  var data = req.body;
+  var esto = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers:{
+      'Content-type' : "application/json"
+    }
+};
+  fetch('http://localhost:3000/api/UpdateSalas/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+          console.log(data)
+          res.redirect('/salas/salas'); 
+  })
+  OnlySala = null;
 });
 
 /*camas 
