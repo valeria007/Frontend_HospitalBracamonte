@@ -103,4 +103,10 @@ router.get('/solicitudes',(req, res) => {
   res.render('solicitudes')
 });
 
+
+//ruta temporal 
+router.get('/consultaMed', (req, res) => {
+  res.render('ConsultaMed');
+});
+
 module.exports = router;

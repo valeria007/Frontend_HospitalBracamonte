@@ -132,59 +132,44 @@
                                 <!-- botones  -->
                                                     
 																
-                                            </div>
-                                          <!-- menu-->
-                                            <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-xs-12">
-                                                            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                                                                 
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Datos generales</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecendentes Personales</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecentes Famliares</a></li>
+                    </div>
+                    <!-- menu-->
+                    <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                         
+                                          <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Datos generales</a></li>
+                                          <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecendentes Personales</a></li>
+                                          <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecentes Famliares</a></li>
+                     
+                                      
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+					</div>
+										
+										<div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12">
+								<button type="button" class="btn btn-raised btn-success" onclick=location="/medico/Pinternacion/<%=dataPaciente[0].id%>">Papeleta de Internacion</button>
+								<button type="button" class="btn btn-raised btn-success" onclick=location="/medico/recetas/<%=dataPaciente[0].id%>">Receta</button>
+																
+                                </div>
+                            </div>
+                    </div>
+                                          
                                              
-                                                              
-                                                               
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-																						</div>
-																						<!-- diagnostico-->
-																						<div class="form-group label-floating col-md-12">
-																							<label class="control-label">Diagnostico</label>
-																							<textarea  class="textarea text-center" name="comentarios" rows="10" cols="80"></textarea>
-																						
-																					</div>
+                </div>
 
-																						<!--formularios-->
-																						
-																					  <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-xs-12">
-																													<button type="button" class="btn btn-raised btn-success" onclick=location="/Papeleta_Inter">Papeleta de Internacion</button>
-																													<button type="button" class="btn btn-raised btn-success" onclick=location="/medico/recetas/<%=dataPaciente[0].id%>">Receta</button>
-																												
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                            
-
-
-                                               
-                                            </div>
-
-												<table class="table table-hover text-center">
-													<thead>
-												</table>
 												
 										</div>
 								</div>
-							</div>
-									
-									
-						</div>
-	          		</div>
-				</div>
+							</div>	
+					</div>
+	    </div>
+		</div>
 			</div>
 		</div>
 		<% } %>

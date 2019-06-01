@@ -113,4 +113,26 @@ router.post('/receta/:id', (req,res) => {
     })
 });
 
+/* serv para mostrar papeleta de internacion 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+//esto falta pensar y muuucho para que fucione bien
+router.get('/Pinternacion/:id', (req,res) => {
+    var id = req.params
+    console.log(id, " <<<<<<<<<<<<<<<<<<<<<<<<<<<< este es id sala")
+    fetch('http://localhost:3000/api/onlyPInternacion/'+id.id)        
+        .then(resp => resp.json())
+        .then(resp =>{
+            res.render('papeletasInternacion',{
+                dataPaciente,
+            });
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+});
+
 module.exports = router;
