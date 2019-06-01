@@ -25,37 +25,20 @@
 			</ul>
 		</nav>
 		<!-- Content page -->
-		
-		
-				<tr>
-				  <th scope="row">1</th>
-				  <td>Vatanay Özbeyli</td>
-				  <td>UI & UX</td>
-				  <td>Istanbul</td>
-				</tr>
-				<tr>
-				  <th scope="row">2</th>
-				  <td>Burak Özkan</td>
-				  <td>Software Developer</td>
-				  <td>Istanbul</td>
-				</tr>
-				<tr>
-				  <th scope="row">3</th>
-				  <td>Egemen Özbeyli</td>
-				  <td>Purchasing</td>
-				  <td>Kocaeli</td>
-				</tr>
-				<tr>
-				  <th scope="row">4</th>
-				  <td>Engin Kızıl</td>
-				  <td>Sales</td>
-				  <td>Bozuyük</td>
-				</tr>
-				</tbody>
-				</table>
-
-				<input type="button" value="Página anterior" onClick="history.go(-1);">
-				<input type="button" value="Mi botón" onClick="funcionAsociadaBoton()">
+		<div class="modal-container">
+				<input id="modal-toggle" type="checkbox">
+				<button>Click me</button>
+				<div class="modal-backdrop">
+				  <div class="modal-content">
+					<label class="modal-close" for="modal-toggle">x</label>
+					<h2>Modal title</h2>
+					<hr />
+					<p>Simple Responsive CSS-Only Modal Demo</p>
+					<label class="modal-close button" for="modal-toggle">OK</label>
+				  </div>
+				</div>
+			  </div>
+	</section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
 </body>
