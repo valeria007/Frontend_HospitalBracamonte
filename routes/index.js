@@ -60,7 +60,7 @@ router.get('/hospitalizacion',(req, res) => {
   res.render('hospitalizacion')
 });
 
-<<<<<<< HEAD
+
 router.get('/Papeleta_Inter',(req, res) => {
   res.render('Papeleta_Inter')
 });
@@ -69,9 +69,9 @@ router.get('/Papeleta_Inter',(req, res) => {
 router.get('/salas',(req, res) => {
   res.render('salas')
 });
-=======
+
 // Internacion salas 
->>>>>>> e213fae994396a89a0150536642e8056d912ea98
+
 
 //Se movio a routas salas
 
