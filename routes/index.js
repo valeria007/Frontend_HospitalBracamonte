@@ -37,6 +37,10 @@ router.get('/cuadernos',(req, res) => {
 });
  //vista de doctor
 
+ router.get('/HomeVistDoctor',(req,res) =>{
+   res.render('HomeVistDoctor');
+ });
+
  
 // Historiales Clinicos
 router.get('/expediente',(req, res) => {
@@ -48,15 +52,15 @@ router.get('/vistaPrimPaciente',(req, res) => {
   res.render('vistaPrimPaciente')
 });
 
-router.get('/ListaPacienteDoc',(req, res) => {
-  res.render('ListaPacienteDoc')
-});
+// se movio esta ruta  a emergencia
+
 
 //hospitalizacion 
 router.get('/hospitalizacion',(req, res) => {
   res.render('hospitalizacion')
 });
 
+<<<<<<< HEAD
 router.get('/Papeleta_Inter',(req, res) => {
   res.render('Papeleta_Inter')
 });
@@ -65,10 +69,11 @@ router.get('/Papeleta_Inter',(req, res) => {
 router.get('/salas',(req, res) => {
   res.render('salas')
 });
+=======
+// Internacion salas 
+>>>>>>> e213fae994396a89a0150536642e8056d912ea98
 
-router.get('/camas',(req, res) => {
-  res.render('camas')
-});
+//Se movio a routas salas
 
 router.get('/paciente_Inter',(req, res) => {
   res.render('paciente_Inter')
@@ -79,17 +84,17 @@ router.get('/almacen',(req, res) => {
   res.render('almacen')
 });
 
-router.get('/medicamentos',(req, res) => {
-  res.render('medicamentos')
+router.get('/ventas',(req, res) => {
+  res.render('ventas')
 });
 
-router.get('/grupoAsig',(req, res) => {
-  res.render('grupoAsig')
-});
+//medicamento se movio a medicamento.js
 
-router.get('/proveedores',(req, res) => {
-  res.render('proveedores')
-});
+
+// esta ruta se mando a almacen.js
+
+// esta se movio a proveedores
+
 
 router.get('/distribucion',(req, res) => {
   res.render('distribucion')
@@ -98,10 +103,8 @@ router.get('/distribucion',(req, res) => {
 router.get('/stock_almacen',(req, res) => {
   res.render('stock_almacen')
 });
+// se movio a pedidos.js
 
-router.get('/pedidos',(req, res) => {
-  res.render('pedidos')
-});
 
 router.get('/inventariosFar',(req, res) => {
   res.render('inventariosFar')

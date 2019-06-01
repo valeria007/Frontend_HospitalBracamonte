@@ -2,18 +2,17 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
-var idCIta
-router.get('/HomeVistDoctor',(req, res) => {
-    
-    fetch('http://localhost:3000/api/reg_citas/')
+
+router.get('/ConsultaMedica/:id',(req, res) => {
+    var id = req.params
+    fetch('http://localhost:3000/api/citas/'+id.id)
         
         .then(resp => resp.json())
-        .then(resp =>{
+        .then(resp =>{ 
             if(resp == ""){                
-                res.render('HomeVistDoctor',{resp});
+                res.render('ListaConsultaMedicaDoc',{resp});
             }else{
-                idCIta = resp[0].id;
-                res.render('HomeVistDoctor',{resp});
+                res.render('ListaConsultaMedicaDoc',{resp});
             }
     })
     .catch(error => {
@@ -21,10 +20,11 @@ router.get('/HomeVistDoctor',(req, res) => {
         res.send("no hay coneccion con el servidor");
     })
 });
-var dataPaciente
-router.get('/consulta/:id', (req,res) => {
+var dataPaciente, idCIta;
+router.get('/consulta/:historial/:idCitaMedica', (req,res) => {
     var id = req.params;
-    fetch('http://localhost:3000/api/onlyPaciente/'+id.id)
+    idCIta = req.params.idCitaMedica;
+   fetch('http://localhost:3000/api/onlyPaciente/'+id.historial)
       .then(resp => resp.json())
       .then(resp =>{
         dataPaciente = resp;
@@ -33,14 +33,32 @@ router.get('/consulta/:id', (req,res) => {
 });
 
 router.get('/renderConsulta', (req,res)=> {
-    if (dataPaciente == null){
-        res.redirect('/medico/HomeVistDoctor')
-    }else{
+    if (idCIta == null){
         res.render('consultaMedica',{
             dataPaciente,
             idCIta
-        });   
-    }     
+        });  
+    } else{
+        fetch('http://localhost:3000/api/OneCita/'+idCIta)
+          .then(resp => resp.json())
+          .then(resp =>{
+            //console.log(resp   ,"   <<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            if (dataPaciente == null){
+                res.send("no hay datos en Datapaciente en routes/medico serv renderConsulta")
+            }else{
+                res.render('consultaMedica',{
+                    dataPaciente,
+                    idCIta,
+                    resp
+                });   
+            }            
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("Ocurrio algo con el servidor");
+        }) 
+    }
+    
 });
 
 router.post('/regConsulta/:id', (req, res) => {

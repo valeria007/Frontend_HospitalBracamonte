@@ -25,11 +25,19 @@
 			</ul>
 		</nav>
 		<!-- Content page -->
-		<div class="container-fluid">
-			<div class="page-header">
-				<h1 class="text-titles"><i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospital </h1>
-			</div>
-		</div>
+		<div class="modal-container">
+				<input id="modal-toggle" type="checkbox">
+				<button>Click me</button>
+				<div class="modal-backdrop">
+				  <div class="modal-content">
+					<label class="modal-close" for="modal-toggle">x</label>
+					<h2>Modal title</h2>
+					<hr />
+					<p>Simple Responsive CSS-Only Modal Demo</p>
+					<label class="modal-close button" for="modal-toggle">OK</label>
+				  </div>
+				</div>
+			  </div>
 	</section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>

@@ -34,6 +34,7 @@
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
                         <li class="active"><a href="#new" data-toggle="tab">Lista de Pedidos</a></li>
                         <li><a href="#list" data-toggle="tab">Nuevo Pedido</a></li>
+                        <li><a href="#listMedicament" data-toggle="tab">Lista de medicamentos</a></li>
 					</ul>
 					<!-- Nuevo Medicamento -->
 					<div id="myTabContent" class="tab-content">
@@ -205,12 +206,48 @@
                                         <p class="text-center">
                                             <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                             <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-warning"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
+                                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
                                         </p>
                                     </form>	
                                 </div>
                             </div>
-						</div>
+                        </div>
+                        <!-- mostrar lista de medicamentos -->
+                        <div class="tab-pane fade" id="listMedicament">
+                            <div class="table-wrapper">
+                                <div class="form-group pull-right">
+                                    <input type="text" class="search form-control" placeholder="Buscar">
+                                </div>
+                                <span class="counter pull-right"></span>
+                                <table class="table table-hover table-bordered results fl-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Codificación</th>
+                                            <th>Nombre</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>  
+                                            <th>Añadir</th>                                           
+                                        </tr>
+                                        <tr class="warning no-result">
+                                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                              </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(var i=0; i< resp.length; i++) {%>
+                                        <tr>
+                                            <th><%= i+1 %></th>
+                                            <th><%=resp[i].codificacion%></th>
+                                            <th><%=resp[i].nombre%></th>
+                                            <th><%=resp[i].cantidad%> </th>
+                                            <th><%=resp[i].precio%></th>  
+                                            <td><a href="/pedidos/carrito/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>                                            
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>

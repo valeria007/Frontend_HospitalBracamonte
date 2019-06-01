@@ -34,19 +34,62 @@
 		<div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-md-10 col-md-offset-1">
-                <form action="" method="">
+                <%if (OnlySala != null) { %>
+                    <%if (dataSala == null) { %>   
+                    <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
+                    <% } else { %>   
+                    <h1>Formulario para Actualizar Sala</h1> 
+                    <%=OnlySala[0].id%>
+                    <form action="/salas/updateSalas/<%=OnlySala[0].id%>" method="POST">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Especilidad</label>
+                            <select class="form-control" name="nombre">
+                                <option><%=OnlySala[0].nombre%></option>
+                                <% for (var i=0; i < dataSala.length; i++) { %>
+                                <option><%=dataSala[i].nombre%></option>
+                                <% } %>   
+                            </select>
+                        </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label">Descricion</label>
+                            <select class="form-control" name="descripcionSala">
+                                <option><%=OnlySala[0].descripcionSala%></option>
+                                <option>Sala H.- Niños</option>
+                                <option>Sala H.- Hombres</option>
+                                <option>Sala H.- Mujeres</option>
+                                <option>Sala H.- 3ra. Edad</option>
+                                <option>Sala H.- Cirugia General</option>
+                            </select>
+                        </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label">Piso</label>
+                            <input class="form-control" type="text" name="piso" value="<%=OnlySala[0].piso%>">
+                        </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label">Camas</label>
+                            <input class="form-control" type="text" >
+                        </div>
+                        <p class="text-center">
+                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
+                        </p>
+                    </form>
+                    <% } %>
+                <% } else if (dataSala == null) { %>
+                    <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
+                <% } else { %>
+                <form action="/salas/salas" method="POST">
                     <div class="form-group label-floating">
                         <label class="control-label">Especilidad</label>
-                        <select class="form-control">
-                            <option>Pediatria</option>
-                            <option>Medicina General</option>
-                            <option>Cirugia General</option>
-                            <option>Ginecologia y Obstetricia</option>
+                        <select class="form-control" name="nombre">
+                            <% for (var i=0; i < dataSala.length; i++) { %>
+                            <option><%=dataSala[i].nombre%></option>
+                            <% } %>   
                         </select>
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label">Descricion</label>
-                        <select class="form-control">
+                        <select class="form-control" name="descripcionSala">
                             <option>Sala H.- Niños</option>
                             <option>Sala H.- Hombres</option>
                             <option>Sala H.- Mujeres</option>
@@ -56,7 +99,7 @@
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label">Piso</label>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" name="piso">
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label">Camas</label>
@@ -67,6 +110,7 @@
                         <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                     </p>
                 </form>
+                <% } %>
                 <!-- Lista de Salas-->
                 <div class="table-responsive">
 					<div class="table-responsive">
@@ -84,15 +128,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <% for (var i=0; i< resp.length; i++) { %>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Pediatria</td>
-                                        <td>Sala H.- Niños</td>
-                                        <td>Piso 4</td>
-                                        <td>10</td>
-                                        <td><a href="/camas" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-home"></i></a></td>
-                                        <td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
+                                        <td><%=i+1%></td>
+                                        <td><%=resp[i].nombre%></td>
+                                        <td><%=resp[i].descripcionSala%></td>
+                                        <td><%=resp[i].piso%></td>
+                                        <td>poner cantidad maxima de camas en la tabla salas</td>
+                                        <td><a href="/salas/renderCamas/<%=resp[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-eye"></i></a></td>
+                                        <td><a href="/salas/updateSalas/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
                                     </tr>
+                                    <% } %>
                                 <tbody>
                             </table>
                         </div>
@@ -101,9 +147,9 @@
                         <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp;Imprimir</button>
                     </p>
                 </div>
-            </div>
+                </div>
+             </div>
         </div>
-    </div>
 	</section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>

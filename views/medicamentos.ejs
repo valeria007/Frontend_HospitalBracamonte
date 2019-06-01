@@ -32,154 +32,174 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-				  	<li class="active"><a href="#new" data-toggle="tab">Nuevo</a></li>
-				  	<li><a href="#list" data-toggle="tab">Lista</a></li>
+				  	<li class="active"><a href="#new" data-toggle="tab">Lista de Medicamentos</a></li>
+				  	<li><a href="#list" data-toggle="tab">Nuevo Medicamento</a></li>
                 </ul>
-                <!-- Nuevo Medicamento -->
-			    <div id="myTabContent" class="tab-content">
+				<!-- lista Medicamento -->
+				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="new">
 						<div class="container-fluid">
-							<form action="">
-								<div class="col-md-12 panel-body">
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="col-md-6">
-												<div class="form-group label-floating">
-													<label class="control-label">Grupo de Asignación</label>
-													<select class="form-control">
-														<option>Medicamento</option>
-														<option>Insumo</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group label-floating">
-													<label class="control-label">Proveedor</label>
-													<select class="form-control">
-														<option>Proveedor 1</option>
-														<option>Proveedor 2</option>
-														<option>Proveedor 3</option>
-														<option>Proveedor 4</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 panel-body">
-									<div class="col-md-12">
-										<div class="col-md-3">
-											<div class="form-group label-floating">
-												<label class="control-label">Codificación</label>
-												<input class="form-control" type="text">
-											</div>
-										</div>
-										<div class="col-md-9">
-											<div class="form-group label-floating">
-												<label class="control-label">Nombre</label>
-												<input class="form-control" type="text" >
-											</div>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 panel-body">
-									<div class="col-md-12">
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Generico</label>
-												<input class="form-control" type="text">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Concentracion</label>
-												<input class="form-control" type="text">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Unidad de Medida</label>
-												<input class="form-control" type="text">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Presentacion</label>
-												<input class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 panel-body">
-									<div class="col-md-12">
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="control-label">Fecha de Llegada</label>
-												<input class="form-control" type="date">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="control-label">Fecha de Vencimiento</label>
-												<input class="form-control" type="date">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 panel-body">
-									<div class="col-md-12">
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Cantidad</label>
-												<input class="form-control" type="text">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Precio</label>
-												<input class="form-control" type="text" >
-											</div>	
-										</div>
-									</div>
-								</div>
-								<p class="text-center">
-                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                </p>
-							    </form>
-							</div>
-						</div>
-                <!-- lista Medicamento -->
-			  	<div class="tab-pane fade" id="list">
-						<p class="text-center">
-                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
-                        </p>
+			  			<p class="text-center">
+							<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+						</p>
 						<div class="table-responsive">
+							<div class="form-group pull-left">
+								<input type="text" class="search form-control" placeholder="Buscar">
+							</div>
+							<span class="counter pull-left"></span>
 							<div class="table-wrapper">
-								<table class="fl-table">
+								<table class="table table-hover table-bordered results fl-table">
 									<thead>
 										<tr>
 											<th>#</th>
 											<th>Grupo de Asignación</th>
-											<th>Proveedor</th>
 											<th>Codificación</th>
 											<th>Nombre</th>
 											<th>Generico</th>
+											<th>Concentracion</th>
 											<th>Unidad de Medida</th>
 											<th>Presentacion</th>
-											<th>Concentracion</th>
 											<th>Fecha de Llegada</th>
 											<th>Fecha de Vencimiento</th>
 											<th>Cantidad</th>
+											<th>Cantidad Unid.</th>
 											<th>Precio</th>
 											<th>Opciones</th>
 										</tr>
+										<tr class="warning no-result">
+											<td colspan="14"><i class="fa fa-warning"></i> No result</td>
+										</tr>
 									</thead>
 									<tbody>
+										<% for(var i=0; i< resp.length; i++) { %>
 										<tr>
+											<td><%= i+1%></td>
+											<td><%=resp[i].grupoAsig%></td>
+											<td><%=resp[i].codificacion%></td>
+											<td><%=resp[i].nombre%></td>
+											<td><%=resp[i].generico%></td>
+											<td><%=resp[i].concentracion%></td>
+											<td><%=resp[i].unidadMedida%></td>
+											<td><%=resp[i].presentacion%></td>
+											<td><%=resp[i].fechaLLEgada%></td>
+											<td><%=resp[i].fechaVencimiento%></td>
+											<td><%=resp[i].cantidad%></td>
+											<td><%=resp[i].precio%></td>
+											<td><a href="/medicamento/OnlyMedicamento/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 										</tr>
+										<% } %>
 									<tbody>
 								</table>
 							</div>
 						</div>
-					</div>       
+						</div>  
+					</div>
+					<!-- Nuevo Medicamento -->
+					<div class="tab-pane fade" id="list">
+					<% if (dataGRUPOa == null) {%>
+						<h1>Ocurrio un problema con el servidor por favor intenta volver a entrar en esta pagina desde una pestaña anterior</h1>
+					<% } else {%>	
+						<form action="/medicamento/medicamentos" method="POST">
+							<div class="col-md-12 panel-body">
+								<div class="form-group">
+									<div class="col-md-12">
+										<div class="col-md-6">
+											<div class="form-group label-floating">
+												<label class="control-label">Grupo de Asignación</label>
+												<select class="form-control" name="grupoAsig">
+													<% for(var i=0; i< dataGRUPOa.length; i++) {%>
+													<option><%=dataGRUPOa[i].descripcion%></option>
+													<% } %>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 panel-body">
+								<div class="col-md-12">
+									<div class="col-md-3">
+										<div class="form-group label-floating">
+											<label class="control-label">Codificación</label>
+											<input class="form-control" type="text" name="codificacion">
+										</div>
+									</div>
+									<div class="col-md-9">
+										<div class="form-group label-floating">
+											<label class="control-label">Nombre</label>
+											<input class="form-control" type="text" name="nombre">
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 panel-body">
+								<div class="col-md-12">
+									<div class="col-md-6">
+										<div class="form-group label-floating">
+											<label class="control-label">Generico</label>
+											<input class="form-control" type="text" name="generico">
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label">Concentracion</label>
+											<input class="form-control" type="text" name="concentracion">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group label-floating">
+											<label class="control-label">Unidad de Medida</label>
+											<input class="form-control" type="text" name="unidadMedida">
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label">Presentacion</label>
+											<input class="form-control" type="text" name="presentacion">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 panel-body">
+								<div class="col-md-12">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Fecha de Llegada</label>
+											<input class="form-control" type="date" name="fechaLLEgada">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Fecha de Vencimiento</label>
+											<input class="form-control" type="date" name="fechaVencimiento">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 panel-body">
+								<div class="col-md-12">
+									<div class="col-md-6">
+										<div class="form-group label-floating">
+											<label class="control-label">Cantidad</label>
+											<input class="form-control" type="text" name="cantidad">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group label-floating">
+											<label class="control-label">Cantidad Unidad</label>
+											<input class="form-control" type="text">
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label">Precio</label>
+											<input class="form-control" type="text" name="precio">
+										</div>	
+									</div>
+								</div>
+							</div>
+							<p class="text-center">
+                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                            </p>
+					    </form>
+					</div>
 				</div>
+				<% } %>     
 			</div>
 		</div>
 	</div>

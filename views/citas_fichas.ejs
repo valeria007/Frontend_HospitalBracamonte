@@ -53,16 +53,16 @@
 										<div class="container-fluid">
 											<div class="col-md-12 panel-body">
 												
-                                                    <!-- daros personales-->
-                                                    <div class="col-md-6">
-                                                            <p class="lead">Datos Personales </p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                            <div class="form-group label-floating">
+                       <!-- daros personales-->
+                       <div class="col-md-6">
+                               <p class="lead">Datos Personales </p>
+                       </div>
+                       <div class="col-md-6">
+                               <div class="form-group label-floating">
 																	<label class="control-label">N° de Historia</label>
 																	<input class="form-control" type="text" value="<%=id.id	%>" name="codigo_p">
 															</div>
-                                                    </div>
+                        </div>
 													
 																													
 													<!-- lado hizquierdo -->
@@ -81,8 +81,13 @@
 													<!--   lado derecho-->
 													<div class="col-md-6">
 														<div class="form-group label-floating">
-															<label class="control-label">Servicio</label>
-															<input class="form-control" type="text" name="especialidad">
+																<label class="control-label">Servicio</label>
+																<select class="form-control" name="especialidad">
+																	
+																	<option value="consultaMedica">Consulta Medica</option>
+																	<option value="emergencia">Emergencia</option>
+																
+																</select>
 														</div>
 														<div class="form-group label-floating">
 																<label class="control-label">Hora</label>

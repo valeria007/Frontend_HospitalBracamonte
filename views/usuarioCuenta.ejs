@@ -25,18 +25,57 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-				<h1 class="text-titles"><i class="zmdi zmdi zmdi-accounts zmdi-hc-fw"></i> Usuarios </h1>
+				<h1 class="text-titles"><i class="zmdi zmdi zmdi-accounts-add zmdi-hc-fw"></i> Registro de Usuarios </h1>
 			</div>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-						<li class="active"><a href="#new" data-toggle="tab">Nuevo</a></li>							  <li><a href="#list" data-toggle="tab">Lista</a></li>
+						<li class="active"><a href="#new" data-toggle="tab">Lista de Registros</a></li>
+						<li><a href="#list" data-toggle="tab">Nuevo Registro</a></li>
 					</ul>
-					<!-- Nuevo Medicamento -->
+					<!--tabla de registros de Usuarios -->
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade active in" id="new">
+							<p class="text-center">
+								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+							</p>
+							<div class="table-responsive">
+								<div class="table-wrapper">
+									<div class="form-group pull-left">
+										<input type="text" class="search form-control" placeholder="Buscar">
+									</div>
+									<span class="counter pull-left"></span>
+									<table class="fl-table">
+										<thead>
+											<tr>
+											<th>#</th>
+											<th>ID Usuario</th>
+											<th>Correo</th>
+											<th>Contraceña</th>
+											<th>Tipo de Usuario</th>
+											<th>Dar de Baja</th>
+											<th>Modificar Cuenta</th>
+											</tr>
+										</thead>
+										<tbody>
+											<% for(var i=0; i< resp.length; i++) { %>
+											<tr>
+											<td><%= i + 1 %></td>
+											<td><%=resp[i].nombre %></td>
+											<td><%=resp[i].correo %></td>
+											<td><%=resp[i].contraseña %></td>
+											<td><%=resp[i].tipo_usuario %></td>							
+											</tr>
+											<% } %>
+										<tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- nuevo registro de Usuarios-->
+						<div class="tab-pane fade" id="list">
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
@@ -61,18 +100,6 @@
 												<label class="control-label">Tipo de Usuario</label>
 												<input class="form-control" type="text" name="tipo_usuario" required>
 											</div>
-											<!-- 
-											<div class="form-group">
-												<label class="control-label">Tipo de Usuario</label>
-												<select class="form-control">
-													<option>Medico</option>
-													<option>Enfermera</option>
-													<option>Interno</option>
-													<option>Farmaceutico</option>
-													<option>Fichero</option>
-												</select>
-											</div>
-											-->
 											<p class="text-center">
 												<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
 												<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
@@ -80,51 +107,6 @@
 										</form>
 									</div>
 								</div>
-							</div>
-						</div>
-						<!-- Tabla Usuarios-->
-						<div class="tab-pane fade" id="list">
-							<div class="table-responsive">
-								<div class="table-wrapper">
-									<table class="fl-table">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>ID Usuario</th>
-												<th>Correo</th>
-												<th>Contraceña</th>
-												<th>Tipo de Usuario</th>
-																					
-                                                <th>Dar de Baja</th>
-                                                <th>Modificar Cuenta</th>
-												
-											</tr>
-										</thead>
-										<tbody>
-                                            <% for(var i=0; i< resp.length; i++) { %>
-                                            <tr>
-                                                <td><%= i + 1 %></td>
-                                                <td><%=resp[i].nombre %></td>
-                                                <td><%=resp[i].correo %></td>
-                                                <td><%=resp[i].contraseña %></td>
-                                                <td><%=resp[i].tipo_usuario %></td>
-                                                
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <% } %>
-										<tbody>
-									</table>
-								</div>
-								<ul class="pagination pagination-sm">
-									<li class="disabled"><a href="#!">«</a></li>
-								  	<li class="active"><a href="#!">1</a></li>
-									<li><a href="#!">2</a></li>
-									<li><a href="#!">3</a></li>
-									<li><a href="#!">4</a></li>
-									<li><a href="#!">5</a></li>
-									<li><a href="#!">»</a></li>
-								</ul>
 							</div>
 						</div>
 					</div>
