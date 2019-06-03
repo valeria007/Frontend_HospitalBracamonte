@@ -1,41 +1,53 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Recetas', {
+    return queryInterface.createTable('PapeletaInternacions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_consulta: {
-        type: Sequelize.INTEGER
-      },
       tipoConsulta: {
         type: Sequelize.STRING
       },
-      historiaClinica: {
+      fechaIngreso: {
+        type: Sequelize.STRING
+      },
+      Historial: {
         type: Sequelize.INTEGER
       },
-      fecha: {
-        type: Sequelize.DATE
-      },
-      posologia:{
+      nombre: {
         type: Sequelize.TEXT
       },
-      farmaco: {
+      apellido1: {
         type: Sequelize.TEXT
       },
-      viaAdmincion: {
+      apellido2: {
         type: Sequelize.TEXT
       },
-      doctor:{
+      sexo: {
+        type: Sequelize.STRING
+      },
+      edad: {
+        type: Sequelize.STRING
+      },
+      nombreDoctor: {
         type: Sequelize.TEXT
       },
-      indicaciones: {
+      apellidoD1: {
         type: Sequelize.TEXT
       },
-      unidades: {
+      apellidoD2: {
+        type: Sequelize.TEXT
+      },
+      diagnostico: {
+        type: Sequelize.TEXT
+      },
+      idConsultaMedica:{
+        type: Sequelize.INTEGER
+      },
+      idEmergencia:{
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -49,6 +61,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Recetas');
+    return queryInterface.dropTable('PapeletaInternacions');
   }
 };

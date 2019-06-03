@@ -20,6 +20,10 @@ lugarNacimineto:text,sexo:string,raza:string,lugarProcendencia:text,domicilio:te
 seguroMedico:string
 
 
+notas clinicas
+sequelize model:create --name PapeletaInternacion --attributes fechaIngreso:string,Historial:integer,nombre:text,apellido1:text,apellido2:text,sexo:string,edad:string,nombreDoctor:text,apellidoD1:text,apellidoD2:text,diagnostico:text 
+
+
 
 <<< tablahistorial Clinico >>>>>>>>>
 sequelize model:create --name Internaciones --attributes historial:integer,nombre:text,apellido1:text,apellido2:text,edad:integer,tipoPaciente:string,institucion:string,provieneDE:string,observacion:text,especialidad:string,sala:string,cama:string,doctor:string,diagnostico:text,IDemergencia:integer,IDConsulta:integer,IDsala:integer

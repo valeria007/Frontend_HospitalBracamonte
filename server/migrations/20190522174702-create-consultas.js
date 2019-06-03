@@ -11,6 +11,33 @@ module.exports = {
       id_cita: {
         type: Sequelize.INTEGER
       },
+      tipoConsulta: {
+        type: Sequelize.STRING
+      },
+      fechaConsulta:{
+        type: Sequelize.STRING
+      },
+      numeroHistorial:{
+        type: Sequelize.INTEGER
+      },
+      apellidop:{
+        type: Sequelize.TEXT
+      },
+      apellidom:{
+        type: Sequelize.TEXT
+      },
+      nombre:{
+        type: Sequelize.TEXT
+      },
+      ci:{
+        type: Sequelize.STRING
+      },
+      sexo:{
+        type: Sequelize.STRING
+      },
+      fechanacimiento:{
+        type: Sequelize.STRING
+      },
       anamnesis: {
         type: Sequelize.TEXT
       },

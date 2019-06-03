@@ -5,6 +5,7 @@ import Paciente from '../controllers/pacientes';
 import Citas_medica from '../controllers/cita_medicas';
 import Consulta from '../controllers/consultas';
 import Receta from '../controllers/recetas';
+import papeletaInt from '../controllers/papeletaInternacion';
 
 export default (app) => {
 
@@ -52,10 +53,18 @@ app.get('/api/citas/:id', Citas_medica.citaLugar);
 ///consultas
 app.post('/api/reg_consulta/:id_cita', Consulta.reg_consulta);
 app.get('/api/reg_consultas', Consulta.getConsulta);
-
+app.get('/api/pacienteConsulta/:historial/:tipoConsulta', Consulta.getConsultaPaciente) //serv  para sacar las consultas de un paciente
+app.get('/api/OnlyConsulta/:id', Consulta.onlyConsulta);
 ///recetas
 app.post('/api/reg_Receta/:id_consulta', Receta.post_receta);
 app.get('/api/reg_Receta', Receta.getReceta);
 app.get('/api/OnlyReceta/:id', Receta.onlyReceta);
+
+
+//papeleta de internacion
+app.post('/api/papeletaIntConsulta/:idConsultaMedica', papeletaInt.enviarPapeletaINT); // consulta medica
+app.post('/api/papeletaIntEmergencia/:idEmergencia', papeletaInt.enviarPapeletaINT); // emergencia
+app.get('/api/papeletaInt', papeletaInt.verPapeletaINT);
+app.get('/api/onlyPInternacion/:id', papeletaInt.onlyPInternacion);
 
 };

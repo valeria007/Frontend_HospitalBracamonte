@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Recetas = sequelize.define('Recetas', {
     id_consulta: DataTypes.INTEGER,
+    tipoConsulta: DataTypes.STRING,
     historiaClinica: DataTypes.INTEGER,
     fecha: DataTypes.DATE,
     posologia: DataTypes.TEXT,

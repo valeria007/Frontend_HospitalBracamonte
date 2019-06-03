@@ -4,11 +4,12 @@ const { Recetas} = model;
 class Receta {
     
     static post_receta(req, res) {
-        const { historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades } = req.body;
+        const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades } = req.body;
         const { id_consulta } = req.params;
         return Recetas
           .create(  {
             id_consulta,
+            tipoConsulta,
             historiaClinica,
             fecha,
             posologia,

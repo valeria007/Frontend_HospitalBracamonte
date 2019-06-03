@@ -39,7 +39,8 @@ class Sala {
     static listSala(req, res){
         return Salas
         .findAll()
-        .then(sala => res.status(200).send(sala));
+        .then(sala => res.status(200).send(sala))
+        .catch(error => res.status(400).send(error));
     }
      //para mostrar solo uno
     static one(req, res){                
