@@ -1,178 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Hospitalización</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
 </head>
 <body>
 	<!-- SideBar -->
-	<%- include("partials/menu") -%>
+	<%- include("partials/vistaHospitalizacion") -%>
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage">
 	<!-- NavBar -->
 	<nav class="full-box dashboard-Navbar">
-			<ul class="full-box list-unstyled text-right">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-				<li>
-					<a href="#!" class="btn-Notifications-area">
-						<i class="zmdi zmdi-notifications-none"></i>
-						<span class="badge">7</span>
-					</a>
-				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
-				<li>
-					<a href="#!" class="btn-modal-help">
-						<i class="zmdi zmdi-help-outline"></i>
-					</a>
-				</li>
-			</ul>
-		</nav>
+		<ul class="full-box list-unstyled text-right">
+			<li class="pull-left">
+		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+			</li>
+			<li>
+				<a href="#!" class="btn-Notifications-area">
+					<i class="zmdi zmdi-notifications-none"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
 		<!-- Content page -->
-		<div class="container-fluid">
-			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Hospitalizacion <small>Consulta</small></h1>
-			</div>
-		</div>
+	   <div class="container-fluid">
+            <div class="col-md-12 panel-body">
+                <tr>
+                	<th>
+                   	</th>
+                  	<th>
+                       	<form class="example" action="">
+                         <div class="col-md-6">
+                            <input type="text" placeholder="Search.." name="search">
+                            <button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></i></button>
+                         </div>
+                                            
+                        </form>
+                   	</th>
+                </tr> 
+           </div>
+       </div>
+
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
-					
+					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+					  	<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nuevo Paciente</a></li>
+					  
+					</ul>
 					<div class="tab-content">
-						<div class="tab-pane fade active in" id="newSchool">
-							<div class="container-fluid">
-								<div class="row">
-										
-										<div class="container-fluid">
-											<div class="col-md-12 panel-body">
-												
-                                                    <!-- daros personales-->
-                                                    <div class="col-md-6">
-                                                            <p class="lead">Datos Personales </p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                            <div class="form-group label-floating">
-																	<label class="control-label">N° de Historia</label>
-																	<input class="form-control" type="text" name="apPaterno">
-															</div>
-                                                    </div>
-													
-																													
-															<!-- lado hizquierdo -->
-															
-															<div class="col-md-6">
-																<div class="form-group label-floating">
-																	<label class="control-label">Apellido Paterno</label>
-																	<input class="form-control" type="text" name="apPaterno">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Nombre</label>
-																		<input class="form-control" type="text" name="nombre">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Fecha de Nacimiento</label>
-																		<input class="form-control" type="text" name="fechNacimien">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Estado Civil</label>
-																		<select class="form-control" name="estadoCivil">
-																			<option></option>
-																			<option>Casado(a)</option>
-																			<option>Divorciado(a)</option>
-																			<option>Soltero(a)</option>
-																			<option>Viudo(a)</option>
-																			</select>
-																	</div>
-															</div>
-															<!--   lado derecho-->
-															<div class="col-md-6">
-																<div class="form-group label-floating">
-																	<label class="control-label">Apellido Materno</label>
-																	<input class="form-control" type="text" name="apMaterno">
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">CI</label>
-																		<input class="form-control" type="text" name="ci">
-																</div>
-																<div class="checkbox" style=" height: 70px;">
-																	<h4 class="text-titles"> Sexo</h4>			 
-																	<input type="radio" name="sexo" id="hombre">
-																	<label for="hombre">Hombre</label>
-																	<input type="radio" name="sexo" id="mujer">
-																	<label for="mujer">Mujer</label>
-																</div>
-																<div class="form-group label-floating">
-																		<label class="control-label">Ocupación</label>
-																		<input class="form-control" type="text" name="ocupacion">
-																	</div>
-															</div>
-                                                        <!-- botones  -->
-                                                    
-																
-                                            </div>
-                                          <!-- menu-->
-                                            <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-xs-12">
-                                                            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                                                                 
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Datos generales</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecendentes Personales</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecentes Famliares</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Tratamiento</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nuevo Paciente</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nuevo Paciente</a></li>
-                                                              
-                                                               
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                            <!--formularios-->
-                                            <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-xs-12">
-                                                            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                                                                   <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Papeleta de Internacion</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Grafico de Registros Vitales </a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nota de Ingreso o Admicion</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Epicrisis</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nota de Evaluacion</a></li>
-                                                                  <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Certificado medico</a></li>
-                                                              
-                                                               
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                            
+						
+					  <div class="table-responsive" id="newSchool">
+                        <table class="table table-hover ">
+                            <thead>
+								<tr>
+									<th class="text-center">#</th>
+									<th class="" WIDTH="15%">N° de historia </th>
+									<th class="" WIDTH="20%">Nombre del Paciente</th>
+									<th class="" WIDTH="20%">Apellido paterno</th>
+									<th class="" WIDTH="20%">Apellido materno</th>	
+									<th class="" WIDTH="20%">Hora de Atencion</th>	
 
-
-                                               
-                                            </div>
-
-												<table class="table table-hover text-center">
-													<thead>
-												</table>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-													<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-												</p>
-										</div>
-								</div>
-							</div>
-									
-									
-						</div>
-	          		</div>
+									<th class="text-center" WIDTH="40%">Registrar Consulta Medica</th>
+                  <th class="text-center" WIDTH="20%">Modificar</th>
+                  <th class="text-center" WIDTH="20%">Darde Baja</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+						<ul class="pagination pagination-sm">
+							<li class="disabled"><a href="#!">«</a></li>
+							<li class="active"><a href="#!">1</a></li>
+							<li><a href="#!">2</a></li>
+							<li><a href="#!">3</a></li>
+							<li><a href="#!">4</a></li>
+							<li><a href="#!">5</a></li>
+							<li><a href="#!">»</a></li>
+						</ul>
+					  </div>
+					</div>
 				</div>
 			</div>
 		</div>

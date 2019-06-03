@@ -47,7 +47,6 @@ router.get('/expediente',(req, res) => {
   res.render('expediente')
 });
 
-
 router.get('/vistaPrimPaciente',(req, res) => {
   res.render('vistaPrimPaciente')
 });
@@ -58,6 +57,9 @@ router.get('/vistaPrimPaciente',(req, res) => {
 //hospitalizacion 
 router.get('/hospitalizacion',(req, res) => {
   res.render('hospitalizacion')
+});
+router.get('/vistaHospitalizacion',(req, res) => {
+  res.render('vistaHospitalizacion')
 });
 
 
