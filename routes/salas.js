@@ -14,6 +14,7 @@ router.get('/salas',(req, res) => {
   console.error('Error:', error)
   res.send("no hay coneccion con el servidor");
   })
+  OnlySala = null;
 });
 
 router.get('/renderSalas', (req,res) => {
@@ -49,12 +50,10 @@ router.post('/salas', (req,res) => {
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => { 
-      if(data.success == false){
-          res.send(data.message)
-      }else{
-          console.log(data)
-          res.redirect('/salas/salas'); 
-      }
+      
+    console.log(data)
+    res.redirect('/salas/salas'); 
+      
   })
 });
 

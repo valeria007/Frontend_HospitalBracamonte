@@ -128,6 +128,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                     
                                     <% for (var i=0; i< resp.length; i++) { %>
                                     <tr>
                                         <td><%=i+1%></td>
@@ -138,7 +139,9 @@
                                         <td><a href="/salas/renderCamas/<%=resp[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-eye"></i></a></td>
                                         <td><a href="/salas/updateSalas/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
                                     </tr>
+                                       
                                     <% } %>
+                               
                                 <tbody>
                             </table>
                         </div>
@@ -147,6 +150,7 @@
                         <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp;Imprimir</button>
                     </p>
                 </div>
+            
                 </div>
              </div>
         </div>
