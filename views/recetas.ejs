@@ -35,15 +35,22 @@
 							
 								<!-- daros de receta-->
 								<div class="col-md-6">
-                                    <br>
-                                     <p class="lead">Datos Personales </p>
-                                                                
+                                    <p class="lead">Datos Personales </p>                            
 								</div>
+						
+															
 				        		<div class="col-md-6">
+									<div class="form-group label-floating">
+										<label class="control-label">De:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
+										   <select class="form-control label-txte" name="tipoConsulta">	
+												<option><%=ConsultaOnly[0].tipoConsulta%></option>															
+											</select>
+									</div>
+									
 									<div class="form-group label-floating">
 										<label class="control-label">N° de Historia</label>
 										<input class="form-control" type="text"  value="<%=dataPaciente[0].numeroHistorial%>" name="historiaClinica">
-									</div>
+									</div>									
 								</div>
 														
 																						

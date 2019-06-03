@@ -3,6 +3,8 @@ const app = express();
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser =require('body-parser')
+var cors = require('cors')
+
 
 app.set('port', process.env.PORT || 7000);
 
@@ -13,6 +15,8 @@ app.use(express.static("public"));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(cors());
 
 //routas
 app.use('/', require('./routes/index'));

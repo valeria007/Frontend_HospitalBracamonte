@@ -42,18 +42,23 @@
                              <div class="col-md-6">
                                 <p class="lead">Datos Personales </p>
                             </div>
-                            <form action="" method="POST">
+                            <form action="/medico/Pinternacion/<%=id.id%>" method="POST">
                                 <div class="col-md-6">
+									<div class="form-group">
+                                        <label class="control-label">De:</label>
+                                        <select class="form-control" name="tipoConsulta">
+                                            <option><%=ConsultaOnlyPinternacion[0].tipoConsulta%></option>                                            
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label class="control-label">Fecha de Ingreso</label>
                                         <input class="form-control" type="date" name="fechaIngreso">
                                     </div>
                                     <div class="form-group">
                                             <label class="control-label">N° de Historia</label>
-                                            <input class="form-control" type="text" value="" name="Historial">
+                                            <input class="form-control" type="text" value="<%=dataPaciente[0].numeroHistorial%>" name="Historial">
                                     </div>
-                                </div>
-                        
+                                </div>                       
 													
 																													
 								<!-- lado hizquierdo -->
@@ -61,28 +66,28 @@
 								<div class="col-md-6">
 									<div class="form-group label-floating">
 										<label class="control-label">Nombre </label>
-										<input class="form-control" type="text" value="" name="nombre">
+										<input class="form-control" type="text" value="<%=dataPaciente[0].nombre%>" name="nombre">
 									</div>
 									<div class="form-group label-floating">
 										<label class="control-label">Apellido Paterno</label>
-										<input class="form-control" type="text" value="" name="apellido1">
+										<input class="form-control" type="text" value="<%=dataPaciente[0].apellidop%>" name="apellido1">
                                     </div>
                                     
                                         <div class="form-group label-floating">
                                             <label class="control-label">Apellido Materno</label>
-                                            <input class="form-control" type="text" value="" name="apellido2">
+                                            <input class="form-control" type="text" value="<%=dataPaciente[0].apellidom%>" name="apellido2">
                                         </div>
                                     
                                     <div class="form-group label-floating">
                                         <label class="control-label">Sexo</label>
                                         <select class="form-control" name="sexo">
-                                            <option>Hombre</option>
-                                            <option>Mujer</option>
+                                            <option><%=dataPaciente[0].sexo%></option>
+                                            
                                         </select>
                                     </div>
 									<div class="form-group label-floating">
 										<label class="control-label">Fecha de Nacimiento</label>
-										<input class="form-control" type="text" value="" name="edad">
+										<input class="form-control" type="text" value="<%=dataPaciente[0].fechanacimiento%>" name="edad">
 									</div>							
 								</div>
                                 <!--   lado derecho-->
