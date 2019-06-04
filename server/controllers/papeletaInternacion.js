@@ -47,6 +47,17 @@ class papeletaInt{
            res.status(200).json(data);
          });     
     }
+    //serv para sacar las consultas de un paciente
+    static getPinternacionPaciente(req, res){                
+      var historial = req.params.historial;
+      var tipoConsulta = req.params.tipoConsulta;
+      PapeletaInternacion.findAll({
+          where: { Historial: historial, tipoConsulta:tipoConsulta }
+          //attributes: ['id', ['description', 'descripcion']]
+        }).then((resp) => {
+          res.status(200).json(resp);
+        });     
+    }
 }
 
 export default papeletaInt

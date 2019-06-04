@@ -66,5 +66,6 @@ app.post('/api/papeletaIntConsulta/:idConsultaMedica', papeletaInt.enviarPapelet
 app.post('/api/papeletaIntEmergencia/:idEmergencia', papeletaInt.enviarPapeletaINT); // emergencia
 app.get('/api/papeletaInt', papeletaInt.verPapeletaINT);
 app.get('/api/onlyPInternacion/:id', papeletaInt.onlyPInternacion);
+app.get('/api/getPinternacionPaciente/:historial/:tipoConsulta', papeletaInt.getPinternacionPaciente);
 
 };
