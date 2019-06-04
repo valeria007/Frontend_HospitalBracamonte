@@ -4,11 +4,77 @@
 	<title>LogIn</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+	<link rel="stylesheet" href="/css/login.css">
+	<link rel="stylesheet" href="/css/main.css">
 </head>
-<body class="cover" style="background-image: url(./assets/img/login3.jpg);">
+<body class="cover" style="background-image: url(./assets/img/fonfo2.jpg);">
+	<div class="overlay">
+		<!-- LOGN IN FORM by Omar Dsoky -->
+		<form>
+		   <!--   con = Container  for items in the form-->
+		   <div class="con">
+		   <!--     Start  header Content  -->
+		   <header class="head-form">
+			  <h2>INICIO SECION</h2>
+			  <!--     A welcome message or an explanation of the login form -->
+		   </header>
+		   <!--     End  header Content  -->
+		   <br>
+		   <br>
+		   <br>
+		   <div class="field-set">
+			 
+			  <!--   user name -->
+				 <span class="input-item">
+					<i class="zmdi zmdi-account-circle"></i>
+				 </span>
+				<!--   user name Input-->
+				 <input class="form-input" id="txt-input" type="email" placeholder="@UserName" required>
+			 
+			  <br>
+			  <br>
+			 
+				   <!--   Password -->
+			 
+			  <span class="input-item">
+				<i class="zmdi zmdi-key"></i>
+			   </span>
+			  <!--   Password Input-->
+			  <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
+			 
+		<!--      Show/hide password  -->
+			 <span>
+				<i class="zmdi zmdi-eye" aria-hidden="false"  type="button" id="eye"></i>
+			 </span>
+			 
+			 
+			  <br>
+			  <br>
+		<!--        buttons -->
+		<!--      button LogIn -->
+			  <!---->
+			  <div class="form-group text-center">
+				<button class="log-in"> INICIAR </button>
+			</div>
+			<div class="form-group text-center">
+				<button type="button" class="log-in" onclick=location="/HomeVistDoctor">entra doctor</button> &nbsp;&nbsp; 
+			</div>
+			<div class="form-group text-center">
+				<button type="button" class="log-in" onclick=location="/cuaderno/cuaderno">Cuaderno</button> &nbsp;&nbsp; 
+			</div>
+		  
+		<!--   other buttons -->
+		<!--    <div class="other"-->
 	
-	<form action="/login" method="POST" autocomplete="off" class="full-box logInForm">
+			 
+		
+		
+		  
+		  <!-- End Form -->
+		</form>
+		</div>
+	
+	<!--<form action="/login" method="POST" autocomplete="off" class="full-box logInForm">
 
 		<p class="text-center text-muted"><i class="zmdi zmdi-account-circle zmdi-hc-5x"></i></p>
 		<p class="text-center text-muted text-uppercase">Inicia sesión con tu cuenta</p>
@@ -32,10 +98,12 @@
 			<button type="button" class="btn btn-info" onclick=location="/cuaderno/cuaderno">Cuaderno</button> &nbsp;&nbsp; 
 		</div>
 
-	</form>
+	</form>-->
+
 	<!--====== Scripts -->
-	<%- include("partials/scripts") -%>
-		
+	<script src="/js/login.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/main.js"></script>	
 	</script>
 </body>
 </html>
