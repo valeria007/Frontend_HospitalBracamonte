@@ -7,7 +7,7 @@ router.get('/pedidos',(req, res) => {
         .then(resp => resp.json())
         .then(resp =>{
             console.log(carrito," eeeeeeeeeeeeeeeeeeee");
-            res.render('pedidos',{resp});
+            res.render('pedidos',{resp,carrito});
     })
     .catch(error => {
         console.error('Error:', error)
@@ -21,9 +21,16 @@ router.get('/carrito/:id', (req,res)=>{
     fetch('http://localhost:3500/api/OnlyMedicamento/'+id.id)   
         .then(resp => resp.json())
         .then(resp =>{
-            carrito = resp;
-            res.send(carrito);
-            //res.redirect('/pedidos/pedidos');
+            var car = {
+                codificacion: resp[0].codificacion,
+                nombre: resp[0].nombre,
+                cantidad: resp[0].cantidad,
+                precio: resp[0].precio
+            }
+            carrito.push(car);
+            //res.send(carrito);
+            res.redirect('/pedidos/pedidos');
+            console.log(car, "esto es el car")
     })
     .catch(error => {
         console.error('Error:', error)

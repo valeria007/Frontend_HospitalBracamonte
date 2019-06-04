@@ -188,7 +188,8 @@ router.get('/Pinternacion/:id', (req,res) => {
             res.render('papeletasInternacion',{
                 dataPaciente,
                 id,
-                ConsultaOnlyPinternacion
+                ConsultaOnlyPinternacion,
+                PapeletaINTER // trae datos de papeleta internacion segun hstorial y tipo consulta
             });
         })
         .catch(error => {
@@ -232,7 +233,7 @@ router.post('/Pinternacion/:id',(req,res) => {
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {      
-              res.redirect('/medico/TraerConsultaPinternacion/'+idConsultaM.id);
+              res.redirect('/medico/PapeletaINT/'+datosConsultaData.id+"/"+datosConsultaData.historial+"/"+datosConsultaData.tipoConsulta);
             })
     }else  if(tipoCOnsulta == "emergencia") {
         var idEmergencia = req.params
@@ -248,9 +249,29 @@ router.post('/Pinternacion/:id',(req,res) => {
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {      
-              res.redirect('/medico/TraerConsultaPinternacion/'+idEmergencia.id);
+              res.redirect('/medico/PapeletaINT/'+datosConsultaData.id+"/"+datosConsultaData.historial+"/"+datosConsultaData.tipoConsulta);
             })
     }
+});
+
+var PapeletaINTER; // esto trae todas las papelteas de internacion segun historial y tipo consulta
+var datosConsultaData; // esta variable es para llevar el id historial y tipo consulta de la vista consulta 
+router.get('/PapeletaINT/:id/:historial/:tipoConsulta', (req,res) => {
+    var id = req.params;
+    datosConsultaData = req.params;
+    //console.log(id);
+    fetch('http://localhost:3000/api/getPinternacionPaciente/'+id.historial+"/"+id.tipoConsulta)        
+        .then(resp => resp.json())
+        .then(resp =>{
+            PapeletaINTER = resp;
+            console.log(resp, "    es esto<<<<<<<<<<<<<<<<<")
+            res.redirect('/medico/TraerConsultaPinternacion/'+id.id);
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        })
+    
 });
 
 module.exports = router;

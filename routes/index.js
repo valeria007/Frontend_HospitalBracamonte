@@ -109,4 +109,9 @@ router.get('/consultaMed', (req, res) => {
   res.render('ConsultaMed');
 });
 
+//emergencia render
+router.get('/emergencia', (req,res) => {
+  res.render('emergencias/homeEmergencia')
+});
+
 module.exports = router;
