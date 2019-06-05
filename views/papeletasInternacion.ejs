@@ -30,8 +30,12 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="tab-content">
-						<div class="tab-pane fade active in" id="newSchool">
+						<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+							<li class="active"><a href="#PapeletaInternacion" data-toggle="tab">Papeleta de Internacion</a></li>
+                            <li><a href="#list" data-toggle="tab">Lista de Emergencias del Paciente</a></li>
+						</ul>
+					<div id="myTabContent"  class="tab-content" >
+						<div class="tab-pane fade active in" id="PapeletaInternacion">
 							<div class="container-fluid">
 								<div class="row">
 										
@@ -143,6 +147,45 @@
                                 </div>				
 			                </div>
 						</div>
+
+						<!-- lista -->
+						<div class="tab-pane fade" id="list">
+                            <div class="table-wrapper">
+                                <div class="form-group pull-right">
+                                    <input type="text" class="search form-control" placeholder="Buscar">
+                                </div>
+                                <span class="counter pull-right"></span>
+                                <table class="table table-hover table-bordered results fl-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Historial</th>
+											<th>Nombre del doctor</th>  
+											<th>Tipo de Consulta</th>
+                                            <th>Añadir</th>                                           
+                                        </tr>
+                                        <tr class="warning no-result">
+                                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                              </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (var i=0; i< PapeletaINTER.length; i++) { %>
+                                        <tr>
+                                            <th><%=i+1%></th>
+                                            <th><%=PapeletaINTER[i].nombre%></th>
+                                            <th><%=PapeletaINTER[i].apellido1%></th>
+                                            <th><%=PapeletaINTER[i].Historial%> </th>
+											<th><%=PapeletaINTER[i].nombreDoctor%></th>  
+											<th><%=PapeletaINTER[i].tipoConsulta%></th>  
+                                            <td><a href="/pedidos/carrito/" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>                                            
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 					</div>	
 				</div>
 	        </div>

@@ -3,7 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/usuarios',(req, res) => {
-    fetch('http://localhost:4500/api/personal/')
+    fetch('http://127.0.0.1:3500/personal/personal/')
         .then(resp => resp.json())
         .then(resp =>{
         res.render('usuarios',{resp});
@@ -23,7 +23,7 @@ router.get('/usuarios',(req, res) => {
           'Content-type' : "application/json"
         }
     };
-    fetch('http://localhost:4500/api/personal',esto)
+    fetch('http://127.0.0.1:3500/personal/personal/',esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
@@ -38,7 +38,7 @@ router.get('/usuarios',(req, res) => {
   });
 router.get('/usuarios/:id',(req, res) => {
   var id = req.params;
-  fetch('http://localhost:4500/api/OnlyPersonal/'+id.id)
+  fetch('http://127.0.0.1:3500/personal/OnlyPersonal/'+id.id)
       .then(resp => resp.json())
       .then(resp =>{
       res.render('usuarioUpdate',{
@@ -58,7 +58,7 @@ router.post('/updatePersonal/:id',(req,res) => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://localhost:4500/api/updatePersonal/'+id.id,enviar)
+  fetch('http://127.0.0.1:3500/personal/updatePersonal/'+id.id,enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
@@ -69,7 +69,7 @@ router.post('/updatePersonal/:id',(req,res) => {
 
 router.get('/UsuraioCuenta/:id', (req,res) => {
   var id = req.params
-  fetch('http://localhost:4500/api/mostrarCuentas/'+id.id)
+  fetch('http://127.0.0.1:3500/usuarios/mostrarCuentas/'+id.id)
         .then(resp => resp.json())
         .then(resp =>{
         res.render('usuarioCuenta',{
@@ -90,7 +90,7 @@ router.post('/crearCuenta/:id', (req,res) => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://localhost:4500/api/userCuenta/'+id.id,enviar)
+  fetch('http://127.0.0.1:3500/usuarios/userCuenta/'+id.id,enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {

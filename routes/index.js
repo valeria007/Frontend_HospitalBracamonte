@@ -19,7 +19,7 @@ router.post('/login', (req,res)  => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://localhost:4500/api/login',enviar)
+  fetch('http://127.0.0.1:3500/usuarios/login',enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
@@ -56,7 +56,7 @@ router.get('/vistaPrimPaciente',(req, res) => {
 
 //hospitalizacion 
 router.get('/hospitalizacion',(req, res) => {
-  res.render('hospitalizacion')
+  res.render('hospitalizacion/hospitalizacion')
 });
 router.get('/vistaHospitalizacion',(req, res) => {
   res.render('vistaHospitalizacion')
@@ -120,6 +120,11 @@ router.get('/solicitudes',(req, res) => {
 //ruta temporal 
 router.get('/consultaMed', (req, res) => {
   res.render('ConsultaMed');
+});
+
+//emergencia render
+router.get('/emergencia', (req,res) => {
+  res.render('emergencias/homeEmergencia')
 });
 
 module.exports = router;
