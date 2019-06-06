@@ -28,6 +28,7 @@ app.use('/medicamento', require('./routes/medicamento'));
 app.use('/proveedores', require('./routes/proveedores'));
 app.use('/pedidos', require('./routes/pedidos'));
 app.use('/emergencia', require('./routes/emergencia'));
+app.use('/hospitalizacion', require('./routes/hospitalizacion'));
 app.use('/cuaderno', require('./routes/cuaderno'));
 app.use('/salas', require('./routes/salas'));
 app.use('/papeletaInternacion', require('./routes/papeletaInternacion'));

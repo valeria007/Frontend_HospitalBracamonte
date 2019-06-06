@@ -56,7 +56,7 @@ router.get('/renderConsulta', (req,res)=> {
 router.get('/consultaData', (req,res) => {
     if (idCIta == null){
         // en esta parte deveria mostrar que no hay data paciente u idcita
-        res.render('hospitalizaciones/consultaEmergencia',{
+        res.render('hospitalizaciones/consultaHospitalizacion',{
             dataPaciente,
             idCIta
         });  
@@ -68,7 +68,7 @@ router.get('/consultaData', (req,res) => {
             if (dataPaciente == null){
                 res.send("no hay datos en Datapaciente en routes/medico serv renderConsulta")
             }else{
-                res.render('emergencias/consultaEmergencia',{
+                res.render('hospitalizaciones/consultaHospitalizacion',{
                     dataPaciente,
                     idCIta, // este es el id de la cita medica que viene desde /consulta/:historial/:idCitaMedica'
                     resp,
