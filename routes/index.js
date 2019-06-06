@@ -47,7 +47,6 @@ router.get('/expediente',(req, res) => {
   res.render('expediente')
 });
 
-
 router.get('/vistaPrimPaciente',(req, res) => {
   res.render('vistaPrimPaciente')
 });
@@ -57,10 +56,24 @@ router.get('/vistaPrimPaciente',(req, res) => {
 
 //hospitalizacion 
 router.get('/hospitalizacion',(req, res) => {
-  res.render('hospitalizacion')
+  res.render('hospitalizacion/hospitalizacion')
+});
+router.get('/vistaHospitalizacion',(req, res) => {
+  res.render('vistaHospitalizacion')
+});
+
+
+router.get('/Papeleta_Inter',(req, res) => {
+  res.render('Papeleta_Inter')
+});
+
+// Internacion
+router.get('/salas',(req, res) => {
+  res.render('salas')
 });
 
 // Internacion salas 
+
 
 //Se movio a routas salas
 

@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="/css/login.css">
 	<link rel="stylesheet" href="/css/main.css">
 </head>
-<body class="cover" style="background-image: url(./assets/img/fonfo2.jpg);">
+<body class="cover" style="background-image: url(./assets/img/fonfo2.jpg);"></body>
 	<div class="overlay">
 		<!-- LOGN IN FORM by Omar Dsoky -->
 		<form action="/login" method="POST" autocomplete="off" >
@@ -19,8 +19,7 @@
 			  <!--     A welcome message or an explanation of the login form -->
 		   </header>
 		   <!--     End  header Content  -->
-		   <br>
-
+		
 		   <div class="field-set">
 			 
 			  <!--   user name -->
@@ -30,8 +29,8 @@
 				<!--   user name Input-->
 				 <input class="form-input" id="UserEmail" type="email" name="correo"  placeholder="@Correo" required>
 			 
-			  <br>
-			  <br>
+			<br>
+			<br>	 
 			 
 				   <!--   Password -->
 			 
@@ -47,9 +46,10 @@
 				 
 				<i class="zmdi zmdi-eye" aria-hidden="false"  type="button" id="eye"></i>
 			 </span>
-			 
-			 
-			  <br>
+		   </div>
+			<br>
+			<br>
+			<div class="field-set">
 		<!--        buttons -->
 		<!--      button LogIn -->
 			  <!---->
@@ -57,15 +57,27 @@
 				<button class="log-in" value="Iniciar sesión" type="submit"> 
 					INICIAR </button>
 			</div>
-			<div class="form-group text-center">
-				<button type="button" class="log-in" onclick=location="/HomeVistDoctor">entra doctor</button> &nbsp;&nbsp; 
+			<div class="col-md-6">
+
+					<div class="form-group  ">
+						<button type="button" class="log-in " onclick=location="/HomeVistDoctor" style='width:150px; height:25px'>entra doctor</button> &nbsp;&nbsp; 
+					</div>
+					<div class="form-group ">
+						<button type="button" class="log-in" onclick=location="/cuaderno/cuaderno" style='width:150px; height:25px'>Cuaderno</button> &nbsp;&nbsp; 
+					</div>
+				</div>
+			<div class="col-md-2 ">
+					<div class="form-group ">
+						<button type="button" class="log-in" onclick=location="/emergencia" style='width:150px; height:25px'>Emergencia</button> &nbsp;&nbsp; 
+					</div>
+					
+					<div class=" ">
+						<button type="button" class="log-in" onclick=location="/hospitalizacion" style='width:150px; height:25px'>Hospitalizacion</button> &nbsp;&nbsp; 
+					</div>
 			</div>
-			<div class="form-group text-center">
-				<button type="button" class="log-in" onclick=location="/cuaderno/cuaderno">Cuaderno</button> &nbsp;&nbsp; 
-			</div>
-			<div class="form-group text-center">
-				<button type="button" class="log-in" onclick=location="/emergencia">Emergencia</button> &nbsp;&nbsp; 
-			</div>
+	
+
+		
 		  
 		<!--   other buttons -->
 		<!--    <div class="other"-->
@@ -102,12 +114,10 @@
 			<button type="button" class="btn btn-info" onclick=location="/cuaderno/cuaderno">Cuaderno</button> &nbsp;&nbsp; 
 		</div>
 		<div class="col-md-6">
-			<button type="button" class="btn btn-info" onclick=location="/emergencia">Emergencia</button> &nbsp;&nbsp; 
+			<button type="button" class="btn btn-info" onclick=location="hospitalizacion">Entra a hospitalizacion</button> &nbsp;&nbsp; 
 		</div>
 
-	</form>-->
-
-	<!--====== Scripts -->
+	<!- Scripts -->
 	<script src="/js/login.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/main.js"></script>	
