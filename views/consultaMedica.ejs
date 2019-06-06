@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Consulta Médica</title>
+	<title>Consulta</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
@@ -54,6 +54,7 @@
                                         <div class="col-xs-12 col-md-10 col-md-offset-1">
                                             
                                             <form action="/medico/regConsulta/<%=idCIta%>" method="POST">
+                                            
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">De</label>
                                                     <select class="form-control" name="tipoConsulta">
@@ -61,30 +62,24 @@
                                                         
                                                     </select>
                                                     </div>
-                                                <h1>Datos Personales</h1>                                                
-                                                <div class="form-group">
+                                                    <!-- medicamentos colum1 -->
+                                                         
+                                                 <h1>Datos Personales</h1>  
+                                            
+                                               
+                                         
+                                             <div class="col-md-6">                                             
+                                                <div class="form-group ">
                                                     <label class="control-label">Fecha de Consulta</label>
                                                     <input class="form-control" type="date" name="fechaConsulta" require>
-                                                </div>                                                                              
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">N° de Historia</label>
-                                                  <input class="form-control" type="text" name="numeroHistorial" value="<%=dataPaciente[0].numeroHistorial%>">
                                                 </div>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label"> Apellido Paterno </label>
                                                     <input class="form-control" type="text" name="apellidop" value="<%=dataPaciente[0].apellidop%>">
                                                 </div>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Apellido Materno</label>
-                                                    <input class="form-control" type="text"  name="apellidom" value="<%=dataPaciente[0].apellidom%>">
-                                                </div>
-                                                <div class="form-group label-floating">
                                                     <label class="control-label">Nombre</label>
                                                     <input class="form-control" type="text" name="nombre" value="<%=dataPaciente[0].nombre%>">
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">CI</label>
-                                                    <input class="form-control" type="text" name="ci" value="<%=dataPaciente[0].ci%>">
                                                 </div>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Sexo</label>
@@ -93,10 +88,34 @@
                                                         
                                                     </select>
                                                 </div>
-                                                <div class="form-group label-floating">
-                                                  <label class="control-label">Fecha de Nacimiento</label>
-                                                  <input class="form-control" type="text" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>">
+                                                
+                                                
+                                            </div> 
+
+                                            
+                                           
+                                            <div class="col-md-6 ">
+                                                  
+                                                <div class="form-group ">
+                                                    <label class="control-label">N° de Historia</label>
+                                                    <input class="form-control" type="text" name="numeroHistorial" value="<%=dataPaciente[0].numeroHistorial%>">
                                                 </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Apellido Materno</label>
+                                                    <input class="form-control" type="text"  name="apellidom" value="<%=dataPaciente[0].apellidom%>">
+                                                </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">CI</label>
+                                                    <input class="form-control" type="text" name="ci" value="<%=dataPaciente[0].ci%>">
+                                                </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Fecha de Nacimiento</label>
+                                                    <input class="form-control" type="text" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>">
+                                                </div>
+                                            </div>                                                                              
+                                                 
+                                                  
+                                            <div class="col-md-12 formm">
                                                 <h3>Estodo del paciente</h3>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Anamnesis</label>
@@ -118,6 +137,13 @@
                                                     <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                                     <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                                                 </p>
+                                            </div>  
+                                               
+                                                
+                                               
+                                                
+                                                
+                                               
                                             </form>
                                         </div>
                                     </div>
@@ -168,7 +194,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
         <% } %>
 </section>
 	<!--====== Scripts -->

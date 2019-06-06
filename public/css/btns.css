@@ -17,10 +17,10 @@
     float: left;
     width: 10%;
     padding: 10px;
-    background: rgb(150, 165, 163);
+    background: rgb(40, 167, 150);
     color: white;
     font-size: 17px;
-    border: 1px solid grey;
+    border: 1px solid black;
     border-left: none; /* Prevent double borders */
     cursor: pointer;
   }
@@ -39,7 +39,7 @@
   .contenedor .formm{
     /*background: rgba(245, 102, 13, 0.5);*/
     /*background: rgba(2, 37, 77, 0.336);*/
-   background: rgba(76, 162, 241, 0.603);
+   background: rgba(204, 223, 241, 0.603);
    /* padding: 5px 40px;
     margin-top: 30px; */
     max-width: 650px;
@@ -56,7 +56,7 @@
     
     
     border-radius: 3px;
-    color: rgb(10, 10, 10);
+    color: rgb(54, 53, 53);
    font-size: 16px;
    /*font-family: Roboto;*/
   }

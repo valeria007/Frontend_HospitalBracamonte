@@ -46,10 +46,12 @@
                              <div class="col-md-6">
                                 <p class="lead">Datos Personales </p>
                             </div>
+                        
                             <form action="/medico/Pinternacion/<%=id.id%>" method="POST">
+                                
                                 <div class="col-md-6">
 									<div class="form-group">
-                                        <label class="control-label">De:</label>
+                                        <label class="">De:</label>
                                         <select class="form-control" name="tipoConsulta">
                                             <option><%=ConsultaOnlyPinternacion[0].tipoConsulta%></option>                                            
                                         </select>
@@ -125,7 +127,7 @@
 										<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
 									</p>
                                 </form>
-
+                            </div>
                     <!-- botones  -->
                                                     
 																
