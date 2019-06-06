@@ -58,17 +58,19 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <% for(var i=0; i< dataPEDIDOS.length; i++) { %>
                                                     <tr>
-                                                    <td>1</td>
-                                                    <td>Luis</td>
-                                                    <td>Choque</td>
-                                                    <td>Mamani C.</td>
-                                                    <td>12345678</td>
-                                                    <td>Calle La Paz # 1</td>
-                                                    <td>9874561</td>
-                                                    <td>Estudiante</td>
+                                                    <td><%=i+1%></td>
+                                                    <td><%=dataPEDIDOS[i].codigoCompra%></td>
+                                                    <td><%=dataPEDIDOS[i].proveedor%></td>
+                                                    <td><%=dataPEDIDOS[i].boletaPago%></td>
+                                                    <td><%=dataPEDIDOS[i].fechaIngreso%></td>
+                                                    <td><%=dataPEDIDOS[i].iva%></td>
+                                                    <td><%=dataPEDIDOS[i].total%></td>
+                                                    <td><%=dataPEDIDOS[i].Observaciones%></td>
                                                     <td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
                                                     </tr>
+                                                    <% } %>
                                                 <tbody>
                                             </table>
                                         </div>
@@ -80,18 +82,20 @@
 						<div class="tab-pane fade" id="list">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <form action="">
+
+                                    <form action="/pedidos/pedidos" method="POST">
+
                                         <h2 class="text-center all-tittles">REGISTRO DE COMPRA</h2>
                                         <div class="col-md-12 panel-body">
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Codigo de Compra</label>
-                                                        <input class="form-control" type="text">
+                                                        <input class="form-control" type="text" name="codigoCompra">
                                                     </div>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Especifique el status de la compra</label>
-                                                        <select class="form-control">
+                                                        <select class="form-control" name="boletaPago">
                                                             <option>FACTURA</option>
                                                             <option>BOLETA DE VENTA</option>
                                                             <option>NOTA DE CREDITO</option>
@@ -101,24 +105,28 @@
                                                     </div>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Tipo de Material</label>
-                                                        <select class="form-control">
-                                                            <option>Medicamentos</option>
-                                                            <option>Insumos</option>
+                                                        <select class="form-control" name="tipoMaterial">
+                                                            <% for(var i=0; i< grup.length; i++) { %>
+                                                            <option><%=grup[i].descripcion%></option>                                                            
+                                                            <% } %>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Fecha de Ingreso</label>
-                                                        <input class="form-control" type="date">
+                                                        <input class="form-control" type="date" name="fechaIngreso">
                                                     </div>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Proveedor</label>
-                                                        <select class="form-control">
-                                                            <option>Proveedor 1</option>
-                                                            <option>Proveedor 2</option>
-                                                            <option>Proveedor 3</option>
-                                                            <option>Proveedor 4</option>
+                                                        <select class="form-control" name="proveedor">
+                                                        <%if (proveedor) { %>
+                                                            <%for(var i=0; i < proveedor.length; i++) {%>
+                                                            <option> <%=proveedor[i].nombre%></option>
+                                                            <% } %>
+                                                        <% } else { %>
+                                                           <option value="">No hay Proveedores</option>                                                           
+                                                        <% } %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -129,7 +137,7 @@
                                                 <div class="col-md-1">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Cantidad</label>
-                                                        <select class="form-control">
+                                                        <select class="form-control" name="cantidad">
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -140,7 +148,7 @@
                                                 <div class="col-md-7">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Cód. Producto:</label>
-                                                        <input class="form-control" type="text">
+                                                        <input class="form-control" type="text" name="codigoProduct">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -149,7 +157,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                                    
+                                        </div>  
+                                        
                                         <div class="col-xs-12 col-md-10 col-md-offset-1">
                                             <div class="table-wrapper">
                                                 <table class="fl-table">
@@ -168,9 +177,9 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% if(products == null) { %>
-                                                            la lista esta bacia
-                                                        <% } else { %>
+                                                    <% if(products == null) { %>
+                                                        la lista esta bacia
+                                                    <% } else { %>
                                                         <% for (var i=0; i< products.length; i++) { %>
                                                         <tr>
                                                         <td><%=i+1%></td>
@@ -185,32 +194,33 @@
                                                         <td class="text-center"><a href="/pedidos/removeAll/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
                                                         </tr>
                                                         <% } %>
-                                                        <% } %>
+                                                    <% } %>
                                                     <tbody>
                                                 </table>
                                             </div>
                                         </div>
+
                                         <div class="col-md-12 panel-body">
                                             <div class="col-md-12">
                                                 <h5>Notas importantes del Comprovante</h5>
                                                 <div class="col-md-9">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Observaciones</label>
-                                                        <input class="form-control" type="text">	
+                                                        <input class="form-control" type="text" name="Observaciones">	
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Sub Total</label>
-                                                        <input class="form-control" type="text" value="<%=totalPrice%>">
+                                                        <input class="form-control" type="text" value="<%=totalPrice%>" name="subTotal">
                                                     </div>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">IVA</label>
-                                                        <input class="form-control" type="text" value="<%=totalPrice * 0.13%>">
+                                                        <input class="form-control" type="text" value="<%=totalPrice * 0.13%>" name="iva">
                                                     </div>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Total</label>
-                                                        <input class="form-control" type="text" value="<%=totalPrice + totalPrice * 0.13%>">
+                                                        <input class="form-control" type="text" value="<%=totalPrice + totalPrice * 0.13%>" name="total">
                                                     </div>
                                                 </div>
                                             </div>

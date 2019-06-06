@@ -3,21 +3,71 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/pedidos',(req, res) => {
-    fetch('http://localhost:3500/api/medicamento')   
+    if(proveedor == null){
+        res.redirect('/pedidos/pedidos/proveedor')
+    }else{
+        fetch('http://localhost:3500/api/medicamento')   
         .then(resp => resp.json())
         .then(resp =>{
-            //console.log(products," eeeeeeeeeeeeeeeeeeee");
+            var esot = generateArray()
+            //console.log(esot, "  esto es lo que quiero")
             res.render('pedidos',{
+                proveedor,
                 resp,
                 products : generateArray(),
                 totalQty,
-                totalPrice
+                totalPrice,
+                grup,
+                dataPEDIDOS
             });
+    })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        })    
+    }
+});
+
+var grup;
+router.get('/grup', (req,res) => {
+    fetch('http://localhost:3500/api/asignacion')   
+    .then(resp => resp.json())
+    .then(resp =>{
+        grup = resp;
+        res.redirect('/pedidos/pedidos');
+})
+.catch(error => {
+    console.error('Error:', error)
+    res.send("no hay coneccion con el servidor");
+})   
+});
+
+var dataPEDIDOS
+router.get('/dataPEDIDOS', (req,res) => {
+    fetch('http://localhost:3500/api/pedido')   
+        .then(resp => resp.json())
+        .then(resp =>{
+            dataPEDIDOS = resp;
+            res.redirect('/pedidos/grup');
     })
     .catch(error => {
         console.error('Error:', error)
         res.send("no hay coneccion con el servidor");
-    })    
+    }) 
+});
+
+var proveedor
+router.get('/pedidos/proveedor', (req,res) => {
+    fetch('http://localhost:3500/api/proveedor')   
+        .then(resp => resp.json())
+        .then(resp =>{
+            proveedor = resp;
+            res.redirect('/pedidos/dataPEDIDOS');
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })   
 });
 
 
@@ -33,7 +83,6 @@ router.get('/carrito/:id', (req,res)=>{
                 cantidad: resp[0].cantidad,
                 price: resp[0].precio
             }
-            //res.send(carrito);
             cart(car,id.id)
             console.log (totalPrice);
             res.redirect('/pedidos/pedidos');
@@ -99,5 +148,43 @@ function generateArray() {
     }
     return arr;
 }
+
+router.post('/pedidos', (req,res) => {
+    var productos = generateArray()
+   /* for(var i=0; i< productos.length; i++){
+         p = productos[i]
+        console.log(p);
+    }
+    var p;
+    console.log(p, "  esto es lo que quiero")*/
+    var productos = generateArray()
+    var data = {
+        codigoCompra: req.body.codigoCompra, 
+        boletaPago: req.body.boletaPago, 
+        tipoMaterial: req.body.tipoMaterial, 
+        fechaIngreso: req.body.fechaIngreso, 
+        proveedor: req.body.proveedor, 
+        cantidad: req.body.cantidad, 
+        codigoProduct: req.body.codigoProduct,
+        productosDelPedido: productos,
+        Observaciones: req.body.Observaciones,
+        subTotal: req.body.subTotal,
+        iva: req.body.iva,
+        total: req.body.total       
+    }
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3500/api/pedido',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {    
+        res.redirect('/pedidos/pedidos/proveedor')
+    })
+});
 
 module.exports = router;
