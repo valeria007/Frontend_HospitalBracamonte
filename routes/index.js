@@ -56,7 +56,7 @@ router.get('/vistaPrimPaciente',(req, res) => {
 
 //hospitalizacion 
 router.get('/hospitalizacion',(req, res) => {
-  res.render('hospitalizacion/hospitalizacion')
+  res.render('hospitalizaciones/homeHospitalizacion')
 });
 router.get('/vistaHospitalizacion',(req, res) => {
   res.render('vistaHospitalizacion')

@@ -3,15 +3,15 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 //servicio para traer datos de citas medicas o fichas pero que solo muestre los de emergencia
-router.get('/ListaEmergenciaDoc/:id',(req, res) => {
+router.get('/ListaHospitalizacionDoc/:id',(req, res) => {
     var id = req.params;
     fetch('http://localhost:3000/api/citas/'+id.id)        
     .then(resp => resp.json())
     .then(resp =>{
         if(resp == ""){                
-            res.render('emergencias/listasEmergencias',{resp});
+            res.render('hospitalizaciones/listasHospitalizacion',{resp});
         }else{
-            res.render('emergencias/listasEmergencias',{resp});
+            res.render('hospitalizaciones/listasHospitalizacion',{resp});
         }
     })
     .catch(error => {
@@ -29,7 +29,7 @@ router.get('/consulta/:historial/:idCitaMedica', (req,res) => {
       .then(resp => resp.json())
       .then(resp =>{
         dataPaciente = resp;
-        res.redirect('/emergencia/renderConsulta');       
+        res.redirect('/hospitalizacion/renderConsulta');       
     });
 });
 //servicio para renderisar la vista consulta medica sacando los datos de la cita 
@@ -43,7 +43,7 @@ router.get('/renderConsulta', (req,res)=> {
           .then(resp => resp.json())
           .then(resp =>{
             cita = resp;
-            res.redirect('/emergencia/consultaData');           
+            res.redirect('/hospitalizacion/consultaData');           
         })
         .catch(error => {
             console.error('Error:', error)
@@ -56,7 +56,7 @@ router.get('/renderConsulta', (req,res)=> {
 router.get('/consultaData', (req,res) => {
     if (idCIta == null){
         // en esta parte deveria mostrar que no hay data paciente u idcita
-        res.render('emergencias/consultaEmergencia',{
+        res.render('hospitalizaciones/consultaEmergencia',{
             dataPaciente,
             idCIta
         });  
