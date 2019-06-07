@@ -9,6 +9,27 @@
 <body>
 	<!-- SideBar -->
 	<%- include("partials/menu") -%>
+	<!-- SideBar Menu Hospital-->
+    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+		<li>
+			<a href="">
+				<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=DogOenf%>
+			</a>
+		</li>
+				   
+		<!-- Emergencias -->
+		<li>
+			<a href="#!" class="btn-sideBar-SubMenu">
+				<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
+			</a>
+			<ul class="list-unstyled full-box">
+				<li><a href="/emergencia/listEmergencia/<%=DogOenf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+						  
+			</ul>
+		</li>
+	</ul>
+	<%- include("partials/menuFooter") -%>
+
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage">
 	<!-- NavBar -->

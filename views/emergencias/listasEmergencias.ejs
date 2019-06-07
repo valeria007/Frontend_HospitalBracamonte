@@ -9,6 +9,26 @@
 <body>
 	<!-- SideBar -->
 	<%- include("partials/menu") -%>
+		<!-- SideBar Menu Hospital-->
+    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+			<li>
+				<a href="/emergencia/homeEmergencia/<%=DogOenf%>">
+					<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=DogOenf%>
+				</a>
+			</li>
+						 
+			<!-- Emergencias -->
+			<li>
+				<a href="#!" class="btn-sideBar-SubMenu">
+					<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
+				</a>
+				<ul class="list-unstyled full-box">
+					<li><a href="/emergencia/listEmergencia/<%=DogOenf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+								
+				</ul>
+			</li>
+		</ul>
+		<%- include("partials/menuFooter") -%>
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage">
 	<!-- NavBar -->
@@ -81,12 +101,9 @@
 											<td>algun apellido Paterno del paciente</td>
 											<td>algun apellido Materno del paciente</td>
 											<td><%=resp[i].hora %></td>
-											<td class="text-center"><a href="/emergencia/consulta/<%=resp[i].codigo_p%>/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                                            <td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                                            <!--
-
-											<td class="text-center" ><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                            -->
+											<td class="text-center"><a href="/medico//<%=resp[i].codigo_p%>/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											
 										</tr>
 										<% } %>
 								<% } else { %>
