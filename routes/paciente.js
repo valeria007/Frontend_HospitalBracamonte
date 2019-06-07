@@ -56,9 +56,10 @@ fetch('http://localhost:3000/api/pacientes',esto)
 });
 
 //cita medica o ficha que se le va a dar al paciente
-router.post('/cita_medica', (req,res) => {
-  var enviar = req.body.codigo_p;
-  var datos = req.body
+router.post('/cita_medica/:id', (req,res) => {
+  var id = req.params;
+  var historial = req.body.codigo_p;
+  var datos = req.body;
   var esto = {
     method: 'POST',
     body: JSON.stringify(datos),
@@ -66,20 +67,24 @@ router.post('/cita_medica', (req,res) => {
       'Content-type' : "application/json"
     }
 };
-  fetch('http://localhost:3000/api/reg_cita',esto)
+  fetch('http://localhost:3000/api/reg_cita/'+id.id,esto)
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => {
-    res.redirect('/paciente/EnviarCita/'+enviar);
+    res.redirect('/paciente/EnviarCita/'+id.id+"/"+historial);
 })
 });
 
-router.get('/EnviarCita/:id', (req,res) => {
+router.get('/EnviarCita/:id/:historial', (req,res) => {
   var id = req.params; 
+  console.log(id)
   fetch('http://localhost:3000/api/OnlyCita/'+id.id)
   .then(resp => resp.json())
   .then(resp =>{
-    res.render('citas_fichas',{id});
+    res.render('citas_fichas',{
+      historial: id.historial,
+      id
+    });
   });
  });
 
