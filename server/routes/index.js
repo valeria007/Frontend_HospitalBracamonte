@@ -44,7 +44,7 @@ app.get('/api/pacientes', Paciente.getPaciente);
 app.get('/api/onlyPaciente/:id', Paciente.OnlyPaciente);
 
 ////citas
-app.post('/api/reg_cita', Citas_medica.reg_cita);
+app.post('/api/reg_cita/:id_Paciente', Citas_medica.reg_cita);
 app.get('/api/reg_citas', Citas_medica.getCitas);
 app.get('/api/OnlyCita/:id', Citas_medica.oneCita);
 app.get('/api/OneCita/:id', Citas_medica.OnlyCita);

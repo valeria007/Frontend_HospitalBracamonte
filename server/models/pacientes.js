@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Pacientes.associate = function(models) {
     // associations can be defined here
+    Pacientes.hasMany(models.Citas_Medicas, {
+      foreignKey: 'id_Paciente',
+    });
   };
   return Pacientes;
 };

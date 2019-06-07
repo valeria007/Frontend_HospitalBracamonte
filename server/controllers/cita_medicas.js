@@ -4,16 +4,18 @@ const { Citas_Medicas } = model;
 class Citas_medica {
     
     static reg_cita(req, res) {
-        const { codigo_p,turno,medico,especialidad,id_especialidad,hora,saldo_total} = req.body
+        const { codigo_p,turno,medico,especialidad,hora,saldo_total,id_especialidad} = req.body
+        const { id_Paciente } = req.params;
         return Citas_Medicas
           .create({
             codigo_p,
             turno,
             medico,
             especialidad,
-            id_especialidad,
             hora,
-            saldo_total
+            saldo_total,
+            id_especialidad,
+            id_Paciente
           })
            .then(cita_pData => res.status(201).send({
               success: true,
@@ -50,12 +52,13 @@ class Citas_medica {
 
       //serv que muestra si es consulta medica o solo emergencia
       static citaLugar(req,res){
+       
         var url = req.params.id;
         Citas_Medicas.findAll({
           where : { especialidad : url }
         })
         .then((data) => {
-          res.status(200).json(data);
+          res.status(200).send(data);
         })
       }
     }

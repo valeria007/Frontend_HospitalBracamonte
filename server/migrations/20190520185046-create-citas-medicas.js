@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       codigo_p: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
       },
       turno: {
         type: Sequelize.TEXT
@@ -20,14 +20,23 @@ module.exports = {
       especialidad: {
         type: Sequelize.STRING
       },
-      id_especialidad: {
-        type: Sequelize.TEXT
-      },
       hora: {
         type: Sequelize.TEXT
       },
       saldo_total: {
         type: Sequelize.DOUBLE
+      },
+      id_especialidad: {
+        type: Sequelize.INTEGER
+      },
+      id_Paciente: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Pacientes',
+          key: 'id',
+          as: 'id_Paciente',
+        }
       },
       createdAt: {
         allowNull: false,
