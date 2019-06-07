@@ -25,21 +25,16 @@
 			<h1>Algo sucedio con el servidor porfavor intente entrar denuevo a esta pagian desde una pagina anterior</h1>
 		<% } else {%>	
 		<div class="container-fluid">
-			<div class="page-header">
-			
-					<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Emergencia <small></small></h1>
-				
-			  
+			<div class="page-header">	
+				<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Emergencia <small></small></h1>  
 			</div>
 		</div>
 		<div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
                         <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                           
-                                <li class="active"><a href="#new" data-toggle="tab">Registro de Emergencia</a></li>
-                                <li><a href="#list" data-toggle="tab">Lista de Emergencias del Paciente</a></li>
-                           
+                            <li class="active"><a href="#new" data-toggle="tab">Registro de Emergencia</a></li>
+                            <li><a href="#list" data-toggle="tab">Lista de Emergencias del Paciente</a></li>
                         </ul>
                         <!-- Registro de nuevos proveedores-->
                         <div id="myTabContent" class="tab-content">
@@ -48,7 +43,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-10 col-md-offset-1">
                                             
-                                            <form action="/medico/regConsulta/<%=idCIta%>" method="POST">
+                                            <form action="/medico/regEmergencia/<%=idCIta%>" method="POST">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">De</label>
                                                     <select class="form-control" name="tipoConsulta">

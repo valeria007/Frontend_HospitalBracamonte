@@ -2,96 +2,10 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
-//servicio para traer datos de citas medicas o fichas pero que solo muestre los de emergencia
-router.get('/ListaEmergenciaDoc/:id',(req, res) => {
-    var id = req.params;
-    fetch('http://localhost:3000/api/citas/'+id.id)        
-    .then(resp => resp.json())
-    .then(resp =>{
-        if(resp == ""){                
-            res.render('emergencias/listasEmergencias',{resp});
-        }else{
-            res.render('emergencias/listasEmergencias',{resp});
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    })    
+router.get('/oneVista', (req, res) => {
+    res.render('emergencias/viewDocEnf');
 });
 
-//serv para sacar el historial y el id de la cita medica o la ficha 2
-var dataPaciente, idCIta;
-router.get('/consulta/:historial/:idCitaMedica', (req,res) => {
-    var id = req.params;
-    idCIta = req.params.idCitaMedica;
-   fetch('http://localhost:3000/api/onlyPaciente/'+id.historial)
-      .then(resp => resp.json())
-      .then(resp =>{
-        dataPaciente = resp;
-        res.redirect('/emergencia/renderConsulta');       
-    });
-});
-//servicio para renderisar la vista consulta medica sacando los datos de la cita 
-//medica y mandando datos del paciente y el id de la cita medica
-var cita; // esto solo va a llevar tipo de consulta
-router.get('/renderConsulta', (req,res)=> {
-    if (idCIta == null){
-        res.send('NO se esta mandando el id de la cita medica') 
-    } else{
-        fetch('http://localhost:3000/api/OneCita/'+idCIta)
-          .then(resp => resp.json())
-          .then(resp =>{
-            cita = resp;
-            res.redirect('/emergencia/consultaData');           
-        })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("Ocurrio algo con el servidor");
-        }) 
-    }
-    
-});
-//serv para traer datos da la tabla consultas
-router.get('/consultaData', (req,res) => {
-    if (idCIta == null){
-        // en esta parte deveria mostrar que no hay data paciente u idcita
-        res.render('emergencias/consultaEmergencia',{
-            dataPaciente,
-            idCIta
-        });  
-    } else {
-        fetch('http://localhost:3000/api/pacienteConsulta/'+cita[0].codigo_p+'/'+cita[0].especialidad)
-        
-        .then(resp => resp.json())
-        .then(resp =>{
-            if (dataPaciente == null){
-                res.send("no hay datos en Datapaciente en routes/medico serv renderConsulta")
-            }else{
-                res.render('emergencias/consultaEmergencia',{
-                    dataPaciente,
-                    idCIta, // este es el id de la cita medica que viene desde /consulta/:historial/:idCitaMedica'
-                    resp,
-                    cita
-                });   
-            }    
-        })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-        })
-    }
-});
-
-//serv pricipal que muestra los datos de emergencia
-/*router.get('/render', (req,res) => {
-    console.log(data)
-    res.render('ListaConsultaMedicaDoc', {
-        data
-    })
-});*/
-
-
-
+router.get('')
 
 module.exports = router;

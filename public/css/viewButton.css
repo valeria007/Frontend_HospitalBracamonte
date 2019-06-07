@@ -1,0 +1,549 @@
+html {
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  .button {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
+  .button:nth-child(1) {
+    background: url(https://images.unsplash.com/photo-1538834536097-211cbe65d1bf?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de95a7323777663c4e7bee805d9385e0&auto=format&fit=crop&w=1567&q=80) center center no-repeat;
+    background-size: cover;
+  }
+  .button span {
+    transition: all 0.6s ease;
+    font-size: 62px;
+    font-weight: 800;
+    font-family: sans-serif;
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 6px;
+    background: black;
+    color: white;
+    mix-blend-mode: overlay;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .button span:hover {
+    background: #fff;
+    color: #000;
+    padding: 100%;
+  }
+  .button2 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: url(https://images.unsplash.com/photo-1538964173425-93884d739596?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e2f0390d79969aaf31e155bd1f7138b0&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb) center center no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    display: block;
+  }
+  .button2 span {
+    transition: all 0.6s ease;
+    overflow: hidden;
+    font-size: 62px;
+    font-weight: 800;
+    font-family: sans-serif;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .button2 span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -50px;
+    left: -60px;
+    width: 90px;
+    height: 90px;
+    background: #000;
+    z-index: -1;
+    box-shadow: 0px 0px 120px #024768, 0px 0px 120px #04b0bc, 0px 0px 120px #33c9c7, 0px 0px 120px #94dfdd, 0px 0px 120px #97d3d3;
+    transition: all 0.3s ease;
+    transform: rotate(-45deg);
+  }
+  .button2 span:hover::after {
+    box-shadow: 40px -20px 0px #024768, 41px -20px 8px rgba(0, 0, 0, 0.3), 80px 20px 0px #04b0bc, 81px 20px 8px rgba(0, 0, 0, 0.3), 120px 60px 0px #22cbcb, 121px 60px 8px rgba(0, 0, 0, 0.3), 160px 100px 0px #94dfdd, 161px 100px 8px rgba(0, 0, 0, 0.3), 200px 120px 0px #97d3d3;
+  }
+  .button2 span:hover {
+    box-shadow: 4px 34px 24px rgba(0, 0, 0, 0.3);
+  }
+  .button3 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: url() center center no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    display: block;
+  }
+  .button3 span {
+    white-space: nowrap;
+    transition: all 2s ease;
+    overflow: hidden;
+    font-size: 82px;
+    font-weight: 800;
+    font-family: sans-serif;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  .button3 span div {
+    display: inline-block;
+    position: relative;
+  }
+  .button3 span div:nth-child(1) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(1)::after {
+    transition: all 1s ease;
+    content: 'B';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #fd1fbd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(1)::before {
+    transition: all 1.5s ease;
+    content: 'B';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #76ebf4;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(2) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(2)::after {
+    transition: all 1s ease;
+    content: 'u';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #fd1fbd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(2)::before {
+    transition: all 1.5s ease;
+    content: 'u';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #76ebf4;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(3) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(3)::after {
+    transition: all 1s ease;
+    content: 't';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #fd1fbd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(3)::before {
+    transition: all 1.5s ease;
+    content: 't';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #76ebf4;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(4) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(4)::after {
+    transition: all 1s ease;
+    content: 't';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #fd1fbd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(4)::before {
+    transition: all 1.5s ease;
+    content: 't';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #76ebf4;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(5) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(5)::after {
+    transition: all 1s ease;
+    content: 'o';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #fd1fbd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(5)::before {
+    transition: all 1.5s ease;
+    content: 'o';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #76ebf4;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(6) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(6)::after {
+    transition: all 1s ease;
+    content: 'n';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #fd1fbd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(6)::before {
+    transition: all 1.5s ease;
+    content: 'n';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #76ebf4;
+    z-index: -2;
+  }
+  .button3 span:hover div::after {
+    transform: rotateX(-1080deg);
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  .button3 span:hover div::before {
+    transform: rotateX(-1440deg);
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  .button3 span:hover div {
+    transform: rotateX(-1800deg);
+    margin-left: 8px;
+  }
+  html {
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  .button {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
+  .button:nth-child(1) {
+    background: url(/assets/img/home.jpg) center center no-repeat;
+    background-size: cover;
+  }
+  .button span {
+    transition: all 0.6s ease;
+    font-size: 62px;
+    font-weight: 800;
+    font-family: sans-serif;
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 6px;
+    background: black;
+    color: white;
+    mix-blend-mode: overlay;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .button span:hover {
+    background: #fff;
+    color: #000;
+    padding: 100%;
+  }
+  .button2 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: url(/assets/img/enfermera1.jpg) center center no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    display: block;
+  }
+  .button2 span {
+    transition: all 0.6s ease;
+    overflow: hidden;
+    font-size: 62px;
+    font-weight: 800;
+    font-family: sans-serif;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .button2 span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -50px;
+    left: -60px;
+    width: 90px;
+    height: 90px;
+    background: #000;
+    z-index: -1;
+    box-shadow: 0px 0px 120px #024768, 0px 0px 120px #04b0bc, 0px 0px 120px #33c9c7, 0px 0px 120px #94dfdd, 0px 0px 120px #97d3d3;
+    transition: all 0.3s ease;
+    transform: rotate(-45deg);
+  }
+  .button2 span:hover::after {
+    box-shadow: 40px -20px 0px #024768, 41px -20px 8px rgba(0, 0, 0, 0.3), 80px 20px 0px #04b0bc, 81px 20px 8px rgba(0, 0, 0, 0.3), 120px 60px 0px #22cbcb, 121px 60px 8px rgba(0, 0, 0, 0.3), 160px 100px 0px #94dfdd, 161px 100px 8px rgba(0, 0, 0, 0.3), 200px 120px 0px #97d3d3;
+  }
+  .button2 span:hover {
+    box-shadow: 4px 34px 24px rgba(0, 0, 0, 0.3);
+  }
+  .button3 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: url(https://media.istockphoto.com/photos/medicine-doctor-and-stethoscope-touching-icon-medical-network-with-picture-id927888610) center center no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    display: block;
+  }
+  .button3 span {
+    white-space: nowrap;
+    transition: all 2s ease;
+    overflow: hidden;
+    font-size: 82px;
+    font-weight: 800;
+    font-family: sans-serif;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  .button3 span div {
+    display: inline-block;
+    position: relative;
+  }
+  .button3 span div:nth-child(1) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(1)::after {
+    transition: all 1s ease;
+    content: 'D';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #1f40fd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(1)::before {
+    transition: all 1.5s ease;
+    content: 'D';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #0491a3;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(2) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(2)::after {
+    transition: all 1s ease;
+    content: 'O';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #1f40fd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(2)::before {
+    transition: all 1.5s ease;
+    content: 'O';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #0491a3;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(3) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(3)::after {
+    transition: all 1s ease;
+    content: 'C';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #1f40fd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(3)::before {
+    transition: all 1.5s ease;
+    content: 'C';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #0491a3;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(4) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(4)::after {
+    transition: all 1s ease;
+    content: 'T';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #1f40fd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(4)::before {
+    transition: all 1.5s ease;
+    content: 'T';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #0491a3;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(5) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(5)::after {
+    transition: all 1s ease;
+    content: 'O';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #1f40fd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(5)::before {
+    transition: all 1.5s ease;
+    content: 'O';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #0491a3;
+    z-index: -2;
+  }
+  .button3 span div:nth-child(6) {
+    transition: all 2s ease;
+  }
+  .button3 span div:nth-child(6)::after {
+    transition: all 1s ease;
+    content: 'R';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #1f40fd;
+    z-index: -1;
+  }
+  .button3 span div:nth-child(6)::before {
+    transition: all 1.5s ease;
+    content: 'R';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: rotateX(0deg);
+    color: #0491a3;
+    z-index: -2;
+  }
+  .button3 span:hover div::after {
+    transform: rotateX(-1080deg);
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  .button3 span:hover div::before {
+    transform: rotateX(-1440deg);
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  .button3 span:hover div {
+    transform: rotateX(-1800deg);
+    margin-left: 8px;
+  }
+    
