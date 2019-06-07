@@ -29,6 +29,7 @@ sequelize model:create --name PapeletaInternacion --attributes fechaIngreso:stri
 sequelize model:create --name Internaciones --attributes historial:integer,nombre:text,apellido1:text,apellido2:text,edad:integer,tipoPaciente:string,institucion:string,provieneDE:string,observacion:text,especialidad:string,sala:string,cama:string,doctor:string,diagnostico:text,IDemergencia:integer,IDConsulta:integer,IDsala:integer
 
 
-
+<<< emergencia >>>>>>>>>>
+sequelize model:create --name emergencia --attributes tipoAtencion:string,Nhistorial:bigint,nombreDoctor:text,apellidoD1:text,apellidoD2:text,motivoConsulta:text,diagnostico:text,tratamiento:text,observaciones:text,idCita:integer
  
 

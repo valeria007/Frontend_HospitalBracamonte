@@ -6,6 +6,8 @@ import Citas_medica from '../controllers/cita_medicas';
 import Consulta from '../controllers/consultas';
 import Receta from '../controllers/recetas';
 import papeletaInt from '../controllers/papeletaInternacion';
+import Emergencias from '../controllers/emergencia';
+
 
 export default (app) => {
 
@@ -67,5 +69,9 @@ app.post('/api/papeletaIntEmergencia/:idEmergencia', papeletaInt.enviarPapeletaI
 app.get('/api/papeletaInt', papeletaInt.verPapeletaINT);
 app.get('/api/onlyPInternacion/:id', papeletaInt.onlyPInternacion);
 app.get('/api/getPinternacionPaciente/:historial/:tipoConsulta', papeletaInt.getPinternacionPaciente);
+
+//Emergencia
+app.post('/api/emeregencia/:idCita', Emergencias.Emergencia);
+app.get('/api/emeregencia', Emergencias.getEmergencia);
 
 };
