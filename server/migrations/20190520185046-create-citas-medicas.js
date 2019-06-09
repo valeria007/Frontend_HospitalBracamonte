@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      estado: {
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: true
+      },
       codigo_p: {
         type: Sequelize.INTEGER,
       },

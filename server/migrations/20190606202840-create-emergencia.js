@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tipoAtencion: {
+      fechaAtencion: {
         type: Sequelize.STRING
       },
       Nhistorial: {
@@ -36,7 +36,19 @@ module.exports = {
         type: Sequelize.TEXT
       },
       idCita: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Citas_Medicas',
+          key: 'id',
+          as: 'idCita',
+        }
+      },
+      idDoctor: {
+        type: Sequelize.STRING
+      },
+      idEnfermera: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

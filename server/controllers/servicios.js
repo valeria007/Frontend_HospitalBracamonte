@@ -37,7 +37,7 @@ import model from '../models';
             });     
         }
         static modify(req, res) {
-          const { nombre,sigla,descripcion,especilidadSNSIS,establecimientoSNIS } = req.body
+          const { nombre,sigla,descripcion } = req.body
           return Especialidad
             .findByPk(req.params.id)
             .then((data) => {

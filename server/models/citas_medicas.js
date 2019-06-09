@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Citas_Medicas = sequelize.define('Citas_Medicas', {
+    estado: DataTypes.BOOLEAN,
     codigo_p: DataTypes.INTEGER,
     turno: DataTypes.TEXT,
     medico: DataTypes.TEXT,
@@ -12,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Citas_Medicas.associate = function(models) {
     // associations can be defined here
+    Citas_Medicas.hasMany(models.emergencia, {
+      foreignKey: 'idCita',
+    });
     Citas_Medicas.belongsTo(models.Pacientes, {
       foreignKey: 'id_Paciente',
       onDelete: 'CASCADE'

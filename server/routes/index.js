@@ -50,6 +50,10 @@ app.get('/api/OnlyCita/:id', Citas_medica.oneCita);
 app.get('/api/OneCita/:id', Citas_medica.OnlyCita);
 //cita segun consulta medica emergencia
 app.get('/api/citas/:id', Citas_medica.citaLugar);
+//serv para traer dos tablas
+app.get('/api/PacienteCita/:id', Citas_medica.TwoTables);
+app.get('/api/estado/:id', Citas_medica.estado);//para cambiar el estado
+
 
 
 ///consultas
@@ -73,5 +77,6 @@ app.get('/api/getPinternacionPaciente/:historial/:tipoConsulta', papeletaInt.get
 //Emergencia
 app.post('/api/emeregencia/:idCita', Emergencias.Emergencia);
 app.get('/api/emeregencia', Emergencias.getEmergencia);
+app.get('/api/citaEmergencia/:id', Emergencias.onlyEmergencia);
 
 };
