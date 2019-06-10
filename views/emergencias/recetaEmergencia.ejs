@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("../partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+    <%- include("partials/menudoc") -%>
+    	<!-- SideBar Menu Hospital-->
+        <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+            <li>
+                <a href="/emergencia/homeEmergencia/<%=DogOenf%>">
+                    <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=DogOenf%>
+                </a>
+            </li>
+                         
+            <!-- Emergencias -->
+            <li>
+                <a href="#!" class="btn-sideBar-SubMenu">
+                    <i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
+                </a>
+                <ul class="list-unstyled full-box">
+                    <li><a href="/emergencia/dataEmergencia/<%=DogOenf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+                                
+                </ul>
+            </li>
+        </ul>
+        <%- include("partials/menuFooter") -%>
+	<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+	<!-- NavBar -->
+	<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+			
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Receta <small></small></h1>
+			</div>
+			<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+											                           
+					<li class="active"><a href="#new" data-toggle="tab">Registro de Receta</a></li>
+					<li><a href="#list" data-toggle="tab">Listado de Recetas</a></li>
+			</ul>
+		</div>
+		<div class="container-fluid">
+		    <div class="container-fluid">
+				<div class="row contenedor">
+					<form action="/medico//>" method="POST">
+						<div class="container-fluid">
+							<div class="col-md-12 panel-body ">
+									
+
+								<!-- daros de receta-->
+								<div class="col-md-6">
+                                    <p class="lead">Datos Personales </p>                            
+								</div>
+								<div class="col-md-12">											
+																		
+											<div class="col-md-6">
+												
+												
+												<div class="form-group label-floating">
+													<label class="control-label">N° de Historia</label>
+													<input class="form-control label-txte" type="text"  value="<%=dataPaciente[0].numeroHistorial%>" name="historiaClinica">
+												</div>									
+											</div>
+													
+								</div>
+											
+																						
+								<!-- lado hizquierdo -->
+															
+								<div class="col-md-4 ">
+
+									<div class="form-group label-floating  ">
+										<label class="control-label ">Apellido Paterno</label>
+										<input class="form-control label-txte" type="text" value="<%=dataPaciente[0].apellidop%>" >
+                                    </div>
+                                 	<br>
+                                </div>
+                                                            
+																
+								<!--   lado derecho-->
+								<div class="col-md-4 ">
+								    <div class="form-group label-floating ">
+										<label class="control-label">Apellido Materno</label>
+										<input class="form-control label-txte" type="text" value="<%=dataPaciente[0].apellidom%>">
+									</div>
+                                                                  
+									<br>
+																
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating ">
+                                        <label class="control-label">Nombre</label>
+                                       <input class="form-control label-txte" type="text" value="<%=dataPaciente[0].nombre%>">
+                                    </div>
+                                    <br>
+								</div>
+								<div class="col-md-12">
+										<p class="lead">Datos del Doctor</p>
+									<div class="form-group label-floating ">
+										<label class="control-label">Nombre del Doctor </label>
+										<input class="form-control label-txte" type="text" name="doctor">
+									</div>
+								</div>
+								<!-- medicamentos colum1 -->
+								<div class="col-md-12 >
+										<p class="lead">Datos del Medicamento</p>
+										<div class="col-md-2 ">
+																				
+											<div class="form-group label-floating ">
+												<label class="control-label">Fecha Prescripción                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </label>
+												<input class="form-control " type="text" name="fecha">
+											</div>
+											<div class="form-group label-floating ">
+												<label class="control-label">Posologia </label>
+												<input class="form-control label-txte" type="text" name="posologia">
+											</div>
+												<br>
+										</div>
+											<div class="col-md-4">
+											   <div class="form-group label-floating ">
+													<label class="control-label">Fármaco                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
+													   <select class="form-control label-txte" name="farmaco">	
+															<option></option>
+															<option>paracetamol</option>                                                      
+															<option>algun otra medicina</option>
+																						
+														</select>
+												</div>
+												<div class="form-group label-floating ">
+														
+													<label class="control-label">Via de Administración</label>
+													<input class="form-control label-txte" type="text" name="viaAdmincion">
+												</div>
+												 <br>
+											</div>
+			
+											<!-- lugar donde vive columna 2-->
+											<div class="col-md-6 ">
+																			
+												
+												<div class="form-group label-floating ">
+													<label class="control-label">Duracion Tratamiento</label>
+													<input class="form-control label-txte" type="text" name="indicaciones">
+												</div>
+										
+											</div>
+											<div class="col-md-6 ">
+												<div class="form-group label-floating ">
+													<label class="control-label">Unidades</label>
+													<input class="form-control label-txte" type="text" name="unidades">
+												</div>
+												 
+											</div>
+											<br>
+								</div>
+
+
+
+								</div>
+								
+										<a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
+									
+								  
+									<table class="table table-hover text-center">
+														<thead>
+										</table>
+										<p class="text-center">
+										<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+										<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+										<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+								</p>
+					</div>
+				</form>
+										
+			</div>
+		</div>
+									
+									
+					
+			
+</section>
+	<!--====== Scripts -->
+	<%- include("../partials/scripts") -%>
+</body>
+</html>
