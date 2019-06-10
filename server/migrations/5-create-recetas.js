@@ -9,7 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_consulta: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Consultas',
+          key: 'id',
+          as: 'id_consulta',
+        }
+      },
+      id_emergencia: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'emergencia',
+          key: 'id',
+          as: 'id_emergencia',
+        }
       },
       tipoConsulta: {
         type: Sequelize.STRING

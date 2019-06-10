@@ -6,9 +6,11 @@ class Receta {
     static post_receta(req, res) {
         const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades } = req.body;
         const { id_consulta } = req.params;
+        const { id_emergencia } = req.params;
         return Recetas
           .create(  {
             id_consulta,
+            id_emergencia,
             tipoConsulta,
             historiaClinica,
             fecha,

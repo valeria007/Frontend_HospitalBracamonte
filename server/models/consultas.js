@@ -19,6 +19,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Consultas.associate = function(models) {
     // associations can be defined here
+    Consultas.hasMany(models.Recetas, {
+      foreignKey: 'id_consulta',
+    });
+    Consultas.belongsTo(models.Citas_Medicas, {
+      foreignKey: 'id_cita',
+      onDelete: 'CASCADE'
+    });
   };
   return Consultas;
 };

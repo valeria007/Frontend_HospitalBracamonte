@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   emergencia.associate = function(models) {
     // associations can be defined here
+    emergencia.hasMany(models.Recetas, {
+      foreignKey: 'id_emergencia',
+    });
     emergencia.belongsTo(models.Citas_Medicas, {
       foreignKey: 'idCita',
       onDelete: 'CASCADE'

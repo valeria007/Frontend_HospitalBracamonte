@@ -75,6 +75,19 @@ class Citas_medica {
           res.status(200).send(users)
         })
       }
+      //serv para traer datos de dos tablas cita medica y paciente
+      static TwoTablesFalse(req,res){
+        var url = req.params.id;
+        Citas_Medicas.findAll({
+          where : { especialidad : url, estado: "false" },
+          attributes: ['id','estado','codigo_p','hora','especialidad'],
+          include: [
+            {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }
+          ]
+        }).then(users => {
+          res.status(200).send(users)
+        })
+      }
       //serv para camviar el estado de cita_medica
       static estado(req,res){
         var estado;

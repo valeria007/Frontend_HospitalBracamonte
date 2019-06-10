@@ -53,6 +53,7 @@ app.get('/api/citas/:id', Citas_medica.citaLugar);
 //serv para traer dos tablas
 app.get('/api/PacienteCita/:id', Citas_medica.TwoTables);
 app.get('/api/estado/:id', Citas_medica.estado);//para cambiar el estado
+app.get('/api/PacienteCitaFalse/:id', Citas_medica.TwoTablesFalse);
 
 
 
@@ -63,6 +64,7 @@ app.get('/api/pacienteConsulta/:historial/:tipoConsulta', Consulta.getConsultaPa
 app.get('/api/OnlyConsulta/:id', Consulta.onlyConsulta);
 ///recetas
 app.post('/api/reg_Receta/:id_consulta', Receta.post_receta);
+app.post('/api/reg_RecetaEmrg/:id_emergencia', Receta.post_receta);
 app.get('/api/reg_Receta', Receta.getReceta);
 app.get('/api/OnlyReceta/:id', Receta.onlyReceta);
 
@@ -78,5 +80,7 @@ app.get('/api/getPinternacionPaciente/:historial/:tipoConsulta', papeletaInt.get
 app.post('/api/emeregencia/:idCita', Emergencias.Emergencia);
 app.get('/api/emeregencia', Emergencias.getEmergencia);
 app.get('/api/citaEmergencia/:id', Emergencias.onlyEmergencia);
+app.get('/api/OnlyEmergencia/:id', Emergencias.emergenciaH)
+app.post('/api/updateEmergencia/:id', Emergencias.updateEmergencia)
 
 };

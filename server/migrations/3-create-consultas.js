@@ -9,7 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_cita: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Citas_Medicas',
+          key: 'id',
+          as: 'id_cita',
+        }
       },
       tipoConsulta: {
         type: Sequelize.STRING
