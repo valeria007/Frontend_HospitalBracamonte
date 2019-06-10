@@ -62,18 +62,23 @@
 											</tr>
 										</thead>
 										<tbody>
-											<% for(var i=0; i< resp.length; i++) { %>
-											<tr>
-											<td><%= i + 1 %></td>
-											<td><%=resp[i].nombre %></td>
-											<td><%=resp[i].apellidop %></td>
-											<td><%=resp[i].apellidom %></td>
-											<td><%=resp[i].ci %></td>
-											<td><%=resp[i].cargo %></td>										
-											<td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-											<td><a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											</tr>
+											<% if (resp == null) { %>
+												<h1>no hay cuenta</h1>
+											<% } else { %>
+												
+												<% for(var i=0; i< resp.length; i++) { %>
+													<tr>
+													<td><%= i + 1 %></td>
+													<td><%=resp[i].nombre %></td>
+													<td><%=resp[i].apellidop %></td>
+													<td><%=resp[i].apellidom %></td>
+													<td><%=resp[i].ci %></td>
+													<td><%=resp[i].cargo %></td>										
+													<td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+													<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+													<td><a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+													</tr>
+													<% } %>
 											<% } %>
 										<tbody>
 									</table>
@@ -85,34 +90,40 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-										<form action="/usuarios/usuarios" method="POST">					
+										<form action="/usuarios/usuarios" method="POST" onsubmit="return validar()">
+											<%if (msg) {%>
+												<h1><%=msg%></h1>
+											<% } %>
+
+										
+																
 											<div class="form-group label-floating">
 												<label class="control-label">Nombre</label>
-												<input class="form-control" type="text" name="nombre" id="nombre">
+												<input class="form-control" type="text" name="nombre" id="nombre" required="">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Apellido Paterno</label>
-												<input class="form-control" type="text" name="apellidop" >
+												<input class="form-control" type="text" name="apellidop" required="" >
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Apellidos Meterno</label>
-												<input class="form-control" type="text" name="apellidom">
+												<input class="form-control" type="text" name="apellidom" required="">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">CI.</label>
-												<input class="form-control" type="text" name="ci">
+												<input class="form-control" type="text" name="ci"required="">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Cargo</label>
-												<input class="form-control" type="text" name="cargo">
+												<input class="form-control" type="text" name="cargo"required="">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Direccion</label>
-												<input class="form-control" type="text" name="direcion">
+												<input class="form-control" type="text" name="direcion" required="">
 											</div>
 											<div class="form-group label-floating">
 												<label class="control-label">Telefono</label>
-												<input class="form-control" type="text" name="telefono">
+												<input class="form-control" type="text" name="telefono" id="telefono" >
 											</div>
 											<p class="text-center">
 												<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
