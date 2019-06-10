@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Formulario Paciente</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
@@ -48,13 +48,13 @@
 						<div class="col-md-6">
 							<div class="form-group ">
 								<label class="control-label">Apellido Paterno</label>
-								<input class="form-control" type="text" name="apell_pa">
+								<input class="form-control" type="text" name="apellidop">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group ">
 								<label class="control-label">Apellido Materno</label>
-								<input class="form-control" type="text" name="apell_ma">
+								<input class="form-control" type="text" name="apellidom">
 							</div>
 						</div>
 					</div>
@@ -77,7 +77,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">Fecha de Nacimiento</label>
-								<input class="form-control" type="date" name="fechaNacimiento">
+								<input class="form-control" type="date" name="fechanacimiento">
 							</div>
 						</div>
 					</div>
@@ -85,13 +85,13 @@
 						<div class="col-md-3">
 							<div class="form-group ">
 								<label class="control-label">Edad</label>
-								<input type="number" name="Edad" min="1" max="1000" value="1" />
+								<input type="number" name="edad" min="1" max="1000" value="1" />
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label class="control-label">Estado Civil</label>
-								<select class="form-control" name="estadoCivil">
+								<select class="form-control" name="estadocivil">
 									<option>Soltero(a)</option>
 									<option>Casado(a)</option>
 									<option>Divorciado(a)</option>
@@ -136,13 +136,13 @@
 						<div class="col-md-4">
 							<div class="form-group ">
 								<label class="control-label">Lugar de Nacimiento</label>
-								<input class="form-control" type="text" name="luagarNac">
+								<input class="form-control" type="text" name="lugranacimiento">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group ">
 								<label class="control-label">Deprtamento</label>
-								<input class="form-control" type="text" name="departamento">
+								<input class="form-control" type="text" name="departameto">
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -160,6 +160,12 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-md-4">
+						<div class="form-group ">
+							<label class="control-label">Telefono</label>
+							<input class="form-control" type="text" name="telef">
+						</div>
+					</div>
 				</div>
 				<!--Datos de los Parientes-->
 				<h2 class="title">Datos de los Parientes</h2>
@@ -167,19 +173,19 @@
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Nombre del Padre</label>
-							<input class="form-control" type="text" name="nomPa">
+							<input class="form-control" type="text" name="npadre">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Apellido Paterno</label>
-							<input class="form-control" type="text" name="apellPa_pa">
+							<input class="form-control" type="text" name="apspadre">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Apellido Materno</label>
-							<input class="form-control" type="text" name="apellPa_ma">
+							<input class="form-control" type="text" >
 						</div>
 					</div>
 				</div>
@@ -187,19 +193,19 @@
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Nombre del Madre</label>
-							<input class="form-control" type="text" name="nomMa">
+							<input class="form-control" type="text" name="nmadre">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Apellido Paterno</label>
-							<input class="form-control" type="text" name="apellMa_pa">
+							<input class="form-control" type="text" name="apsmadre">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Apellido Materno</label>
-							<input class="form-control" type="text" name="apellMa_ma">
+							<input class="form-control" type="text" >
 						</div>
 					</div>
 				</div>
@@ -209,19 +215,19 @@
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Nombre del Responsable</label>
-							<input class="form-control" type="text" name="nomRes">
+							<input class="form-control" type="text" name="nomrespon">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Apellido Paterno del Responsable</label>
-							<input class="form-control" type="text" name="apellRes_pa">
+							<input class="form-control" type="text" name="aperespon">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group ">
 							<label class="control-label">Apellido Materno del Responsable</label>
-							<input class="form-control" type="text" name="apellRes_ma">
+							<input class="form-control" type="text" >
 						</div>
 					</div>
 				</div>
@@ -229,13 +235,13 @@
 					<div class="col-md-6">
 						<div class="form-group ">
 							<label class="control-label">Telefono del Responsable</label>
-							<input class="form-control" type="text" name="telfRes">
+							<input class="form-control" type="text" name="telefres">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group ">
 							<label class="control-label">Direccion del Responsable</label>
-							<input class="form-control" type="text" name="DirRes">
+							<input class="form-control" type="text" name="direcres">
 						</div>
 					</div>
 				</div>
