@@ -140,7 +140,6 @@ router.get('/estado/:id', (req,res) => {
       res.redirect('/emergencia/GetEmergencia/'+idHistorial.historial+'/'+idHistorial.id+'/'+idHistorial.docOenf);
       //res.status(200).send(data)
     })
-
 });
 
 //este serv es para insrtar datos a la tabla emergencia segun la cita que le coresponda
@@ -196,10 +195,145 @@ router.post('/updateConEmergencia/:id', (req,res) => {
 <<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */ 
 
-router.get('/RenderReceta/:id', (req,res) => {
-    res.render('emergencia/recetaEmergencia',{
-
+router.get('/RenderReceta', (req,res) => {
+    res.render('emergencias/recetaEmergencia',{
+        EmgIdHistorial,
+        getPaciente,
+        Emgcon,
+        receta,
+        message :message.message,
+        updateReceta       
     })
 });
+
+var getPaciente // en esta variable estan los datos del paciente
+router.get('/getPaciente/:historial', (req,res) => {
+    var historial = req.params.historial
+    fetch('http://localhost:3000/api/onlyPaciente/'+historial)
+        .then(resp => resp.json())
+        .then(resp =>{ 
+            getPaciente = resp;     
+            res.redirect('/emergencia/RenderReceta') ;            
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        })
+});
+
+var Emgcon
+router.get('/EmergenciaConsulta/:id', (req,res) => {
+    const { id } = req.params
+    fetch('http://localhost:3000/api/emergenciaData/'+id)
+    .then(res => res.json())
+    .then(data => { 
+        Emgcon = data
+        console.log(data);
+        res.redirect('/emergencia/getPaciente/'+EmgIdHistorial.historial);
+        //res.status(200).send(data)
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+}); 
+
+//serv para mostrar receta segun el historial del paciente
+var receta;
+router.get('/Receta/:historial' ,(req,res) => {
+    var historial = req.params.historial;
+    fetch('http://localhost:3000/api/recitasOfEMG/'+historial)
+    .then(res => res.json())
+    .then(data => { 
+        receta = data;
+      res.redirect('/emergencia/EmergenciaConsulta/'+EmgIdHistorial.id);
+      //res.status(200).send(data)
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+});
+
+var EmgIdHistorial, updateReceta; // En esta variable va el id y el historial que esta en la tabla consulta emergencia
+router.get('/emergenicaData/:id/:historial/:DogOenf', (req,res) => {
+    var idHistorial = req.params;
+    EmgIdHistorial = idHistorial;
+    fetch('http://localhost:3000/api/RecetaEmergencia/'+idHistorial.id)
+    .then(res => res.json())
+    .then(data => { 
+        updateReceta = data;
+        if (clickPost == "1"){
+            res.redirect('/emergencia/Receta/'+idHistorial.historial);
+            clickPost = "";
+           
+        }else{
+            res.redirect('/emergencia/Receta/'+idHistorial.historial);
+            message = "";
+        }
+      
+      //res.status(200).send(data)
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+})
+
+var message
+var clickPost;
+router.post('/receta/:id', (req,res) => {
+    const { id } = req.params
+    var data = req.body  
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/reg_RecetaEmrg/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        if (data.success == false){
+            message = data;
+            res.redirect('/emergencia/emergenicaData/'+id+'/'+EmgIdHistorial.historial+'/'+EmgIdHistorial.DogOenf);
+        }else{
+            res.redirect('/emergencia/emergenicaData/'+id+'/'+EmgIdHistorial.historial+'/'+EmgIdHistorial.DogOenf);
+            message = "";
+        }
+        clickPost = "1";
+               
+    })  
+})
+
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            Actualizar receta 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+//para mostrar receta
+router.post('/updateReceta/:id', (req,res) => {
+    const { id } = req.params;
+    var data = req.body  
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/updateReceta/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+      res.redirect('/emergencia/emergenicaData/'+EmgIdHistorial.id+'/'+EmgIdHistorial.historial+'/'+EmgIdHistorial.DogOenf);        
+    }) 
+})
 
 module.exports = router;
