@@ -50,22 +50,21 @@
 									<table class="fl-table">
 										<thead>
 											<tr>
-											<th>#</th>
-											<th>ID Usuario</th>
+											<th>#</th>									
 											<th>Correo</th>
-											<th>Contraceña</th>
+											
 											<th>Tipo de Usuario</th>
 											<th>Dar de Baja</th>
 											<th>Modificar Cuenta</th>
 											</tr>
 										</thead>
 										<tbody>
-											<% for(var i=0; i< resp.length; i++) { %>
+											<% for (var i=0; i< resp.length; i++) { %>
 											<tr>
 											<td><%= i + 1 %></td>
-											<td><%=resp[i].nombre %></td>
+											
 											<td><%=resp[i].correo %></td>
-											<td><%=resp[i].contraseña %></td>
+											
 											<td><%=resp[i].tipo_usuario %></td>							
 											</tr>
 											<% } %>
