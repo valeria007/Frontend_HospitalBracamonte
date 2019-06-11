@@ -62,11 +62,15 @@ app.post('/api/reg_consulta/:id_cita', Consulta.reg_consulta);
 app.get('/api/reg_consultas', Consulta.getConsulta);
 app.get('/api/pacienteConsulta/:historial/:tipoConsulta', Consulta.getConsultaPaciente) //serv  para sacar las consultas de un paciente
 app.get('/api/OnlyConsulta/:id', Consulta.onlyConsulta);
+
 ///recetas
 app.post('/api/reg_Receta/:id_consulta', Receta.post_receta);
 app.post('/api/reg_RecetaEmrg/:id_emergencia', Receta.post_receta);
 app.get('/api/reg_Receta', Receta.getReceta);
-app.get('/api/OnlyReceta/:id', Receta.onlyReceta);
+app.get('/api/OnlyReceta/:id', Receta.onlyReceta); // receta segun consulta medica
+app.get('/api/RecetaEmergencia/:id', Receta.RecetaEmergencia); // receta segun emergencia
+app.get('/api/recitasOfEMG/:id', Receta.recOfEmg);
+app.post('/api/updateReceta/:id', Receta.updateReceta);
 
 
 //papeleta de internacion
@@ -80,7 +84,8 @@ app.get('/api/getPinternacionPaciente/:historial/:tipoConsulta', papeletaInt.get
 app.post('/api/emeregencia/:idCita', Emergencias.Emergencia);
 app.get('/api/emeregencia', Emergencias.getEmergencia);
 app.get('/api/citaEmergencia/:id', Emergencias.onlyEmergencia);
-app.get('/api/OnlyEmergencia/:id', Emergencias.emergenciaH)
-app.post('/api/updateEmergencia/:id', Emergencias.updateEmergencia)
+app.get('/api/OnlyEmergencia/:id', Emergencias.emergenciaH);
+app.post('/api/updateEmergencia/:id', Emergencias.updateEmergencia);
+app.get('/api/emergenciaData/:id', Emergencias.dataEmergecnai); // este serv sirve para mostrar emergencia segun id
 
 };

@@ -18,6 +18,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   PapeletaInternacion.associate = function(models) {
     // associations can be defined here
+    PapeletaInternacion.belongsTo(models.Consultas, {
+      foreignKey: 'idConsultaMedica',
+      onDelete: 'CASCADE'
+    });
+    PapeletaInternacion.belongsTo(models.emergencia, {
+      foreignKey: 'idEmergencia',
+      onDelete: 'CASCADE'
+    });
   };
   return PapeletaInternacion;
 };

@@ -105,6 +105,16 @@ class Emergencias {
           })
           .catch(error => res.status(400).send(error));
     }
+    //este serv es para traer datos de la emergecnia segun su id 
+    static dataEmergecnai(req, res){                
+      var id = req.params.id;  
+      emergencia.findAll({
+         where: {id: id},
+         attributes: ['id', 'nombreDoctor', 'apellidoD1','apellidoD2']
+       }).then((data) => {
+         res.status(200).json(data);
+       });     
+  }
     
 }
 

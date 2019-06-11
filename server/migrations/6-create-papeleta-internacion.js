@@ -45,10 +45,22 @@ module.exports = {
         type: Sequelize.TEXT
       },
       idConsultaMedica:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Consultas',
+          key: 'id',
+          as: 'idConsultaMedica',
+        }
       },
       idEmergencia:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'emergencia',
+          key: 'id',
+          as: 'idEmergencia',
+        }
       },
       createdAt: {
         allowNull: false,

@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     emergencia.hasMany(models.Recetas, {
       foreignKey: 'id_emergencia',
     });
+    emergencia.hasMany(models.PapeletaInternacion, {
+      foreignKey: 'idEmergencia',
+    });
     emergencia.belongsTo(models.Citas_Medicas, {
       foreignKey: 'idCita',
       onDelete: 'CASCADE'
