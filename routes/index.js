@@ -87,6 +87,22 @@ router.get('/almacen',(req, res) => {
   res.render('almacen')
 });
 
+router.get('/almacenamiento',(req, res) => {
+  res.render('almacenamiento')
+});
+
+router.get('/grupoAsig_Far',(req, res) => {
+  res.render('grupoAsig_Far')
+});
+
+router.get('/medicamentos_Far',(req, res) => {
+  res.render('medicamentos_Far')
+});
+
+router.get('/solicitudes',(req, res) => {
+  res.render('solicitudes')
+});
+
 router.get('/ventas',(req, res) => {
   res.render('ventas')
 });

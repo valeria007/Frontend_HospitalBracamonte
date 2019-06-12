@@ -4,7 +4,8 @@
 	<title>Inicio</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+    <%- include("partials/head") -%>
+    <link rel="stylesheet" href="/css/form1.css">
 </head>
 <body>
 	<!-- SideBar -->
@@ -35,135 +36,290 @@
             <div class="row">
                 <div class="col-xs-12">
                     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                        <li class="active"><a href="#new" data-toggle="tab">Nueva Venta</a></li>
-                        <li><a href="#list" data-toggle="tab">Reportes de Ventas</a></li>
-                    </ul>
+                        <li class="active"><a href="#new" data-toggle="tab"><i class="zmdi zmdi-shopping-cart"></i> Nueva Venta </a></li>
+                        <li><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment-o"></i> Lista de Ventas </a></li>
+					</ul>
                     <!--Lista de Pacientes Internados -->
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade active in" id="new">
                             <div class="container-fluid">
                                 <div class="row">
                                     <form action="">
-                                        <h2 class="text-center all-tittles">REGISTRO DE PACIENTES INTERNADOS</h2>
+                                        <h3 class="text-center all-tittles">REGISTRO DE ORDENES DE ATENCION</h3>
+                                        
                                         <div class="col-md-12 panel-body">
                                             <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Historial Clinico</label>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Codigo de Venta</label>
                                                         <input class="form-control" type="text">
                                                     </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Codigo</label>
-                                                        <input class="form-control" type="text">    
-                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="control-label">Fecha de Ingreso</label>
+                                                        <label class="control-label">Fecha</label>
                                                         <input class="form-control" type="date">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Nombre</label>
-                                                        <input class="form-control" type="text">
-                                                    </div>
-                                                    <div class="form-group label-floating">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label class="control-label">Tipo de Paciente</label>
                                                         <select class="form-control">
                                                             <option>INSTITUCIONAL</option>
                                                             <option>COMBENIO</option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Institucion</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Historial Clinico</label>
+                                                        <input class="form-control" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                       <label class="control-label">Nombre del Paciente</label>
+                                                       <input class="form-control" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-2">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <h4 class="text-titles"> Contado</h4>							
+                                                        <input type="checkbox" class="checkbox"  id="validate_agree" name="validate_agree">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <h4 class="text-titles"> Pendiente</h4>							
+                                                        <input type="checkbox" class="checkbox"  id="validate_agree" name="validate_agree">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Procedencia</label>
                                                         <select class="form-control">
                                                             <option>NINGUNO</option>
-                                                            <option>CAJA NACIONAL DE SALUD</option>
-                                                            <option>CAJA PETROLERA DE SALUD</option>
-                                                            <option>SEGURO UNIVERSITARIO</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Proviene de:</label>
-                                                        <select class="form-control">
                                                             <option>CONSULTA EXTERNA</option>
                                                             <option>EMERGENCIA</option>
-                                                            <option>TRASPAZO</option>
+                                                            <option>INTERNACION</option>
                                                         </select>
-                                                    </div>               
+                                                    </div>
                                                 </div>
-                                             </div>
+                                            </div>
                                         </div>
                                         <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Observaciones</label>
+                                            <div class="form-group ">
+                                                <label class="control-label">Grupo de Arancel</label>
+                                                <select class="form-control">
+                                                    <option>NINGUNO</option>
+                                                    <option>Pediatria</option>
+                                                    <option>Medicina General</option>
+                                                    <option>Cirugia General</option>
+                                                    <option>Ginecologia y Obstetricia</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Datos del Medico</label>
                                                 <input class="form-control" type="text">
                                             </div>
                                         </div>
+                                        <p class="text-center">
+                                            <button type="button" class="btn btn-info" onclick=location="/receta"><i class="zmdi zmdi-shopping-cart-plus"></i> Receta</button> &nbsp;&nbsp; 
+                                        </p>
                                         <div class="col-md-12 panel-body">
                                             <div class="col-md-12">
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Especialidad</label>
-                                                        <select class="form-control">
-                                                            <option>Pediatria</option>
-                                                            <option>Medicina General</option>
-                                                            <option>Cirugia General</option>
-                                                            <option>Ginecologia y Obstetricia</option>
-                                                        </select>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Total items</label>
+                                                        <input class="form-control" type="text">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Descricion</label>
-                                                        <select class="form-control">
-                                                            <option>Sala H.- Niños</option>
-                                                            <option>Sala H.- Hombres</option>
-                                                            <option>Sala H.- Mujeres</option>
-                                                            <option>Sala H.- 3ra. Edad</option>
-                                                            <option>Sala H.- Cirugia General</option>
-                                                        </select>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                       <label class="control-label">Referencial</label>
+                                                       <input class="form-control" type="text">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Cama</label>
-                                                        <select class="form-control">
-                                                            <option>Cama 1</option>
-                                                            <option>Cama 2</option>
-                                                            <option>Cama 3</option>
-                                                            <option>Cama 4</option>
-                                                            <option>Cama 5</option>
-                                                        </select>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                       <label class="control-label">Descuento</label>
+                                                       <input class="form-control" type="text">
                                                     </div>
-                                                 </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                       <label class="control-label">TOTAL</label>
+                                                       <input class="form-control" type="text">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Descricion</label>
-                                                <select class="form-control">
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Camila Mamani</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Diagnostico de Prescripcion</label>
-                                                <select class="form-control">
-                                                    <option>Lista de Enferedades</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        <table class="fl-table">
+											<thead>
+												<tr>
+												<th>#</th>
+												<th>Descripcion</th>
+												<th>Precio Unitario</th>
+												<th>Cantidad</th>
+                                                <th>Precio de Referncia</th>
+                                                <th>Descuento Incremeto</th>
+												<th>TOTAL</th>
+												<th>Eliminar</th>
+												<th>Eliminar todo</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                <tr>
+                                                <td></td>
+                                                </tr>
+							    			<tbody>
+                                        </table>
                                         <p class="text-center">
                                             <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                             <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
                                         </p>
                                     </form>
                                 </div>
+
+                                <h3 class="text-center all-tittles">REGISTRO DE ORDENES DE ATENCION</h3>
+                                <form id="form" action="action_page.php" method="post" target="_blank" accept-charset="UTF-8" autocomplete="off" novalidate>
+                                    <p>
+                                    <div class="grupo" id="venta">
+                                        <div id="inicio">
+                                            <div class="entrada">Codigo:<br>
+                                                <input type="text" name="codigo"><br>
+                                            </div>
+                                            <div class="entrada">Fecha:<br>
+                                                <input type="date" name="fecha"><br>
+                                            </div>
+                                            <div class="entrada">Tipo de Paciente:<br>
+                                                <select name="paciente">
+                                                    <option>NINGUNO</option>
+                                                    <option>INSTITUCIONAL</option>
+                                                    <option>COMBENIO</option>
+                                                </select><br>
+                                            </div>
+                                        </div>
+                                        <div id="nombres">
+                                            <div class="entrada">Historial Clinico:<br>
+                                                <input type="text" name="His_cli"><br>
+                                            </div>
+                                            <div class="entrada">Apellido Materno: <br>
+                                                <input type="text" name="apellido-paterno"><br>
+                                            </div>
+                                            <div class="entrada">Apellido Materno:<br>
+                                                <input type="text" name="apellido-materno"><br>
+                                            </div>
+                                            <div class="entrada">Nombre(s):<br>
+                                                <input type="text" name="nombres"><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grupo" id="prueba">
+                                        <div class="cajas3" id="caja1">
+                                        <div id="grupo3caja1columna1">
+                                            <p class="center">Tipo de Venta a Realizar</p>
+                                        </div>
+                                            <div id="grupo3caja1columna2">
+                                              <div class="entrada" id="tipoexplotacion">Tipo de Explotación:<br>
+                                                <label class="labelcaja1"><input class="left" type="radio" name="explotacion" value="leche"><span>Leche</span></label>
+                                                <label class="labelcaja1"><input class="left" type="radio" name="explotacion" value="carne"><span>Carne</span></label>
+                                                <label class="labelcaja1"><input class="left" type="radio" name="explotacion" value="mixto"><span>Mixto</span></label>
+                                              </div>
+                                              <div class="entrada" id="tipoidentificacion">Tipo de Identificación:<br>
+                                                <label class="labelcaja1"><input class="left" type="radio" name="identificacion" value="arete"><span>Arete</span></label>
+                                                <label class="labelcaja1"><input class="left" type="radio" name="identificacion" value="tatuaje"><span>Tatuaje</span></label>
+                                                <label class="labelcaja1"><input class="left" type="radio" name="identificacion" value=""><span>Otro: </span><input class="pruebas" type="text" name="otro" /></label>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="cajas3" id="caja2">
+                                            <p align="center">Resumen</p>
+                                            <div id="grupo3caja2columna1">
+                                              <div class="entrada" id="fecha">Fecha de Programación de Prueba:<br>
+                                                <input class="pruebas" type="datetime-local" name="fecha-prueba"><br>
+                                              </div>
+                                              <div align="center" class="entrada">Especie:<br>
+                                                <label class="especie"><input class="left" type="radio" name="especie" value="cap"> CAP</label>
+                                                <label class="especie"><input class="left" type="radio" name="especie" value="ovi"> OVI</label>
+                                                <label class="especie"><input class="left" type="radio" name="especie" value="bov"> BOV</label>
+                                
+                                              </div>
+                                            </div>
+                                            <div>
+                                              <table cellspacing="10" width="100%">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Prueba/Campaña</th>
+                                                    <th>TB</th>
+                                                    <th>TR</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <td>Motivo de Prueba</td>
+                                                    <td><input type="text" id="row-1-age" name="row-1-age" value=""></td>
+                                                    <td><input type="text" id="row-1-position" name="row-1-position" value=""></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Cabezas</td>
+                                                    <td><input type="number" id="row-2-age" name="row-2-age" value=""></td>
+                                                    <td><input type="number" id="row-2-position" name="row-2-position" value=""></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                          <div class="cajas3" id="caja3">
+                                            <p align="center">Tuberculosis/Brucelosis</p>
+                                            <div id="grupo3caja3columna1">
+                                              Fecha de Inyección/Toma de Muestra:<br>
+                                              <input type="datetime-local" name="fecha-inyeccion"><br>
+                                            </div>
+                                            <div id="grupo3caja3columna2">
+                                              Fecha de Lectura:<br>
+                                              <input type="datetime-local" name="fecha-inyeccion"><br>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <br>
+                                        <table class="fl-table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Precio Unitario</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Precio de Referncia</th>
+                                                    <th>Descuento Incremeto</th>
+                                                    <th>TOTAL</th>
+                                                    <th>Eliminar</th>
+                                                    <th>Eliminar todo</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <td></td>
+                                                    </tr>
+                                                <tbody>
+                                            </table>
+                                            <p class="text-center">
+                                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                                <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                            </p>
+                                            
+                                        
+                                        <div class="button">
+                                          <input type="submit" value="Enviar">
+                                        </div>
+                                  </form>
+                        
                             </div>
                         </div>
                         <!--Registro de  Pacientes Internados-->
