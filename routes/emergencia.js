@@ -96,7 +96,7 @@ router.get('/dataPaciente/:id', (req,res) => {
     
 });
 
-//servicio para sacar las consulta de emergencia del paciente
+//servicio para sacar las consulta de emergencia del paciente y sus datos del paciente
 var consultasEmergencia;
 router.get('/dataConsultaEmesgencia/:historial', (req, res) => {
     var historial = req.params.historial 
@@ -116,8 +116,7 @@ var idHistorial; //esta variable es para madar el id de la ficha y el historial 
 var updateConsultaEmg;
 router.get('/GetEmergencia/:historial/:id/:docOenf', (req,res) => {
     var idHistorial1 = req.params;
-    idHistorial = idHistorial1
-    
+    idHistorial = idHistorial1    
     fetch('http://localhost:3000/api/citaEmergencia/'+idHistorial1.id)
         .then(resp => resp.json())
         .then(resp =>{
@@ -196,14 +195,19 @@ router.post('/updateConEmergencia/:id', (req,res) => {
 */ 
 
 router.get('/RenderReceta', (req,res) => {
-    res.render('emergencias/recetaEmergencia',{
-        EmgIdHistorial,
-        getPaciente,
-        Emgcon,
-        receta,
-        message :message.message,
-        updateReceta       
-    })
+    if(EmgIdHistorial == null){
+        res.redirect ('/emergencia/dataEmergencia/doctor')
+    } else{
+        res.render('emergencias/recetaEmergencia',{
+            EmgIdHistorial,
+            getPaciente,
+            Emgcon,
+            receta,
+            message,
+            updateReceta       
+        })
+    }
+    
 });
 
 var getPaciente // en esta variable estan los datos del paciente
@@ -335,5 +339,112 @@ router.post('/updateReceta/:id', (req,res) => {
       res.redirect('/emergencia/emergenicaData/'+EmgIdHistorial.id+'/'+EmgIdHistorial.historial+'/'+EmgIdHistorial.DogOenf);        
     }) 
 })
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
+                    Papeleta internacion
+<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>><<<<<<<<<<<<<>>>><<<<<>>><<<<
+*/
+
+//ruta para mostrar renderisar papeleta de internacion y para mostrar que doctor le atendio y sus datos del paciente
+router.get('/RenderPinternacion/:id', (req,res) => {
+    const { id } = req.params;
+    if( updateInternacion == null ){
+        res.redirect ('/emergencia/dataEmergencia/doctor')
+    }else {
+        fetch('http://localhost:3000/api/EmergenciaP/'+id)
+        .then(resp => resp.json())
+        .then(resp =>{  
+            console.log(resp)
+            res.render('emergencias/Papeleta_Internacion',{
+                resp,
+                listPinter,
+                updateInternacion   
+            }); 
+        })        
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        }) 
+    }
+})
+
+//serv para mostar una sola papeleta de internacion ṕara que pueda ser actualizado
+var updateInternacion
+router.get('/updatePinternacion/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:3000/api/InternacionEMG/'+id)
+    .then(resp => resp.json())
+    .then(resp =>{  
+        updateInternacion = resp;
+        res.redirect('/emergencia/RenderPinternacion/'+id); 
+    })        
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
+
+});
+
+//serv para mostrar la lista de las internaciones que a tenido el paciente
+var listPinter, id_Historial;
+router.get('/ListPInter/:id/:historial', (req,res) => {
+    id_Historial = req.params;
+    fetch('http://localhost:3000/api/ListPinternaciones/'+id_Historial.historial)
+    .then(resp => resp.json())
+    .then(resp =>{  
+        listPinter = resp;
+        res.redirect('/emergencia/updatePinternacion/'+id_Historial.id); 
+    })        
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
+});
+
+router.post('/Pinternacion/:id', (req,res) => {
+    const { id } = req.params;
+    var data = req.body  
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/papeletaIntEmergencia/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {        
+        res.redirect('/emergencia/ListPInter/'+id+'/'+id_Historial.historial);               
+    })  
+});
+
+//para actualizar papeleta de interncion
+router.post('/updatePinter/:id', (req,res) => {
+    const { id } = req.params;
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/updatePinternacion/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {    
+        console.log(data  , "   >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>")    
+        res.redirect('/emergencia/ListPInter/'+id_Historial.id+'/'+id_Historial.historial);               
+    })  
+
+});
+
+
+  
+    
 
 module.exports = router;
