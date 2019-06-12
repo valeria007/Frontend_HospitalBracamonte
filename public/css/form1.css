@@ -11,7 +11,7 @@
   
   input,
   input:focus {
-    border: 1px solid #555;
+    border: 1px solid rgb(22, 4, 104);
     width: 100%;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -31,7 +31,7 @@
     padding: 6px;
   }
   
-  #nombres {
+  #cuatro {
     -moz-column-count: 4;
     -moz-column-gap: 0px;
     -webkit-column-count: 4;
@@ -41,7 +41,7 @@
   }
   
   #inicio,
-  #domicilio2 {
+  #tres2 {
     -moz-column-count: 3;
     -moz-column-gap: 0px;
     -webkit-column-count: 3;
@@ -56,14 +56,14 @@
   #grupo3caja2columna1,
   #grupo4 {
     -moz-column-count: 2;
-    -moz-column-gap: 0px;
+    -moz-column-gap: 1px;
     -webkit-column-count: 2;
     -webkit-column-gap: 0px;
     column-count: 2;
     column-gap: 0px;
   }
   
-  #venta,
+  #cabeza,
   #unidad,
   #grupocroquis,
   #ultimo,
