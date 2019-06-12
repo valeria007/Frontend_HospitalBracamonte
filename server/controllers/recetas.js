@@ -81,7 +81,7 @@ class Receta {
          res.status(200).json(data);
        });     
     }
-    //mostar consultas solo de receta
+    //mostar recetas solo de emergencia
     static recOfEmg(req, res){    
       const { id } = req.params;            
       Recetas.findAll({

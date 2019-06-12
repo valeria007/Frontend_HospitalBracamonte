@@ -47,9 +47,9 @@ class Emergencias {
     }
     // emergencia segun historial
     static emergenciaH(req, res){                
-        var id = req.params.id;  
+        var historial = req.params.historial;  
         emergencia.findAll({
-           where: {Nhistorial: id},
+           where: {Nhistorial: historial},
            attributes: ['id', 'fechaAtencion','Nhistorial','nombreDoctor','apellidoD1','diagnostico'],
            include:[
                {model: Citas_Medicas,attributes: ['id'], 
@@ -114,7 +114,25 @@ class Emergencias {
        }).then((data) => {
          res.status(200).json(data);
        });     
-  }
+    }
+    //datos de emeregencia segun id
+    static emergenciaP(req, res){                
+      var id = req.params.id;  
+      emergencia.findAll({
+         where: { id : id },
+         attributes: ['id', 'fechaAtencion','Nhistorial','nombreDoctor','apellidoD1','apellidoD2','diagnostico' ],
+         include:[
+             {model: Citas_Medicas,attributes: ['id'], 
+             include:[{
+              model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom','fechanacimiento','sexo']
+             }
+          
+          ] }
+         ]
+       }).then((data) => {
+         res.status(200).json(data);
+      });     
+    }
     
 }
 

@@ -78,14 +78,18 @@ app.post('/api/papeletaIntConsulta/:idConsultaMedica', papeletaInt.enviarPapelet
 app.post('/api/papeletaIntEmergencia/:idEmergencia', papeletaInt.enviarPapeletaINT); // emergencia
 app.get('/api/papeletaInt', papeletaInt.verPapeletaINT);
 app.get('/api/onlyPInternacion/:id', papeletaInt.onlyPInternacion);
+app.get('/api/InternacionEMG/:id', papeletaInt.PEmergecia);///esto va a entrar desde emergencia
 app.get('/api/getPinternacionPaciente/:historial/:tipoConsulta', papeletaInt.getPinternacionPaciente);
+app.get('/api/ListPinternaciones/:historial', papeletaInt.ListPinternacion); // servicio para mostrar lista de papeleta de internacios segun historial
+app.post('/api/updatePinternacion/:id', papeletaInt.upinternacion);
 
 //Emergencia
 app.post('/api/emeregencia/:idCita', Emergencias.Emergencia);
 app.get('/api/emeregencia', Emergencias.getEmergencia);
 app.get('/api/citaEmergencia/:id', Emergencias.onlyEmergencia);
-app.get('/api/OnlyEmergencia/:id', Emergencias.emergenciaH);
+app.get('/api/OnlyEmergencia/:historial', Emergencias.emergenciaH); // muestra todas las emergencias del paciente
 app.post('/api/updateEmergencia/:id', Emergencias.updateEmergencia);
 app.get('/api/emergenciaData/:id', Emergencias.dataEmergecnai); // este serv sirve para mostrar emergencia segun id
+app.get('/api/EmergenciaP/:id', Emergencias.emergenciaP); // esta ruta sirve para mostrar una emergencia del paciente segun si id de la emergencia
 
 };
