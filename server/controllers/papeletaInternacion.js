@@ -125,6 +125,23 @@ class papeletaInt{
         })
         .catch(error => res.status(400).send(error));
   }
-}
+  // este serv va a mostrar los datos de tipo true solamente
+  static PINterTRUE(req, res){                
+    PapeletaInternacion.findAll({
+        where: { estado: true }
+        //attributes: ['id', ['description', 'descripcion']]
+      }).then((resp) => {
+        res.status(200).json(resp);
+      });     
+  }
+  // este serv va a mostrar los datos de tipo false solamente
+  static PINterFALSE(req, res){                
+    PapeletaInternacion.findAll({
+        where: { estado: false }
+        //attributes: ['id', ['description', 'descripcion']]
+      }).then((resp) => {
+        res.status(200).json(resp);
+      });     
+  }}
 
 export default papeletaInt

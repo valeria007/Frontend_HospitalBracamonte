@@ -66,7 +66,7 @@ class Citas_medica {
       static TwoTables(req,res){
         var url = req.params.id;
         Citas_Medicas.findAll({
-          where : { especialidad : url, estado: "true" },
+          where : { especialidad : url, estado: "true" }, // el url es para identificar si es emergencia o consulta medica
           attributes: ['id','estado','codigo_p','hora','especialidad'],
           include: [
             {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }
