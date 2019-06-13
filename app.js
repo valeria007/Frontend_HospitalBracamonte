@@ -32,7 +32,7 @@ app.use('/hospitalizacion', require('./routes/hospitalizacion'));
 app.use('/cuaderno', require('./routes/cuaderno'));
 app.use('/salas', require('./routes/salas'));
 app.use('/papeletaInternacion', require('./routes/papeletaInternacion'));
-
+app.use('/Internaciones', require('./routes/Internaciones'));
 
 
 app.listen(app.get('port'), () => {

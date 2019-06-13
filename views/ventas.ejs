@@ -4,7 +4,8 @@
 	<title>Inicio</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+    <%- include("partials/head") -%>
+    <link rel="stylesheet" href="/css/form1.css">
 </head>
 <body>
 	<!-- SideBar -->
@@ -35,149 +36,132 @@
             <div class="row">
                 <div class="col-xs-12">
                     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                        <li class="active"><a href="#new" data-toggle="tab">Nueva Venta</a></li>
-                        <li><a href="#list" data-toggle="tab">Reportes de Ventas</a></li>
-                    </ul>
+                        <li class="active"><a href="#new" data-toggle="tab"><i class="zmdi zmdi-shopping-cart"></i> Nueva Venta </a></li>
+                        <li><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment-o"></i> Lista de Ventas </a></li>
+					</ul>
                     <!--Lista de Pacientes Internados -->
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade active in" id="new">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <form action="">
-                                        <h2 class="text-center all-tittles">REGISTRO DE PACIENTES INTERNADOS</h2>
-                                        <div class="col-md-12 panel-body">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Historial Clinico</label>
-                                                        <input class="form-control" type="text">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Codigo</label>
-                                                        <input class="form-control" type="text">    
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Fecha de Ingreso</label>
-                                                        <input class="form-control" type="date">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Nombre</label>
-                                                        <input class="form-control" type="text">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Tipo de Paciente</label>
-                                                        <select class="form-control">
-                                                            <option>INSTITUCIONAL</option>
-                                                            <option>COMBENIO</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Institucion</label>
-                                                        <select class="form-control">
-                                                            <option>NINGUNO</option>
-                                                            <option>CAJA NACIONAL DE SALUD</option>
-                                                            <option>CAJA PETROLERA DE SALUD</option>
-                                                            <option>SEGURO UNIVERSITARIO</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Proviene de:</label>
-                                                        <select class="form-control">
-                                                            <option>CONSULTA EXTERNA</option>
-                                                            <option>EMERGENCIA</option>
-                                                            <option>TRASPAZO</option>
-                                                        </select>
-                                                    </div>               
-                                                </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Observaciones</label>
-                                                <input class="form-control" type="text">
+                                <h3 class="text-center all-tittles">REGISTRO DE ORDENES DE ATENCION</h3>
+                                <form id="form" action="action_page.php" method="post" target="_blank" accept-charset="UTF-8" autocomplete="off" novalidate>
+                                    <p>
+                                    <div class="grupo" id="cabeza">
+                                        <div id="inicio">
+                                            <div class="entrada">Codigo:<br>
+                                                <input type="text" name="codigo"><br>
+                                            </div>
+                                            <div class="entrada">Fecha:<br>
+                                                <input type="date" name="fecha"><br>
+                                            </div>
+                                            <div class="entrada">Tipo de Paciente:<br>
+                                                <select  name="paciente">
+                                                    <option>NINGUNO</option>
+                                                    <option>INSTITUCIONAL</option>
+                                                    <option>COMBENIO</option>
+                                                </select><br>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 panel-body">
-                                            <div class="col-md-12">
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Especialidad</label>
-                                                        <select class="form-control">
-                                                            <option>Pediatria</option>
-                                                            <option>Medicina General</option>
-                                                            <option>Cirugia General</option>
-                                                            <option>Ginecologia y Obstetricia</option>
-                                                        </select>
-                                                    </div>
+                                        <div id="nombres">
+                                            <div class="entrada">Historial Clinico:<br>
+                                                <input type="text" name="His_cli"><br>
+                                            </div>
+                                            <div class="entrada">Apellido Materno: <br>
+                                                <input type="text" name="apellido-paterno"><br>
+                                            </div>
+                                            <div class="entrada">Apellido Materno:<br>
+                                                <input type="text" name="apellido-materno"><br>
+                                            </div>
+                                            <div class="entrada">Nombre(s):<br>
+                                                <input type="text" name="nombres"><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grupo" id="prueba">
+                                        <div class="cajas3" id="caja2">
+                                            <p class="text-center">Tipo de Pago</p>
+                                            <div id="grupo3caja2columna1">
+                                                <div class="entrada" id="procedencia">Procedencia:<br>
+                                                    <select name="proce">
+                                                        <option>NINGUNO</option>
+                                                        <option>CONSULTA EXTERNA</option>
+                                                        <option>EMERGENCIA</option>
+                                                        <option>INTERNACION</option>
+                                                    </select><br>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Descricion</label>
-                                                        <select class="form-control">
-                                                            <option>Sala H.- Niños</option>
-                                                            <option>Sala H.- Hombres</option>
-                                                            <option>Sala H.- Mujeres</option>
-                                                            <option>Sala H.- 3ra. Edad</option>
-                                                            <option>Sala H.- Cirugia General</option>
-                                                        </select>
-                                                    </div>
+                                                <div class="center" class="entrada">Pago:<br>
+                                                    <label class="especie"><input class="left" type="radio" name="especie" value="contado"> Contado</label>
+                                                    <label class="especie"><input class="left" type="radio" name="especie" value="pendiente"> Pendiente</label>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Cama</label>
-                                                        <select class="form-control">
-                                                            <option>Cama 1</option>
-                                                            <option>Cama 2</option>
-                                                            <option>Cama 3</option>
-                                                            <option>Cama 4</option>
-                                                            <option>Cama 5</option>
-                                                        </select>
-                                                    </div>
-                                                 </div>
+                                            </div>
+                                            <div>
+                                                <div class="entrada">Categoria:<br>
+                                                    <input type="text" name="His_cli"><br>
+                                                </div>
+                                                <div class="entrada">Observaciones:<br>
+                                                    <input type="text" name="His_cli"><br>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Descricion</label>
-                                                <select class="form-control">
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Camila Mamani</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                </select>
+                                        <div class="cajas3" id="caja3">
+                                            <p class="text-center">Datos Medicos</p>
+                                            <div id="grupo3caja3columna1">Grupo de Arancel:<br>
+                                                <input type="text" name="Grupo_arancel"><br>
+                                            </div>
+                                            <div id="grupo3caja3columna2">Dators de Doctor<br>
+                                                <input type="text" name="doctor"><br>
+                                            </div>
+                                            <div>
+                                                <p class="text-center">
+                                                    <button type="button" class="btn btn-info" onclick=location="/recetas"><i class="zmdi zmdi-shopping-cart-plus"></i> Receta</button> &nbsp;&nbsp; 
+                                                </p>
+                                                <p class="text-center">
+                                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar Detalle</button>
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Diagnostico de Prescripcion</label>
-                                                <select class="form-control">
-                                                    <option>Lista de Enferedades</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <p class="text-center">
-                                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                        </p>
-                                    </form>
-                                </div>
+                                    </div>
+                                    <br>
+                                    <table class="fl-table">
+                                        <thead>
+                                            <tr>
+                                            <th>#</th>
+                                            <th>Descripcion</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio de Referncia</th>
+                                            <th>Descuento Incremeto</th>
+                                            <th>TOTAL</th>
+                                            <th>Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td></td>
+                                            </tr>
+                                        <tbody>
+                                    </table>
+                                    <p class="text-center">
+                                        <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                        <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                    </p>
+                                </form>
                             </div>
                         </div>
-                        <!--Registro de  Pacientes Internados-->
-                        <div class="tab-pane fade" id="list">
-                            <div class="container-fluid">
-                                <div class="col-xs-12 lead">
-                                    <ul class="breadcrumb">
-                                        <li class="active"><a href="#listaA" data-toggle="tab">Internados</a></li>
-                                        <li><a href="#listaB" data-toggle="tab">Historial de Internados</a></li>
-                                        <li><a href="#listaC" data-toggle="tab">Diagnosticos Pendientes</a></li>
-                                        <li><a href="#listaD" data-toggle="tab">Transferidos</a></li>
-                                    </ul>
-                                    <div id="myTabContent" class="tab-content">
-                                        <!--Lista de Internados-->
+                    </div>
+                    <!--Registro de  Pacientes Internados-->
+                    <div class="tab-pane fade" id="list">
+                        <div class="container-fluid">
+                            <div class="col-xs-12 lead">
+                                <ul class="breadcrumb">
+                                <li class="active"><a href="#listaA" data-toggle="tab">Internados</a></li>
+                                <li><a href="#listaB" data-toggle="tab">Historial de Internados</a></li>
+                                <li><a href="#listaC" data-toggle="tab">Diagnosticos Pendientes</a></li>
+                                <li><a href="#listaD" data-toggle="tab">Transferidos</a></li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                <!--Lista de Internados-->
                                         <div class="tab-pane fade active in" id="listaA">
                                             <div class="container-fluid">
                                                 <table class="fl-table">
