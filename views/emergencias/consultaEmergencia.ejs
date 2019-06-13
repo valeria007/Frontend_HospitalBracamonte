@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Listas Emergencia</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("../partials/head") -%>
@@ -184,8 +184,10 @@
                                                                     </select>
                                                                 </div>
                                                             <% } %>
+                                                        <br>
                                                                                                      
                                                         <h1> Formulario de Actualizacion</h1>
+                                                        <br>
                                                         <h2>Datos Personales</h2>                                                
                                                         <div class="form-group">
                                                             <label class="control-label">Fecha de Consulta</label>
@@ -287,6 +289,7 @@
                                                     
                                                     <th>Dar Receta</th>
                                                     <th>Papeleta Internacion</th>
+                                                    <th>Ver Consulta</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -300,8 +303,9 @@
                                                             <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidom%></td>
                                                             <td><%=consultasEmergencia[i].diagnostico%></td> 
                                                                                                        
-                                                            <td><a href="/medico//" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                                                            <td><a href="/medico//" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                            <td><a href="/emergencia/emergenicaData/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>/<%=idHistorial.docOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-receipt "></i></a></td>
+                                                            <td><a href="/emergencia/ListPInter/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-airline-seat-flat-angled zmdi-hc-lg"></i></a></td>
+                                                            <td><a href="/emergencia/ListPInter/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-library zmdi-hc-lg"></i></a></td>
                                                         </tr>
                                                     <% } %>                                               
                                                 </tbody>                                                                       

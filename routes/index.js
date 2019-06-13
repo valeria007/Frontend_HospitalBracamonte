@@ -58,10 +58,8 @@ router.get('/vistaPrimPaciente',(req, res) => {
 
 
 //hospitalizacion 
-router.get('/hospitalizacion',(req, res) => {
-  res.render('hospitalizaciones/homeHospitalizacion')
-  res.render('hospitalizaciones/listasHospitalizacion')
-});
+
+
 router.get('/vistaHospitalizacion',(req, res) => {
   res.render('vistaHospitalizacion')
 });
@@ -88,6 +86,22 @@ router.get('/paciente_Inter',(req, res) => {
 // Farmacia
 router.get('/almacen',(req, res) => {
   res.render('almacen')
+});
+
+router.get('/almacenamiento',(req, res) => {
+  res.render('almacenamiento')
+});
+
+router.get('/grupoAsig_Far',(req, res) => {
+  res.render('grupoAsig_Far')
+});
+
+router.get('/medicamentos_Far',(req, res) => {
+  res.render('medicamentos_Far')
+});
+
+router.get('/solicitudes',(req, res) => {
+  res.render('solicitudes')
 });
 
 router.get('/ventas',(req, res) => {

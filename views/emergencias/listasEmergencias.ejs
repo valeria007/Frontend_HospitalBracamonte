@@ -20,10 +20,10 @@
 			<!-- Emergencias -->
 			<li>
 				<a href="#!" class="btn-sideBar-SubMenu">
-					<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
+					<i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
 				</a>
 				<ul class="list-unstyled full-box">
-					<li><a href="/emergencia/dataEmergencia/<%=DogOenf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+					<li><a href="/emergencia/dataEmergencia/<%=DogOenf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
 								
 				</ul>
 			</li>
@@ -46,35 +46,39 @@
 	</nav>
 		<!-- Content page -->
 	   <div class="container-fluid">
-            <div class="col-md-12 panel-body">
-                <tr>
-                	<th>
-                   	</th>
-                  	<th>
-                       	<form class="example" action="">
-                         <div class="col-md-6">
-                            <input type="text" placeholder="Search.." name="search">
-                            <button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></i></button>
-                         </div>
-                                            
-                        </form>
-                   	</th>
-                </tr> 
-           </div>
-       </div>
+           	<div class="page-header col-md-12 col-md-offset-1">
+					
+				<div class="col-md-6 ">
+					<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i>Emergencias</h1>
+				</div>
+				
+					<div class="col-md-5 ">
+						<br>
+						<form class="example" action="">
+							<div class="col-md-13">
+							   <input type="text" placeholder="Search.." name="search">
+				 			    <button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></button>
+							</div>
+						</form>
+					</div>
+			</div>
+		</div>
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-md-12">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nuevo Paciente</a></li>
-						<li><a href="#Pacientes" data-toggle="tab">Pacientes atendidos</a></li>
+					  	<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Pacientes no Atendidos</a></li>
+						<li><a href="#Pacientes" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Pacientes atendidos</a></li>
 					</ul>
+				</div>
+				<div class="col-xs-20 col-md-10 col-md-offset-1">
+					
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade active in" id="ListPaciente">
 						
 							<div class="table-responsive" >
-							  <table class="table table-hover ">
+							  <table class="fl-table ">
 								  <thead>
 									  <tr>
 										<th class="text-center">#</th>
@@ -83,8 +87,8 @@
 										<th class="" WIDTH="20%">Apellido paterno</th>
 										<th class="" WIDTH="20%">Apellido materno</th>	
 										<th class="" WIDTH="20%">Hora de Atencion</th>	
-										<th class="text-center" WIDTH="20%">Registrar Consulta Medica</th>
-										<th class="text-center" WIDTH="20%">Modificar</th>
+										<th class="text-center" WIDTH="20%">Reg.Consulta</th>
+										
 										<!--
 										   <th class="text-center" WIDTH="20%">Darde Baja</th>
 										-->   
@@ -98,11 +102,11 @@
 												  <td><%= i + 1 %></td>
 												  <td><%=resp[i].codigo_p %></td>
 												  <td><%=resp[i].Paciente.nombre %></td>
-												  <td><%=resp[i].Paciente.apellidom %></td>
+												  <td><%=resp[i].Paciente.apellidop %></td>
 												  <td><%=resp[i].Paciente.apellidom %></td>
 												  <td><%=resp[i].hora %></td>
-												  <td class="text-center"><a href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-												  <td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+												  <td class="text-center"><a href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-edit zmdi-hc-lg"></i></a></td>
+												  
 												  
 											  </tr>
 											  <% } %>
@@ -123,7 +127,7 @@
 								  <li><a href="#!">»</a></li>
 							  </ul>
 							</div>
-						  </div>
+						</div>
 	  
 						  <!-- lista de pacientes atendidos-->
 						  <div class="tab-pane fade" id="Pacientes">
@@ -152,7 +156,7 @@
 													<td><%= i + 1 %></td>
 													<td><%=dataEmergencia[i].codigo_p %></td>
 													<td><%=dataEmergencia[i].Paciente.nombre %></td>
-													<td><%=dataEmergencia[i].Paciente.apellidom %></td>
+													<td><%=dataEmergencia[i].Paciente.apellidop %></td>
 													<td><%=dataEmergencia[i].Paciente.apellidom %></td>
 													<td><%=dataEmergencia[i].hora %></td>
 													<td class="text-center" ><a href="/emergencia/GetEmergencia/<%=dataEmergencia[i].codigo_p%>/<%=dataEmergencia[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
