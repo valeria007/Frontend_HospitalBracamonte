@@ -68,7 +68,7 @@
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
 					  	<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nuevo Paciente</a></li>
-						<li><a href="#Pacientes" data-toggle="tab">Pacientes atendidos</a></li>
+						<li><a href="#Pacientes" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Pacientes atendidos</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade active in" id="ListPaciente">
@@ -83,7 +83,7 @@
 										<th class="" WIDTH="20%">Apellido paterno</th>
 										<th class="" WIDTH="20%">Apellido materno</th>	
 										<th class="" WIDTH="20%">Hora de Atencion</th>	
-										<th class="text-center" WIDTH="20%">Registrar Consulta Medica</th>
+										<th class="text-center" WIDTH="20%">Reg.Consulta</th>
 										<th class="text-center" WIDTH="20%">Modificar</th>
 										<!--
 										   <th class="text-center" WIDTH="20%">Darde Baja</th>
@@ -101,7 +101,7 @@
 												  <td><%=resp[i].Paciente.apellidom %></td>
 												  <td><%=resp[i].Paciente.apellidom %></td>
 												  <td><%=resp[i].hora %></td>
-												  <td class="text-center"><a href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+												  <td class="text-center"><a href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-playlist-plus zmdi-hc-lg"></i></a></td>
 												  <td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 												  
 											  </tr>
@@ -123,7 +123,7 @@
 								  <li><a href="#!">»</a></li>
 							  </ul>
 							</div>
-						  </div>
+						</div>
 	  
 						  <!-- lista de pacientes atendidos-->
 						  <div class="tab-pane fade" id="Pacientes">
