@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Hospitalizacion</title>
+	<title>Internacion</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("../partials/head") -%>
@@ -27,6 +27,7 @@
 		<!-- Content page -->
 	   <div class="container-fluid">
             <div class="col-md-12 panel-body">
+				<h1>Internacion</h1>
                 <tr>
                 	<th>
                    	</th>
@@ -63,6 +64,7 @@
 									<th class="" WIDTH="20%">Apellido materno</th>	
 									<th class="" WIDTH="20%">Fecha</th>	
 									<th class="" WIDTH="20%">Motivo de Ingreso</th>	
+									<th class="" WIDTH="20%">Viene de</th>	
 									<th class="text-center" WIDTH="20%">Registrar</th>
                   					
               <!--
@@ -82,6 +84,7 @@
 											<td><%=resp[i].apellido2 %></td>
 											<td><%=resp[i].fechaIngreso %></td>
 											<td><%=resp[i].diagnostico %></td>
+											<td><%=resp[i].tipoConsulta %></td>
 											<td class="text-center" ><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 											
 										</tr>
@@ -122,17 +125,17 @@
 									</tr>
 								</thead>
 								<tbody>
-									<% if(resp != null) { %>
+									<% if(listFalse != null) { %>
 										
-										<% for(var i=0; i< resp.length; i++) { %>
+										<% for(var i=0; i< listFalse.length; i++) { %>
 											<tr>
 												<td><%= i + 1 %></td>
-												<td><%=resp[i].Historial %></td>
-												<td><%=resp[i].nombre %></td>
-												<td><%=resp[i].apellido1 %></td>
-												<td><%=resp[i].apellido2 %></td>
-												<td><%=resp[i].fechaIngreso %></td>
-												<td><%=resp[i].diagnostico %></td>
+												<td><%=listFalse[i].Historial %></td>
+												<td><%=listFalse[i].nombre %></td>
+												<td><%=listFalse[i].apellido1 %></td>
+												<td><%=listFalse[i].apellido2 %></td>
+												<td><%=listFalse[i].fechaIngreso %></td>
+												<td><%=listFalse[i].diagnostico %></td>
 												<td class="text-center" ><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 												
 											</tr>
