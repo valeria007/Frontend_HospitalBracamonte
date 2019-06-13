@@ -47,19 +47,26 @@
 		<!-- Content page -->
 	   <div class="container-fluid">
             <div class="col-md-12 panel-body">
-                <tr>
-                	<th>
-                   	</th>
-                  	<th>
-                       	<form class="example" action="">
-                         <div class="col-md-6">
-                            <input type="text" placeholder="Search.." name="search">
-                            <button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></i></button>
-                         </div>
-                                            
-                        </form>
-                   	</th>
-                </tr> 
+					<div class="col-md-12 ">
+							<div class="col-md-6 ">
+									
+											<h1 class="text-titles"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Emergencias</h1>
+									
+								</div>
+							<div class="col-md-6 "></div>
+						<div class="col-md-6 ">
+								<br>
+							<form class="example" action="">
+								<div class="col-md-9">
+									   <input type="text" placeholder="Search.." name="search">
+									  <button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></button>
+								</div>
+											   
+							</form>
+						</div>
+
+			
+					</div>
            </div>
        </div>
 
@@ -67,7 +74,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nuevo Paciente</a></li>
+					  	<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Pacientes no Atendidos</a></li>
 						<li><a href="#Pacientes" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Pacientes atendidos</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
@@ -84,7 +91,7 @@
 										<th class="" WIDTH="20%">Apellido materno</th>	
 										<th class="" WIDTH="20%">Hora de Atencion</th>	
 										<th class="text-center" WIDTH="20%">Reg.Consulta</th>
-										<th class="text-center" WIDTH="20%">Modificar</th>
+										
 										<!--
 										   <th class="text-center" WIDTH="20%">Darde Baja</th>
 										-->   
@@ -101,8 +108,8 @@
 												  <td><%=resp[i].Paciente.apellidop %></td>
 												  <td><%=resp[i].Paciente.apellidom %></td>
 												  <td><%=resp[i].hora %></td>
-												  <td class="text-center"><a href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-playlist-plus zmdi-hc-lg"></i></a></td>
-												  <td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+												  <td class="text-center"><a href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-edit zmdi-hc-lg"></i></a></td>
+												  
 												  
 											  </tr>
 											  <% } %>

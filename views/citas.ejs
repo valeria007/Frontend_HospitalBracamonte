@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Citas</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
@@ -24,39 +24,98 @@
 		<div class="page-header">
 			<h1 class="text-titles"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Citas</h1>
 		</div>
-  </div>
+		<div class="col-md-12 ">
+				<div class="col-md-2 "></div>
+			<div class="col-md-6 ">
+				<form class="example" action="">
+					<div class="col-md-9">
+				   		<input type="text" placeholder="Search.." name="search">
+				  		<button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></button>
+					</div>
+								   
+				</form>
+			</div>
+			<div class="col-md-4 ">
+				<p class="">
+					<button type="button" class="btn btn-info" onclick=location="/paciente/reg_paciente"> Nuevo Paciente</button> &nbsp;&nbsp;
+			 	</p>
+			</div>
+
+		</div>
+
+
+
+  	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-20 col-md-10 col-md-offset-1">
-				<p class="text-center">
-						<button type="button" class="btn btn-info" onclick=location="/paciente/reg_paciente"> Nuevo Paciente</button> &nbsp;&nbsp;
-				</p>
-				<div class="table-responsive" id="newSchool">
-          <table class="fl-table">
-            <thead>
-							<tr>
-							<th class="text-center">#</th>
-							<th class="" WIDTH="30%">Name </th>
-							<th class="" WIDTH="30%">Apellido </th>
-							<th class="" WIDTH="20%">ci</th>
-							<th class="text-center" WIDTH="20%">Fichaje</th>
-              <th class="text-center" WIDTH="20%">Modificar</th>
-            </tr>
-						</thead>
-						<tbody>
-							<% for(var i=0; i < resp.length; i++) { %>
-							<tr>
-							<td><%= i + 1 %></td>
-							<td><%=resp[i].nombre %></td>
-							<td><%=resp[i].apellidop %></td>
-							<td><%=resp[i].ci %></td>
-							<td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-							<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-							</tr>
-							<% } %>
-						</tbody>
-					</table>
+				
+				<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+					<li class="active"><a href="#Cita" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Dar Cita Médica </a></li>
+				  	<li><a href="#Reconsulta" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Dar Reconsulta</a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+				  	<div class="tab-pane fade active in" id="Cita">
+						<div class="table-responsive" >
+							<table class="fl-table">
+							  <thead>
+								  <tr>
+									<th class="text-center">#</th>
+								  	<th class="" WIDTH="30%">Name </th>
+								  	<th class="" WIDTH="30%">Apellido </th>
+								  	<th class="" WIDTH="20%">ci</th>
+								  	<th class="text-center" WIDTH="20%">Fichaje</th>
+									<th class="text-center" WIDTH="20%">Modificar</th>
+								  </tr>
+							  </thead>
+						  		<tbody>
+							  	<% for(var i=0; i < resp.length; i++) { %>
+							  	  <tr>
+							  		<td><%= i + 1 %></td>
+							  		<td><%=resp[i].nombre %></td>
+							  		<td><%=resp[i].apellidop %></td>
+							  		<td><%=resp[i].ci %></td>
+							  		<td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td>
+							  		<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+							  	  </tr>
+							  	<% } %>
+						  		</tbody>
+					  		</table>
+				  		</div>
+					  </div>
+					  <!-- Recerva-->
+					  <div class="tab-pane fade " id="Reconsulta">
+							<div class="table-responsive" >
+								<table class="fl-table">
+								  <thead>
+									  <tr>
+										<th class="text-center">#</th>
+										  <th class="" WIDTH="30%">Name </th>
+										  <th class="" WIDTH="30%">Apellido </th>
+										  <th class="" WIDTH="20%">ci</th>
+										  <th class="text-center" WIDTH="20%">Fichaje</th>
+										<th class="text-center" WIDTH="20%">Modificar</th>
+									  </tr>
+								  </thead>
+									  <tbody>
+									  <% for(var i=0; i < resp.length; i++) { %>
+										<tr>
+										  <td><%= i + 1 %></td>
+										  <td><%=resp[i].nombre %></td>
+										  <td><%=resp[i].apellidop %></td>
+										  <td><%=resp[i].ci %></td>
+										  <td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td>
+										  <td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+										</tr>
+									  <% } %>
+									  </tbody>
+								  </table>
+							  </div>
+						  </div>
+					
+
 				</div>
+
 			</div>
 		</div>
 	</div>
