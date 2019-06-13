@@ -4,11 +4,12 @@ const { PapeletaInternacion } = model;
 
 class papeletaInt{
     static enviarPapeletaINT(req, res){
-          const { tipoConsulta,fechaIngreso, Historial, nombre,apellido1,apellido2,sexo,edad,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
+          const { estado,tipoConsulta,fechaIngreso, Historial, nombre,apellido1,apellido2,sexo,edad,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
           const { idConsultaMedica } = req.params
           const { idEmergencia } = req.params
           return PapeletaInternacion
           .create({
+            estado,
             tipoConsulta,
             fechaIngreso, 
             Historial, 
@@ -85,8 +86,7 @@ class papeletaInt{
       const { tipoConsulta,fechaIngreso, Historial, nombre,apellido1,apellido2,sexo,edad,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
       return PapeletaInternacion
         .findByPk(req.params.id)
-        .then((data) => {
-          
+        .then((data) => { 
           data.update({
             tipoConsulta: tipoConsulta || data.tipoConsulta,
             fechaIngreso: fechaIngreso || data.fechaIngreso,  

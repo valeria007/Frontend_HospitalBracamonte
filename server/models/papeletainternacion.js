@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const PapeletaInternacion = sequelize.define('PapeletaInternacion', {
+    estado: DataTypes.BOOLEAN,
     tipoConsulta: DataTypes.STRING,
     fechaIngreso: DataTypes.STRING,
     Historial: DataTypes.INTEGER,
