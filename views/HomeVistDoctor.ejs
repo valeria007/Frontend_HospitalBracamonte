@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Home Doc</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
 </head>
-<body>
+<body class=" full-box dashboard-sideBar-imagg cover " >
 	<!-- SideBar -->
 	<%- include("partials/menudoc") -%>
 	<!-- Content page-->
-<section class="full-box dashboard-contentPage">
+<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-		<ul class="full-box list-unstyled text-right">
+	<nav class="full-box dashboard-Navbar dashboard-sideBar-imaggg cover ">
+		<ul class="full-box list-unstyled text-right dashboard-sideBar-ctttt">
 			<li class="pull-left">
 		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 			</li>
@@ -25,67 +25,25 @@
 		</ul>
 	</nav>
 		<!-- Content page -->
+	<div class=" full-box ">
 	   <div class="container-fluid">
-            <div class="col-md-12 panel-body">
-                <tr>
-                	<th>
-                   	</th>
-                  	<th>
-                       	<form class="example" action="">
-                         <div class="col-md-6">
-                            <input type="text" placeholder="Search.." name="search">
-                            <button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></i></button>
-                         </div>
-                                            
-                        </form>
-                   	</th>
-                </tr> 
-           </div>
+          
        </div>
 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nuevo Paciente</a></li>
-					  
-					</ul>
-					<div class="tab-content">
-						
-					  <div class="table-responsive" id="newSchool">
-                        <table class="table table-hover ">
-                            <thead>
-								<tr>
-									<th class="text-center">#</th>
-									<th class="" WIDTH="30%">N° de historia </th>
-									<th class="" WIDTH="20%">Nombre del Paciente</th>
-									<th class="" WIDTH="20%">Pellido paterno del Paciente</th>
-									<th class="" WIDTH="20%">Pellido materno del Paciento</th>	
-									<th class="" WIDTH="20%">Hora de Atencion</th>	
-
-									<th class="text-center" WIDTH="20%">Registrar Consulta Medica</th>
-                  <th class="text-center" WIDTH="20%">Modificar</th>
-                  <th class="text-center" WIDTH="20%">Darde Baja</th>
-								</tr>
-							</thead>
-							<tbody>
-								
-							</tbody>
-						</table>
-						<ul class="pagination pagination-sm">
-							<li class="disabled"><a href="#!">«</a></li>
-							<li class="active"><a href="#!">1</a></li>
-							<li><a href="#!">2</a></li>
-							<li><a href="#!">3</a></li>
-							<li><a href="#!">4</a></li>
-							<li><a href="#!">5</a></li>
-							<li><a href="#!">»</a></li>
-						</ul>
-					  </div>
-					</div>
+					<div class="page-header col-md-12 col-md-offset-1">
+			 
+					 	<div class="col-md-6 ">
+							 <h1 class="text-titles"><i class="zmdi zmdi-file-plus zmdi-hc-fw"></i>Consulta Externa</h1>
+		 				</div>
+		 			</div>
+					
 				</div>
 			</div>
 		</div>
+	</div>
 </section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
