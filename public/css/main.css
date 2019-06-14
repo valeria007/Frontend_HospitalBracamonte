@@ -602,3 +602,6 @@ body, html{
 		padding-left: 0;
 	}
 }
+input:valid {
+  background-color: #BBFFF0;
+}

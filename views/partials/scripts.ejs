@@ -9,6 +9,12 @@
 	
 	<script>
 		$.material.init();
+		$(function(){
+		  $(".ma").on("keyup", function(r){
+			var $input = $(r.target);
+			$input.val($input.val().toUpperCase())
+		  })
+		})
 	</script>
 
 	 
