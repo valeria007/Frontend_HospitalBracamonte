@@ -278,7 +278,7 @@ router.get('/PapeletaINT/:id/:historial/:tipoConsulta', (req,res) => {
     
 });
 
-
+/** 
 //reconsulta
 // este serv va servir para traer citas tipo solo consultas
 router.get('/listRegConsulta/:id', (req, res) => {
@@ -323,5 +323,6 @@ router.get('/dataConsulta/:id', (req,res) => {
         res.send("no hay coneccion con el servidor");
     })
 });
+*/
 
 module.exports = router;
