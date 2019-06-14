@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Hospitalizacion</title>
+	<title>Internacion</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("../partials/head") -%>
@@ -25,35 +25,40 @@
 		</ul>
 	</nav>
 		<!-- Content page -->
-	   <div class="container-fluid">
-            <div class="col-md-12 panel-body">
-                <tr>
-                	<th>
-                   	</th>
-                  	<th>
-                       	<form class="example" action="">
-                         <div class="col-md-6">
-                            <input type="text" placeholder="Search.." name="search">
-                            <button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></i></button>
-                         </div>
-                                            
-                        </form>
-                   	</th>
-                </tr> 
-           </div>
-       </div>
+		<div class="container-fluid">
+				<div class="page-header col-md-12 col-md-offset-1">
+					 
+				 <div class="col-md-6 ">
+					 <h1 class="text-titles"><i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i>Internacion</h1>
+				 </div>
+				 
+					 <div class="col-md-5 ">
+						 <br>
+						 <form class="example" action="">
+							 <div class="col-md-13">
+								<input type="text" placeholder="Search.." name="search">
+								  <button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></button>
+							 </div>
+						 </form>
+					 </div>
+			 </div>
+		 </div>
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12">
+				
+				<div class="col-md-12 ">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					  	<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Nuevo Paciente</a></li>
-					  
+					  	<li class="active"><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Lista Pacientes </a></li>
+						<li><a href="#listFalse" data-toggle="tab">Pacientes atendidos</a></li>
 					</ul>
-					<div class="tab-content">
+				</div>
+				<div class="col-xs-20 col-md-10 col-md-offset-1">
+					
+					<div id="myTabContent" class="tab-content">
 						
-					  <div class="table-responsive" id="newSchool">
-                        <table class="table table-hover ">
+					  <div class="tab-pane fade active in" id="list">
+                        <table class="fl-table ">
                             <thead>
 								<tr>
 									<th class="text-center">#</th>
@@ -61,10 +66,11 @@
 									<th class="" WIDTH="20%">Nombre del Paciente</th>
 									<th class="" WIDTH="20%">Apellido paterno</th>
 									<th class="" WIDTH="20%">Apellido materno</th>	
-									<th class="" WIDTH="20%">Hora de Atencion</th>	
-
-									<th class="text-center" WIDTH="20%">Registrar Consulta Medica</th>
-                  					<th class="text-center" WIDTH="20%">Modificar</th>
+									<th class="" WIDTH="20%">Fecha</th>	
+									<th class="" WIDTH="20%">Motivo de Ingreso</th>	
+									<th class="" WIDTH="20%">Viene de</th>	
+									<th class="text-center" WIDTH="20%">Registrar</th>
+                  					
               <!--
                  <th class="text-center" WIDTH="20%">Darde Baja</th>
               -->   
@@ -72,40 +78,90 @@
 							</thead>
 							<tbody>
 								<% if(resp != null) { %>
-								
+									
 									<% for(var i=0; i< resp.length; i++) { %>
 										<tr>
 											<td><%= i + 1 %></td>
-											<td><%=resp[i].codigo_p %></td>
-											<td>algun nombre del paciente</td>
-											<td>algun apellido Paterno del paciente</td>
-											<td>algun apellido Materno del paciente</td>
-											<td><%=resp[i].hora %></td>
-											<td class="text-center"><a href="/emergencia/consulta/<%=resp[i].codigo_p%>/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                                            <td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                                            <!--
-
-											<td class="text-center" ><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                            -->
+											<td><%=resp[i].Historial %></td>
+											<td><%=resp[i].nombre %></td>
+											<td><%=resp[i].apellido1 %></td>
+											<td><%=resp[i].apellido2 %></td>
+											<td><%=resp[i].fechaIngreso %></td>
+											<td><%=resp[i].diagnostico %></td>
+											<td><%=resp[i].tipoConsulta %></td>
+											<td class="text-center" ><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											
 										</tr>
 										<% } %>
 								<% } else { %>
 									<tr>
 										<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
 									</tr>
-								<% } %>
+								<% } %>							
 							</tbody>
 						</table>
 						<ul class="pagination pagination-sm">
 							<li class="disabled"><a href="#!">«</a></li>
 							<li class="active"><a href="#!">1</a></li>
-							<li><a href="#!">2</a></li>
+							<li><a href="#!">2</a></li>	
 							<li><a href="#!">3</a></li>
 							<li><a href="#!">4</a></li>
 							<li><a href="#!">5</a></li>
 							<li><a href="#!">»</a></li>
 						</ul>
 					  </div>
+					  <div class="tab-pane fade" id="listFalse">
+							<table class="fl-table ">
+								<thead>
+									<tr>
+										<th class="text-center">#</th>
+										<th class="" WIDTH="15%">N° de historia </th>
+										<th class="" WIDTH="20%">Nombre del Paciente</th>
+										<th class="" WIDTH="20%">Apellido paterno</th>
+										<th class="" WIDTH="20%">Apellido materno</th>	
+										<th class="" WIDTH="20%">Fecha</th>	
+										<th class="" WIDTH="20%">Motivo de Ingreso</th>	
+										<th class="text-center" WIDTH="20%">Registrar</th>
+										  
+				  <!--
+					 <th class="text-center" WIDTH="20%">Darde Baja</th>
+				  -->   
+									</tr>
+								</thead>
+								<tbody>
+									<% if(listFalse != null) { %>
+										
+										<% for(var i=0; i< listFalse.length; i++) { %>
+											<tr>
+												<td><%= i + 1 %></td>
+												<td><%=listFalse[i].Historial %></td>
+												<td><%=listFalse[i].nombre %></td>
+												<td><%=listFalse[i].apellido1 %></td>
+												<td><%=listFalse[i].apellido2 %></td>
+												<td><%=listFalse[i].fechaIngreso %></td>
+												<td><%=listFalse[i].diagnostico %></td>
+												<td class="text-center" ><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+												
+											</tr>
+											<% } %>
+									<% } else { %>
+										<tr>
+											<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
+										</tr>
+									<% } %>							
+								</tbody>
+							</table>
+							<ul class="pagination pagination-sm">
+								<li class="disabled"><a href="#!">«</a></li>
+								<li class="active"><a href="#!">1</a></li>
+								<li><a href="#!">2</a></li>	
+								<li><a href="#!">3</a></li>
+								<li><a href="#!">4</a></li>
+								<li><a href="#!">5</a></li>
+								<li><a href="#!">»</a></li>
+							</ul>
+						  </div>
+
 					</div>
 				</div>
 			</div>

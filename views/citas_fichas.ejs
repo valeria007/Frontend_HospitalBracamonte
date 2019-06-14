@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
+	<link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
 	<!-- SideBar -->
@@ -23,98 +24,71 @@
 	<div class="container-fluid">
 		<div class="page-header">
 			  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Recerva de Ficha Medica </h1>
-			</div>
 		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12">
-					
-					<div class="tab-content">
-						<div class="tab-pane fade active in" id="newSchool">
-							<div class="container-fluid">
-								<div class="row">
-										<form action="/paciente/cita_medica/<%=id.id %>" method="POST">
-										<div class="container-fluid">
-											<div class="col-md-12 panel-body">
-												
-                       <!-- daros personales-->
-                       <div class="col-md-6">
-                               <p class="lead">Datos Personales </p>
-                       </div>
-                       <div class="col-md-6">
-                               <div class="form-group label-floating">
-																	<label class="control-label">N° de Historia</label>
-																	<input class="form-control" type="text" value="<%=historial	%>" name="codigo_p">
-															</div>
-                        </div>
-													
-																													
-													<!-- lado hizquierdo -->
-															
-													<div class="col-md-6">
-														<div class="form-group label-floating">
-															<label class="control-label">Turno</label>
-															<input class="form-control" type="text" name="turno">
-														</div>
-														<div class="form-group label-floating">
-																<label class="control-label">Medico</label>
-																<input class="form-control" type="text" name="medico">
-														</div>
-													
-													</div>
-													<!--   lado derecho-->
-													<div class="col-md-6">
-														<div class="form-group label-floating">
-																<label class="control-label">Servicio</label>
-																<select class="form-control" name="especialidad">
-																	
-																	<option value="consultaMedica">Consulta Medica</option>
-																	<option value="emergencia">Emergencia</option>
-																
-																</select>
-														</div>
-														<div class="form-group label-floating">
-																<label class="control-label">Hora</label>
-																<input class="form-control" type="text" name="hora">
-														</div>
-													
-														<div class="form-group label-floating">
-																<label class="control-label">Costo</label>
-																<input class="form-control" type="text" name="saldo_total">
-															</div>
-													</div>
-														<!-- lugar donde nacio colum1 -->
-														
-
-															<!-- lugar donde vive columna 2-->
-															
-												<!-- datos familiares  -->			
-												
-												<!-- lugar donde trabajacolum 1-->
-												
-												<!-- lugar donde trabaja colum 2-->
-												
-														
-											</div>
-												<table class="table table-hover text-center">
-													<thead>
-												</table>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-													<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-												</p>
-										</div>
-									</form>
-								</div>
-							</div>
-									
-									
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<form action="/paciente/cita_medica/<%=id.id %>" method="POST">
+				<h3 class="text-center">Datos Personales </h3>
+				<!-- daros personales-->
+				<div class="col-md-12 panel-body">  
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label">Historial Clinico</label>
+							<input class="form-control" type="text" value="<%=historial	%>" name="codigo_p">
 						</div>
-	          		</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label">Servicio</label>
+							<select class="form-control" name="especialidad">
+								<option value="consultaMedica">Consulta Medica</option>
+								<option value="emergencia">Emergencia</option>	
+							</select>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="form-group">
+							<label >Tipo de Paciente: </label>
+							<label class="radio-inline"><input type="radio" name="paciente">Asegurado</label>
+							<label class="radio-inline"><input type="radio" name="paciente">No Asegurado</label>
+						</div>
+					</div>
 				</div>
-			</div>
+				<div class="col-md-12 panel-body">  
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label">Turno</label>
+							<select class="form-control" name="turno">
+								<option value="consultaMedica">Mañana</option>
+								<option value="consultaMedica">Tarde</option>
+								<option value="emergencia">Emergencia</option>	
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Medico</label>
+							<input class="form-control" type="text" name="medico">
+						</div>
+                    </div>
+                    <div class="col-md-6">  
+						<div class="form-group">
+							<label class="control-label">Hora</label>
+							<input class="form-control" type="text" name="hora">
+						</div>
+						<div class="form-group">
+							<label class="control-label">Costo</label>
+							<input class="form-control" type="text" name="saldo_total">
+						</div>        
+                    </div>
+				</div> 	
+				<p class="text-center">
+					<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+					<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+					<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+				</p>
+			</form>								
 		</div>
+	</div>									
 </section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
