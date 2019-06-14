@@ -23,8 +23,11 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    if(resp.success == false){
+    console.log(resp)
+    if(resp.message == 'Autentificacion fallida.'){
       res.send('usted no esta registrado')
+    }else if(resp.success == false){
+      res.send('contraseña incorrecta')
     }else{
       res.redirect('/home')
     }

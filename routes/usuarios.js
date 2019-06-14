@@ -32,7 +32,7 @@ router.get('/usuarios',(req, res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
-        console.log(data.success);
+       // console.log(data.success);
         if (data.success == false){
             res.send(data)
         }else{
@@ -81,7 +81,7 @@ router.get('/UsuraioCuenta/:id', (req,res) => {
   fetch('http://127.0.0.1:3500/usuarios/mostrarCuentas/'+id.id)
         .then(resp => resp.json())
         .then(resp =>{
-          console.log(resp)
+          //console.log(resp)
           if (resp == null){
             res.render('usuarioCuenta',{
               id,
@@ -98,8 +98,9 @@ router.get('/UsuraioCuenta/:id', (req,res) => {
 
 router.post('/crearCuenta/:id', (req,res) => {
   var id = req.params
-  console.log(id, "    este es el id >>>>>>>>>>>>>>>>>>>>>>>>><" )
+  //console.log(id, "    este es el id >>>>>>>>>>>>>>>>>>>>>>>>><" )
   var data = req.body
+  //console.log(data, "  esto quiero");
   var enviar = {
     method: 'POST',
     body: JSON.stringify(data),
@@ -111,6 +112,7 @@ router.post('/crearCuenta/:id', (req,res) => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
+   // console.log(resp)
     res.redirect('/usuarios/UsuraioCuenta/'+id.id)
   })
 });

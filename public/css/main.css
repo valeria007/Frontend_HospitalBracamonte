@@ -92,15 +92,54 @@ body, html{
 .dashboard-sideBar{
 	left: 0;
 	z-index: 2;
-	background-color: #002642;
+	background-image: url('../assets/img/vistaPeque.jpg');
+	border-right: 1px solid rgba(3, 9, 66, 0.493);
 	overflow: hidden;
 }
 .dashboard-sideBar-ct{
 	position: relative;
 	height: 100%;
+	background-color: rgba(0, 38, 66, .77);
 	padding: 0 10px;
 	padding-bottom: 30px;
 }
+/* solo imagen al lado de usuario*/
+.dashboard-sideBar-imag{
+	
+	background-image: url('../assets/img/hospital.jpg');
+	border-right: 1px solid rgba(3, 9, 66, 0.493);
+}
+
+.dashboard-sideBar-ctt{
+	position: relative;
+	height: 100%;
+	background-color: rgba(22, 38, 70, 0.644);
+	padding: 0 10px;
+	
+}
+/*solo fondo*/
+.dashboard-sideBar-imagg{
+	
+	background-image: url('../assets/img/1479.jpg');
+	border-right: 1px solid rgba(3, 9, 66, 0.493);
+}
+.dashboard-sideBar-cttt{
+	position: relative;
+	height: 100%;
+	background-color: rgba(246, 248, 250, 0.253);
+}
+/* solo nav*/
+.dashboard-sideBar-imaggg{
+	
+	background-image: url('../assets/img/prueba1.jpg');
+	border-right: 1px solid rgba(3, 9, 66, 0.493);
+}
+.dashboard-sideBar-ctttt{
+	position: relative;
+	height: 100%;
+	background-color: rgba(0, 38, 66, .77);
+}
+
 .dashboard-sideBar-title,
 .dashboard-sideBar-title > i{
 	height: 50px;

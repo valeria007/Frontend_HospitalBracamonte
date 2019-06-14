@@ -1,132 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>LogIn</title>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Login</title>
 	<link rel="stylesheet" href="/css/login.css">
-	<link rel="stylesheet" href="/css/main.css">
-	
+
+
 </head>
-<body class="cover" style="background-image: url(./assets/img/fonfo2.jpg);"></body>
-	<div class="overlay">
-		<!-- LOGN IN FORM by Omar Dsoky -->
-		<form action="/login" method="POST" autocomplete="off" >
-		   <!--   con = Container  for items in the form-->
-		   <div class="con">
-		   <!--     Start  header Content  -->
-		   <header class="head-form">
-			  <h2>INICIO CUENTA</h2>
-			  <!--     A welcome message or an explanation of the login form -->
-		   </header>
-		   <!--     End  header Content  -->
-		
-		   <div class="field-set">
-			 
-			  <!--   user name -->
-				 <span class="input-item">
-					<i class="zmdi zmdi-account-circle"></i>
-				 </span>
-				<!--   user name Input-->
-				 <input class="form-input" id="UserEmail" type="email" name="correo"  placeholder="@Correo" >
-				 
-			 
-			<br>
-			<br>	 
-			 
-				   <!--   Password -->
-			 
-			  <span class="input-item">
-				<i class="zmdi zmdi-key"></i>
-			   </span>
-			  <!--   Password Input-->
-			  
-			  <input class="form-input" type="password" id="UserPass"  name="contraseña" placeholder="@Contraseña"  >
-			  
-			 
-		<!--      Show/hide password  -->
-			 <span>
-				 
-				<i class="zmdi zmdi-eye" aria-hidden="false"  type="button" id="eye"></i>
-			 </span>
-		   </div>
-			<br>
-			<br>
-			<div class="field-set">
-		<!--        buttons -->
-		<!--      button LogIn -->
-			  <!---->
-			  <div class="form-group text-center">
-				<button class="log-in" value="Iniciar sesión" type="submit"> 
-					INICIAR </button>
-			</div>
-			<div class="col-md-6">
+<body>
+  
+   <div class="container"></div>
 
-					<div class="form-group  ">
-						<button type="button" class="log-in " onclick=location="/HomeVistDoctor" style='width:150px; height:25px'>entra doctor</button> &nbsp;&nbsp; 
-					</div>
-					<div class="form-group ">
-						<button type="button" class="log-in" onclick=location="/cuaderno/cuaderno" style='width:150px; height:25px'>Cuaderno</button> &nbsp;&nbsp; 
-					</div>
-					<div class="form-group ">
-						<button type="button" class="log-in" onclick=location="/almacen" style='width:150px; height:25px'>Farmacia</button> &nbsp;&nbsp; 
-					</div>
-				</div>
-			<div class="col-md-2 ">
-					<div class="form-group ">
-						<button type="button" class="log-in" onclick=location="/emergencia/oneVista" style='width:150px; height:25px'>Emergencia</button> &nbsp;&nbsp; 
-					</div>
-					
-					<div class=" ">
-						<button type="button" class="log-in" onclick=location="/Internaciones/viewTemporal" style='width:150px; height:25px'>Hospitalizacion</button> &nbsp;&nbsp; 
-					</div>
-			</div>
-			
-	
+    <div class="modal">
+       
+            <div class="modal-container">
+                <div class="modal-left">
+                  <h1 class="modal-title">Bienvenido</h1>
+                  <form action="/login" method="POST" autocomplete="off">
+                    <div class="input-block">
+                     <label for="UserEmail" class="input-label">Cuenta</label>
+                     <input type="email" name="correo"  id="UserEmail"  placeholder="cuenta" required="">
+                    </div>
+                    <div class="input-block">
+                    <label for="UserPass" class="input-label">Contraseña</label>
+                    <input type="password" name="contraseña" id="UserPass" placeholder="contraseña" required="">
+                    </div>
+                    <div class="modal-buttons">
+                    <!--<a href="" class="">Forgot your password?</a>-->
+                    <button class="input-button" value="Ingresar">Ingresar</button>
+                    <button  class="" onclick=location="/HomeVistDoctor" style='width:150px; height:25px'>entra doctor</button> <br>
+                    <button  class="" onclick=location="/cuaderno/cuaderno" style='width:150px; height:25px'>Cuaderno</button> <br>
+                    <button  class="" onclick=location="/almacen" style='width:150px; height:25px'>Farmacia</button> <br>
+                    <button  class="" onclick=location="/emergencia/oneVista" style='width:150px; height:25px'>Emergencia</button> <br>
+                    <button  class="" onclick=location="/Internaciones/viewTemporal" style='width:150px; height:25px'>Hospitalizacion</button> <br>
 
-		
-		  
-		<!--   other buttons -->
-		<!--    <div class="other"-->
-	
-			 
-		
-		
-		  
-		  <!-- End Form -->
-		</form>
-		</div>
-	
-	<!--<form action="/login" method="POST" autocomplete="off" class="full-box logInForm">
+                    </div>
+                    <!--<p class="sign-up">Don't have an account? <a href="#">Sign up now</a></p>-->
+                   </div>
+                   </form>
+                <div class="modal-right">
+                  <img src="/assets/img/portada1.jpg" alt="">
+                </div>
+                <button class="icon-button close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                <path d="M 25 3 C 12.86158 3 3 12.86158 3 25 C 3 37.13842 12.86158 47 25 47 C 37.13842 47 47 37.13842 47 25 C 47 12.86158 37.13842 3 25 3 z M 25 5 C 36.05754 5 45 13.94246 45 25 C 45 36.05754 36.05754 45 25 45 C 13.94246 45 5 36.05754 5 25 C 5 13.94246 13.94246 5 25 5 z M 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.980469 15.990234 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 z"></path>
+            </svg>
+                  </button>
+                </div>
+                <button class="modal-button">Click Aqui </button>
+              
+     </div>
 
-		<p class="text-center text-muted"><i class="zmdi zmdi-account-circle zmdi-hc-5x"></i></p>
-		<p class="text-center text-muted text-uppercase">Inicia sesión con tu cuenta</p>
-		<div class="form-group label-floating">
-		  <label class="control-label" for="UserEmail">E-mail</label>
-		  <input class="form-control" id="UserEmail" type="email" name="correo" required>
-		  <p class="help-block">Escribe tú E-mail</p>
-		</div>
-		<div class="form-group label-floating">
-		  <label class="control-label" for="UserPass">Contraseña</label>
-		  <input class="form-control" id="UserPass" type="text" name="contraseña" required>
-		  <p class="help-block">Escribe tú contraseña</p>
-		</div>
-		<div class="form-group text-center">
-			<input type="submit" value="Iniciar sesión" class="btn btn-raised btn-danger">
-		</div>
-		<div class="col-md-6">
-			<button type="button" class="btn btn-info" onclick=location="/HomeVistDoctor">entra doctor</button> &nbsp;&nbsp; 
-		</div>
-		<div class="col-md-6">
-			<button type="button" class="btn btn-info" onclick=location="/cuaderno/cuaderno">Cuaderno</button> &nbsp;&nbsp; 
-		</div>
-		<div class="col-md-6">
-			<button type="button" class="btn btn-info" onclick=location="hospitalizacion">Entra a hospitalizacion</button> &nbsp;&nbsp; 
-		</div>
 
-	<!- Scripts -->
-	<script src="/js/login.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/main.js"></script>	
+
+  
+	<script src="/js/login.js"></script>	
 </body>
 </html>
