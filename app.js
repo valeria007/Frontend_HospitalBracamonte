@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 
 //routas
+
 app.use('/', require('./routes/index'));
 app.use('/paciente', require('./routes/paciente'));
 app.use('/medico', require('./routes/medico'));
@@ -33,6 +34,8 @@ app.use('/cuaderno', require('./routes/cuaderno'));
 app.use('/salas', require('./routes/salas'));
 app.use('/papeletaInternacion', require('./routes/papeletaInternacion'));
 app.use('/Internaciones', require('./routes/Internaciones'));
+app.use('/distribucion', require('./routes/distribucion'));
+app.use('/stock', require('./routes/stock'));
 
 
 app.listen(app.get('port'), () => {

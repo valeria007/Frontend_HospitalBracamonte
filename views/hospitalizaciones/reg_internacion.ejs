@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Formulario de Internacion</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("../partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage">
+		<!-- NavBar -->
+		<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+				<li>
+					<a href="#!" class="btn-search">
+						<i class="zmdi zmdi-search"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+				<h1 class="text-titles"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i>Pacientes Internados</h1>
+			</div>
+        </div>
+        <!--Internacion de Pacientes-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                        <li class="active"><a href="#new" data-toggle="tab">Lista</a></li>
+                        <li><a href="#list" data-toggle="tab">Formulario de Internación</a></li>
+                    </ul>
+                    <!--Lista de Pacientes Internados -->
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active in" id="new">
+                            <h1>alguna cosa biene</h1>
+                        </div>
+                        <!--Registro de  Pacientes Internados-->
+                        <div class="tab-pane fade" id="list">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <form action="/internaciones/internacion" method="POST">
+                                        <h2 class="text-center all-tittles">FORMULARIO DE INTERNCAION</h2>
+                                        <div class="col-md-12 panel-body">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">N° Historial</label>
+                                                        <select class="form-control" name="historial">
+                                                            <option><%=Pint[0].Historial%></option>
+                                                           
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Edad</label>
+                                                        <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.edad%>">    
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Fecha de Ingreso a Sala</label>
+                                                        <input class="form-control" type="date" name="fechaIngreso">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Nombres y Apellidos</label>
+                                                        <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.nombre%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidop%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidom%>">
+                                                    </div>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Tipo de Paciente</label>
+                                                        <select class="form-control" name="tipoPaciente">
+                                                            <option>INSTITUCIONAL</option>
+                                                            <option>COMBENIO</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Institucion</label>
+                                                        <select class="form-control" name="institucion">
+                                                            <option>NINGUNO</option>
+                                                            <option>CAJA NACIONAL DE SALUD</option>
+                                                            <option>CAJA PETROLERA DE SALUD</option>
+                                                            <option>SEGURO UNIVERSITARIO</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Proviene de:</label>
+                                                        <select class="form-control" name="provieneDE">
+                                                            <option>CONSULTA EXTERNA</option>
+                                                            <option>EMERGENCIA</option>
+                                                            <option>TRASPAZO</option>
+                                                        </select>
+                                                    </div>               
+                                                </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Observaciones</label>
+                                                <input class="form-control" type="text" name="observacion">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 panel-body">
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <div class="form-group label-floating" id="options">
+                                                        <label class="control-label"  >Especialidad</label>
+                                                        <select class="form-control" name="especialidad" id="selects">
+                                                            
+                                                            <option value="">  </option>
+                                                            
+                                                
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group label-floating" >
+                                                        <label class="control-label">Descricion</label>
+                                                        <select class="form-control" name="sala" id="salas">
+                                                            <option value=""></option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Cama</label>
+                                                        <select class="form-control" name="cama">
+                                                            <option>Cama 1</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre Doctor</label>
+                                                <select class="form-control" name="doctor">
+                                                    <option>Dr. Luis Copa</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Diagnostico de Prescripcion</label>
+                                                <input class="form-control" type="text" name="diagnostico">
+                                            </div>
+                                        </div>
+                                        <p class="text-center">
+                                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	    </section>
+	<!--====== Scripts -->
+    <%- include("../partials/scripts") -%>
+    <script src="/js/get/getECP.js"></script>
+</body>
+</html>

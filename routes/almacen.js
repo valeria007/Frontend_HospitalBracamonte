@@ -3,13 +3,16 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 
-///estos serv son para añadir a la tabla o al modelo grupo Asignacion
+router.get('/home', (req,res) => {
+    res.render('Almacen/home');
+});
 
+///estos serv son para añadir a la tabla o al modelo grupo Asignacion
 router.get('/grupoAsig',(req, res) => {
     fetch('http://localhost:3500/api/asignacion')   
         .then(resp => resp.json())
         .then(resp =>{
-            res.render('grupoAsig',{resp});
+            res.render('Almacen/grupoAsig',{resp});
     })
     .catch(error => {
         console.error('Error:', error)
@@ -44,7 +47,7 @@ router.get('/GrupoAsigONLY/:id', (req,res) => {
     fetch('http://localhost:3500/api/GrupoAsigONLY/'+id.id)   
         .then(resp => resp.json())
         .then(resp =>{
-            res.render('grupoAsigUPDATE',{resp});
+            res.render('Almacen/grupoAsigUPDATE',{resp});
     })
     .catch(error => {
         console.error('Error:', error)

@@ -8,7 +8,7 @@ router.get('/proveedores',(req, res) => {
   fetch(url+'/proveedor')   
       .then(resp => resp.json())
       .then(resp =>{
-          res.render('proveedores',{
+          res.render('Almacen/proveedores',{
             resp
           })
     })
@@ -42,7 +42,7 @@ router.get('/OnlyProveedor/:id', (req,res) => {
   fetch(url+'/OnlyProveedor/'+id.id)   
       .then(resp => resp.json())
       .then(resp =>{
-          res.render('proveedorUPdate',{
+          res.render('Almacen/proveedorUPdate',{
             resp
           });
     })
