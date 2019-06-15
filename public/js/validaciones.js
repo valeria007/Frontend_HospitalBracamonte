@@ -34,8 +34,6 @@ function validar() {
       alert("ci invalido")
     }
     
-   
-
     
   
   }
@@ -72,7 +70,7 @@ $(document).ready(function() {
         if(correo == ""){
           $('#error3').text("La dirección de correo electrónico es obligatoria.").css("color","red");
         }else{
-          fetch('http://localhost:3500/usuarios/usersAll')
+          fetch('http://localhost:3600/usuarios/usersAll')
             .then(res => res.json())
             .then(data =>{                
               const resultado = data.find( traer => traer.correo === correo );              

@@ -3,7 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/usuarios',(req, res) => {
-    fetch('http://127.0.0.1:3500/personal/personal/')
+    fetch('http://127.0.0.1:3600/personal/personal/')
         .then(resp => resp.json())
         .then(resp =>{
         res.render('usuarios',{resp, msg });
@@ -30,7 +30,7 @@ router.get('/usuarios',(req, res) => {
           'Content-type' : "application/json"
         }
     };
-    fetch('http://127.0.0.1:3500/personal/personal/',esto)
+    fetch('http://127.0.0.1:3600/personal/personal/',esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
@@ -49,7 +49,7 @@ router.get('/usuarios',(req, res) => {
   });
 router.get('/usuarios/:id',(req, res) => {
   var id = req.params;
-  fetch('http://127.0.0.1:3500/personal/OnlyPersonal/'+id.id)
+  fetch('http://127.0.0.1:3600/personal/OnlyPersonal/'+id.id)
       .then(resp => resp.json())
       .then(resp =>{
       res.render('usuarioUpdate',{
@@ -69,7 +69,7 @@ router.post('/updatePersonal/:id',(req,res) => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://127.0.0.1:3500/personal/updatePersonal/'+id.id,enviar)
+  fetch('http://127.0.0.1:3600/personal/updatePersonal/'+id.id,enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
@@ -80,7 +80,7 @@ router.post('/updatePersonal/:id',(req,res) => {
 
 router.get('/UsuraioCuenta/:id', (req,res) => {
   var id = req.params
-  fetch('http://127.0.0.1:3500/usuarios/mostrarCuentas/'+id.id)
+  fetch('http://127.0.0.1:3600/usuarios/mostrarCuentas/'+id.id)
         .then(resp => resp.json())
         .then(resp =>{
           //console.log(resp)
@@ -110,7 +110,7 @@ router.post('/crearCuenta/:id', (req,res) => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://127.0.0.1:3500/usuarios/userCuenta/'+id.id,enviar)
+  fetch('http://127.0.0.1:3600/usuarios/userCuenta/'+id.id,enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
