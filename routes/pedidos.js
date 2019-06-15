@@ -84,7 +84,7 @@ router.get('/carrito/:id', (req,res)=>{
                 price: resp[0].precio
             }
             cart(car,id.id)
-            console.log (totalPrice);
+            console.log (car);
             res.redirect('/pedidos/pedidos');
     })
     .catch(error => {
