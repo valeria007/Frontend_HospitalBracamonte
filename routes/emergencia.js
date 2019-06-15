@@ -398,6 +398,7 @@ router.get('/ListPInter/:id/:historial', (req,res) => {
     fetch('http://localhost:3000/api/ListPinternaciones/'+id_Historial.historial)
     .then(resp => resp.json())
     .then(resp =>{  
+        console.log(resp, " <<<<<<<<<<esto no esta dando")
         listPinter = resp;
         res.redirect('/emergencia/updatePinternacion/'+id_Historial.id); 
     })        
