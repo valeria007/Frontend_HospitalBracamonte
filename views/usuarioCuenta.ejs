@@ -42,7 +42,8 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-xs-12 col-md-10 col-md-offset-1">
-											<form action="/usuarios/crearCuenta/<%=id.id%>" method="POST">				
+											<form action="/usuarios/crearCuenta/<%=id.id%>" method="POST">
+												
 												<div class="form-group label-floating">
 													<label class="control-label">Correo</label>
 													<input class="form-control" type="email" name="correo" id="correo">
@@ -94,7 +95,6 @@
 										<tbody>
 											<% for (var i=0; i< resp.length; i++) { %>
 											<tr>
-											<td><%= i + 1 %></td>
 											
 											<td><%=resp[i].correo %></td>
 											

@@ -14,8 +14,8 @@ function validar() {
       alert("Todos los campos son obligados");
       return false;
     }
-    else if(telefono.length < 10){
-        alert("Por favor numero valido");
+   else if(telefono.length < 7){
+        alert("Por favor numero valido telefono");
         return false;
     }
     else if(isNaN(telefono)){
@@ -65,7 +65,9 @@ $(document).ready(function() {
   
 
   });
+ 
   $("#correo").keyup(function() {
+    
         var correo = $('#correo').val();
         if(correo == ""){
           $('#error3').text("La dirección de correo electrónico es obligatoria.").css("color","red");
@@ -75,6 +77,7 @@ $(document).ready(function() {
             .then(data =>{                
               const resultado = data.find( traer => traer.correo === correo );              
               if(resultado != null){
+                var msg;
                 $('#su').text("Ese email ya esta en uso. Prueba con otro").css("color","red")
               }else{
                 $('#su').text("puede continuar").css("color","green");
