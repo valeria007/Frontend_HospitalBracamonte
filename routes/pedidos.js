@@ -11,7 +11,7 @@ router.get('/pedidos',(req, res) => {
         .then(resp =>{
             var esot = generateArray()
             //console.log(esot, "  esto es lo que quiero")
-            res.render('pedidos',{
+            res.render('Almacen/pedidos',{
                 proveedor,
                 resp,
                 products : generateArray(),
