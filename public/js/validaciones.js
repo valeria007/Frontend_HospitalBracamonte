@@ -1,20 +1,42 @@
 
 function validar() {
-    var telefono;
+    var telefono,nombre,apellidop, apellidom, ci, cargo, dirección, letras ;
     telefono = document.getElementById("telefono").value;
-  
-    if (telefono === ""){
-      alert("Introduzca telefono ");
+    nombre = document.getElementById("nombre").value;
+    apellidop = document.getElementById("apellidop").value;
+    apellidom = document.getElementById("apellidom").value;
+    ci = document.getElementById("ci").value;
+    cargo = document.getElementById("cargo").value;
+    dirección = document. getElementById("direccion").value;
+    //letras = /[a-z]/;
+
+    if (telefono === "" || nombre === "" || apellidop ==="" || apellidom === "" || ci === "" || cargo === "" || dirección === ""){
+      alert("Todos los campos son obligados");
       return false;
-    }else if(telefono.length <7){
-        alert("Por favor introduzca un numero de telefono válido");
+    }
+    else if(telefono.length < 10){
+        alert("Por favor numero valido");
         return false;
-  
     }
     else if(isNaN(telefono)){
         alert("introduzca un numero de telefono válido");
         return false;
     }
+    else if(nombre.length > 20 ){
+      alert("El nombre es muy largo ");
+      return false;
+    }
+    else if(apellidop.length > 20){
+      alert("el apellido es muy largo")
+      return false;
+    }
+    else if(ci.length >20){
+      alert("ci invalido")
+    }
+    
+   
+
+    
   
   }
 
@@ -42,6 +64,7 @@ $(document).ready(function() {
     else{
       $('#error2').text("Las contraseñas no Coinciden!").css("color","red");
     }
+  
 
   });
   $("#correo").keyup(function() {
@@ -62,6 +85,6 @@ $(document).ready(function() {
         }
     
     });
-  
+
     
 })

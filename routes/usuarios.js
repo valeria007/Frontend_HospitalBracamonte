@@ -15,11 +15,13 @@ router.get('/usuarios',(req, res) => {
 });
   var msg;
   router.post('/usuarios', (req,res) => {
+    var nombre = req.body.nombre;
     var telefono = req.body.telefono;
     if(telefono == ""){
       msg = "introdusca telefono";
       res.redirect('/usuarios/usuarios');
-    }else{
+    }
+    else{
       var data = req.body;
       var esto = {
         method: 'POST',
