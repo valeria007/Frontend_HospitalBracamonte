@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+router.get('/medico',(req,res) => {
+    res.render('HomeVistDoctor');
+});
+
 // 1
 router.get('/ConsultaMedica/:id',(req, res) => {
     var id = req.params
@@ -272,6 +276,52 @@ router.get('/PapeletaINT/:id/:historial/:tipoConsulta', (req,res) => {
             res.send("no hay coneccion con el servidor");
         })
     
+});
+
+
+//reconsulta
+// este serv va servir para traer citas tipo solo consultas
+router.get('/listRegConsulta/:id', (req, res) => {
+    var DogOenf = req.params.id; // esto es para saver si es doctor o enfermera
+    if (dataEmergencia == null){
+        res.redirect('/emergencia/oneVista');
+    }
+    fetch('http://localhost:3000/api/PacienteCita/consulta') //esta ruta solo trae las citas de tipo emergencia y que el estado sea true
+        
+    .then(resp => resp.json())
+    .then(resp =>{ 
+        if(resp == ""){                
+            res.render('ListaConsultaMedicaDoc',{resp});
+        }else{
+            res.render('ListaConsultaMedicaDoc',{resp});
+        }
+
+    
+          
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+   
+});
+
+
+//para recervar reconsulta
+// ruta para traer citas medicas ya llenadas su formulario
+var dataEmergencia; //esta variable tarea datos las citas que ya fueron llenados su diagnostico
+router.get('/dataConsulta/:id', (req,res) => {
+    var DogOenf = req.params.id;
+    fetch('http://localhost:3000/api/OnlyConsulta') //esta ruta solo trae las citas de tipo emergencia y que el estado sea true
+        .then(resp => resp.json())
+        .then(resp =>{ 
+            dataEmergencia = resp;
+            res.redirect('/medico/listRegConsulta/'+DogOenf)
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
 });
 
 module.exports = router;

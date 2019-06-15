@@ -32,12 +32,61 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-						<li class="active"><a href="#new" data-toggle="tab">Lista de Usuarios</a></li>
-						<li><a href="#list" data-toggle="tab">Nuevo Usuario</a></li>
+						<li class="active"><a href="#list" data-toggle="tab">Nuevo Usuario</a></li>
+						<li ><a href="#new" data-toggle="tab">Lista de Usuarios</a></li>
+
 					</ul>
 					<!-- nuevos Usuarios -->
 					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade active in" id="new">
+						<!--Nuevo Usuarios-->
+						<div class="tab-pane fade active in" id="list">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-12 col-md-10 col-md-offset-1">
+											<form action="/usuarios/usuarios" method="POST" onsubmit="return validar()">
+												<%if (msg) {%>
+													<h1><%=msg%></h1>
+												<% } %>
+		
+																
+												<div class="form-group label-floating ma">
+													<label class="control-label">Nombre</label>
+													<input class="form-control " class="MAYUSCULAS"  type="text" name="nombre" id="nombre" >
+												</div>
+												<div class="form-group label-floating ma">
+													<label class="control-label">Apellido Paterno</label>
+													<input class="form-control"  type="text" name="apellidop" id="apellidop" >
+												</div>
+												<div class="form-group label-floating ma">
+													<label class="control-label">Apellidos Meterno</label>
+													<input class="form-control" type="text" name="apellidom" id="apellidom" >
+												</div>
+												<div class="form-group label-floating  ">
+													<label class="control-label">CI.</label>
+													<input class="form-control" type="text" name="ci" id="ci" >
+												</div>
+												<div class="form-group label-floating ma ">
+													<label class="control-label">Cargo</label>
+													<input class="form-control" type="text" name="cargo" id="cargo" >
+												</div>
+												<div class="form-group label-floating ma">
+													<label class="control-label">Direccion</label>
+													<input class="form-control" type="text" name="direcion" id="direccion" >
+												</div>
+												<div class="form-group label-floating">
+													<label class="control-label">Telefono</label>
+													<input class="form-control" type="text" name="telefono" id="telefono" >
+												</div>
+												<p class="text-center">
+													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+												</p>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						<div class="tab-pane fade " id="new">
 							<p class="text-center">
 								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
 							</p>
@@ -50,7 +99,6 @@
 									<table class="fl-table">
 										<thead>
 											<tr>
-											<th>#</th>
 											<th>Nombre</th>
 											<th>Apellido Paterno</th>
 											<th>Apellido Materno</th>
@@ -68,7 +116,6 @@
 												
 												<% for(var i=0; i< resp.length; i++) { %>
 													<tr>
-													<td><%= i + 1 %></td>
 													<td><%=resp[i].nombre %></td>
 													<td><%=resp[i].apellidop %></td>
 													<td><%=resp[i].apellidom %></td>
@@ -85,93 +132,9 @@
 								</div>
 							</div>
 						</div>
-						<!--Nuevo Usuarios-->
-						<div class="tab-pane fade" id="list">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-xs-12 col-md-10 col-md-offset-1">
-										<form action="/usuarios/usuarios" method="POST" onsubmit="return validar()">
-											<%if (msg) {%>
-												<h1><%=msg%></h1>
-											<% } %>
-											<div class="form-group label-floating">
-												<label class="control-label">Nombre</label>
-												<input class="form-control" type="text" name="nombre" id="nombre" required="">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Apellido Paterno</label>
-												<input class="form-control" type="text" name="apellidop" required="" >
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Apellidos Meterno</label>
-												<input class="form-control" type="text" name="apellidom" required="">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">CI.</label>
-												<input class="form-control" type="text" name="ci"required="">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Cargo</label>
-												<input class="form-control" type="text" name="cargo"required="">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Direccion</label>
-												<input class="form-control" type="text" name="direcion" required="">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Telefono</label>
-												<input class="form-control" type="text" name="telefono" id="telefono" >
-											</div>
-											<p class="text-center">
-												<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-												<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-											</p>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Lista de Usuarios-->
-						<div class="tab-pane fade" id="list">
-							<p class="text-center">
-								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-							</p>
-							<div class="table-responsive">
-								<div class="table-wrapper">
-									<table class="fl-table">
-										<thead>
-										<tr>
-										<th>#</th>
-										<th>Nombre</th>
-										<th>Apellido Paterno</th>
-										<th>Apellido Materno</th>
-										<th>C.I.</th>
-										<th>Cargo</th>
-										<th>Modificar</th>
-										<th>Dar de Baja</th>
-										<th>Registtrar Cuenta</th>
-										</tr>
-										</thead>
-										<tbody>
-										<% for(var i=0; i< resp.length; i++) { %>
-										<tr>
-										<td><%= i + 1 %></td>
-										<td><%=resp[i].nombre %></td>
-										<td><%=resp[i].apellidop %></td>
-										<td><%=resp[i].apellidom %></td>
-										<td><%=resp[i].ci %></td>
-										<td><%=resp[i].cargo %></td>										
-										<td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-										<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-										<td><a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-										</tr>
-										<% } %>			
-										<tbody>
-									</table>
-								</div>
-							</div>
-						</div>
+						
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -179,5 +142,6 @@
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
 	<script src="/js/validaciones.js"></script>	
+	
 </body>
 </html>
