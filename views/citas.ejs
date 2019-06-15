@@ -24,38 +24,20 @@
 		<div class="page-header">
 			<h1 class="text-titles"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Citas</h1>
 		</div>
-		<div class="col-md-12 ">
-				<div class="col-md-2 "></div>
-			<div class="col-md-6 ">
-				<form class="example" action="">
-					<div class="col-md-9">
-				   		<input type="text" placeholder="Search.." name="search">
-				  		<button type="submit"><i class="zmdi zmdi-search zmdi-hc-1x"></i></button>
-					</div>
-								   
-				</form>
-			</div>
-			<div class="col-md-4 ">
-				<p class="">
-					<button type="button" class="btn btn-info" onclick=location="/paciente/reg_paciente"> Nuevo Paciente</button> &nbsp;&nbsp;
-			 	</p>
-			</div>
-
-		</div>
-
-
-
-  	</div>
+	</div>
+	<p class="text-center">
+		<button type="button" class="btn btn-info btn-lg" onclick=location="/paciente/reg_paciente"> Nuevo Paciente</button> &nbsp;&nbsp;
+	</p>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-20 col-md-10 col-md-offset-1">
-				
+			<div class="col-md-12">
 				<ul class="nav nav-tabs" style="margin-bottom: 15px;">
 					<li class="active"><a href="#Cita" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Dar Cita Médica </a></li>
-				  	<li><a href="#Reconsulta" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Dar Reconsulta</a></li>
+				  <li><a href="#Reconsulta" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Dar Reconsulta</a></li>
 				</ul>
+				<!--Dar cita medica-->
 				<div id="myTabContent" class="tab-content">
-				  	<div class="tab-pane fade active in" id="Cita">
+				  <div class="tab-pane fade active in" id="Cita">
 						<div class="table-responsive" >
 							<table class="fl-table">
 							  <thead>
@@ -65,60 +47,53 @@
 								  	<th class="" WIDTH="30%">Apellido </th>
 								  	<th class="" WIDTH="20%">ci</th>
 								  	<th class="text-center" WIDTH="20%">Fichaje</th>
-									<th class="text-center" WIDTH="20%">Modificar</th>
 								  </tr>
 							  </thead>
-						  		<tbody>
+						  	<tbody>
 							  	<% for(var i=0; i < resp.length; i++) { %>
-							  	  <tr>
+							  	<tr>
 							  		<td><%= i + 1 %></td>
 							  		<td><%=resp[i].nombre %></td>
 							  		<td><%=resp[i].apellidop %></td>
 							  		<td><%=resp[i].ci %></td>
 							  		<td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td>
-							  		<td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-							  	  </tr>
+							  	</tr>
 							  	<% } %>
-						  		</tbody>
-					  		</table>
-				  		</div>
-					  </div>
-					  <!-- Recerva-->
-					  <div class="tab-pane fade " id="Reconsulta">
-							<div class="table-responsive" >
-								<table class="fl-table">
-								  <thead>
-									  <tr>
+						  	</tbody>
+					  	</table>
+				  	</div>
+					</div>
+					<!-- Dar reconsulta-->
+					<div class="tab-pane fade " id="Reconsulta">
+						<div class="table-responsive" >
+							<table class="fl-table">
+								<thead>
+									<tr>
 										<th class="text-center">#</th>
-										  <th class="" WIDTH="30%">Name </th>
-										  <th class="" WIDTH="30%">Apellido </th>
-										  <th class="" WIDTH="20%">ci</th>
-										  <th class="text-center" WIDTH="20%">Fichaje</th>
-										<th class="text-center" WIDTH="20%">Modificar</th>
-									  </tr>
-								  </thead>
-									  <tbody>
-									  <% for(var i=0; i < resp.length; i++) { %>
-										<tr>
-										  <td><%= i + 1 %></td>
-										  <td><%=resp[i].nombre %></td>
-										  <td><%=resp[i].apellidop %></td>
-										  <td><%=resp[i].ci %></td>
-										  <td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td>
-										  <td class="text-center" ><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-										</tr>
-									  <% } %>
-									  </tbody>
-								  </table>
-							  </div>
-						  </div>
-					
-
+										<th class="" WIDTH="30%">Name </th>
+										<th class="" WIDTH="30%">Apellido </th>
+										<th class="" WIDTH="20%">ci</th>
+										<th class="text-center" WIDTH="20%">Re Consulta</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% for(var i=0; i < resp.length; i++) { %>
+									<tr>
+										<td><%= i + 1 %></td>
+										<td><%=resp[i].nombre %></td>
+									  <td><%=resp[i].apellidop %></td>
+									  <td><%=resp[i].ci %></td>
+										<td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td> 
+									</tr>
+									<% } %>
+								</tbody>
+						  </table>
+							</div>
+						</div>
+					</div>
 				</div>
-
 			</div>
 		</div>
-	</div>
 </section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>

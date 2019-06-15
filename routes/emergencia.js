@@ -14,6 +14,9 @@ router.get('/homeEmergencia/:id', (req, res) => {
         DogOenf //esta variable solo es para saver si es doct@r o enfermer@
     });
 });
+router.get('/pacientes_emer', (req, res) => {
+    res.render('emergencias/pacientes_emer');
+});
 
 // este serv va servir para traer citas tipo solo emergencia
 router.get('/listEmergencia/:id', (req, res) => {

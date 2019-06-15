@@ -145,4 +145,5 @@ router.get('/emergencia', (req,res) => {
   res.render('emergencias/homeEmergencia')
 });
 
+
 module.exports = router;

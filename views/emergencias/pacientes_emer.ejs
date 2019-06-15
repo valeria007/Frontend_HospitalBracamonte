@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Emergencia</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("../partials/head") -%>
+</head>
+<body>
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- SideBar Menu Hospital-->
+    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+		<li>
+			<a href="/emergencia/homeEmergencia">
+			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home </a>
+		</li>
+		<!-- Emergencias -->
+		<li>
+			<a href="#!" class="btn-sideBar-SubMenu">
+			<i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>		</a>
+			<ul class="list-unstyled full-box">
+				<li><a href="/emergencia/dataEmergencia"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
+			</ul>
+		</li>
+	</ul>
+	<%- include("partials/menuFooter") -%>
+	<!-- Content page-->
+<section class="full-box dashboard-contentPage">
+	<!-- NavBar -->
+	<nav class="full-box dashboard-Navbar">
+		<ul class="full-box list-unstyled text-right">
+			<li class="pull-left">
+		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+			</li>
+		</ul>
+	</nav>
+	<!-- Content page -->
+	<div class="container-fluid">
+		<div class="page-header">
+			<h1 class="text-titles"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i> Pacientes  </h1>
+		</div>
+	</div>
+	<!--Listas de Emergencias-->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- PAcientes no Atendidos-->
+				<p class="text-center">
+						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+					</p>
+						<div class="table-responsive" >
+							<table class="fl-table">
+								<thead>
+									  <tr>
+										<th class="text-center">#</th>
+										<th class="" WIDTH="15%">N° de historia </th>
+										<th class="" WIDTH="20%">Nombre del Paciente</th>
+										<th class="" WIDTH="20%">Apellido paterno</th>
+										<th class="" WIDTH="20%">Apellido materno</th>	
+										<th class="" WIDTH="20%">Fecha</th>	
+										<th class="text-center" WIDTH="20%">Opciones</th> 
+									  </tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+	  			
+						</div>
+					</div>
+</section>
+	<!--====== Scripts -->
+	<%- include("../partials/scripts") -%>
+</body>
+</html>
