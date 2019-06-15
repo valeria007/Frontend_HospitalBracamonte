@@ -22,21 +22,6 @@ module.exports = {
       Historial: {
         type: Sequelize.INTEGER
       },
-      nombre: {
-        type: Sequelize.TEXT
-      },
-      apellido1: {
-        type: Sequelize.TEXT
-      },
-      apellido2: {
-        type: Sequelize.TEXT
-      },
-      sexo: {
-        type: Sequelize.STRING
-      },
-      edad: {
-        type: Sequelize.STRING
-      },
       nombreDoctor: {
         type: Sequelize.TEXT
       },

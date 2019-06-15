@@ -11,17 +11,8 @@ module.exports = {
       historial: {
         type: Sequelize.INTEGER
       },
-      nombre: {
-        type: Sequelize.TEXT
-      },
-      apellido1: {
-        type: Sequelize.TEXT
-      },
-      apellido2: {
-        type: Sequelize.TEXT
-      },
-      edad: {
-        type: Sequelize.INTEGER
+      fechaIngreso: {
+        type: Sequelize.STRING
       },
       tipoPaciente: {
         type: Sequelize.STRING
@@ -50,15 +41,24 @@ module.exports = {
       diagnostico: {
         type: Sequelize.TEXT
       },
-      IDemergencia: {
-        type: Sequelize.INTEGER
-      },
-      IDConsulta: {
-        type: Sequelize.INTEGER
-      },
       IDsala: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Salas',
+          key: 'id',
+          as: 'IDsala'
+        }
       },
+      idPinternacion: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'PapeletaInternacions',
+          key: 'id',
+          as: 'idPinternacion'
+        }
+      },      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

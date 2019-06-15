@@ -7,6 +7,7 @@ import Consulta from '../controllers/consultas';
 import Receta from '../controllers/recetas';
 import papeletaInt from '../controllers/papeletaInternacion';
 import Emergencias from '../controllers/emergencia';
+import Intern from '../controllers/internacion';
 
 
 export default (app) => {
@@ -21,14 +22,15 @@ app.get('/api/servicios', Serv.ver);
 app.get('/api/servOne/:id', Serv.listOne);
 app.post('/api/UpdateServicios/:id', Serv.modify); 
 app.get('/api/DElserv/:id', Serv.delete);
-
+app.get('/api/dataESC', Serv.dataESC)
 //salas
 app.post('/api/sala', Salas.enviarSala);
 app.get('/api/sala', Salas.listSala);
 app.get('/api/salaOne/:id', Salas.one);
 app.post('/api/UpdateSalas/:id', Salas.update); 
 app.get('/api/DElsala/:id', Salas.del);
-app.get('/api/ServSalas/:id', Salas.oneSala); //
+app.get('/api/ServSalas/:id', Salas.oneSala); //para sacar la sala segun el nombre de especialidad
+app.get('/api/ServSalasN/:especialidad', Salas.oneSalaNombre);
 
 //camas
 app.post('/api/camaSala/:salaID', Camas.sendCama);
@@ -84,6 +86,7 @@ app.get('/api/ListPinternaciones/:historial', papeletaInt.ListPinternacion); // 
 app.post('/api/updatePinternacion/:id', papeletaInt.upinternacion);
 app.get('/api/PinterTrue', papeletaInt.PINterTRUE);// serv para traer papeleta de internacion de tipo true
 app.get('/api/PinterFalse', papeletaInt.PINterFALSE);// serv para traer papeleta de internacion de tipo false
+app.get('/api/one_Pinternacion/:id', papeletaInt.idPinternacion); // 
 
 //Emergencia
 app.post('/api/emeregencia/:idCita', Emergencias.Emergencia);
@@ -93,5 +96,9 @@ app.get('/api/OnlyEmergencia/:historial', Emergencias.emergenciaH); // muestra t
 app.post('/api/updateEmergencia/:id', Emergencias.updateEmergencia);
 app.get('/api/emergenciaData/:id', Emergencias.dataEmergecnai); // este serv sirve para mostrar emergencia segun id
 app.get('/api/EmergenciaP/:id', Emergencias.emergenciaP); // esta ruta sirve para mostrar una emergencia del paciente segun si id de la emergencia
+
+//Internaciones
+app.post('/api/internaciones', Intern.Internacion);
+app.get('/api/internciones', Intern.listInternaciones);
 
 };

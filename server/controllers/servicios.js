@@ -2,6 +2,8 @@ import model from '../models';
 //import { QueryInterface } from 'sequelize/types';
 
     const { Especialidad } = model;
+    const { Salas } = model;
+    const { Camas } = model;
     
     class Servicio {
         static serv(req, res) {
@@ -78,7 +80,25 @@ import model from '../models';
             })
             .catch(error => res.status(400).send(error))
         }
+        //servicio para traer de especialidad sus salas, de salas sus camas que tiene
+        static dataESC(req,res){
+          
+          Especialidad.findAll({
+            
+            //attributes: ['id','estado','codigo_p','hora','especialidad'],
+            include: [
+              { model: Salas, 
+                include:[ { model: Camas } ]
+              }
+            ]
+          }).then(users => {
+            res.status(200).send(users)
+          })
+      }
+
     }
+
+    
 
 
     export default Servicio;

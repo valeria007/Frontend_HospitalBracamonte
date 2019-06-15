@@ -1,10 +1,12 @@
 import model from '../models';
 
 const { PapeletaInternacion } = model;
-
+const { emergencia } = model;
+const { Citas_Medicas } = model;
+const { Pacientes } = model;
 class papeletaInt{
     static enviarPapeletaINT(req, res){
-          const { estado,tipoConsulta,fechaIngreso, Historial, nombre,apellido1,apellido2,sexo,edad,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
+          const { estado,tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
           const { idConsultaMedica } = req.params
           const { idEmergencia } = req.params
           return PapeletaInternacion
@@ -13,11 +15,6 @@ class papeletaInt{
             tipoConsulta,
             fechaIngreso, 
             Historial, 
-            nombre,
-            apellido1,
-            apellido2,
-            sexo,
-            edad,
             nombreDoctor,
             apellidoD1,
             apellidoD2,
@@ -75,15 +72,25 @@ class papeletaInt{
     static ListPinternacion(req, res){                
       var historial = req.params.historial;
       PapeletaInternacion.findAll({
-          where: { Historial: historial, tipoConsulta : 'emeregencia' }
-          //attributes: ['id', ['description', 'descripcion']]
+          where: { Historial: historial, tipoConsulta : 'emeregencia' } ,
+           //attributes: ['id', ['description', 'descripcion']]
+          include: [
+            { model: emergencia, attributes:[ 'id'],
+            include:[
+              { model: Citas_Medicas, attributes:['id'],
+            include:[
+              {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+            ] }
+            ]
+           }
+          ]
         }).then((resp) => {
           res.status(200).json(resp);
         });     
     }
     static upinternacion(req, res) {
       console.log(req.body, " <<<<<<<<<<<<<<<<<<<<<")
-      const { tipoConsulta,fechaIngreso, Historial, nombre,apellido1,apellido2,sexo,edad,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
+      const { tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
       return PapeletaInternacion
         .findByPk(req.params.id)
         .then((data) => { 
@@ -91,11 +98,6 @@ class papeletaInt{
             tipoConsulta: tipoConsulta || data.tipoConsulta,
             fechaIngreso: fechaIngreso || data.fechaIngreso,  
             Historial: Historial || data.Historial,  
-            nombre: nombre || data.nombre,  
-            apellido1: apellido1 || data.apellido1,  
-            apellido2: apellido2 || data.apellido2,  
-            sexo: sexo || data.sexo,  
-            edad: edad || data.edad, 
             nombreDoctor: nombreDoctor || data.nombreDoctor,                    
             apellidoD1: apellidoD1 || data.apellidoD1,                    
             apellidoD2: apellidoD2 || data.apellidoD2,
@@ -109,11 +111,6 @@ class papeletaInt{
                 tipoConsulta: tipoConsulta || update.tipoConsulta,
                 fechaIngreso: fechaIngreso || update.fechaIngreso,  
                 Historial: Historial || update.Historial,  
-                nombre: nombre || update.nombre,  
-                apellido1: apellido1 || update.apellido1,  
-                apellido2: apellido2 || update.apellido2,  
-                sexo: sexo || update.sexo,  
-                edad: edad || update.edad, 
                 nombreDoctor: nombreDoctor || update.nombreDoctor,                    
                 apellidoD1: apellidoD1 || update.apellidoD1,                    
                 apellidoD2: apellidoD2 || update.apellidoD2,
@@ -128,8 +125,18 @@ class papeletaInt{
   // este serv va a mostrar los datos de tipo true solamente
   static PINterTRUE(req, res){                
     PapeletaInternacion.findAll({
-        where: { estado: true }
+        where: { estado: true },
         //attributes: ['id', ['description', 'descripcion']]
+        include: [
+          { model: emergencia, attributes:[ 'id'],
+          include:[
+            { model: Citas_Medicas, attributes:['id'],
+          include:[
+            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+          ] }
+          ]
+         }
+        ]
       }).then((resp) => {
         res.status(200).json(resp);
       });     
@@ -137,11 +144,42 @@ class papeletaInt{
   // este serv va a mostrar los datos de tipo false solamente
   static PINterFALSE(req, res){                
     PapeletaInternacion.findAll({
-        where: { estado: false }
+        where: { estado: false },
         //attributes: ['id', ['description', 'descripcion']]
+        include: [
+          { model: emergencia, attributes:[ 'id'],
+          include:[
+            { model: Citas_Medicas, attributes:['id'],
+          include:[
+            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+          ] }
+          ]
+         }
+        ]
       }).then((resp) => {
         res.status(200).json(resp);
       });     
-  }}
+  }
+  // para traer una sola papeleta de internacion
+  static idPinternacion(req, res){ 
+    const { id } = req.params;               
+    PapeletaInternacion.findAll({
+        where: { id: id },
+        //attributes: ['id', ['description', 'descripcion']]
+        include: [
+          { model: emergencia, attributes:[ 'id'],
+          include:[
+            { model: Citas_Medicas, attributes:['id'],
+          include:[
+            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+          ] }
+          ]
+         }
+        ]
+      }).then((resp) => {
+        res.status(200).json(resp);
+      });     
+  }
+}
 
 export default papeletaInt

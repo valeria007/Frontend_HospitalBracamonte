@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     Salas.hasMany(models.Camas, {
       foreignKey: 'salaID',
     });
+    Salas.hasMany(models.Internaciones, {
+      foreignKey: 'IDsala',
+    });
     Salas.belongsTo(models.Especialidad, {
       foreignKey: 'especialidadID',
       onDelete: 'CASCADE'

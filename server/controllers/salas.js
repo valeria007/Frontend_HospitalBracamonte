@@ -62,6 +62,17 @@ class Sala {
           res.status(200).json(data);
         });     
    }
+
+    //para mostrar que salas tiene un servico segun el nombre
+    static oneSalaNombre(req, res){                
+      var especialidad = req.params.especialidad;  
+      Salas.findAll({
+          where: {nombre : especialidad}
+          //attributes: ['id', ['description', 'descripcion']]
+        }).then((data) => {
+          res.status(200).json(data);
+        });     
+   }
     
     static update(req, res) {
         const { nombre,descripcionSala, piso } = req.body
