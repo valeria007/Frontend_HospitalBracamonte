@@ -13,9 +13,8 @@ router.get('/usuarios',(req, res) => {
       res.send("no hay coneccion con el servidor de usurios");
   })
 });
-  var msg;
+  var msg
   router.post('/usuarios', (req,res) => {
-    var nombre = req.body.nombre;
     var telefono = req.body.telefono;
     if(telefono == ""){
       msg = "introdusca telefono";
