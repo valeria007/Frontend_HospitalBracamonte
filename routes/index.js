@@ -6,6 +6,10 @@ router.get('/',(req, res) => {
   res.render('index')
 });
 
+router.get('/index2', (req,res) => {
+  res.render('index2');
+});
+
 router.get('/home',(req, res) => {
   res.render('home')
 });
@@ -115,14 +119,6 @@ router.get('/ventas',(req, res) => {
 
 // esta se movio a proveedores
 
-
-router.get('/distribucion',(req, res) => {
-  res.render('distribucion')
-});
-
-router.get('/stock_almacen',(req, res) => {
-  res.render('stock_almacen')
-});
 // se movio a pedidos.js
 
 

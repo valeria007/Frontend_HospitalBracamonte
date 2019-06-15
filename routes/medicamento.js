@@ -29,9 +29,9 @@ router.get('/medicamentos',(req, res) => {
         .then(resp =>{
             console.log(resp);
             if(dataGRUPOa == null){
-                res.render('medicamentos',{dataGRUPOa,resp})
+                res.render('Almacen/medicamentos',{dataGRUPOa,resp})
             }else{
-                res.render('medicamentos',{
+                res.render('Almacen/medicamentos',{
                     dataGRUPOa,
                     resp
                 })  
@@ -67,7 +67,7 @@ router.get('/OnlyMedicamento/:id',(req, res) =>{
     fetch('http://localhost:3500/api/OnlyMedicamento/'+id.id)   
         .then(resp => resp.json())
         .then(resp =>{
-            res.render('medicamentoUPDATE',{
+            res.render('Almacen/medicamentoUPDATE',{
                 resp,
                 dataGRUPOa
             });
