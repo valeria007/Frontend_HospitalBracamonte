@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	<title>Recetas Emergencia</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("../partials/head") -%>
@@ -63,7 +63,7 @@
 						<div class="col-xs-12">
 							<ul class="nav nav-tabs" style="margin-bottom: 15px;">
 								<li class="active"><a href="#receta" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Receta</a></li>
-								<li><a href="#list" data-toggle="tab">Lita de Recetas del Paciente</a></li>
+								<li><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i>  Lita de Recetas del Paciente</a></li>
 							</ul>
 							<div id="myTabContent" class="tab-content">
 								<div class="tab-pane fade active in" id="receta">
@@ -118,42 +118,32 @@
 																<input class="form-control label-txte" type="text" name="doctor" value="<%=Emgcon[0].nombreDoctor%>  <%=Emgcon[0].apellidoD1%>  <%=Emgcon[0].apellidoD2%> ">
 															</div>
 														</div>
+														<br>
 														<!-- medicamentos colum1 -->
-														<div class="col-md-12 >
+														<div class="col-md-12 ">
+															
 															<p class="lead">Datos del Medicamento</p>
-															<div class="col-md-2 ">
+															<div class="col-md-3 ">
 				
 																<div class="form-group label-floating ">
-																	<label class="control-label">Fecha Prescripción                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </label>
-																	<input class="form-control " type="text" name="fecha">
+																	Fecha Prescripción:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </label>
+																	<input class="form-control " type="date" name="fecha">
 																</div>
 																<div class="form-group label-floating ">
-																	<label class="control-label">Posologia </label>
-																	<input class="form-control label-txte" type="text" name="posologia">
+																		<label class="control-label">Posologia </label>
+																		<input class="form-control label-txte" type="text" name="posologia">
 																</div>
-																	<br>
+																
+																 <br>
+																<br>
 															</div>
-															<div class="col-md-4">
-															   <div class="form-group label-floating ">
-																	<label class="control-label">Fármaco                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
-																	   <select class="form-control label-txte" name="farmaco">	
-																			<option></option>
-																			<option>paracetamol</option>                                                      
-																			<option>algun otra medicina</option>
-				
-																		</select>
-																</div>
+															<br>
+															<div class="col-md-5">
 																<div class="form-group label-floating ">
 				
 																	<label class="control-label">Via de Administración</label>
 																	<input class="form-control label-txte" type="text" name="viaAdmincion">
 																</div>
-																 <br>
-															</div>
-														
-															<!-- lugar donde vive columna 2-->
-															<div class="col-md-6 ">
-				
 				
 																<div class="form-group label-floating ">
 																	<label class="control-label">Duracion Tratamiento</label>
@@ -161,17 +151,28 @@
 																</div>
 															
 															</div>
-															<div class="col-md-6 ">
+																													
+															
+															<!-- lugar donde vive columna 2-->
+															<div class="col-md-4 ">
 																<div class="form-group label-floating ">
-																	<label class="control-label">Unidades</label>
+																	<label class="control-label label-txte">Unidades</label>
 																	<input class="form-control label-txte" type="text" name="unidades">
 																</div>
-				
+																<p >Farmaco</p>
+																<p>
+																	<textarea name="farmaco" rows="3" cols="30" placeholder="Escribe los medicamentos"></textarea></textarea>
+																</p>
+																													
 															</div>
+																		
+
 															<br>
 														</div>
 													</div>
-													<a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
+													<!--  
+														<a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
+													-->
 													<table class="table table-hover text-center">
 														<thead>
 														</table>
@@ -246,44 +247,44 @@
 																	<br>
 															</div>
 															<div class="col-md-4">
-															   <div class="form-group label-floating ">
-																	<label class="control-label">Fármaco                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </label>
-																	   <select class="form-control label-txte" name="farmaco" >	
-																			<option><%=updateReceta[0].farmaco%></option>
-																			<option>paracetamol</option>                                                      
-																			<option>algun otra medicina</option>
-				
-																		</select>
-																</div>
+
 																<div class="form-group label-floating ">
 				
 																	<label class="control-label">Via de Administración</label>
 																	<input class="form-control label-txte" type="text" name="viaAdmincion" value="<%=updateReceta[0].viaAdmincion%>">
+																</div>
+
+																<div class="form-group label-floating ">
+																	<label class="control-label">Duracion Tratamiento</label>
+																	<input class="form-control label-txte" type="text" name="indicaciones" value="<%=updateReceta[0].indicaciones%>">
 																</div>
 																 <br>
 															</div>
 														
 															<!-- lugar donde vive columna 2-->
 															<div class="col-md-6 ">
-				
-				
+																
 																<div class="form-group label-floating ">
-																	<label class="control-label">Duracion Tratamiento</label>
-																	<input class="form-control label-txte" type="text" name="indicaciones" value="<%=updateReceta[0].indicaciones%>">
+																	<label class="control-label">Unidades</label>
+																	<input class="form-control label-txte" type="text" name="unidades" value="<%=updateReceta[0].unidades%>">
 																</div>
 															
 															</div>
 															<div class="col-md-6 ">
+																	
 																<div class="form-group label-floating ">
-																	<label class="control-label">Unidades</label>
-																	<input class="form-control label-txte" type="text" name="unidades" value="<%=updateReceta[0].unidades%>">
+                                                                   
+																	<label class="control-label">Fármaco </label>
+																	<input class="form-control label-txte" type="text" name="unidades" value="<%=updateReceta[0].farmaco%>">
 																</div>
 				
 															</div>
 															<br>
 														</div>
 													</div>
-													<a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
+													<!--
+														<a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
+													-->
 													<table class="table table-hover text-center">
 														<thead>
 														</table>
