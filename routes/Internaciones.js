@@ -21,6 +21,7 @@ router.get('/ListInternacion', (req,res) => {
     fetch(url.name.url+'/api/PinterTrue') // esta ruta solo trae los datos de tipo true
     .then(resp => resp.json())
     .then(resp =>{
+        console.log(resp)
         /*var data = resp.map(function(item){
             return { nombre2:item.nombre}
         })

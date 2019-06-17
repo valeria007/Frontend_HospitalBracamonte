@@ -90,13 +90,13 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label">Recibe</label>
-											<input class="form-control" type="text" name="cantidad">
+											<input class="form-control" type="text" name="recibe">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label">Fecha de Llegada</label>
-											<input class="form-control" type="date" name="fechaLLEgada">
+											<input class="form-control" type="date" name="fechaLlegada">
 										</div>
 									</div>
 								</div>
@@ -113,15 +113,21 @@
 											<th>Eliminar</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-											<td>123</td>
-											<td>Paracetamol</td>
-											<td>cajas</td>
-											<td><input type="number" name="number_control" min="1" max="1000" value="1"/></td>
-											<td class="text-center"><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-											</tr>
-										<tbody>
+										<%if(products == null) {%>
+											la lista esta bacia
+										<% } else { %>
+											<% for (var i=0; i< products.length; i++) {%>
+											<tbody>
+												<tr>
+												<td><%=products[i].item.codificacion%></td>
+												<td><%=products[i].item.nombre%></td>
+												<td><%=products[i].item.presentacion%></td>
+												<td><input type="number" name="" min="1" max="1000" value="<%=products[i].qty%>"/></td>
+												<td class="text-center"><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+												</tr>
+											<tbody>
+											<% } %>
+										<% } %>
 									</table>
 								</div>
 							</div>
@@ -137,14 +143,27 @@
 							<table class=" fl-table table table-striped table-class" id= "table-id">
 								<thead>
 									<tr>
+										<th>#</th>
 										<th>Codificación</th>
 										<th>Nombre</th>
 										<th>Cantidad</th>
 										<th>Precio</th>  
+										<th></th>
 										<th>Añadir</th>                                           
 									</tr>
 								</thead>
 								<tbody>
+									<% for(var i=0; i< resp.length; i++) { %>
+										<tr>
+											<td><%= i+1%></td>											
+											<td><%=resp[i].codificacion%></td>
+											<td><%=resp[i].nombre%></td>
+											<td><%=resp[i].cantidad%></td>
+											<td><%=resp[i].precio%></td>
+											<td><input type="number" name="" min="1" max="1000" value=""/></td>												
+											<td><a href="/distribucion/carrito/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+										</tr>
+									<% } %>
 								</tbody>
 							</table>
 						</div>
