@@ -55,6 +55,7 @@ class Citas_medica {
       //serv que muestra si es consulta medica o solo emergencia
       static citaLugar(req,res){
         var url = req.params.id;
+        
         Citas_Medicas.findAll({
           where : { especialidad : url }
         })
@@ -65,6 +66,7 @@ class Citas_medica {
       //serv para traer datos de dos tablas cita medica y paciente
       static TwoTables(req,res){
         var url = req.params.id;
+        console.log(url,"  <<<<<<<<<<<<<<<<esto quiero")
         Citas_Medicas.findAll({
           where : { especialidad : url, estado: "true" }, // el url es para identificar si es emergencia o consulta medica
           attributes: ['id','estado','codigo_p','hora','especialidad'],
@@ -119,5 +121,5 @@ class Citas_medica {
         })*/
       }
       
-    }
-    export default Citas_medica;
+}
+export default Citas_medica;

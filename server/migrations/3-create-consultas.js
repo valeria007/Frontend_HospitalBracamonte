@@ -17,6 +17,11 @@ module.exports = {
           as: 'id_cita',
         }
       },
+      estado: {
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: false
+      },
       tipoConsulta: {
         type: Sequelize.STRING
       },
@@ -25,24 +30,6 @@ module.exports = {
       },
       numeroHistorial:{
         type: Sequelize.INTEGER
-      },
-      apellidop:{
-        type: Sequelize.TEXT
-      },
-      apellidom:{
-        type: Sequelize.TEXT
-      },
-      nombre:{
-        type: Sequelize.TEXT
-      },
-      ci:{
-        type: Sequelize.STRING
-      },
-      sexo:{
-        type: Sequelize.STRING
-      },
-      fechanacimiento:{
-        type: Sequelize.STRING
       },
       anamnesis: {
         type: Sequelize.TEXT

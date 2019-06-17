@@ -1,6 +1,7 @@
 import model from '../models';
 
 const { PapeletaInternacion } = model;
+const { Consultas } = model;
 const { emergencia } = model;
 const { Citas_Medicas } = model;
 const { Pacientes } = model;
@@ -62,8 +63,16 @@ class papeletaInt{
       var historial = req.params.historial;
       var tipoConsulta = req.params.tipoConsulta;
       PapeletaInternacion.findAll({
-          where: { Historial: historial, tipoConsulta:tipoConsulta }
+          where: { Historial: historial, tipoConsulta:tipoConsulta },
           //attributes: ['id', ['description', 'descripcion']]
+          include: [
+            { model: Consultas, attributes:[ 'id'],
+            include:[
+              { model: Citas_Medicas, attributes:['id'],
+            include:[
+              {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+            ]}]
+           }]
         }).then((resp) => {
           res.status(200).json(resp);
         });     

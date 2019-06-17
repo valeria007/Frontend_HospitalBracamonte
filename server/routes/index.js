@@ -64,15 +64,18 @@ app.post('/api/reg_consulta/:id_cita', Consulta.reg_consulta);
 app.get('/api/reg_consultas', Consulta.getConsulta);
 app.get('/api/pacienteConsulta/:historial/:tipoConsulta', Consulta.getConsultaPaciente) //serv  para sacar las consultas de un paciente
 app.get('/api/OnlyConsulta/:id', Consulta.onlyConsulta);
-
+app.get('/api/updateConsulta/:id', Consulta.updateConsulta); //para poder sacar consulta segun cita medica para luego actualizar
+app.post('/api/updateConsulta/:id', Consulta.updateCOnsPost) //serv para actualizar consulta 
 ///recetas
-app.post('/api/reg_Receta/:id_consulta', Receta.post_receta);
+app.post('/api/reg_Receta/:id_consulta', Receta.post_recetaConsulta);
 app.post('/api/reg_RecetaEmrg/:id_emergencia', Receta.post_receta);
 app.get('/api/reg_Receta', Receta.getReceta);
 app.get('/api/OnlyReceta/:id', Receta.onlyReceta); // receta segun consulta medica
 app.get('/api/RecetaEmergencia/:id', Receta.RecetaEmergencia); // receta segun emergencia
 app.get('/api/recitasOfEMG/:id', Receta.recOfEmg);
+app.get('/api/recetaOfConsulta/:id', Receta.recOfConsulta);
 app.post('/api/updateReceta/:id', Receta.updateReceta);
+app.get('/receta/:id',Receta.citaRecetas); // para sacar receta y 
 
 
 //papeleta de internacion
