@@ -14,8 +14,8 @@ function validar() {
       alert("Todos los campos son obligados");
       return false;
     }
-    else if(telefono.length < 10){
-        alert("Por favor numero valido");
+   else if(telefono.length < 7){
+        alert("Por favor numero valido telefono");
         return false;
     }
     else if(isNaN(telefono)){
@@ -34,8 +34,6 @@ function validar() {
       alert("ci invalido")
     }
     
-   
-
     
   
   }
@@ -67,16 +65,19 @@ $(document).ready(function() {
   
 
   });
+ 
   $("#correo").keyup(function() {
+    
         var correo = $('#correo').val();
         if(correo == ""){
           $('#error3').text("La dirección de correo electrónico es obligatoria.").css("color","red");
         }else{
-          fetch('http://localhost:3500/usuarios/usersAll')
+          fetch('http://localhost:3600/usuarios/usersAll')
             .then(res => res.json())
             .then(data =>{                
               const resultado = data.find( traer => traer.correo === correo );              
               if(resultado != null){
+                
                 $('#su').text("Ese email ya esta en uso. Prueba con otro").css("color","red")
               }else{
                 $('#su').text("puede continuar").css("color","green");

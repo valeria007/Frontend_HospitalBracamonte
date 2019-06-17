@@ -6,17 +6,35 @@ router.get('/medico',(req,res) => {
     res.render('HomeVistDoctor');
 });
 
-// 1
-router.get('/ConsultaMedica/:id',(req, res) => {
-    var id = req.params
-    fetch('http://localhost:3000/api/citas/'+id.id)
+//serv para mandar la cita medica de tipo false
+var falseCita;
+router.get('/listfalseConsulta/:consultamedica', (req,res) =>{
+    const { consultamedica } = req.params
+    fetch('http://localhost:3000/api/PacienteCitaFalse/'+consultamedica)
+        
+        .then(resp => resp.json())
+        .then(resp =>{  
+            falseCita = resp;          
+            res.redirect('/medico/ConsultaMedica/'+consultamedica);            
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+});
+
+// 
+router.get('/ConsultaMedica/:consultamedica',(req, res) => {
+    const { consultamedica } = req.params
+    fetch('http://localhost:3000/api/PacienteCita/'+consultamedica)
         
         .then(resp => resp.json())
         .then(resp =>{ 
+            //console.log(resp  ,"  esto es la respuesta que quiero")
             if(resp == ""){                
-                res.render('ListaConsultaMedicaDoc',{resp});
+                res.render('ListaConsultaMedicaDoc',{resp,falseCita});
             }else{
-                res.render('ListaConsultaMedicaDoc',{resp});
+                res.render('ListaConsultaMedicaDoc',{resp,falseCita});
             }
     })
     .catch(error => {
@@ -30,6 +48,7 @@ var dataPaciente, idCIta;
 router.get('/consulta/:historial/:idCitaMedica', (req,res) => {
     var id = req.params;
     idCIta = req.params.idCitaMedica;
+    //console.log(idCIta,"  idCita <<<<<<<<<<<<<<<<<<<<<<<  2 <<<<<<<<<<<<<")
    fetch('http://localhost:3000/api/onlyPaciente/'+id.historial)
       .then(resp => resp.json())
       .then(resp =>{
@@ -49,7 +68,8 @@ router.get('/renderConsulta', (req,res)=> {
           .then(resp => resp.json())
           .then(resp =>{
             cita = resp;
-            res.redirect('/medico/consultaData');           
+            
+            res.redirect('/medico/updateConsulta');           
         })
         .catch(error => {
             console.error('Error:', error)
@@ -57,6 +77,24 @@ router.get('/renderConsulta', (req,res)=> {
         }) 
     }
     
+});
+
+//ruta para actualizar consulta del paciente
+var updateCita
+router.get('/updateConsulta', (req,res) => {
+    
+    fetch('http://localhost:3000/api/updateConsulta/'+idCIta)
+    .then(resp => resp.json())
+    .then(resp =>{
+        updateCita = resp;
+      
+      res.redirect('/medico/consultaData');           
+  })
+  .catch(error => {
+      console.error('Error:', error)
+      res.send("Ocurrio algo con el servidor");
+  }) 
+
 });
 
 //serv para traer datos da la tabla consultas
@@ -72,6 +110,7 @@ router.get('/consultaData', (req,res) => {
         
         .then(resp => resp.json())
         .then(resp =>{
+            //console.log(resp, "    esta paciente consulta con historial y especialidad ");
             if (dataPaciente == null){
                 res.send("no hay datos en Datapaciente en routes/medico serv renderConsulta")
             }else{
@@ -79,7 +118,8 @@ router.get('/consultaData', (req,res) => {
                     dataPaciente,
                     idCIta, // este es el id de la cita medica que viene desde /consulta/:historial/:idCitaMedica'
                     resp,
-                    cita
+                    cita,
+                    updateCita
                 });   
             }    
         })
@@ -90,11 +130,48 @@ router.get('/consultaData', (req,res) => {
     }
 });
 
+router.get('/estado', (req,res) =>{
+    fetch('http://localhost:3000/api/estado/'+idCIta)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        console.log(data," <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<esto es lo que quiero")
+        res.redirect('/medico/renderConsulta');
+      //res.status(200).send(data)
+    })
+});
+
+/*
+actuallizar consulta
+
+*/
+
+router.post('/updateConsulta/:id', (req,res) => {
+    console.log(idCIta, "  esto >>>")
+    const { id }= req.params;
+    var datos = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(datos),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/updateConsulta/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        console.log(data, "  respuesta del post reg_consulta")
+      res.redirect('/medico/renderConsulta');
+    })
+
+})
+
 //serv para insertar datos en la tabla consultas
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 router.post('/regConsulta/:id', (req, res) => {
     var citaID = req.params;
-    console.log(citaID," es esto<<<<<<<<<<<<<<<<<<<")
+   // console.log(citaID," es esto<<<<<<<<<<<<<<<<<<<")
     var datos = req.body;
     var esto = {
         method: 'POST',
@@ -107,7 +184,8 @@ router.post('/regConsulta/:id', (req, res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-      res.redirect('/medico/renderConsulta');
+        console.log(data, "  respuesta del post reg_consulta")
+      res.redirect('/medico/estado');
     })
 });
 
@@ -121,13 +199,16 @@ router.get('/recetas/:id', (req,res) => {
     if(dataPaciente == null){
         res.send("no hay datos en dataPaciente")
     } else {
-        fetch('http://localhost:3000/api/OnlyReceta/'+id.id)        
+        fetch('http://localhost:3000/receta/'+id.id)        
         .then(resp => resp.json())
         .then(resp =>{
+            
             res.render('recetas',{
                 dataPaciente,
                 id,
-                ConsultaOnly
+                ConsultaOnly,
+                resp,
+                ListRecetaOfConsulta
             });
         })
         .catch(error => {
@@ -137,15 +218,32 @@ router.get('/recetas/:id', (req,res) => {
     }
 });
 
-//serv para sacar consulta segun id
-var ConsultaOnly;
-router.get('/TraerConsulta/:id', (req,res) => {
+var ListRecetaOfConsulta;
+router.get('/recetasOFconsulta', (req,res) => {
+
+    fetch('http://localhost:3000/api/recetaOfConsulta/'+hist.historial)        
+        .then(resp => resp.json())
+        .then(resp =>{
+            ListRecetaOfConsulta = resp;         
+            res.redirect('/medico/recetas/'+hist.id);
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        })
+
+});
+
+//serv para sacar consulta segun id para madar a la plantilla de receta
+var ConsultaOnly, hist;
+router.get('/TraerConsulta/:id/:historial', (req,res) => {
     var id = req.params;
+    hist = id;
     fetch('http://localhost:3000/api/OnlyConsulta/'+id.id)        
         .then(resp => resp.json())
         .then(resp =>{
             ConsultaOnly = resp;         
-            res.redirect('/medico/recetas/'+id.id);
+            res.redirect('/medico/recetasOFconsulta');
         })
         .catch(error => {
             console.error('Error:', error)
@@ -168,9 +266,32 @@ router.post('/receta/:id', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {      
-      res.redirect('/medico/renderConsulta');
+      res.redirect('/medico/recetas'+hist.id);
     })
 });
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>
+                 actualizar Receta
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>
+*/
+router.post('/updateReceta/:id', (req,res) => {
+    const { id } = req.params;
+    var data = req.body  
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/updateReceta/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+      res.redirect('/medico/recetas/'+hist.id);        
+    }) 
+})
 
 /* serv para mostrar papeleta de internacion 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -183,17 +304,15 @@ router.get('/Pinternacion/:id', (req,res) => {
     if(dataPaciente == null){
         res.send("no hay datos de pacientes que mostrar")
     }else {
-       
-    console.log(id, " <<<<<<<<<<<<<<<<<<<<<<<<<<<< este es id consulta")
     fetch('http://localhost:3000/api/onlyPInternacion/'+id.id)        
         .then(resp => resp.json())
         .then(resp =>{
-            //console.log(dataPaciente)
             res.render('papeletasInternacion',{
                 dataPaciente,
                 id,
                 ConsultaOnlyPinternacion,
-                PapeletaINTER // trae datos de papeleta internacion segun hstorial y tipo consulta
+                PapeletaINTER, // trae datos de papeleta internacion segun hstorial y tipo consulta
+                resp
             });
         })
         .catch(error => {
@@ -222,7 +341,7 @@ router.get('/TraerConsultaPinternacion/:id', (req,res) => {
 
 router.post('/Pinternacion/:id',(req,res) => {
     var tipoCOnsulta = req.body.tipoConsulta
-    console.log(tipoCOnsulta   , " >>>>>>>>>>>>>>dato<<<<<<<<<<<<<<<<<<<<<<<");
+    //console.log(tipoCOnsulta   , " >>>>>>>>>>>>>>dato<<<<<<<<<<<<<<<<<<<<<<<");
     if(tipoCOnsulta == "consultaMedica"){
         var idConsultaM = req.params
         var datos = req.body
@@ -268,7 +387,6 @@ router.get('/PapeletaINT/:id/:historial/:tipoConsulta', (req,res) => {
         .then(resp => resp.json())
         .then(resp =>{
             PapeletaINTER = resp;
-            console.log(resp, "    es esto<<<<<<<<<<<<<<<<<")
             res.redirect('/medico/TraerConsultaPinternacion/'+id.id);
         })
         .catch(error => {
@@ -277,6 +395,32 @@ router.get('/PapeletaINT/:id/:historial/:tipoConsulta', (req,res) => {
         })
     
 });
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<  actualizar papeleta de internacion 
+<<<<<<<<>>>>>>>>>>>>>>><<<>>><<>>>><<>>><<
+<<<<<<<<<<><<<>><<>>><<>>><<><<<<>>><<>><<<
+ */
+
+router.post('/updateInternacion/:id', (req,res) => {
+    const { id } = req.params;
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/updatePinternacion/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {      
+          res.redirect('/medico/PapeletaINT/'+datosConsultaData.id+"/"+datosConsultaData.historial+"/"+datosConsultaData.tipoConsulta);
+        })
+})
 
 /** 
 //reconsulta
