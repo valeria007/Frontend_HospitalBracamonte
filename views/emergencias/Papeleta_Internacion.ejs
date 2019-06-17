@@ -5,9 +5,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <%- include("../partials/head") -%>
+        <link rel="stylesheet" href="/css/form1.css">
     </head>
     <body>
-        <!-- SideBar -->
+    <!-- SideBar -->
         <%- include("partials/menu") -%>
         <!-- SideBar Menu Hospital-->
         <ul class="list-unstyled full-box dashboard-sideBar-Menu">
@@ -23,7 +24,7 @@
                     <i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
                 </a>
                 <ul class="list-unstyled full-box">
-                    <li><a href="/emergencia/dataEmergencia/doctor"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+                    <li><a href="/emergencia/dataEmergencia/doctor"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
                                 
                 </ul>
             </li>
@@ -47,8 +48,7 @@
             <!-- Content page -->
         <div class="container-fluid">
             <div class="page-header">
-                
-                <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Papeleta <small>Internacion</small></h1>			  
+                <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Papeleta de Internacion</h1>			  
             </div>
         </div>
         <div class="container-fluid">
@@ -60,15 +60,8 @@
                     </ul>
                     <div id="myTabContent"  class="tab-content" >
                         <div class="tab-pane fade active in" id="PapeletaInternacion">
-                            <div class="container-fluid">
-                                <div class="row">
-                                        
-                                    <div class="container-fluid">
-                                        <div class="col-md-12 panel-body">
-                                                
-                                            <!-- datos personales-->
-                                            
-                                            <%if(updateInternacion == "") { %>
+                            <!-- datos personales-->
+                            <%if(updateInternacion == "") { %>
                                                 <div class="col-md-6">
                                                     <p class="lead">Datos Personales </p>
                                                 </div>
@@ -154,7 +147,94 @@
                                            
                                             
                                                 </form>
+                                                <form action="/emergencia/Pinternacion/<%=resp[0].id%>/" method="POST">
+                                                    <div class="form-group label-floating">
+                                                      <label class="control-label">Doctor</label>
+                                                      <select class="form-control" name="idDoctor">
+                                                        <option value="doctor">Doctor</option>                                                            
+                                                      </select>
+                                                    </div>
+                                                    <p>Datos del Paciente </p>
+                                                    <div class="grupo" id="cabeza">
+                                                      <div id="cuatro">
+                                                        <div class="entrada">Fecha de Consulta:<br>
+                                                          <input  type="date" name="fechaAtencion" require><br>
+                                                        </div>
+                                                        <div class="entrada">N° de Historial<br>
+                                                          <input type="text" name="Nhistorial" value="<%=dataPaciente[0].numeroHistorial%>"><br>
+                                                        </div>
+                                                        <div class="entrada">C.I.:<br>
+                                                          <input type="text" name="ci" value="<%=dataPaciente[0].ci%>"><br>
+                                                        </div>
+                                                        <div class="entrada">Sexo:<br>
+                                                          <select  name="sexo">
+                                                            <option><%=dataPaciente[0].sexo%></option>
+                                                          </select><br>
+                                                        </div>
+                                                      </div>
+                                                      <div id="tres2">
+                                                        <div class="entrada">Apellido Paterno:<br>
+                                                          <input type="text" name="apellidop" value="<%=dataPaciente[0].apellidop%>"><br>
+                                                        </div>
+                                                        <div class="entrada">Apellido Materno:<br>
+                                                          <input type="text"  name="apellidom" value="<%=dataPaciente[0].apellidom%>"><br>
+                                                        </div>
+                                                        <div class="entrada">Nombre(s):<br>
+                                                          <input type="text" name="nombre" value="<%=dataPaciente[0].nombre%>"><br>
+                                                        </div>
+                                                      </div>
+                                                      <div id="correo">
+                                                        <div class="entrada">Fecha de Nacimiento:<br>
+                                                          <input type="text" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>"><br>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <br>
+                                                    <p>Datos del Doctor</p>
+                                                    <div class="grupo" id="cabeza">
+                                                      <div id="tres2">
+                                                        <div class="entrada">Apellido Paterno del Doctor:<br>
+                                                          <input type="text" name="apellidoD1" value=""><br>
+                                                        </div>
+                                                        <div class="entrada">Apellido Materno del Doctor:<br>
+                                                          <input type="text" name="apellidoD2" value=""><br>
+                                                        </div>
+                                                        <div class="entrada">Nombre(s) del Doctor:<br>
+                                                          <input type="text" name="nombreDoctor" value=""><br>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <br>
+                                                    <p>Estado del Paciente</p>
+                                                    <div class="grupo" id="cabeza">
+                                                      <div class="panel with-nav-tabs panel-default">
+                                                        <div class="panel-heading">
+                                                          <ul class="nav nav-tabs">
+                                                            <li class="active"><a href="#tab1default" data-toggle="tab">Motivo de Consulta</a></li>
+                                                            <li><a href="#tab2default" data-toggle="tab">Diagnostico</a></li>
+                                                            <li><a href="#tab3default" data-toggle="tab">Tratamiento</a></li>
+                                                            <li><a href="#tab4default" data-toggle="tab">Observaciones</a></li>
+                                                          </ul>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                          <div class="tab-content">
+                                                            <div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="motivoConsulta"  cols="100" rows="10"></textarea></div>
+                                                            <div class="tab-pane fade" id="tab2default"><textarea class="large-compact" name="diagnostico" cols="100" rows="10"></textarea></div>
+                                                            <div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="100" rows="10"></textarea></div>
+                                                            <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="100" rows="10"></textarea></div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                      <!--aqui va el si es doctor quien le atendio o enfermera o en todo caso si le atendieron los dos-->
+                                  
+                                                      <p class="text-center">
+                                                          <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                          <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                                      </p>
+                                                    </form>
                                             <% } else {%>
+                        
                                                 <h2>Formulario de actualizacion</h2>
                                                 <div class="col-md-6">
                                                     <p class="lead">Datos Personales </p>
@@ -245,11 +325,9 @@
                                             <% } %>    
                                             
                                         </div>
-                                    </div>
+                                    
                                          
-                                </div>         
-                            </div>				
-                        </div>
+                    
                         <!-- lista -->
                         <div class="tab-pane fade" id="list">                    
                             <div class="table-wrapper">                        
