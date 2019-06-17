@@ -1,26 +1,64 @@
-$(document).ready(function() {
-    $(".search").keyup(function () {
-      var searchTerm = $(".search").val();
-      var listItem = $('.results tbody').children('tr');
-      var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-      
-    $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-          return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+(function() {
+
+  if (!(window.history && history.pushState)) return;
+
+  var searchInput = document.querySelector("#searchInput"),
+      rows = document.querySelectorAll("#table tbody tr"),
+      timer;
+
+  function filterRows() {
+
+      [].forEach.call(rows, function(row) {
+
+          var cells = row.querySelectorAll("td"),
+              containsText = false;
+
+          [].forEach.call(cells, function(cell) {
+              var text = cell.textContent.toLowerCase(),
+                  search = searchInput.value.toLowerCase();
+
+              if (text.indexOf(search) != -1)
+                  containsText = true;
+          });
+
+          if (containsText)
+              row.style.display = "";
+          else
+              row.style.display = "none";
+
+      });
+
+  }
+
+  searchInput.onkeyup = function() {
+
+      clearTimeout(timer);
+
+      timer = setTimeout(function() {
+
+          if (searchInput.value != "")
+              window.history.pushState(searchInput.value, "", "#search=" + encodeURI(searchInput.value));
+
+      }, 1000);
+
+      filterRows();
+
+  }
+
+  window.onpopstate = function(e) {
+
+      if (e.state !== null) {
+          searchInput.value = e.state;
+
+          filterRows();
+      } else {
+          var searchValue = window.location.hash.split("=").pop();
+
+          searchInput.value = decodeURI(searchValue);
+
+          filterRows();
       }
-    });
-      
-    $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-      $(this).attr('visible','false');
-    });
-  
-    $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-      $(this).attr('visible','true');
-    });
-  
-    var jobCount = $('.results tbody tr[visible="true"]').length;
-      $('.counter').text(jobCount + ' item');
-  
-    if(jobCount == '0') {$('.no-result').show();}
-      else {$('.no-result').hide();}
-            });
-  });
+
+  }
+
+})();
