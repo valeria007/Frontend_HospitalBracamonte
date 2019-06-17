@@ -99,7 +99,6 @@ router.get('/updateConsulta', (req,res) => {
 
 //serv para traer datos da la tabla consultas
 router.get('/consultaData', (req,res) => {
-    console.log(cita, "   <<<<<<<<<<<<<< esto es cita");
     if (idCIta == null){
         // en esta parte deveria mostrar que no hay data paciente u idcita
         res.render('consultaMedica',{
@@ -305,17 +304,15 @@ router.get('/Pinternacion/:id', (req,res) => {
     if(dataPaciente == null){
         res.send("no hay datos de pacientes que mostrar")
     }else {
-       
-    //console.log(ConsultaOnlyPinternacion, " <<<<<<<<<<<<<<<<<<<<<<<<<<<< ConsultaOnlyPinternacion ")
     fetch('http://localhost:3000/api/onlyPInternacion/'+id.id)        
         .then(resp => resp.json())
         .then(resp =>{
-            //console.log(dataPaciente)
             res.render('papeletasInternacion',{
                 dataPaciente,
                 id,
                 ConsultaOnlyPinternacion,
-                PapeletaINTER // trae datos de papeleta internacion segun hstorial y tipo consulta
+                PapeletaINTER, // trae datos de papeleta internacion segun hstorial y tipo consulta
+                resp
             });
         })
         .catch(error => {
@@ -390,7 +387,6 @@ router.get('/PapeletaINT/:id/:historial/:tipoConsulta', (req,res) => {
         .then(resp => resp.json())
         .then(resp =>{
             PapeletaINTER = resp;
-            console.log(resp, "    es esto<<<<<<<<<<<<<<<<<")
             res.redirect('/medico/TraerConsultaPinternacion/'+id.id);
         })
         .catch(error => {
@@ -399,6 +395,32 @@ router.get('/PapeletaINT/:id/:historial/:tipoConsulta', (req,res) => {
         })
     
 });
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<  actualizar papeleta de internacion 
+<<<<<<<<>>>>>>>>>>>>>>><<<>>><<>>>><<>>><<
+<<<<<<<<<<><<<>><<>>><<>>><<><<<<>>><<>><<<
+ */
+
+router.post('/updateInternacion/:id', (req,res) => {
+    const { id } = req.params;
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/updatePinternacion/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {      
+          res.redirect('/medico/PapeletaINT/'+datosConsultaData.id+"/"+datosConsultaData.historial+"/"+datosConsultaData.tipoConsulta);
+        })
+})
 
 /** 
 //reconsulta

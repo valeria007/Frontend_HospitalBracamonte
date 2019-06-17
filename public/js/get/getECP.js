@@ -1,6 +1,6 @@
 $(document).ready(function() { 
    
-        /*fetch('http://localhost:3000/api/servicios')
+        fetch('http://localhost:3000/api/servicios')
         .then(res => res.json())
         .then(data =>{
             var $content = "";
@@ -14,7 +14,7 @@ $(document).ready(function() {
         $("#selects").html($content);
          // console.log(data)
           
-        })*/
+        })
 
         // esta funcion selecina lo que hay dentro del select para agarrar ese dato
         //y llevarlo a otro fetch que traeria datos de salas
