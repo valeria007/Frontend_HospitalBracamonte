@@ -271,12 +271,12 @@
                                         <% for (var i=0; i< PapeletaINTER.length; i++) { %>
                                         <tr>
                                             <th><%=i+1%></th>
-                                            <th><%=PapeletaINTER[i].nombre%></th>
-                                            <th><%=PapeletaINTER[i].apellido1%></th>
+                                            <th><%=PapeletaINTER[i].Consulta.Citas_Medica.Paciente.nombre%></th>
+                                            <th><%=PapeletaINTER[i].Consulta.Citas_Medica.Paciente.apellidop%></th>
                                             <th><%=PapeletaINTER[i].Historial%> </th>
 											<th><%=PapeletaINTER[i].nombreDoctor%></th>  
 											<th><%=PapeletaINTER[i].tipoConsulta%></th>  
-                                            <td><a href="/pedidos/carrito/" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>                                            
+                                            <td><a href="/medico/PapeletaINT/<%=PapeletaINTER[i].idConsultaMedica%>/<%=PapeletaINTER[i].Historial%>/consultaMedica" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>                                            
                                         </tr>
                                         <% } %>
                                     </tbody>
