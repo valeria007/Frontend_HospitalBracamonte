@@ -4,6 +4,19 @@ const fetch = require('node-fetch');
 
 var url = require('./url/export');
 
+// ruta para el vue js
+router.get('/distribucionVue', (req,res) => {
+    fetch(url.name.urlFarmacia+'/api/medicamento')
+    .then(res => res.json())
+    .then(resp => { 
+        res.status(200).json(resp)
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
+})
+
 //ruta para renderizar distribucion
 router.get('/distribucion',(req,res) => {
     fetch(url.name.urlFarmacia+'/api/medicamento')

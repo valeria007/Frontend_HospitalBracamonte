@@ -266,7 +266,7 @@ router.post('/receta/:id', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {      
-      res.redirect('/medico/recetas'+hist.id);
+      res.redirect('/medico/TraerConsulta/'+hist.id+"/"+hist.historial);
     })
 });
 
@@ -289,7 +289,7 @@ router.post('/updateReceta/:id', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-      res.redirect('/medico/recetas/'+hist.id);        
+      res.redirect('/medico/TraerConsulta/'+hist.id+"/"+hist.historial);        
     }) 
 })
 
@@ -301,6 +301,7 @@ router.post('/updateReceta/:id', (req,res) => {
 //esto falta pensar y muuucho para que fucione bien
 router.get('/Pinternacion/:id', (req,res) => {
     var id = req.params
+    console.log(PapeletaINTER,   " esto es la lsista PapeletaINTER")
     if(dataPaciente == null){
         res.send("no hay datos de pacientes que mostrar")
     }else {
