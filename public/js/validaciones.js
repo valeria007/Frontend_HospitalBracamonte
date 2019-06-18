@@ -77,7 +77,7 @@ $(document).ready(function() {
             .then(data =>{                
               const resultado = data.find( traer => traer.correo === correo );              
               if(resultado != null){
-                var msg;
+              
                 $('#su').text("Ese email ya esta en uso. Prueba con otro").css("color","red")
               }else{
                 $('#su').text("puede continuar").css("color","green");
