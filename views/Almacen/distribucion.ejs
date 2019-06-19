@@ -46,7 +46,79 @@
 								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
 							</p>
 						</div>
+						<!-- para mostrar una distribucion que ya se hizo -->
+
+						<%if (onlyDist != null) { %>
+						<a href="/distribucion/limpiar">Limpiar</a>
+							
 						<div class="table-responsive">
+							<div class="col-md-12 panel-body">
+								<div class="col-md-12">
+									<div class="col-md-3">
+										<div class="form-group">
+											<label class="control-label">Codigo</label>
+											<input class="form-control" type="text" value="<%=onlyDist[0].codigo%>">
+										</div>
+									</div>
+									<div class="col-md-9">
+										<div class="form-group ">
+											<label class="control-label">Responsable</label>
+											<input class="form-control" type="text" value="<%=onlyDist[0].responsable%>">
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 panel-body">
+								<div class="col-md-12">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Recibe</label>
+											<input class="form-control" type="text" value="<%=onlyDist[0].recibe%>">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Fecha de Envio</label>
+											<input class="form-control" type="date" value="<%=onlyDist[0].fechaLlegada%>">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-10 col-md-offset-1">
+								<div class="table-wrapper">
+									<table class="fl-table">
+										<thead>
+											<tr>
+											<th>#</th>
+											<th>Nombre</th>
+											<th>Precentacion</th>
+											<th>Precio</th>
+											<th>Cantidad</th>
+											
+											</tr>
+										</thead>
+										<tbody>
+											<% for(var i = 0; i< onlyDist[0].productos.length; i++) {%>
+											<tr>
+												<td><%=i+1%></td>
+												<td><%=onlyDist[0].productos[i].item.nombre%></td>
+												<td><%=onlyDist[0].productos[i].item.presentacion%></td>
+												<td><%=onlyDist[0].productos[i].item.price%></td>
+												<td><%=onlyDist[0].productos[i].qty%></td>
+											</tr>
+											<% } %>
+										</tbody>
+										
+									</table>
+								</div>
+							</div>
+						</div>
+						<% } else { %>
+							<h2>no se selecciono nada</h2>
+						<% } %>
+
+
+						<div class="table-responsive">						
 							<div class="table-wrapper">
 									<table class=" fl-table ">
 										<thead>
@@ -56,11 +128,25 @@
 												<th>Responsable</th>
 												<th>Recibe</th>
 												<th>Fecha de Envio</th>
-												<th>Catidad</th>
-												<th>Opciones</th>
+												<th>Ver</th>
 											</tr>
 									</thead>
 									<tbody>
+										<%if(listDist != "") { %>
+											<% for(var i = 0; i< listDist.length; i++) { %>
+												<tr>
+													<td><%=i+1%></td>
+													<td><%=listDist[i].codigo%></td>
+													<td><%=listDist[i].responsable%></td>
+													<td><%=listDist[i].recibe%></td>
+													<td><%=listDist[i].fechaLlegada%></td>
+													<td><a href="/distribucion/onlyDist/<%=listDist[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+												</tr>
+
+											<% } %>
+										<% } else { %>
+											no hay datos que mostrar
+										<% } %>
 
 									</tbody>
 								</table>
@@ -69,7 +155,10 @@
 					</div>
 					<!-- Nueva Distribucion-->
 					<div class="tab-pane fade" id="list">
-						<form action="/medicamento/medicamentos" method="POST">
+						<%if (message != null) { %>
+							<h2>Porfavor seleccione producto de la lista de medicamentos</h2>
+						<% } %>	
+						<form action="/distribucion/distribucion" method="POST">
 							<div class="col-md-12 panel-body">
 								<div class="col-md-12">
 									<div class="col-md-3">
@@ -102,6 +191,7 @@
 									</div>
 								</div>
 							</div>
+							<%if (products != null ) { %>
 							<div class="col-xs-12 col-md-10 col-md-offset-1">
 								<div class="table-wrapper">
 									<table class="fl-table">
@@ -112,26 +202,31 @@
 											<th>Unidad</th>
 											<th>Cantidad</th>
 											<th>Eliminar</th>
+											<th>Quitar</th>
 											</tr>
 										</thead>
-										<%if(products == null) {%>
-											la lista esta bacia
-										<% } else { %>
+										
 											<% for (var i=0; i< products.length; i++) {%>
 											<tbody>
 												<tr>
 												<td><%=products[i].item.codificacion%></td>
 												<td><%=products[i].item.nombre%></td>
 												<td><%=products[i].item.presentacion%></td>
-												<td><input type="number" name="" min="1" max="1000" value="<%=products[i].qty%>"/></td>
-												<td class="text-center"><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+												<td><%=products[i].qty%></td>
+												<td class="text-center"><a href="/distribucion/reduce/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+												<td class="text-center"><a href="/distribucion/removeAll/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
 												</tr>
 											<tbody>
 											<% } %>
-										<% } %>
+										
 									</table>
 								</div>
 							</div>
+							<% } else { %>
+								<h2> Seleccione Productos </h2>
+							<% } %>
+
+
 							<p class="text-center">
                   <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                   <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
@@ -149,7 +244,7 @@
 										<th>Nombre</th>
 										<th>Cantidad</th>
 										<th>Precio</th>  
-										<th>{{ mensaje }}</th>
+										
 										<th>Añadir</th>                                           
 									</tr>
 								</thead>
@@ -161,7 +256,7 @@
 											<td><%=resp[i].nombre%></td>
 											<td><%=resp[i].cantidad%></td>
 											<td><%=resp[i].precio%></td>
-											<td><input type="number" name="" min="1" max="1000" value=""/></td>												
+																						
 											<td><a href="/distribucion/carrito/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 										</tr>
 									<% } %>

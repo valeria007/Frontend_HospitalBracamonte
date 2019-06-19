@@ -78,6 +78,7 @@
 											<td><%=resp[i].fechaLLEgada%></td>
 											<td><%=resp[i].fechaVencimiento%></td>
 											<td><%=resp[i].cantidad%></td>
+											<td><%=resp[i].unidades%></td>
 											<td><%=resp[i].precio%></td>
 											<td><a href="/medicamento/OnlyMedicamento/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 										</tr>
@@ -177,7 +178,7 @@
 									<div class="col-md-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Cantidad Unidad</label>
-											<input class="form-control" type="text">
+											<input class="form-control" type="text" name="unidades">
 										</div>
 										<div class="form-group label-floating">
 											<label class="control-label">Precio</label>
