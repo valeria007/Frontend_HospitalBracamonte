@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Inicio</title>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Inicio</title>
 	<%- include("../partials/head") -%>
 	<link rel="stylesheet" href="/css/form.css">
 </head>
-<body>
+<body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
 	<%- include("partials/menu") -%>
 	<!-- Content page-->
-	<section class="full-box dashboard-contentPage">
+	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->
 	<nav class="full-box dashboard-Navbar">
 		<ul class="full-box list-unstyled text-right">
@@ -139,7 +140,7 @@
 					</div>
 					<!-- mostrar lista de medicamentos -->
 					<div class="tab-pane fade" id="listMedicament">
-						<div class="table-wrapper">
+						<div class="table-wrapper" id="app">
 							<table class=" fl-table table table-striped table-class" id= "table-id">
 								<thead>
 									<tr>
@@ -148,7 +149,7 @@
 										<th>Nombre</th>
 										<th>Cantidad</th>
 										<th>Precio</th>  
-										<th></th>
+										<th>{{ mensaje }}</th>
 										<th>Añadir</th>                                           
 									</tr>
 								</thead>
@@ -175,7 +176,8 @@
 	</section>
 	<!--====== Scripts -->
 	<%- include("../partials/scripts") -%>
-	<script src="/js/paginacion.js"></script>	
-
+	<!--<script src="/js/paginacion.js"></script>	-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+	<script src="/js/vue/table.js"></script>
 </body>
 </html>

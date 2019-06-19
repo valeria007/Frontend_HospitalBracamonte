@@ -6,11 +6,11 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
 </head>
-<body>
+<body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
 	<%- include("partials/menudoc") -%>
 	<!-- Content page-->
-<section class="full-box dashboard-contentPage">
+<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->
 	<nav class="full-box dashboard-Navbar">
 			<ul class="full-box list-unstyled text-right">
@@ -243,7 +243,7 @@
 					                </div>           
                             </div>				
 			            </div>
-					</div>
+					
 
 						<!-- lista -->
 						<div class="tab-pane fade" id="list">
@@ -271,12 +271,12 @@
                                         <% for (var i=0; i< PapeletaINTER.length; i++) { %>
                                         <tr>
                                             <th><%=i+1%></th>
-                                            <th><%=PapeletaINTER[i].nombre%></th>
-                                            <th><%=PapeletaINTER[i].apellido1%></th>
+                                            <th><%=PapeletaINTER[i].Consulta.Citas_Medica.Paciente.nombre%></th>
+                                            <th><%=PapeletaINTER[i].Consulta.Citas_Medica.Paciente.apellidop%></th>
                                             <th><%=PapeletaINTER[i].Historial%> </th>
 											<th><%=PapeletaINTER[i].nombreDoctor%></th>  
 											<th><%=PapeletaINTER[i].tipoConsulta%></th>  
-                                            <td><a href="/pedidos/carrito/" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>                                            
+                                            <td><a href="/medico/PapeletaINT/<%=PapeletaINTER[i].idConsultaMedica%>/<%=PapeletaINTER[i].Historial%>/consultaMedica" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>                                            
                                         </tr>
                                         <% } %>
                                     </tbody>
