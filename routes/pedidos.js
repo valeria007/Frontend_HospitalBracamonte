@@ -2,6 +2,28 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+router.get('/limpiar', (req,res) => {
+    OnlyPedido = null;
+    res.redirect('/pedidos/dataPEDIDOS');
+
+})
+//para sacar un pedido segun id
+var OnlyPedido;
+router.get('/onliPedido/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:3500/api/OnlyPedido/'+id)   
+    .then(resp => resp.json())
+    .then(resp =>{
+        OnlyPedido = resp;
+        res.redirect('/pedidos/pedidos');
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })  
+})
+
+//renderizar vista pedido
 router.get('/pedidos',(req, res) => {
     if(proveedor == null){
         res.redirect('/pedidos/pedidos/proveedor')
@@ -9,8 +31,6 @@ router.get('/pedidos',(req, res) => {
         fetch('http://localhost:3500/api/medicamento')   
         .then(resp => resp.json())
         .then(resp =>{
-            var esot = generateArray()
-            //console.log(esot, "  esto es lo que quiero")
             res.render('Almacen/pedidos',{
                 proveedor,
                 resp,
@@ -18,7 +38,9 @@ router.get('/pedidos',(req, res) => {
                 totalQty,
                 totalPrice,
                 grup,
-                dataPEDIDOS
+                dataPEDIDOS,
+                message,
+                OnlyPedido 
             });
     })
         .catch(error => {
@@ -84,7 +106,7 @@ router.get('/carrito/:id', (req,res)=>{
                 price: resp[0].precio
             }
             cart(car,id.id)
-            console.log (car);
+            //console.log (car);
             res.redirect('/pedidos/pedidos');
     })
     .catch(error => {
@@ -149,42 +171,50 @@ function generateArray() {
     return arr;
 }
 
+router.get('/delete_All', (req,res) => {
+    var productos = generateArray()
+    for (var i = 0; i < productos.length; i++){
+        removeAll(productos[i].item.id);        
+    }
+    res.redirect('/pedidos/pedidos/proveedor');
+    
+})
+
+var message;
 router.post('/pedidos', (req,res) => {
-    var productos = generateArray()
-   /* for(var i=0; i< productos.length; i++){
-         p = productos[i]
-        console.log(p);
-    }
-    var p;
-    console.log(p, "  esto es lo que quiero")*/
-    var productos = generateArray()
-    var data = {
-        codigoCompra: req.body.codigoCompra, 
-        boletaPago: req.body.boletaPago, 
-        tipoMaterial: req.body.tipoMaterial, 
-        fechaIngreso: req.body.fechaIngreso, 
-        proveedor: req.body.proveedor, 
-        cantidad: req.body.cantidad, 
-        codigoProduct: req.body.codigoProduct,
-        productosDelPedido: productos,
-        Observaciones: req.body.Observaciones,
-        subTotal: req.body.subTotal,
-        iva: req.body.iva,
-        total: req.body.total       
-    }
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
+    if( generateArray() != ""){
+        var data = {
+            codigoCompra: req.body.codigoCompra, 
+            boletaPago: req.body.boletaPago, 
+            tipoMaterial: req.body.tipoMaterial, 
+            fechaIngreso: req.body.fechaIngreso, 
+            proveedor: req.body.proveedor, 
+            cantidad: req.body.cantidad, 
+            codigoProduct: req.body.codigoProduct,
+            productosDelPedido:  generateArray(),
+            Observaciones: req.body.Observaciones,
+            subTotal: req.body.subTotal,
+            iva: req.body.iva,
+            total: req.body.total       
         }
-    };
-    fetch('http://localhost:3500/api/pedido',esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {    
-        res.redirect('/pedidos/pedidos/proveedor')
-    })
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch('http://localhost:3500/api/pedido',esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {  
+            message = "";  
+            res.redirect('/pedidos/delete_All')
+        })
+    } else {
+        message = " No hay productos ";
+        res.redirect('/pedidos/pedidos/proveedor');        
+    }
 });
 
 module.exports = router;
