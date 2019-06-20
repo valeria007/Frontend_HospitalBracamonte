@@ -50,8 +50,8 @@ router.get('/cuadernos',(req, res) => {
 
  
 // Historiales Clinicos
-router.get('/expediente',(req, res) => {
-  res.render('expediente')
+router.get('/reportes_pacientes',(req, res) => {
+  res.render('reportes_pacientes')
 });
 
 router.get('/vistaPrimPaciente',(req, res) => {
