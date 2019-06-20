@@ -50,9 +50,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            </tr>
-                        <tbody>
+							<%for(var i = 0; i< resp.length; i++) { %>
+								<tr>
+									<td><%= i+1 %></td>
+									<td><%=resp[i].codificacion%></td>
+									<td><%=resp[i].nombre%></td>
+									<td><%=resp[i].grupoAsig%></td>
+									<td><%=resp[i].unidades%></td>
+									<td>falta</td>
+									<td>falta</td>
+									<td>falta</td>
+								</tr>
+							<% } %>                            
+                        </tbody>
                     </table>
                 </div>
             </div>
