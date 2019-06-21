@@ -97,4 +97,26 @@ router.post('/updateMedicamento/:id', (req,res) =>{
 
 });
 
+/*
+<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<>><<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<>>>>>>>><<<<<<<<<<<<<<<<<<<<<<
+                Stock
+<<<<<<<<<<<>>>>>>>>>>>>>>><<<<>><<<>>><<<><<<>><<<
+<<<<<<<<<>>><<>>>>>>>>>>>>>>>>>>>>>>>><>>>>>>>>>><
+*/
+
+router.get('/stock', (req,res) => {
+    fetch('http://localhost:3500/api/medicamento')   
+        .then(resp => resp.json())
+        .then(resp =>{         
+            res.render('Almacen/stock_almacen',{
+                resp
+            })              
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+})
+
 module.exports = router;

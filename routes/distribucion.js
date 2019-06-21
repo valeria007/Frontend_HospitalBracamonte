@@ -4,36 +4,68 @@ const fetch = require('node-fetch');
 
 var url = require('./url/export');
 
-// ruta para el vue js
-router.get('/distribucionVue', (req,res) => {
-    fetch(url.name.urlFarmacia+'/api/medicamento')
-    .then(res => res.json())
-    .then(resp => { 
-        res.status(200).json(resp)
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
+router.get ('/limpiar',(req,res) => {
+    onlyDist = null
+    res.redirect('/distribucion/distribucion');
+});
+// este serv sirve para mandar una sola distribucion
+let onlyDist;
+router.get('/onlyDist/:id', (req,res) => {
+    const { id } = req.params;
+    fetch(url.name.urlFarmacia+'/api/onlyDist/'+id)
+        .then(res => res.json())
+        .then(resp => {
+            onlyDist = resp;
+            res.redirect('/distribucion/distribucion');
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        }) 
 })
 
 //ruta para renderizar distribucion
 router.get('/distribucion',(req,res) => {
-    fetch(url.name.urlFarmacia+'/api/medicamento')
+
+    
+    if(listDist == null){
+        res.redirect('/distribucion/listDistribucion');
+    }else{
+        fetch(url.name.urlFarmacia+'/api/medicamento')
+        .then(res => res.json())
+        .then(resp => { 
+            res.render('Almacen/distribucion', {
+                resp,
+                products : generateArray(),
+                listDist,
+                onlyDist,
+                message // este valor es para ver si se selecciono un producto para la distribucion
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        }) 
+    }  
+});
+
+//serv para listar las distribuciones
+var listDist;
+router.get('/listDistribucion', (req,res) => {
+    fetch(url.name.urlFarmacia+'/api/distribucion')
     .then(res => res.json())
     .then(resp => { 
-        res.render('Almacen/distribucion', {
-            resp,
-            products : generateArray(),
-        });
+        listDist = resp;
+        res.redirect('/distribucion/distribucion');
     })
     .catch(error => {
         console.error('Error:', error)
         res.send("no hay coneccion con el servidor");
-    })   
-});
+    })  
+})
 
 //rutaa para sacar un producto y mandarlo a lista de distribucion
+
 router.get('/carrito/:id', (req,res)=>{
     var id = req.params;
     fetch(url.name.urlFarmacia+'/api/OnlyMedicamento/'+id.id)   
@@ -45,16 +77,31 @@ router.get('/carrito/:id', (req,res)=>{
                 nombre: resp[0].nombre,
                 presentacion: resp[0].presentacion,
                 cantidad: resp[0].cantidad,
+                unidades: resp[0].unidades,
                 price: resp[0].precio
             }
             cart(car,id.id)
-            console.log ( generateArray() )
+            
             res.redirect('/distribucion/distribucion');
     })
     .catch(error => {
         console.error('Error:', error)
         res.send("no hay coneccion con el servidor");
     })    
+});
+
+//ruta para reducir uno del carrito
+router.get('/reduce/:id', (req,res) => {
+    var id = req.params;
+    reduceOne(id.id);
+    res.redirect('/distribucion/listDistribucion')
+});
+
+//ruta para poder quitar todo ese producto del carrito
+router.get('/removeAll/:id', (req,res) => {
+    var id = req.params;
+    removeAll(id.id);
+    res.redirect('/distribucion/listDistribucion');
 });
 
 var items = items || {};
@@ -100,6 +147,68 @@ function generateArray() {
     return arr;
 }
 
+router.get('/delete_All', (req,res) => {
+    var productos = generateArray()
+    for (var i = 0; i < productos.length; i++){
+        removeAll(productos[i].item.id);        
+    }
+    res.redirect('/distribucion/listDistribucion');
+    
+})
+
+
+//ruta para reducir el medicamento
+router.get('/Medicamento_Reduce', (req,res) => {
+    var productos = generateArray();
+    for(var i = 0; i< productos.length; i++){
+        var unidades = { unidades: productos[i].qty}
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(unidades),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.urlFarmacia+'/api/reduce/'+productos[i].item.id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+          res.redirect('/distribucion/delete_All');        
+        }) 
+    }     
+})
+
+
+//serv para enviar distribucion
+var message;
+router.post('/distribucion', (req,res) => {
+    if (generateArray() != "" ){
+        var data = {
+            codigo : req.body.codigo,
+            responsable: req.body.responsable,
+            recibe: req.body.recibe,
+            fechaLlegada: req.body.fechaLlegada,
+            productos:  generateArray()
+        }
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.urlFarmacia+'/api/distribucion',esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+          res.redirect('/distribucion/Medicamento_Reduce'); 
+          message = null;       
+        })   
+    }else {
+        message = " No se seleciono nada para la distribucion ";
+        res.redirect('/distribucion/listDistribucion');      
+    }
+})
 
 
 module.exports = router;
