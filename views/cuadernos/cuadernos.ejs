@@ -4,7 +4,7 @@
 	<title>Inicio</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+	<%- include("../partials/head") -%>
 	<link rel="stylesheet" href="/css/form1.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
@@ -27,27 +27,55 @@
 			</div>
 		</div>
 		<!--Cuadernos-->
+		<%if(message) { %>
+			<h2><%=message%></h2>
+		<% } %>
+		
+		
 		<div class="container-fluid">
             <div class="row">
-				<form >
-					<div class="grupo" id="cabeza">
-						<div id="tres2">
-							<div class="entrada">Codigo:<br>
-								<input type="text"><br>
+				<a href="/cuaderno/limpiarC"> VOLVER</a>
+				<% if (OnlyC == null) { %>
+					<form action="/cuaderno/cuadernos" method="POST">
+						<div class="grupo" id="cabeza">
+							<div id="tres2">
+								<div class="entrada">Codigo:<br>
+									<input type="text" ><br>
+								</div>
+								<div class="entrada">Grupo de Asignacion:<br>
+									<input type="text" name="grupo"><br>
+								</div>
+								<div class="entrada">Titulo de Cuaderno:<br>
+									<input type="text" name="titulo"><br>
+								</div>
 							</div>
-							<div class="entrada">Grupo de Asignacion:<br>
-								<input type="text"><br>
-							</div>
-							<div class="entrada">Titulo de Cuaderno:<br>
-								<input type="text" ><br>
-							</div>
+							<p class="text-center">
+								<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+								<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+							</p>
 						</div>
-						<p class="text-center">
-							<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-							<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-						</p>
-					</div>
-				</form>
+					</form>
+				<% } else { %>
+					<form action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST">
+						<div class="grupo" id="cabeza">
+							<div id="tres2">
+								<div class="entrada">Codigo:<br>
+									<input type="text" value="<%=OnlyC[0].id%>"><br>
+								</div>
+								<div class="entrada">Grupo de Asignacion:<br>
+									<input type="text" name="grupo" value="<%=OnlyC[0].grupo%>"><br>
+								</div>
+								<div class="entrada">Titulo de Cuaderno:<br>
+									<input type="text" name="titulo" value="<%=OnlyC[0].titulo%>"><br>
+								</div>
+							</div>
+							<p class="text-center">
+								<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+								<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
+							</p>
+						</div>
+					</form>
+				<% } %>
 			</div>
 		</div>
 		<!-- Lista de Cuadernos-->
@@ -74,14 +102,16 @@
                         </tr>
                     </thead>
                     <tbody>
+						<% for(var i=0; i< resp.length; i++) { %>
                         <tr>
-                        <td>1</td>
-                        <td>Pediatria</td>
-						<td>Piso 4</td>
-						<td>Piso 4</td>
-                        <td><a href="/edit_cuadernos" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                        <td><%=resp[i].id%></td>
+                        <td><%=resp[i].grupo%></td>
+						<td><%=resp[i].titulo%></td>
+						<td><%=resp[i].createdAt%></td>
+                        <td><a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
     					<td><a href="/turnos" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-account-add"></i></a></td>
-                        </tr>
+						</tr>
+						<% } %>
                     <tbody>
 				</table>
 			</div>
@@ -89,7 +119,7 @@
     </div>
 	</section>
 	<!--====== Scripts -->
-	<%- include("partials/scripts") -%>
+	<%- include("../partials/scripts") -%>
 	<script>"/js/validaciones.js"</script>
 </body>
 </html>
