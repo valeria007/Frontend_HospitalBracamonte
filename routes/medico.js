@@ -48,7 +48,7 @@ var dataPaciente, idCIta;
 router.get('/consulta/:historial/:idCitaMedica', (req,res) => {
     var id = req.params;
     idCIta = req.params.idCitaMedica;
-    //console.log(idCIta,"  idCita <<<<<<<<<<<<<<<<<<<<<<<  2 <<<<<<<<<<<<<")
+    console.log(idCIta,"  idCita <<<<<<<<<<<<<<<<<<<<<<<  2 <<<<<<<<<<<<<")
    fetch('http://localhost:3000/api/onlyPaciente/'+id.historial)
       .then(resp => resp.json())
       .then(resp =>{
@@ -68,7 +68,7 @@ router.get('/renderConsulta', (req,res)=> {
           .then(resp => resp.json())
           .then(resp =>{
             cita = resp;
-            
+            console.log(resp, "esto es la cita")
             res.redirect('/medico/updateConsulta');           
         })
         .catch(error => {
