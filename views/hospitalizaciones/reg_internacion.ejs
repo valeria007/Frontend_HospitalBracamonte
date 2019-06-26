@@ -8,8 +8,28 @@
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- Content page-->
+    <%- include("partials/menu") -%>
+      <!-- SideBar Menu Hospital-->
+	  <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+		<li>
+			<a href="/internaciones/hospitalizacion/<%=especialidad%>">
+				<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=especialidad%>
+			</a>
+		</li>
+				   
+		<!-- Emergencias -->
+		<li>
+			<a href="#!" class="btn-sideBar-SubMenu">
+				<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
+			</a>
+			<ul class="list-unstyled full-box">
+				<li><a href="/internaciones/ListaInternacionF/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+						  
+			</ul>
+		</li> 
+		</ul>
+	<%- include("partials/footer") -%>
+    <!-- Content page-->
 	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 		<!-- NavBar -->
 		<nav class="full-box dashboard-Navbar">
@@ -24,7 +44,9 @@
 				</li>
 			</ul>
 		</nav>
-		<!-- Content page -->
+        <!-- Content page -->
+        <div id="prueva">
+        </div>
 		<div class="container-fluid">
 			<div class="page-header">
 				<h1 class="text-titles"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i>Pacientes Internados</h1>
@@ -59,6 +81,9 @@
                                                            
                                                         </select>
                                                     </div>
+
+                                                    <%if(Pint[0].tipoConsulta == "emeregencia") { %>
+                                                   
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Edad</label>
                                                         <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.edad%>">    
@@ -73,6 +98,23 @@
                                                         <label class="control-label">Nombres y Apellidos</label>
                                                         <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.nombre%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidop%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidom%>">
                                                     </div>
+                                                    <% }  else {%> 
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Edad</label>
+                                                            <input class="form-control" type="text" value="<%=Pint[0].Consulta.Citas_Medica.Paciente.edad%>">    
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Fecha de Ingreso a Sala</label>
+                                                            <input class="form-control" type="date" name="fechaIngreso">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Nombres y Apellidos</label>
+                                                            <input class="form-control" type="text" value="<%=Pint[0].Consulta.Citas_Medica.Paciente.nombre%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidop%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidom%>">
+                                                        </div>
+                                                    <% } %>    
+
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Tipo de Paciente</label>
                                                         <select class="form-control" name="tipoPaciente">
@@ -92,9 +134,8 @@
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Proviene de:</label>
                                                         <select class="form-control" name="provieneDE">
-                                                            <option>CONSULTA EXTERNA</option>
-                                                            <option>EMERGENCIA</option>
-                                                            <option>TRASPAZO</option>
+                                                            <option><%=Pint[0].tipoConsulta%></option>
+                                                            
                                                         </select>
                                                     </div>               
                                                 </div>
@@ -106,34 +147,30 @@
                                                 <input class="form-control" type="text" name="observacion">
                                             </div>
                                         </div>
-                                        <div class="col-md-12 panel-body">
+                                        <div class="col-md-12 panel-body" id="options">
                                             <div class="col-md-12">
                                                 <div class="col-md-4">
-                                                    <div class="form-group label-floating" id="options">
+                                                    <div class="form-group label-floating" >
                                                         <label class="control-label"  >Especialidad</label>
-                                                        <select class="form-control" name="especialidad" id="selects">
-                                                            
-                                                            <option value="">  </option>
-                                                            
-                                                
-                                                        </select>
+                                                        <select class="form-control" name="especialidad"  v-model="mensaje" @click="agregar">
+                                                            <option>Selecione</option>
+                                                            <option><%=Pint[0].especialidad%></option>                                                                                                  
+                                                        </select>                                      
                                                     </div>
-                                                </div>
+                                                </div>                                                
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating" >
                                                         <label class="control-label">Descricion</label>
-                                                        <select class="form-control" name="sala" id="salas">
-                                                            <option value=""></option>
-                                                            
+                                                        <select class="form-control" name="sala" v-model="salaID" @click="traer">                                                                
+                                                            <option v-for="item in mostrar" :value="item.id">{{item.descripcionSala}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-4">                                                    
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Cama</label>
-                                                        <select class="form-control" name="cama">
-                                                            <option>Cama 1</option>
-                                                            
+                                                        <select class="form-control" name="cama">                                                            
+                                                            <option v-for="item of camas" :value="item.id" >Cama N° {{item.numeroCama}}</option>                                                            
                                                         </select>
                                                     </div>
                                                  </div>
@@ -169,6 +206,6 @@
 	    </section>
 	<!--====== Scripts -->
     <%- include("../partials/scripts") -%>
-    <script src="/js/get/getECP.js"></script>
+   
 </body>
 </html>

@@ -68,6 +68,16 @@
                                                                 <option value="emeregencia">Emergencia</option>                                            
                                                             </select>
                                                         </div>
+
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Area de Internacion</label>
+                                                            <select class="form-control" name="especialidad">
+                                                                <% for(var i=0; i< especialidad.length; i++) {%>
+                                                                <option><%=especialidad[i].nombre%></option>
+                                                                <% } %>
+                                                            </select>
+                                                        </div>
+
                                                         <div class="form-group">
                                                             <label class="control-label">Fecha de Ingreso</label>
                                                             <input class="form-control" type="date" name="fechaIngreso">
@@ -123,7 +133,9 @@
                                                         </div>
                                                     
                                                     </div>
+                                                    
                                                 </div>
+                                                
                                                 <div class="col-md-12">
                                                     <h3>Estado del paciente</h3>						
                                                         <div class="form-group label-floating">

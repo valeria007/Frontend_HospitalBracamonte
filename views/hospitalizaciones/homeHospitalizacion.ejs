@@ -5,10 +5,31 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("../partials/head") -%>
+	<link rel="stylesheet" href="/css/HomeInt.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
 	<%- include("partials/menu") -%>
+	  <!-- SideBar Menu Hospital-->
+	  <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+		<li>
+			<a href="/internaciones/hospitalizacion/<%=especialidad%>">
+				<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=especialidad%>
+			</a>
+		</li>
+				   
+		<!-- Emergencias -->
+		<li>
+			<a href="#!" class="btn-sideBar-SubMenu">
+				<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
+			</a>
+			<ul class="list-unstyled full-box">
+				<li><a href="/internaciones/ListaInternacionF/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+						  
+			</ul>
+		</li> 
+		</ul>
+	<%- include("partials/footer") -%>
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->

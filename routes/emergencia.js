@@ -364,7 +364,8 @@ router.get('/RenderPinternacion/:id', (req,res) => {
             res.render('emergencias/Papeleta_Internacion',{
                 resp,
                 listPinter,
-                updateInternacion   
+                updateInternacion,
+                especialidad
             }); 
         })        
         .catch(error => {
@@ -372,6 +373,21 @@ router.get('/RenderPinternacion/:id', (req,res) => {
             res.send("no hay coneccion con el servidor");
         }) 
     }
+})
+
+var especialidad;
+router.get('/especialidad/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:3000/api/servicios')
+    .then(resp => resp.json())
+    .then(resp =>{  
+        especialidad = resp;
+        res.redirect('/emergencia/RenderPinternacion/'+id); 
+    })        
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
 })
 
 //serv para mostar una sola papeleta de internacion ṕara que pueda ser actualizado
@@ -382,7 +398,7 @@ router.get('/updatePinternacion/:id', (req,res) => {
     .then(resp => resp.json())
     .then(resp =>{  
         updateInternacion = resp;
-        res.redirect('/emergencia/RenderPinternacion/'+id); 
+        res.redirect('/emergencia/especialidad/'+id); 
     })        
     .catch(error => {
         console.error('Error:', error)
