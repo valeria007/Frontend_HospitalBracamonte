@@ -6,22 +6,36 @@ var url = require('./url/export');
 
 //para renderizar una vista de botones donde esta doctor y enfermera temporalmente
 router.get('/viewTemporal', (req,res) => {
-    res.render('hospitalizaciones/viewFirst');
+    fetch(url.name.url+'/api/servicios') // esta ruta solo trae los datos de tipo true
+    .then(resp => resp.json())
+    .then(resp =>{
+        res.render('hospitalizaciones/viewFirst',{
+            resp
+        })
+    })        
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })    
 });
 
 //serv para mostrar home hospitalizacion o internacion
-router.get('/hospitalizacion',(req, res) => {
-    res.render('hospitalizaciones/homeHospitalizacion')
-    
+router.get('/hospitalizacion/:especialidad',(req, res) => {
+    const { especialidad } = req.params
+    res.render('hospitalizaciones/homeHospitalizacion',{
+        especialidad //esto manda la especialdad
+    })       
 });
+
 
 //ser para renderizar lista hospitalizacion mostrando 
 //la lista de ordenes de internacion que se mandan desde consulta o emergencia
-router.get('/ListInternacion', (req,res) => {
-    fetch(url.name.url+'/api/PinterTrue') // esta ruta solo trae los datos de tipo true
+router.get('/ListInternacion/:especialidad', (req,res) => {
+    const { especialidad } = req.params;
+    fetch(url.name.url+'/api/PinterTrue/'+especialidad) // esta ruta solo trae los datos de tipo true
     .then(resp => resp.json())
     .then(resp =>{
-        console.log(resp)
+        console.log(especialidad, " esto es la especialidad  <>>>>>>>>>>>>>")
         /*var data = resp.map(function(item){
             return { nombre2:item.nombre}
         })
@@ -30,9 +44,11 @@ router.get('/ListInternacion', (req,res) => {
             console.log(item.estado, " >>>>>>>>>>>>>>>>>>>")
         })*/
        // console.log(listFalse)
+       
         res.render('hospitalizaciones/listasHospitalizacion',{
             resp,
-            listFalse// lleva la lista de tipo false
+            listFalse,// lleva la lista de tipo false
+            especialidad
         })
     })        
     .catch(error => {
@@ -40,20 +56,27 @@ router.get('/ListInternacion', (req,res) => {
         res.send("no hay coneccion con el servidor");
     }) 
 });
+
 // esta ruta es para traer la lista de internacion de tipo false
-var listFalse;
-router.get('/ListaInternacionF', (req,res) => {
-    fetch(url.name.url+'/api/PinterFalse') // esta ruta solo trae los datos de tipo true
+var listFalse , especialidad1;
+router.get('/ListaInternacionF/:especialidad', (req,res) => {
+    const { especialidad } = req.params;
+    especialidad1 = especialidad;
+    fetch(url.name.url+'/api/PinterFalse/'+especialidad) // esta ruta solo trae los datos de tipo true
     .then(resp => resp.json())
     .then(resp =>{
         listFalse = resp;
-        res.redirect('/internaciones/ListInternacion');
+        res.redirect('/internaciones/ListInternacion/'+especialidad);
     })        
     .catch(error => {
         console.error('Error:', error)
         res.send("no hay coneccion con el servidor");
     }) 
 });
+
+
+
+
 
 /*
 <<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -66,18 +89,19 @@ router.get('/ListaInternacionF', (req,res) => {
 //ruta para renderizar el form de internacion
 router.get('/renderInternacion', (req,res) => {
     res.render('hospitalizaciones/reg_internacion',{
-        Pint
+        Pint,
+        especialidad : especialidad1
     });
 });
 
-router.ge
 //esta ruta es para poder traer una papeleta de internacion
 var Pint;
-router.get('/only_pInternacion/:id', (req,res) => {
-    const { id } = req.params;
-    fetch(url.name.url+'/api/one_Pinternacion/'+id) 
+router.get('/only_pInternacion/:id/:tipoCons', (req,res) => {
+    const { id, tipoCons } = req.params;
+    fetch(url.name.url+'/api/one_Pinternacion/'+id+"/"+tipoCons) 
     .then(resp => resp.json())
     .then(resp =>{
+        console.log(resp, "  <<<<<<<<<<<<<<<<<<<<  esto es la respuesta que quiero")
         Pint = resp;
         res.redirect('/internaciones/renderInternacion');
     })        

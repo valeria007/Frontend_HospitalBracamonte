@@ -1,6 +1,6 @@
-$(document).ready(function() { 
+//$(document).ready(function() { 
    
-        fetch('http://localhost:3000/api/servicios')
+       /* fetch('http://localhost:3000/api/servicios')
         .then(res => res.json())
         .then(data =>{
             var $content = "";
@@ -14,17 +14,19 @@ $(document).ready(function() {
         $("#selects").html($content);
          // console.log(data)
           
-        })
+        })*/
 
         // esta funcion selecina lo que hay dentro del select para agarrar ese dato
         //y llevarlo a otro fetch que traeria datos de salas
         
-        $(function(){
+       /* $(function(){
           $("#selects").change(function(){
           var  serv = $("#selects option:selected").text();
+          console.log(serv);
           fetch('http://localhost:3000/api/ServSalasN/'+serv)
             .then(res => res.json())
             .then(data =>{
+              console.log(data)
                 var $content2 = "";
                 data.forEach(function(item){
                 
@@ -38,10 +40,10 @@ $(document).ready(function() {
 
         $(function(){
           $("#salas").change(function(){
-          var  sala = $("#selects option:selected").val(); 
-            console.log(sala)
+          var  sala = $("#selects option:selected").text(); 
+            console.log(sala, "esto es de sala")
           })
-        })
+        })*/
         
 
         
@@ -55,4 +57,52 @@ $(document).ready(function() {
     $( "div" ).text( str );
   })
   .trigger( "change" );*/
-});
+
+
+//});
+
+/*const app = new Vue({
+  el: '#prueva',
+  data () {
+    return {
+      mensaje: null
+    }
+  },
+  mounted () {
+    axios
+      .get('http://localhost:3000/api/papeletaInt')
+      .then(response => (this.mensaje = response.data[0].Historial ))
+  }
+})*/
+ new Vue({
+  el:'#options',
+    
+    data () {
+      return {
+        mensaje:'asdas',
+        mostrar:'',
+        salaID:'',
+        camas:[]
+      }
+    },
+    methods:{
+      agregar: function (){
+        axios
+        .get('http://localhost:3000/api/ServSalasN/'+this.mensaje)
+        .then(response => {
+          this.mostrar = response.data 
+          //console.log(response.data)
+          
+        })
+      },
+      traer: function (){
+        axios
+        .get('http://localhost:3000/api/camaSala/'+this.salaID)
+        .then(response => {
+          console.log(response.data)
+          this.camas = response.data
+        })
+      } 
+    }
+})
+
