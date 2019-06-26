@@ -313,7 +313,8 @@ router.get('/Pinternacion/:id', (req,res) => {
                 id,
                 ConsultaOnlyPinternacion,
                 PapeletaINTER, // trae datos de papeleta internacion segun hstorial y tipo consulta
-                resp
+                resp,
+                especialidad
             });
         })
         .catch(error => {
@@ -324,6 +325,21 @@ router.get('/Pinternacion/:id', (req,res) => {
     
 });
 
+var especialidad;
+router.get('/especialidad/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:3000/api/servicios')
+    .then(resp => resp.json())
+    .then(resp =>{  
+        especialidad = resp;
+        res.redirect('/medico/Pinternacion/'+id);
+    })        
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
+})
+
 //serv para sacar consulta segun id
 var ConsultaOnlyPinternacion;
 router.get('/TraerConsultaPinternacion/:id', (req,res) => {
@@ -332,7 +348,7 @@ router.get('/TraerConsultaPinternacion/:id', (req,res) => {
         .then(resp => resp.json())
         .then(resp =>{
             ConsultaOnlyPinternacion = resp;
-            res.redirect('/medico/Pinternacion/'+id.id);
+            res.redirect('/medico/especialidad/'+id.id);
         })
         .catch(error => {
             console.error('Error:', error)

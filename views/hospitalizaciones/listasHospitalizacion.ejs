@@ -9,6 +9,26 @@
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
 	<%- include("partials/menu") -%>
+	  <!-- SideBar Menu Hospital-->
+	  <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+		<li>
+			<a href="/internaciones/hospitalizacion/<%=especialidad%>">
+				<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=especialidad%>
+			</a>
+		</li>
+				   
+		<!-- Emergencias -->
+		<li>
+			<a href="#!" class="btn-sideBar-SubMenu">
+				<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
+			</a>
+			<ul class="list-unstyled full-box">
+				<li><a href="/internaciones/ListaInternacionF/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+						  
+			</ul>
+		</li> 
+		</ul>
+	<%- include("partials/footer") -%>
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->
@@ -64,9 +84,6 @@
 								<tr>
 									<th class="text-center">#</th>
 									<th class="" WIDTH="15%">N° de historia </th>
-									<th class="" WIDTH="20%">Nombre del Paciente</th>
-									<th class="" WIDTH="20%">Apellido paterno</th>
-									<th class="" WIDTH="20%">Apellido materno</th>	
 									<th class="" WIDTH="20%">Fecha</th>	
 									<th class="" WIDTH="20%">Motivo de Ingreso</th>	
 									<th class="" WIDTH="20%">Viene de</th>	
@@ -84,13 +101,10 @@
 										<tr>
 											<td><%= i + 1 %></td>
 											<td><%=resp[i].Historial %></td>
-											<td><%=resp[i].emergencium.Citas_Medica.Paciente.nombre %></td>                                        
-                                            <td><%=resp[i].emergencium.Citas_Medica.Paciente.apellidop %></td>
-                                            <td><%=resp[i].emergencium.Citas_Medica.Paciente.apellidom %></td>
 											<td><%=resp[i].fechaIngreso %></td>
 											<td><%=resp[i].diagnostico %></td>
 											<td><%=resp[i].tipoConsulta %></td>
-											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 											
 										</tr>
 										<% } %>

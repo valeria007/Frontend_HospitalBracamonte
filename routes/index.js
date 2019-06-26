@@ -42,6 +42,13 @@ router.post('/login', (req,res)  => {
 router.get('/cuadernos',(req, res) => {
   res.render('cuadernos')
 });
+
+router.get('/servicios',(req, res) => {
+  res.render('servicios')
+});
+router.get('/turnos',(req, res) => {
+  res.render('turnos')
+});
  //vista de doctor
 
  router.get('/HomeVistDoctor',(req,res) =>{

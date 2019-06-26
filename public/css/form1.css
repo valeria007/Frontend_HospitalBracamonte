@@ -27,6 +27,7 @@
     margin: 0;
   }
   
+  
   .entrada {
     padding: 6px;
   }
@@ -103,3 +104,4 @@
             flex: 1;
     height: 300px;
   }
+

@@ -17,9 +17,6 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search"><i class="zmdi zmdi-search"></i></a>
-				</li>
 			</ul>
 		</nav>
 		<!-- Content page -->
@@ -30,84 +27,59 @@
 		</div>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-						<li class="active"><a href="#list" data-toggle="tab">Nuevo Registro</a></li>
-						<li><a href="#new" data-toggle="tab">Lista de Registros</a></li>
-					</ul>
-					<!--tabla de registros de Usuarios -->
-					<div id="myTabContent" class="tab-content">
-						<!-- nuevo registro de Usuarios-->
-						<div class="tab-pane fade active in" id="list">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-xs-12 col-md-10 col-md-offset-1">
-											<form action="/usuarios/crearCuenta/<%=id.id%>" method="POST">
-												
-												<div class="form-group label-floating">
-													<label class="control-label">Correo</label>
-													<input class="form-control" type="email" name="correo" id="correo">
-													<span id="su"></span>
-												</div>
-												<div class="form-group label-floating">
-													<label class="control-label">Contraceña</label>
-													<input class="form-control" type="password" name="contraseña" minlength="8" id="contraseña" >
-	
-												</div>
-												<div class="form-group label-floating">
-													<label class="control-label">repita contraceña Contraceña por favor</label>
-													<input class="form-control" type="password" name="contraseña2"id="contraseña2">
-													<span id="error2"></span>
-												</div>
-												<div class="form-group label-floating ma">
-													<label class="control-label">Tipo de Usuario</label>
-													<input class="form-control" type="text" name="tipo_usuario" >
-												</div>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-												</p>
-											</form>
-										</div>
-									</div>
-								</div>
+				<form action="/usuarios/crearCuenta/<%=id.id%>" method="POST">
+					<div class="grupo" id="cabeza">
+						<div id="correo">
+							<div class="entrada">Correo Electrónico:<br>
+								<input type="email" name="correo" id="correo">
+								<span id="su"></span><br>
 							</div>
-						<div class="tab-pane fade " id="new">
-							<p class="text-center">
-								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-							</p>
-							<div class="table-responsive">
-								<div class="table-wrapper">
-									<div class="form-group pull-left">
-										<input type="text" class="search form-control" placeholder="Buscar">
-									</div>
-									<span class="counter pull-left"></span>
-									<table class="fl-table">
-										<thead>
-											<tr>
-																			
-											<th>Correo</th>
-											<th>Tipo de Usuario</th>
-											<th>Dar de Baja</th>
-											<th>Modificar Cuenta</th>
-											</tr>
-										</thead>
-										<tbody>
-											<% for (var i=0; i< resp.length; i++) { %>
-											<tr>
-											
-											<td><%=resp[i].correo %></td>
-											
-											<td><%=resp[i].tipo_usuario %></td>							
-											</tr>
-											<% } %>
-										<tbody>
-									</table>
-								</div>
+							<div class="entrada">Contraceña:<br>
+								<input type="password" name="contraseña" minlength="8" id="contraseña" ><br>
+							</div>
+							<div class="entrada">Repita contraceña Contraceña por favor:<br>
+								<input type="password" name="contraseña2"id="contraseña2">
+								<span id="error2"></span><br>
+							</div>
+							<div class="entrada">Tipo de Usuario:<br>
+								<input type="text" name="tipo_usuario" ><br>
 							</div>
 						</div>
-						
 					</div>
+					<p class="text-center">
+						<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+						<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+					</p>
+				</form>
+			</div>
+			<div class="table-responsive">
+				<div class="table-wrapper">
+					<div id="correo">
+						<div class="entrada">
+							<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+						</div>
+						<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+							<input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
+						</div>
+					</div>
+					<table class="fl-table" id="myTable">
+						<thead>
+							<tr>
+							<th>Correo</th>
+							<th>Tipo de Usuario</th>
+							<th>Dar de Baja</th>
+							<th>Modificar Cuenta</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for (var i=0; i< resp.length; i++) { %>
+							<tr>
+							<td><%=resp[i].correo %></td>
+							<td><%=resp[i].tipo_usuario %></td>							
+							</tr>
+							<% } %>
+						<tbody>
+					</table>
 				</div>
 			</div>
 		</div>
