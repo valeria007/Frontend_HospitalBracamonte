@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
-	<link rel="stylesheet" href="/css/form.css">
+	<link rel="stylesheet" href="/css/form1.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -29,64 +29,86 @@
 	<div class="container-fluid">
 		<div class="row">
 			<form action="/paciente/cita_medica/<%=id.id %>" method="POST">
-				<h3 class="text-center">Datos Personales </h3>
-				<!-- daros personales-->
-				<div class="col-md-12 panel-body">  
-					<div class="col-md-3">
-						<div class="form-group">
-							<label class="control-label">Historial Clinico</label>
-							<input class="form-control" type="text" value="<%=historial	%>" name="codigo_p">
+				<div class="grupo" id="cabeza">
+					<h3 class="text-center"> Datos Personales</h3>
+					<div id="tres2">
+						<div class="entrada">Historial Clinico:<br>
+							<input type="text" value="<%=historial	%>" name="codigo_p"><br>
 						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label class="control-label">Servicio</label>
-							<select class="form-control" name="especialidad">
+						<div class="entrada">Doctor:<br>
+							<input type="text" name="medico"><br>
+						</div>
+						<div class="entrada">Especialidad:<br>
+							<select  name="especialidad">
 								<option value="consultaMedica">Consulta Medica</option>
 								<option value="emergencia">Emergencia</option>	
-							</select>
+							</select><br>
 						</div>
 					</div>
-					<div class="col-md-5">
-						<div class="form-group">
-							<label >Tipo de Paciente: </label>
-							<label class="radio-inline"><input type="radio" name="paciente">Asegurado</label>
-							<label class="radio-inline"><input type="radio" name="paciente">No Asegurado</label>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12 panel-body">  
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label">Turno</label>
-							<select class="form-control" name="turno">
+					<div id="correo">
+						<div class="entrada">Turno:<br>
+							<select name="turno">
 								<option value="maiana">Mañana</option>
 								<option value="tarde">Tarde</option>
 								<option value="emergencia">Emergencia</option>	
-							</select>
+							</select><br>
 						</div>
-						<div class="form-group">
-							<label class="control-label">Medico</label>
-							<input class="form-control" type="text" name="medico">
+						<div class="entrada">Hora:<br>
+							<input  type="text" name="hora"><br>
 						</div>
-                    </div>
-                    <div class="col-md-6">  
-						<div class="form-group">
-							<label class="control-label">Hora</label>
-							<input class="form-control" type="text" name="hora">
+						<div class="entrada">Tipo de Paciente:<br>
+							<div class="col-md-9">
+								<label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="IsSmallBusiness" name="IsSmallBusiness" type="radio" value="False">Asegurado</label>
+								<label class="radio-inline"><input id="IsSmallBusiness" name="IsSmallBusiness" type="radio" value="True">No Asegurado</label>
+								<span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true"></span>
+							</div><br>
 						</div>
-						<div class="form-group">
-							<label class="control-label">Costo</label>
-							<input class="form-control" type="text" name="saldo_total">
-						</div>        
-                    </div>
-				</div> 	
-				<p class="text-center">
-					<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-					<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-					<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-				</p>
-			</form>								
+						<div class="entrada">Costo de Ficha:<br>
+							<input type="text" name="saldo_total"><br>
+						</div>
+					</div>
+					<p class="text-center">
+						<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+						<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+					</p>
+				</div>
+			</form>	
+			<div class="table-responsive">
+				<div class="table-wrapper">
+					<div id="correo">
+						<div class="entrada">
+							<button type="reset" class="btn btn-info btn-raised btn-lg" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar Fichajes</button>
+						</div>
+						<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+							<input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
+						</div>
+					</div>
+					<table class="fl-table" id="myTable">
+						<thead>
+							<tr>
+							<th>#</th>
+							<th>Historial Clinico</th>
+							<th>Doctor</th>
+							<th>Especialidad</th>
+							<th>Fecha </th>
+							<th>Saldo</th>
+							<th>Modificar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							<td>1</td>
+							<td>123</td>
+							<td>Dr. Pepito</td>
+							<td>Emergencia</td>
+							<td>12/02/2019</td>
+							<td>20</td>
+							<td><a href="/edit_cuadernos" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+							</tr>
+						<tbody>
+					</table>
+				</div>
+			</div>	
 		</div>
 	</div>									
 </section>

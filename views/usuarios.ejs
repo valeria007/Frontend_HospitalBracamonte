@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
+	<link rel="stylesheet" href="/css/form1.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -17,9 +18,6 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search"><i class="zmdi zmdi-search"></i></a>
-				</li>
 			</ul>
 		</nav>
 		<!-- Content page -->
@@ -30,112 +28,86 @@
 		</div>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-						<li class="active"><a href="#list" data-toggle="tab">Nuevo Usuario</a></li>
-						<li ><a href="#new" data-toggle="tab">Lista de Usuarios</a></li>
-
-					</ul>
-					<!-- nuevos Usuarios -->
-					<div id="myTabContent" class="tab-content">
-						<!--Nuevo Usuarios-->
-						<div class="tab-pane fade active in" id="list">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-xs-12 col-md-10 col-md-offset-1">
-											<form action="/usuarios/usuarios" method="POST" onsubmit="return validar()">
-												<%if (msg) {%>
-													<h1><%=msg%></h1>
-												<% } %>
-		
-																
-												<div class="form-group label-floating ma">
-													<label class="control-label">Nombre</label>
-													<input class="form-control " class="MAYUSCULAS"  type="text" name="nombre" id="nombre" >
-												</div>
-												<div class="form-group label-floating ma">
-													<label class="control-label">Apellido Paterno</label>
-													<input class="form-control"  type="text" name="apellidop" id="apellidop" >
-												</div>
-												<div class="form-group label-floating ma">
-													<label class="control-label">Apellidos Meterno</label>
-													<input class="form-control" type="text" name="apellidom" id="apellidom" >
-												</div>
-												<div class="form-group label-floating  ">
-													<label class="control-label">CI.</label>
-													<input class="form-control" type="text" name="ci" id="ci" >
-												</div>
-												<div class="form-group label-floating ma ">
-													<label class="control-label">Cargo</label>
-													<input class="form-control" type="text" name="cargo" id="cargo" >
-												</div>
-												<div class="form-group label-floating ma">
-													<label class="control-label">Direccion</label>
-													<input class="form-control" type="text" name="direcion" id="direccion" >
-												</div>
-												<div class="form-group label-floating">
-													<label class="control-label">Telefono</label>
-													<input class="form-control" type="text" name="telefono" id="telefono" >
-												</div>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-													<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-												</p>
-											</form>
-										</div>
-									</div>
-								</div>
+				<form action="/usuarios/usuarios" method="POST" onsubmit="return validar()">
+					<%if (msg) {%>
+						<h1><%=msg%></h1>
+					<% } %>
+					<div class="grupo" id="cabeza">
+						<div id="tres2">
+							<div class="entrada">Apellido Paterno<br>
+								<input  type="text" name="apellidop" id="apellidop"><br>
 							</div>
-						<div class="tab-pane fade " id="new">
-							<p class="text-center">
-								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-							</p>
-							<div class="table-responsive">
-								<div class="table-wrapper">
-									<div class="form-group pull-left">
-										<input type="text" class="search form-control" placeholder="Buscar">
-									</div>
-									<span class="counter pull-left"></span>
-									<table class="fl-table">
-										<thead>
-											<tr>
-											<th>Nombre</th>
-											<th>Apellido Paterno</th>
-											<th>Apellido Materno</th>
-											<th>C.I.</th>
-											<th>Cargo</th>
-											<th>Modificar</th>
-											<th>Dar de Baja</th>
-											<th>Registtrar Cuenta</th>
-											</tr>
-										</thead>
-										<tbody>
-											<% if (resp == null) { %>
-												<h1>no hay cuenta</h1>
-											<% } else { %>
-												
-												<% for(var i=0; i< resp.length; i++) { %>
-													<tr>
-													<td><%=resp[i].nombre %></td>
-													<td><%=resp[i].apellidop %></td>
-													<td><%=resp[i].apellidom %></td>
-													<td><%=resp[i].ci %></td>
-													<td><%=resp[i].cargo %></td>										
-													<td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-													<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-													<td><a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-													</tr>
-													<% } %>
-											<% } %>
-										<tbody>
-									</table>
-								</div>
+							<div class="entrada">Apellido Materno:<br>
+								<input type="text" name="apellidom" id="apellidom"><br>
+							</div>
+							<div class="entrada">Nombre(s):<br>
+								<input class="MAYUSCULAS"  type="text" name="nombre" id="nombre" ><br>
 							</div>
 						</div>
-						
+						<div id="correo">
+							<div class="entrada">C.I.:<br>
+								<input type="text" name="ci" id="ci"><br>
+							</div>
+							<div class="entrada">Cargo:<br>
+								<input type="text" name="cargo" id="cargo"><br>
+							</div>
+							<div class="entrada">Direccion:<br>
+								<input type="text" name="direcion" id="direccion" ><br>
+							</div>
+							<div class="entrada">Telefono<br>
+								<input type="text" name="telefono" id="telefono" ><br>
+							</div>
+						</div>							
 					</div>
-					
+					<p class="text-center">
+						<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+						<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+					</p>
+				</form>
+				<div class="container-fluid">
+				<div class="table-responsive">
+					<div id="correo">
+						<div class="entrada">
+							<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+						</div>
+						<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+							<input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
+						</div>
+					</div>
+					<table class="fl-table" id="myTable">
+						<thead>
+							<tr>
+							<th>Nombre</th>
+							<th>Apellido Paterno</th>
+							<th>Apellido Materno</th>
+							<th>C.I.</th>
+							<th>Cargo</th>
+							<th>Modificar</th>
+							<th>Dar de Baja</th>
+							<th>Registrar Cuenta</th>
+							</tr>
+						</thead>
+						<tbody>
+						<% if (resp == null) { %>
+							<h1>no hay cuenta</h1>
+						<% } else { %>
+						<% for(var i=0; i< resp.length; i++) { %>
+							<tr>
+							<td><%=resp[i].nombre %></td>
+							<td><%=resp[i].apellidop %></td>
+							<td><%=resp[i].apellidom %></td>
+							<td><%=resp[i].ci %></td>
+							<td><%=resp[i].cargo %></td>										
+							<td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+							<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+							<td><a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+							</tr>
+						<% } %>
+						<% } %>
+						<tbody>
+					</table>
 				</div>
+			</div>
 			</div>
 		</div>
 		</section>
