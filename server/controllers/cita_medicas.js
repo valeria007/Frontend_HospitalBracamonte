@@ -121,7 +121,7 @@ class Citas_medica {
         })*/
       }
 
-      static OnlyCita(req, res){                
+      /*static OnlyCita(req, res){                
         var id = req.params.id;  
         Citas_Medicas.findAll({
             where: {codigo_p: id }
@@ -129,7 +129,7 @@ class Citas_medica {
           }).then((Citas) => {
             res.status(200).json(Citas);
           });     
-       }
+       }*/
       
 }
 export default Citas_medica;

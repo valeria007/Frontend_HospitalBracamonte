@@ -7,7 +7,7 @@ import model from '../models';
     
     class Servicio {
         static serv(req, res) {
-            const { nombre,sigla,descripcion,especilidadSNSIS,establecimientoSNIS } = req.body
+            const { nombre,sigla,descripcion } = req.body
                 return Especialidad
                 .create({
                   nombre,
