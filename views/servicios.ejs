@@ -23,7 +23,7 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-				<h1 class="text-titles"><i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Registros de Cuadernos </h1>
+				<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i>Servicios</h1>
 			</div>
 		</div>
 		<!--Cuadernos-->
@@ -35,10 +35,10 @@
 							<div class="entrada">Codigo:<br>
 								<input type="text"><br>
 							</div>
-							<div class="entrada">Grupo de Asignacion:<br>
+							<div class="entrada">Servicio:<br>
 								<input type="text"><br>
 							</div>
-							<div class="entrada">Titulo de Cuaderno:<br>
+							<div class="entrada">Saldo:<br>
 								<input type="text" ><br>
 							</div>
 						</div>
@@ -52,7 +52,6 @@
 		</div>
 		<!-- Lista de Cuadernos-->
 		<div class="table-responsive">
-			<h3 class="text-center all-tittles">LISTA DE CUADERNOS VIGENTES</h3>
             <div class="table-wrapper">
 				<div id="correo">
 					<div class="entrada">
@@ -63,14 +62,13 @@
 					</div>
 				</div>
 				<table class="fl-table" id="myTable">
-                    <thead>
+					<thead>
                         <tr>
-						<th>Codigo</th>
-						<th>Grupo de Asignacion</th>
-                        <th>Titulo de Cuaderno</th>
-						<th>Fecha de Creacion</th>
-						<th>Modificar</th>
-						<th>Dar Doctor</th>
+						<th class="text-center" WIDTH="5%">Codigo</th>
+						<th class="text-center" WIDTH="40%">Servico</th>
+                        <th class="text-center" WIDTH="15%">Saldo</th>
+						<th class="text-center" WIDTH="20%">Fecha de Creacion</th>
+						<th class="text-center" WIDTH="20%">Modificar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,9 +77,8 @@
                         <td>Pediatria</td>
 						<td>Piso 4</td>
 						<td>Piso 4</td>
-                        <td><a href="/edit_cuadernos" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
-    					<td><a href="/turnos" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-account-add"></i></a></td>
-                        </tr>
+                        <td><a href="" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+    					</tr>
                     <tbody>
 				</table>
 			</div>
@@ -90,6 +87,5 @@
 	</section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
-	<script>"/js/validaciones.js"</script>
 </body>
 </html>
