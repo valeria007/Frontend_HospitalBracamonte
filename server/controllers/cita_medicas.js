@@ -9,7 +9,7 @@ class Citas_medica {
         const { id_Paciente } = req.params;
         return Citas_Medicas
           .create({
-            estado,
+            estado,            
             codigo_p,
             turno,
             medico,
@@ -120,6 +120,16 @@ class Citas_medica {
           res.send(estado)
         })*/
       }
+
+      static OnlyCita(req, res){                
+        var id = req.params.id;  
+        Citas_Medicas.findAll({
+            where: {codigo_p: id }
+            //attributes: ['id', ['description', 'descripcion']]
+          }).then((Citas) => {
+            res.status(200).json(Citas);
+          });     
+       }
       
 }
 export default Citas_medica;

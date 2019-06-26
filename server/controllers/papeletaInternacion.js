@@ -7,7 +7,7 @@ const { Citas_Medicas } = model;
 const { Pacientes } = model;
 class papeletaInt{
     static enviarPapeletaINT(req, res){
-          const { estado,tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
+          const { estado,tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico,especialidad } = req.body
           const { idConsultaMedica } = req.params
           const { idEmergencia } = req.params
           return PapeletaInternacion
@@ -20,6 +20,7 @@ class papeletaInt{
             apellidoD1,
             apellidoD2,
             diagnostico,
+            especialidad,
             idConsultaMedica,
             idEmergencia
           })
@@ -99,7 +100,7 @@ class papeletaInt{
     }
     static upinternacion(req, res) {
       console.log(req.body, " <<<<<<<<<<<<<<<<<<<<<")
-      const { tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico } = req.body
+      const { tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico,especialidad } = req.body
       return PapeletaInternacion
         .findByPk(req.params.id)
         .then((data) => { 
@@ -110,7 +111,8 @@ class papeletaInt{
             nombreDoctor: nombreDoctor || data.nombreDoctor,                    
             apellidoD1: apellidoD1 || data.apellidoD1,                    
             apellidoD2: apellidoD2 || data.apellidoD2,
-            diagnostico: diagnostico || data.diagnostico    
+            diagnostico: diagnostico || data.diagnostico, 
+            especialidad: especialidad || data.especialidad   
           })
           .then(update => {
             res.status(200).send({
@@ -123,7 +125,8 @@ class papeletaInt{
                 nombreDoctor: nombreDoctor || update.nombreDoctor,                    
                 apellidoD1: apellidoD1 || update.apellidoD1,                    
                 apellidoD2: apellidoD2 || update.apellidoD2,
-                diagnostico: diagnostico || update.diagnostico    
+                diagnostico: diagnostico || update.diagnostico,
+                especialidad:especialidad || update.especialidad    
               }
             })
           })
@@ -132,47 +135,32 @@ class papeletaInt{
         .catch(error => res.status(400).send(error));
   }
   // este serv va a mostrar los datos de tipo true solamente
-  static PINterTRUE(req, res){                
+  static PINterTRUE(req, res){ 
+    const { especialidad } = req.params               
     PapeletaInternacion.findAll({
-        where: { estado: true },
+        where: { estado: true, especialidad:especialidad },
         //attributes: ['id', ['description', 'descripcion']]
-        include: [
-          { model: emergencia, attributes:[ 'id'],
-          include:[
-            { model: Citas_Medicas, attributes:['id'],
-          include:[
-            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
-          ] }
-          ]
-         }
-        ]
+        
       }).then((resp) => {
         res.status(200).json(resp);
       });     
   }
   // este serv va a mostrar los datos de tipo false solamente
-  static PINterFALSE(req, res){                
+  static PINterFALSE(req, res){ 
+    const { especialidad } = req.params                   
     PapeletaInternacion.findAll({
-        where: { estado: false },
+        where: { estado: false, especialidad:especialidad },
         //attributes: ['id', ['description', 'descripcion']]
-        include: [
-          { model: emergencia, attributes:[ 'id'],
-          include:[
-            { model: Citas_Medicas, attributes:['id'],
-          include:[
-            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
-          ] }
-          ]
-         }
-        ]
+       
       }).then((resp) => {
         res.status(200).json(resp);
       });     
   }
   // para traer una sola papeleta de internacion
   static idPinternacion(req, res){ 
-    const { id } = req.params;               
-    PapeletaInternacion.findAll({
+    const { id, tipoCons } = req.params;
+    if (tipoCons == "emeregencia"){
+      PapeletaInternacion.findAll({
         where: { id: id },
         //attributes: ['id', ['description', 'descripcion']]
         include: [
@@ -188,6 +176,25 @@ class papeletaInt{
       }).then((resp) => {
         res.status(200).json(resp);
       });     
+    } else { // esto de aqui va a traer las consultas medicas
+      PapeletaInternacion.findAll({
+        where: { id: id },
+        //attributes: ['id', ['description', 'descripcion']]
+        include: [
+          { model: Consultas, attributes:[ 'id'],
+          include:[
+            { model: Citas_Medicas, attributes:['id'],
+          include:[
+            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+          ] }
+          ]
+         }
+        ]
+      }).then((resp) => {
+        res.status(200).json(resp);
+      }); 
+    }               
+    
   }
 }
 

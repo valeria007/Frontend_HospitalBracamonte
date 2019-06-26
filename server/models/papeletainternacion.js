@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     apellidoD1: DataTypes.TEXT,
     apellidoD2: DataTypes.TEXT,
     diagnostico: DataTypes.TEXT,
+    especialidad: DataTypes.STRING,
     idConsultaMedica: DataTypes.INTEGER,
     idEmergencia: DataTypes.INTEGER
   }, {});

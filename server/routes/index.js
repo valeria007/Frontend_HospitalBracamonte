@@ -87,9 +87,9 @@ app.get('/api/InternacionEMG/:id', papeletaInt.PEmergecia);///esto va a entrar d
 app.get('/api/getPinternacionPaciente/:historial/:tipoConsulta', papeletaInt.getPinternacionPaciente);
 app.get('/api/ListPinternaciones/:historial', papeletaInt.ListPinternacion); // servicio para mostrar lista de papeleta de internacios segun historial
 app.post('/api/updatePinternacion/:id', papeletaInt.upinternacion);
-app.get('/api/PinterTrue', papeletaInt.PINterTRUE);// serv para traer papeleta de internacion de tipo true
-app.get('/api/PinterFalse', papeletaInt.PINterFALSE);// serv para traer papeleta de internacion de tipo false
-app.get('/api/one_Pinternacion/:id', papeletaInt.idPinternacion); // 
+app.get('/api/PinterTrue/:especialidad', papeletaInt.PINterTRUE);// serv para traer papeleta de internacion de tipo true
+app.get('/api/PinterFalse/:especialidad', papeletaInt.PINterFALSE);// serv para traer papeleta de internacion de tipo false
+app.get('/api/one_Pinternacion/:id/:tipoCons', papeletaInt.idPinternacion); // 
 
 //Emergencia
 app.post('/api/emeregencia/:idCita', Emergencias.Emergencia);

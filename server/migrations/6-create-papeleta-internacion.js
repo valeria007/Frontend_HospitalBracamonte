@@ -34,6 +34,9 @@ module.exports = {
       diagnostico: {
         type: Sequelize.TEXT
       },
+      especialidad: {
+        type: Sequelize.STRING
+      },
       idConsultaMedica:{
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
