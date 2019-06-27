@@ -29,21 +29,19 @@
 			<div class="row">
 				<form action="/usuarios/crearCuenta/<%=id.id%>" method="POST">
 					<div class="grupo" id="cabeza">
-						<div id="correo">
-							<div class="entrada">Correo Electrónico:<br>
-								<input type="email" name="correo" id="correo">
+						<div id="tres2">
+							<div class="entrada">Cuenta:<br>
+								<input  type="email" name="correo" id="correo">
 								<span id="su"></span><br>
 							</div>
-							<div class="entrada">Contraceña:<br>
+							<div class="entrada">Contraseña:<br>
 								<input type="password" name="contraseña" minlength="8" id="contraseña" ><br>
 							</div>
-							<div class="entrada">Repita contraceña Contraceña por favor:<br>
-								<input type="password" name="contraseña2"id="contraseña2">
+							<div class="entrada">Repita contraseña Contraceña por favor:<br>
+								<input  type="password" name="contraseña2"id="contraseña2">
 								<span id="error2"></span><br>
 							</div>
-							<div class="entrada">Tipo de Usuario:<br>
-								<input type="text" name="tipo_usuario" ><br>
-							</div>
+							
 						</div>
 					</div>
 					<p class="text-center">
@@ -66,7 +64,6 @@
 						<thead>
 							<tr>
 							<th>Correo</th>
-							<th>Tipo de Usuario</th>
 							<th>Dar de Baja</th>
 							<th>Modificar Cuenta</th>
 							</tr>
@@ -75,7 +72,8 @@
 							<% for (var i=0; i< resp.length; i++) { %>
 							<tr>
 							<td><%=resp[i].correo %></td>
-							<td><%=resp[i].tipo_usuario %></td>							
+							<td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+							<td><a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>							
 							</tr>
 							<% } %>
 						<tbody>
