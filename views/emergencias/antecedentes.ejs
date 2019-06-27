@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Formulario Paciente</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("../partials/head") -%>
+	<link rel="stylesheet" href="/css/form1.css">
+</head>
+<body class="dashboard-sideBar-imagg cover">
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+	<!-- NavBar -->
+	<nav class="full-box dashboard-Navbar">
+		<ul class="full-box list-unstyled text-right">
+			<li class="pull-left">
+				<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+			</li>
+		</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Registro de Paciente</h1>
+			</div>
+		</div>	
+		<div class="col-xs-12">
+			<form  action="/paciente/postPaciente" method="post" >
+	
+						<p>DATOS DE LOS PARIENTES</p>
+							<div class="grupo" id="unidad">
+								<div id="tres2">
+									<div class="entrada">Nombre del Padre:<br>
+										<input type="text" name="npadre"><br>
+									</div>
+									<div class="entrada">Apellido Paterno:<br>
+										<input type="text" name="apspadre"><br>
+									</div>
+									<div class="entrada">Apellido Materno:<br>
+										<input type="text" ><br>
+									</div>
+								</div>
+								<div id="tres2">
+									<div class="entrada">Nombre de la Madre:<br>
+										<input type="text" name="nmadre"><br>
+									</div>
+									<div class="entrada">Apellido Paterno:<br>
+										<input type="text" name="apsmadre"><br>
+									</div>
+									<div class="entrada">Apellido Materno:<br>
+										<input type="text" ><br>
+									</div>
+								</div>
+							</div>
+							<br>
+							<p>RESPONSABLE EXTERNO AL PACIENTE</p>
+							<div id="grupo4">
+								<div id="grupo4caja1">
+									<div class="entrada">Nombre del Responsable:<br>
+										<input type="text" name="nomrespon"><br>
+									</div>
+									<div class="entrada">Apellido Paterno del Responsable:<br>
+										<input type="text" name="aperespon"><br>
+									</div>
+									<div class="entrada">Apellido Materno del Responsable:<br>
+										<input type="text" ><br>
+									</div>
+								</div>
+								<div id="grupo4caja2">
+									<div class="entrada">Telefono del Responsable:<br>
+										<input type="text" name="telefres"><br>
+									</div>
+									<div class="entrada">Direccion del Responsable:<br>
+										<input type="text" name="direcres"><br>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">
+								<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+								<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+							</p>
+						</form>
+					</div>
+</section>
+	<!--====== Scripts -->
+	<%- include("../partials/scripts") -%>	
+</body>
+</html>

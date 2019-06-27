@@ -41,9 +41,7 @@ router.post('/login', (req,res)  => {
 router.get('/servicios',(req, res) => {
   res.render('servicios')
 });
-router.get('/turnos',(req, res) => {
-  res.render('turnos')
-});
+
  //vista de doctor
 
  router.get('/HomeVistDoctor',(req,res) =>{
@@ -52,8 +50,8 @@ router.get('/turnos',(req, res) => {
 
  
 // Historiales Clinicos
-router.get('/expediente',(req, res) => {
-  res.render('expediente')
+router.get('/reportes_pacientes',(req, res) => {
+  res.render('reportes_pacientes')
 });
 
 router.get('/vistaPrimPaciente',(req, res) => {
@@ -143,5 +141,14 @@ router.get('/emergencia', (req,res) => {
   res.render('emergencias/homeEmergencia')
 });
 
+router.get('/datos_responsable', (req,res) => {
+  res.render('datos_responsable')
+});
+router.get('/antecedentes', (req,res) => {
+  res.render('antecedentes')
+});
+router.get('/alergias', (req,res) => {
+  res.render('alergias')
+});
 
 module.exports = router;
