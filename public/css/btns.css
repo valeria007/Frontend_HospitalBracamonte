@@ -130,3 +130,53 @@ input:checked[type="checkbox"]::before{
   right: 5px;
   color: #34495e;
 }
+/*menu nav*/
+.main-nav{
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.menu{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+}
+.menu__item{
+  margin: 0 15px;
+}
+.menu__link{
+  color: #fff;
+  text-decoration: none;
+}
+.menu-barr{
+  width: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.uno, .dos, .tres{
+  width: 100%;
+  background: white;
+  height: 3px;
+  transition: all 0.5s;
+}
+.dos{
+  margin: 5px 0;
+}
+/*animacion*/
+.mostrar .uno{
+  transform: rotate(45deg) translate(5px,5px);
+}
+.mostrar .dos{
+  opacity: 0;
+}
+.mostrar .tres{
+  transform: rotate(-45deg) translate(6px, -7px);
+}
+.mostrar .menu{
+  visibility: visible;
+  opacity: 1;
+}
