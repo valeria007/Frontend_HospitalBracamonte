@@ -1,17 +1,40 @@
-body{
-  padding:20px 20px;
+body {
+  font-family: Arial, sans-serif;
 }
 
-.results tr[visible='false'],
-.no-result{
-  display:none;
+#searchInput {
+    width: 50%;
+    font-size: 16px;
+    padding: 10px 20px; 
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
 }
 
-.results tr[visible='true']{
-  display:table-row;
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
 }
 
-.counter{
-  padding:8px; 
-  color:#ccc;
+/* zebra striping */
+tr:nth-of-type(odd) { 
+  background: #f0f0f0; 
 }
+
+th { 
+  background: #666; 
+  color: white; 
+  font-weight: bold; 
+}
+
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+
+/* Table Row Hover */
+
+#myTable tr:hover {
+    background-color: skyblue;
+}
+

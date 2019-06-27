@@ -4,7 +4,8 @@
 	<title>Papeleta Internacion</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
+    <%- include("../partials/head") -%>
+    <link rel="stylesheet" href="/css/form1.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -16,20 +17,15 @@
                 <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home Docotor
             </a>
         </li>
-                     
         <!-- Emergencias -->
         <li>
-            <a href="#!" class="btn-sideBar-SubMenu">
-                <i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
-            </a>
+            <a href="#!" class="btn-sideBar-SubMenu"><i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i></a>
             <ul class="list-unstyled full-box">
                 <li><a href="/emergencia/dataEmergencia/doctor"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
-                            
             </ul>
         </li>
         <li>
-			<a href="/emergencia/RenderConsultaEmergencia">
-			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Volver a la consulta
+			<a href="/emergencia/RenderConsultaEmergencia"><i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Volver a la consulta
 		</li>
     </ul>
     <%- include("partials/menuFooter") -%>
@@ -41,14 +37,12 @@
 			<li class="pull-left">
 				<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 			</li>
-		
 		</ul>
 	</nav>
-		<!-- Content page -->
+	<!-- Content page -->
 	<div class="container-fluid">
 		<div class="page-header">
-			
-			<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Papeleta <small>Internacion</small></h1>			  
+			<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Papeleta de Internacion</h1>			  
 		</div>
 	</div>
 	<div class="container-fluid">
@@ -60,19 +54,12 @@
 				</ul>
 				<div id="myTabContent"  class="tab-content" >
 					<div class="tab-pane fade active in" id="PapeletaInternacion">
-						<div class="container-fluid">
-							<div class="row">
-									
-								<div class="container-fluid">
-									<div class="col-md-12 panel-body">
-											
-                                        <!-- datos personales-->
-                                        
-                                        <%if(updateInternacion == "") { %>
-                                            <div class="col-md-6">
+						<!-- datos personales-->
+                        <%if(updateInternacion == "") { %>
+                                            <!--<div class="col-md-6">
                                                 <p class="lead">Datos Personales </p>
-                                            </div>
-                                            <form action="/emergencia/Pinternacion/<%=resp[0].id%>/" method="POST">
+                                            </div>-->
+                                            <!--<form action="/emergencia/Pinternacion/<%=resp[0].id%>/" method="POST">
                                                 <div class="col-md-12">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -81,6 +68,16 @@
                                                                 <option value="emeregencia">Emergencia</option>                                            
                                                             </select>
                                                         </div>
+
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Area de Internacion</label>
+                                                            <select class="form-control" name="especialidad">
+                                                                <% for(var i=0; i< especialidad.length; i++) {%>
+                                                                <option><%=especialidad[i].nombre%></option>
+                                                                <% } %>
+                                                            </select>
+                                                        </div>
+
                                                         <div class="form-group">
                                                             <label class="control-label">Fecha de Ingreso</label>
                                                             <input class="form-control" type="date" name="fechaIngreso">
@@ -90,8 +87,7 @@
                                                             <input class="form-control" type="text" value="<%=resp[0].Nhistorial%>" name="Historial">
                                                         </div>
                                                     </div>                       
-                                                                                                                                                                
-                                                    <!-- lado hizquierdo -->
+                                                           
                                                     <div class="col-md-6">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Nombre </label>
@@ -120,7 +116,6 @@
                                                         </div>							
                                                     </div>
                                                 </div>
-                                                <!--   lado derecho-->
                                                 <div class="col-md-12">
                                                     <h4>Datos del Doctor</h4>
                                                     <div class="col-md-6">
@@ -138,7 +133,9 @@
                                                         </div>
                                                     
                                                     </div>
+                                                    
                                                 </div>
+                                                
                                                 <div class="col-md-12">
                                                     <h3>Estado del paciente</h3>						
                                                         <div class="form-group label-floating">
@@ -153,141 +150,106 @@
                                                 </div>
                                        
                                         
-                                            </form>
-                                        <% } else {%>
-                                            <h2>Formulario de actualizacion</h2>
-                                            <div class="col-md-6">
-                                                <p class="lead">Datos Personales </p>
-                                            </div>
-                                            <form action="/emergencia/updatePinter/<%=updateInternacion[0].id%>" method="POST">
-                                                <div class="col-md-12">
-
-                                                   
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class=""></label>
-                                                            <select class="form-control" name="tipoConsulta">
-                                                                <option value="emeregencia">Emergencia</option>                                            
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">Fecha de Ingreso</label>
-                                                            <input class="form-control" type="date" name="fechaIngreso">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">N° de Historia</label>
-                                                            <input class="form-control" type="text" value="<%=resp[0].Nhistorial%>" name="Historial">
-                                                        </div>
-                                                    </div>                       
-                                                                                                                                                                
-                                                    <!-- lado hizquierdo -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Nombre </label>
-                                                            <input class="form-control" type="text" value="<%=resp[0].Citas_Medica.Paciente.nombre%>" >
-                                                        </div>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Apellido Paterno</label>
-                                                            <input class="form-control" type="text" value="<%=resp[0].Citas_Medica.Paciente.apellidop%>" >
-                                                        </div>
-                                                    
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Apellido Materno</label>
-                                                            <input class="form-control" type="text" value="<%=resp[0].Citas_Medica.Paciente.apellidom%>" >
-                                                        </div>
-                                                    
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Sexo</label>
-                                                            <select class="form-control">
-                                                                <option><%=resp[0].Citas_Medica.Paciente.sexo%></option>
-                                                            
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Fecha de Nacimiento</label>
-                                                            <input class="form-control" type="text" value="<%=resp[0].Citas_Medica.Paciente.fechanacimiento%>" >
-                                                        </div>							
-                                                    </div>
-                                                </div>
-                                                <!--   lado derecho-->
-                                                <div class="col-md-12">
-                                                    <h4>Datos del Doctor</h4>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">NOmbre Del Doctor</label>
-                                                            <input class="form-control" type="text" value="<%=resp[0].nombreDoctor%>" name="nombreDoctor">
-                                                        </div>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Apellido Paterno del Doctor</label>
-                                                            <input class="form-control" type="text" value="<%=resp[0].apellidoD1%>" name="apellidoD1">
-                                                        </div>
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Apellido Materno del Doctor</label>
-                                                            <input class="form-control" type="text" value="<%=resp[0].apellidoD2%>" name="apellidoD2">
-                                                        </div>
-                                                    
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <h3>Estado del paciente</h3>						
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Diagnostico</label>
-                                                            <textarea class="form-control" name="diagnostico" ><%=updateInternacion[0].diagnostico%></textarea>
-                                                        </div>
-                                                        <p class="text-center">
-                                                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                            <button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-                                                        </p>
-                                                </div>
-                                       
-                                        
-                                            </form>
-                                        <% } %>    
-                                        
+                                            </form>-->
+                            <% } else {%>
+                            <h2>Formulario de actualizacion</h2>
+                            <form action="/emergencia/updatePinter/<%=updateInternacion[0].id%>" method="POST">
+                                <div class="grupo" id="cabeza">
+                                    <p class="lead">Datos Personales </p> 
+                                    <div id="cuatro">
+                                        <div class="entrada">Historial Clinico:<br>
+                                            <input type="text" value="<%=resp[0].Nhistorial%>" name="Historial"><br>
+                                        </div>
+                                        <div class="entrada">Apellido Paterno<br>
+                                            <input type="text" value="<%=resp[0].Citas_Medica.Paciente.apellidop%>" ><br>
+                                        </div>
+                                        <div class="entrada">Apellido Materno:<br>
+                                            <input type="text" value="<%=resp[0].Citas_Medica.Paciente.apellidom%>" ><br>
+                                        </div>
+                                        <div class="entrada">Nombre(s):<br>
+                                            <input type="text" value="<%=resp[0].Citas_Medica.Paciente.nombre%>" ><br>
+                                        </div>
+                                    </div>
+                                    <div id="tres2">
+                                        <div class="entrada">Fecha de Nacimiento:<br>
+                                            <input type="text" value="<%=resp[0].Citas_Medica.Paciente.fechanacimiento%>" ><br>
+                                        </div>
+                                        <div class="entrada">Sexo:<br>
+                                            <select name="sexo" >
+                                                <option><%=resp[0].Citas_Medica.Paciente.sexo%></option>
+                                            </select><br>
+                                        </div>
+                                        <div class="entrada">Tipo de Consulta:<br>
+                                            <select name="tipoConsulta">
+                                                <option value="emeregencia">Emergencia</option>                                            
+                                            </select><br>
+                                        </div>
+                                    </div>
+                                    <div id="correo">
+                                        <div class="entrada">Fecha de Ingreso:<br>
+                                            <input type="date" name="fechaIngreso"><br>
+                                        </div>
                                     </div>
                                 </div>
-                                     
-                            </div>         
-                        </div>				
+                                <div class="grupo" id="cabeza">
+                                    <p class="lead">Datos del Doctor</p>
+                                    <div id="tres2">
+                                        <div class="entrada">Apellido Paterno del Doctor<br>
+                                            <input type="text" value="<%=resp[0].apellidoD1%>" name="apellidoD1"><br>
+                                        </div>
+                                        <div class="entrada">Apellido Materno del Doctor:<br>
+                                            <input type="text" value="<%=resp[0].apellidoD2%>" name="apellidoD2"><br>
+                                        </div>
+                                        <div class="entrada">Nombre(s) del Doctor:<br>
+                                            <input type="text" value="<%=resp[0].nombreDoctor%>" name="nombreDoctor"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="ultimo">
+                                    <p class="lead">Estado del Paciente</p>
+                                    <div class="entrada">Diagnostito del Paciente:<br>
+                                        <textarea  class="large-compact"  name="diagnostico" cols="100" rows="10"><%=updateInternacion[0].diagnostico%></textarea><br>
+                                    </div>
+                                </div>
+                                <p class="text-center">
+                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                    <button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+                                </p>
+                            </form>
+                            <% } %>    
                     </div>
-                    <!-- lista -->
-                    <div class="tab-pane fade" id="list">                    
-                        <div class="table-wrapper">                        
-                            <div class="form-group pull-right">                            
-                                <input type="text" class="search form-control" placeholder="Buscar">                        
-                            </div>                        
-                            <span class="counter pull-right"></span>                        
-                            <table class="table table-hover table-bordered results fl-table">                            
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido Paterno</th>
-                                        <th>Apellido Materno</th>
-                                        <th>Nombre del doctor</th>  
-                                        <th>Diagnostico</th>
-                                        <th>Modificar</th>                                           
-                                    </tr>                               
-                                </thead>
-                                <tbody>
-                                    
-                                    <% for(var i=0; i< listPinter.length; i++) { %>
-                                        <tr>
-                                            <td><%= i + 1 %></td>
-                                            <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.nombre %></td>                                        
-                                            <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidop %></td>
-                                            <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidom %></td>
-                                            <td><%=listPinter[i].nombreDoctor %> <%=listPinter[i].apellidoD1 %> <%=listPinter[i].apellidoD2 %></td>
-                                            <td><%=listPinter[i].diagnostico %></td>
-                                            <td class="text-center" ><a href="/emergencia/ListPInter/<%=listPinter[i].idEmergencia %>/<%=listPinter[i].Historial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                                            
-                                        </tr>
-                                    <% } %>
-                                </tbody>
-                            </table>
+                    <!-- lista de internaciones -->
+                    <div class="tab-pane fade" id="list">                       
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-search zmdi-hc-2x"></i></button><input type="search"  id="searchInput" placeholder="Buscar..." />
                         </div>
+                        <table class="fl-table" id="table">
+                            <thead>
+                                <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
+                                <th>Nombre del doctor</th>  
+                                <th>Diagnostico</th>
+                                <th>Modificar</th>                                           
+                            </tr>                               
+                            </thead>
+                            <tbody>
+                            <% for(var i=0; i< listPinter.length; i++) { %>
+                                <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.nombre %></td>                                        
+                                <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidop %></td>
+                                <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidom %></td>
+                                <td><%=listPinter[i].nombreDoctor %> <%=listPinter[i].apellidoD1 %> <%=listPinter[i].apellidoD2 %></td>
+                                <td><%=listPinter[i].diagnostico %></td>
+                                <td class="text-center" ><a href="/emergencia/ListPInter/<%=listPinter[i].idEmergencia %>/<%=listPinter[i].Historial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                </tr>
+                            <% } %>
+                            </tbody>
+                        </table>
                     </div>
                 </div>					
 			</div>	
@@ -295,6 +257,6 @@
 	</div>
 </section>
 	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+    <%- include("../partials/scripts") -%>
 </body>
 </html>

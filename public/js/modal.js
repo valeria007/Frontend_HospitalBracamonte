@@ -1,10 +1,39 @@
-var btnRadius = $('.cd-modal-bg').width()/2,
-    left = $('.cd-modal-bg').offset().left + btnRadius,
-    top = $('.cd-modal-bg').offset().top + btnRadius - $(window).scrollTop(),
-    scale = scaleValue(top, left, btnRadius, $(window).height(), $(window).width());
-
-function scaleValue( topValue, leftValue, radiusValue, windowW, windowH) {
-   var maxDistHor = ( leftValue > windowW/2) ? leftValue : (windowW - leftValue),
-       maxDistVert = ( topValue > windowH/2) ? topValue : (windowH - topValue);
-   return Math.ceil(Math.sqrt( Math.pow(maxDistHor, 2) + Math.pow(maxDistVert, 2) )/radiusValue);
-}
+$(document).on("click",".modal-open",function() {
+	var data = $(this).data('modal');
+	var shade = $("<div/>",{
+		html: "",
+		class: "modal-shade"
+	});
+	var close_mdl = $("<a/>",{
+		html: "&#215;",
+		class: "close-modal",
+	});
+	var window = $("<div/>",{
+		html: data,
+		class: "modal-window"
+	});
+	window.prepend(close_mdl);
+	shade = $("<div/>",{
+		html: "",
+		class: "modal-shade"
+	});
+	$("body").prepend(shade,window);
+	$(".modal-shade").fadeIn(350);
+	$(".modal-window").show(350);
+});
+$(document).on("click",".modal-shade",function() {
+	$(".modal-shade").fadeOut(200,function() {
+		$(this).remove();
+	});
+	$(".modal-window").fadeOut(200,function() {
+		$(this).remove();
+	});
+});
+$(document).on("click",".close-modal",function() {
+	$(".modal-shade").fadeOut(200,function() {
+		$(this).remove();
+	});
+	$(".modal-window").fadeOut(200,function() {
+		$(this).remove();
+	});
+});

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Turnos Doctor</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <%- include("../partials/head") -%>
+    <link rel="stylesheet" href="/css/form1.css">
+</head>
+<body class="dashboard-sideBar-imagg cover">
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+		<!-- NavBar -->
+		<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+			</ul>
+		</nav>
+        <!-- Content page -->
+        <div class="container-fluid">
+            <div class="page-header">
+                <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Dar Doctor </h1>
+            </div>
+        </div>
+        <form id="form" action="/cuaderno/turnos" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
+            <div class="grupo" id="cabeza">
+                <div id="correo">
+                        <div class="entrada">Cantidad de Fichas:<br>
+                            <select name="cantiFicha" >
+
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>                             
+
+                            </select><br>
+                        </div>
+                        <div class="entrada">Dia de atencion:<br>
+                            <select name="diasAten" >
+                                <option>Lunes</option>
+                                <option>Martes</option>
+                                <option>Miercoles</option>
+                                <option>Jueves</option>
+                                <option>Viernes</option>
+                                <option>Sabado</option>
+                                <option>Domingo</option>
+                            </select><br>
+                        </div>
+                        <div class="entrada">Turno:<br>
+                            <select name="turno" >
+                                <option>Mañanas</option>
+                                <option>Tardes</option>
+                                <option>Noches</option>
+                            </select><br>
+                        </div>
+                </div>
+              
+                
+            </div>
+            <p class="text-center">
+                <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>               
+                <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> Guardar</button>
+            </p>
+        </form>
+        <div class="table-responsive">
+			<h3 class="text-center all-tittles">LISTA DE DOCTORES</h3>
+            <div class="table-wrapper">
+                <div id="correo">
+                    <div class="entrada">
+                        <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                    </div>
+                    <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
+                    </div>
+                </div>
+                <table class="fl-table" id="myTable">
+                    <thead>
+                        <tr>
+						<th>#</th>
+						<th>Cantidad Fichas</th>
+						<th>Dia de atencion</th>
+                        <th>Turno</th>
+						
+						</tr>
+                    </thead>
+                    <tbody>
+                        <% for ( var i = 0; i < resp.length; i++) { %>
+                        <tr>
+                            <td><%=i+1%></td>
+                            <td><%=resp[i].cantiFicha%></td>
+                            <td><%=resp[i].diasAten%></td>
+                            <td><%=resp[i].turno%></td>
+                        </tr>
+                        <% } %>
+                    <tbody>
+				</table>
+            </div>
+        </div>
+	</section>
+	<!--====== Scripts -->
+	<%- include("../partials/scripts") -%>
+</body>
+</html>

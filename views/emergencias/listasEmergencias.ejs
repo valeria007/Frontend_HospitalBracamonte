@@ -53,21 +53,20 @@
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="ListPaciente">
 						<div class="table-responsive" >
-							<table class="fl-table">
+							<div class="text-right">
+								<button type="submit" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-search zmdi-hc-2x"></i></button><input type="search"  id="searchInput" placeholder="Buscar..." />
+							</div>
+							<table class="fl-table" id="table">
 								<thead>
-									  <tr>
-										<th class="text-center">#</th>
-										<th class="" WIDTH="15%">N° de historia </th>
-										<th class="" WIDTH="20%">Nombre del Paciente</th>
-										<th class="" WIDTH="20%">Apellido paterno</th>
-										<th class="" WIDTH="20%">Apellido materno</th>	
-										<th class="" WIDTH="20%">Hora de Atencion</th>	
-										<th class="text-center" WIDTH="20%">Reg. Consulta</th>
-										
-										<!--
-										   <th class="text-center" WIDTH="20%">Darde Baja</th>
-										-->   
-									  </tr>
+								  <tr>
+									<th class="text-center">#</th>
+									<th class="" WIDTH="15%">N° de historia </th>
+									<th class="" WIDTH="20%">Nombre del Paciente</th>
+									<th class="" WIDTH="20%">Apellido paterno</th>
+									<th class="" WIDTH="20%">Apellido materno</th>	
+									<th class="" WIDTH="20%">Hora de Atencion</th>	
+									<th class="text-center" WIDTH="20%">Reg. Consulta</th>
+									</tr>
 								</thead>
 								<tbody>
 									<% if(resp != null) { %>
@@ -94,19 +93,19 @@
 	  			<!-- lista de pacientes atendidos-->
 					<div class="tab-pane fade" id="Pacientes">
 						<div class="table-responsive" >
-							<table class="fl-table">
+							<div class="text-right">
+								<button type="submit" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-search zmdi-hc-2x"></i></button><input type="search"  id="searchInput" placeholder="Buscar..." />
+							</div>
+							<table class="fl-table" id="table">
 								<thead>
 									<tr>
-										<th class="text-center">#</th>
-										<th class="" WIDTH="15%">N° de historia </th>
-										<th class="" WIDTH="20%">Nombre del Paciente</th>
-										<th class="" WIDTH="20%">Apellido paterno</th>
-										<th class="" WIDTH="20%">Apellido materno</th>	
-										<th class="" WIDTH="20%">Hora de Atencion</th>	
-										<th class="text-center" WIDTH="20%">Modificar</th>
-										<!--
-											<th class="text-center" WIDTH="20%">Darde Baja</th>
-									  -->   
+									<th class="text-center">#</th>
+									<th class="" WIDTH="15%">N° de historia </th>
+									<th class="" WIDTH="20%">Nombre del Paciente</th>
+									<th class="" WIDTH="20%">Apellido paterno</th>
+									<th class="" WIDTH="20%">Apellido materno</th>	
+									<th class="" WIDTH="20%">Hora de Atencion</th>	
+									<th class="text-center" WIDTH="20%">Modificar</th>
 									</tr>
 								</thead>
 								<tbody>

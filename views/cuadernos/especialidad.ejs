@@ -34,7 +34,9 @@
 		<div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-md-10 col-md-offset-1">
-                <form action="/cuaderno/especilidad" method="POST">
+                    <a href="/cuaderno/limpiar">Limpiar</a>
+                <%if (espONE == null) { %>
+                <form action="/cuaderno/especialidad" method="POST">
                     <div class="form-group label-floating">
                         <label class="control-label">Nombre de Especialidad</label>
                         <input class="form-control" type="text" name="nombre">
@@ -52,6 +54,27 @@
                         <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                     </p>
                 </form>
+                <% } else { %>
+                    <form action="/cuaderno/updateEsp/<%=espONE[0].id%>" method="POST">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Nombre de Especialidad</label>
+                            <input class="form-control" type="text" name="nombre" value="<%=espONE[0].nombre%>">
+                        </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label">Sigla</label>
+                            <input class="form-control" type="text" name="sigla" value="<%=espONE[0].sigla%>">
+                        </div>
+                        <div class="form-group label-floating">
+                            <label class="control-label">Descripcion</label>
+                            <input class="form-control" type="descripcion" name="descripcion" value="<%=espONE[0].descripcion%>">
+                        </div>
+                        <p class="text-center">
+                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                        </p>
+                    </form>
+                <% } %>
+
                 <!-- Lista de Salas-->
                 <div class="table-responsive">
 					<div class="table-responsive">
@@ -73,7 +96,7 @@
                                         <td><%=resp[i].nombre%></td>
                                         <td><%=resp[i].sigla%></td>
                                         <td><%=resp[i].descripcion%></td>
-                                        <td><a href="/cuaderno/OnlyEspecialidad/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
+                                        <td><a href="/cuaderno/oneEsp/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
                                     </tr>
                                     <% } %>
                                 <tbody>

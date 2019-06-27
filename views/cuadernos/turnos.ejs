@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <%- include("../partials/head") -%>
+    <link rel="stylesheet" href="/css/form1.css">
+</head>
+<body class="dashboard-sideBar-imagg cover">
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+		<!-- NavBar -->
+		<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+			</ul>
+		</nav>
+        <!-- Content page -->
+        <div class="container-fluid">
+            <div class="page-header">
+                <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Dar Doctor </h1>
+            </div>
+        </div>
+        <%if (modifDoct == null) { %>
+        <form id="form" action="/cuaderno/docCuaderno" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
+            <div class="grupo" id="cabeza">
+                <div id="correo">
+                    <div class="entrada">Doctor:<br>
+                        <select name="nombre" >
+                            <%for (var i=0; i < resp.length; i++) { %>
+                                <option><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
+                            <% } %>                            
+                        </select>
+                    </div>                 
+                    <div class="entrada">Especialidad:<br>
+                        <select name="especialidad" >
+                            <%for (var i=0; i < esp.length; i++) { %>
+                                <option><%=esp[i].nombre%></option>
+                            <% } %>     
+                        </select><br>
+                    </div>
+                    <div class="entrada">Tipo de Doctor:<br>
+                        <select name="TDoctor" >
+                            <option>Medico Titular</option>
+                            <option>Medico Suplente</option>
+                        </select><br>
+                    </div>
+                    <div class="entrada">Enfermera:<br>
+                        <input type="text" name="enfermera"><br>
+                    </div>
+                </div>
+              
+                
+            </div>
+            <p class="text-center">
+                <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+            </p>
+        </form>
+        <% } else { %>
+
+            <form id="form" action="/cuaderno/updateDoctCuaderno/<%=modifDoct[0].id%>" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
+                <div class="grupo" id="cabeza">
+                    <a href="/cuaderno/limpiarMDoc">AÑADIR NUEVO</a>
+                    <div id="correo">
+                        <div class="entrada">Doctor:<br>
+                            <select name="nombre" >
+                                <option><%=modifDoct[0].nombre%></option>
+                                <option>---------------</option>
+                                <%for (var i=0; i < resp.length; i++) { %>
+                                    <option><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
+                                <% } %>                            
+                            </select>
+                        </div>                 
+                        <div class="entrada">Especialidad:<br>
+                            <select name="especialidad" >
+                                <option><%=modifDoct[0].Especialidade.nombre%></option>
+                                <option>---------------</option>
+                                <%for (var i=0; i < esp.length; i++) { %>
+                                    <option><%=esp[i].nombre%></option>
+                                <% } %>     
+                            </select><br>
+                        </div>
+                        <div class="entrada">Tipo de Doctor:<br>
+                            <select name="TDoctor" >
+                                <option><%=modifDoct[0].TDoctor%></option>
+                                <option>---------------</option>
+                                <option>Medico Titular</option>
+                                <option>Medico Suplente</option>
+                            </select><br>
+                        </div>
+                        <div class="entrada">Enfermera:<br>
+                            <input type="text" name="enfermera" value="<%=modifDoct[0].enfermera%>"><br>
+                        </div>
+                    </div>
+                  
+                    
+                </div>
+                <p class="text-center">
+                    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                    <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Modificar</button>
+                </p>
+            </form>
+            <% } %>
+        <div class="table-responsive">
+			<h3 class="text-center all-tittles">LISTA DE DOCTORES</h3>
+            <div class="table-wrapper">
+                <div id="correo">
+                    <div class="entrada">
+                        <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                    </div>
+                    <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
+                    </div>
+                </div>
+                <table class="fl-table" id="myTable">
+                    <thead>
+                        <tr>
+                        <th>#</th>
+                        <th>Doctor</th>
+						<th>Especialidad</th>
+						<th>Tipo de Doctor</th>                        
+						<th>Enfermera</th>						
+                        <th>Modificar</th>
+                        <th>Ver fecha de contrato</th>
+						</tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i< listDoc.length; i++) { %>
+                        <tr>
+                        <td><%=i+1%></td>
+                        <td><%=listDoc[i].nombre%></td>
+						<td><%=listDoc[i].Especialidade.nombre%></td>
+						<td><%=listDoc[i].TDoctor%></td>
+						<td><%=listDoc[i].enfermera%></td>				     
+                        <td><a href="/cuaderno/midificarDoct/<%=listDoc[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                        <td><a href="/cuaderno/FechaDoc/<%=listDoc[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                        </tr>
+                        <% } %>
+                    <tbody>
+				</table>
+            </div>
+        </div>
+	</section>
+	<!--====== Scripts -->
+	<%- include("../partials/scripts") -%>
+</body>
+</html>
