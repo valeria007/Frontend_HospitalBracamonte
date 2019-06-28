@@ -4,7 +4,8 @@
 	<title>Inicio</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+    <%- include("partials/head") -%>
+    <link rel="stylesheet" href="/css/form1.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -17,11 +18,6 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
 			</ul>
 		</nav>
 		<!-- Content page -->
@@ -33,7 +29,6 @@
         <!-- Nueva Sala-->
 		<div class="container-fluid">
             <div class="row">
-                <div class="col-xs-12 col-md-10 col-md-offset-1">
                 <%if (OnlySala != null) { %>
                     <%if (dataSala == null) { %>   
                     <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
@@ -41,69 +36,69 @@
                     <h1>Formulario para Actualizar Sala</h1> 
                     <%=OnlySala[0].id%>
                     <form action="/salas/updateSalas/<%=OnlySala[0].id%>" method="POST">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Especilidad</label>
-                            <select class="form-control" name="nombre">
-                                <option><%=OnlySala[0].nombre%></option>
-                                <% for (var i=0; i < dataSala.length; i++) { %>
-                                <option><%=dataSala[i].nombre%></option>
-                                <% } %>   
-                            </select>
+                        <div class="grupo" id="cabeza">
+                            <div id="correo">
+                                <div class="entrada">Especialidad<br>
+                                    <select  name="nombre">
+                                        <option><%=OnlySala[0].nombre%></option>
+                                        <% for (var i=0; i < dataSala.length; i++) { %>
+                                        <option><%=dataSala[i].nombre%></option>
+                                        <% } %>   
+                                    </select><br>
+                                </div>
+                                <div class="entrada">Descricion:<br>
+                                    <select name="descripcionSala">
+                                        <option><%=OnlySala[0].descripcionSala%></option>
+                                        <option>Sala H.- Niños</option>
+                                        <option>Sala H.- Hombres</option>
+                                        <option>Sala H.- Mujeres</option>
+                                        <option>Sala H.- 3ra. Edad</option>
+                                        <option>Sala H.- Cirugia General</option>
+                                    </select><br>
+                                </div>
+                                <div class="entrada">Piso:<br>
+                                    <input type="text" name="piso" value="<%=OnlySala[0].piso%>"><br>
+                                </div>
+                                <div class="entrada">Camas:<br>
+                                    <input type="text" ><br>
+                                </div>
+                            </div>
+                            <p class="text-center">
+                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
+                            </p>
                         </div>
-                        <div class="form-group label-floating">
-                            <label class="control-label">Descricion</label>
-                            <select class="form-control" name="descripcionSala">
-                                <option><%=OnlySala[0].descripcionSala%></option>
-                                <option>Sala H.- Niños</option>
-                                <option>Sala H.- Hombres</option>
-                                <option>Sala H.- Mujeres</option>
-                                <option>Sala H.- 3ra. Edad</option>
-                                <option>Sala H.- Cirugia General</option>
-                            </select>
-                        </div>
-                        <div class="form-group label-floating">
-                            <label class="control-label">Piso</label>
-                            <input class="form-control" type="text" name="piso" value="<%=OnlySala[0].piso%>">
-                        </div>
-                        <div class="form-group label-floating">
-                            <label class="control-label">Camas</label>
-                            <input class="form-control" type="text" >
-                        </div>
-                        <p class="text-center">
-                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
-                        </p>
                     </form>
-                    <% } %>
+                     <% } %>
                 <% } else if (dataSala == null) { %>
                     <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
                 <% } else { %>
                 <form action="/salas/salas" method="POST">
-                    <div class="form-group label-floating">
-                        <label class="control-label">Especilidad</label>
-                        <select class="form-control" name="nombre">
-                            <% for (var i=0; i < dataSala.length; i++) { %>
-                            <option><%=dataSala[i].nombre%></option>
-                            <% } %>   
-                        </select>
-                    </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">Descricion</label>
-                        <select class="form-control" name="descripcionSala">
-                            <option>Sala H.- Niños</option>
-                            <option>Sala H.- Hombres</option>
-                            <option>Sala H.- Mujeres</option>
-                            <option>Sala H.- 3ra. Edad</option>
-                            <option>Sala H.- Cirugia General</option>
-                        </select>
-                    </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">Piso</label>
-                        <input class="form-control" type="text" name="piso">
-                    </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">Camas</label>
-                        <input class="form-control" type="text" >
+                    <div class="grupo" id="cabeza">
+                        <div id="correo">
+                            <div class="entrada">Especialidad<br>
+                                <select name="nombre">
+                                    <% for (var i=0; i < dataSala.length; i++) { %>
+                                    <option><%=dataSala[i].nombre%></option>
+                                    <% } %>   
+                                </select><br>
+                            </div>
+                            <div class="entrada">Descricion:<br>
+                                <select name="descripcionSala">
+                                    <option>Sala H.- Niños</option>
+                                    <option>Sala H.- Hombres</option>
+                                    <option>Sala H.- Mujeres</option>
+                                    <option>Sala H.- 3ra. Edad</option>
+                                    <option>Sala H.- Cirugia General</option>
+                                </select><br>
+                            </div>
+                            <div class="entrada">Piso:<br>
+                                <input type="text" name="piso"><br>
+                            </div>
+                            <div class="entrada">Camas:<br>
+                                <input type="text" ><br>
+                            </div>
+                        </div>
                     </div>
                     <p class="text-center">
                         <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
@@ -113,46 +108,39 @@
                 <% } %>
                 <!-- Lista de Salas-->
                 <div class="table-responsive">
-					<div class="table-responsive">
-                        <div class="table-wrapper">
-                            <table class="fl-table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Especilidad</th>
-                                        <th>Descripcion</th>
-                                        <th>Piso</th>
-                                        <th>Camas</th>
-                                        <th>Ver Sala</th>
-                                        <th>Modificar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                     
-                                    <% for (var i=0; i< resp.length; i++) { %>
-                                    <tr>
-                                        <td><%=i+1%></td>
-                                        <td><%=resp[i].nombre%></td>
-                                        <td><%=resp[i].descripcionSala%></td>
-                                        <td><%=resp[i].piso%></td>
-                                        <td>poner cantidad maxima de camas en la tabla salas</td>
-                                        <td><a href="/salas/renderCamas/<%=resp[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-eye"></i></a></td>
-                                        <td><a href="/salas/updateSalas/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
-                                    </tr>
-                                       
-                                    <% } %>
-                               
-                                <tbody>
-                            </table>
-                        </div>
+                    <div class="table-wrapper">
+                        <table class="fl-table">
+                            <thead>
+                                <tr>
+                                <th>#</th>
+                                <th>Especilidad</th>
+                                <th>Descripcion</th>
+                                <th>Piso</th>
+                                <th>Camas</th>
+                                <th>Ver Sala</th>
+                                <th>Modificar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <% for (var i=0; i< resp.length; i++) { %>
+                                <tr>
+                                <td><%=i+1%></td>
+                                <td><%=resp[i].nombre%></td>
+                                <td><%=resp[i].descripcionSala%></td>
+                                <td><%=resp[i].piso%></td>
+                                <td>poner cantidad maxima de camas en la tabla salas</td>
+                                <td><a href="/salas/renderCamas/<%=resp[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-eye"></i></a></td>
+                                <td><a href="/salas/updateSalas/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
+                                </tr>
+                            <% } %>
+                            <tbody>
+                        </table>
                     </div>
-                    <p class="text-center">
-                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp;Imprimir</button>
-                    </p>
                 </div>
-            
-                </div>
-             </div>
+                <p class="text-center">
+                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp;Imprimir</button>
+                </p>
+            </div>
         </div>
 	</section>
 	<!--====== Scripts -->

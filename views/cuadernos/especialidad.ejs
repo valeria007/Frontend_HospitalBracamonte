@@ -17,11 +17,6 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
 			</ul>
 		</nav>
 		<!-- Content page -->
@@ -33,84 +28,86 @@
         <!-- Nueva Sala-->
 		<div class="container-fluid">
             <div class="row">
-                <div class="col-xs-12 col-md-10 col-md-offset-1">
-                    <a href="/cuaderno/limpiar">Limpiar</a>
+                <a href="/cuaderno/limpiar">Limpiar</a>
                 <%if (espONE == null) { %>
                 <form action="/cuaderno/especialidad" method="POST">
-                    <div class="form-group label-floating">
-                        <label class="control-label">Nombre de Especialidad</label>
-                        <input class="form-control" type="text" name="nombre">
-                    </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">Sigla</label>
-                        <input class="form-control" type="text" name="sigla">
-                    </div>
-                    <div class="form-group label-floating">
-                        <label class="control-label">Descripcion</label>
-                        <input class="form-control" type="descripcion" name="descripcion">
+                    <div class="grupo" id="cabeza">
+                        <div id="tres2">
+                            <div class="entrada">Sigla:<br>
+                                <input type="text" name="sigla"><br>
+                            </div>
+                            <div class="entrada">Nombre de Especialidad:<br>
+                                <input type="text" name="nombre"><br>
+                            </div>
+                            <div class="entrada">Descripcion:<br>
+                                <input type="descripcion" name="descripcion"><br>
+                            </div>
+                        </div>
                     </div>
                     <p class="text-center">
-                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                        <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                        <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                     </p>
                 </form>
                 <% } else { %>
-                    <form action="/cuaderno/updateEsp/<%=espONE[0].id%>" method="POST">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Nombre de Especialidad</label>
-                            <input class="form-control" type="text" name="nombre" value="<%=espONE[0].nombre%>">
-                        </div>
-                        <div class="form-group label-floating">
-                            <label class="control-label">Sigla</label>
-                            <input class="form-control" type="text" name="sigla" value="<%=espONE[0].sigla%>">
-                        </div>
-                        <div class="form-group label-floating">
-                            <label class="control-label">Descripcion</label>
-                            <input class="form-control" type="descripcion" name="descripcion" value="<%=espONE[0].descripcion%>">
-                        </div>
-                        <p class="text-center">
-                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                        </p>
-                    </form>
-                <% } %>
-
-                <!-- Lista de Salas-->
-                <div class="table-responsive">
-					<div class="table-responsive">
-                        <div class="table-wrapper">
-                            <table class="fl-table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Especilidad</th>
-                                        <th>Descripcion</th>
-                                        <th>Piso</th>
-                                        <th>Modificar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for(var i = 0; i < resp.length; i++) { %>
-                                    <tr>
-                                        <td><%= i+1%></td>
-                                        <td><%=resp[i].nombre%></td>
-                                        <td><%=resp[i].sigla%></td>
-                                        <td><%=resp[i].descripcion%></td>
-                                        <td><a href="/cuaderno/oneEsp/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
-                                    </tr>
-                                    <% } %>
-                                <tbody>
-                            </table>
+                <form action="/cuaderno/updateEsp/<%=espONE[0].id%>" method="POST">
+                    <div class="grupo" id="cabeza">
+                        <div id="tres2">
+                            <div class="entrada">Sigla:<br>
+                                <input type="text" name="sigla" value="<%=espONE[0].sigla%>"><br>
+                            </div>
+                            <div class="entrada">Nombre de Especialidad:<br>
+                                <input type="text" name="nombre" value="<%=espONE[0].nombre%>"><br>
+                            </div>
+                            <div class="entrada">Descripcion:<br>
+                                <input type="descripcion" name="descripcion" value="<%=espONE[0].descripcion%>"><br>
+                            </div>
                         </div>
                     </div>
                     <p class="text-center">
-                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp;Imprimir</button>
+                        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                        <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                     </p>
+                </form>
+                <% } %>
+                <!-- Lista de Salas-->
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div id="correo">
+                            <div class="entrada">
+                                <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                            </div>
+                            <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                                <input type="text" id="searchInput" placeholder="Buscar.."><br>
+                            </div>
+                        </div>
+                        <table class="fl-table" id="myTable">
+                            <thead>
+                                <tr>
+                                <th>#</th>
+                                <th>Especilidad</th>
+                                <th>Descripcion</th>
+                                <th>Piso</th>
+                                <th>Modificar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% for(var i = 0; i < resp.length; i++) { %>
+                                <tr>
+                                <td><%= i+1%></td>
+                                <td><%=resp[i].nombre%></td>
+                                <td><%=resp[i].sigla%></td>
+                                <td><%=resp[i].descripcion%></td>
+                                <td><a href="/cuaderno/oneEsp/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-refresh-alt"></i></a></td>
+                                </tr>
+                            <% } %>
+                            <tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-	</section>
+    </section>
 	<!--====== Scripts -->
 	<%- include("../partials/scripts") -%>
 </body>

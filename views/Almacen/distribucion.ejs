@@ -41,11 +41,7 @@
 				<!-- lista Medicamento -->
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="new">
-						<div class="container-fluid">
-			  			<p class="text-center">
-								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-							</p>
-						</div>
+						
 						<!-- para mostrar una distribucion que ya se hizo -->
 
 						<%if (onlyDist != null) { %>
@@ -53,39 +49,22 @@
 							
 						<div class="table-responsive">
 							<div class="col-md-12 panel-body">
-								<div class="col-md-12">
-									<div class="col-md-3">
-										<div class="form-group">
-											<label class="control-label">Codigo</label>
-											<input class="form-control" type="text" value="<%=onlyDist[0].codigo%>">
+								<div id="cabeza">
+									<div id="correo">
+										<div class="entrada">Codigo:<br>
+											<input type="text" value="<%=onlyDist[0].codigo%>"><br>
 										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="form-group ">
-											<label class="control-label">Responsable</label>
-											<input class="form-control" type="text" value="<%=onlyDist[0].responsable%>">
+										<div class="entrada">Responsable<br>
+											<input type="text" value="<%=onlyDist[0].responsable%>"><br>
 										</div>	
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12 panel-body">
-								<div class="col-md-12">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Recibe</label>
-											<input class="form-control" type="text" value="<%=onlyDist[0].recibe%>">
+										<div class="entrada">Recibe:<br>
+											<input type="text" value="<%=onlyDist[0].recibe%>">
+										</div>
+										<div class="entrada">Fecha de Envio:<br>
+											<input  type="date" value="<%=onlyDist[0].fechaLlegada%>"><br>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Fecha de Envio</label>
-											<input class="form-control" type="date" value="<%=onlyDist[0].fechaLlegada%>">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-12 col-md-10 col-md-offset-1">
-								<div class="table-wrapper">
+									<div class="table-wrapper">
 									<table class="fl-table">
 										<thead>
 											<tr>
@@ -120,7 +99,15 @@
 
 						<div class="table-responsive">						
 							<div class="table-wrapper">
-									<table class=" fl-table ">
+									<div id="correo">
+											<div class="entrada">
+													<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+											</div>
+											<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+													<input type="text" id="searchInput" placeholder="Buscar.."><br>
+											</div>
+									</div>
+									<table class="fl-table" id="myTable">
 										<thead>
 											<tr>
 												<th>#</th>
@@ -159,84 +146,74 @@
 							<h2>Porfavor seleccione producto de la lista de medicamentos</h2>
 						<% } %>	
 						<form action="/distribucion/distribucion" method="POST">
-							<div class="col-md-12 panel-body">
-								<div class="col-md-12">
-									<div class="col-md-3">
-										<div class="form-group">
-											<label class="control-label">Codigo</label>
-											<input class="form-control" type="text" name="codigo">
-										</div>
-									</div>
-									<div class="col-md-9">
-										<div class="form-group ">
-											<label class="control-label">Responsable</label>
-											<input class="form-control" type="text" name="responsable">
-										</div>	
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12 panel-body">
-								<div class="col-md-12">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Recibe</label>
-											<input class="form-control" type="text" name="recibe">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Fecha de Llegada</label>
-											<input class="form-control" type="date" name="fechaLlegada">
-										</div>
-									</div>
-								</div>
-							</div>
-							<%if (products != null ) { %>
-							<div class="col-xs-12 col-md-10 col-md-offset-1">
-								<div class="table-wrapper">
-									<table class="fl-table">
-										<thead>
-											<tr>
-											<th>Codigo</th>
-											<th>Descripcion</th>
-											<th>Unidad</th>
-											<th>Cantidad</th>
-											<th>Eliminar</th>
-											<th>Quitar</th>
-											</tr>
-										</thead>
-										
-											<% for (var i=0; i< products.length; i++) {%>
-											<tbody>
-												<tr>
-												<td><%=products[i].item.codificacion%></td>
-												<td><%=products[i].item.nombre%></td>
-												<td><%=products[i].item.presentacion%></td>
-												<td><%=products[i].qty%></td>
-												<td class="text-center"><a href="/distribucion/reduce/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-												<td class="text-center"><a href="/distribucion/removeAll/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-												</tr>
-											<tbody>
+								<div class="grupo" id="cabeza">
+										<div id="correo">
+												<div class="entrada">Codigo:<br>
+														<input type="text" name="codigo"><br>
+												</div>
+												<div class="entrada">Nombre de Responsable:<br>
+													<input type="text" name="responsable"><br>
+												</div>
+												<div class="entrada">Recibe:<br>
+													<input  type="text" name="recibe"><br>
+												</div>
+												<div class="entrada">Fecha de Distribucion:<br>
+													<input  type="date" name="fechaLlegada"><br>
+												</div>
+										</div><br>
+										<%if (products != null ) { %>
+												<div class="table-wrapper">
+													<table class="fl-table">
+														<thead>
+															<tr>
+															<th>Codigo</th>
+															<th>Descripcion</th>
+															<th>Unidad</th>
+															<th>Cantidad</th>
+															<th>Eliminar</th>
+															<th>Quitar</th>
+															</tr>
+														</thead>
+														
+															<% for (var i=0; i< products.length; i++) {%>
+															<tbody>
+																<tr>
+																<td><%=products[i].item.codificacion%></td>
+																<td><%=products[i].item.nombre%></td>
+																<td><%=products[i].item.presentacion%></td>
+																<td><%=products[i].qty%></td>
+																<td class="text-center"><a href="/distribucion/reduce/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+																<td class="text-center"><a href="/distribucion/removeAll/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+																</tr>
+															<tbody>
+															<% } %>
+														
+													</table>
+												</div>
+											
+											<% } else { %>
+												<h2> Seleccione Productos </h2>
 											<% } %>
-										
-									</table>
+				
 								</div>
-							</div>
-							<% } else { %>
-								<h2> Seleccione Productos </h2>
-							<% } %>
-
-
-							<p class="text-center">
-                  <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                  <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-              </p>
-					    </form>
+								<p class="text-center">
+										<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+										<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+								</p>
+						</form>
 					</div>
 					<!-- mostrar lista de medicamentos -->
 					<div class="tab-pane fade" id="listMedicament">
 						<div class="table-wrapper" id="app">
-							<table class=" fl-table table table-striped table-class" id= "table-id">
+								<div id="correo">
+										<div class="entrada">
+												<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+										</div>
+										<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+												<input type="text" id="searchInput" placeholder="Buscar.."><br>
+										</div>
+								</div>
+								<table class="fl-table" id="myTable">
 								<thead>
 									<tr>
 										<th>#</th>

@@ -17,11 +17,7 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
+				
 			</ul>
         </nav>
         
@@ -31,53 +27,40 @@
 				<h1 class="text-titles"><i class="zmdi zmdi-account-circle zmdi-hc-fw"></i> Proveedores</h1>
 			</div>
 		</div>	
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-						  <li class="active"><a href="#new" data-toggle="tab">Registro de Proveedor</a></li>
-						  <li><a href="#list" data-toggle="tab">Lista de Proveedores</a></li>
-					</ul>
+		
+
+			
 					<!-- Registro de nuevos proveedores-->
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade active in" id="new">
 							<div class="container-fluid">
 								<div class="row">
-									<div class="col-xs-12 col-md-10 col-md-offset-1">
+									
 										<form action="/proveedores/UpdateProveedor/<%=resp[0].id%>" method="POST">
-											<div class="form-group label-floating">
-											  <label class="control-label">Nombre Proveedor</label>
-											  <input class="form-control" type="text" name="nombre" value="<%=resp[0].nombre%>">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label"> Email </label>
-												<input class="form-control" type="email" name="email" value="<%=resp[0].email%>">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Direccion</label>
-												<input class="form-control" type="text"  name="direccion" value="<%=resp[0].direccion%>">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Telefono</label>
-												<input class="form-control" type="text" name="telefono" value="<%=resp[0].telefono%>">
-											</div>
-											<div class="form-group label-floating">
-											  <label class="control-label">Responsable de atención</label>
-											  <input class="form-control" type="text" name="empresa" value="<%=resp[0].empresa%>">
+											<div class="grupo" id="cabeza">
+													<div id="correo">
+															<div class="entrada">Nombre del Proveedor:<br>
+																<input  type="text" name="nombre" value="<%=resp[0].nombre%>"><br>
+															</div>
+															<div class="entrada">Email:<br>
+																<input  type="email" name="email" value="<%=resp[0].email%>"><br>
+															</div>
+															<div class="entrada">Direccion:<br>
+																<input type="text"  name="direccion" value="<%=resp[0].direccion%>"><br>
+															</div>
+															<div class="entrada">Telefono:<br>
+																<input type="text" name="telefono" value="<%=resp[0].telefono%>"><br>
+															</div>
+															<div class="entrada">Empresa o Institucion:<br>
+																<input type="text" name="empresa" value="<%=resp[0].empresa%>"><br>
+															</div>
+													</div>
 											</div>
 											<p class="text-center">
-												<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-												<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+													<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+													<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
 											</p>
-										</form>
+									</form>
 									</div>
 								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		</section>
 	<!--====== Scripts -->
 	<%- include("../partials/scripts") -%>

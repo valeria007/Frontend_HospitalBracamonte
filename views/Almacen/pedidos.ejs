@@ -46,53 +46,36 @@
                                     <% if(OnlyPedido != null ) { %>
                                     <div class="col-md-12 panel-body">
                                            
-                                        <div class="col-md-12">
-                                            <div class="col-md-6">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Codigo de Compra</label>
-                                                    <input class="form-control" type="text" value="<%=OnlyPedido[0].codigoCompra%>">
+                                        <div id="cabeza">
+                                            <div id="correo">
+                                                <div class="entrada">Codigo de Compra:<br>
+                                                    <input  type="text" value="<%=OnlyPedido[0].codigoCompra%>"><br>
                                                 </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Especifique el status de la compra</label>
-                                                    <select class="form-control">
+                                                <div class="entrada">Especifique el status de la compra:<br>
+                                                    <select>
                                                         <option><%=OnlyPedido[0].boletaPago%></option>
-                                                    </select>
+                                                    </select><br>
                                                 </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Tipo de Material</label>
-                                                    <select class="form-control" name="tipoMaterial">        
+                                                <div class="entrada">Tipo de Material:<br>
+                                                    <select name="tipoMaterial">        
                                                         <option><%=OnlyPedido[0].tipoMaterial%></option>                                                         
-                                                    </select>
+                                                    </select><br>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Fecha de Ingreso</label>
-                                                    <input class="form-control" type="date" name="fechaIngreso" value="<%=OnlyPedido[0].fechaIngreso%>">
+                                                <div class="entrada">Fecha de Ingreso:<br>
+                                                    <input type="date" name="fechaIngreso" value="<%=OnlyPedido[0].fechaIngreso%>"><br>
                                                 </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Proveedor</label>
-                                                    <select class="form-control">
+                                                <div class="entrada">Proveedor:<br>
+                                                    <select>
                                                     
                                                         <option> <%=OnlyPedido[0].proveedor%></option>
                                                   
-                                                    </select>
+                                                    </select><br>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 panel-body">
-                                            <div class="col-md-12">
                                                 <h5>Notas importantes del Comprovante</h5>
-                                                <div class="col-md-9">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Observaciones</label>
-                                                        <input class="form-control" type="text"  value="<%=OnlyPedido[0].Observaciones%>">	
-                                                    </div>
-                                                </div>                                               
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                                <div class="entrada">Observaciones:<br>
+                                                    <input type="text"  value="<%=OnlyPedido[0].Observaciones%>"><br>	
+                                                </div>
+                                                </div> <br>                                              
                                             <div class="table-wrapper">
                                                 <table class="fl-table">
                                                     <thead>
@@ -124,15 +107,21 @@
                                                 </table>
                                             </div>
                                         </div>
-                                    </div>
                                     <% } else { %>
                                         <h3>Seleciona un Producto</h3>
                                     <% } %>
                                 </div>
 								<div class="row">
 								    <div class="table-responsive">
-                                        <div class="table-wrapper">
-                                            <table class="fl-table">
+                                        <div class="table-wrapper"> <div id="correo">
+                                                <div class="entrada">
+                                                    <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                                </div>
+                                                <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                                                    <input type="text" id="searchInput" placeholder="Buscar.."><br>
+                                                </div>
+                                            </div>
+                                            <table class="fl-table" id="myTable">
                                                 <thead>
                                                     <tr>
                                                     <th>#</th>
@@ -175,42 +164,37 @@
                                 <% } %>
                                 <div class="row">
                                     <form action="/pedidos/pedidos" method="POST">
-
+                                        <div id="cabeza">
                                         <h2 class="text-center all-tittles">REGISTRO DE COMPRA</h2>
-                                        <div class="col-md-12 panel-body">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Codigo de Compra</label>
-                                                        <input class="form-control" type="text" name="codigoCompra">
+                                            <div id="tres2">
+                                                    <div class="entrada">Codigo de Compra:<br>
+                                                        <input  type="text" name="codigoCompra"><br>
                                                     </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Especifique el status de la compra</label>
-                                                        <select class="form-control" name="boletaPago">
+                                                    <div class="entrada">Especifique el status de la compra:<br>
+                                                        <select name="boletaPago">
                                                             <option>FACTURA</option>
                                                             <option>BOLETA DE VENTA</option>
                                                             <option>NOTA DE CREDITO</option>
                                                             <option>NOTA DE DEBITO</option>
                                                             <option>CONTROL INTERNO </option>
-                                                        </select>
+                                                        </select><br>
                                                     </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Tipo de Material</label>
-                                                        <select class="form-control" name="tipoMaterial">
+                                                    <div class="entrada">Tipo de Material:<br>
+                                                        <select name="tipoMaterial">
                                                             <% for(var i=0; i< grup.length; i++) { %>
                                                             <option><%=grup[i].descripcion%></option>                                                            
                                                             <% } %>
-                                                        </select>
+                                                        </select><br>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Fecha de Ingreso</label>
-                                                        <input class="form-control" type="date" name="fechaIngreso">
+
+                                            </div>
+                                            <div id="correo">
+                                                    
+                                                    <div class="entrada">Fecha de Ingreso:<br>
+                                                        <input type="date" name="fechaIngreso">
                                                     </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Proveedor</label>
-                                                        <select class="form-control" name="proveedor">
+                                                    <div class="entrada">Proveedor:<br>
+                                                        <select name="proveedor">
                                                         <%if (proveedor) { %>
                                                             <%for(var i=0; i < proveedor.length; i++) {%>
                                                             <option> <%=proveedor[i].nombre%></option>
@@ -218,13 +202,10 @@
                                                         <% } else { %>
                                                            <option value="">No hay Proveedores</option>                                                           
                                                         <% } %>
-                                                        </select>
+                                                        </select><br>
                                                     </div>
-                                                </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="table-wrapper">
+                                            </div><br>
+                                                     <div class="table-wrapper">
                                                 <table class="fl-table">
                                                     <thead>
                                                         <tr>
@@ -261,52 +242,46 @@
                                                     <% } %>
                                                     <tbody>
                                                 </table>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12 panel-body">
-                                            <div class="col-md-12">
-                                                <h5>Notas importantes del Comprovante</h5>
-                                                <div class="col-md-9">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Observaciones</label>
-                                                        <input class="form-control" type="text" name="Observaciones">	
+                                                     </div><br>
+                                                     <p>Notas importantes del Comprovante</p>
+                                                <div id="correo">
+                                                     
+                                                    <div class="entrada">Observaciones:<br>
+                                                        <input type="text" name="Observaciones"><br>	
+                                                    </div>
+                                                     <div class="entrada">Sub Total:<br>
+                                                        <input type="text" value="<%=totalPrice%>" name="subTotal"><br>
+                                                    </div>
+                                                    <div class="entrada">IVA:<br>
+                                                        <input type="text" value="<%=totalPrice * 0.13%>" name="iva"><br>
+                                                    </div>
+                                                    <div class="entrada">Total:<br>
+                                                        <input type="text" value="<%=totalPrice + totalPrice * 0.13%>" name="total"><br>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Sub Total</label>
-                                                        <input class="form-control" type="text" value="<%=totalPrice%>" name="subTotal">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">IVA</label>
-                                                        <input class="form-control" type="text" value="<%=totalPrice * 0.13%>" name="iva">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Total</label>
-                                                        <input class="form-control" type="text" value="<%=totalPrice + totalPrice * 0.13%>" name="total">
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         <p class="text-center">
-                                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                            <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                            <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
                                         </p>
                                     </form>	
                                 </div>
 
                             </div>
-                        </div>
                         <!-- mostrar lista de medicamentos -->
                         <div class="tab-pane fade" id="listMedicament">
                             <div class="table-wrapper">
-                                <div class="form-group pull-right">
-                                    <input type="text" class="search form-control" placeholder="Buscar">
-                                </div>
-                                <span class="counter pull-right"></span>
-                                <table class="table table-hover table-bordered results fl-table">
+                                    <div id="correo">
+                                            <div class="entrada">
+                                                <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                            </div>
+                                            <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                                                <input type="text" id="searchInput" placeholder="Buscar.."><br>
+                                            </div>
+                                        </div>
+                                        <table class="fl-table" id="myTable">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -316,9 +291,6 @@
                                             <th>Precio</th>  
                                             <th>Añadir</th>                                           
                                         </tr>
-                                        <tr class="warning no-result">
-                                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-                                              </tr>
                                     </thead>
                                     <tbody>
                                         <% for(var i=0; i< resp.length; i++) {%>

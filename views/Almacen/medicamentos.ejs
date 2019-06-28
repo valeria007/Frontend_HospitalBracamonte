@@ -39,13 +39,17 @@
 				<!-- lista Medicamento -->
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="new">
-						<div class="container-fluid">
-			  			<p class="text-center">
-							<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-						</p>
 						<div class="table-responsive">
 							<div class="table-wrapper">
-								<table class=" fl-table">
+								<div id="correo">
+									<div class="entrada">
+										<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+									</div>
+									<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+										<input type="text" id="searchInput" placeholder="Buscar.."><br>
+									</div>
+								</div>
+								<table class="fl-table" id="myTable">
 									<thead>
 										<tr>
 											<th>#</th>
@@ -87,7 +91,6 @@
 								</table>
 							</div>
 						</div>
-						</div>  
 					</div>
 					<!-- Nuevo Medicamento -->
 					<div class="tab-pane fade" id="list">
@@ -95,103 +98,61 @@
 						<h1>Ocurrio un problema con el servidor por favor intenta volver a entrar en esta pagina desde una pestaña anterior</h1>
 					<% } else {%>	
 						<form action="/medicamento/medicamentos" method="POST">
-							<div class="col-md-12 panel-body">
-								<div class="form-group">
-									<div class="col-md-12">
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Grupo de Asignación</label>
-												<select class="form-control" name="grupoAsig">
-													<% for(var i=0; i< dataGRUPOa.length; i++) {%>
-													<option><%=dataGRUPOa[i].descripcion%></option>
-													<% } %>
-												</select>
-											</div>
-										</div>
+							<div class="grupo" id="cabeza">
+								<div id="tres2">
+									<div class="entrada">Grupo de Asignación:<br>
+										<select  name="grupoAsig">
+												<% for(var i=0; i< dataGRUPOa.length; i++) {%>
+												<option><%=dataGRUPOa[i].descripcion%></option>
+												<% } %>
+											</select><br>
+									</div>
+									<div class="entrada">Codificación:<br>
+										<input type="text" name="codificacion"><br>
+									</div>
+									<div class="entrada">Nombre:<br>
+										<input  type="text" name="nombre"><br>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-12 panel-body">
-								<div class="col-md-12">
-									<div class="col-md-3">
-										<div class="form-group label-floating">
-											<label class="control-label">Codificación</label>
-											<input class="form-control" type="text" name="codificacion">
-										</div>
+								<div id="cuatro">
+									<div class="entrada">Generico:<br>
+										<input type="text" name="generico"><br>
 									</div>
-									<div class="col-md-9">
-										<div class="form-group label-floating">
-											<label class="control-label">Nombre</label>
-											<input class="form-control" type="text" name="nombre">
-										</div>	
+									<div class="entrada">Unidad de Medida:<br>
+										<input type="text" name="unidadMedida"><br>
+									</div>
+									<div class="entrada">Concentracion:<br>
+										<input type="text" name="concentracion"><br>
+									</div>
+									<div class="entrada">Presentacion:<br>
+										<input type="text" name="presentacion"><br>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-12 panel-body">
-								<div class="col-md-12">
-									<div class="col-md-6">
-										<div class="form-group label-floating">
-											<label class="control-label">Generico</label>
-											<input class="form-control" type="text" name="generico">
+								<div id="correo">
+										<div class="entrada">Fecha de Llegada:<br>
+											<input type="date" name="fechaLLEgada"><br>
 										</div>
-										<div class="form-group label-floating">
-											<label class="control-label">Concentracion</label>
-											<input class="form-control" type="text" name="concentracion">
+										
+										<div class="entrada">Cantidad:<br>
+											<input type="text" name="cantidad"><br>
 										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group label-floating">
-											<label class="control-label">Unidad de Medida</label>
-											<input class="form-control" type="text" name="unidadMedida">
+										
+										<div class="entrada">Cantidad por Unidades:<br>
+											<input type="text" name="unidades"><br>
 										</div>
-										<div class="form-group label-floating">
-											<label class="control-label">Presentacion</label>
-											<input class="form-control" type="text" name="presentacion">
+										<div class="entrada">Fecha de Vencimiento:<br>
+											<input type="date" name="fechaVencimiento"><br>
+										</div>
+										<div class="entrada">Precio:<br>
+											<input  type="text" name="precio"><br>
 										</div>
 									</div>
-								</div>
-							</div>
-							<div class="col-md-12 panel-body">
-								<div class="col-md-12">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Fecha de Llegada</label>
-											<input class="form-control" type="date" name="fechaLLEgada">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Fecha de Vencimiento</label>
-											<input class="form-control" type="date" name="fechaVencimiento">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12 panel-body">
-								<div class="col-md-12">
-									<div class="col-md-6">
-										<div class="form-group label-floating">
-											<label class="control-label">Cantidad</label>
-											<input class="form-control" type="text" name="cantidad">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group label-floating">
-											<label class="control-label">Cantidad Unidad</label>
-											<input class="form-control" type="text" name="unidades">
-										</div>
-										<div class="form-group label-floating">
-											<label class="control-label">Precio</label>
-											<input class="form-control" type="text" name="precio">
-										</div>	
-									</div>
-								</div>
 							</div>
 							<p class="text-center">
-                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                            </p>
-					    </form>
+								<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+								<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+							</p>
+						</form>
 					</div>
 				</div>
 				<% } %>     

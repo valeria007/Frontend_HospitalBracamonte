@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
 	<link rel="stylesheet" href="/css/modal.css">
-	<link rel="stylesheet" href="/css/form1.css">
 	
 </head>
 <body class="dashboard-sideBar-imagg cover">
@@ -39,7 +38,7 @@
 						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
 					</div>
 					<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-						<input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
+						<input type="text" id="searchInput" placeholder="Buscar.."><br>
 					</div>
 				</div>
 				<!--modal-->
@@ -86,7 +85,7 @@
 						</form>"><i class="zmdi zmdi-accounts-add"></i> Nuevo Paciente</button>
 					  </p>
 
-				<table class="fl-table" id="myTable">
+				<table class="fl-table" id="myTable" >
 					<thead>
 					  	<tr>
 						<th class="text-center">#</th>

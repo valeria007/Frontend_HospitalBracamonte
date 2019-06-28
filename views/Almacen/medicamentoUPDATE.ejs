@@ -17,9 +17,6 @@
 			<li class="pull-left">
 				<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 			</li>
-			<li>
-				<a href="#!" class="btn-search"><i class="zmdi zmdi-search"></i></a>
-			</li>
 		</ul>
 	</nav>
 	<!-- Content page -->
@@ -30,120 +27,73 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-12">
-				<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-				  	<li class="active"><a href="#new" data-toggle="tab">Nuevo</a></li>
-				  	<li><a href="#list" data-toggle="tab">Lista</a></li>
-                </ul>
+			
 				<!-- Nuevo Medicamento -->
 				<% if (dataGRUPOa == null) {%>
 					<h1>Ocurrio un problema con el servidor por favor intenta volver a entrar en esta pagina desde una pestaña anterior</h1>
 				<% } else {%>	
-			    <div id="myTabContent" class="tab-content">
-					<div class="tab-pane fade active in" id="new">
+			    
 						<div class="container-fluid">
-							<form action="/medicamento/updateMedicamento/<%=resp[0].id%>" method="POST">
-								<div class="col-md-12 panel-body">
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="col-md-6">
-												<div class="form-group label-floating">
-													<label class="control-label">Grupo de Asignación</label>
-													<select class="form-control" name="grupoAsig">
+							
+								
+								<form action="/medicamento/updateMedicamento/<%=resp[0].id%>" method="POST">
+									<div class="grupo" id="cabeza">
+										<div id="tres2">
+											<div class="entrada">Grupo de Asignación:<br>
+												<select  name="grupoAsig">
 														<option ><%=resp[0].grupoAsig%></option>
 														<% for(var i=0; i< dataGRUPOa.length; i++) {%>
 														<option><%=dataGRUPOa[i].descripcion%></option>
 														<% } %>
 														
-													</select>
+													</select><br>
+											</div>
+											<div class="entrada">Codificación:<br>
+												<input type="text" value="<%=resp[0].codificacion%>" name="codificacion" ><br>
+											</div>
+											<div class="entrada">Nombre:<br>
+												<input type="text" name="nombre" value="<%=resp[0].nombre%>" ><br>
+											</div>
+										</div>
+										<div id="cuatro">
+											<div class="entrada">Generico:<br>
+												<input type="text" name="generico" value="<%=resp[0].generico%>"><br>
+											</div>
+											<div class="entrada">Unidad de Medida:<br>
+												<input type="text" name="unidadMedida" value="<%=resp[0].unidadMedida%>"><br>
+											</div>
+											<div class="entrada">Concentracion:<br>
+												<input type="text" name="concentracion" value="<%=resp[0].concentracion%>"><br>
+											</div>
+											<div class="entrada">Presentacion:<br>
+												<input type="text" name="presentacion" value="<%=resp[0].presentacion%>"><br>
+											</div>
+										</div>
+										<div id="correo">
+												<div class="entrada">Fecha de Llegada:<br>
+													<input  type="date" name="fechaLLEgada" value="<%=resp[0].fechaLLEgada%>"><br>
+												</div>
+												
+												<div class="entrada">Cantidad:<br>
+													<input  type="text" name="cantidad" value="<%=resp[0].cantidad%>"><br>
+												</div>
+												
+												<div class="entrada">Cantidad por Unidades:<br>
+													<input  type="text" name="unidades" value="<%=resp[0].unidades%>"><br>
+												</div>
+												<div class="entrada">Fecha de Vencimiento:<br>
+													<input type="date" name="fechaVencimiento" value="<%=resp[0].fechaVencimiento%>"><br>
+												</div>
+												<div class="entrada">Precio:<br>
+													<input  type="text" name="precio" value="<%=resp[0].precio%>"><br>
 												</div>
 											</div>
-											
-										</div>
 									</div>
-								</div>
-								<div class="col-md-12 panel-body">
-									<div class="col-md-12">
-										<div class="col-md-3">
-											<div class="form-group label-floating">
-												<label class="control-label">Codificación</label>
-												<input class="form-control" type="text" value="<%=resp[0].codificacion%>" name="codificacion" >
-											</div>
-										</div>
-										<div class="col-md-9">
-											<div class="form-group label-floating">
-												<label class="control-label">Nombre</label>
-												<input class="form-control" type="text" name="nombre" value="<%=resp[0].nombre%>" >
-											</div>	
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 panel-body">
-									<div class="col-md-12">
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Generico</label>
-												<input class="form-control" type="text" name="generico" value="<%=resp[0].generico%>">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Concentracion</label>
-												<input class="form-control" type="text" name="concentracion" value="<%=resp[0].concentracion%>">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Unidad de Medida</label>
-												<input class="form-control" type="text" name="unidadMedida" value="<%=resp[0].unidadMedida%>">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Presentacion</label>
-												<input class="form-control" type="text" name="presentacion" value="<%=resp[0].presentacion%>">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 panel-body">
-									<div class="col-md-12">
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="control-label">Fecha de Llegada</label>
-												<input class="form-control" type="date" name="fechaLLEgada" value="<%=resp[0].fechaLLEgada%>">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label class="control-label">Fecha de Vencimiento</label>
-												<input class="form-control" type="date" name="fechaVencimiento" value="<%=resp[0].fechaVencimiento%>">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 panel-body">
-									<div class="col-md-12">
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Cantidad</label>
-												<input class="form-control" type="text" name="cantidad" value="<%=resp[0].cantidad%>">
-											</div>
-											<div class="form-group label-floating">
-												<label class="control-label">Cantidad Unidad</label>
-												<input class="form-control" type="text" name="unidades" value="<%=resp[0].unidades%>">
-											</div>
-										</div>
-										
-										<div class="col-md-6">
-											<div class="form-group label-floating">
-												<label class="control-label">Precio</label>
-												<input class="form-control" type="text" name="precio" value="<%=resp[0].precio%>">
-											</div>	
-										</div>
-									</div>
-								</div>
-								<p class="text-center">
-                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                </p>
-							    </form>
+									<p class="text-center">
+										<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+										<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+									</p>
+								</form>
 							</div>
 						</div>
 				<% } %>  
