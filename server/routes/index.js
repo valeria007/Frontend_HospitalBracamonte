@@ -24,7 +24,7 @@ app.post('/api/UpdateServicios/:id', Serv.modify);
 app.get('/api/DElserv/:id', Serv.delete);
 app.get('/api/dataESC', Serv.dataESC)
 //salas
-app.post('/api/sala', Salas.enviarSala);
+app.post('/api/sala', Salas.enviarSala1);
 app.get('/api/sala', Salas.listSala);
 app.get('/api/salaOne/:id', Salas.one);
 app.post('/api/UpdateSalas/:id', Salas.update); 
@@ -56,6 +56,8 @@ app.get('/api/citas/:id', Citas_medica.citaLugar);
 app.get('/api/PacienteCita/:id', Citas_medica.TwoTables);
 app.get('/api/estado/:id', Citas_medica.estado);//para cambiar el estado
 app.get('/api/PacienteCitaFalse/:id', Citas_medica.TwoTablesFalse);
+app.get('/api/citasPaciente/:id', Citas_medica.CitasPaciente); //ruta para poder sacar que citas tiene un paciente
+app.post('/api/updateCita/:id', Citas_medica.updateCita); //ruta para poder actualizar una cita
 
 
 

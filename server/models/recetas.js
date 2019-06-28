@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     viaAdmincion: DataTypes.TEXT,
     doctor: DataTypes.TEXT,
     indicaciones: DataTypes.TEXT,    
-    unidades: DataTypes.INTEGER
+    unidades: DataTypes.INTEGER,
+    informacionAd: DataTypes.TEXT,
+    instruciones: DataTypes.TEXT
   }, {});
   Recetas.associate = function(models) {
     // associations can be defined here

@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       edad:  {
-        allowNull:false,
+        
         type: Sequelize.INTEGER
       },
       sexo:  {
@@ -45,72 +45,72 @@ module.exports = {
         type: Sequelize.STRING
       },
       direccion:  {
-        allowNull:false,
+        
         type: Sequelize.STRING
       },
       zona:  {
-        allowNull:false,
+        
         type: Sequelize.STRING
       },
       telef: {
-        allowNull:false,
+       
         type: Sequelize.INTEGER
       },
       ocupacion:  {
-        allowNull:false,
+        
         type: Sequelize.STRING
       },
       idiomas:  {
-        allowNull:false,
+       
         type: Sequelize.STRING
       },
       lugranacimiento:  {
-        allowNull:false,
+        
         type: Sequelize.STRING
       },
       departameto: {
-        allowNull:false,
+        
         type: Sequelize.STRING
       },
       provincia:  {
-        allowNull:false,
+       
         type: Sequelize.STRING
       },
       municipio: {
-        allowNull:false,
+       
         type: Sequelize.STRING
       },
       
       npadre:  {
-        allowNull:false,
+       
         type: Sequelize.STRING
       },
       apspadre: {
-        allowNull:false,
+        
         type: Sequelize.STRING
       },
       nmadre: {
-        allowNull:false,
+        
         type: Sequelize.STRING
       },
       apsmadre: {
-        allowNull:false,
+       
         type: Sequelize.STRING
       },
       nomrespon:  {
-        allowNull:false,
+        
         type: Sequelize.STRING
       },
       aperespon:  {
-        allowNull:false,
+       
         type: Sequelize.STRING
       },
       telefres:  {
-        allowNull:false,
+        
         type: Sequelize.INTEGER
       },
       direcres:  {
-        allowNull:false,
+       
         type: Sequelize.STRING
       },
       createdAt: {

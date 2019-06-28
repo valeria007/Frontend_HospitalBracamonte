@@ -1,5 +1,7 @@
 import model from '../models';
 
+const fetch = require('node-fetch');
+
 const { Salas } = model;
 const { Especialidad } = model;
 
@@ -36,6 +38,57 @@ class Sala {
         }
        
     }
+    static enviarSala1(req, res){
+          
+      fetch('http://localhost:4600/api/especialidad')   
+      .then(resp => resp.json())
+      .then(resp =>{        
+          for(var i = 0; i< resp.length; i++){
+            if(resp[i].nombre == req.body.nombre){
+              
+              var id = resp[i].id
+              console.log(id , " id ")
+              const { nombre, descripcionSala, piso } = req.body
+              return Salas
+          .create({
+            nombre, 
+            descripcionSala, 
+            piso,
+            
+          })
+          .then(data => res.status(200).send({
+              success: true,
+              message: 'se inserto con exito',
+              data
+          }))
+          .catch(error => res.status(400).send(error));
+            }
+          }
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+      })
+          /*console.log(datos[0].id)
+          var id = datos[0].id;
+          const { nombre, descripcionSala, piso } = req.body
+          var  especialidadID  = id
+          return Salas
+          .create({
+            nombre, 
+            descripcionSala, 
+            piso,
+            especialidadID
+          })
+          .then(data => res.status(200).send({
+              success: true,
+              message: 'se inserto con exito',
+              data
+          }))
+          .catch(error => res.status(400).send(error));*/
+     
+     
+  }
     static listSala(req, res){
         return Salas
         .findAll()

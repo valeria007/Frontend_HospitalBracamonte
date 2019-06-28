@@ -50,7 +50,7 @@ class Emergencias {
         var historial = req.params.historial;  
         emergencia.findAll({
            where: {Nhistorial: historial},
-           attributes: ['id', 'fechaAtencion','Nhistorial','nombreDoctor','apellidoD1','diagnostico'],
+           attributes: ['id', 'fechaAtencion','Nhistorial','nombreDoctor','apellidoD1','diagnostico','idCita'],
            include:[
                {model: Citas_Medicas,attributes: ['id'], 
                include:[{

@@ -5,7 +5,7 @@ const { Pacientes } = model;
 class Citas_medica {
     
     static reg_cita(req, res) {
-        const { estado,codigo_p,turno,medico,especialidad,hora,saldo_total,id_especialidad} = req.body
+        const { estado,codigo_p,turno,medico,especialidad,hora,saldo_total,id_especialidad } = req.body
         const { id_Paciente } = req.params;
         return Citas_Medicas
           .create({
@@ -120,6 +120,51 @@ class Citas_medica {
           res.send(estado)
         })*/
       }
+
+      //para sacar las citas del paciente
+      static CitasPaciente(req, res){                
+        var id = req.params.id;  
+        Citas_Medicas.findAll({
+            where: {id_Paciente: id}
+            //attributes: ['id', ['description', 'descripcion']]
+          }).then((Citas) => {
+            res.status(200).json(Citas);
+          });     
+       }
+
+       static updateCita(req, res) {
+        const { estado,codigo_p,turno,medico,especialidad,hora,saldo_total } = req.body
+        return Citas_Medicas
+          .findByPk(req.params.id)
+          .then((data) => {
+            data.update({
+              estado: estado || data.estado,
+              codigo_p: codigo_p || data.codigo_p,  
+              turno: turno || data.turno,  
+              medico: medico || data.medico,  
+              especialidad: especialidad || data.especialidad,  
+              hora: hora || data.hora,  
+              saldo_total: saldo_total || data.saldo_total,  
+            })
+            .then(update => {
+              res.status(200).send({
+                message: 'Cita actualizado',
+                data: {
+                  
+                  estado: estado || update.estado,
+                  codigo_p: codigo_p || update.codigo_p,  
+                  turno: turno || update.turno,  
+                  medico: medico || update.medico,  
+                  especialidad: especialidad || update.especialidad,  
+                  hora: hora || update.hora,  
+                  saldo_total: saldo_total || update.saldo_total,  
+                }
+              })
+            })
+            .catch(error => res.status(400).send(error));
+          })
+          .catch(error => res.status(400).send(error));
+    }
 
       /*static OnlyCita(req, res){                
         var id = req.params.id;  

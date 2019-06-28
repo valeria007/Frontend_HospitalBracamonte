@@ -53,6 +53,12 @@ module.exports = {
       unidades: {
         type: Sequelize.INTEGER
       },
+      informacionAd: {
+        type: Sequelize.TEXT
+      },
+      instruciones: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

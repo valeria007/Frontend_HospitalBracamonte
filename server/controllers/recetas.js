@@ -29,7 +29,7 @@ class Receta {
           data
         })
        }else {
-        const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades } = req.body;
+        const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones } = req.body;
         const { id_consulta } = req.params;
         const { id_emergencia } = req.params;
         return Recetas
@@ -44,7 +44,9 @@ class Receta {
             viaAdmincion,
             doctor,
             indicaciones,
-            unidades
+            unidades,
+            informacionAd,
+            instruciones 
           })
            .then(consultaData => res.status(201).send({
               success: true,
@@ -78,7 +80,7 @@ class Receta {
             data
           })
          }else {
-          const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades } = req.body;
+          const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones  } = req.body;
           const { id_consulta } = req.params;
           const { id_emergencia } = req.params;
           return Recetas
@@ -93,7 +95,9 @@ class Receta {
               viaAdmincion,
               doctor,
               indicaciones,
-              unidades
+              unidades,
+              informacionAd,
+              instruciones 
             })
              .then(consultaData => res.status(201).send({
                 success: true,
@@ -143,7 +147,7 @@ class Receta {
     }
     static updateReceta(req, res) {
       console.log(req.params.id, "   esto<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-      const { historiaClinica, fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades } = req.body
+      const { historiaClinica, fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones  } = req.body
       return Recetas
         .findByPk(req.params.id)
         .then((data) => {
@@ -155,7 +159,9 @@ class Receta {
             viaAdmincion: viaAdmincion || data.viaAdmincion,  
             doctor: doctor || data.doctor,  
             indicaciones: indicaciones || data.indicaciones,  
-            unidades: unidades || data.unidades      
+            unidades: unidades || data.unidades,
+            informacionAd:informacionAd || data.informacionAd,
+            instruciones: instruciones|| data.instruciones
 
           })
           .then(update => {
@@ -170,7 +176,9 @@ class Receta {
                 viaAdmincion: viaAdmincion || update.viaAdmincion,  
                 doctor: doctor || update.doctor,  
                 indicaciones: indicaciones || update.indicaciones,  
-                unidades: unidades || update.unidades   
+                unidades: unidades || update.unidades,
+                informacionAd:informacionAd || update.informacionAd,
+                instruciones: instruciones|| update.instruciones   
               }
             })
           })
