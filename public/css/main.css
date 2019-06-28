@@ -642,5 +642,5 @@ body, html{
 	}
 }
 input:valid {
-  background-color: #BBFFF0;
+  background-color: rgb(250, 250, 250);
 }
