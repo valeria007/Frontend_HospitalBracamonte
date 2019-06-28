@@ -93,51 +93,51 @@ body, html{
 	left: 0;
 	z-index: 2;
 	background-image: url('../assets/img/vistaPeque.jpg');
-	border-right: 1px solid rgba(3, 9, 66, 0.493);
+	border-right: 1px solid rgba(3, 9, 66, 0.822);
 	overflow: hidden;
 }
 .dashboard-sideBar-ct{
 	position: relative;
 	height: 100%;
-	background-color: rgba(0, 38, 66, .77);
+	background-color: rgba(0, 39, 66, 0.973);
 	padding: 0 10px;
 	padding-bottom: 30px;
 }
 /* solo imagen al lado de usuario*/
 .dashboard-sideBar-imag{
 	
-	background-image: url('../assets/img/hospital.jpg');
-	border-right: 1px solid rgba(3, 9, 66, 0.493);
+	/*background-image: url('../assets/img/vamoo.jpg');*/
+	border-right: 1px solid rgba(2, 3, 8, 0.493);
 }
 
 .dashboard-sideBar-ctt{
 	position: relative;
 	height: 100%;
-	background-color: rgba(41, 103, 119, 0.5);
+	background-color: rgba(0, 39, 66, 0);
 	padding: 0 10px;
 	
 }
 /*solo fondo*/
 .dashboard-sideBar-imagg{
 	
-	background-image: url('../assets/img/1479.jpg');
+	background-image: url('../assets/img/signos1.jpg');
 	border-right: 1px solid rgba(3, 9, 66, 0.493);
 }
 .dashboard-sideBar-cttt{
 	position: relative;
 	height: 100%;
-	background-color: rgba(246, 248, 250, 0.637);
+	background-color: rgb(246, 248, 250);
 }
 /* solo nav*/
 .dashboard-sideBar-imaggg{
 	
-	background-image: url('../assets/img/prueba1.jpg');
-	border-right: 1px solid rgba(3, 9, 66, 0.493);
+	background-image: url('../assets/img/vamoo.jpg');
+	border-right: 1px solid rgba(3, 9, 66, 0.897);
 }
 .dashboard-sideBar-ctttt{
 	position: relative;
 	height: 100%;
-	background-color: rgba(0, 38, 66, .77);
+	background-color: rgba(0, 39, 66, 0.747);
 }
 
 .dashboard-sideBar-title,

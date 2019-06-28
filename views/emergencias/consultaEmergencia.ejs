@@ -42,8 +42,8 @@
 			<li class="pull-left">
 				<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
       </li>
-  <nav id="main-nav" class="main-nav">
-      <ul class="menu">
+    <nav id="main-nav" class="main-nav">
+        <ul class="menu">
           <li class="menu__item">
               <a href="datos_responsable.ejs" class="menu__link">Datos de responsable
                 
@@ -59,14 +59,14 @@
                 
               </a>
           </li>
-      </ul>
-      <div class="menu-barr">
-        <div class="uno"></div>
-        <div class="dos"></div>
-        <div class="tres"></div>
+        </ul>
+       <div class="menu-barr">
+          <div class="uno"></div>
+          <div class="dos"></div>
+          <div class="tres"></div>
       </div>
       
-  </nav>
+    </nav>
      
      
     	</ul>
@@ -201,7 +201,7 @@
                   </div>                                                                              
                   <% } %>
                   <br>
-                  <h1> Formulario de Actualizacion</h1>
+                  <h2> Formulario de Actualizacion</h2>
                   <br>
                   <p>Datos del Paciente </p>
                   <div class="grupo" id="cabeza">
@@ -216,9 +216,8 @@
                         <input type="text" name="ci" value="<%=dataPaciente[0].ci%>"><br>
                       </div>
                       <div class="entrada">Sexo:<br>
-                        <select class="form-control" name="sexo">
-                        <option><%=dataPaciente[0].sexo%></option>
-                        </select><br>
+                        <input type="text" name="sexo" value="<%=dataPaciente[0].sexo%>"><br>
+                        <br>
                       </div>                               
                     </div>
                     <div id="tres2">
