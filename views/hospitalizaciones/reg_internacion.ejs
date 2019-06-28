@@ -170,7 +170,7 @@
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Cama</label>
                                                         <select class="form-control" name="cama">                                                            
-                                                            <option v-for="item of camas" :value="item.id" >Cama N° {{item.numeroCama}}</option>                                                            
+                                                            <option v-for="item of camas" :value="item.numeroCama + ' ' + item.id" >Cama N° {{item.numeroCama}}</option>                                                            
                                                         </select>
                                                     </div>
                                                  </div>

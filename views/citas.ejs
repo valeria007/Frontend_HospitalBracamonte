@@ -19,6 +19,7 @@
 			<li class="pull-left">
 		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 			</li>
+			
 		</ul>
 	</nav>
 	<!-- Content page -->
@@ -71,7 +72,7 @@
 										<option>Mujer</option>
 									</select><br>
 								</div>
-								<div class='entrada'>Direccion:<br>
+								<div class='entrada'>Dirección:<br>
 									<input type='text' name='direccion'><br>
 								</div>
 								<div class='entrada'>Fecha de Nacimiento:<br>
@@ -102,11 +103,11 @@
 				  	<% for(var i=0; i < resp.length; i++) { %>
 						<tr>
 						<td><%= i + 1 %></td>
-						<td>123</td>
+						<td><%=resp[i].numeroHistorial%></td>
 				  		<td><%=resp[i].nombre %></td>
 				  		<td><%=resp[i].apellidop %></td>
 						<td><%=resp[i].ci %></td>
-				  		<td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td>
+				  		<td class="text-center"><a href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td>
 						<td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td> 
 						<td class="text-center"><a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-accounts-list-alt"></i></a></td> 
 						</tr>

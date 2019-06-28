@@ -6,7 +6,7 @@ var url = require('./url/export');
 
 //para renderizar una vista de botones donde esta doctor y enfermera temporalmente
 router.get('/viewTemporal', (req,res) => {
-    fetch(url.name.url+'/api/servicios') // esta ruta solo trae los datos de tipo true
+    fetch(url.name.cuadernos+'/api/especialidad') // esta ruta solo trae los datos de tipo true
     .then(resp => resp.json())
     .then(resp =>{
         res.render('hospitalizaciones/viewFirst',{

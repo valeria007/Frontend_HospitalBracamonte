@@ -17,7 +17,7 @@
     float: left;
     width: 10%;
     padding: 10px;
-    background: rgb(40, 167, 150);
+    background: rgb(245, 247, 246);
     color: white;
     font-size: 17px;
     border: 1px solid black;
@@ -77,7 +77,19 @@
     overflow-y:scroll;
     overflow-x:hidden;*/
 }
+/*para el nav*/
+.buttonn {
+  background-color: rgba(0, 39, 66, 0.747); /* Green */
+  border: none;
+  color: white;
+  
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
 
+/* on of */
 input[type="checkbox"]{
   position: relative;
   width: 85px;
@@ -130,6 +142,8 @@ input:checked[type="checkbox"]::before{
   right: 5px;
   color: #34495e;
 }
+
+
 /*menu nav*/
 .main-nav{
   height: 50px;

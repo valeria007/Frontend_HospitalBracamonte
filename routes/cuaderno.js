@@ -272,7 +272,7 @@ router.post('/docCuaderno', (req,res) => {
     .catch(error => console.error('Error:', error))
     .then(data => {     
         id_docCuaderno =  data.data.id
-        res.redirect('/cuaderno/fechas' )   
+        res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno )   
        
     })  
 })
@@ -292,7 +292,6 @@ router.post('/updateDoctCuaderno/:id', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {     
-        id_docCuaderno =  data.data.id
         res.redirect('/cuaderno/midificarDoct/'+id )   
        
     })  
@@ -446,6 +445,16 @@ router.post('/turnos', (req,res) => {
        
     })  
 })
+router.get('/delturno/:id', (req, res) => {
+    const { id }= req.params;
+    fetch('http://localhost:4600/api/delete'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        console.log(resp);
+        res.redirect('/cuaderno/turnos');
+    });
+  });
 
 
 module.exports = router;

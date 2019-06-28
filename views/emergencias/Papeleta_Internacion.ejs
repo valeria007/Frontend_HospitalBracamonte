@@ -56,10 +56,10 @@
 					<div class="tab-pane fade active in" id="PapeletaInternacion">
 						<!-- datos personales-->
                         <%if(updateInternacion == "") { %>
-                                            <!--<div class="col-md-6">
+                                            <div class="col-md-6">
                                                 <p class="lead">Datos Personales </p>
-                                            </div>-->
-                                            <!--<form action="/emergencia/Pinternacion/<%=resp[0].id%>/" method="POST">
+                                            </div>
+                                            <form action="/emergencia/Pinternacion/<%=resp[0].id%>/" method="POST">
                                                 <div class="col-md-12">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -150,11 +150,20 @@
                                                 </div>
                                        
                                         
-                                            </form>-->
+                                            </form>
                             <% } else {%>
                             <h2>Formulario de actualizacion</h2>
                             <form action="/emergencia/updatePinter/<%=updateInternacion[0].id%>" method="POST">
                                 <div class="grupo" id="cabeza">
+                                        <div class="entrada">Area de hospitalizacion:<br>
+                                            <select name="especialidad" >
+                                                <option><%=updateInternacion[0].especialidad%></option>
+                                                <option>----------------------------</option>
+                                                <% for(var i=0; i< especialidad.length; i++) {%>
+                                                    <option><%=especialidad[i].nombre%></option>
+                                                <% } %>
+                                            </select><br>
+                                        </div>
                                     <p class="lead">Datos Personales </p> 
                                     <div id="cuatro">
                                         <div class="entrada">Historial Clinico:<br>
@@ -187,7 +196,7 @@
                                     </div>
                                     <div id="correo">
                                         <div class="entrada">Fecha de Ingreso:<br>
-                                            <input type="date" name="fechaIngreso"><br>
+                                            <input type="date" name="fechaIngreso" value="<%=updateInternacion[0].fechaIngreso%>"><br>
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +215,7 @@
                                     </div>
                                 </div>
                                 <div id="ultimo">
-                                    <p class="lead">Estado del Paciente</p>
+                                    <p class="lead">Estado del Paciente</p>                                    
                                     <div class="entrada">Diagnostito del Paciente:<br>
                                         <textarea  class="large-compact"  name="diagnostico" cols="100" rows="10"><%=updateInternacion[0].diagnostico%></textarea><br>
                                     </div>
@@ -233,6 +242,7 @@
                                 <th>Apellido Materno</th>
                                 <th>Nombre del doctor</th>  
                                 <th>Diagnostico</th>
+                                <th>Fecha </th>
                                 <th>Modificar</th>                                           
                             </tr>                               
                             </thead>
@@ -245,6 +255,7 @@
                                 <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidom %></td>
                                 <td><%=listPinter[i].nombreDoctor %> <%=listPinter[i].apellidoD1 %> <%=listPinter[i].apellidoD2 %></td>
                                 <td><%=listPinter[i].diagnostico %></td>
+                                <td><%=listPinter[i].createdAt %></td>
                                 <td class="text-center" ><a href="/emergencia/ListPInter/<%=listPinter[i].idEmergencia %>/<%=listPinter[i].Historial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
                                 </tr>
                             <% } %>
