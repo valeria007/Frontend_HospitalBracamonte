@@ -445,11 +445,16 @@ router.post('/turnos', (req,res) => {
        
     })  
 })
-router.get('/removeAll/:id', (req,res) => {
-    var id = req.params;
-    removeAll(id.id);
-    res.redirect('/cuaderno/turnos');
-});
+router.get('/delturno/:id', (req, res) => {
+    const { id }= req.params;
+    fetch('http://localhost:4600/api/delete'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        console.log(resp);
+        res.redirect('/cuaderno/turnos');
+    });
+  });
 
 
 module.exports = router;
