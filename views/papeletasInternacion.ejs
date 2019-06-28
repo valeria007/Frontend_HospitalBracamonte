@@ -156,6 +156,9 @@
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Area de Internacion</label>
                                                         <select class="form-control" name="especialidad">
+
+                                                            <option><%=resp[0].especialidad%></option>
+                                                            <option>------------------------</option>
                                                             <% for(var i=0; i< especialidad.length; i++) {%>
                                                             <option><%=especialidad[i].nombre%></option>
                                                             <% } %>
@@ -275,9 +278,10 @@
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>Historial</th>
-											<th>Nombre del doctor</th>  
-											<th>Tipo de Consulta</th>
-                                            <th>Añadir</th>                                           
+                                            <th>Nombre del doctor</th>  
+                                            <th>Area de Internacion</th>  
+											<th>De:</th>
+                                            <th>Ver</th>                                           
                                         </tr>
                                         <tr class="warning no-result">
                                                 <td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -290,7 +294,8 @@
                                             <th><%=PapeletaINTER[i].Consulta.Citas_Medica.Paciente.nombre%></th>
                                             <th><%=PapeletaINTER[i].Consulta.Citas_Medica.Paciente.apellidop%></th>
                                             <th><%=PapeletaINTER[i].Historial%> </th>
-											<th><%=PapeletaINTER[i].nombreDoctor%></th>  
+                                            <th><%=PapeletaINTER[i].nombreDoctor%> <%=PapeletaINTER[i].apellidoD1%></th>  
+                                            <th><%=PapeletaINTER[i].especialidad%></th>
 											<th><%=PapeletaINTER[i].tipoConsulta%></th>  
                                             <td><a href="/medico/PapeletaINT/<%=PapeletaINTER[i].idConsultaMedica%>/<%=PapeletaINTER[i].Historial%>/consultaMedica" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>                                            
                                         </tr>
