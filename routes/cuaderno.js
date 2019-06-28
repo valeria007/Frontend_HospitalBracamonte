@@ -445,6 +445,16 @@ router.post('/turnos', (req,res) => {
        
     })  
 })
+router.get('/delturno/:id', (req, res) => {
+    var delR = req.url;
+    fetch('http://localhost:4600'+delR)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        console.log(resp);
+        res.redirect('/cuaderno/turnos');
+    });
+  });
 
 
 module.exports = router;
