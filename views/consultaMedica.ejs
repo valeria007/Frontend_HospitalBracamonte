@@ -20,19 +20,128 @@
                 <nav id="main-nav" class="main-nav">
                         <ul class="menu">
                             <li class="menu__item">
-                                <a href="datos_responsable.ejs" class="menu__link">Datos de responsable
-                                  
-                                </a>
+                                
+                                <button class="modal-open buttonn menu__link"  
+					            data-modal="<h3 class='text-center'>Datos de Responsable </h3>
+					            <form  action='/paciente/postPaciente' method='post' >
+						        <p> Datos </p>
+						        <div id='cuatro'>
+							        <div class='entrada'>Nombre del familiar:<br>
+							        <input type='text' name='nombre' ><br>
+							    </div>
+							    <div class='entrada'>Apellido Paterno:<br>
+							    	<input type='text' name='ap' class='upper'><br>
+								</div>
+								<div class='entrada'>Apellido Materno:<br>
+									<input type='text' name='pre_arterial'><br>
+								</div>
+								<div class='entrada'>DIrección:<br>
+									<input type='text' name='es_nutri'><br>
+								</div>
+							    </div>
+							    <div id='cuatro'>
+								<div class='entrada'>Telefono:<br>
+									<input type='text' name='peso'><br>
+								</div>
+								
+							</div>
+							<p class='text-center'>
+								<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
+								<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
+							</p>
+						</form>"><i class=""></i> Datos de responsable</button>
+
                             </li>
                             <li class="menu__item">
-                                <a href="antecedentes.ejs" class="menu__link">Antecedentes
-                                  
-                                </a>
+                                
+                                <button class="modal-open buttonn menu__link"  
+					            data-modal="<h3 class='text-center'>Antecedentes </h3>
+					            <form  action='/paciente/postPaciente' method='post' >
+						        <p> Antecedentes </p>
+						        <div id='cuatro'>
+							        <div class='entrada'>Antecedentes Patologicos:<br>
+							        <input type='text' name='estado_g' ><br>
+							    </div>
+							    <div class='entrada'>Antecedentes de hábito:<br>
+							    	<input type='text' name='facies' class='upper'><br>
+								</div>
+								<div class='entrada'>Antecedentes familiares:<br>
+									<input type='text' name='es_nutri'><br>
+								</div>
+								<div class='entrada'>Antecedentes de riesgo:<br>
+									<input type='text' name='es_nutri'><br>
+								</div>
+							    </div>
+							    <div id='cuatro'>
+								
+							</div>
+							<p class='text-center'>
+								<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
+								<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
+							</p>
+						</form>"><i class=""></i> Antecedentes</button>
                             </li>
                             <li class="menu__item">
-                                <a href="alergias.ejs" class="menu__link">Alergias
-                                  
-                                </a>
+                                    <button class="modal-open buttonn menu__link"  
+                                    data-modal="<h3 class='text-center'>EXAMEN GENERAL FÍSICO </h3>
+                                    <form  action='/paciente/postPaciente' method='post' >
+                                    <p> EXAMEN GENERAL </p>
+                                    <div id='cuatro'>
+                                        <div class='entrada'>Estado General:<br>
+                                        <input type='text' name='estado_g' ><br>
+                                    </div>
+                                    <div class='entrada'>Facies:<br>
+                                        <input type='text' name='facies' class='upper'><br>
+                                    </div>
+                                    <div class='entrada'>Presion Arterial:<br>
+                                        <input type='text' name='pre_arterial'><br>
+                                    </div>
+                                    <div class='entrada'>Estado nutricional:<br>
+                                        <input type='text' name='es_nutri'><br>
+                                    </div>
+                                    </div>
+                                    <div id='cuatro'>
+                                    <div class='entrada'>Peso:<br>
+                                        <input type='text' name='peso'><br>
+                                    </div>
+                                    <div class='entrada'>Frecuencia cardiaca:<br>
+                                        <input type='text' name='fre_C'><br>
+                                    </div>
+                                    <div class='entrada'>Saturación de oxigeno:<br>
+                                        <input type='text' name='sa_oxigeno'><br>
+                                    </div>
+                                    <div class='entrada'>Fecha de Revisión:<br>
+                                        <input type='date' name='fecha_rev'><br>
+                                    </div>
+                                </div>
+                                <p class='text-center'>
+                                    <button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
+                                    <button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
+                                </p>
+                            </form>"><i class=""></i> Examen Físico</button>
+                            </li>
+                            <li class="menu__item">
+                                    
+                                <button class="modal-open buttonn menu__link"  
+					            data-modal="<h3 class='text-center'>ALERGIAS </h3>
+					            <form  action='/paciente/postPaciente' method='post' >
+						        <p> A que: </p>
+						        <div id=''>
+							        <div class='entrada'> A que Medicamento:<br>
+							        <input type='text' name='estado_g' ><br>
+							        </div>
+							        <div class='entrada'>Otros:<br>
+							    	<input type='text' name='facies' class='upper'><br>
+                                    </div>
+                                    
+								
+							    </div>
+							   
+							<p class='text-center'>
+								<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
+								<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
+							</p>
+						</form>"><i class=""></i> Alegias</button>
                             </li>
                         </ul>
                         <div class="menu-barr">
