@@ -131,8 +131,8 @@ body, html{
 /* solo nav*/
 .dashboard-sideBar-imaggg{
 	
-	background-image: url('../assets/img/vamoo.jpg');
-	border-right: 1px solid rgba(3, 9, 66, 0.897);
+	/*background-image: url('../assets/img/vamoo.jpg');*/
+	border-right: 1px solid rgb(3, 9, 66);
 }
 .dashboard-sideBar-ctttt{
 	position: relative;
