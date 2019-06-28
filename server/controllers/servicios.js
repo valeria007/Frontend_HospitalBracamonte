@@ -74,7 +74,7 @@ import model from '../models';
               return data
                 .destroy()
                 .then(() => res.status(200).send({
-                  message: 'Book successfully deleted'
+                  message: 'Successfully deleted'
                 }))
                 .catch(error => res.status(400).send(error));
             })
