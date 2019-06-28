@@ -28,6 +28,7 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row">
+			<%if(citaUpdate == null) { %>
 			<form action="/paciente/cita_medica/<%=id.id %>" method="POST">
 				<div class="grupo" id="cabeza">
 					<h3 class="text-center"> Datos Personales</h3>
@@ -73,6 +74,64 @@
 					</p>
 				</div>
 			</form>	
+			<% } else { %>
+				<a href="/paciente/clean"> Volver </a>
+				<form action="/paciente/updateCita/<%=citaUpdate[0].id%>" method="POST">
+					<div class="grupo" id="cabeza">
+						<h3 class="text-center"> Datos Personales</h3>
+						<div id="tres2">
+							<div class="entrada">Historial Clinico:<br>
+								<input type="text" value="<%=historial	%>"><br>
+							</div>
+							<div class="entrada">Doctor:<br>
+								<input type="text" name="medico" value="<%=citaUpdate[0].medico%>"><br>
+							</div>
+							<div class="entrada">Especialidad:<br>
+								<select  name="especialidad">
+									<option><%=citaUpdate[0].especialidad%></option>
+									<option>----------------------------------</option>
+									<option value="consultaMedica">Consulta Medica</option>
+									<option value="emergencia">Emergencia</option>	
+								</select><br>
+							</div>
+						</div>
+						<div id="correo">
+							<div class="entrada">Turno:<br>
+								<select name="turno">
+									<%if(citaUpdate[0].turno == "maiana") { %>
+										<option value="maiana">Mañana</option>
+									<% } else if( citaUpdate[0].turno == "tarde" ) { %>
+										<option value="tarde">Tarde</option>
+									<% } else { %>
+										<option value="emergencia">Emergencia</option>	
+									<% } %>
+									<option>-----------------------------------</option>
+									<option value="maiana">Mañana</option>
+									<option value="tarde">Tarde</option>
+									<option value="emergencia">Emergencia</option>	
+								</select><br>
+							</div>
+							<div class="entrada">Hora:<br>
+								<input  type="text" name="hora" value="<%=citaUpdate[0].hora%>"><br>
+							</div>
+							<div class="entrada">Tipo de Paciente:<br>
+								<div class="col-md-9">
+									<label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="IsSmallBusiness" name="IsSmallBusiness" type="radio" value="False">Asegurado</label>
+									<label class="radio-inline"><input id="IsSmallBusiness" name="IsSmallBusiness" type="radio" value="True">No Asegurado</label>
+									<span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true"></span>
+								</div><br>
+							</div>
+							<div class="entrada">Costo de Ficha:<br>
+								<input type="text" name="saldo_total" value="<%=citaUpdate[0].saldo_total%>"><br>
+							</div>
+						</div>
+						<p class="text-center">
+							<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+							<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+						</p>
+					</div>
+				</form>	
+			<% } %>
 			<div class="table-responsive">
 				<div class="table-wrapper">
 					<div id="correo">
@@ -83,30 +142,85 @@
 							<input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
 						</div>
 					</div>
-					<table class="fl-table" id="myTable">
-						<thead>
-							<tr>
-							<th>#</th>
-							<th>Historial Clinico</th>
-							<th>Doctor</th>
-							<th>Especialidad</th>
-							<th>Fecha </th>
-							<th>Saldo</th>
-							<th>Modificar</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-							<td>1</td>
-							<td>123</td>
-							<td>Dr. Pepito</td>
-							<td>Emergencia</td>
-							<td>12/02/2019</td>
-							<td>20</td>
-							<td><a href="/edit_cuadernos" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
-							</tr>
-						<tbody>
-					</table>
+					<div class="row">
+						<div class="col-xs-12">
+							<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                                
+								<li class="active"><a href="#new" data-toggle="tab">Citas</a></li>
+								<li><a href="#list" data-toggle="tab">Listado de Citas del Paciente</a></li>
+							
+							</ul>
+							<div id="myTabContent" class="tab-content">
+								<div class="tab-pane fade " id="new">
+									<div class="table-responsive">
+										<table class="fl-table" id="myTable">
+											<thead>
+												<tr>
+												<th>#</th>
+												<th>Historial Clinico</th>
+												<th>Doctor</th>
+												<th>Especialidad</th>
+												<th>Fecha </th>
+												<th>Saldo</th>
+												<th>Modificar</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+												<td>1</td>
+												<td>123</td>
+												<td>Dr. Pepito</td>
+												<td>Emergencia</td>
+												<td>12/02/2019</td>
+												<td>20</td>
+												<td><a href="/edit_cuadernos" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+												</tr>
+											<tbody>
+										</table>
+									</div>
+								</div>
+
+								<div class="tab-pane fade active in" id="list">
+									<div class="table-responsive">
+										<table class="fl-table" id="myTable">
+											<thead>
+												<tr>
+												<th>#</th>
+												<th>Historial Clinico</th>
+												<th>Doctor</th>
+												<th>Especialidad</th>
+												<th>Fecha </th>
+												<th>Saldo</th>
+												<th>Modificar</th>
+												</tr>
+											</thead>
+											<tbody>
+												<%if(pacienteCita != "") { %>
+													<% for ( var i = 0; i < pacienteCita.length; i++ ) { %>
+														<tr>
+															<td><%=i+1%></td>
+															<td><%=pacienteCita[i].codigo_p%></td>
+															<td><%=pacienteCita[i].medico%></td>
+															<td><%=pacienteCita[i].especialidad%></td>
+															<td><%=pacienteCita[i].createdAt%></td>
+															<td><%=pacienteCita[i].saldo_total%></td>
+															<td><a href="/paciente/onliCita/<%=pacienteCita[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+														</tr>
+													<% } %>
+												<% } else { %>
+													<tr>
+														<td colspan="7"> Este paciente no tiene citas medicas</td>
+													</tr>
+												<% } %>	
+											<tbody>
+										</table>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</div>	
 		</div>

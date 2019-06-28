@@ -286,9 +286,11 @@
                                                     <th>Apellido Paterno</th>
                                                     <th>Apellido Materno</th>
                                                     <th>Diagnostico</th>
+                                                    <th>Fecha de Consulta</th>
                                                     <th>Tipo de Consulta</th>
                                                     <th>Dar Receta</th>
                                                     <th>Papeleta Internacion</th>
+                                                    <th>Ver</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -300,9 +302,11 @@
                                                     <td><%=resp[i].Citas_Medica.Paciente.apellidop%></td>
                                                     <td><%=resp[i].Citas_Medica.Paciente.apellidom%></td>
                                                     <td><%=resp[i].diagnostico%></td> 
+                                                    <td><%=resp[i].fechaConsulta%></td>
                                                     <td><%=resp[i].tipoConsulta%></td>                                                    
 												    <td><a href="/medico/TraerConsulta/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-												    <td><a href="/medico/PapeletaINT/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>/<%=resp[i].tipoConsulta%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                    <td><a href="/medico/PapeletaINT/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>/<%=resp[i].tipoConsulta%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                    <td><a href="/medico/VerConsulta/<%=resp[i].numeroHistorial%>/<%=resp[i].id_cita%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
                                                 </tr>
                                                 <% } %>
                                                 </tbody>                                                                       

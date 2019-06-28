@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 var dataSala
 router.get('/salas',(req, res) => {
-  fetch('http://localhost:3000/api/servicios')   
+  fetch('http://localhost:4600/api/especialidad')   
   .then(resp => resp.json())
   .then(resp =>{
      dataSala = resp;
