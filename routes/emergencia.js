@@ -375,10 +375,11 @@ router.get('/RenderPinternacion/:id', (req,res) => {
     }
 })
 
+//ruta para traer especilidad desde otre back end con puerto 4600
 var especialidad;
 router.get('/especialidad/:id', (req,res) => {
     const { id } = req.params;
-    fetch('http://localhost:3000/api/servicios')
+    fetch('http://localhost:4600/api/especialidad')
     .then(resp => resp.json())
     .then(resp =>{  
         especialidad = resp;

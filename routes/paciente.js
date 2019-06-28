@@ -50,8 +50,7 @@ fetch('http://localhost:3000/api/pacientes',esto)
 .then(res => res.json())
 .catch(error => console.error('Error:', error))
 .then(data => {
-  
-  res.redirect('/paciente/reg_paciente');
+  res.redirect('/paciente/EnviarCita/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial);
 })
 });
 
@@ -71,23 +70,64 @@ router.post('/cita_medica/:id', (req,res) => {
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => {
-    res.redirect('/paciente/EnviarCita/'+id.id+"/"+historial);
+    res.redirect('/paciente/citas');
 })
 });
 
+
+
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            ruta para dar citas
+<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
+<<<>><<<>><<<><>>><<<><<<>><<>><<>>>>><<<<
+*/
+
+router.get('/clean', (req,res) => {
+  citaUpdate = null;
+  res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial);
+})
+
 router.get('/EnviarCita/:id/:historial', (req,res) => {
   var id = req.params; 
-  console.log(id)
   fetch('http://localhost:3000/api/OnlyCita/'+id.id)
   .then(resp => resp.json())
   .then(resp =>{
     res.render('citas_fichas',{
       historial: id.historial,
-      id
+      id,
+      pacienteCita, // esto contiene las citas de un paciente
+      citaUpdate
     });
   });
  });
 
+ //ruta para sacar todas las citas de un paciente
+ let pacienteCita, idH;
+ router.get('/citaPAciente/:id/:historial',(req,res) => {
+  var id = req.params;
+  idH = id;
+  fetch('http://localhost:3000/api/citasPaciente/'+id.id)
+  .then(resp => resp.json())
+  .then(resp =>{
+    pacienteCita = resp;
+    res.redirect('/paciente/EnviarCita/'+id.id + "/" + id.historial);
+  });
+ })
+
+ //RUTA PARA PODER MODIFICAR UNA CITA 
+ let citaUpdate;
+ router.get('/onliCita/:id', (req,res) => {
+   const { id } = req.params;
+   fetch('http://localhost:3000/api/OneCita/'+id)
+  .then(resp => resp.json())
+  .then(resp =>{
+    citaUpdate = resp;
+    res.redirect('/paciente/citaPAciente/'+citaUpdate[0].id_Paciente + "/" + citaUpdate[0].codigo_p);
+  });
+ })
  
  router.get('/citas',(req, res) => {
   fetch('http://localhost:3000/api/pacientes/')
@@ -100,8 +140,27 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
   .catch(error => {
     console.error('Error:', error)
     res.send("no hay coneccion con el servidor");
-}) 
+  }) 
 });
+
+router.post('/updateCita/:id',(req,res) => {
+  const { id } = req.params;
+  var data = req.body;
+  var esto = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+    fetch('http://localhost:3000/api/updateCita/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+      res.redirect('/paciente/onliCita/'+id);
+  })
+
+})
 
 
  
