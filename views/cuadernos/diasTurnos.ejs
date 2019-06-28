@@ -71,7 +71,7 @@
             </p>
         </form>
         <div class="table-responsive">
-			<h3 class="text-center all-tittles">LISTA DE DOCTORES</h3>
+			<h3 class="text-center all-tittles">LISTA DE TURNOS</h3>
             <div class="table-wrapper">
                 <div id="correo">
                     <div class="entrada">
@@ -88,6 +88,7 @@
 						<th>Cantidad Fichas</th>
 						<th>Dia de atencion</th>
                         <th>Turno</th>
+                        <th>Eliminar</th>
 						
 						</tr>
                     </thead>
@@ -98,6 +99,7 @@
                             <td><%=resp[i].cantiFicha%></td>
                             <td><%=resp[i].diasAten%></td>
                             <td><%=resp[i].turno%></td>
+                            <td><a href="/cuaderno/delturno/<%=resp[i].id%>" class="btn btn-danger btn-raised btn-xs "><i class="zmdi zmdi-close-circle"></i></a></td>
                         </tr>
                         <% } %>
                     <tbody>
