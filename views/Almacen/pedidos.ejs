@@ -33,10 +33,11 @@
 		<div class="container-fluid">
 			<div class="row" >
 				<div class="col-xs-12" id="carMedicamentos">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+					<ul class="nav nav-tabs" style="margin-bottom: 15px;"  id="links">
                         <li class="active"><a v-on:click="pedidos" href="#new" data-toggle="tab">Lista de Pedidos</a></li>
                         <li><a href="#list" data-toggle="tab">Nuevo Pedido</a></li>
                         <li><a href="#listMedicament" data-toggle="tab">Lista de medicamentos</a></li>
+                        <li><a href="#">Refresh</a></li>
 					</ul>
                                         
                     <div id="myTabContent" class="tab-content">
@@ -317,5 +318,6 @@
 	<!--====== Scripts -->
     <%- include("../partials/scripts") -%>
     <script src="/js/vue/pedidos.js"></script>
+    <script src="/js/get/consultaget.js"></script>	
 </body>
 </html>

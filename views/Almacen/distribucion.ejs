@@ -30,10 +30,11 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12" id="pedidos">
-				<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-				  <li class="active"><a href="#new" data-toggle="tab">Lista de Disribuciones</a></li>
+				<ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+				  <li class="active"><a v-on:click="Listdistribuciones" href="#new" data-toggle="tab">Lista de Disribuciones</a></li>
 					<li><a href="#list" data-toggle="tab">Nuevo Distribución</a></li>
 					<li><a v-on:click="medicamento" href="#listMedicament" data-toggle="tab">Lista de medicamentos</a></li>
+					<li><a href="#">Refresh</a></li>
        	 		</ul>
 				<!-- lista Medicamento -->
 				<div id="myTabContent" class="tab-content">
@@ -93,8 +94,8 @@
 							<h2>no se selecciono nada</h2>
 						<% } %>
 
-
-						<div class="table-responsive">						
+						
+						<div class="table-responsive">				
 							<div class="table-wrapper">
 									<div id="correo">
 											<div class="entrada">
@@ -115,22 +116,18 @@
 												<th>Ver</th>
 											</tr>
 									</thead>
-									<tbody>
-										<%if(listDist != "") { %>
-											<% for(var i = 0; i< listDist.length; i++) { %>
-												<tr>
-													<td><%=i+1%></td>
-													<td><%=listDist[i].codigo%></td>
-													<td><%=listDist[i].responsable%></td>
-													<td><%=listDist[i].recibe%></td>
-													<td><%=listDist[i].fechaLlegada%></td>
-													<td><a href="/distribucion/onlyDist/<%=listDist[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-												</tr>
+									<tbody  v-for="(distribucion, index) of listDistribucion">
+										<tr>
+											<td>{{index + 1}}</td>
+											<td>{{distribucion.codigo}}</td>
+											<td>{{distribucion.responsable}}</td>
+											<td>{{distribucion.recibe}}</td>
+											<td>{{distribucion.fechaLlegada}}</td>
+											<td><a :href="'/distribucion/onlyDist/' + distribucion.id" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+										</tr>
 
-											<% } %>
-										<% } else { %>
-											no hay datos que mostrar
-										<% } %>
+
+										
 
 									</tbody>
 								</table>
@@ -142,6 +139,7 @@
 						<%if (message != null) { %>
 							<h2>Porfavor seleccione producto de la lista de medicamentos</h2>
 						<% } %>	
+						<span style="color: red;">{{respuestaPost}}</span>
 						<form @submit="formSubmit" method="POST">
 								<div class="grupo" id="cabeza">
 										<div id="correo">
@@ -197,7 +195,7 @@
 								</div>
 								<p class="text-center">
 										<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-										<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+										<button @click="reduce" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" onclick="location.href='/esto';"></i> &nbsp;&nbsp; Guardar </button>
 								</p>
 						</form>
 					</div>
@@ -252,5 +250,6 @@
 	<!--<script src="/js/paginacion.js"></script>	-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
 	<script src="/js/vue/distribucion.js"></script>
+	<script src="/js/get/consultaget.js"></script>	
 </body>
 </html>

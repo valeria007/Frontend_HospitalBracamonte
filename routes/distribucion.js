@@ -44,6 +44,45 @@ router.post('/vueMedicamento',(req,res) => {
     })   
 })
 
+//ruta para mostrar todas las distribucion
+router.get('/vueDistribucion', (req,res) => {
+    fetch(url.name.urlFarmacia+'/api/distribucion')
+    .then(res => res.json())
+    .then(resp => { 
+       res.status(200).json(resp);
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })  
+})
+
+//esta ruta es para reducir los datos son mandados des vue distribucion
+router.post('/vueReduceStock', (req,res) => {
+    var productos = req.body
+    //console.log(productos.producto, "  <<<<<<<<<<<<<<<<<<<<<<")
+    for(var i = 0; i< productos.producto.length; i++){
+        var unidades = { unidades: productos.producto[i].qty}
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(unidades),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.urlFarmacia+'/api/reduce/'+productos.producto[i].item.id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+            res.status(200).json({
+                msg: " Exito",
+                data
+            })        
+        }) 
+    }     
+})
+
+
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

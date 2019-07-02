@@ -13,7 +13,9 @@ const pedidos =  new Vue({
         recibe:'',
         fechaLlegada:'',
 
-        respuestaPost:''
+        respuestaPost:'',
+
+        listDistribucion:[]
     }),
 
     methods:{
@@ -69,6 +71,7 @@ const pedidos =  new Vue({
             if (this.items[id].qty <= 0) {
                 console.log(this.items[id])
                 delete this.items[id];
+                this.items[id] = null
             }
         },
 
@@ -89,7 +92,7 @@ const pedidos =  new Vue({
             e.preventDefault();
             if( this.generateArray() == ""){
                 this.respuestaPost = "No se seleciono un producto"
-                console.log(this.respuestaPost)
+                
             }else{
                 axios.post('http://localhost:7000/distribucion/vueMedicamento', {
                     codigo:this.codigo,
@@ -101,12 +104,44 @@ const pedidos =  new Vue({
                 })
                 .then(function (response) {
                     console.log(response)
-                    this.respuestaPost = '';
+                    this.respuestaPost = "Se enviaron los datos" ;
+                })
+                .catch(function (error) {
+                    console.log(error)
+                });
+            } 
+            console.log(this.respuestaPost)           
+        },
+
+        //ruta para mostrar las distribuciones que se hace
+        Listdistribuciones: function (){
+            axios
+            .get('http://localhost:7000/distribucion/vueDistribucion')
+            .then(response => {
+              console.log(response)
+              this.listDistribucion = response.data;              
+            })
+        },
+        
+        //para reducir al estock    
+        reduce: function (){
+            var producto = this.generateArray();
+            if (producto == ""){
+                this.respuestaPost = "No se selecciono Producto"
+            }else{
+                axios.post('http://localhost:7000/distribucion/vueReduceStock', {
+                    producto: producto                
+                })
+                .then(function (response) {
+                    console.log(response, "  <<< esto es la respuesta")
+                   
                 })
                 .catch(function (error) {
                     console.log(error)
                 });
             }            
-        },        
+        }
     }
 })
+
+// falta reducir al stock inicial
