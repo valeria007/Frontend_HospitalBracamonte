@@ -79,7 +79,7 @@
     
     data () {
       return {
-        mensaje:'asdas',
+        mensaje:'',
         mostrar:'',
         salaID:'',
         camas:[]

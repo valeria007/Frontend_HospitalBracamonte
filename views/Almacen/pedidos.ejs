@@ -4,7 +4,9 @@
 	<title>Inicio</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
+    <%- include("../partials/head") -%>
+
+    
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -29,23 +31,21 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12">
+			<div class="row" >
+				<div class="col-xs-12" id="carMedicamentos">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                        <li class="active"><a href="#new" data-toggle="tab">Lista de Pedidos</a></li>
+                        <li class="active"><a v-on:click="pedidos" href="#new" data-toggle="tab">Lista de Pedidos</a></li>
                         <li><a href="#list" data-toggle="tab">Nuevo Pedido</a></li>
                         <li><a href="#listMedicament" data-toggle="tab">Lista de medicamentos</a></li>
 					</ul>
-                    <!-- Lista de Pedidos -->
-                    
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade active in" id="new">
-							<div class="container-fluid">
+                                        
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active in" id="new">                            
+                            <div class="container-fluid">
                                 <div class="row">
                                     <a href="/pedidos/limpiar">Limpiar</a>
                                     <% if(OnlyPedido != null ) { %>
-                                    <div class="col-md-12 panel-body">
-                                           
+                                    <div class="col-md-12 panel-body">                                           
                                         <div id="cabeza">
                                             <div id="correo">
                                                 <div class="entrada">Codigo de Compra:<br>
@@ -65,17 +65,15 @@
                                                     <input type="date" name="fechaIngreso" value="<%=OnlyPedido[0].fechaIngreso%>"><br>
                                                 </div>
                                                 <div class="entrada">Proveedor:<br>
-                                                    <select>
-                                                    
-                                                        <option> <%=OnlyPedido[0].proveedor%></option>
-                                                  
+                                                    <select>                                                    
+                                                        <option> <%=OnlyPedido[0].proveedor%></option>                                                  
                                                     </select><br>
                                                 </div>
                                                 <h5>Notas importantes del Comprovante</h5>
                                                 <div class="entrada">Observaciones:<br>
                                                     <input type="text"  value="<%=OnlyPedido[0].Observaciones%>"><br>	
                                                 </div>
-                                                </div> <br>                                              
+                                            </div> <br>                                              
                                             <div class="table-wrapper">
                                                 <table class="fl-table">
                                                     <thead>
@@ -85,7 +83,7 @@
                                                         <th>Codigo</th>
                                                         <th>Descripcion</th>
                                                         <th>Cantidad</th>
-                                                    
+                                                        
                                                         <th>Precio</th>
                                                         <th>Precio Toal</th>
                                                         
@@ -103,17 +101,17 @@
                                                             <td><%=OnlyPedido[0].productosDelPedido[i].price%></td>                                                
                                                         </tr>
                                                         <% } %>
-                                                    <tbody>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     <% } else { %>
                                         <h3>Seleciona un Producto</h3>
                                     <% } %>
-                                </div>
-								<div class="row">
-								    <div class="table-responsive">
-                                        <div class="table-wrapper"> <div id="correo">
+                                    </div>
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <div class="table-wrapper" >                                                 
                                                 <div class="entrada">
                                                     <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
                                                 </div>
@@ -135,43 +133,44 @@
                                                     <th>Opciones</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <% for(var i=0; i< dataPEDIDOS.length; i++) { %>
+                                                <tbody v-for="(pedido, index) in getPedido">
                                                     <tr>
-                                                    <td><%=i+1%></td>
-                                                    <td><%=dataPEDIDOS[i].codigoCompra%></td>
-                                                    <td><%=dataPEDIDOS[i].proveedor%></td>
-                                                    <td><%=dataPEDIDOS[i].boletaPago%></td>
-                                                    <td><%=dataPEDIDOS[i].fechaIngreso%></td>
-                                                    <td><%=dataPEDIDOS[i].iva%></td>
-                                                    <td><%=dataPEDIDOS[i].total%></td>
-                                                    <td><%=dataPEDIDOS[i].Observaciones%></td>
-                                                    <td><a href="/pedidos/onliPedido/<%=dataPEDIDOS[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                        <td>{{index + 1}}</td>
+                                                        <td>{{pedido.codigoCompra}}</td>
+                                                        <td>{{pedido.proveedor}}</td>
+                                                        <td>{{pedido.boletaPago}}</td>
+                                                        <td>{{pedido.fechaIngreso}}</td>
+                                                        <td>{{pedido.iva}}</td>
+                                                        <td>{{pedido.total}}</td>
+                                                        <td>{{pedido.Observaciones}}</td>
+                                                        
+                                                        <td><a :href="'/pedidos/onliPedido/' + pedido.id" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
                                                     </tr>
-                                                    <% } %>
-                                                <tbody>
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
-								</div>
-							</div>
-						</div>
-						<!-- Registro de Pedidos-->
-						<div class="tab-pane fade" id="list">
-                            <div class="container-fluid">
-                                <%if(message) { %>
-                                    <h2>Porfavor selecione productos para el pedido</h2>
-                                <% } %>
-                                <div class="row">
-                                    <form action="/pedidos/pedidos" method="POST">
-                                        <div id="cabeza">
-                                        <h2 class="text-center all-tittles">REGISTRO DE COMPRA</h2>
-                                            <div id="tres2">
+                                </div>
+                            </div>  
+
+                            <div class="tab-pane fade" id="list">
+                                <div class="container-fluid">
+                                    <%if(message) { %>
+                                        <h2>Porfavor selecione productos para el pedido</h2>
+                                    <% } %>
+
+                                    <span style="color: red;">{{respuestaPost}}</span>
+                                    <div class="row">
+                    
+                                        <form @submit="formSubmit" method="POST">
+                                            <div id="cabeza">
+                                                <h2 class="text-center all-tittles">REGISTRO DE COMPRA</h2>
+                                                <div id="tres2">
                                                     <div class="entrada">Codigo de Compra:<br>
-                                                        <input  type="text" name="codigoCompra"><br>
+                                                        <input  type="text" v-model="codigoCompra"><br>
                                                     </div>
                                                     <div class="entrada">Especifique el status de la compra:<br>
-                                                        <select name="boletaPago">
+                                                        <select v-model="boletaPago">
                                                             <option>FACTURA</option>
                                                             <option>BOLETA DE VENTA</option>
                                                             <option>NOTA DE CREDITO</option>
@@ -180,21 +179,20 @@
                                                         </select><br>
                                                     </div>
                                                     <div class="entrada">Tipo de Material:<br>
-                                                        <select name="tipoMaterial">
+                                                        <select v-model="tipoMaterial">
                                                             <% for(var i=0; i< grup.length; i++) { %>
                                                             <option><%=grup[i].descripcion%></option>                                                            
                                                             <% } %>
                                                         </select><br>
                                                     </div>
-
-                                            </div>
-                                            <div id="correo">
-                                                    
+                    
+                                                </div>
+                                                <div id="correo">                                                    
                                                     <div class="entrada">Fecha de Ingreso:<br>
-                                                        <input type="date" name="fechaIngreso">
+                                                        <input type="date" v-model="fechaIngreso">
                                                     </div>
                                                     <div class="entrada">Proveedor:<br>
-                                                        <select name="proveedor">
+                                                        <select v-model="proveedor">
                                                         <%if (proveedor) { %>
                                                             <%for(var i=0; i < proveedor.length; i++) {%>
                                                             <option> <%=proveedor[i].nombre%></option>
@@ -203,116 +201,121 @@
                                                            <option value="">No hay Proveedores</option>                                                           
                                                         <% } %>
                                                         </select><br>
-                                                    </div>
-                                            </div><br>
-                                                     <div class="table-wrapper">
-                                                <table class="fl-table">
-                                                    <thead>
-                                                        <tr>
-                                                        <th>#</th>
-                                                        <th>Cantidad del Producto</th>
-                                                        <th>Codigo</th>
-                                                        <th>Descripcion</th>
-                                                        <th>Cantidad</th>
-                                                    
-                                                        <th>Precio</th>
-                                                        <th>Precio Toal</th>
-                                                        <th>Eliminar</th>
-                                                        <th>Eliminar todo</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <% if(products == null) { %>
-                                                        la lista esta bacia
-                                                    <% } else { %>
-                                                        <% for (var i=0; i< products.length; i++) { %>
-                                                        <tr>
-                                                        <td><%=i+1%></td>
-                                                        <td><%=products[i].qty%></td>
-                                                        <td><%=products[i].item.codificacion%></td>
-                                                        <td><%=products[i].item.nombre%></td>
-                                                        <td><%=products[i].item.cantidad%></td>
-                                                        <td><%=products[i].item.price%></td>
-                                                        <td><%=products[i].price%></td>
-                                    
-                                                        <td class="text-center"><a href="/pedidos/reduce/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                                        <td class="text-center"><a href="/pedidos/removeAll/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                                        </tr>
-                                                        <% } %>
-                                                    <% } %>
-                                                    <tbody>
-                                                </table>
-                                                     </div><br>
-                                                     <p>Notas importantes del Comprovante</p>
-                                                <div id="correo">
-                                                     
+                                                    </div>                                                    
+                                                </div><br>
+                                                <div class="table-wrapper">
+                                                    <table class="fl-table">
+                                                        <thead>
+                                                            <tr>
+                                                            <th>#</th>
+                                                            <th>Cantidad del Producto</th>
+                                                            <th>Codigo</th>
+                                                            <th>Descripcion</th>
+                                                            <th>Cantidad</th>
+                                                            
+                                                            <th>Precio</th>
+                                                            <th>Precio Toal</th>
+                                                            <th>Eliminar</th>
+                                                            <th>Eliminar todo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody v-for="(car, index) in carrito">                                                    
+                                                            <tr>
+                                                                <td>{{index +1}}</td>
+                                                                <td>{{car.qty}}</td>
+                                                                <td>{{car.item.codificacion}}</td>
+                                                                <td>{{car.item.nombre}}</td>
+                                                                <td>{{car.item.cantidad}}</td>
+                                                                <td>{{car.item.price}}</td>
+                                                                <td>{{car.price}}</td>
+                                                                <td> <a href="#" @click="reduceByOne(car.item.id)">Reducir</a>   </td>
+                                                                <td><a href="#" @click="removeItem(car.item.id)">Eliminar</a> </td>                                                        
+                                                           </tr>                                                   
+                                                        <tbody>
+                                                    </table>
+                                                </div><br>
+                                                <p>Notas importantes del Comprovante</p>
+                                                <div id="correo">                                                 
                                                     <div class="entrada">Observaciones:<br>
-                                                        <input type="text" name="Observaciones"><br>	
+                                                        <input type="text" v-model="Observaciones"><br>	
                                                     </div>
                                                      <div class="entrada">Sub Total:<br>
-                                                        <input type="text" value="<%=totalPrice%>" name="subTotal"><br>
+                                                        <input type="text" :value="totalPrice" ><br>
                                                     </div>
                                                     <div class="entrada">IVA:<br>
-                                                        <input type="text" value="<%=totalPrice * 0.13%>" name="iva"><br>
+                                                        <input type="text" :value="totalPrice * 0.13" ><br>
                                                     </div>
                                                     <div class="entrada">Total:<br>
-                                                        <input type="text" value="<%=totalPrice + totalPrice * 0.13%>" name="total"><br>
+                                                        <input type="text" :value="totalPrice + totalPrice * 0.13" ><br>
                                                     </div>
-                                                </div>
-                                                </div>
+                                                </div>                                             
                                             </div>
-                                        <p class="text-center">
-                                            <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                            <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-                                        </p>
-                                    </form>	
+                                            <p class="text-center">
+                                                <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                                <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                            </p>
+                                        </form>	                                    
+                                    </div>
                                 </div>
+                            </div>
 
-                            </div>
-                        <!-- mostrar lista de medicamentos -->
-                        <div class="tab-pane fade" id="listMedicament">
-                            <div class="table-wrapper">
+                            <div class="tab-pane fade" id="listMedicament">
+                                <div class="table-wrapper" >                              
+                                    <button v-on:click="agregar">Mostrar Medicamentos</button>                                   
                                     <div id="correo">
-                                            <div class="entrada">
-                                                <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-                                            </div>
-                                            <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-                                                <input type="text" id="searchInput" placeholder="Buscar.."><br>
-                                            </div>
+                                        <div class="entrada">
+                                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
                                         </div>
-                                        <table class="fl-table" id="myTable">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Codificación</th>
-                                            <th>Nombre</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio</th>  
-                                            <th>Añadir</th>                                           
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% for(var i=0; i< resp.length; i++) {%>
-                                        <tr>
-                                            <th><%= i+1 %></th>
-                                            <th><%=resp[i].codificacion%></th>
-                                            <th><%=resp[i].nombre%></th>
-                                            <th><%=resp[i].cantidad%> </th>
-                                            <th><%=resp[i].precio%></th>  
-                                            <td><a href="/pedidos/carrito/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>                                            
-                                        </tr>
-                                        <% } %>
-                                    </tbody>
-                                </table>
+                                        <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                                            <input type="text" id="searchInput" placeholder="Buscar.."><br>
+                                        </div>
+                                    </div>    
+                                    <table class="fl-table" id="myTable" >                                        
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Codificación</th>
+                                                <th>Nombre</th>
+                                                <th>Cantidad</th>
+                                                <th>Precio</th> 
+                                                <th>numere cantidad</th>
+                                                <th>Añadir</th>                                           
+                                            </tr>
+                                        </thead>
+                                        <tbody v-for="(item, index) of medicamentos">
+                                            <tr>
+                                                <td>{{index +1}}</td>
+                                                <td>{{item.codificacion}}</td>
+                                                <td>{{item.nombre}}</td>
+                                                <td>{{item.cantidad}}</td>
+                                                <td>{{item.precio}}</td>
+                                                <td><input type="text"  placeholder="esto para despues "></td>
+                                                <td>                                                    
+                                                    <!--<input type="checkbox" v-model="otro" 
+                                                    :value="{
+                                                        codificacion:item.codificacion, 
+                                                        nombre: item.nombre,
+                                                        cantidad: item.cantidad, 
+                                                        
+                                                        precio: item.precio, 
+                                                    }"> -->  
+                                                    <button @click="insertar(item.id)">Agregar</button>                                              
+                                                </td>
+                                            </tr>                                               
+                                        </tbody>
+                                    </table>               
+                                </div>
                             </div>
+                            
                         </div>
-					</div>
+                    </div>
 				</div>
 			</div>
-		</div>
+        </div>          
 	</section>
 	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+    <%- include("../partials/scripts") -%>
+    <script src="/js/vue/pedidos.js"></script>
 </body>
 </html>

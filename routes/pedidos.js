@@ -2,6 +2,83 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>><>
+VUE
+<<<<<>>>>>>><<<>><<<<>>><<>>><<>>><<<>>>><<<>>><<>>><<>>><<<>>>>
+*/
+
+router.get('/vuePedidos',(req, res) => {
+    
+    fetch('http://localhost:3500/api/medicamento')   
+    .then(resp => resp.json())
+    .then(resp =>{
+        res.status(200).json(resp);
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })    
+});
+
+router.get('/carrito/:id', (req,res)=>{
+    var id = req.params;
+    fetch('http://localhost:3500/api/OnlyMedicamento/'+id.id)   
+        .then(resp => resp.json())
+        .then(resp =>{
+            var car = {
+                id: resp[0].id,
+                codificacion: resp[0].codificacion,
+                nombre: resp[0].nombre,
+                cantidad: resp[0].cantidad,
+                presentacion: resp[0].presentacion,
+                price: resp[0].precio
+            }
+            //cart(car,id.id) para añair a la funcion carrito
+            //console.log (car);
+            res.status(200).json(car);
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })    
+});
+
+router.post('/PostCarrito', (req,res) => {
+    var data= req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3500/api/pedido',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {  
+       res.status(200).json(data);
+    })      
+})
+
+router.get('/vuePEDIDOS1', (req,res) => {
+    fetch('http://localhost:3500/api/pedido')   
+        .then(resp => resp.json())
+        .then(resp =>{            
+            res.status(200).json(resp)
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
+});
+/*
+<<<<<<>>>><<<>>><<<>><<<<>><<<<>>><<<>><<<<>><<<<<>>>><<<<<<<<<
+
+<>>>>>>>>>>>>>>><<<<>><<<>><<<<>><<<>><<<>><<<<>><<<>>><<<>>><<<<>>
+*/
+
 router.get('/limpiar', (req,res) => {
     OnlyPedido = null;
     res.redirect('/pedidos/dataPEDIDOS');
@@ -182,7 +259,7 @@ router.get('/delete_All', (req,res) => {
 
 var message;
 router.post('/pedidos', (req,res) => {
-    if( generateArray() != ""){
+    if( req.body.productosDelPedido != ""){
         var data = {
             codigoCompra: req.body.codigoCompra, 
             boletaPago: req.body.boletaPago, 
@@ -191,7 +268,7 @@ router.post('/pedidos', (req,res) => {
             proveedor: req.body.proveedor, 
             cantidad: req.body.cantidad, 
             codigoProduct: req.body.codigoProduct,
-            productosDelPedido:  generateArray(),
+            productosDelPedido:  req.body.productosDelPedido,
             Observaciones: req.body.Observaciones,
             subTotal: req.body.subTotal,
             iva: req.body.iva,

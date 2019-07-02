@@ -4,6 +4,51 @@ const fetch = require('node-fetch');
 
 var url = require('./url/export');
 
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                    Vue rutas
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+
+//ruta para traer el medicamento
+router.get('/vueMedicamento', (req,res) => {
+    fetch(url.name.urlFarmacia+'/api/medicamento')
+        .then(res => res.json())
+        .then(resp => { 
+           res.status(200).json(resp);
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        }) 
+})
+
+router.post('/vueMedicamento',(req,res) => {
+    var data = req.body
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch(url.name.urlFarmacia+'/api/distribucion',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+      res.status(200).json(data);
+         
+    })   
+})
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
 router.get ('/limpiar',(req,res) => {
     onlyDist = null
     res.redirect('/distribucion/distribucion');

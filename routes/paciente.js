@@ -50,7 +50,7 @@ fetch('http://localhost:3000/api/pacientes',esto)
 .then(res => res.json())
 .catch(error => console.error('Error:', error))
 .then(data => {
-  res.redirect('/paciente/EnviarCita/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial);
+  res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial);
 })
 });
 
@@ -113,7 +113,7 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
   .then(resp => resp.json())
   .then(resp =>{
     pacienteCita = resp;
-    conosle.log(pacienteCita, "  esto es lo que quiero")
+    console.log(pacienteCita, "  esto es lo que quiero")
     res.redirect('/paciente/EnviarCita/'+id.id + "/" + id.historial);
   });
  })
