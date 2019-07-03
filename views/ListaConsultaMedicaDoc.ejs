@@ -17,9 +17,6 @@
 			<li class="pull-left">
 		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 			</li>
-			<li>
-				<a href="#!" class="btn-Notifications-area"><i class="zmdi zmdi-notifications-none"></i></a>
-			</li>
 		</ul>
 	</nav>
 	<!-- Content page -->
@@ -39,10 +36,15 @@
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="ListPaciente">
 						<div class="table-responsive" >
-							<div class="text-right">
-								<button type="submit" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-search zmdi-hc-2x"></i></button><input type="search"  id="searchInput" placeholder="Buscar..." />
+							<div id="correo">
+								<div class="entrada">
+									<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+								</div>
+								<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+									<input type="text" id="searchInput" placeholder="Buscar.."><br>
+								</div>
 							</div>
-                        	<table class="fl-table" id="table">
+							<table class="fl-table" id="myTable">
                             	<thead>
 									<tr>
 									<th class="text-center">#</th>
@@ -81,10 +83,15 @@
 					<!-- lista de pacientes atendidos-->
 					<div class="tab-pane fade" id="Pacientes">
 						<div class="table-responsive" >
-							<div class="text-right">
-								<button type="submit" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-search zmdi-hc-2x"></i></button><input type="search"  id="searchInput" placeholder="Buscar..." />
+							<div id="correo">
+								<div class="entrada">
+									<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+								</div>
+								<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+									<input type="text" id="searchInput" placeholder="Buscar.."><br>
+								</div>
 							</div>
-							<table class="fl-table" id="table">
+							<table class="fl-table" id="myTable">
 							 	<thead>
 								  	<tr>
 								  	<th class="text-center">#</th>
@@ -119,15 +126,6 @@
 										<% } %>
 							  </tbody>
 						  </table>
-						  <ul class="pagination pagination-sm">
-							  <li class="disabled"><a href="#!">«</a></li>
-							  <li class="active"><a href="#!">1</a></li>
-							  <li><a href="#!">2</a></li>
-							  <li><a href="#!">3</a></li>
-							  <li><a href="#!">4</a></li>
-							  <li><a href="#!">5</a></li>
-							  <li><a href="#!">»</a></li>
-						  </ul>
 						</div>
 					</div>
 				</div>

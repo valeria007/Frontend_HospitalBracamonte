@@ -21,7 +21,7 @@
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0"
   },
-  "devDependencies": {
+  "deDependencies": {
     "babel-preset-env": "^1.7.0",
     "nodemon": "^1.19.0"
   }

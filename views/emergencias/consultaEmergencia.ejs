@@ -289,7 +289,6 @@
           <!-- Listas de Proveedores-->
           <div class="tab-pane fade" id="list">
             <div class="table-responsive">
-<<<<<<< HEAD
               <div id="correo">
 								<div class="entrada">
 									<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
@@ -329,52 +328,7 @@
                   </tr>
                 <% } %>                                               
                 </tbody>                                                                       
-              </table>                          
-=======
-              
-              
-              <div id="tres2">
-                <p class="text-center">
-                  <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
-                </p>
-                
-              </div><br>
-              <div class="text-center">
-                <input type="search"  id="searchInput" placeholder="Buscar..." /><br>
-              </div><br>   
-                  <table class="fl-table" id="table">
-                    <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Fecha de Atencion</th>
-                      <th>Numero Historial</th>
-                      <th>Nombre</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
-                      <th>Diagnostico</th>
-                      <th>Dar Receta</th>
-                      <th>Papeleta Internacion</th>
-                      <th>Ver Consulta</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                      <% for ( var i=0; i < consultasEmergencia.length; i++) {%>
-                      <tr>
-                        <td><%= i+1%></td>
-                        <td><%=consultasEmergencia[i].fechaAtencion%></td>
-                        <td><%=consultasEmergencia[i].Nhistorial%></td>
-                        <td><%=consultasEmergencia[i].Citas_Medica.Paciente.nombre%></td>
-                        <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidop%></td>
-                        <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidom%></td>
-                        <td><%=consultasEmergencia[i].diagnostico%></td> 
-                        <td><a href="/emergencia/emergenicaData/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>/<%=idHistorial.docOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-receipt "></i></a></td>
-                        <td><a href="/emergencia/ListPInter/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-airline-seat-flat-angled zmdi-hc-lg"></i></a></td>
-                        <td><a href="/emergencia/GetEmergencia/<%=consultasEmergencia[i].Nhistorial%>/<%=consultasEmergencia[i].idCita%>/<%=idHistorial.docOenf%>" class="btn btn-primary btn-raised btn-xs"><i class="zmdi zmdi-library zmdi-hc-lg"></i></a></td>
-                      </tr>
-                      <% } %>                                               
-                    </tbody>                                                                       
-                  </table>                          
->>>>>>> c03a13b030a56c5330f4b78e5e6fa3d41f3d32ea
+              </table>
             </div>
           </div>
         </div>

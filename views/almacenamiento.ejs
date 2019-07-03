@@ -30,26 +30,314 @@
 				<h1 class="text-titles"><i class="zmdi zmdi-dns zmdi-hc-fw"></i> Almacenamiento </h1>
 			</div>
 		</div>
-		<div class="full-box text-center" style="padding: 30px 10px;">
-			<article class="full-box tile">
-				<div class="report-content">
-					<h3 class="text-center all-tittles">Grupos de Asignacion</h3>
-					<p class="full-box tile-icon text-center"></p><a href="/grupoAsig_Far"><i class="zmdi zmdi-dns zmdi-hc-4x"></i></a>
+		<div class="container-fluid">
+			<div class="tres2">
+				<div class="entrada">
+					<button class="modal-open btn btn-info btn-raised btn-lg"  
+					data-modal="<h3 class='text-center'>REGISTRO DE PRODUCTO </h3>
+					<form  action='/paciente/postPaciente' method='post' >
+					<div id='cuatro'>
+						<div class='entrada'>Codigo de Producto:<br>
+							<input type='text' name='codigo_producto' ><br>
+						</div>
+						<div class='entrada'>Grupo de Asignacion:<br>
+							<input type='text' name='grupAsig>
+						</div>
+						<div class='entrada'>Descripcion:<br>
+							<input type='text' name='descripcion'><br>
+						</div>
+						<div class='entrada'>Unidad de Medida:<br>
+							<input type='text' name='unidad'><br>
+						</div>
+					</div>
+					<div id='cuatro'>
+						<div class='entrada'>Forma Farmaceutica:<br>
+							<input type='text' name='forma'><br>
+						</div>
+						<div class='entrada'>Presentacion:<br>
+							<input type='text' name='presentacion'><br>
+						</div>
+						<div class='entrada'>Venta Sujeta:<br>
+							<input type='text' name='venta_sujeta'><br>
+						</div>
+						<div class='entrada'>Estado:<br>
+							<select  name='estado'>
+								<option>Activo</option>
+								<option>Pacivo</option>
+							</select><br>
+						</div>
+					</div>
+					<div id='cuatro'>
+						<div class='entrada'>Cantidad en Mayor:<br>
+							<input type='text' name='cant_mayor'><br>
+						</div>
+						<div class='entrada'>Cantidad Unidad:<br>
+							<input type='text' name='cant_unidad'><br>
+						</div>
+						<div class='entrada'>Fecha de Llegada:<br>
+							<input type='date' name='venta_sujeta'><br>
+						</div>
+						<div class='entrada'>Fecha de Vencimiento:<br>
+							<input type='date' name='estado'><br>
+						</div>
+					</div>
+					<div id='correo'>
+						<div class='entrada'>Precio de Compra:<br>
+							<input type='text' name='cant_mayor'><br>
+						</div>
+						<div class='entrada'>Precio de Venta:<br>
+							<input type='text' name='cant_unidad'><br>
+						</div>
+					</div>					
+					<p class='text-center'>
+						<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
+						<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
+					</p>
+					</form>"><i class="zmdi zmdi-accounts-add"></i> Nuevo Producto</button>
+					<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button><br>
 				</div>
-            </article>			
-			<article class="full-box tile">	
-				<div class="report-content">
-					<h3 class="text-center all-tittles">Medicamentos e Insumos</h3>
-					<p class="full-box tile-icon text-center"></p><a href="/medicamentos_Far"><i class="zmdi zmdi-hospital zmdi-hc-4x"></i></a>
+				<div class="entrada">Buscar <i class="zmdi zmdi-search"></i>
+					<input type="text" id="searchInput" placeholder="Buscar..">
+				</div> 
+			</div>
+			<h4>SELECT NUMBER OF ROWS</h4>
+								  <div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
+									   <select class  ="form-control" name="state" id="maxRows">
+										   <option value="5000">SHOW ALL</option>
+										   <option value="5">5</option>
+										   <option value="10">10</option>
+										   <option value="15">15</option>
+										   <option value="20">20</option>
+										  </select>
+									   
+									</div>
+			<div class="table-responsive">
+					
+				<table class="fl-table" id="myTable " id="table-id"  >
+					<thead>
+						<tr>
+						<th>#</th>
+						<th>Codigo</th>
+						<th>Descripcion</th>
+						<th>Unidad de Medida</th>
+						<th>Presentación</th>
+						<th>Cantidad en Unidad</th>
+						<th>Fecha Llegada</th>
+						<th>Fecha Vencimiento</th>
+						<th>Precio Compra</th>
+						<th>Precio Venta</th>
+						<th>Modificar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<td>1</td>
+						<td>123</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+						</tr>
+						<tr>
+								<td>1</td>
+								<td>123</td>
+								<td>a</td>
+								<td>a</td>
+								<td>a</td>
+								<td>a</td>
+								<td>a</td>
+								<td>a</td>
+								<td>a</td>
+								<td>a</td>
+								<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+								</tr>
+								<tr>
+										<td>1</td>
+										<td>123</td>
+										<td>a</td>
+										<td>a</td>
+										<td>a</td>
+										<td>a</td>
+										<td>a</td>
+										<td>a</td>
+										<td>a</td>
+										<td>a</td>
+										<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+										</tr>
+
+										<tr>
+												<td>1</td>
+												<td>123</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td>a</td>
+												<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+												</tr>
+												<tr>
+														<td>1</td>
+														<td>123</td>
+														<td>a</td>
+														<td>a</td>
+														<td>a</td>
+														<td>a</td>
+														<td>a</td>
+														<td>a</td>
+														<td>a</td>
+														<td>a</td>
+														<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+														</tr>
+														<tr>
+																<td>1</td>
+																<td>123</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																</tr>
+																<tr>
+																		<td>1</td>
+																		<td>123</td>
+																		<td>a</td>
+																		<td>a</td>
+																		<td>a</td>
+																		<td>a</td>
+																		<td>a</td>
+																		<td>a</td>
+																		<td>a</td>
+																		<td>a</td>
+																		<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																		</tr>
+																		<tr>
+																				<td>1</td>
+																				<td>123</td>
+																				<td>a</td>
+																				<td>a</td>
+																				<td>a</td>
+																				<td>a</td>
+																				<td>a</td>
+																				<td>a</td>
+																				<td>a</td>
+																				<td>a</td>
+																				<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																				</tr>
+																				<tr>
+																						<td>1</td>
+																						<td>123</td>
+																						<td>a</td>
+																						<td>a</td>
+																						<td>a</td>
+																						<td>a</td>
+																						<td>a</td>
+																						<td>a</td>
+																						<td>a</td>
+																						<td>a</td>
+																						<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																						</tr>
+																						<tr>
+																								<td>1</td>
+																								<td>123</td>
+																								<td>a</td>
+																								<td>a</td>
+																								<td>a</td>
+																								<td>a</td>
+																								<td>a</td>
+																								<td>a</td>
+																								<td>a</td>
+																								<td>a</td>
+																								<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																								</tr>
+																								<tr>
+																										<td>1</td>
+																										<td>123</td>
+																										<td>a</td>
+																										<td>a</td>
+																										<td>a</td>
+																										<td>a</td>
+																										<td>a</td>
+																										<td>a</td>
+																										<td>a</td>
+																										<td>a</td>
+																										<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																										</tr>
+																										<tr>
+																												<td>1</td>
+																												<td>123</td>
+																												<td>a</td>
+																												<td>a</td>
+																												<td>a</td>
+																												<td>a</td>
+																												<td>a</td>
+																												<td>a</td>
+																												<td>a</td>
+																												<td>a</td>
+																												<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																												</tr>
+																												<tr>
+																														<td>1</td>
+																														<td>123</td>
+																														<td>a</td>
+																														<td>a</td>
+																														<td>a</td>
+																														<td>a</td>
+																														<td>a</td>
+																														<td>a</td>
+																														<td>a</td>
+																														<td>a</td>
+																														<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																														</tr>
+																														<tr>
+																																<td>1</td>
+																																<td>123</td>
+																																<td>a</td>
+																																<td>a</td>
+																																<td>a</td>
+																																<td>a</td>
+																																<td>a</td>
+																																<td>a</td>
+																																<td>a</td>
+																																<td>a</td>
+																																<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+																																</tr>
+																																
+					<tbody>
+				</table>
+
+<!--		Start Pagination -->
+			<div class='pagination-container' >
+					<nav>
+					  <ul class="pagination">
+				
+				<li data-page="prev" >
+										 <span> < <span class="sr-only">(current)</span></span>
+										</li>
+					   <!--	Here the JS Function Will Add the Rows -->
+			<li data-page="next" id="prev">
+										   <span> > <span class="sr-only">(current)</span></span>
+										</li>
+					  </ul>
+					</nav>
 				</div>
-			</article>
-            <article class="full-box tile">
-                <div class="report-content">
-                    <h3 class="text-center all-tittles">Solicitudes</h3>
-                    <p class="full-box tile-icon text-center"></p><a href="/solicitudes"><i class="zmdi zmdi-book zmdi-hc-4x"></i></a>
-                </div>
-            </article>
-        </div> 
+	
+	</div> <!-- 		End of Container -->
+	
+				</div>
+		</div>
+		 
 	</section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
