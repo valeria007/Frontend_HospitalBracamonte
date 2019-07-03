@@ -113,7 +113,7 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
   .then(resp => resp.json())
   .then(resp =>{
     pacienteCita = resp;
-    conosle.log(pacienteCita, "  esto es lo que quiero")
+    console.log(pacienteCita, "  esto es lo que quiero")                   //aqui
     res.redirect('/paciente/EnviarCita/'+id.id + "/" + id.historial);
   });
  })
