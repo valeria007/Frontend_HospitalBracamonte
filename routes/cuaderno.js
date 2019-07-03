@@ -447,7 +447,7 @@ router.post('/turnos', (req,res) => {
 })
 router.get('/delturno/:id', (req, res) => {
     const { id }= req.params;
-    fetch('http://localhost:4600/api/delete'+id)
+    fetch('http://localhost:4600/api/DElserv/'+id)
     .then(resp => resp.json())
     .catch(error => console.error('Error:', error))
     .then(resp =>{
