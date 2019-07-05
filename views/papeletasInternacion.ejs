@@ -8,7 +8,24 @@
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
-	<%- include("partials/menudoc") -%>
+    <%- include("partials/menudoc") -%>
+    
+	<li>
+            <a href="/medico/renderVistaDocotr/<%=ConsultaOnlyPinternacion[0].tipoConsulta%>">
+                <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
+            </a>
+        </li>
+    
+        <li>
+            <a href="#!" class="btn-sideBar-SubMenu">
+                <i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Consultas externas <i class="zmdi zmdi-caret-down pull-right"></i>
+            </a>
+            <ul class="list-unstyled full-box">
+                <li><a href="/medico/listfalseConsulta/<%=ConsultaOnlyPinternacion[0].tipoConsulta%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
+                          
+            </ul>
+        </li>
+        <%- include("partials/footerDocotr") -%>
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->
