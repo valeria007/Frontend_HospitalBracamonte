@@ -75,7 +75,7 @@ app.get('/api/reg_Receta', Receta.getReceta);
 app.get('/api/OnlyReceta/:id', Receta.onlyReceta); // receta segun consulta medica
 app.get('/api/RecetaEmergencia/:id', Receta.RecetaEmergencia); // receta segun emergencia
 app.get('/api/recitasOfEMG/:id', Receta.recOfEmg);
-app.get('/api/recetaOfConsulta/:id', Receta.recOfConsulta);
+app.get('/api/recetaOfConsulta/:historial/:tipoConsulta', Receta.recOfConsulta);
 app.post('/api/updateReceta/:id', Receta.updateReceta);
 app.get('/receta/:id',Receta.citaRecetas); // para sacar receta y 
 

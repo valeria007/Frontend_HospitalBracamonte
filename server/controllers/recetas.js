@@ -203,9 +203,9 @@ class Receta {
   }
    //mostar recetas solo de consultas
    static recOfConsulta(req, res){    
-    const { id } = req.params;            
+    var data = req.params;            
     Recetas.findAll({
-       where: { tipoConsulta : 'consultaMedica', historiaClinica : id }
+       where: { tipoConsulta : data.tipoConsulta, historiaClinica : data.historial }
        //attributes: ['id', ['description', 'descripcion']]
      }).then((data) => {
        res.status(200).json(data);
