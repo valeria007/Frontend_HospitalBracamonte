@@ -27,33 +27,48 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row" id="citas">
 			<%if(citaUpdate == null) { %>
+				
 			<form action="/paciente/cita_medica/<%=id.id %>" method="POST">
+				<div class="entrada"> Seleccione Dia:<br>
+					<select v-model="dia"  @click="especilida">
+						<option>Lunes</option>
+						<option>Martes</option>
+						<option>Miercoles</option>
+						<option>Jueves</option>	
+						<option>Viernes</option>	
+						<option>Sabado</option>	
+						<option>Domingo</option>		
+					</select><br>
+				</div>
+				
 				<div class="grupo" id="cabeza">
 					<h3 class="text-center"> Datos Personales</h3>
 					<div id="tres2">
 						<div class="entrada">Historial Clinico:<br>
 							<input type="text" value="<%=historial	%>" name="codigo_p"><br>
 						</div>
-						<div class="entrada">Doctor:<br>
-							<input type="text" name="medico"><br>
+						<div class="entrada" > Doctor:<br>
+							<select name="medico" v-model="selectDoctor"  >
+								<option v-for="(doctor, index) of doctores">{{doctor.nombre}}</option>		
+							</select><br>
 						</div>
-						<div class="entrada">Especialidad:<br>
-							<select  name="especialidad">
-								<option value="consultaMedica">Consulta Medica</option>
-								<option value="emergencia">Emergencia</option>	
+						<div class="entrada">Consultorio De:<br>
+							<select  name="especialidad" @click="especilida" v-model="selectEsp">
+								<option v-for="(especialidad, index) of especialidades" >{{especialidad.nombre}}</option>
+								
 							</select><br>
 						</div>
 					</div>
 					<div id="correo">
-						<div class="entrada">Turno:<br>
-							<select name="turno">
-								<option value="maiana">Mañana</option>
-								<option value="tarde">Tarde</option>
-								<option value="emergencia">Emergencia</option>	
-							</select><br>
-						</div>
+							<div class="entrada">Turno:<br>
+								<select name="turno" v-model="turno"  @click="especilida">
+									<option>Mañanas</option>
+									<option>Tardes</option>
+									<option>Noches</option>
+								</select>
+							</div>
 						<div class="entrada">Hora:<br>
 							<input  type="text" name="hora"><br>
 						</div>
@@ -188,7 +203,7 @@
 												<th>#</th>
 												<th>Historial Clinico</th>
 												<th>Doctor</th>
-												<th>Especialidad</th>
+												<th>Tipo de Consulta De</th>
 												<th>Fecha </th>
 												<th>Saldo</th>
 												<th>Modificar</th>
@@ -228,5 +243,6 @@
 </section>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
+	<script src="/js/vue/citasMedicas.js"></script>
 </body>
 </html>

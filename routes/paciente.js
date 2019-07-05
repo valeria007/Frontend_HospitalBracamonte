@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
-
+var url = require('./url/export');
 
 router.get('/reg_paciente',(req, res) => {
     res.render('reg_paciente')
@@ -104,6 +104,7 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
   });
  });
 
+
  //ruta para sacar todas las citas de un paciente
  let pacienteCita, idH;
  router.get('/citaPAciente/:id/:historial',(req,res) => {
@@ -165,5 +166,55 @@ router.post('/updateCita/:id',(req,res) => {
 })
 
 
- 
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                      Vue rutas para cita medica
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+
+router.get('/vueListTurnos/:dia/:turno', (req,res) => {
+  var data = req.params
+  fetch(url.name.cuadernos+'/api/ListAll/'+data.dia+"/"+data.turno)
+  .then(resp => resp.json())
+  .then(resp =>{
+   res.status(200).json({
+     msg: "Lista de turnos segun dia que incluye doctores",
+     resp
+   });
+  });
+})
+
+//ruta para poder sacar de los doctores sus turnos
+router.get('/doctorTurno/:id', (req,res) => {
+  const { id } = req.params;
+  fetch(url.name.cuadernos+'/api/doctTurnos/'+id)
+  .then(resp => resp.json())
+  .then(resp =>{
+   res.status(200).json(resp);
+  });
+})
+
+//ruta para mostrar especialidades
+router.get('/vueEspecialidades', (req,res) => {
+  fetch(url.name.cuadernos+'/api/especialidad')
+  .then(resp => resp.json())
+  .then(resp =>{
+   res.status(200).json(resp);
+  });
+})
+
+//ruta para mostrar docotres
+router.get('/vueDoctores/:esp/:dia/:turno', (req,res) => {
+  var data = req.params
+  fetch(url.name.cuadernos+'/api/espTurno/'+data.esp+"/"+data.dia+"/"+data.turno)
+  .then(resp => resp.json())
+  .then(resp =>{
+   res.status(200).json(resp);
+  });
+})
+
+
 module.exports = router;
