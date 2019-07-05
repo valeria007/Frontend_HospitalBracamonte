@@ -6,6 +6,15 @@ router.get('/oneVista', (req, res) => {
     res.render('emergencias/viewDocEnf');
 });
 
+router.get('/datos_responsablevis', (req,res) => {
+    res.render('emergencias/datos_responsable')
+  });
+  router.get('/antecedentesvis', (req,res) => {
+    res.render('emergencias/antecedentes')
+  });
+  router.get('/alergiasvis', (req,res) => {
+    res.render('emergencias/alergias')
+  });
 
 //esta vista muesta la vista principal de emergencia segun doctor o enfermera 
 router.get('/homeEmergencia/:id', (req, res) => {
