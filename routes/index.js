@@ -112,6 +112,13 @@ router.get('/ventas',(req, res) => {
   res.render('ventas')
 });
 
+router.get('/recetas_farm',(req, res) => {
+  res.render('recetas_farm')
+});
+
+router.get('/reportes_far',(req, res) => {
+  res.render('reportes_far')
+});
 //medicamento se movio a medicamento.js
 
 

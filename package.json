@@ -1,7 +1,6 @@
 {
   "name": "frontend-hospitalbracamonte",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js"
@@ -11,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -19,10 +17,24 @@
     "express": "^4.17.0",
     "gulp": "^4.0.2",
     "morgan": "^1.9.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "nodemon": "^1.19.1"
   },
   "deDependencies": {
     "babel-preset-env": "^1.7.0",
     "nodemon": "^1.19.0"
-  }
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valeria007/Frontend_HospitalBracamonte.git"
+  },
+  "bugs": {
+    "url": "https://github.com/valeria007/Frontend_HospitalBracamonte/issues"
+  },
+  "homepage": "https://github.com/valeria007/Frontend_HospitalBracamonte#readme",
+  "description": ""
 }

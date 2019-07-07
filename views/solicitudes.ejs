@@ -18,11 +18,6 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
 			</ul>
 		</nav>
 		<!-- Content page -->
@@ -31,162 +26,150 @@
 				<h1 class="text-titles"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Solicitudes</h1>
 			</div>
 		</div>
+		<!-- Lista de Solicitudes-->
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-						<li class="active"><a href="#lista" data-toggle="tab">Lista de Solicitudes</a></li>
-						<li><a href="#new" data-toggle="tab">Solicitud Trimestral</a></li>
-						<li><a href="#new1" data-toggle="tab">Solicitud de Emergencia</a></li>
-					</ul>
-					<!-- Lista de Solicitudes-->
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade active in" id="lista">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="table-responsive">
-										<div class="table-wrapper">
-											<table class="fl-table">
-												<thead>
-													<tr>
-													<th>#</th>
-													<th>Nro. de Solicitud</th>
-													<th>Responsable</th>
-													<th>Fecha</th>
-													<th>Trimestre</th>
-													<th>Estado</th>
-													<th>Opciones</th>
-													</tr>
-												</thead>
-												<tbody>
-
-												</tbody>
-											</table>
-										</div>
-									</div>
+			<p class="text-center">
+				<div class="entrada">
+					<button class="modal-open btn btn-info btn-raised btn-lg"  
+					data-modal="<h3 class='text-center'>SOLICITUD TRIMESTRAL </h3>
+						<form  action='' method='post' >
+							<div id='tres2'>
+								<div class='entrada'>N° de Solicitud:<br>
+									<input type='text' name='num_solicitud' ><br>
+								</div>
+								<div class='entrada text-center'>Trimestre a Reportar:<br>
+									<select  name='trimestre'>
+										<option>Primer Trimestre</option>
+										<option>Segundo Trimestre</option>
+										<option>Tercer Trimestre</option>
+										<option>Cuarto Trimestre</option>
+									</select><br>
+								</div>
+								<div class='entrada'>Fecha:<br>
+									<input type='date' name='fecha'><br>
 								</div>
 							</div>
-						</div>
-						<!-- Solicitud Trimestral-->
-						<div class="tab-pane fade" id="new">
-							<div class="container-fluid">
-								<form action="">
-									<h2 class="text-center all-tittles">REGISTRO DE SOLICITUDES</h2>
-									<div class="col-md-12 panel-body">
-										<div class="col-md-12">
-											<div class="col-md-6">
-												<div class="form-group label-floating">
-													<label class="control-label">Nro. de Solicitud</label>
-													<input class="form-control" type="text">
-												</div>
-												<div class="form-group">
-													<label class="control-label">Resposable</label>
-													<input class="form-control" type="text">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group label-floating">
-													<label class="control-label">Trimestre a Reportar</label>
-													<select class="form-control">
-														<option>Primer Trimestre</option>
-														<option>Segundo Trimestre</option>
-														<option>Tercer Trimestre</option>
-														<option>Cuarto Trimestre</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<label class="control-label">Fecha de Solicitud</label>
-													<input class="form-control" type="date" name="fechaIngreso">
-												</div>
-											</div>
-											<br>
-											<br>
-											<table class="fl-table">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th>Cantidad del Producto</th>
-														<th>Codigo</th>
-														<th>Descripcion</th>
-														<th>Cantidad</th>
-														<th>Precio</th>
-														<th>Precio Toal</th>
-														<th>Eliminar</th>
-														<th>Eliminar todo</th>
-													</tr>
-												</thead>
-												<tbody>
-													
-												<tbody>
-											</table>
-											<p class="text-center">
-												<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-												<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-												<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-											</p>
-										</div>
-									</div>
-								</form>
+							<div id='correo'>
+								<div class='entrada'>Responsable:<br>
+									<input type='text' name='responsable'><br>
+								</div>
+								<div class='entrada'>Observaciones:<br>
+									<input type='text' name='observaciones'><br>
+								</div>
 							</div>
-						</div>
-						<!-- Solicitud de Emergencia-->
-						<div class="tab-pane fade" id="new1">
-							<div class="container-fluid">
-								<form action="">
-									<h2 class="text-center all-tittles">REGISTRO DE SOLICITUDES</h2>
-									<div class="col-md-12 panel-body">
-										<div class="col-md-12">
-											<div class="col-md-6">
-												<div class="form-group label-floating">
-													<label class="control-label">Nro. de Solicitud</label>
-													<input class="form-control" type="text">
-												</div>
-												<div class="form-group">
-													<label class="control-label">Resposable</label>
-													<input class="form-control" type="text">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group form-animate-checkbox">
-													<h4 class="text-titles"> Solicitud de Emergencia</h4>							
-													<input type="checkbox" class="checkbox"  id="validate_agree" name="validate_agree">
-												</div>
-												<div class="form-group">
-													<label class="control-label">Fecha de Solicitud</label>
-													<input class="form-control" type="date" name="fechaIngreso">
-												</div>
-											</div>
-											<table class="fl-table">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th>Cantidad del Producto</th>
-														<th>Codigo</th>
-														<th>Descripcion</th>
-														<th>Cantidad</th>
-														<th>Precio</th>
-														<th>Precio Toal</th>
-														<th>Eliminar</th>
-														<th>Eliminar todo</th>
-													</tr>
-												</thead>
-												<tbody>
-														
-												<tbody>
-											</table>
-											<p class="text-center">
-												<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-												<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-												<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-											</p>
-										</div>
-									</div>
-								</form>
+							<table class='fl-table'>
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Cantidad del Producto</th>
+										<th>Codigo</th>
+										<th>Descripcion</th>
+										<th>Cantidad</th>
+										<th>Precio</th>
+										<th>Precio Total</th>
+										<th>Eliminar</th>
+										<th>Eliminar todo</th>
+									</tr>
+								</thead>
+								<tbody>
+											
+								<tbody>
+							</table>		
+							<p class='text-center'>
+								<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
+								<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
+							</p>
+						</form>"><i class="zmdi zmdi-book"></i> Solicitud Trimestral</button>
+					<button class="modal-open btn btn-info btn-raised btn-lg"  
+					data-modal="<h3 class='text-center'>SOLICITUD TRIMESTRAL </h3>
+						<form  action='' method='post' >
+							<div id='tres2'>
+								<div class='entrada'>N° de Solicitud:<br>
+									<input type='text' name='num_solicitud' ><br>
+								</div>
+								<div class='entrada'>Fecha:<br>
+									<input type='date' name='fecha'><br>
+								</div>
+								<div class='entrada text-center'>Trimestre de Emergencia:<br>
+									<input type='radio' name='gender' value='male'><br>
+								</div>
 							</div>
-						</div>
-					</div>
+							<div id='correo'>
+								<div class='entrada'>Responsable:<br>
+									<input type='text' name='responsable'><br>
+								</div>
+								<div class='entrada'>Observaciones:<br>
+									<input type='text' name='observaciones'><br>
+								</div>
+							</div>
+							<table class='fl-table'>
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Cantidad del Producto</th>
+										<th>Codigo</th>
+										<th>Descripcion</th>
+										<th>Cantidad</th>
+										<th>Precio</th>
+										<th>Precio Total</th>
+										<th>Eliminar</th>
+										<th>Eliminar todo</th>
+									</tr>
+								</thead>
+								<tbody>
+										
+								<tbody>
+							</table>		
+							<p class='text-center'>
+								<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
+								<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
+							</p>
+						</form>"><i class="zmdi zmdi-book"></i> Solicitud Trimestral</button>
+					<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+				</div>
+			</p>
+			<div id="correo">
+				<div class="entrada "><br>
+					<select  name="state" id="maxRows">
+						<option value="10">10</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+						<option value="50">50</option>
+						<option value="70">70</option>
+						<option value="100">100</option>
+						<option value="5000">Show ALL Rows</option>
+					</select><br>
+				</div>
+				<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+					<input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Buscar.." ><br>
 				</div>
 			</div>
+			<div class="table-responsive">
+				<div class="table-wrapper">
+					<table class=" table  fl-table" id= "table-id" >
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Nro. de Solicitud</th>
+								<th>Responsable</th>
+								<th>Fecha</th>
+								<th>Trimestre</th>
+								<th>Estado</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class='pagination-container'>
+				<nav>
+					<ul class="pagination"></ul>
+				</nav>
+			</div>
+			<div class="rows_count">Showing 11 to 20 of 91 entries</div>
 		</div>
 	</section>
 	<!--====== Scripts -->

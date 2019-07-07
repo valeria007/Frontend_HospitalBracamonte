@@ -5,10 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <%- include("../partials/head") -%>
-<<<<<<< HEAD
-=======
 
->>>>>>> 12a7f20ca48178da62e71e504f2d10e0a32789d9
     
 </head>
 <body class="dashboard-sideBar-imagg cover">
@@ -21,6 +18,9 @@
 			<ul class="full-box list-unstyled text-right">
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+				<li>
+					<a href="#!" class="btn-search"><i class="zmdi zmdi-search"></i></a>
 				</li>
 			</ul>
 		</nav>
@@ -44,30 +44,6 @@
                         <div class="tab-pane fade active in" id="new">                            
                             <div class="container-fluid">
                                 <div class="row">
-<<<<<<< HEAD
-                                <% if(OnlyPedido != null ) { %>
-                                <div class="col-md-12 panel-body">
-                                    <p class="text-center">
-                                        <a href="/pedidos/limpiar" class="btn btn-warning btn-lg active" role="button" aria-pressed="true"><i class="zmdi zmdi-floppy"> Volver</i></a>
-                                    </p>          
-                                    <div id="cabeza">
-                                        <div id="correo">
-                                            <div class="entrada">Codigo de Compra:<br>
-                                                <input  type="text" value="<%=OnlyPedido[0].codigoCompra%>"><br>
-                                            </div>
-                                            <div class="entrada">Especifique el status de la compra:<br>
-                                                <select>
-                                                    <option><%=OnlyPedido[0].boletaPago%></option>
-                                                </select><br>
-                                            </div>
-                                            <div class="entrada">Tipo de Material:<br>
-                                                <select name="tipoMaterial">        
-                                                    <option><%=OnlyPedido[0].tipoMaterial%></option>                                                         
-                                                </select><br>
-                                            </div>
-                                            <div class="entrada">Fecha de Ingreso:<br>
-                                                <input type="date" name="fechaIngreso" value="<%=OnlyPedido[0].fechaIngreso%>"><br>
-=======
                                     <a href="/pedidos/limpiar">Limpiar</a>
                                     <% if(OnlyPedido != null ) { %>
                                     <div class="col-md-12 panel-body">                                           
@@ -143,43 +119,21 @@
                                                 <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
                                                     <input type="text" id="searchInput" placeholder="Buscar.."><br>
                                                 </div>
->>>>>>> 12a7f20ca48178da62e71e504f2d10e0a32789d9
                                             </div>
-                                            <div class="entrada">Proveedor:<br>
-                                                <select>
-                                                    <option> <%=OnlyPedido[0].proveedor%></option>
-                                                </select><br>
-                                            </div>
-                                            <h5>Notas importantes del Comprovante</h5>
-                                            <div class="entrada">Observaciones:<br>
-                                                <input type="text"  value="<%=OnlyPedido[0].Observaciones%>"><br>	
-                                            </div>
-                                        </div> <br>                                              
-                                        <div class="table-wrapper">
-                                            <table class="fl-table">
+                                            <table class="fl-table" id="myTable">
                                                 <thead>
                                                     <tr>
                                                     <th>#</th>
-                                                    <th>Cantidad del Producto</th>
                                                     <th>Codigo</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Cantidad</th>
-                                                    <th>Precio</th>
-                                                    <th>Precio Toal</th>
+                                                    <th>Proveedor</th>
+                                                    <th>T. Comprovante</th>
+                                                    <th>Fecha</th>
+                                                    <th>Impuestos</th>
+                                                    <th>Total</th>
+                                                    <th>Estado</th>
+                                                    <th>Opciones</th>
                                                     </tr>
                                                 </thead>
-<<<<<<< HEAD
-                                                <tbody>
-                                                    <% for(var i = 0; i < OnlyPedido[0].productosDelPedido.length; i++ ) { %>
-                                                    <tr>
-                                                    <td><%=i+1%></td>
-                                                    <td><%=OnlyPedido[0].productosDelPedido[i].qty%></td>
-                                                    <td><%=OnlyPedido[0].productosDelPedido[i].item.codificacion%></td>
-                                                    <td><%=OnlyPedido[0].productosDelPedido[i].item.nombre%></td>
-                                                    <td><%=OnlyPedido[0].productosDelPedido[i].item.cantidad%></td>
-                                                    <td><%=OnlyPedido[0].productosDelPedido[i].item.price%></td>
-                                                    <td><%=OnlyPedido[0].productosDelPedido[i].price%></td>                                                
-=======
                                                 <tbody v-for="(pedido, index) in getPedido">
                                                     <tr>
                                                         <td>{{index + 1}}</td>
@@ -192,150 +146,11 @@
                                                         <td>{{pedido.Observaciones}}</td>
                                                         
                                                         <td><a :href="'/pedidos/onliPedido/' + pedido.id" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
->>>>>>> 12a7f20ca48178da62e71e504f2d10e0a32789d9
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-<<<<<<< HEAD
-                                <% } else { %>
-                                <% } %>
-                                </div>
-								<div class="row">
-								    <div class="table-responsive">
-                                        <div class="table-wrapper"> <div id="correo">
-                                            <div class="entrada">
-                                                <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-                                            </div>
-                                            <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-                                                <input type="text" id="searchInput" placeholder="Buscar.."><br>
-                                            </div>
-                                        </div>
-                                        <table class="fl-table" id="myTable">
-                                            <thead>
-                                                <tr>
-                                                <th>#</th>
-                                                <th>Codigo</th>
-                                                <th>Proveedor</th>
-                                                <th>T. Comprovante</th>
-                                                <th>Fecha</th>
-                                                <th>Impuestos</th>
-                                                <th>Total</th>
-                                                <th>Estado</th>
-                                                <th>Opciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% for(var i=0; i< dataPEDIDOS.length; i++) { %>
-                                                <tr>
-                                                <td><%=i+1%></td>
-                                                <td><%=dataPEDIDOS[i].codigoCompra%></td>
-                                                <td><%=dataPEDIDOS[i].proveedor%></td>
-                                                <td><%=dataPEDIDOS[i].boletaPago%></td>
-                                                <td><%=dataPEDIDOS[i].fechaIngreso%></td>
-                                                <td><%=dataPEDIDOS[i].iva%></td>
-                                                <td><%=dataPEDIDOS[i].total%></td>
-                                                <td><%=dataPEDIDOS[i].Observaciones%></td>
-                                                <td><a href="/pedidos/onliPedido/<%=dataPEDIDOS[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                                                </tr>
-                                                <% } %>
-                                            <tbody>
-                                        </table>
-                                    </div>
-                                </div>
-							</div>
-						</div>
-					</div>
-					<!-- Registro de Pedidos-->
-					<div class="tab-pane fade" id="list">
-                        <div class="container-fluid">
-                            <%if(message) { %>
-                                <h2>Porfavor selecione productos para el pedido</h2>
-                            <% } %>
-                            <div class="row">
-                                <form action="/pedidos/pedidos" method="POST">
-                                    <div id="cabeza">
-                                    <h2 class="text-center all-tittles">REGISTRO DE COMPRA</h2>
-                                        <div id="tres2">
-                                            <div class="entrada">Codigo de Compra:<br>
-                                                <input  type="text" name="codigoCompra"><br>
-                                            </div>
-                                            <div class="entrada">Especifique el status de la compra:<br>
-                                                <select name="boletaPago">
-                                                    <option>FACTURA</option>
-                                                    <option>BOLETA DE VENTA</option>
-                                                    <option>NOTA DE CREDITO</option>
-                                                    <option>NOTA DE DEBITO</option>
-                                                    <option>CONTROL INTERNO </option>
-                                                </select><br>
-                                            </div>
-                                            <div class="entrada">Tipo de Material:<br>
-                                                <select name="tipoMaterial">
-                                                <% for(var i=0; i< grup.length; i++) { %>
-                                                    <option><%=grup[i].descripcion%></option>                                                            
-                                                <% } %>
-                                                </select><br>
-                                            </div>
-                                        </div>
-                                        <div id="correo">
-                                            <div class="entrada">Fecha de Ingreso:<br>
-                                                <input type="date" name="fechaIngreso">
-                                            </div>
-                                            <div class="entrada">Proveedor:<br>
-                                                <select name="proveedor">
-                                                <%if (proveedor) { %>
-                                                    <%for(var i=0; i < proveedor.length; i++) {%>
-                                                        <option> <%=proveedor[i].nombre%></option>
-                                                    <% } %>
-                                                <% } else { %>
-                                                        <option value="">No hay Proveedores</option>                                                           
-                                                <% } %>
-                                                </select><br>
-                                            </div>
-                                        </div><br>
-                                        <div class="table-wrapper">
-                                            <table class="fl-table">
-                                                    <thead>
-                                                        <tr>
-                                                        <th>#</th>
-                                                        <th>Cantidad del Producto</th>
-                                                        <th>Codigo</th>
-                                                        <th>Descripcion</th>
-                                                        <th>Cantidad</th>
-                                                    
-                                                        <th>Precio</th>
-                                                        <th>Precio Toal</th>
-                                                        <th>Eliminar</th>
-                                                        <th>Eliminar todo</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <% if(products == null) { %>
-                                                        la lista esta bacia
-                                                    <% } else { %>
-                                                        <% for (var i=0; i< products.length; i++) { %>
-                                                        <tr>
-                                                        <td><%=i+1%></td>
-                                                        <td><%=products[i].qty%></td>
-                                                        <td><%=products[i].item.codificacion%></td>
-                                                        <td><%=products[i].item.nombre%></td>
-                                                        <td><%=products[i].item.cantidad%></td>
-                                                        <td><%=products[i].item.price%></td>
-                                                        <td><%=products[i].price%></td>
-                                    
-                                                        <td class="text-center"><a href="/pedidos/reduce/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                                        <td class="text-center"><a href="/pedidos/removeAll/<%=products[i].item.id%>" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                                        </tr>
-                                                        <% } %>
-                                                    <% } %>
-                                                    <tbody>
-                                                </table>
-                                                     </div><br>
-                                                     <p>Notas importantes del Comprovante</p>
-                                                <div id="correo">
-                                                     
-=======
                                 </div>
                             </div>  
 
@@ -422,7 +237,6 @@
                                                 </div><br>
                                                 <p>Notas importantes del Comprovante</p>
                                                 <div id="correo">                                                 
->>>>>>> 12a7f20ca48178da62e71e504f2d10e0a32789d9
                                                     <div class="entrada">Observaciones:<br>
                                                         <input type="text" v-model="Observaciones"><br>	
                                                     </div>

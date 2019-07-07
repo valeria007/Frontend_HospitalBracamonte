@@ -29,60 +29,57 @@
 	<!--Dar cita medica-->
 	<div class="container-fluid">
 	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade active in" id="Cita">
-			<div class="table-responsive" >
-				<div id="correo">
+			<div id="correo">
 					<div class="entrada">
-						<button type="button" class="btn btn-info btn-raised btn-lg" onclick=location="/paciente/reg_paciente"><i class="zmdi zmdi-accounts-add"></i> Nuevo Paciente</button> &nbsp;&nbsp;
+							<button class="modal-open btn btn-info btn-raised btn-lg"  
+							data-modal="<h3 class='text-center'>REGISTRO DE NUEVO PACIENTE </h3>
+							<form  action='/paciente/postPaciente' method='post' >
+								<p> DATOS DEL PACIENTE</p>
+								<div id='cuatro'>
+									<div class='entrada'>Historial Clinico:<br>
+										<input type='text' name='Historial' ><br>
+									</div>
+									<div class='entrada'>Apellido Paterno:<br>
+										<input type='text' name='apellidop' class='upper'><br>
+										</div>
+										<div class='entrada'>Apellido Materno:<br>
+											<input type='text' name='apellidom'><br>
+										</div>
+										<div class='entrada'>Nombre(s):<br>
+											<input type='text' name='nombre'><br>
+										</div>
+									</div>
+									<div id='cuatro'>
+										<div class='entrada'>C.I.:<br>
+											<input type='text' name='ci'><br>
+										</div>
+										<div class='entrada'>Sexo:<br>
+											<select  name='sexo'>
+												<option>Hombre</option>
+												<option>Mujer</option>
+											</select><br>
+										</div>
+										<div class='entrada'>Dirección:<br>
+											<input type='text' name='direccion'><br>
+										</div>
+										<div class='entrada'>Fecha de Nacimiento:<br>
+											<input type='date' name='fechanacimiento'><br>
+										</div>
+									</div>
+									<p class='text-center'>
+										<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
+										<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
+									</p>
+								</form>"><i class="zmdi zmdi-accounts-add"></i> Nuevo Paciente</button>
 						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
 					</div>
 					<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
 						<input type="text" id="searchInput" placeholder="Buscar.."><br>
 					</div>
 				</div>
-				<!--modal-->
-				<p class="text-center">
-					<button class="modal-open btn btn-info btn-raised btn-lg"  
-					data-modal="<h3 class='text-center'>REGISTRO DE NUEVO PACIENTE </h3>
-					<form  action='/paciente/postPaciente' method='post' >
-						<p> DATOS DEL PACIENTE</p>
-						<div id='cuatro'>
-							<div class='entrada'>Historial Clinico:<br>
-								<input type='text' name='Historial' ><br>
-							</div>
-							<div class='entrada'>Apellido Paterno:<br>
-								<input type='text' name='apellidop' class='upper'><br>
-								</div>
-								<div class='entrada'>Apellido Materno:<br>
-									<input type='text' name='apellidom'><br>
-								</div>
-								<div class='entrada'>Nombre(s):<br>
-									<input type='text' name='nombre'><br>
-								</div>
-							</div>
-							<div id='cuatro'>
-								<div class='entrada'>C.I.:<br>
-									<input type='text' name='ci'><br>
-								</div>
-								<div class='entrada'>Sexo:<br>
-									<select  name='sexo'>
-										<option>Hombre</option>
-										<option>Mujer</option>
-									</select><br>
-								</div>
-								<div class='entrada'>Dirección:<br>
-									<input type='text' name='direccion'><br>
-								</div>
-								<div class='entrada'>Fecha de Nacimiento:<br>
-									<input type='date' name='fechanacimiento'><br>
-								</div>
-							</div>
-							<p class='text-center'>
-								<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
-								<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
-							</p>
-						</form>"><i class="zmdi zmdi-accounts-add"></i> Nuevo Paciente</button>
-					  </p>
+		<div class="tab-pane fade active in" id="Cita">
+			<div class="table-responsive" >
+				
 
 				<table class="fl-table" id="myTable" >
 					<thead>
