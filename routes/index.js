@@ -63,11 +63,6 @@ router.get('/servicios',(req, res) => {
 });
 
  //vista de doctor
-
- router.get('/HomeVistDoctor',(req,res) =>{
-   res.render('HomeVistDoctor');
- });
-
  
 // Historiales Clinicos
 router.get('/reportes_pacientes',(req, res) => {
@@ -132,6 +127,13 @@ router.get('/ventas',(req, res) => {
   res.render('ventas')
 });
 
+router.get('/recetas_farm',(req, res) => {
+  res.render('recetas_farm')
+});
+
+router.get('/reportes_far',(req, res) => {
+  res.render('reportes_far')
+});
 //medicamento se movio a medicamento.js
 
 
@@ -161,14 +163,19 @@ router.get('/emergencia', (req,res) => {
   res.render('emergencias/homeEmergencia')
 });
 
+//consulta externa
+router.get('/alergias', (req,res) => {
+  res.render('alergias')
+});
+
 router.get('/datos_responsable', (req,res) => {
   res.render('datos_responsable')
 });
 router.get('/antecedentes', (req,res) => {
   res.render('antecedentes')
 });
-router.get('/alergias', (req,res) => {
-  res.render('alergias')
+router.get('/examenFisico', (req,res) => {
+  res.render('examenFisico')
 });
 
 module.exports = router;

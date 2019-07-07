@@ -2,9 +2,31 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
-router.get('/medico',(req,res) => {
-    res.render('HomeVistDoctor');
-});
+// ruta para mostrar tipos de consulta que un paciente puede requerir
+router.get('/listaConusltas', (req,res) => {
+
+    fetch('http://localhost:4600/api/especialidad')        
+        .then(resp => resp.json())
+        .then(resp =>{            
+            res.render('HomeLIstConsultasMedicas',{
+                resp
+            });            
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
+})
+
+//ruta para renderizar homeVistDoctor
+var consultamedica
+router.get('/renderVistaDocotr/:consultamedica1', (req,res) => {
+    const { consultamedica1 } = req.params;
+    consultamedica = consultamedica1
+    res.render('HomeVistDoctor',{
+        consultamedica
+    })
+})
 
 //serv para mandar la cita medica de tipo false
 var falseCita;
@@ -32,9 +54,9 @@ router.get('/ConsultaMedica/:consultamedica',(req, res) => {
         .then(resp =>{ 
             //console.log(resp  ,"  esto es la respuesta que quiero")
             if(resp == ""){                
-                res.render('ListaConsultaMedicaDoc',{resp,falseCita});
+                res.render('ListaConsultaMedicaDoc',{resp,falseCita,consultamedica});
             }else{
-                res.render('ListaConsultaMedicaDoc',{resp,falseCita});
+                res.render('ListaConsultaMedicaDoc',{resp,falseCita,consultamedica});
             }
     })
     .catch(error => {
@@ -146,7 +168,8 @@ router.get('/consultaData', (req,res) => {
                     idCIta, // este es el id de la cita medica que viene desde /consulta/:historial/:idCitaMedica'
                     resp,
                     cita,
-                    updateCita
+                    updateCita,
+                    consultamedica//esto es el tipo de consulta medica ejmp neurologia pediatria etc
                 });   
             }    
         })
@@ -248,7 +271,7 @@ router.get('/recetas/:id', (req,res) => {
 var ListRecetaOfConsulta;
 router.get('/recetasOFconsulta', (req,res) => {
 
-    fetch('http://localhost:3000/api/recetaOfConsulta/'+hist.historial)        
+    fetch('http://localhost:3000/api/recetaOfConsulta/'+hist.historial+"/"+ConsultaOnly[0].tipoConsulta)        
         .then(resp => resp.json())
         .then(resp =>{
             ListRecetaOfConsulta = resp;         
@@ -388,9 +411,6 @@ router.get('/TraerConsultaPinternacion/:id', (req,res) => {
 });
 
 router.post('/Pinternacion/:id',(req,res) => {
-    var tipoCOnsulta = req.body.tipoConsulta
-    //console.log(tipoCOnsulta   , " >>>>>>>>>>>>>>dato<<<<<<<<<<<<<<<<<<<<<<<");
-    if(tipoCOnsulta == "consultaMedica"){
         var idConsultaM = req.params
         var datos = req.body
         var esto = {
@@ -406,23 +426,6 @@ router.post('/Pinternacion/:id',(req,res) => {
             .then(data => {      
               res.redirect('/medico/PapeletaINT/'+datosConsultaData.id+"/"+datosConsultaData.historial+"/"+datosConsultaData.tipoConsulta);
             })
-    }else  if(tipoCOnsulta == "emergencia") {
-        var idEmergencia = req.params
-        var datos = req.body
-        var esto = {
-            method: 'POST',
-            body: JSON.stringify(datos),
-            headers:{
-              'Content-type' : "application/json"
-            }
-        };
-        fetch('http://localhost:3000/api/papeletaIntEmergencia/'+idEmergencia.id,esto)
-            .then(res => res.json())
-            .catch(error => console.error('Error:', error))
-            .then(data => {      
-              res.redirect('/medico/PapeletaINT/'+datosConsultaData.id+"/"+datosConsultaData.historial+"/"+datosConsultaData.tipoConsulta);
-            })
-    }
 });
 
 var PapeletaINTER; // esto trae todas las papelteas de internacion segun historial y tipo consulta
@@ -516,5 +519,7 @@ router.get('/dataConsulta/:id', (req,res) => {
     })
 });
 */
+
+
 
 module.exports = router;

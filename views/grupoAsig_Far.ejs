@@ -17,11 +17,6 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
 			</ul>
 		</nav>
 		<!-- Content page -->
@@ -32,46 +27,62 @@
 		</div>
 		<div class="container-fluid">
             <div class="row">
-                <div class="col-xs-12 col-md-10 col-md-offset-1">
-                    <form action="/almacenamiento/grupoAsig_Far" method="POST">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Codigo</label>
-                            <input class="form-control" type="text" name="codigo">
-                        </div>
-                        <div class="form-group label-floating">
-                            <label class="control-label">Descripción</label>
-                            <input class="form-control" type="text" name="descripcion">
-                        </div>
-                        <p class="text-center">
-                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-							<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-						</p>
-					</form>
-                    <div class="table-responsive">
-						<div class="table-wrapper">
-							<table class="table table-hover table-bordered results fl-table">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Codigo</th>
-										<th>Descripcion</th>
-										<th>Modificar</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									</tr>
-								<tbody>
-							</table>
+				<form action="" method="POST">
+					<div class="grupo" id="cabeza">
+						<div id="correo">
+                        	<div class="entrada">Codigo<br>
+                            	<input type="text" name="codigo"><br>
+                        	</div>
+                        	<div class="entrada">Descripción<br>
+                            	<input  type="text" name="descripcion"><br>
+							</div>
 						</div>
-	                </div>
-                </div>
-            </div>
+					</div>
+                    <p class="text-center">
+                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                        <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+					</p>
+				</form>
+                <div id="correo">
+					<div class="entrada text-center "><br>
+						<select  name="state" id="maxRows">
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+							<option value="50">50</option>
+							<option value="70">70</option>
+							<option value="100">100</option>
+							<option value="5000">Show ALL Rows</option>
+						</select><br>
+					</div>
+					<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+						<input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Buscar.." ><br>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<div class="table-wrapper">
+						<table class=" table  fl-table" id= "table-id" >
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Codigo</th>
+									<th>Descripcion</th>
+									<th>Modificar</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+								</tr>
+							<tbody>
+						</table>
+					</div>
+	            </div>
+        	</div>
         </div>
 	</section>
 	<!--====== Scripts -->

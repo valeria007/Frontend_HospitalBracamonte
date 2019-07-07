@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lista de consultas </title>
+    <link rel="stylesheet" href="/css/HomeInt.css">
+</head>
+<body>
+    <div class="cards-list">
+        <%for(var i = 0; i< resp.length; i++) { %>
+            <div class="card 1">
+                <div class="card_image">
+                    <img src="/assets/img/giphy.webp" />
+                </div>
+                <br>
+
+                <div class="card_title title-black">
+                    <p>
+                      <a href="/medico/renderVistaDocotr/<%=resp[i].nombre%>"><%=resp[i].nombre%></a>
+                    </p>
+              </div>
+            </div>	
+        <% } %>	
+    </div>
+</body>
+</html>
