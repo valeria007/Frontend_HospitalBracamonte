@@ -43,11 +43,6 @@ router.get('/servicios',(req, res) => {
 });
 
  //vista de doctor
-
- router.get('/HomeVistDoctor',(req,res) =>{
-   res.render('HomeVistDoctor');
- });
-
  
 // Historiales Clinicos
 router.get('/reportes_pacientes',(req, res) => {
