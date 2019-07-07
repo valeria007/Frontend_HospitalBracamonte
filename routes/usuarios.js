@@ -14,7 +14,7 @@ router.get('/usuarios',(req, res) => {
   })
 });
   var msg
-  router.post('/usuarios', (req,res) => {
+router.post('/usuarios', (req,res) => {
     var telefono = req.body.telefono;
     if(telefono == ""){
       msg = "introdusca telefono";

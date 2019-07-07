@@ -1,59 +1,53 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Login</title>
-	<link rel="stylesheet" href="/css/login.css">
-
-
-</head>
-<body>
-  
-   <div class="container"></div>
-
-    <div class="modal">
-       
-            <div class="modal-container">
-                <div class="modal-left">
-                  <h1 class="modal-title">Bienvenido</h1>
-                  <form action="/login" method="POST" autocomplete="off">
-                    <div class="input-block">
-                     <label for="UserEmail" class="input-label">Cuenta</label>
-                     <input type="email" name="correo"  id="UserEmail"  placeholder="cuenta" required="">
-                    </div>
-                    <div class="input-block">
-                    <label for="UserPass" class="input-label">Contraseña</label>
-                    <input type="password" name="contraseña" id="UserPass" placeholder="contraseña" required="">
-                    </div>
-                    <div class="modal-buttons">
-                    <!--<a href="" class="">Forgot your password?</a>-->
-                    <button class="input-button" value="Ingresar">Ingresar</button>
-                    </div>
-                    <!--<p class="sign-up">Don't have an account? <a href="#">Sign up now</a></p>-->
-                   </div>
-                   </form>
-                <div class="modal-right">
-                  <img src="/assets/img/portada1.jpg" alt="">
-                </div>
-                <button class="icon-button close-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-                <path d="M 25 3 C 12.86158 3 3 12.86158 3 25 C 3 37.13842 12.86158 47 25 47 C 37.13842 47 47 37.13842 47 25 C 47 12.86158 37.13842 3 25 3 z M 25 5 C 36.05754 5 45 13.94246 45 25 C 45 36.05754 36.05754 45 25 45 C 13.94246 45 5 36.05754 5 25 C 5 13.94246 13.94246 5 25 5 z M 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.980469 15.990234 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 z"></path>
-            </svg>
-                  </button>
-                </div>
-                <button class="modal-button">Click Aqui </button>              
-     </div>  
-	<script src="/js/login.js"></script>	
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login </title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/login.css">
+  </head>
+  <body>
+      <%for (var i = 0; i< alert.length; i++) {%>
+        <% if (alert[i].mensaje == "Introdusca por favor la cuenta.") {%>
+        <div class="alert alert-warning alert-dismissible fade show mover" role="alert">
+          <%= alert[i].mensaje %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>    
+        <% } else {%> 
+          <div class="alert alert-warning alert-dismissible fade show mover" role="alert">
+            <%= alert[i].mensaje1 %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>   
+         <% } %>
+     <% } %> 
+    <form name="login-form" class="login-form" action="/login" method="POST">
+      <img src="/assets/img/doc.jpg" class="rounded-circle mx-auto d-block logo m-4" alt="Logo">
+      <div class="header">
+      <h1>Bienbenido </h1>
+      <span>Ingrese cuenta y contraseña, Por favor</span>
+      </div>
+      
+        <div class="content">
+          <input name="username" id="username"type="text" class="input username" placeholder="Cuenta" />
+          <div class="user-icon"></div>
+          
+          <input name="password" type="password" id="password"class="input password" placeholder="Contraseña" />
+          <div class="pass-icon"></div>		
+          </div>
+      
+          <div class="footer">
+            <button class="button" value="Ingresar">Ingresar</button>
+          </div>
+      
+      
+    
+  </form>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
 </html>
-
-<!--
-   <button  class="" onclick=location="/HomeVistDoctor" style='width:150px; height:25px'>entra doctor</button> <br>
-                    <button  class="" onclick=location="/cuaderno/cuaderno" style='width:150px; height:25px'>Cuaderno</button> <br>
-                    <button  class="" onclick=location="/almacen" style='width:150px; height:25px'>Farmacia</button> <br>
-                    <button  class="" onclick=location="/emergencia/oneVista" style='width:150px; height:25px'>Emergencia</button> <br>
-                    <button  class="" onclick=location="/Internaciones/viewTemporal" style='width:150px; height:25px'>Hospitalizacion</button> <br>
-
--->
