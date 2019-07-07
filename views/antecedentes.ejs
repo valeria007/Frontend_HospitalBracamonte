@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Alergia</title>
+	<title>Antecedentes</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
@@ -49,7 +49,7 @@
 
 	   <div class="container-fluid">
 		<div class="page-header">
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Alergias </h1>
+			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Antecedentes </h1>
 		</div>
 	</div>
 
@@ -77,21 +77,39 @@
 				  </div>
 				</div>
 				<br>
-				<p>Alergias </p>
+				<p>Antecedentes </p>
 				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Fecha:<br>
-					  <input  type="date" name="" require><br>
+				  	<div id="tres2">
+						<div class="entrada">Fecha:<br>
+					  		<input  type="date" name="" require><br>
+						</div>
+						<div class="entrada">Antecedes Patologicos:<br>
+					  		<input type="text" name="" value="" size="20"><br>
+						</div>
+						<div class="entrada">Antecedes Patologicos de riesgo:<br>
+					  		<input type="text" name="" value=""size="10"><br>
+						</div>
 					</div>
-					<div class="entrada">Tipo de Alergia<br>
-					  <input type="text" name="" value="" size="20"><br>
+					<div id="tres2">
+						<div class="entrada">Antecedes de Familiares:<br>
+							<input type="text" name="" value="" size="20"><br>
+					  	</div>
+						<div class="entrada">Antecedes de Patologicos:<br>
+					  		<input type="text" name="" value="" size="20"><br>
+						</div>
+						<div class="entrada">Antecedes no Patologicos:<br>
+					  		<input type="text" name="" value=""size="10"><br>
+						</div>
+						
 					</div>
-					<div class="entrada">Descripción:<br>
-					  <input type="text" name="" value=""size="10"><br>
+					<div id="tres2">
+						<div class="entrada">Gineco Obstretico:<br>
+							<input type="text" name="" value=""size="10"><br>
+						</div>
+						<div class="entrada">Descripción:<br>
+							<input type="text" name="" value=""size="10"><br>
+					  	</div>  
 					</div>
-					
-				  </div>
-				 
 				
 				</div>
 				<br>
@@ -120,8 +138,8 @@
 								<tr>
 								<th>#</th>
 								<th>Fecha</th>
-								<th>Tipo de Alergia</th>
-								<th>Descripción</th>
+								<th>Medicamentos</th>
+								<th>Otros</th>
 								<th>Dar de baja </th>
 								
 								</tr>

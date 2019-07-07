@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Alergia</title>
+	<title>Datos Responsable</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
@@ -49,7 +49,7 @@
 
 	   <div class="container-fluid">
 		<div class="page-header">
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Alergias </h1>
+			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Datos de Responsable </h1>
 		</div>
 	</div>
 
@@ -77,20 +77,32 @@
 				  </div>
 				</div>
 				<br>
-				<p>Alergias </p>
+				<p>Datos de Responsable</p>
 				<div class="grupo" id="cabeza">
 				  <div id="tres2">
-					<div class="entrada">Fecha:<br>
-					  <input  type="date" name="" require><br>
+					<div class="entrada">Nombre:<br>
+						<input type="text" name="" value=""size="10"><br>
 					</div>
-					<div class="entrada">Tipo de Alergia<br>
+					<div class="entrada">Apellido Paterno:<br>
 					  <input type="text" name="" value="" size="20"><br>
 					</div>
-					<div class="entrada">Descripción:<br>
+					<div class="entrada">Apellido Materno:<br>
 					  <input type="text" name="" value=""size="10"><br>
 					</div>
 					
 				  </div>
+				  	<div id="tres2">
+						<div class="entrada">Dirección:<br>
+							<input type="text" name="" value=""size="10"><br>
+						</div>
+						<div class="entrada">CI:<br>
+						  <input type="text" name="" value="" size="20"><br>
+						</div>
+						<div class="entrada">Teléfono:<br>
+						  <input type="text" name="" value=""size="10"><br>
+						</div>
+						
+					</div>
 				 
 				
 				</div>
@@ -105,7 +117,7 @@
 				  </p>
 				</form>
 				<div class="table-responsive">
-					<h3 class="text-center all-tittles">LISTA DE AlERGIAS</h3>
+					<h3 class="text-center all-tittles">LISTA DE DATOS DE RESPONSABLE</h3>
 					<div class="table-wrapper">
 						<div id="correo">
 							<div class="entrada">
@@ -119,9 +131,12 @@
 							<thead>
 								<tr>
 								<th>#</th>
-								<th>Fecha</th>
-								<th>Tipo de Alergia</th>
-								<th>Descripción</th>
+								<th>Nombre</th>
+								<th>Apellido Paterno</th>
+								<th>Apellido Materno</th>
+								<th>Dirección</th>
+								<th>CI</th>
+								<th>Teléfono</th>
 								<th>Dar de baja </th>
 								
 								</tr>
@@ -129,6 +144,9 @@
 							<tbody>
 						
 								<tr>
+								<td></td>
+								<td></td>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>

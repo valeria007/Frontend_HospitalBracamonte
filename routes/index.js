@@ -136,6 +136,19 @@ router.get('/emergencia', (req,res) => {
   res.render('emergencias/homeEmergencia')
 });
 
+//consulta externa
+router.get('/alergias', (req,res) => {
+  res.render('alergias')
+});
 
+router.get('/datos_responsable', (req,res) => {
+  res.render('datos_responsable')
+});
+router.get('/antecedentes', (req,res) => {
+  res.render('antecedentes')
+});
+router.get('/examenFisico', (req,res) => {
+  res.render('examenFisico')
+});
 
 module.exports = router;

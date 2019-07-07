@@ -1,60 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Alergia</title>
+	<title>Examen Fisico</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+	<%- include("../partials/head") -%>
 </head>
-<body class=" full-box dashboard-sideBar-imagg cover " >
+<body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
-	<%- include("partials/menudoc") -%>
-
-	<li>
-		<a href="/medico/renderVistaDocotr/">
-			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
-		</a>
-	</li>
-
-    <li>
-		<a href="#!" class="btn-sideBar-SubMenu">
-			<i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Consultas externas <i class="zmdi zmdi-caret-down pull-right"></i>
-		</a>
-		<ul class="list-unstyled full-box">
-			<li><a href="/medico/listfalseConsulta/"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
-					  
-		</ul>
-	</li>
-	<%- include("partials/footerDocotr") -%>
+	<%- include("partials/menu") -%>
+	<!-- SideBar Menu Hospital-->
+    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+		<li>
+			<a href="/emergencia/homeEmergencia/">
+			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home</a>
+		</li>
+		<!-- Emergencias -->
+		<li>
+			<a href="#!" class="btn-sideBar-SubMenu">
+			<i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>		</a>
+			<ul class="list-unstyled full-box">
+				<li><a href="/emergencia/dataEmergencia/"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
+			</ul>
+		</li>
+	</ul>
+	<%- include("partials/menuFooter") -%>
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar dashboard-sideBar-imaggg cover ">
-		<ul class="full-box list-unstyled text-right dashboard-sideBar-ctttt">
+	<nav class="full-box dashboard-Navbar">
+		<ul class="full-box list-unstyled text-right">
 			<li class="pull-left">
 		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 			</li>
-			<li>
-				<a href="#!" class="btn-Notifications-area">
-					<i class="zmdi zmdi-notifications-none"></i>
-				</a>
-			</li>
 		</ul>
 	</nav>
-		<!-- Content page -->
-	<div class=" full-box ">
-	   <div class="container-fluid">
-          
-       </div>
-
-	   <div class="container-fluid">
+	<!-- Content page -->
+	<div class="container-fluid">
 		<div class="page-header">
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Alergias </h1>
+			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Datos de Responsable </h1>
 		</div>
 	</div>
-
-	</div>
-	<!-- Alergias de consultas-->
+	<!-- Examen Fisico-->
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade active in" id="new">
 		  <div class="container-fluid">
@@ -62,10 +49,10 @@
 			
 			  <form action="" method="POST">
 				
-				<p>Datos del Paciente</p>
+				<p>Datos del Paciente </p>
 				<div class="grupo" id="cabeza">
 				  <div id="tres2">
-					<div class="entrada">Apellido Paterno :<br>
+					<div class="entrada">Apellido Paterno:<br>
 					  <input type="text" name="" value=""><br>
 					</div>
 					<div class="entrada">Apellido Materno :<br>
@@ -77,20 +64,42 @@
 				  </div>
 				</div>
 				<br>
-				<p>Alergias </p>
+				<p>Examen Físico General</p>
 				<div class="grupo" id="cabeza">
 				  <div id="tres2">
-					<div class="entrada">Fecha:<br>
-					  <input  type="date" name="" require><br>
+					<div class="entrada">Estado General:<br>
+						<input type="text" name="" value=""size="10"><br>
 					</div>
-					<div class="entrada">Tipo de Alergia<br>
+					<div class="entrada">Facies:<br>
 					  <input type="text" name="" value="" size="20"><br>
 					</div>
-					<div class="entrada">Descripción:<br>
+					<div class="entrada">Presión Arterial:<br>
 					  <input type="text" name="" value=""size="10"><br>
 					</div>
 					
 				  </div>
+				  	<div id="tres2">
+						<div class="entrada">Estado Nutricional:<br>
+							<input type="text" name="" value=""size="10"><br>
+						</div>
+						<div class="entrada">Peso:<br>
+						  <input type="text" name="" value="" size="20"><br>
+						</div>
+						<div class="entrada">Frecuencia Cardiaca:<br>
+						  <input type="text" name="" value=""size="10"><br>
+						</div>
+						
+                    </div>
+                      	<div id="tres2">
+						<div class="entrada">Saturación de Oxigeno:<br>
+							<input type="text" name="" value=""size="10"><br>
+						</div>
+						<div class="entrada">Fecha de Revisión:<br>
+						  <input type="text" name="" value="" size="20"><br>
+						</div>
+						
+						
+					</div>
 				 
 				
 				</div>
@@ -105,7 +114,7 @@
 				  </p>
 				</form>
 				<div class="table-responsive">
-					<h3 class="text-center all-tittles">LISTA DE AlERGIAS</h3>
+					<h3 class="text-center all-tittles">LISTA DE DATOS DE RESPONSABLE</h3>
 					<div class="table-wrapper">
 						<div id="correo">
 							<div class="entrada">
@@ -119,9 +128,12 @@
 							<thead>
 								<tr>
 								<th>#</th>
-								<th>Fecha</th>
-								<th>Tipo de Alergia</th>
-								<th>Descripción</th>
+								<th>Nombre</th>
+								<th>Apellido Paterno</th>
+								<th>Apellido Materno</th>
+								<th>Dirección</th>
+								<th>CI</th>
+								<th>Teléfono</th>
 								<th>Dar de baja </th>
 								
 								</tr>
@@ -129,6 +141,9 @@
 							<tbody>
 						
 								<tr>
+								<td></td>
+								<td></td>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -149,6 +164,6 @@
 	</div>
 </section>
 	<!--====== Scripts -->
-	<%- include("partials/scripts") -%>
+	<%- include("../partials/scripts") -%>
 </body>
 </html>
