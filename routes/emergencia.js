@@ -145,6 +145,7 @@ router.get('/estado/:id', (req,res) => {
     })
 });
 
+
 //este serv es para insrtar datos a la tabla emergencia segun la cita que le coresponda
 router.post('/consultaEmergencia/:id', (req,res) => {
     var id = req.params.id;
@@ -163,7 +164,26 @@ router.post('/consultaEmergencia/:id', (req,res) => {
       res.redirect('/emergencia/estado/'+id);
     })
 });
+//no funcina
+//ruta para poder volver a la consulta desde otro lugar de la vista
+router.get('/volver',(req,res) => {
+    res.redirect('/emergencia/consulta/'+volver.historial+"/"+volver.idHistorial);
+})
 
+//serv para sacar el historial y el id de la cita medica o la ficha 
+var dataPaciente, idCIta, volver;
+router.get('/consulta/:historial/:idHistorial', (req,res) => {
+    var id = req.params;
+    idCIta = req.params.idHistorial;
+    volver = id;
+    //console.log(idCIta,"  idCita <<<<<<<<<<<<<<<<<<<<<<<  2 <<<<<<<<<<<<<")
+   fetch('http://localhost:3000/api/onlyPaciente/'+id.historial)
+      .then(resp => resp.json())
+      .then(resp =>{
+        dataPaciente = resp;
+        res.redirect('/emergencia/homeEmergencia');       
+    });
+});
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -464,6 +484,8 @@ router.post('/updatePinter/:id', (req,res) => {
     })  
 
 });
+
+
 //registros de alergias 
 router.get('/alergiasvis', (req,res) => {
     res.render('emergencias/alergias')

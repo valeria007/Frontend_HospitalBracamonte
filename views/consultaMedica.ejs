@@ -70,11 +70,42 @@
 	<% if (idCIta == null) {%>
 		<h1>Algo sucedio con el servidor porfavor intente entrar denuevo a esta pagian desde una pagina anterior</h1>
     <% } else {%>
-    <div class="container-fluid">
-		<div class="page-header">	
-			<h1 class="text-titles"><i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Consulta Externa <small></small></h1>  
+	<div class="container-fluid col-md-12" id="">
+		<div class="page-header  col-md-6">	
+			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Consulta Externa<small></small></h1>  
+		</div><br><br>
+		<div class="btn-group  col-md-3">
+			<button type="button" class="btn btn-info btn-raised"
+				data-toggle="dropdown">
+    			  Detalles del Paciente <span class="caret"></span>
+			</button>
+				
+			<ul class="dropdown-menu" role="menu">
+				<li class="menu__item">
+					<a href="/datos_responsable" class="menu__link">Datos de responsable</a>
+				</li>
+				<li class="menu__item">
+					<a href="/antecedentes" class="menu__link">Antecedentes</a>
+				</li>
+				<li class="menu__item">
+					<a href="/alergias" class="menu__link">Alergia</a>
+				</li>
+				<li class="menu__item">
+					<a href="/examenFisico" class="menu__link">Examen General</a>
+				</li>
+				<li class="divider"></li>
+				  
+			</ul>
+		</div> 
+		   
+		<div id="" class="col-md-2">
+		
+		    <div class="">
+				<a href="/medico/volver" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
+			</div>
+			
 		</div>
-    </div>    
+	</div>  
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
