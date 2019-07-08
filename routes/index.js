@@ -3,7 +3,8 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/',(req, res) => {
-  res.render('index')
+  console.log(alert, "         esto es los errores  <<<<<<<<<<<<<")
+  res.render('index', { msg, alert })
 });
 
 router.get('/index2', (req,res) => {
@@ -14,8 +15,25 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
+var msg, alert = [];
 router.post('/login', (req,res)  => {
-  var data = req.body;
+  
+  const username = req.body.username;
+  const password = req.body.password;  
+ 
+  if(username =="" ){
+    msg='Introdusca por favor la cuenta.';
+    alert.push({ mensaje : "Introdusca por favor la cuenta.", id: "1" })
+    res.redirect('/')
+    
+  }else if( password == "" ){
+
+    msg = 'Introdusca password.'
+    alert.push({ mensaje1: "Introdusca password.", id: "2" })  
+    res.redirect('/')   
+
+  }else {
+    var data = req.body;
   var enviar = {
     method: 'POST',
     body: JSON.stringify(data),
@@ -23,7 +41,7 @@ router.post('/login', (req,res)  => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://127.0.0.1:3600/usuarios/login',enviar)
+  fetch('http://localhost:3600/api/signin',enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
@@ -33,10 +51,12 @@ router.post('/login', (req,res)  => {
     }else if(resp.success == false){
       res.send('contraseña incorrecta')
     }else{
+      alert = [];
       res.redirect('/home')
     }
     
   })
+  }
 })
 router.get('/servicios',(req, res) => {
   res.render('servicios')
