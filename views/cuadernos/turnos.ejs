@@ -27,6 +27,7 @@
             </div>
         </div>
         <%if (modifDoct == null) { %>
+        <div class="container-fluid">
         <form id="form" action="/cuaderno/docCuaderno" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
             <div class="grupo" id="cabeza">
                 <div id="correo">
@@ -62,8 +63,9 @@
                 <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
             </p>
         </form>
+        </div>
         <% } else { %>
-
+            <div class="container-fluid">
             <form id="form" action="/cuaderno/updateDoctCuaderno/<%=modifDoct[0].id%>" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
                 <div class="grupo" id="cabeza">
                     <a href="/cuaderno/limpiarMDoc">AÑADIR NUEVO</a>
@@ -106,6 +108,7 @@
                     <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Modificar</button>
                 </p>
             </form>
+        </div>
             <% } %>
         <div class="table-responsive">
 			<h3 class="text-center all-tittles">LISTA DE DOCTORES</h3>

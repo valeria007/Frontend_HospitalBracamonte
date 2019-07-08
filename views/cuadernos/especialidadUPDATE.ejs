@@ -35,8 +35,6 @@
             <h1> No hay datos que actualizar </h1>
         <% } else { %>
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12 col-md-10 col-md-offset-1">
                     <form action="/cuaderno/UpdateEspecialidad/<%=resp[0].id%>" method="POST">
                         <div class="form-group label-floating">
                             <label class="control-label">Nombre de Especialidad</label>
@@ -55,8 +53,6 @@
                             <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                         </p>
                         </form>
-                    </div>
-                </div>
             </div>
             <% } %>
 	</section>
