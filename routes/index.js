@@ -3,8 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/',(req, res) => {
-  console.log(alert, "         esto es los errores  <<<<<<<<<<<<<")
-  res.render('index', { msg, alert })
+  res.render('index', { msg1, msg2 })
 });
 
 router.get('/index2', (req,res) => {
@@ -15,26 +14,24 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
-var msg, alert = [];
+var msg1,msg2;
 router.post('/login', (req,res)  => {
   
   const username = req.body.username;
   const password = req.body.password;  
  
   if(username =="" ){
-    msg='Introdusca por favor la cuenta.';
-    alert.push({ mensaje : "Introdusca por favor la cuenta.", id: "1" })
+    msg1='Introdusca por favor la cuenta.';
     res.redirect('/')
     
   }else if( password == "" ){
 
-    msg = 'Introdusca password.'
-    alert.push({ mensaje1: "Introdusca password.", id: "2" })  
+    msg2 = 'Introdusca password.'
     res.redirect('/')   
 
   }else {
     var data = req.body;
-  var enviar = {
+    var enviar = {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -51,7 +48,6 @@ router.post('/login', (req,res)  => {
     }else if(resp.success == false){
       res.send('contraseña incorrecta')
     }else{
-      alert = [];
       res.redirect('/home')
     }
     
