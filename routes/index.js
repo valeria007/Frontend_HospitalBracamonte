@@ -3,7 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/',(req, res) => {
-  res.render('index', { msg1, msg2 })
+  res.render('index', { msg1, msg2, msg3 })
 });
 
 router.get('/index2', (req,res) => {
@@ -14,18 +14,19 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
-var msg1,msg2;
+var msg1,msg2,msg3;
 router.post('/login', (req,res)  => {
   
   const username = req.body.username;
   const password = req.body.password;  
  
   if(username =="" ){
+    msg3 = null
     msg1='Introdusca por favor la cuenta.';
     res.redirect('/')
     
   }else if( password == "" ){
-
+    msg3 = null
     msg2 = 'Introdusca password.'
     res.redirect('/')   
 
@@ -43,12 +44,22 @@ router.post('/login', (req,res)  => {
   .catch(error => console.error('Error',error))
   .then(resp => {
     console.log(resp)
-    if(resp.message == 'Autentificacion fallida.'){
-      res.send('usted no esta registrado')
+    if(resp.user == false){
+      msg1=null;
+      msg2=null;
+      msg3 =" Usted no esta registrado "
+      res.redirect('/')   
     }else if(resp.success == false){
-      res.send('contraseña incorrecta')
+      msg1=null;
+      msg2=null;
+      msg3 = " Contraceña Incorrecta "
+      res.redirect('/')   
     }else{
+      msg1=null;
+      msg2=null;
+      msg3 = null;
       res.redirect('/home')
+
     }
     
   })
