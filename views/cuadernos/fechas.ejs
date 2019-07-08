@@ -27,6 +27,7 @@
             </div>
         </div>
         <%if(onlyFecha == null) { %>
+        <div class="container-fluid">
         <form id="form" action="/cuaderno/fechas" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
             <div class="grupo" id="cabeza">
                 <div id="correo">
@@ -45,7 +46,9 @@
                 <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> Guardar</button>
             </p>
         </form>
+        </div>
         <% } else {%>
+        <div class="container-fluid">
             <form id="form" action="/cuaderno/updateFecha/<%=onlyFecha[0].id%>" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
                 <div class="grupo" id="cabeza">
                     <a href="/cuaderno/limpiarFecha">Añadir Nuevo</a>
@@ -57,14 +60,13 @@
                             <input type="date" name="fechafin" value="<%=onlyFecha[0].fechafin%>"><br>
                         </div>
                     </div>
-                  
-                    
                 </div>
                 <p class="text-center">
                     <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>               
                     <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> Guardar</button>
                 </p>
             </form>
+        </div>
         <% } %>
         <div class="table-responsive">
 			<h3 class="text-center all-tittles">LISTA DE DOCTORES</h3>

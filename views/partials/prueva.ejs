@@ -1,0 +1,383 @@
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>FARMACIA</title>
+    <meta name="author" content="dos.cristian.us@gmail.com">
+    <link rel="shortcut icon" href="http://farmacia.sourcecoding.org/assets/images/fevicon.ico">
+    <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/css/jquery-ui-1.10.3.custom.css">
+
+    <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/css/font-awesome.min.css">
+
+    <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/css/green.css">
+
+    <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/css/inline.min.css">
+
+    <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/css/style2.css">
+
+            <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/plugins/jquery-ui/smoothness/jquery-ui.min.css">
+
+        <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/plugins/messenger/css/messenger.css">
+
+        <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/plugins/messenger/css/messenger-theme-flat.css">
+
+        <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/plugins/select2/select2.css">
+
+        <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/plugins/datatables/css/jquery.dataTables.css">
+
+        <link media="all" type="text/css" rel="stylesheet" href="http://farmacia.sourcecoding.org/assets/plugins/responsive-tables/css/rwd-table.min.css">
+
+      </head>
+  <body>
+    <header>
+      <div id="headerstic">
+  <div class="top-bar container">
+    <div class="row">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle icon-list-ul" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a href="/"><div class="logo"></div></a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                       
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="icon-pencil"></i>Usuarios<b class="icon-angle-down"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="http://farmacia.sourcecoding.org/administrador">Administrador</a></li>
+                      <li><a href="http://farmacia.sourcecoding.org/medico">Medicos</a></li>
+                      <li><a href="http://farmacia.sourcecoding.org/farmaceutico">Farmaceuticos</a></li>
+                    </ul>
+                </li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-file"></i>Personas<b class="icon-angle-down"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://farmacia.sourcecoding.org/afiliadosall">Lista Afiliados</a></li>
+                    
+                  <li><a href="http://farmacia.sourcecoding.org/afiliado">Gestion Afiliados</a></li>
+                                     
+                  <li><a href="http://farmacia.sourcecoding.org/proveedor">Proveedores</a></li>
+                                  </ul>
+              </li>
+               
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-cog"></i>Gestion Medicamentos<b class="icon-angle-down"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="http://farmacia.sourcecoding.org/grupo">Grupos</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/subgrupo">SubGrupos</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/medicamento">Medicamentos</a></li>
+                </ul>
+              </li>
+                            
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-camera"></i>Movimientos<b class="icon-angle-down"></b></a>
+                  <ul class="dropdown-menu">
+                       
+                      <li><a href="http://farmacia.sourcecoding.org/pedido">Pedidos</a></li> 
+                      <li><a href="http://farmacia.sourcecoding.org/pedido/create">Registrar Pedido</a></li>
+                      <li><a href="http://farmacia.sourcecoding.org/ingreso">Ingresos Registrados</a></li> 
+                      <li><a href="http://farmacia.sourcecoding.org/adquisicion">Registrar Ingreso</a></li>
+                       
+                      <li><a href="http://farmacia.sourcecoding.org/inventario">Existencia Medicamentos</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-camera"></i>Recetas<b class="icon-angle-down"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="http://farmacia.sourcecoding.org/detalreceta">Lista Recetas</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/recetasreporte">Historial Recetas</a></li>
+                                      </ul>
+              </li>
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-camera"></i>Salidas<b class="icon-angle-down"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="http://farmacia.sourcecoding.org/salida">Lista Salidas</a></li>
+                                      </ul>
+              </li>
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-cog"></i>Reportes<b class="icon-angle-down"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="http://farmacia.sourcecoding.org/kardex">Kardex Existencia</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/movimiento">Movimiento Farmacos</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/repovencimiento">Medicamentos Vencidos</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/faltantes">Medicamentos Requeridos</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/medicamentosrecetados">Medicamentos Recetados</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/kardexrecepcion">Kardex Recepcion</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/kardexmedicamento">Kardex Medicamento</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/kardexvalorado">Kardex Valorado</a></li>
+                    <li><a href="http://farmacia.sourcecoding.org/inventariofinalvaluo">Inventario Final</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-envelope"></i>cristian372<b class="icon-angle-down"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="http://farmacia.sourcecoding.org/logout">Desconectar</a></li>
+                  </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>    
+  </div>
+</div>
+  
+            
+            
+                </header>
+    <section class="complete-content content-footer-space">
+      <div class="about-intro-wrap pull-left">
+                <div class="bread-crumb-wrap ibc-wrap-6">
+   	<div class="container">
+     	<div class="inner-page-title-wrap col-xs-12 col-md-12 col-sm-12">
+        	<div class="bread-heading"><h1>REGISTRO PEDIDO DE MEDICAMENTOS</h1></div>
+            <div class="bread-crumb pull-right">
+            <ul>
+            <li><a href="http://farmacia.sourcecoding.org/adquisicion">Atras</a></li>
+            <li><a href="/">Index</a></li>
+            <li><a href="http://farmacia.sourcecoding.org/pedido">Pedidos</a></li>
+            </ul>
+            </div>
+        </div>
+    </div>
+</div>                                      <div class="about-content-wrap pull-left">
+            <div class="container">            
+                <div class="appointment-form col-xs-12 col-sm-12 col-md-12 wow fadeInRight">
+                    <div class="appointment-form-title"><i class="icon-cart appointment-form-icon"></i>REGISTRO PEDIDO DE MEDICAMENTOS</div>
+                    <form method="POST" action="http://farmacia.sourcecoding.org/pedido" accept-charset="UTF-8" id="regiterpedidorertier" class="appt-form"><input name="_token" type="hidden" value="YQ3RKM5mYmkwH48s53DBI7sWeVTnM1bIf0Z8JkIT">
+                    <input type="hidden" name="_token" value="YQ3RKM5mYmkwH48s53DBI7sWeVTnM1bIf0Z8JkIT" id="token" />
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class='row'>
+        <div class="col-xs-2">
+            <label for="asd_123sadasdsgro">NRO PEDIDO: </label>                                 
+        </div>
+        <div class="col-xs-4">
+            <div class="form-group input-group info">
+                <span class="input-group-addon"><i class="fa fa-fax" ></i></span>
+                <input id="numero_pedido" class="form-control input-sm" minlength="10" maxlength="11" placeholder="NUMERO PEDIDO... " required="required" name="numero_pedido" type="text" value="APA-0000002">
+                <span class="input-group-addon">
+                    <input type="checkbox" name="chekedoredrtenumeropedter" id="chekedoredrtenumeropedter" class="iCheck-helper" /> 
+                </span> 
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <label for="codasxc1212dsas_gro">PROVEEDOR: </label> 
+        </div>
+        <div class="col-xs-4">
+            <div class="form-group input-group info">
+                <span class="input-group-addon"><i class="fa fa-shopping-cart"></i></span>
+                <select id="proveedor_id" class="form-control input-sm" required="required" name="proveedor_id"><option value="1">Gonzales Orquedo Choque</option></select> 
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="col-xs-2">
+            <label for="codasxc1212dsas_gro">EMAIL PROVEEDOR: </label> 
+        </div>
+        <div class="col-xs-4">
+            <div class="form-group input-group info">
+                <span class="input-group-addon"><i class="fa fa-at"></i></span>
+                 <input id="email_proveedor_pedido" class="form-control input-sm" minlength="6" maxlength="100" placeholder="EMAIL PROVEEDOR... " required="required" name="email_proveedor_pedido" type="email">
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <label for="codasxc1212dsas_gro">GESTION PEDIDO: </label> 
+        </div>
+        <div class="col-xs-4">
+            <div class="form-group input-group info">
+                <span class="input-group-addon"><i class="fa fa-bullhorn"></i></span>
+                 <input id="gestion_pedido" class="form-control input-sm" minlength="4" maxlength="4" placeholder="GESTION PEDIDO... " required="required" name="gestion_pedido" type="text" value="2020">
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="col-xs-2">
+            <label for="asd_123sadasdsgro">LUGAR PROVEEDOR: </label>                                 
+        </div>
+        <div class="col-xs-4">
+            <div class="form-group input-group info">
+                <span class="input-group-addon"><i class="fa fa-google-wallet" ></i></span>
+                <input id="lugar_proveedor_pedido" class="form-control input-sm" minlength="4" maxlength="150" placeholder="LUGAR PROVEEDOR... " required="required" name="lugar_proveedor_pedido" type="text">
+            </div>                                 
+        </div>
+        <div class="col-xs-2">
+            <label for="asasdd_gro">FECHA PEDIDO:</label> 
+        </div>
+        <div class="col-xs-4">
+            <div class="form-group input-group info">
+                <span class="input-group-addon"><i class="fa fa-calendar-o" ></i></span>
+                <input id="fecha_pedido" class="form-control input-sm" readonly="readonly" required="required" name="fecha_pedido" type="text" value="2019-07-05">
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" name="user_id" value="1" id="user_id" />
+<input type="hidden" name="nombre_proveedor_pedido" id="nombre_proveedor_pedido" />                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="table-responsive">
+                                            <div style="height:32px;overflow:hidden;margin-right:15px;">
+    <table class="table">
+        <thead style="background:#000000;">
+            <tr style="background:#000000;color: white;">
+                <th width="12%" style="text-align:center;">CODIGO</th>
+                <th width="35%" style="text-align:center;">NOMBRE</th>
+                <th width="25%" style="text-align:center;">FORMA</th>
+                <th width="15%" style="text-align:center;">CONCENTRACION</th>
+                <th width="12%" style="text-align:center;">CANTIDAD</th>
+                <th width="1%" style="text-align:center;">&nbsp;</th>
+            </tr>
+        </thead>
+    </table>
+</div>                                                  
+<div style="height:150px;overflow-y:scroll;" class="table-responsive">
+    <table id="reg_pedidoscentriasionmedicamen">
+        <thead  style="font-size:1px;line-height:1px;">
+            <tr>
+                <th width="12%" style="text-align:center;">CODIGO</th>
+                <th width="35%" style="text-align:center;">NOMBRE</th>
+                <th width="25%" style="text-align:center;">FORMA</th>
+                <th width="15%" style="text-align:center;">CONCENTRACION</th>
+                <th width="12%" style="text-align:center;">CANTIDAD</th>
+                <th width="1%" style="text-align:center;">&nbsp;</th>
+            </tr>
+        </thead>  
+        <tbody id="dats_centrliaionpedidoasregdater">
+            <tr id="pededoresRow1">
+                <td>
+                    <select class="buscar form-control input-sm" name="cod_medica1" id="cod_medica1">
+                        <option></option>
+                                                <option value="1">A-0101</option>
+                                                <option value="2">A-0201</option>
+                                            </select>
+                </td>
+                <td>
+                    <select class="clsCl form-control input-sm" name="nom_medica1" id="nom_medica1" required>
+                        <option></option>
+                                                <option value="1">Medicamento Uno</option>
+                                                <option value="2">Paracetamol</option>
+                                            </select>
+                </td>
+                <td>
+                    <select class="medunda form-control input-sm" name="und_medica1" id="und_medica1" style="background:#ffffff" disabled>
+                        <option></option>
+                                                <option value="1">Comprimido o capsula</option>
+                                                <option value="2">Comprimido o capsula</option>
+                                            </select>
+                </td>
+                <td>
+                    <select class="concetertar form-control input-sm" name="concetrer_pe1" id="concetrer_pe1">
+                        <option></option>
+                                                <option value="1">20 g</option>
+                                                <option value="2">20 mg</option>
+                                            </select>
+                </td>
+                <td><input type="number" for='cant_medic' id="cant_medic1" name="cant_medic1" class='cantmdddcii form-control input-sm text-right' required/>
+                </td>
+                <td align="right"><input id="pista1" name="pista1" type="button" class="clsEliminarFila inner-page-butt-blugeting tiny-but"/>
+                </td>
+            </tr>
+        </tbody>                                                
+    </table>
+</div>                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        <input type="button" value="+MED" class="clsClonarFila btn btn-blugeting btn-round pull-left btn-sm" />
+                                    </div>
+                                    <div class="col-xs-4 form-inline">
+                                        <label class="control-label">TOTAL:</label>
+                                        <input id="cantidad_total_pedido" class="form-control text-right input-sm" readonly="readonly" required="required" name="cantidad_total_pedido" type="text" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                            <a href="http://farmacia.sourcecoding.org/adquisicion" class="btn btn-danger btn-md pull-left"><i class="fa fa-undo"></i> Atras </a>
+                            <input id="registra" class="btn btn-primary btn-md" type="submit" value="Registrar">
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div> 
+        </div>   
+          </div>     
+    </section> 
+    <section class="complete-footer">
+      <div class="bottom-footer">
+  <div class="container">
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 foot-widget-bottom">
+            <p class="col-xs-12 col-md-5 no-pad">&copy; Dev. <a href="http://sourcecoding.org/portfolio">Zenon Cristian Urriolagoitia Suyo</a>.</p>
+            <ul class="foot-menu col-xs-12 col-md-7 no-pad">
+            <li><a href="http://farmacia.sourcecoding.org/salida">Lista Salidas</a></li>   
+            <li><a href="http://farmacia.sourcecoding.org/detalreceta">Lista Recetas</a></li>
+            <li><a href="http://farmacia.sourcecoding.org/recetasreporte">Historial Recetas</a></li>
+            <li><a href="http://farmacia.sourcecoding.org/inventario">Existencia Medicamentos</a></li>
+            </ul>
+          </div>
+      </div>
+  </div> 
+</div>    </section>
+    <script src="http://farmacia.sourcecoding.org/assets/js/jquery.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/bootstrap-new/js/bootstrap.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/js/jquery.scrollUp.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/js/jquery.sticky.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/js/wow.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/js/jquery.flexisel.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/js/jquery.imedica.min.js"></script>
+
+    <script src="http://farmacia.sourcecoding.org/assets/js/custom-imedicajs.min.js"></script>
+
+
+            <script src="http://farmacia.sourcecoding.org/assets/plugins/jquery-ui/smoothness/jquery-ui.min.js"></script>
+      
+        <script src="http://farmacia.sourcecoding.org/assets/plugins/inputmask/jquery.inputmask.bundle.min.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/plugins/select2/select2.min.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/plugins/responsive-tables/js/rwd-table.min.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/plugins/datatables/extensions/Responsive/bootstrap/3/dataTables.bootstrap.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/plugins/messenger/js/messenger.min.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/js/messenger.js"></script>
+
+        <script src="http://farmacia.sourcecoding.org/assets/js/aplicacion/reg_pedido.js"></script>
+
+     
+  </body>
+</html>

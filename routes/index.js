@@ -3,7 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/',(req, res) => {
-  res.render('index')
+  res.render('index', { msg1, msg2, msg3 })
 });
 
 router.get('/index2', (req,res) => {
@@ -14,29 +14,56 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
+var msg1,msg2,msg3;
 router.post('/login', (req,res)  => {
-  var data = req.body;
-  var enviar = {
+  
+  const username = req.body.username;
+  const password = req.body.password;  
+ 
+  if(username =="" ){
+    msg3 = null
+    msg1='Introdusca por favor la cuenta.';
+    res.redirect('/')
+    
+  }else if( password == "" ){
+    msg3 = null
+    msg2 = 'Introdusca password.'
+    res.redirect('/')   
+
+  }else {
+    var data = req.body;
+    var enviar = {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://127.0.0.1:3600/usuarios/login',enviar)
+  fetch('http://localhost:3600/api/signin',enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
     console.log(resp)
-    if(resp.message == 'Autentificacion fallida.'){
-      res.send('usted no esta registrado')
+    if(resp.user == false){
+      msg1=null;
+      msg2=null;
+      msg3 =" Usted no esta registrado "
+      res.redirect('/')   
     }else if(resp.success == false){
-      res.send('contraseña incorrecta')
+      msg1=null;
+      msg2=null;
+      msg3 = " Contraceña Incorrecta "
+      res.redirect('/')   
     }else{
+      msg1=null;
+      msg2=null;
+      msg3 = null;
       res.redirect('/home')
+
     }
     
   })
+  }
 })
 router.get('/servicios',(req, res) => {
   res.render('servicios')
@@ -107,6 +134,13 @@ router.get('/ventas',(req, res) => {
   res.render('ventas')
 });
 
+router.get('/recetas_farm',(req, res) => {
+  res.render('recetas_farm')
+});
+
+router.get('/reportes_far',(req, res) => {
+  res.render('reportes_far')
+});
 //medicamento se movio a medicamento.js
 
 
@@ -136,14 +170,19 @@ router.get('/emergencia', (req,res) => {
   res.render('emergencias/homeEmergencia')
 });
 
+//consulta externa
+router.get('/alergias', (req,res) => {
+  res.render('alergias')
+});
+
 router.get('/datos_responsable', (req,res) => {
   res.render('datos_responsable')
 });
 router.get('/antecedentes', (req,res) => {
   res.render('antecedentes')
 });
-router.get('/alergias', (req,res) => {
-  res.render('alergias')
+router.get('/examenFisico', (req,res) => {
+  res.render('examenFisico')
 });
 
 module.exports = router;

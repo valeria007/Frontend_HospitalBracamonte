@@ -26,84 +26,74 @@
 				<h1 class="text-titles"><i class="zmdi zmdi-account-circle zmdi-hc-fw"></i> Proveedores</h1>
 			</div>
 		</div>
-					<!-- Registro de nuevos proveedores-->
-							<div class="container-fluid">
-								<div class="row">
-									
-										<form action="/proveedores/proveedores" method="POST">
-											<div class="grupo" id="cabeza">
-													<div id="correo">
-															<div class="entrada">Nombre del Proveedor:<br>
-																<input  type="text" name="nombre"><br>
-															</div>
-															<div class="entrada">Email:<br>
-																<input type="email" name="email"><br>
-															</div>
-															<div class="entrada">Direccion:<br>
-																<input  type="text"  name="direccion"><br>
-															</div>
-															<div class="entrada">Telefono:<br>
-																<input  type="text"  name="telefono"><br>
-															</div>
-															<div class="entrada">Empresa o Institucion:<br>
-																<input  type="text" name="empresa"><br>
-															</div>
-													</div>
-											</div>
-											<p class="text-center">
-													<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-													<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-											</p>
-									</form>
-									</div>
-								</div>
-						<!-- Listas de Proveedores-->
-						
-								<div class="table-responsive">
-									<div class="table-wrapper"> 
-									<div id="correo">
-											<div class="entrada">
-													<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-											</div>
-											<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-													<input type="text" id="searchInput" placeholder="Buscar.."><br>
-											</div>
-									</div>
-									<table class="fl-table" id="myTable">
-											<thead>
-											<tr>
-												<th>#</th>
-												<th>Nombre Proveedor</th>
-												<th>Email</th>
-												<th>Direccion</th>
-												<th>Telefono</th>
-												<th>Responsable de atención</th>
-												<th>Modificar</th>
-											</tr>
-											</thead>
-											<tbody>
-											<% for (var i = 0; i< resp.length; i++) { %>
-											<tr>
-												<td><%= i+1%></td>
-												<td><%=resp[i].nombre%></td>
-												<td><%=resp[i].email%></td>
-												<td><%=resp[i].direccion%></td>
-												<td><%=resp[i].telefono%></td>
-												<td><%=resp[i].empresa%></td>
-												<td><a href="/proveedores/OnlyProveedor/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											</tr>
-											<% } %>
-											<tbody>
-										</table>
-									</div>
-								</div>
-							</div>
+		<!-- Registro de nuevos proveedores-->
+		<div class="container-fluid">
+			<form action="/proveedores/proveedores" method="POST">
+				<div class="grupo" id="cabeza">
+					<div id="correo">
+						<div class="entrada">Nombre del Proveedor:<br>
+							<input  type="text" name="nombre"><br>
+						</div>
+						<div class="entrada">Email:<br>
+							<input type="email" name="email"><br>
+						</div>
+						<div class="entrada">Direccion:<br>
+							<input  type="text"  name="direccion"><br>
+						</div>
+						<div class="entrada">Telefono:<br>
+							<input  type="text"  name="telefono"><br>
+						</div>
+						<div class="entrada">Empresa o Institucion:<br>
+							<input  type="text" name="empresa"><br>
 						</div>
 					</div>
-				</div>
+				</div>							
+				<p class="text-center">
+					<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+					<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+				</p>
+			</form>
+		</div>
+		<!-- Listas de Proveedores-->
+		<div class="table-responsive">
+			<div class="table-wrapper"> 
+				<div id="correo">
+					<div class="entrada">
+						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+					</div>
+					<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+						<input type="text" id="searchInput" placeholder="Buscar.."><br>
+					</div>
+				</div>						
+				<table class="fl-table" id="myTable">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nombre Proveedor</th>
+							<th>Email</th>
+							<th>Direccion</th>
+							<th>Telefono</th>
+							<th>Responsable de atención</th>
+							<th>Modificar</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% for (var i = 0; i< resp.length; i++) { %>
+						<tr>
+							<td><%= i+1%></td>
+							<td><%=resp[i].nombre%></td>
+							<td><%=resp[i].email%></td>
+							<td><%=resp[i].direccion%></td>
+							<td><%=resp[i].telefono%></td>
+							<td><%=resp[i].empresa%></td>
+							<td><a href="/proveedores/OnlyProveedor/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+						</tr>
+						<% } %>
+					<tbody>
+				</table>
 			</div>
 		</div>
-		</section>
+	</section>
 	<!--====== Scripts -->
 	<%- include("../partials/scripts") -%>
 </body>
