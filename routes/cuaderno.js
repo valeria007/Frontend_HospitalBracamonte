@@ -272,9 +272,10 @@ router.post('/docCuaderno', (req,res) => {
     .catch(error => console.error('Error:', error))
     .then(data => {     
         id_docCuaderno =  data.data.id
+        console.log(data);
         res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno )   
        
-    })  
+    }) 
 })
 
 //ruta para poder actualizar 

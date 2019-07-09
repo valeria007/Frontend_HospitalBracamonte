@@ -18,9 +18,6 @@
 			<li class="pull-left">
 				<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 			</li>
-			<li>
-				<a href="#!" class="btn-search"><i class="zmdi zmdi-search"></i></a>
-			</li>
 		</ul>
 	</nav>
 	<!-- Content page -->
@@ -40,15 +37,15 @@
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="new">
 						<div class="table-responsive">
-							<div class="table-wrapper">
-								<div id="correo">
-									<div class="entrada">
-										<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-									</div>
-									<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-										<input type="text" id="searchInput" placeholder="Buscar.."><br>
-									</div>
+							<div id="correo">
+								<div class="entrada">
+									<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
 								</div>
+								<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+									<input type="text" id="searchInput" placeholder="Buscar.."><br>
+								</div>
+							</div>
+							<div class="table-wrapper">
 								<table class="fl-table" id="myTable">
 									<thead>
 										<tr>
@@ -102,10 +99,10 @@
 								<div id="tres2">
 									<div class="entrada">Grupo de Asignación:<br>
 										<select  name="grupoAsig">
-												<% for(var i=0; i< dataGRUPOa.length; i++) {%>
-												<option><%=dataGRUPOa[i].descripcion%></option>
-												<% } %>
-											</select><br>
+											<% for(var i=0; i< dataGRUPOa.length; i++) {%>
+											<option><%=dataGRUPOa[i].descripcion%></option>
+											<% } %>
+										</select><br>
 									</div>
 									<div class="entrada">Codificación:<br>
 										<input type="text" name="codificacion"><br>
@@ -129,24 +126,22 @@
 									</div>
 								</div>
 								<div id="correo">
-										<div class="entrada">Fecha de Llegada:<br>
-											<input type="date" name="fechaLLEgada"><br>
-										</div>
-										
-										<div class="entrada">Cantidad:<br>
-											<input type="text" name="cantidad"><br>
-										</div>
-										
-										<div class="entrada">Cantidad por Unidades:<br>
-											<input type="text" name="unidades"><br>
-										</div>
-										<div class="entrada">Fecha de Vencimiento:<br>
-											<input type="date" name="fechaVencimiento"><br>
-										</div>
-										<div class="entrada">Precio:<br>
-											<input  type="text" name="precio"><br>
-										</div>
+									<div class="entrada">Fecha de Llegada:<br>
+										<input type="date" name="fechaLLEgada"><br>
 									</div>
+									<div class="entrada">Cantidad:<br>
+										<input type="text" name="cantidad"><br>
+									</div>
+									<div class="entrada">Cantidad por Unidades:<br>
+										<input type="text" name="unidades"><br>
+									</div>
+									<div class="entrada">Fecha de Vencimiento:<br>
+										<input type="date" name="fechaVencimiento"><br>
+									</div>
+									<div class="entrada">Precio:<br>
+										<input  type="text" name="precio"><br>
+									</div>
+								</div>
 							</div>
 							<p class="text-center">
 								<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
