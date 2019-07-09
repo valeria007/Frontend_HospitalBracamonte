@@ -79,10 +79,10 @@ router.post('/updatePersonal/:id',(req,res) => {
 
 router.get('/UsuraioCuenta/:id', (req,res) => {
   var id = req.params
-  fetch('http://127.0.0.1:3600/usuarios/mostrarCuentas/'+id.id)
+  fetch('http://localhost:3600/usuarios/mostrarCuentas/'+id.id)
         .then(resp => resp.json())
         .then(resp =>{
-          //console.log(resp)
+          console.log(resp)
           if (resp == null){
             res.render('usuarioCuenta',{
               id,
