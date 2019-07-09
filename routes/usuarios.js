@@ -77,20 +77,20 @@ router.post('/updatePersonal/:id',(req,res) => {
 });
 
 
-router.get('/UsuraioCuenta/:id', (req,res) => {
-  var id = req.params
-  fetch('http://localhost:3600/usuarios/mostrarCuentas/'+id.id)
+router.get('/UsuraioCuenta', (req,res) => {
+  
+  fetch('http://localhost:3600/api/list')
         .then(resp => resp.json())
         .then(resp =>{
-          console.log(resp)
+          //console.log(resp)
           if (resp == null){
             res.render('usuarioCuenta',{
-              id,
+              
               resp
             });
           }else{
             res.render('usuarioCuenta',{
-              id,
+            
               resp
             });
           }
@@ -109,7 +109,7 @@ router.post('/crearCuenta/:id', (req,res) => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://127.0.0.1:3600/usuarios/userCuenta/'+id.id,enviar)
+  fetch('http://localhost:3600/api/signup',enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
