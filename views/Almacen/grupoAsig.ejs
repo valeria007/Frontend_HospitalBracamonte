@@ -17,11 +17,6 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
 			</ul>
 		</nav>
 		<!-- Content page -->
@@ -48,15 +43,15 @@
 					</p>
 				</form>
         <div class="table-responsive">
-					<div class="table-wrapper">
-						<div id="correo">
-							<div class="entrada">
-								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-							</div>
-							<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-								<input type="text" id="searchInput" placeholder="Buscar.."><br>
-							</div>
+					<div id="correo">
+						<div class="entrada">
+							<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
 						</div>
+						<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+							<input type="text" id="searchInput" placeholder="Buscar.."><br>
+						</div>
+					</div>
+					<div class="table-wrapper">
 						<table class="fl-table" id="myTable">
 							<thead>
 								<tr>

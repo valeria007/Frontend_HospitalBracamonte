@@ -1,4 +1,4 @@
-@import "compass/css3";
+
 /* 
  Author: Sravan Kumar
  Website: http://wittysparks.com
@@ -51,6 +51,15 @@ input[type="password"], select, textarea {
   border-radius: 4px;
 }
 input[type="date"], select, textarea {
+  padding: 5px;
+  width: 96%;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  border-radius: 4px;
+}
+input[type="descripcion"], select, textarea {
   padding: 5px;
   width: 96%;
   border: 1px solid #ccc;

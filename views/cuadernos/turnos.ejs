@@ -27,6 +27,7 @@
             </div>
         </div>
         <%if (modifDoct == null) { %>
+        <div class="container-fluid">
         <form id="form" action="/cuaderno/docCuaderno" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
             <div class="grupo" id="cabeza">
                 <div id="correo">
@@ -62,11 +63,11 @@
                 <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
             </p>
         </form>
+        </div>
         <% } else { %>
-
+            <div class="container-fluid">
             <form id="form" action="/cuaderno/updateDoctCuaderno/<%=modifDoct[0].id%>" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
                 <div class="grupo" id="cabeza">
-                    <a href="/cuaderno/limpiarMDoc">AÑADIR NUEVO</a>
                     <div id="correo">
                         <div class="entrada">Doctor:<br>
                             <select name="nombre" >
@@ -102,10 +103,11 @@
                     
                 </div>
                 <p class="text-center">
-                    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                    <a class="btn btn-success btn-lg active btn-raised" role="button" aria-pressed="true" href="/cuaderno/limpiarMDoc"><i class="zmdi zmdi-long-arrow-return"> VOLVER</a></i>
                     <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Modificar</button>
                 </p>
             </form>
+        </div>
             <% } %>
         <div class="table-responsive">
 			<h3 class="text-center all-tittles">LISTA DE DOCTORES</h3>

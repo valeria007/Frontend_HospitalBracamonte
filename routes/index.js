@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+const datas = require('./url/export');
+
 router.get('/',(req, res) => {
-  console.log(alert, "         esto es los errores  <<<<<<<<<<<<<")
-  res.render('index', { msg, alert })
+  res.render('index', { msg1, msg2, msg3 })
 });
 
 router.get('/index2', (req,res) => {
@@ -15,26 +16,25 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
-var msg, alert = [];
+var msg1,msg2,msg3 ;
 router.post('/login', (req,res)  => {
   
   const username = req.body.username;
   const password = req.body.password;  
  
   if(username =="" ){
-    msg='Introdusca por favor la cuenta.';
-    alert.push({ mensaje : "Introdusca por favor la cuenta.", id: "1" })
+    msg3 = null
+    msg1='Introdusca por favor la cuenta.';
     res.redirect('/')
     
   }else if( password == "" ){
-
-    msg = 'Introdusca password.'
-    alert.push({ mensaje1: "Introdusca password.", id: "2" })  
+    msg3 = null
+    msg2 = 'Introdusca password.'
     res.redirect('/')   
 
   }else {
     var data = req.body;
-  var enviar = {
+    var enviar = {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -45,14 +45,26 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    console.log(resp)
-    if(resp.message == 'Autentificacion fallida.'){
-      res.send('usted no esta registrado')
+    
+    if(resp.user == false){
+      msg1=null;
+      msg2=null;
+      msg3 =" Usted no esta registrado "
+      res.redirect('/')   
     }else if(resp.success == false){
-      res.send('contraseña incorrecta')
+      msg1=null;
+      msg2=null;
+      msg3 = " Contraceña Incorrecta "
+      res.redirect('/')   
     }else{
-      alert = [];
+      msg1=null;
+      msg2=null;
+      msg3 = null;
+      datas.name.token = resp.token
+      console.log( datas.name.token)
+
       res.redirect('/home')
+
     }
     
   })

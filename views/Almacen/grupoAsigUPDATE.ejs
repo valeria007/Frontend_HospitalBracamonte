@@ -17,11 +17,6 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
 			</ul>
 		</nav>
 		<!-- Content page -->
@@ -31,26 +26,23 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-            <div class="row">
-                <form action="/almacen/updateGPA/<%=resp[0].id%>" method="POST">
-						<div class="grupo" id="cabeza">
-							<div id="correo">
-								<div class="entrada">Codigo:<br>
-									<input type="text" value="<%=resp[0].codigo%>" name="codigo"><br>
-								</div>
-								<div class="entrada">Descripción:<br>
-									<input type="text" value="<%=resp[0].descripcion%>" name="descripcion"><br>
-								</div>
-							</div>
+      <form action="/almacen/updateGPA/<%=resp[0].id%>" method="POST">
+				<div class="grupo" id="cabeza">
+					<div id="correo">
+						<div class="entrada">Codigo:<br>
+							<input type="text" value="<%=resp[0].codigo%>" name="codigo"><br>
 						</div>
-						<p class="text-center">
-							<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-							<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-						</p>
-					</form>
-                </div>
-
-        </div>
+						<div class="entrada">Descripción:<br>
+							<input type="text" value="<%=resp[0].descripcion%>" name="descripcion"><br>
+						</div>
+					</div>
+				</div>
+				<p class="text-center">
+					<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+					<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+				</p>
+			</form>
+    </div>
 	</section>
 	<!--====== Scripts -->
 	<%- include("../partials/scripts") -%>

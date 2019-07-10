@@ -117,6 +117,12 @@ HEADER
 	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
 }
 
+.alerta{
+	font-size: 20px;	
+	color: #db0000;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+}
+
 /*******************
 CONTENT
 *******************/

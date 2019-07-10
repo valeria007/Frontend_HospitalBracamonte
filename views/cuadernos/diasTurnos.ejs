@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <%- include("../partials/head") -%>
-    <link rel="stylesheet" href="/css/form1.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -26,6 +25,7 @@
                 <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Dar Doctor </h1>
             </div>
         </div>
+        <div class="container-fluid">
         <form id="form" action="/cuaderno/turnos" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
             <div class="grupo" id="cabeza">
                 <div id="correo">
@@ -70,6 +70,7 @@
                 <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> Guardar</button>
             </p>
         </form>
+        </div>
         <div class="table-responsive">
 			<h3 class="text-center all-tittles">LISTA DE TURNOS</h3>
             <div class="table-wrapper">

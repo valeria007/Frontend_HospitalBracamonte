@@ -1,6 +1,6 @@
 const citas = new Vue({
     el:"#citas",
-    data: () => ({
+    data: () => ({ 
         dia:'Lunes',
         turno:'Mañanas',
         especialidades:'',
