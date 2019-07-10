@@ -72,6 +72,9 @@
                                         <th class="" WIDTH="20%">Sala</th>	
                                         <th class="" WIDTH="20%">N° Cama</th>	
                                         <th class="" WIDTH="20%">Doctor</th>
+                                        <th class="" WIDTH="20%">Dar Receta</th>
+                                        <th class="" WIDTH="20%">Diagnostico </th>
+                                        <th class="" WIDTH="20%">Laboratorios</th>
                                         <th class="text-center" WIDTH="20%">Ver</th>  
                                     </tr>
                                 </thead>
@@ -86,6 +89,9 @@
                                                 <td><%=paciente_internacion[i].Cama.Sala.descripcionSala %></td>
                                                 <td><%=paciente_internacion[i].Cama.numeroCama %></td>
                                                 <td><%=paciente_internacion[i].doctor %></td>
+                                                <td class="text-center" ><a href="/internaciones/traerInternacion/<%=paciente_internacion[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                <td class="text-center" ><a href="#" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                <td class="text-center" ><a href="#" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
                                                 <td class="text-center" ><a href="/internaciones/only_pInternacion/<%=paciente_internacion[i].idPinternacion%>/<%=paciente_internacion[i].provieneDE%>/<%=paciente_internacion[i].historial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
                                                 
                                             </tr>
@@ -213,10 +219,7 @@
                                         <div class="col-xs-12 col-md-10 col-md-offset-1">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre Doctor</label>
-                                                <select class="form-control" name="doctor">
-                                                    <option>Dr. Luis Copa</option>
-                                                    
-                                                </select>
+                                                <input class="form-control" type="text" name="doctor">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-md-10 col-md-offset-1">
@@ -347,11 +350,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                            </div>
+                                            <div class="col-xs-12 col-md-10 col-md-offset-1">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Nombre Doctor</label>
-                                                    <select class="form-control" name="doctor">
-                                                        <option><%=formUpdate_internacion[0].doctor%></option>                                                        
-                                                    </select>
+                                                    <label class="control-label">Nombre Docotor:</label>
+                                                    <input class="form-control" type="text" name="doctor" value="<%=formUpdate_internacion[0].doctor%>">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-md-10 col-md-offset-1">

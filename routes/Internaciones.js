@@ -44,7 +44,7 @@ router.get('/VUe_list_camas/:id_Sala', (req,res) => {
 */
 //para renderizar una vista de botones donde esta doctor y enfermera temporalmente
 router.get('/viewTemporal', (req,res) => {
-    fetch(url.name.cuadernos+'/api/especialidad') // esta ruta solo trae los datos de tipo true
+    fetch(url.name.cuadernos+'/api/especialidad')
     .then(resp => resp.json())
     .then(resp =>{
         res.render('hospitalizaciones/viewFirst',{
@@ -308,6 +308,96 @@ router.post('/update_Form_internacion/:id/:id_cama', (req,res) => {
         console.log(data, "esto es la respuesta del post" )
         res.redirect('/internaciones/update_estado_cama/'+id_cama)        
     }) 
+})
+
+/*
+<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<
+            Recetas de internacion
+>>>>>>><<<<<<<<<<>>>>>>>>>><<<<>>><>>><<>>><<>>><
+<<<<<<<>><<<<><<<>><<<><<<>><<>>><<>>><<>>>><<<>>
+*/
+
+router.get('/receta_internacion', (req,res) => {
+    if(especialidad1 == null){
+        res.redirect('/internaciones/viewTemporal')
+    }else{
+        res.render('hospitalizaciones/receta',{
+            especialidad:especialidad1,
+            data_internacion,
+            One_paciente
+        })
+    }    
+})
+
+var One_paciente
+router.get('/paciente_One',(req,res) => {
+    fetch('http://localhost:3000/api/onlyPaciente/'+data_internacion[0].historial)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        One_paciente = data;
+        res.redirect('/internaciones/receta_internacion')        
+    }) 
+})
+
+var data_internacion;
+router.get('/traerInternacion/:id_internacion', (req,res) => {
+    const { id_internacion } = req.params;
+    fetch('http://localhost:3000/api/One_Internacion/'+id_internacion)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        data_internacion = data;
+        res.redirect('/internaciones/paciente_One')        
+    }) 
+})
+
+/*router.post('/receta/:id_internacion', (req,res) => {
+    const { id_internacion } = req.params
+    var med = req.body.medicamentos;
+    var data = {
+        receta_de:req.body.receta_de,
+        historial:req.body.historial,
+        fechaEmicion: req.body.fechaEmicion,
+        nombre_doctor:req.body.nombre_doctor,
+        medicamentos : JSON.stringify(med),
+    }
+
+    res.send(data)
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/receta_interncaion/'+id_internacion,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.send(data)   
+    }) 
+})*/
+
+///ruta para enviar receta
+router.post('/vuePOstReceta/:id', (req,res) => {
+    const { id } = req.params;
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/receta_interncaion/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        console.log(data)
+        res.status(200).json(data)
+    })
 })
 
 module.exports = router;

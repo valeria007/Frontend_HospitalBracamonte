@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <%- include("../partials/head") -%>
+</head>
+<body class="dashboard-sideBar-imagg cover">
+  <!-- SideBar -->
+  <%- include("partials/menu") -%>
+  <!-- SideBar Menu Hospital-->
+  <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+        <li>
+            <a href="/internaciones/hospitalizacion/<%=especialidad%>">
+                <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=especialidad%>
+            </a>
+        </li>
+
+        <!-- Emergencias -->
+        <li>
+            <a href="#!" class="btn-sideBar-SubMenu">
+                <i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
+            </a>
+            <ul class="list-unstyled full-box">
+                <li><a href="/internaciones/ListaInternacionF/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+
+            </ul>
+        </li> 
+    </ul>
+<%- include("partials/footer") -%>
+    <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+        <!-- NavBar -->
+        <nav class="full-box dashboard-Navbar">
+            <ul class="full-box list-unstyled text-right">
+                <li class="pull-left">
+                    <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Content page -->
+        <div class="container-fluid" >
+            <div class="page-header">
+                  <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Receta de <%=especialidad%> </h1>
+            </div>
+        </div>
+        <div class="container-fluid" id="tableLIst">
+            <form v-on:submit="post(<%=data_internacion[0].id%>)" action="#" method="post">
+                <div class="grupo" id="cabeza">
+                    <h3 class="text-center"> Datos Personales</h3>
+                    <div id="cuatro">
+                        <div class="entrada">Historial Clinico:<br>
+                            
+                            <select name="" id="" v-model="historial">
+                                <option><%=data_internacion[0].historial%></option>
+                            </select>
+                        </div>
+                        <div class="entrada">Nombre del Paciente:<br>
+                            <label><font color="black"><%=One_paciente[0].nombre%> <%=One_paciente[0].apellidop%> <%=One_paciente[0].apellidom%></font></label>
+                        </div>
+                        <div class="entrada">Fecha de Nacimineto:<br>
+                            <label><font color="black"><%=One_paciente[0].fechanacimiento%></font></label>
+                        </div>
+                        <div class="entrada">Docotor:<br>
+                           
+                            <select name="" v-model="doctor">
+                                <option selected><%=data_internacion[0].doctor%></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="tres2">                          
+                        <div class="entrada">Fecha Prescripcion:<br>
+                            <input name="fechaEmicion" type="date"  v-model='fecha_prescripcion'>
+                        </div>
+                    </div>                    
+                </div> 
+                <br>
+                <div >
+                    <p>Datos del Medicamento</p>
+                    <div id="cuatro">
+                        <div class="entrada">Prescripcion:<br>
+                            <input type="text" v-model="prescripcion">
+                        </div>
+                        <div class="entrada">Intruciones:<br>
+                            <input type="text" v-model="instruciones">
+                        </div>
+                        <div class="entrada">Duracion de Tratamiento:<br>
+                            <input type="text" v-model="duracion_tratamiento" >
+                        </div>
+                        <div class="entrada">Observaciones:<br>
+                            <input type="text" v-model="observaciones">
+                        </div>                       
+                    </div>   
+                    <a @click="insertar">Insertar</a>
+                    <div>
+                        <table class="fl-table" >
+                                 <tr>
+                                     <th>#</th>
+                                     <th>Prescripcion</th>
+                                     <th>Intruciones</th>
+                                     <th>Duracion de Tratamiento</th>
+                                     <th>Observaciones</th>
+                                 </tr>
+                                <tr v-for="(list, index) in lista">
+                                    <td> </td>
+                                    <td>{{index + 1}}</td>
+                                    <td>{{list.prescripcion}}</td>
+                                    <td>{{list.instruciones}}</td>
+                                    <td>{{list.duracion_tratamiento}}</td>
+                                    <td>{{list.observaciones}}</td>
+                                </tr>     
+                        </table>
+                    </div>             
+                    
+                </div>                                       
+                <p class="text-center">
+                    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                    <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                </p>
+            </form>
+            
+        </div>
+    </section> 
+    <%- include("../partials/scripts") -%> 
+    <script src="/js/vue/recetaInternacion.js"></script>
+</body>
+</html>
