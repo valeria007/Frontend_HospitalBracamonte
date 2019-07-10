@@ -66,16 +66,16 @@ $(document).ready(function() {
 
   });
  
-  $("#correo").keyup(function() {
+  $("#email").keyup(function() {
     
-        var correo = $('#correo').val();
-        if(correo == ""){
+        var email = $('#email').val();
+        if(email == ""){
           $('#error3').text("La dirección de correo electrónico es obligatoria.").css("color","red");
         }else{
-          fetch('http://localhost:3600/usuarios/usersAll')
+          fetch('http://localhost:3600/api/list')
             .then(res => res.json())
             .then(data =>{                
-              const resultado = data.find( traer => traer.correo === correo );              
+              const resultado = data.find( traer => traer.email === email );            
               if(resultado != null){
               
                 $('#su').text("Ese email ya esta en uso. Prueba con otro").css("color","red")

@@ -26,15 +26,15 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-				<form action="/usuarios/crearCuenta" method="POST">
+				<form action="/usuarios/crearCuenta" method="POST" onsubmit="return validar()">
 					<div class="grupo" id="cabeza">
 						<div id="cuatro">
 							<div class="entrada">Cuenta:<br>
-								<input  type="email" name="correo" id="correo">
-								<span id="su"></span><br>
+								<input  type="text" name="cuenta" id="cuenta" > 
+							<!--<span id="su"></span><br>-->	
 							</div>
 							<div class="entrada">Email:<br>
-								<input  type="email" name="correo" id="correo">
+								<input  type="email" name="email" id="email">
 								<span id="su"></span><br>
 							</div>
 							<div class="entrada">Contraseña:<br>

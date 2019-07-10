@@ -2,15 +2,25 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+const datas = require('./url/export');
+
 router.get('/usuarios',(req, res) => {
-    fetch('http://127.0.0.1:3600/personal/personal/')
+  var esto = {
+    method: 'GET',
+    headers:{
+      'Content-type' : "application/json",
+      'Authorization': datas.name.token
+    }
+  }
+    fetch('http://localhost:3600/api/personal/',esto)
         .then(resp => resp.json())
         .then(resp =>{
+          ///console.log(resp, "esto es el mensaje")
         res.render('usuarios',{resp, msg });
      })
-     .catch(error => {
+     .catch(error => {       
       console.error('Error:', error)
-      res.send("no hay coneccion con el servidor de usurios");
+      res.redirect('/')
   })
 });
   var msg
@@ -26,14 +36,15 @@ router.post('/usuarios', (req,res) => {
         method: 'POST',
         body: JSON.stringify(data),
         headers:{
-          'Content-type' : "application/json"
+          'Content-type' : "application/json",
+          'Authorization': datas.name.token
         }
     };
-    fetch('http://127.0.0.1:3600/personal/personal/',esto)
+    fetch('http://localhost:3600/api/personal/',esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
-       // console.log(data.success);
+       
         if (data.success == false){
             res.send(data)
         }else{
@@ -68,7 +79,7 @@ router.post('/updatePersonal/:id',(req,res) => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://127.0.0.1:3600/personal/updatePersonal/'+id.id,enviar)
+  fetch('http://localhost:3600/api/updatePersonal/'+id.id,enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
