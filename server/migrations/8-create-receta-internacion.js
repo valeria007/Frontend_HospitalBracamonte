@@ -1,36 +1,35 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Camas', {
+    return queryInterface.createTable('receta_internacions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      historial: {
-        type: Sequelize.INTEGER, 
-      },
-      estado: {
-        type: Sequelize.BOOLEAN, 
-        allowNull: false, 
-        defaultValue: true
-      },
-      descripcion: {
-        allowNull: false,
+      receta_de: {
         type: Sequelize.STRING
       },
-      numeroCama: {
-        allowNull: false,
+      historial: {
         type: Sequelize.INTEGER
       },
-      salaID: {
+      fechaEmicion: {
+        type: Sequelize.STRING
+      },
+      nombre_doctor: {
+        type: Sequelize.TEXT
+      },
+      medicamentos: {
+        type: Sequelize.JSON
+      },
+      id_internacion: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Salas',
+          model: 'Internaciones',
           key: 'id',
-          as: 'salaID',
+          as: 'id_internacion',
         }
       },
       createdAt: {
@@ -44,6 +43,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Camas');
+    return queryInterface.dropTable('receta_internacions');
   }
 };

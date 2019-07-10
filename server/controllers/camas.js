@@ -5,10 +5,11 @@ import model from '../models';
 
     class Cama {
         static sendCama(req, res){
-            const { estado,descripcion, numeroCama } = req.body
+            const { historial,estado,descripcion, numeroCama } = req.body
             const  { salaID }  = req.params
             return Camas
             .create({
+              historial,
               estado,
               descripcion,
               numeroCama,
@@ -31,7 +32,7 @@ import model from '../models';
         static only(req, res){                
         var id = req.params.id;  
         Camas.findAll({
-           where: {salaID: id}
+           where: {salaID: id, estado: true}
            //attributes: ['id', ['description', 'descripcion']]
          }).then((data) => {
            res.status(200).json(data);
@@ -90,6 +91,57 @@ import model from '../models';
                 .catch(error => res.status(400).send(error));
             })
             .catch(error => res.status(400).send(error))
+        }
+
+        //ruta para poder cambiar el estado de la cama y poder añadir el paciente con su historial clinico
+        static CamaEstado(req,res){
+          const { idCama } = req.params;
+          const { historial } = req.params;
+          var estado ;
+          return Camas
+          .findByPk(idCama)
+          .then((data) => {
+            data.update({
+              historial: historial || data.historial,
+              estado : estado  || data.estado == false             
+            })
+            .then(update => {
+              res.status(200).send({
+                message: 'se actualizo el estado de cama',
+                data : {
+                  historial: historial || update.historial,
+                  estado : estado  || update.estado 
+                }
+              })
+              .catch(error => res.status(400).send(error))
+            })
+            .catch(error => res.status(400).send(error))
+          })
+        }
+
+        //ruta para poder actulizar el estado una cama a false y quitar de esa cama a null
+        static Update_cama_estado(req,res){
+          const { idCama } = req.params;  
+          const { estado, historial } = req.body;       
+          return Camas
+          .findByPk(idCama)
+          .then((data) => {
+            data.update({
+              historial: historial || data.historial,
+              estado : estado  || data.estado             
+            })
+            .then(update => {
+              res.status(200).send({
+                message: 'Se actualizo el estado de cama',
+                data : {
+                  historial: historial || update.historial,
+                  estado : estado  || update.estado 
+                }
+              })
+              .catch(error => res.status(400).send(error))
+            })
+            .catch(error => res.status(400).send(error))
+          })
         }
 
     }

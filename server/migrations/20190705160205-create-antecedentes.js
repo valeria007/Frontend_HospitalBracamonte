@@ -1,36 +1,35 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Camas', {
+    return queryInterface.createTable('antecedentes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      historial: {
-        type: Sequelize.INTEGER, 
+      familiares: {
+        type: Sequelize.TEXT
       },
-      estado: {
-        type: Sequelize.BOOLEAN, 
-        allowNull: false, 
-        defaultValue: true
+      personales_patologicos: {
+        type: Sequelize.TEXT
+      },
+      personales_no_patologicos: {
+        type: Sequelize.TEXT
+      },
+      gineco_obstetrico: {
+        type: Sequelize.TEXT
       },
       descripcion: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
-      numeroCama: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      salaID: {
+      id_paciente: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Salas',
+          model: 'Pacientes',
           key: 'id',
-          as: 'salaID',
+          as: 'id_paciente',
         }
       },
       createdAt: {
@@ -44,6 +43,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Camas');
+    return queryInterface.dropTable('antecedentes');
   }
 };

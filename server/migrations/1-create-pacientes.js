@@ -32,10 +32,6 @@ module.exports = {
         allowNull:false,
         type: Sequelize.STRING
       },
-      edad:  {
-        
-        type: Sequelize.INTEGER
-      },
       sexo:  {
         allowNull:false,
         type: Sequelize.STRING
@@ -77,39 +73,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       municipio: {
-       
-        type: Sequelize.STRING
-      },
-      
-      npadre:  {
-       
-        type: Sequelize.STRING
-      },
-      apspadre: {
-        
-        type: Sequelize.STRING
-      },
-      nmadre: {
-        
-        type: Sequelize.STRING
-      },
-      apsmadre: {
-       
-        type: Sequelize.STRING
-      },
-      nomrespon:  {
-        
-        type: Sequelize.STRING
-      },
-      aperespon:  {
-       
-        type: Sequelize.STRING
-      },
-      telefres:  {
-        
-        type: Sequelize.INTEGER
-      },
-      direcres:  {
        
         type: Sequelize.STRING
       },

@@ -1,64 +1,46 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Internaciones', {
+    return queryInterface.createTable('examen_fisicos', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      historial: {
-        type: Sequelize.INTEGER
-      },
-      fechaIngreso: {
-        type: Sequelize.STRING
-      },
-      tipoPaciente: {
-        type: Sequelize.STRING
-      },
-      institucion: {
-        type: Sequelize.STRING
-      },
-      provieneDE: {
-        type: Sequelize.STRING
-      },
-      observacion: {
+      estado_general: {
         type: Sequelize.TEXT
       },
-      especialidad: {
+      facies: {
         type: Sequelize.STRING
       },
-      sala: {
+      precion_arterial: {
         type: Sequelize.STRING
       },
-      cama: {
+      estado_nutricional: {
         type: Sequelize.STRING
       },
-      doctor: {
+      peso: {
         type: Sequelize.STRING
       },
-      diagnostico: {
-        type: Sequelize.TEXT
+      frecuencia_cardiaca: {
+        type: Sequelize.STRING
       },
-      idCama: {
+      saturacion_oxigeno: {
+        type: Sequelize.STRING
+      },
+      fecha_revision: {
+        type: Sequelize.STRING
+      },
+      id_paciente: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Camas',
+          model: 'Pacientes',
           key: 'id',
-          as: 'idCama'
+          as: 'id_paciente',
         }
       },
-      idPinternacion: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'PapeletaInternacions',
-          key: 'id',
-          as: 'idPinternacion'
-        }
-      },      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -70,6 +52,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Internaciones');
+    return queryInterface.dropTable('examen_fisicos');
   }
 };

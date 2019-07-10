@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     apellidom: DataTypes.STRING,
     ci: DataTypes.STRING,
     fechanacimiento: DataTypes.STRING,
-    edad: DataTypes.INTEGER,
     sexo: DataTypes.STRING,
     estadocivil: DataTypes.STRING,
     direccion: DataTypes.STRING,
@@ -19,19 +18,23 @@ module.exports = (sequelize, DataTypes) => {
     departameto: DataTypes.STRING,
     provincia: DataTypes.STRING,
     municipio: DataTypes.STRING,
-    npadre: DataTypes.STRING,
-    apspadre: DataTypes.STRING,
-    nmadre: DataTypes.STRING,
-    apsmadre: DataTypes.STRING,
-    nomrespon: DataTypes.STRING,
-    aperespon: DataTypes.STRING,
-    telefres: DataTypes.INTEGER,
-    direcres: DataTypes.STRING
   }, {});
   Pacientes.associate = function(models) {
     // associations can be defined here
     Pacientes.hasMany(models.Citas_Medicas, {
       foreignKey: 'id_Paciente',
+    });
+    Pacientes.hasMany(models.responsables, {
+      foreignKey: 'id_paciente',
+    });
+    Pacientes.hasMany(models.antecedentes, {
+      foreignKey: 'id_paciente',
+    });
+    Pacientes.hasMany(models.alergias, {
+      foreignKey: 'id_paciente',
+    });
+    Pacientes.hasMany(models.examen_fisico, {
+      foreignKey: 'id_paciente',
     });
   };
   return Pacientes;

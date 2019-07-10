@@ -9,6 +9,12 @@ import papeletaInt from '../controllers/papeletaInternacion';
 import Emergencias from '../controllers/emergencia';
 import Intern from '../controllers/internacion';
 
+import Responsables from '../controllers/responsable_paciente';
+import Antecedentes from '../controllers/antecedentes_paciente';
+import Alergias from '../controllers/alergias_paciente';
+
+import RecetaInternacion from '../controllers/receta_internacion';
+
 
 export default (app) => {
 
@@ -39,6 +45,8 @@ app.get('/api/camaSala/:id', Camas.only);   // Camas De sala
 app.get('/api/OnlyCama/:id', Camas.onlyCama); // para actualizar la cama
 app.post('/api/OnlyCama/:id', Camas.updateCama);
 app.get('/api/DElcama/:id', Camas.delCama);
+app.get('/api/updateEstadoCama/:idCama/:historial', Camas.CamaEstado); // esta ruta es para poder cambiar el estado del paciente y poder insertar el historial del paciente
+app.post('/api/updateCama_estado/:idCama',Camas.Update_cama_estado); // esta ruta es para canviar el estado de la cama a false y borrar el historial
 
 ///reg_pacientes
 app.post('/api/pacientes', Paciente.registroPaciente);
@@ -93,6 +101,8 @@ app.get('/api/PinterTrue/:especialidad', papeletaInt.PINterTRUE);// serv para tr
 app.get('/api/PinterFalse/:especialidad', papeletaInt.PINterFALSE);// serv para traer papeleta de internacion de tipo false
 app.get('/api/one_Pinternacion/:id/:tipoCons', papeletaInt.idPinternacion); // 
 
+app.get('/api/estado_p_internacion/:idPinternacion', papeletaInt.estadoPInternacion); // esta ruta es para poder cambiar el estado de papeleta de internacion
+
 //Emergencia
 app.post('/api/emeregencia/:idCita', Emergencias.Emergencia);
 app.get('/api/emeregencia', Emergencias.getEmergencia);
@@ -103,7 +113,29 @@ app.get('/api/emergenciaData/:id', Emergencias.dataEmergecnai); // este serv sir
 app.get('/api/EmergenciaP/:id', Emergencias.emergenciaP); // esta ruta sirve para mostrar una emergencia del paciente segun si id de la emergencia
 
 //Internaciones
-app.post('/api/internaciones', Intern.Internacion);
+app.post('/api/internaciones/:idPinternacion/:idCama', Intern.Internacion);
 app.get('/api/internciones', Intern.listInternaciones);
+app.get('/api/delete_form_internacion/:id', Intern.delete_internacion);
+app.get('/api/one_Form_internacion/:id_Pinternacion', Intern.One_form_Internacion);
+app.get('/api/list_internacion_paciente/:id_Pinternacion/:historial', Intern.list_internacion_paciente);
+app.post('/api/update_form_internacion/:id', Intern.update_form_internacion) // ruta para actulizar form internacion
+app.get('/api/One_Internacion/:id', Intern.One_Internacion);
 
+
+//responssables del apciente
+app.post('/api/responsable', Responsables.respRegsitro);
+app.get('/api/responsable', Responsables.list_tesponsable);
+
+//antecedentes del paciente
+app.post('/api/antecedentes', Antecedentes.reg_antecedente);
+app.get('/api/antecedentes', Antecedentes.list_antecedentes);
+
+//alergais de de los pacientes
+app.post('/api/alergias', Alergias.reg_alergias);
+app.get('/api/alergias', Alergias.list_alergias);
+
+
+//receta de Internacion
+app.post('/api/receta_interncaion/:id_internacion', RecetaInternacion.reg_recetaInter);
+app.get('/api/list_receta_internacion', RecetaInternacion.listReceta_internacion);
 };

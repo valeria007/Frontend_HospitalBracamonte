@@ -12,13 +12,16 @@ module.exports = (sequelize, DataTypes) => {
     cama: DataTypes.STRING,
     doctor: DataTypes.STRING,
     diagnostico: DataTypes.TEXT,
-    IDsala: DataTypes.INTEGER,
+    idCama: DataTypes.INTEGER,
     idPinternacion: DataTypes.INTEGER
   }, {});
   Internaciones.associate = function(models) {
     // associations can be defined here
-    Internaciones.belongsTo(models.Salas, {
-      foreignKey: 'IDsala',
+    Internaciones.hasMany(models.receta_internacion, {
+      foreignKey: 'id_internacion',
+    });
+    Internaciones.belongsTo(models.Camas, {
+      foreignKey: 'idCama',
       onDelete: 'CASCADE'
     });
     Internaciones.belongsTo(models.PapeletaInternacion, {

@@ -71,7 +71,7 @@ class papeletaInt{
             include:[
               { model: Citas_Medicas, attributes:['id'],
             include:[
-              {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+              {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','fechanacimiento','sexo']}
             ]}]
            }]
         }).then((resp) => {
@@ -89,7 +89,7 @@ class papeletaInt{
             include:[
               { model: Citas_Medicas, attributes:['id'],
             include:[
-              {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+              {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','fechanacimiento','sexo']}
             ] }
             ]
            }
@@ -168,7 +168,7 @@ class papeletaInt{
           include:[
             { model: Citas_Medicas, attributes:['id'],
           include:[
-            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','fechanacimiento','sexo']}
           ] }
           ]
          }
@@ -185,7 +185,7 @@ class papeletaInt{
           include:[
             { model: Citas_Medicas, attributes:['id'],
           include:[
-            {model: Pacientes, attributes:['id','nombre','apellidop','apellidom','edad','sexo']}
+            {model: Pacientes, attributes:['id','nombre','apellidop','fechanacimiento','sexo']}
           ] }
           ]
          }
@@ -195,6 +195,27 @@ class papeletaInt{
       }); 
     }               
     
+  }
+
+  static estadoPInternacion(req,res){
+    var estado;
+    return PapeletaInternacion
+    .findByPk(req.params.idPinternacion)
+    .then((data) => {
+      data.update({
+        estado : estado  || data.estado == false
+      })
+      .then(update => {
+        res.status(200).send({
+          message: 'se actualizo el estado',
+          data : {
+            estado : estado  || update.estado 
+          }
+        })
+        .catch(error => res.status(400).send(error))
+      })
+      .catch(error => res.status(400).send(error))
+    })
   }
 }
 

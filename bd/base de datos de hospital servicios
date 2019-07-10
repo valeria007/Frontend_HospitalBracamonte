@@ -33,3 +33,16 @@ sequelize model:create --name Internaciones --attributes historial:integer,nombr
 sequelize model:create --name emergencia --attributes tipoAtencion:string,Nhistorial:bigint,nombreDoctor:text,apellidoD1:text,apellidoD2:text,motivoConsulta:text,diagnostico:text,tratamiento:text,observaciones:text,idCita:integer
  
 
+para paciente
+
+sequelize model:create --name responsables --attributes nombre:text,apellido1:text,apellido2:text,direccion:text,id_paciente:integer
+
+sequelize model:create --name antecedentes --attributes familiares:text,personales_patologicos:text,personales_no_patologicos:text,gineco_obstetrico:text,id_paciente:integer
+
+
+sequelize model:create --name alergias --attributes tipoAlergia:string,descripcion:text,id_paciente:integer
+
+sequelize model:create --name examen_fisico --attributes estado_general:text,facies:string,precion_arterial:string,estado_nutricional:string,peso:string,frecuencia_cardiaca:string,saturacion_oxigeno:string,fecha_revision:string
+
+sequelize model:create --name receta_internacion --attributes receta_de:string,historial:integer,fechaEmicion:string,nombre_doctor:text,medicamentos:text,id_internacion:integer
+ 
