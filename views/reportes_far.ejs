@@ -25,30 +25,320 @@
 				</li>
 			</ul>
 		</nav>
-        <!-- Content page -->
-        <div class="container text-right">
-          <div class="row">
-            <table border="2" class="table" id="tablaprueba">
-              <thead class="thead-dark">
-                <tr>
-                  <th>ID</th>
-                  <th>Nombres</th>
-                  <th>Ap Paterno</th>
-                  <th>Ap Materno</th>
-                  <th>Ap Materno</th>
+    
+    <div class="container-fluid">
+        <div class="page-header">
+          <h1 class="text-titles"><i class="zmdi zmdi-dns zmdi-hc-fw"></i> Almacenamiento </h1>
+        </div>
+      </div>
+    <!------ Include the above in your HEAD tag ---------->
+    
+   
+    <div id="correo">
+        <div class="entrada "><br>
+          <select  name="state" id="maxRows">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="70">70</option>
+            <option value="100">100</option>
+            <option value="5000">Show ALL Rows</option>
+          </select><br>
+        </div>
+        <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+          <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Buscar.." ><br>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <div class="table-wrapper">
+        <table class=" table  fl-table" id= "table-id" >
+            <thead>  
+              <tr>  
+                <th>ENO</th>  
+                <th>EMPName</th>  
+                <th>Country</th>  
+                <th>Salary</th>  
+              </tr>  
+            </thead>  
+            <tbody>  
+              <tr>  
+                <td>001</td>  
+                <td>Anusha</td>  
+                <td>India</td>  
+                <td>10000</td>  
+              </tr>  
+              <tr>  
+                <td>002</td>  
+                <td>Charles</td>  
+                <td>United Kingdom</td>  
+                <td>28000</td>  
+              </tr>  
+              <tr>  
+                <td>003</td>  
+                <td>Sravani</td>  
+                <td>Australia</td>  
+                <td>7000</td>  
+              </tr>  
+               <tr>  
+                <td>004</td>  
+                <td>Amar</td>  
+                <td>India</td>  
+                <td>18000</td>  
+              </tr>  
+              <tr>  
+                <td>005</td>  
+                <td>Lakshmi</td>  
+                <td>India</td>  
+                <td>12000</td>  
+              </tr>
+              <tr>  
+                  <td>001</td>  
+                  <td>Anusha</td>  
+                  <td>India</td>  
+                  <td>10000</td>  
+                </tr>  
+                <tr>  
+                  <td>002</td>  
+                  <td>Charles</td>  
+                  <td>United Kingdom</td>  
+                  <td>28000</td>  
+                </tr>  
+                <tr>  
+                  <td>003</td>  
+                  <td>Sravani</td>  
+                  <td>Australia</td>  
+                  <td>7000</td>  
+                </tr>  
+                 <tr>  
+                  <td>004</td>  
+                  <td>Amar</td>  
+                  <td>India</td>  
+                  <td>18000</td>  
+                </tr>  
+                <tr>  
+                  <td>005</td>  
+                  <td>Lakshmi</td>  
+                  <td>India</td>  
+                  <td>12000</td>  
                 </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-        
-            <div class="form-group">
-              <button type="button" class="btn btn-primary mr-2" onclick="agregarFila()">Agregar Fila</button>
-              <button type="button" class="btn btn-danger" onclick="eliminarFila()">Eliminar Fila</button>
-            </div>
+                <tr>  
+                    <td>001</td>  
+                    <td>Anusha</td>  
+                    <td>India</td>  
+                    <td>10000</td>  
+                  </tr>  
+                  <tr>  
+                    <td>002</td>  
+                    <td>Charles</td>  
+                    <td>United Kingdom</td>  
+                    <td>28000</td>  
+                  </tr>  
+                  <tr>  
+                    <td>003</td>  
+                    <td>Sravani</td>  
+                    <td>Australia</td>  
+                    <td>7000</td>  
+                  </tr>  
+                   <tr>  
+                    <td>004</td>  
+                    <td>Amar</td>  
+                    <td>India</td>  
+                    <td>18000</td>  
+                  </tr>  
+                  <tr>  
+                    <td>005</td>  
+                    <td>Lakshmi</td>  
+                    <td>India</td>  
+                    <td>12000</td>  
+                  </tr>
+                  <tr>  
+                      <td>001</td>  
+                      <td>Anusha</td>  
+                      <td>India</td>  
+                      <td>10000</td>  
+                    </tr>  
+                    <tr>  
+                      <td>002</td>  
+                      <td>Charles</td>  
+                      <td>United Kingdom</td>  
+                      <td>28000</td>  
+                    </tr>  
+                    <tr>  
+                      <td>003</td>  
+                      <td>Sravani</td>  
+                      <td>Australia</td>  
+                      <td>7000</td>  
+                    </tr>  
+                     <tr>  
+                      <td>004</td>  
+                      <td>Amar</td>  
+                      <td>India</td>  
+                      <td>18000</td>  
+                    </tr>  
+                    <tr>  
+                      <td>005</td>  
+                      <td>Lakshmi</td>  
+                      <td>India</td>  
+                      <td>12000</td>  
+                    </tr>  
+            </tbody>  
+        </table>
+        </div>
+      </div>
+
+      <div id="correo">
+          <div class="entrada "><br>
+            <select  name="state" id="maxRows">
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="70">70</option>
+              <option value="100">100</option>
+              <option value="5000">Show ALL Rows</option>
+            </select><br>
+          </div>
+          <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Buscar.." ><br>
           </div>
         </div>
-
-			
+        <div class="table-responsive">
+          <div class="table-wrapper">
+          <table class=" table  fl-table" id= "table-id" >
+            <thead>  
+              <tr>  
+                <th>ENO</th>  
+                <th>EMPName</th>  
+                <th>Country</th>  
+                <th>Salary</th>  
+              </tr>  
+            </thead>  
+            <tbody>  
+              <tr>  
+                <td>001</td>  
+                <td>Anusha</td>  
+                <td>India</td>  
+                <td>10000</td>  
+              </tr>  
+              <tr>  
+                <td>002</td>  
+                <td>Charles</td>  
+                <td>United Kingdom</td>  
+                <td>28000</td>  
+              </tr>  
+              <tr>  
+                <td>003</td>  
+                <td>Sravani</td>  
+                <td>Australia</td>  
+                <td>7000</td>  
+              </tr>  
+               <tr>  
+                <td>004</td>  
+                <td>Amar</td>  
+                <td>India</td>  
+                <td>18000</td>  
+              </tr>  
+              <tr>  
+                <td>005</td>  
+                <td>Lakshmi</td>  
+                <td>India</td>  
+                <td>12000</td>  
+              </tr>
+              <tr>  
+                  <td>001</td>  
+                  <td>Anusha</td>  
+                  <td>India</td>  
+                  <td>10000</td>  
+                </tr>  
+                <tr>  
+                  <td>002</td>  
+                  <td>Charles</td>  
+                  <td>United Kingdom</td>  
+                  <td>28000</td>  
+                </tr>  
+                <tr>  
+                  <td>003</td>  
+                  <td>Sravani</td>  
+                  <td>Australia</td>  
+                  <td>7000</td>  
+                </tr>  
+                 <tr>  
+                  <td>004</td>  
+                  <td>Amar</td>  
+                  <td>India</td>  
+                  <td>18000</td>  
+                </tr>  
+                <tr>  
+                  <td>005</td>  
+                  <td>Lakshmi</td>  
+                  <td>India</td>  
+                  <td>12000</td>  
+                </tr>
+                <tr>  
+                    <td>001</td>  
+                    <td>Anusha</td>  
+                    <td>India</td>  
+                    <td>10000</td>  
+                  </tr>  
+                  <tr>  
+                    <td>002</td>  
+                    <td>Charles</td>  
+                    <td>United Kingdom</td>  
+                    <td>28000</td>  
+                  </tr>  
+                  <tr>  
+                    <td>003</td>  
+                    <td>Sravani</td>  
+                    <td>Australia</td>  
+                    <td>7000</td>  
+                  </tr>  
+                   <tr>  
+                    <td>004</td>  
+                    <td>Amar</td>  
+                    <td>India</td>  
+                    <td>18000</td>  
+                  </tr>  
+                  <tr>  
+                    <td>005</td>  
+                    <td>Lakshmi</td>  
+                    <td>India</td>  
+                    <td>12000</td>  
+                  </tr>
+                  <tr>  
+                      <td>001</td>  
+                      <td>Anusha</td>  
+                      <td>India</td>  
+                      <td>10000</td>  
+                    </tr>  
+                    <tr>  
+                      <td>002</td>  
+                      <td>Charles</td>  
+                      <td>United Kingdom</td>  
+                      <td>28000</td>  
+                    </tr>  
+                    <tr>  
+                      <td>003</td>  
+                      <td>Sravani</td>  
+                      <td>Australia</td>  
+                      <td>7000</td>  
+                    </tr>  
+                     <tr>  
+                      <td>004</td>  
+                      <td>Amar</td>  
+                      <td>India</td>  
+                      <td>18000</td>  
+                    </tr>  
+                    <tr>  
+                      <td>005</td>  
+                      <td>Lakshmi</td>  
+                      <td>India</td>  
+                      <td>12000</td>  
+                    </tr>  
+            </tbody>  
+        </table>
+      </div>
+      </div>
 	</section>
 	<!--====== Scripts -->
     <%- include("partials/scripts") -%>

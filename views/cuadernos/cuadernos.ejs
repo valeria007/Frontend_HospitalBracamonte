@@ -33,7 +33,7 @@
 		
 		
 		<div class="container-fluid">
-				<a href="/cuaderno/limpiarC"> VOLVER</a>
+				
 				<% if (OnlyC == null) { %>
 					<form action="/cuaderno/cuadernos" method="POST">
 						<div class="grupo" id="cabeza">
@@ -69,7 +69,7 @@
 								</div>
 							</div>
 							<p class="text-center">
-								<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+								<a class="btn btn-success btn-lg active btn-raised" role="button" aria-pressed="true" href="/cuaderno/limpiarC"><i class="zmdi zmdi-long-arrow-return"> VOLVER</a></i>
 								<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
 							</p>
 						</div>
