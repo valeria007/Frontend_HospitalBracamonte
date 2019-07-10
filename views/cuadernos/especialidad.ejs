@@ -27,8 +27,7 @@
         </div>
         <!-- Nueva Sala-->
 		<div class="container-fluid">
-            <a href="/cuaderno/limpiar">Limpiar</a>
-                <%if (espONE == null) { %>
+            <%if (espONE == null) { %>
                 <form action="/cuaderno/especialidad" method="POST">
                     <div class="grupo" id="cabeza">
                         <div id="tres2">
@@ -64,22 +63,22 @@
                         </div>
                     </div>
                     <p class="text-center">
-                        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                            <a class="btn btn-success btn-lg active btn-raised" role="button" aria-pressed="true" href="/cuaderno/limpiar"><i class="zmdi zmdi-long-arrow-return"> VOLVER</a></i>
                         <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                     </p>
                 </form>
                 <% } %>
                 <!-- Lista de Salas-->
                 <div class="table-responsive">
-                    <div class="table-wrapper">
-                        <div id="correo">
-                            <div class="entrada">
-                                <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-                            </div>
-                            <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-                                <input type="text" id="searchInput" placeholder="Buscar.."><br>
-                            </div>
+                    <div id="correo">
+                        <div class="entrada">
+                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
                         </div>
+                        <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                            <input type="text" id="searchInput" placeholder="Buscar.."><br>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
                         <table class="fl-table" id="myTable">
                             <thead>
                                 <tr>

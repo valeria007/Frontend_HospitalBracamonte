@@ -26,17 +26,21 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-				<form action="/usuarios/crearCuenta/<%=id.id%>" method="POST">
+				<form action="/usuarios/crearCuenta" method="POST" onsubmit="return validar()">
 					<div class="grupo" id="cabeza">
-						<div id="tres2">
+						<div id="cuatro">
 							<div class="entrada">Cuenta:<br>
-								<input  type="email" name="correo" id="correo">
+								<input  type="text" name="cuenta" id="cuenta" > 
+							<!--<span id="su"></span><br>-->	
+							</div>
+							<div class="entrada">Email:<br>
+								<input  type="email" name="email" id="email">
 								<span id="su"></span><br>
 							</div>
 							<div class="entrada">Contraseña:<br>
 								<input type="password" name="contraseña" minlength="8" id="contraseña" ><br>
 							</div>
-							<div class="entrada">Repita contraseña Contraceña por favor:<br>
+							<div class="entrada">Repita contraseña por favor:<br>
 								<input  type="password" name="contraseña2"id="contraseña2">
 								<span id="error2"></span><br>
 							</div>
