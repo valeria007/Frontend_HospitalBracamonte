@@ -63,14 +63,54 @@
                     <!--Lista de Pacientes Internados -->
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade active in" id="new">
-                            <h1>alguna cosa biene</h1>
+                            <table class="fl-table " id="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th class="" WIDTH="15%">N° de historia </th>
+                                        <th class="" WIDTH="20%">Fecha de Internacion</th>	
+                                        <th class="" WIDTH="20%">Sala</th>	
+                                        <th class="" WIDTH="20%">N° Cama</th>	
+                                        <th class="" WIDTH="20%">Doctor</th>
+                                        <th class="" WIDTH="20%">Dar Receta</th>
+                                        <th class="" WIDTH="20%">Diagnostico </th>
+                                        <th class="" WIDTH="20%">Laboratorios</th>
+                                        <th class="text-center" WIDTH="20%">Ver</th>  
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(paciente_internacion != null) { %>
+                                        
+                                        <% for(var i=0; i< paciente_internacion.length; i++) { %>
+                                            <tr>
+                                                <td><%= i + 1 %></td>
+                                                <td><%=paciente_internacion[i].historial %></td>
+                                                <td><%=paciente_internacion[i].fechaIngreso %></td>
+                                                <td><%=paciente_internacion[i].Cama.Sala.descripcionSala %></td>
+                                                <td><%=paciente_internacion[i].Cama.numeroCama %></td>
+                                                <td><%=paciente_internacion[i].doctor %></td>
+                                                <td class="text-center" ><a href="/internaciones/traerInternacion/<%=paciente_internacion[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                <td class="text-center" ><a href="#" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                <td class="text-center" ><a href="#" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                <td class="text-center" ><a href="/internaciones/only_pInternacion/<%=paciente_internacion[i].idPinternacion%>/<%=paciente_internacion[i].provieneDE%>/<%=paciente_internacion[i].historial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+                                                
+                                            </tr>
+                                            <% } %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td> no hay datos </td>
+                                        </tr>
+                                    <% } %>							
+                                </tbody>
+                            </table>
                         </div>
                         <!--Registro de  Pacientes Internados-->
                         <div class="tab-pane fade" id="list">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <form action="/internaciones/internacion" method="POST">
-                                        <h2 class="text-center all-tittles">FORMULARIO DE INTERNCAION</h2>
+                                    <%if(formUpdate_internacion == "") { %>
+                                    <form action="/internaciones/internacion/<%=Pint[0].id%>" method="POST">
+                                        <h2 class="text-center all-tittles">FORMULARIO DE INTERNACION</h2>
                                         <div class="col-md-12 panel-body">
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
@@ -85,8 +125,8 @@
                                                     <%if(Pint[0].tipoConsulta == "emeregencia") { %>
                                                    
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Edad</label>
-                                                        <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.edad%>">    
+                                                        <label class="control-label">Fecha Nacimiento</label>
+                                                        <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.fechanacimiento%>">    
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Fecha de Ingreso a Sala</label>
@@ -100,8 +140,8 @@
                                                     </div>
                                                     <% }  else {%> 
                                                         <div class="form-group label-floating">
-                                                            <label class="control-label">Edad</label>
-                                                            <input class="form-control" type="text" value="<%=Pint[0].Consulta.Citas_Medica.Paciente.edad%>">    
+                                                            <label class="control-label">Fecha Nacimiento</label>
+                                                            <input class="form-control" type="text" value="<%=Pint[0].Consulta.Citas_Medica.Paciente.fechanacimiento%>">    
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label">Fecha de Ingreso a Sala</label>
@@ -170,7 +210,7 @@
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Cama</label>
                                                         <select class="form-control" name="cama">                                                            
-                                                            <option v-for="item of camas" :value="item.numeroCama + ' ' + item.id" >Cama N° {{item.numeroCama}}</option>                                                            
+                                                            <option v-for="item of camas" :value="item.id" >Cama N° {{item.numeroCama}}</option>                                                            
                                                         </select>
                                                     </div>
                                                  </div>
@@ -179,10 +219,7 @@
                                         <div class="col-xs-12 col-md-10 col-md-offset-1">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Nombre Doctor</label>
-                                                <select class="form-control" name="doctor">
-                                                    <option>Dr. Luis Copa</option>
-                                                    
-                                                </select>
+                                                <input class="form-control" type="text" name="doctor">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-md-10 col-md-offset-1">
@@ -196,6 +233,142 @@
                                             <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                                         </p>
                                     </form>
+                                    <% } else { %>
+                                        <form action="/internaciones/update_Form_internacion/<%=formUpdate_internacion[0].id%>/<%=formUpdate_internacion[0].idCama%>" method="POST">
+                                            <h2 class="text-center all-tittles">ACTUALIZAR FORMULARIO DE INTERNACION  </h2>
+                                            <div class="col-md-12 panel-body">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">N° Historial</label>
+                                                            <select class="form-control" name="historial">
+                                                                <option><%=Pint[0].Historial%></option>
+                                                               
+                                                            </select>
+                                                        </div>
+    
+                                                        <%if(Pint[0].tipoConsulta == "emeregencia") { %>
+                                                       
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Fecha Nacimiento</label>
+                                                            <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.fechanacimiento%>">    
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Fecha de Ingreso a Sala</label>
+                                                            <input class="form-control" type="date" name="fechaIngreso">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Nombres y Apellidos</label>
+                                                            <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.nombre%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidop%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidom%>">
+                                                        </div>
+                                                        <% }  else {%> 
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label">Fecha Nacimiento</label>
+                                                                <input class="form-control" type="text" value="<%=Pint[0].Consulta.Citas_Medica.Paciente.fechanacimiento%>">    
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Fecha de Ingreso a Sala</label>
+                                                                <input class="form-control" type="date" name="fechaIngreso" value="<%=formUpdate_internacion[0].fechaIngreso%>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group label-floating">
+                                                                <label class="control-label">Nombres y Apellidos</label>
+                                                                <input class="form-control" type="text" value="<%=Pint[0].Consulta.Citas_Medica.Paciente.nombre%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidop%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidom%>">
+                                                            </div>
+                                                        <% } %>    
+    
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Tipo de Paciente</label>
+                                                            <select class="form-control" name="tipoPaciente">
+                                                                <option><%=formUpdate_internacion[0].tipoPaciente%></option>
+                                                                <option> ---------------------- </option>
+                                                                <option>INSTITUCIONAL</option>
+                                                                <option>COMBENIO</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Institucion</label>
+                                                            <select class="form-control" name="institucion">
+                                                                <option><%=formUpdate_internacion[0].institucion%></option>
+                                                                <option> ---------------------- </option>
+                                                                <option>NINGUNO</option>
+                                                                <option>CAJA NACIONAL DE SALUD</option>
+                                                                <option>CAJA PETROLERA DE SALUD</option>
+                                                                <option>SEGURO UNIVERSITARIO</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Proviene de:</label>
+                                                            <select class="form-control" name="provieneDE">
+                                                                <option><%=Pint[0].tipoConsulta%></option>
+                                                                
+                                                            </select>
+                                                        </div>               
+                                                    </div>
+                                                 </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Observaciones</label>
+                                                    <input class="form-control" type="text" name="observacion" value="<%=formUpdate_internacion[0].observacion%>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 panel-body" id="options">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group label-floating" >
+                                                            <label class="control-label"  >Especialidad</label>
+                                                            <select class="form-control" name="especialidad"  v-model="mensaje" @click="agregar">
+                                                            
+                                                                <option><%=Pint[0].especialidad%></option>                                                                                                  
+                                                            </select>                                      
+                                                        </div>
+                                                    </div>                                                
+                                                    <div class="col-md-4">
+                                                        <div class="form-group label-floating" >
+                                                            <label class="control-label">Sala</label>
+                                                            <select class="form-control" name="sala" v-model="salaID" @click="traer">
+                                                                <option value="<%=formUpdate_internacion[0].sala%>"><%=formUpdate_internacion[0].Cama.Sala.descripcionSala%></option>
+                                                                <option> ---------------------- </option>                                                                
+                                                                <option v-for="item in mostrar" :value="item.id">{{item.descripcionSala}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">                                                    
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Cama</label>
+                                                            <select class="form-control" name="cama">   
+                                                                <option value="<%=formUpdate_internacion[0].cama%>">Cama N° <%=formUpdate_internacion[0].Cama.numeroCama%></option>
+                                                                <option> ---------------------- </option>                                                         
+                                                                <option v-for="item of camas" :value="item.id" >Cama N° {{item.numeroCama}}</option>                                                            
+                                                            </select>
+                                                        </div>
+                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                            </div>
+                                            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Nombre Docotor:</label>
+                                                    <input class="form-control" type="text" name="doctor" value="<%=formUpdate_internacion[0].doctor%>">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Diagnostico de Prescripcion</label>
+                                                    <input class="form-control" type="text" name="diagnostico" value="<%=formUpdate_internacion[0].diagnostico%>">
+                                                </div>
+                                            </div>
+                                            <p class="text-center">
+                                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                            </p>
+                                        </form>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>

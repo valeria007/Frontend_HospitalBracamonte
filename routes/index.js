@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+const datas = require('./url/export');
+
 router.get('/',(req, res) => {
   res.render('index', { msg1, msg2, msg3 })
 });
@@ -14,7 +16,7 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
-var msg1,msg2,msg3;
+var msg1,msg2,msg3 ;
 router.post('/login', (req,res)  => {
   
   const username = req.body.username;
@@ -43,7 +45,7 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    console.log(resp)
+    
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -58,6 +60,9 @@ router.post('/login', (req,res)  => {
       msg1=null;
       msg2=null;
       msg3 = null;
+      datas.name.token = resp.token
+      console.log( datas.name.token)
+
       res.redirect('/home')
 
     }

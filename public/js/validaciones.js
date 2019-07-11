@@ -40,52 +40,83 @@ function validar() {
 
 
 $(document).ready(function() {
-  $("#contraseña2").keyup(function() {
-    var contraseña = $('#contraseña').val();
-    var contraseña2 = $('#contraseña2').val();
+  $("#password2").keyup(function() {
+    var contraseña = $('#password').val();
+    var contraseña2 = $('#password2').val();
 
     if (contraseña == contraseña2) {
       $('#error2').text("Las contraseñas coinciden!").css("color","green");
+      return false;
     }
     else{
       $('#error2').text("Las contraseñas no Coinciden!").css("color","red");
+      return false;
     }
 
   });
-  $("#contraseña").keyup(function() {
-    var contraseña = $('#contraseña').val();
-    var contraseña2 = $('#contraseña2').val();
+  $("#password").keyup(function() {
+    var contraseña = $('#password').val();
+    var contraseña2 = $('#password2').val();
 
     if (contraseña == contraseña2) {
       $('#error2').text("Las contraseñas coinciden!").css("color","green");
+      return false;
     }
     else{
       $('#error2').text("Las contraseñas no Coinciden!").css("color","red");
+      return false;
     }
   
 
   });
  
-  $("#correo").keyup(function() {
+  $("#email").keyup(function() {
     
-        var correo = $('#correo').val();
-        if(correo == ""){
+        var email = $('#email').val();
+        if(email == ""){
           $('#error3').text("La dirección de correo electrónico es obligatoria.").css("color","red");
+          return false;
         }else{
-          fetch('http://localhost:3600/usuarios/usersAll')
+          fetch('http://localhost:3600/api/list')
             .then(res => res.json())
             .then(data =>{                
-              const resultado = data.find( traer => traer.correo === correo );              
+              const resultado = data.find( traer => traer.email === email );            
               if(resultado != null){
               
                 $('#su').text("Ese email ya esta en uso. Prueba con otro").css("color","red")
+                return false;
               }else{
                 $('#su').text("puede continuar").css("color","green");
+                return false;
               }
           })
         }
     
     });
+    $("#username").keyup(function() {
+      var errors = document.getElementById('username');  
+      var username = $('#username').val();
+      if(username == ""){
+        $('#error3').text("la cuenta es obligatorio.").css("color","red");
+        return false;
+      }else{
+        fetch('http://localhost:3600/api/list')
+          .then(res => res.json())
+          .then(data =>{                
+            const resultado = data.find( traer => traer.username === username );            
+            if(resultado != null){
+            
+              $('#su1').text("La cuenta ya existe").css("color","red")
+              return false;
+              
+            }else{
+              $('#su1').text("puede continuar").css("color","green");
+              return false;
+            }
+        })
+      }
+  
+  });
 
     
 })
