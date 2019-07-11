@@ -104,7 +104,7 @@
 											<td><%=resp[i].fechaIngreso %></td>
 											<td><%=resp[i].diagnostico %></td>
 											<td><%=resp[i].tipoConsulta %></td>
-											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 											
 										</tr>
 										<% } %>
@@ -131,9 +131,6 @@
 									<tr>
 										<th class="text-center">#</th>
 										<th class="" WIDTH="15%">N° de historia </th>
-										<th class="" WIDTH="20%">Nombre del Paciente</th>
-										<th class="" WIDTH="20%">Apellido paterno</th>
-										<th class="" WIDTH="20%">Apellido materno</th>	
 										<th class="" WIDTH="20%">Fecha</th>	
 										<th class="" WIDTH="20%">Motivo de Ingreso</th>	
 										<th class="" WIDTH="20%">Viene de</th>	
@@ -151,13 +148,10 @@
 											<tr>
 												<td><%= i + 1 %></td>
 												<td><%=listFalse[i].Historial %></td>
-												<td><%=listFalse[i].emergencium.Citas_Medica.Paciente.nombre %></td>                                        
-                                            	<td><%=listFalse[i].emergencium.Citas_Medica.Paciente.apellidop %></td>
-                                            	<td><%=listFalse[i].emergencium.Citas_Medica.Paciente.apellidom %></td>
 												<td><%=listFalse[i].fechaIngreso %></td>
 												<td><%=listFalse[i].diagnostico %></td>
 												<td><%=listFalse[i].tipoConsulta %></td>
-												<td class="text-center" ><a href="" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+												<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=listFalse[i].id%>/<%=listFalse[i].tipoConsulta%>/<%=listFalse[i].Historial %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 												
 											</tr>
 											<% } %>

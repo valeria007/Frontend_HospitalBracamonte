@@ -125,7 +125,6 @@ const carMedicamentos = new Vue({
             .then(response => {
               this.getPedido = response.data
               console.log(this.getPedido)
-              
             })
         }
     }    

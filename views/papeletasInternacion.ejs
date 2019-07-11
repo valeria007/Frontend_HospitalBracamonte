@@ -41,7 +41,7 @@
 		<div class="container-fluid">
 			<div class="page-header">
 				
-				<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Papeleta <small>Internacion</small></h1>			  
+				<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Papeleta Internacion</h1>			  
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -55,240 +55,178 @@
 						<div class="tab-pane fade active in" id="PapeletaInternacion">
 							<div class="container-fluid">
 								<div class="row">
-										
-									<div class="container-fluid">
-										<div class="col-md-12 panel-body">
 												
                                         <!-- datos personales-->
                                         
                                         
                                         <% if(resp == "") { %>
-                                            <div class="col-md-6">
-                                                <p class="lead">Datos Personales </p>
-                                            </div>
+                                
                                         <form action="/medico/Pinternacion/<%=id.id%>" method="POST">
-                                            <div class="col-md-12">
-                                            <div class="col-md-6">
-									            <div class="form-group">
-                                                    <label class="">De:</label>
-                                                        <select class="form-control" name="tipoConsulta">
+                                        <div class="grupo" id="cabeza">
+                                                    <p class="lead">Datos Personales </p>
+                                            <div class="correo">
+									            <div class="entrada">De:<br>
+                                                        <select  name="tipoConsulta">
                                                             <option><%=ConsultaOnlyPinternacion[0].tipoConsulta%></option>                                            
-                                                        </select>
+                                                        </select><br>
                                                 </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Area de Internacion</label>
-                                                    <select class="form-control" name="especialidad">
+                                                <div class="entrada">Area de Internacion:<br>
+                                                    <select name="especialidad">
                                                         <% for(var i=0; i< especialidad.length; i++) {%>
                                                         <option><%=especialidad[i].nombre%></option>
                                                         <% } %>
-                                                    </select>
+                                                    </select><br>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">Fecha de Ingreso</label>
-                                                    <input class="form-control" type="date" name="fechaIngreso">
+                                                <div class="entrada">Fecha de Ingreso<br>
+                                                    <input  type="date" name="fechaIngreso"><br>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">N° de Historia</label>
-                                                    <input class="form-control" type="text" value="<%=dataPaciente[0].numeroHistorial%>" name="Historial">
+                                                <div class="entrada">N° de Historia<br>
+                                                    <input type="text" value="<%=dataPaciente[0].numeroHistorial%>" name="Historial"><br>
                                                 </div>
-                                            </div>                       
-																																								
-								        <!-- lado hizquierdo -->
-								            <div class="col-md-6">
-									            <div class="form-group label-floating">
-										            <label class="control-label">Nombre </label>
-										            <input class="form-control" type="text" value="<%=dataPaciente[0].nombre%>" name="nombre">
-									            </div>
-									            <div class="form-group label-floating">
-										            <label class="control-label">Apellido Paterno</label>
-										            <input class="form-control" type="text" value="<%=dataPaciente[0].apellidop%>" name="apellido1">
-                                                </div>
-                                    
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Apellido Materno</label>
-                                                    <input class="form-control" type="text" value="<%=dataPaciente[0].apellidom%>" name="apellido2">
-                                                </div>
-                                    
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Sexo</label>
-                                                    <select class="form-control" name="sexo">
-                                                        <option><%=dataPaciente[0].sexo%></option>
-                                            
-                                                    </select>
-                                                </div>
-									            <div class="form-group label-floating">
-										            <label class="control-label">Fecha de Nacimiento</label>
-										            <input class="form-control" type="text" value="<%=dataPaciente[0].fechanacimiento%>" name="edad">
-									            </div>							
-                                            </div>
-                                            </div>
-                                         <!--   lado derecho-->
-                                         <div class="col-md-12">
-                                        <h4>Datos del Doctor</h4>
-								            <div class="col-md-6">
-									            <div class="form-group label-floating">
-										            <label class="control-label">NOmbre Del Doctor</label>
-										            <input class="form-control" type="text" name="nombreDoctor" value="<%=ConsultaOnlyPinternacion[0].Citas_Medica.medico%>">
-									            </div>
-									            <div class="form-group label-floating">
-										            <label class="control-label">Apellido Paterno del Doctor</label>
-										            <input class="form-control" type="text" value="" name="apellidoD1">
-                                                </div>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Apellido Materno del Doctor</label>
-                                                    <input class="form-control" type="text" value="" name="apellidoD2">
-                                                </div>
-																		
+                                            </div> 
+                                            <div id="tres2">
+                                                    <div class="entrada">Nombre<br>
+                                                        <input  type="text" value="<%=dataPaciente[0].nombre%>" name="nombre"><br>
+                                                    </div>
+                                                    <div class="entrada">Apellido Paterno<br>
+                                                        <input type="text" value="<%=dataPaciente[0].apellidop%>" name="apellido1"><br>
+                                                    </div>
+                                        
+                                                    <div class="entrada">Apellido Materno<br>
+                                                        <input type="text" value="<%=dataPaciente[0].apellidom%>" name="apellido2"><br>
+                                                    </div>
+                                        
+                                                    <div class="entrada">Sexo<br>
+                                                        <select  name="sexo">
+                                                            <option><%=dataPaciente[0].sexo%></option>
+                                                        </select><br>
+                                                    </div>
+                                                    <div class="entrada">Fecha de Nacimiento<br>
+                                                        <input type="text" value="<%=dataPaciente[0].fechanacimiento%>" name="edad">
+                                                    </div>
                                             </div>
                                         </div>
-							            <div class="col-md-12">
+                                         <!--   lado derecho-->
+                                        <div class="grupo" id="cabeza">
+                                        <h4>Datos del Doctor</h4>
+									            <div class="entrada">Nombre Del Doctor<br>
+										            <input type="text" name="nombreDoctor" value="<%=ConsultaOnlyPinternacion[0].Citas_Medica.medico%>"><br>
+									            </div>
+									            <div class="entrada">Apellido Paterno del Doctor<br>
+										            <input type="text" value="" name="apellidoD1"><br>
+                                                </div>
+                                                <div class="entrada">Apellido Materno del Doctor<br>
+                                                    <input type="text" value="" name="apellidoD2"><br>
+                                                </div>				
+                                        </div>
+							            <div class="grupo" id="cabeza">
                                             <h3>Estado del paciente</h3>						
-                                                <div class="form-group label-floating">
-                                                <label class="control-label">Diagnostico</label>
-                                                <textarea class="form-control" name="diagnostico"></textarea>
+                                                <div class="entrada">>Diagnostico<br>
+                                                <textarea  name="diagnostico"></textarea>
+                                            </div>
+							            </div>
+                                        <p class="text-center">
+                                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                            <button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+                                        </p>
+								    </form>
+                                        <% } else { %>
+                                            <form action="/medico/updateInternacion/<%=resp[0].id%>" method="POST">
+                                                <div class="grupo" id="cabeza">
+                                                        <h2 class="text-center">Formulario de actualizacion</h2> 
+                                                        <p class="lead">Datos Personales </p>
+                                                    <div id="correo">
+                                                            <div class="entrada">De:<br>
+                                                                <select name="tipoConsulta">
+                                                                    <option><%=ConsultaOnlyPinternacion[0].tipoConsulta%></option>                                            
+                                                                </select><br>
+                                                            </div>
+                                                            <div class="entrada">Area de Internacion<br>
+                                                                <select  name="especialidad">
+                                                                    <option><%=resp[0].especialidad%></option>
+                                                                    <option>------------------------</option>
+                                                                    <% for(var i=0; i< especialidad.length; i++) {%>
+                                                                    <option><%=especialidad[i].nombre%></option>
+                                                                    <% } %>
+                                                                </select><br>
+                                                            </div>
+                                                            <div class="entrada">Fecha de Ingreso<br>
+                                                                <input  type="date" name="fechaIngreso" value="<%=resp[0].fechaIngreso%>"><br>
+                                                            </div>
+                                                            <div class="form-group">N° de Historia<br>
+                                                                <input type="text" value="<%=dataPaciente[0].numeroHistorial%>" name="Historial"><br>
+                                                            </div>
+                                                </div>
+                                                <div id="tres2">
+                                                        <div class="entrada">Nombre <br>
+                                                            <input type="text" value="<%=dataPaciente[0].nombre%>" name="nombre"><br>
+                                                        </div>
+                                                        <div class="entrada">Apellido Paterno<br>
+                                                            <input type="text" value="<%=dataPaciente[0].apellidop%>" name="apellido1"><br>
+                                                        </div>
+                                                        <div class="entrada">Apellido Materno<br>
+                                                            <input type="text" value="<%=dataPaciente[0].apellidom%>" name="apellido2"><br>
+                                                        </div>
+                                                        <div class="entrada">Sexo<br>
+                                                            <select name="sexo">
+                                                                <option><%=dataPaciente[0].sexo%></option>
+                                                            </select><br>
+                                                        </div>
+                                                        <div class="entrada">Fecha de Nacimiento</label>
+                                                            <input type="text" value="<%=dataPaciente[0].fechanacimiento%>" name="edad"><br>
+                                                        </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="grupo" id="cabeza">
+                                                <h4>Datos del Doctor</h4>
+                                                <div class="entrada">Nombre del Doctor<br>
+                                                    <input type="text" name="nombreDoctor" value="<%=ConsultaOnlyPinternacion[0].Citas_Medica.medico%>"><br>
+                                                </div>
+                                            </div>
+                                            <div class="grupo" id="cabeza">
+                                                <h3>Estado del paciente</h3>						
+                                                <div class="entrada">Diagnostico<br>
+                                                    <textarea name="diagnostico"><%=resp[0].diagnostico%></textarea><br>
+                                                </div>
                                             </div>
                                             <p class="text-center">
-                                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                    <button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-                                                </p>
-                                        </div>
-								       
-							        	
+                                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                                <button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+                                            </p>
                                         </form>
-                                        <% } else { %>
-                                            <h2>Formulario de actualizacion</h2>           
-                                            <div class="col-md-6">
-                                                <p class="lead">Datos Personales </p>
-                                            </div>
-                                            <form action="/medico/updateInternacion/<%=resp[0].id%>" method="POST">
-                                                <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="">De:</label>
-                                                            <select class="form-control" name="tipoConsulta">
-                                                                <option><%=ConsultaOnlyPinternacion[0].tipoConsulta%></option>                                            
-                                                            </select>
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Area de Internacion</label>
-                                                        <select class="form-control" name="especialidad">
-
-                                                            <option><%=resp[0].especialidad%></option>
-                                                            <option>------------------------</option>
-                                                            <% for(var i=0; i< especialidad.length; i++) {%>
-                                                            <option><%=especialidad[i].nombre%></option>
-                                                            <% } %>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Fecha de Ingreso</label>
-                                                        <input class="form-control" type="date" name="fechaIngreso" value="<%=resp[0].fechaIngreso%>">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">N° de Historia</label>
-                                                        <input class="form-control" type="text" value="<%=dataPaciente[0].numeroHistorial%>" name="Historial">
-                                                    </div>
-                                                </div>                       
-                                                                                                                                                                    
-                                            <!-- lado hizquierdo -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Nombre </label>
-                                                        <input class="form-control" type="text" value="<%=dataPaciente[0].nombre%>" name="nombre">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Apellido Paterno</label>
-                                                        <input class="form-control" type="text" value="<%=dataPaciente[0].apellidop%>" name="apellido1">
-                                                    </div>
-                                        
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Apellido Materno</label>
-                                                        <input class="form-control" type="text" value="<%=dataPaciente[0].apellidom%>" name="apellido2">
-                                                    </div>
-                                        
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Sexo</label>
-                                                        <select class="form-control" name="sexo">
-                                                            <option><%=dataPaciente[0].sexo%></option>
-                                                
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Fecha de Nacimiento</label>
-                                                        <input class="form-control" type="text" value="<%=dataPaciente[0].fechanacimiento%>" name="edad">
-                                                    </div>							
-                                                </div>
-                                                </div>
-                                             <!--   lado derecho-->
-                                             <div class="col-md-12">
-                                            <h4>Datos del Doctor</h4>
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">NOmbre Del Doctor</label>
-                                                        <input class="form-control" type="text" name="nombreDoctor" value="<%=ConsultaOnlyPinternacion[0].Citas_Medica.medico%>">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Apellido Paterno del Doctor</label>
-                                                        <input class="form-control" type="text" value="<%=resp[0].apellidoD1%>" name="apellidoD1">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Apellido Materno del Doctor</label>
-                                                        <input class="form-control" type="text" value="<%=resp[0].apellidoD2%>" name="apellidoD2">
-                                                    </div>
-                                                                            
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <h3>Estado del paciente</h3>						
-                                                    <div class="form-group label-floating">
-                                                    <label class="control-label">Diagnostico</label>
-                                                    <textarea class="form-control" name="diagnostico"><%=resp[0].diagnostico%></textarea>
-                                                </div>
-                                                <p class="text-center">
-                                                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                        <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                        <button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-                                                    </p>
-                                            </div>
-                                           
-                                            
-                                            </form>
                                         <% } %>
+                                        <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+        
+                                                            <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Datos generales</a></li>
+                                                            <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecendentes Personales</a></li>
+                                                            <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecentes Famliares</a></li>
+                                                        
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                    </div>
+                                </div>
+                                     
+                            </div>
+						<div class="tab-pane fade" id="list">
+                                <div id="correo">
+                                        <div class="entrada">                                  
+                                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                        </div>
+                                        <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                                            <input type="text" id="searchInput" placeholder="Buscar.."><br>
                                         </div>
                                     </div>
-                                         
-                                </div>
-                    <!-- botones  -->
-                                                    
-																
-                  
-                    <!-- menu-->
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-
-                                                    <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Datos generales</a></li>
-                                                    <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecendentes Personales</a></li>
-                                                    <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecentes Famliares</a></li>
-                                                
-                                                </ul>
-                                            </div>
-                                        </div>
-					                </div>           
-                            </div>				
-			            </div>
-					
-
-						<!-- lista -->
-						<div class="tab-pane fade" id="list">
+                        <div class="table-responsive" >
                             <div class="table-wrapper">
-                                <div class="form-group pull-right">
-                                    <input type="text" class="search form-control" placeholder="Buscar">
-                                </div>
-                                <span class="counter pull-right"></span>
-                                <table class="table table-hover table-bordered results fl-table">
+                                <table class="fl-table" id="myTable" >
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -300,9 +238,6 @@
 											<th>De:</th>
                                             <th>Ver</th>                                           
                                         </tr>
-                                        <tr class="warning no-result">
-                                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-                                              </tr>
                                     </thead>
                                     <tbody>
                                         <% for (var i=0; i< PapeletaINTER.length; i++) { %>
