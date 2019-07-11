@@ -6,7 +6,18 @@ const fetch = require('node-fetch');
 router.get('/home', (req,res) => {
     res.render('Almacen/home');
 });
-
+router.get('/kardexValorizado', (req,res) => {
+    res.render('Almacen/kardexValorizado');
+});
+router.get('/med_ven', (req,res) => {
+    res.render('Almacen/med_ven');
+});
+router.get('/reportes_pedidos', (req,res) => {
+    res.render('Almacen/reportes_pedidos');
+});
+router.get('/reportes_salidas', (req,res) => {
+    res.render('Almacen/reportes_salidas');
+});
 ///estos serv son para añadir a la tabla o al modelo grupo Asignacion
 router.get('/grupoAsig',(req, res) => {
     fetch('http://localhost:3500/api/asignacion')   

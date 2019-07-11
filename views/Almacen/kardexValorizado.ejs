@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Inicio</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("../partials/head") -%>
+</head>
+<body class="dashboard-sideBar-imagg cover">
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	<!-- Content page-->
+	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+		<!-- NavBar -->
+		<nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+			</ul>
+		</nav>
+		<!-- Content page -->
+		<div class="container-fluid">
+			<div class="page-header">
+			  <h1 class="text-titles"><i class="zmdi zmdi-dns zmdi-hc-fw"></i>Kardex Valorizado</h1>
+			</div>
+        </div>
+        <p class="text-center"><div class="entrada">
+                <button class="modal-open btn btn-info btn-raised btn-lg"  
+                data-modal="<h3 class='text-center'>Grupos de Asignacion </h3>
+                <div id='correo'>
+                    <div class='entrada'><br>
+                        <select  name='state' id='maxRows'>
+                            <option value='10'>10</option>
+                            <option value='15'>15</option>
+                            <option value='20'>20</option>
+                            <option value='50'>50</option>
+                            <option value='70'>70</option>
+                            <option value='100'>100</option>
+                            <option value='5000'>Show ALL Rows</option>
+                        </select><br>
+                    </div>
+                    <div class='entrada'>Buscar <i class='zmdi zmdi-search'></i><br>
+                        <input type='text' id='search_input_all' onkeyup='FilterkeyWord_all_table()' placeholder='Buscar..' ><br>
+                    </div>
+                </div>
+                <div class='table-responsive'>
+                <div class='table-wrapper'>
+                <table class='table  fl-table' id= 'table-id' >
+                    <thead>
+                        <tr>
+                        <th>Selecione</th>
+						<th>Codigo</th>
+						<th>Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><div class='entrada'>
+							<div class='col-md-9'>
+                                <input checked='checked' data-val='true' data-val-required='The IsSmallBusiness field is required.' id='IsSmallBusiness' name='IsSmallBusiness' type='radio' value='False'>
+							</div><br>
+						</div></td>
+                        <td>123</td>
+                        <td>Medicamentos</td>
+                        </tr>
+                        <tr>
+                        <td><div class='entrada'>
+                            <div class='col-md-9'>
+                                <input checked='checked' data-val='true' data-val-required='The IsSmallBusiness field is required.' id='IsSmallBusiness' name='IsSmallBusiness' type='radio' value='False'>
+                            </div><br>
+                        </div></td>
+                        <td>123</td>
+                        <td>Medicamentos</td>
+                        </tr>
+                    <tbody>
+                </table>
+                </div>
+                </div>		
+                <p class='text-right'>
+                    <button type='submit' class='btn btn-info' btn-raised><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Agregar</button>
+                </p>
+                </form>
+                <div class='container-fluid'>
+                    <div class='pagination-container'>
+                        <nav>
+                            <ul class='pagination'></ul>
+                        </nav>
+                    </div>
+                </div>"><i class="zmdi zmdi-search"></i>Seleccione Grupo de Asignacion</button>
+                <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+            </div></p>
+            <div id="correo">
+                <div class="entrada "><br>
+                    <select  name="state" id="maxRows">
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="70">70</option>
+                        <option value="100">100</option>
+                        <option value="5000">Show ALL Rows</option>
+                    </select><br>
+                </div>
+                <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                    <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Buscar.." ><br>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                <table class=" table  fl-table" id= "table-id" >
+                    <thead>
+                        <tr>
+                        <th>Grupo de Asignacion</th>
+						<th>Articulo</th>
+						<th>Unidad de Medida</th>
+						<th>Total de Ingresos</th>
+						<th>Valor de Ingresos</th>
+						<th>Totalo de Stock</th>
+						<th>Valor de Stock</th>
+						<th>Total de Salidas</th>
+						<th>Valr de Salidas</th>
+						<th>Utilidad Valorizada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>1</td>
+                        <td>123</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td>a</td>
+                        <td>a</td>
+                        </tr>
+                    <tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class='pagination-container'>
+                <nav>
+                    <ul class="pagination"></ul>
+                </nav>
+            </div>
+            <div class="rows_count">Showing 11 to 20 of 91 entries</div>
+        </div>
+	</section>
+	<!--====== Scripts -->
+	<%- include("../partials/scripts") -%>
+</body>
+</html>
