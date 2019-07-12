@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+var Static = require('../public/static/datas');
+
 router.get('/oneVista', (req, res) => {
     res.render('emergencias/viewDocEnf');
 });
@@ -11,6 +13,7 @@ router.get('/oneVista', (req, res) => {
 //esta vista muesta la vista principal de emergencia segun doctor o enfermera 
 router.get('/homeEmergencia/:id', (req, res) => {
     var DogOenf = req.params.id
+    Static.static_data.dogEnf = req.params.id;
     res.render('emergencias/homeEmergencia',{
         DogOenf //esta variable solo es para saver si es doct@r o enfermer@
     });
@@ -22,6 +25,7 @@ router.get('/pacientes_emer', (req, res) => {
 // este serv va servir para traer citas tipo solo emergencia
 router.get('/listEmergencia/:id', (req, res) => {
     var DogOenf = req.params.id; // esto es para saver si es doctor o enfermera
+    Static.static_data.dogEnf = req.params.id;
     if (dataEmergencia == null){
         res.redirect('/emergencia/oneVista');
     }
@@ -54,6 +58,7 @@ router.get('/listEmergencia/:id', (req, res) => {
 var dataEmergencia; //esta variable tarea datos las citas que ya fueron llenados su diagnostico
 router.get('/dataEmergencia/:id', (req,res) => {
     var DogOenf = req.params.id;
+    Static.static_data.dogEnf = req.params.id;
     fetch('http://localhost:3000/api/PacienteCitaFalse/emergencia') //esta ruta solo trae las citas de tipo emergencia y que el estado sea true
         .then(resp => resp.json())
         .then(resp =>{ 
@@ -120,7 +125,8 @@ var idHistorial; //esta variable es para madar el id de la ficha y el historial 
 var updateConsultaEmg;
 router.get('/GetEmergencia/:historial/:id/:docOenf', (req,res) => {
     var idHistorial1 = req.params;
-    idHistorial = idHistorial1    
+    idHistorial = idHistorial1  
+    Static.static_data.dogEnf = req.params.docOenf;  
     fetch('http://localhost:3000/api/citaEmergencia/'+idHistorial1.id)
         .then(resp => resp.json())
         .then(resp =>{
@@ -287,6 +293,7 @@ var EmgIdHistorial, updateReceta; // En esta variable va el id y el historial qu
 router.get('/emergenicaData/:id/:historial/:DogOenf', (req,res) => {
     var idHistorial = req.params;
     EmgIdHistorial = idHistorial;
+    Static.static_data.dogEnf = req.params.DogOenf;
     fetch('http://localhost:3000/api/RecetaEmergencia/'+idHistorial.id)
     .then(res => res.json())
     .then(data => { 
