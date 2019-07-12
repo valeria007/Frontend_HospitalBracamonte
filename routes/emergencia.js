@@ -503,6 +503,9 @@ router.get('/datos_responsablevis', (req,res) => {
   router.get('/examenFisicovis', (req,res) => {
     res.render('emergencias/examenFisico')
   });
+  router.get('/VerHistorialvis',(req,res) =>{
+    res.render('emergencias/VerHistorial')
+  });
 
   
     
