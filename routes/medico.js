@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+var Static = require('../public/static/datas');
+
 // ruta para mostrar tipos de consulta que un paciente puede requerir
 router.get('/listaConusltas', (req,res) => {
 
@@ -22,7 +24,8 @@ router.get('/listaConusltas', (req,res) => {
 var consultamedica
 router.get('/renderVistaDocotr/:consultamedica1', (req,res) => {
     const { consultamedica1 } = req.params;
-    consultamedica = consultamedica1
+    consultamedica = consultamedica1;
+    Static.static_data.tipo_especialidad = consultamedica1;
     res.render('HomeVistDoctor',{
         consultamedica
     })
@@ -32,6 +35,7 @@ router.get('/renderVistaDocotr/:consultamedica1', (req,res) => {
 var falseCita;
 router.get('/listfalseConsulta/:consultamedica', (req,res) =>{
     const { consultamedica } = req.params
+    Static.static_data.tipo_especialidad = consultamedica
     fetch('http://localhost:3000/api/PacienteCitaFalse/'+consultamedica)
         
         .then(resp => resp.json())
@@ -48,6 +52,7 @@ router.get('/listfalseConsulta/:consultamedica', (req,res) =>{
 // 
 router.get('/ConsultaMedica/:consultamedica',(req, res) => {
     const { consultamedica } = req.params
+    Static.static_data.tipo_especialidad = consultamedica
     fetch('http://localhost:3000/api/PacienteCita/'+consultamedica)
         
         .then(resp => resp.json())

@@ -37,6 +37,7 @@ app.use('/papeletaInternacion', require('./routes/papeletaInternacion'));
 app.use('/Internaciones', require('./routes/Internaciones'));
 app.use('/distribucion', require('./routes/distribucion'));
 app.use('/stock', require('./routes/stock'));
+app.use('/datos_generales_paciente', require('./routes/datos_generales_paciente')); 
 
 
 app.listen(app.get('port'), () => {

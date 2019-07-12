@@ -497,9 +497,6 @@ router.get('/datos_responsablevis', (req,res) => {
   router.get('/antecedentesvis', (req,res) => {
     res.render('emergencias/antecedentes')
   });
-  router.get('/alergiasvis', (req,res) => {
-    res.render('emergencias/alergias')
-  });
   router.get('/examenFisicovis', (req,res) => {
     res.render('emergencias/examenFisico')
   });
