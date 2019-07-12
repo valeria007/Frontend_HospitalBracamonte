@@ -180,5 +180,8 @@ router.get('/emergencia', (req,res) => {
 router.get('/datos_responsable', (req,res) => {
   res.render('datos_responsable')
 });
+router.get('/VerHistorial', (req,res) => {
+  res.render('VerHistorial')
+});
 
 module.exports = router;

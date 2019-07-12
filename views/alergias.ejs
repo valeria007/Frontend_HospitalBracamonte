@@ -55,17 +55,22 @@
 				<ul class="dropdown-menu" role="menu">
 					<li class="menu__item">
 						<a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>" class="menu__link">Datos de responsable </a>
-						
 					</li>
 					<li class="menu__item">
 						<a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" class="menu__link">Antecedentes</a>
-					
+					</li>
+					<li class="menu__item">
+						<a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>" class="menu__link">Alergia</a>
 					</li>
 					<li class="menu__item">
 						<a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>" class="menu__link">Examen General</a>
 					</li>
+					<li class="menu__item">
+						<a href="/VerHistorial" class="menu__link">Ver Historial </a>
+					</li>
+	
 					<li class="divider"></li>
-				  
+						  
 				</ul>
 			  </div> 
 		   
@@ -82,6 +87,7 @@
 		<div class="tab-pane fade active in" id="new">
 		  <div class="container-fluid">
 			<div class="row">
+			 <div class="col-xs-12">
 				
 				<%if (update_Alergia == null) { %>
 			  <form action="/datos_generales_paciente/reg_alergias/<%=dataPaciente[0].id%>" method="POST">
@@ -131,6 +137,7 @@
 					  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
 				  </p>
 				</form>
+			 
 				<% } else { %>
 					<form action="/datos_generales_paciente/updateAlergia/<%=update_Alergia[0].id%>" method="POST">
 				
@@ -218,7 +225,7 @@
 					</div>
 				</div>
 				                                                                         
-			                          
+			</div>                       
 		  </div>
 		</div>
 	  </div>

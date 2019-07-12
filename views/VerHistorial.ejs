@@ -1,225 +1,234 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Examen Fisico</title>
+	<title>Alergia</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
+	<%- include("partials/head") -%>
 </head>
-<body class="dashboard-sideBar-imagg cover">
+<body class=" full-box dashboard-sideBar-imagg cover " >
 	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- SideBar Menu Hospital-->
-    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-		<li>
-			<a href="/emergencia/homeEmergencia/">
-			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home</a>
-		</li>
-		<!-- Emergencias -->
-		<li>
-			<a href="#!" class="btn-sideBar-SubMenu">
-			<i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>		</a>
-			<ul class="list-unstyled full-box">
-				<li><a href="/emergencia/dataEmergencia/"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
-			</ul>
-		</li>
-	</ul>
-	<%- include("partials/menuFooter") -%>
+	<%- include("partials/menudoc") -%>
+
+	<li>
+		<a href="/medico/renderVistaDocotr/">
+			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
+		</a>
+	</li>
+
+    <li>
+		<a href="#!" class="btn-sideBar-SubMenu">
+			<i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Consultas externas <i class="zmdi zmdi-caret-down pull-right"></i>
+		</a>
+		<ul class="list-unstyled full-box">
+			<li><a href="/medico/listfalseConsulta"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
+					  
+		</ul>
+	</li>
+	<%- include("partials/footerDocotr") -%>
 	<!-- Content page-->
 <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-		<ul class="full-box list-unstyled text-right">
+	<nav class="full-box dashboard-Navbar dashboard-sideBar-imaggg cover ">
+		<ul class="full-box list-unstyled text-right dashboard-sideBar-ctttt">
 			<li class="pull-left">
 		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 			</li>
+			<li>
+				<a href="#!" class="btn-Notifications-area">
+					<i class="zmdi zmdi-notifications-none"></i>
+				</a>
+			</li>
 		</ul>
 	</nav>
-	<!-- Content page -->
-	<div class="container-fluid col-md-12" id="">
-		<div class="page-header  col-md-6">	
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Historial Clinico<small></small></h1>  
-		</div><br><br>
-		<div class="btn-group  col-md-3">
-			<button type="button" class="btn btn-info btn-raised"
-				data-toggle="dropdown">
-			  Detalles del Paciente <span class="caret"></span>
-			</button>
-			
-			<ul class="dropdown-menu" role="menu">
-				<li class="menu__item">
-					<a href="/emergencia/datos_responsablevis" class="menu__link">Datos de responsable</a>
-				</li>
-				<li class="menu__item">
-					<a href="/emergencia/antecedentesvis" class="menu__link">Antecedentes</a>
-				</li>
-				<li class="menu__item">
-					<a href="/emergencia/alergiasvis" class="menu__link">Alergia</a>
-				</li>
-				<li class="menu__item">
-					<a href="/emergencia/examenFisicovis" class="menu__link">Examen General</a>
-				</li>
-				<li class="divider"></li>
-			  
-			</ul>
-		  </div> 
-	   
-		<div id="" class="col-md-2">
-	
-			<div class="">
-				<a href="/emergencia/volver" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
-			</div>
+		<!-- Content page -->
+		<div class="container-fluid col-md-12" id="">
+				<div class="page-header  col-md-6">	
+					<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Historial<small></small></h1>  
+			</div><br><br>
+			<div class="btn-group  col-md-3">
+				<button type="button" class="btn btn-info btn-raised"
+					data-toggle="dropdown">
+				  Detalles del Paciente <span class="caret"></span>
+				</button>
+				
+                <ul class="dropdown-menu" role="menu">
+                    <li class="menu__item">
+                        <a href="" class="menu__link">Datos de responsable </a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="" class="menu__link">Antecedentes</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="" class="menu__link">Alergia</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="" class="menu__link">Examen General</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="/VerHistorial" class="menu__link">Ver Historial </a>
+                    </li>
+    
+                    <li class="divider"></li>
+                          
+                </ul>
+			  </div> 
+		   
+			<div id="" class="col-md-2">
 		
-		</div>
-	</div>
-	<!-- Examen Fisico-->
-
-	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade active in" id="new">
-		  <div class="container-fluid">
-			<div class="row">
-			  <div class="col-xs-12">
-			
-			  	<form action="" method="POST">
-					<p>Datos del Paciente </p>
-				<div class="grupo" id="cabeza">
-
-				
-				  <div id="tres2">
-					<div class="entrada">Nombre Completo:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">CI.:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Sexo:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-				  <div id="tres2">
-					<div class="entrada">Fecha de Nacimiento:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Dirección:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Telefono:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-				  <div id="tres2">
-					<div class="entrada">Estado Civil:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					
-				  </div>
-				</div>
-				<br>
-				<p>Examen Físico General</p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Estado General:<br>
-						<input type="text" name="" value=""size="10"><br>
-					</div>
-					<div class="entrada">Facies:<br>
-					  <input type="text" name="" value="" size="20"><br>
-					</div>
-					<div class="entrada">Presión Arterial:<br>
-					  <input type="text" name="" value=""size="10"><br>
-					</div>
-					
-				  </div>
-				  	<div id="tres2">
-						<div class="entrada">Estado Nutricional:<br>
-							<input type="text" name="" value=""size="10"><br>
-						</div>
-						<div class="entrada">Peso:<br>
-						  <input type="text" name="" value="" size="20"><br>
-						</div>
-						<div class="entrada">Frecuencia Cardiaca:<br>
-						  <input type="text" name="" value=""size="10"><br>
-						</div>
-						
-                    </div>
-                      	<div id="tres2">
-						<div class="entrada">Saturación de Oxigeno:<br>
-							<input type="text" name="" value=""size="10"><br>
-						</div>
-						<div class="entrada">Fecha de Revisión:<br>
-						  <input type="text" name="" value="" size="20"><br>
-						</div>
-					</div>
-
-				 
-				
-				</div>
-				<br>
-				<p>Diagnostico </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Diagnostico:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">tratamiento:<br>
-						<input type="text" name="" value=""><br>
-					</div>
-				  </div>
-			  
-				</div>
-				<br>
-				<p>Antecedentes </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Antecedes de Familiares:<br>
-						<input type="text" name="" value="" size="20"><br>
-					</div>
-					<div class="entrada">Antecedes de Patologicos:<br>
-						  <input type="text" name="" value="" size="20"><br>
-					</div>
-					<div class="entrada">Antecedes no Patologicos:<br>
-						  <input type="text" name="" value=""size="10"><br>
-					</div>
-				  </div>
-					<div id="tres2">
-						<div class="entrada">Gineco Obstretico:<br>
-							<input type="text" name="" value=""size="10"><br>
-						</div>
-						<div class="entrada">Descripción:<br>
-							<input type="text" name="" value=""size="10"><br>
-					  	</div>  
-					</div>
-				
-				</div>
-				<br>
-				<p>Receta </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Receta:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Fecha:<br>
-						<input type="text" name="" value=""><br>
-					</div>
-				  </div>
-			  
-				</div>
-				<br>
-				
-				<br>
-				
-				  
-					<p class="text-center">
-						<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-						<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-					</p> 
-				</form>
+			  <div class="">
+				<a href="/medico/volver" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
 			  </div>
-		  </div>
+			
+			</div>
 		</div>
-	  </div>
-	</div>
+	<!-- Alergias de consultas-->
+	<div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="new">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12">
+                
+                      <form action="" method="POST">
+                        <p>Datos del Paciente </p>
+                    <div class="grupo" id="cabeza">
+    
+                    
+                      <div id="tres2">
+                        <div class="entrada">Nombre Completo:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                        <div class="entrada">CI.:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                        <div class="entrada">Sexo:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                      </div>
+                      <div id="tres2">
+                        <div class="entrada">Fecha de Nacimiento:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                        <div class="entrada">Dirección:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                        <div class="entrada">Telefono:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                      </div>
+                      <div id="tres2">
+                        <div class="entrada">Estado Civil:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <br>
+                    <p>Examen Físico General</p>
+                    <div class="grupo" id="cabeza">
+                      <div id="tres2">
+                        <div class="entrada">Estado General:<br>
+                            <input type="text" name="" value=""size="10"><br>
+                        </div>
+                        <div class="entrada">Facies:<br>
+                          <input type="text" name="" value="" size="20"><br>
+                        </div>
+                        <div class="entrada">Presión Arterial:<br>
+                          <input type="text" name="" value=""size="10"><br>
+                        </div>
+                        
+                      </div>
+                          <div id="tres2">
+                            <div class="entrada">Estado Nutricional:<br>
+                                <input type="text" name="" value=""size="10"><br>
+                            </div>
+                            <div class="entrada">Peso:<br>
+                              <input type="text" name="" value="" size="20"><br>
+                            </div>
+                            <div class="entrada">Frecuencia Cardiaca:<br>
+                              <input type="text" name="" value=""size="10"><br>
+                            </div>
+                            
+                        </div>
+                              <div id="tres2">
+                            <div class="entrada">Saturación de Oxigeno:<br>
+                                <input type="text" name="" value=""size="10"><br>
+                            </div>
+                            <div class="entrada">Fecha de Revisión:<br>
+                              <input type="text" name="" value="" size="20"><br>
+                            </div>
+                        </div>
+    
+                     
+                    
+                    </div>
+                    <br>
+                    <p>Diagnostico </p>
+                    <div class="grupo" id="cabeza">
+                      <div id="tres2">
+                        <div class="entrada">Diagnostico:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                        <div class="entrada">tratamiento:<br>
+                            <input type="text" name="" value=""><br>
+                        </div>
+                      </div>
+                  
+                    </div>
+                    <br>
+                    <p>Antecedentes </p>
+                    <div class="grupo" id="cabeza">
+                      <div id="tres2">
+                        <div class="entrada">Antecedes de Familiares:<br>
+                            <input type="text" name="" value="" size="20"><br>
+                        </div>
+                        <div class="entrada">Antecedes de Patologicos:<br>
+                              <input type="text" name="" value="" size="20"><br>
+                        </div>
+                        <div class="entrada">Antecedes no Patologicos:<br>
+                              <input type="text" name="" value=""size="10"><br>
+                        </div>
+                      </div>
+                        <div id="tres2">
+                            <div class="entrada">Gineco Obstretico:<br>
+                                <input type="text" name="" value=""size="10"><br>
+                            </div>
+                            <div class="entrada">Descripción:<br>
+                                <input type="text" name="" value=""size="10"><br>
+                              </div>  
+                        </div>
+                    
+                    </div>
+                    <br>
+                    <p>Receta </p>
+                    <div class="grupo" id="cabeza">
+                      <div id="tres2">
+                        <div class="entrada">Receta:<br>
+                          <input type="text" name="" value=""><br>
+                        </div>
+                        <div class="entrada">Fecha:<br>
+                            <input type="text" name="" value=""><br>
+                        </div>
+                      </div>
+                  
+                    </div>
+                    <br>
+                    
+                    <br>
+                    
+                      
+                        <p class="text-center">
+                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                            <button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
+                        </p> 
+                    </form>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
 </section>
 	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+	<%- include("partials/scripts") -%>
 </body>
 </html>
