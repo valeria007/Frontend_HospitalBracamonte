@@ -11,7 +11,7 @@
 	<%- include("partials/menudoc") -%>
 
 	<li>
-		<a href="/medico/renderVistaDocotr/">
+		<a href="/medico/renderVistaDocotr/<%=especialidad%>">
 			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
 		</a>
 	</li>
@@ -21,7 +21,7 @@
 			<i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Consultas externas <i class="zmdi zmdi-caret-down pull-right"></i>
 		</a>
 		<ul class="list-unstyled full-box">
-			<li><a href="/medico/listfalseConsulta/"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
+			<li><a href="/medico/listfalseConsulta/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
 					  
 		</ul>
 	</li>
@@ -53,17 +53,15 @@
 				</button>
 					
 				<ul class="dropdown-menu" role="menu">
+					
 					<li class="menu__item">
-						<a href="/datos_responsable" class="menu__link">Datos de responsable</a>
+						<a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" class="menu__link">Antecedentes</a>
 					</li>
 					<li class="menu__item">
-						<a href="/antecedentes" class="menu__link">Antecedentes</a>
+						<a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>" class="menu__link">Alergia</a>
 					</li>
 					<li class="menu__item">
-						<a href="/alergias" class="menu__link">Alergia</a>
-					</li>
-					<li class="menu__item">
-						<a href="/examenFisico" class="menu__link">Examen General</a>
+						<a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>" class="menu__link">Examen General</a>
 					</li>
 					<li class="divider"></li>
 					  
@@ -84,46 +82,52 @@
 		  <div class="container-fluid">
 			<div class="row">
 			
-			  <form action="" method="POST">
+			<% if(update_responsable == null) { %>
+			  <form action="/datos_generales_paciente/reg_responsable/<%=dataPaciente[0].id%>" method="POST">
 				
 				<p>Datos del Paciente</p>
 				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Apellido Paterno :<br>
-					  <input type="text" name="" value=""><br>
+						
+					<div id="cuatro">
+						<div class="entrada">Historial:<br>
+							  <label><font color="black"><%=dataPaciente[0].numeroHistorial%></font></label>
+						</div>
+						<div class="entrada">Apellido Paterno:<br>
+							  <label><font color="black"><%=dataPaciente[0].apellidop%></font></label>
+						</div>
+						<div class="entrada">Apellido Materno:<br>
+							  <label for=""><font color="black"><%=dataPaciente[0].apellidom%></font></label>
+						</div>
+						<div class="entrada">Nombre(s):<br>
+							 <label for=""><font color="black"><%=dataPaciente[0].nombre%></font></label>
+						</div>
 					</div>
-					<div class="entrada">Apellido Materno :<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Nombre(s) :<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
+						
 				</div>
 				<br>
 				<p>Datos de Responsable</p>
 				<div class="grupo" id="cabeza">
 				  <div id="tres2">
 					<div class="entrada">Nombre:<br>
-						<input type="text" name="" value=""size="10"><br>
+						<input type="text" name="nombre" value=""size="10"><br>
 					</div>
 					<div class="entrada">Apellido Paterno:<br>
-					  <input type="text" name="" value="" size="20"><br>
+					  <input type="text" name="apellido1" value="" size="20"><br>
 					</div>
 					<div class="entrada">Apellido Materno:<br>
-					  <input type="text" name="" value=""size="10"><br>
+					  <input type="text" name="apellido2" value=""size="10"><br>
 					</div>
 					
 				  </div>
 				  	<div id="tres2">
 						<div class="entrada">Dirección:<br>
-							<input type="text" name="" value=""size="10"><br>
+							<input type="text" name="direccion" value=""size="10"><br>
 						</div>
 						<div class="entrada">CI:<br>
-						  <input type="text" name="" value="" size="20"><br>
+						  <input type="text" name="ci" value="" size="20"><br>
 						</div>
 						<div class="entrada">Teléfono:<br>
-						  <input type="text" name="" value=""size="10"><br>
+						  <input type="text" name="telefono" value=""size="10"><br>
 						</div>
 						
 					</div>
@@ -140,6 +144,71 @@
 					  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
 				  </p>
 				</form>
+			<% } else { %>
+				<form action="/datos_generales_paciente/update_responsable/<%=update_responsable[0].id%>" method="POST">
+				
+					<p>Datos del Paciente</p>
+					<div class="grupo" id="cabeza">
+							
+						<div id="cuatro">
+							<div class="entrada">Historial:<br>
+								  <label><font color="black"><%=dataPaciente[0].numeroHistorial%></font></label>
+							</div>
+							<div class="entrada">Apellido Paterno:<br>
+								  <label><font color="black"><%=dataPaciente[0].apellidop%></font></label>
+							</div>
+							<div class="entrada">Apellido Materno:<br>
+								  <label for=""><font color="black"><%=dataPaciente[0].apellidom%></font></label>
+							</div>
+							<div class="entrada">Nombre(s):<br>
+								 <label for=""><font color="black"><%=dataPaciente[0].nombre%></font></label>
+							</div>
+						</div>
+							
+					</div>
+					<br>
+					<p>Datos de Responsable</p>
+					<a href="/datos_generales_paciente/voler12">Volver</a>
+					<div class="grupo" id="cabeza">
+					  <div id="tres2">
+						<div class="entrada">Nombre:<br>
+							<input type="text" name="nombre" value="<%=update_responsable[0].nombre%>"size="10"><br>
+						</div>
+						<div class="entrada">Apellido Paterno:<br>
+						  <input type="text" name="apellido1" value="<%=update_responsable[0].apellido1%>" size="20"><br>
+						</div>
+						<div class="entrada">Apellido Materno:<br>
+						  <input type="text" name="apellido2" value="<%=update_responsable[0].apellido2%>" size="10"><br>
+						</div>
+						
+					  </div>
+						  <div id="tres2">
+							<div class="entrada">Dirección:<br>
+								<input type="text" name="direccion" value="<%=update_responsable[0].direccion%>" size="10"><br>
+							</div>
+							<div class="entrada">CI:<br>
+							  <input type="text" name="ci" value="<%=update_responsable[0].ci%>" size="20"><br>
+							</div>
+							<div class="entrada">Teléfono:<br>
+							  <input type="text" name="telefono" value="<%=update_responsable[0].telefono%>" size="10"><br>
+							</div>
+							
+						</div>
+					 
+					
+					</div>
+					<br>
+					
+					<br>
+					
+					  
+					  <p class="text-center">
+						  <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+						  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+					  </p>
+					</form>
+			<% } %>
+				
 				<div class="table-responsive">
 					<h3 class="text-center all-tittles">LISTA DE DATOS DE RESPONSABLE</h3>
 					<div class="table-wrapper">
@@ -154,7 +223,7 @@
 						<table class="fl-table" id="myTable">
 							<thead>
 								<tr>
-								<th>#</th>
+								
 								<th>Nombre</th>
 								<th>Apellido Paterno</th>
 								<th>Apellido Materno</th>
@@ -166,19 +235,18 @@
 								</tr>
 							</thead>
 							<tbody>
-						
-								<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><a href="" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
-								
-								</tr>
-								
+								<% for( var i = 0; i< list_responsables.length; i++) { %>
+									<tr>
+										<td><%=list_responsables[i].nombre%></td>
+										<td><%=list_responsables[i].apellido1%></td>
+										<td><%=list_responsables[i].apellido2%></td>
+										<td><%=list_responsables[i].direccion%></td>
+										<td><%=list_responsables[i].ci%></td>
+										<td><%=list_responsables[i].telefono%></td>
+										<td><a href="/datos_generales_paciente/one_responsable/<%=list_responsables[1].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+									
+									</tr>
+								<% } %>
 							<tbody>
 						</table>
 					</div>
