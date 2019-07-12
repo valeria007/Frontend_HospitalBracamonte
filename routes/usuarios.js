@@ -96,21 +96,26 @@ router.get('/UsuraioCuenta', (req,res) => {
           //console.log(resp)
           if (resp == null){
             res.render('usuarioCuenta',{
-              
+              mensaje,
               resp
             });
           }else{
             res.render('usuarioCuenta',{
-            
+              mensaje,
               resp
             });
           }
      });
 });
 
+var mensaje;
 router.post('/crearCuenta', (req,res) => {
-  
-  var data = req.body;
+  if(req.body.password != req.body.password2){
+    mensaje = 'Las contraceñas no son igiales por favor no insista'
+    res.redirect('/usuarios/UsuraioCuenta');
+  }else{
+
+  var data = req.body;  
   var esto = {
     method: 'POST',
     body: JSON.stringify(data),
@@ -119,20 +124,23 @@ router.post('/crearCuenta', (req,res) => {
           
     }
     };
-    fetch('http://localhost:3600/api/signup/',esto)
+    fetch('http://localhost:3600/api/signup',esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
-       
+        
         if (data.success == false){
-            res.send(data)
+          console.log(data.msg)
+          mensaje = data.msg
+          res.redirect('/usuarios/UsuraioCuenta');
         }else{
-            res.redirect('/usuarios/UsuraioCuenta');
+          mensaje = null;
+          res.redirect('/usuarios/UsuraioCuenta');
 
         }
         
     })
-
+  }
       
 });
 
