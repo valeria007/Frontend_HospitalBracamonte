@@ -27,16 +27,16 @@
         </div>
         <div class="container-fluid">
             <div class="table-responsive">
+				<div id="correo">
+					<div class="entrada">
+						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+					</div>
+					<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+						<input type="text" id="searchInput" placeholder="Buscar.."><br>
+					</div>
+				</div>
                 <div class="table-wrapper">
-						<div id="correo">
-								<div class="entrada">
-									<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-								</div>
-								<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-									<input type="text" id="searchInput" placeholder="Buscar.."><br>
-								</div>
-							</div>
-							<table class="fl-table" id="myTable">
+					<table class="fl-table" id="myTable">
                         <thead>
                             <tr>
                             <th>#</th>
@@ -51,16 +51,16 @@
                         </thead>
                         <tbody>
 							<%for(var i = 0; i< resp.length; i++) { %>
-								<tr>
-									<td><%= i+1 %></td>
-									<td><%=resp[i].codificacion%></td>
-									<td><%=resp[i].nombre%></td>
-									<td><%=resp[i].grupoAsig%></td>
-									<td><%=resp[i].unidades%></td>
-									<td>falta</td>
-									<td>falta</td>
-									<td>falta</td>
-								</tr>
+							<tr>
+							<td><%= i+1 %></td>
+							<td><%=resp[i].codificacion%></td>
+							<td><%=resp[i].nombre%></td>
+							<td><%=resp[i].grupoAsig%></td>
+							<td><%=resp[i].unidades%></td>
+							<td>falta</td>
+							<td>falta</td>
+							<td>falta</td>
+							</tr>
 							<% } %>                            
                         </tbody>
                     </table>

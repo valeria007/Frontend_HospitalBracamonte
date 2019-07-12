@@ -108,26 +108,34 @@ router.get('/UsuraioCuenta', (req,res) => {
      });
 });
 
-router.post('/crearCuenta/:id', (req,res) => {
-  var id = req.params
-  //console.log(id, "    este es el id >>>>>>>>>>>>>>>>>>>>>>>>><" )
-  var data = req.body
-  //console.log(data, "  esto quiero");
-  var enviar = {
+router.post('/crearCuenta', (req,res) => {
+  
+  var data = req.body;
+  var esto = {
     method: 'POST',
     body: JSON.stringify(data),
-    headers: {
+    headers:{
       'Content-type' : "application/json"
+          
     }
-  }
-  fetch('http://localhost:3600/api/signup',enviar)
-  .then(resp => resp.json())
-  .catch(error => console.error('Error',error))
-  .then(resp => {
-   // console.log(resp)
-    res.redirect('/usuarios/UsuraioCuenta/'+id.id)
-  })
+    };
+    fetch('http://localhost:3600/api/signup/',esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+       
+        if (data.success == false){
+            res.send(data)
+        }else{
+            res.redirect('/usuarios/UsuraioCuenta');
+
+        }
+        
+    })
+
+      
 });
+
 
 
 
