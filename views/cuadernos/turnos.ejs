@@ -63,9 +63,115 @@
                 <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
             </p>
         </form>
+        <div class="grupo" id="cabeza">
+                <div class="panel with-nav-tabs panel-default">
+                  <div class="panel-heading">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="#tab1default" data-toggle="tab">Datos del Doctor</a></li>
+                      <li><a href="#tab2default" data-toggle="tab">Fecha de Contratos</a></li>
+                      <li><a href="#tab3default" data-toggle="tab">Turnos</a></li>
+                    </ul>
+                  </div>                                  
+                  <div class="panel-body">
+                    <div class="tab-content">
+                      <div class="tab-pane fade in active" id="tab1default"><form id="form" action="/cuaderno/docCuaderno" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
+                        
+                            <div id="correo">
+                                <div class="entrada">Doctor:<br>
+                                    <select name="nombre" >
+                                        <%for (var i=0; i < resp.length; i++) { %>
+                                            <option><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
+                                        <% } %>                            
+                                    </select>
+                                </div>                 
+                                <div class="entrada">Especialidad:<br>
+                                    <select name="especialidad" >
+                                        <%for (var i=0; i < esp.length; i++) { %>
+                                            <option><%=esp[i].nombre%></option>
+                                        <% } %>     
+                                    </select><br>
+                                </div>
+                                <div class="entrada">Tipo de Doctor:<br>
+                                    <select name="TDoctor" >
+                                        <option>Medico Titular</option>
+                                        <option>Medico Suplente</option>
+                                    </select><br>
+                                </div>
+                                <div class="entrada">Enfermera:<br>
+                                    <input type="text" name="enfermera"><br>
+                                </div>
+                            </div>
+                        
+                        <p class="text-center">
+                            <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                            <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                        </p>
+                    </form></div>
+                    <!--Fecha de Contratos-->
+                      <div class="tab-pane fade" id="tab2default"><form id="form" action="" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
+                        <div id="correo">
+                                <div class="entrada">Fecha de Inicio:<br>
+                                    <input type="date" name="fechaini"><br>
+                                </div>
+                                <div class="entrada">Fecha de Finalizacion:<br>
+                                    <input type="date" name="fechafin"><br>
+                                </div>
+                            </div>
+                        
+                        <p class="text-center">
+                            <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>               
+                            <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> Guardar</button>
+                        </p>
+                    </form></div>
+                    <!--Turnos-->
+                      <div class="tab-pane fade" id="tab3default"><form id="form" action="" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
+                        <div id="correo">
+                                    <div class="entrada">Cantidad de Fichas:<br>
+                                        <select name="cantiFicha" >
+            
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>                             
+            
+                                        </select><br>
+                                    </div>
+                                    <div class="entrada">Dia de atencion:<br>
+                                        <select name="diasAten" >
+                                            <option>Lunes</option>
+                                            <option>Martes</option>
+                                            <option>Miercoles</option>
+                                            <option>Jueves</option>
+                                            <option>Viernes</option>
+                                            <option>Sabado</option>
+                                            <option>Domingo</option>
+                                        </select><br>
+                                    </div>
+                                    <div class="entrada">Turno:<br>
+                                        <select name="turno" >
+                                            <option>Mañanas</option>
+                                            <option>Tardes</option>
+                                            <option>Noches</option>
+                                        </select><br>
+                                    </div>
+                            </div>
+                        <p class="text-center">
+                            <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>               
+                            <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> Guardar</button>
+                        </p>
+                    </form></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
         <% } else { %>
             <div class="container-fluid">
+                
             <form id="form" action="/cuaderno/updateDoctCuaderno/<%=modifDoct[0].id%>" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
                 <div class="grupo" id="cabeza">
                     <div id="correo">
@@ -107,7 +213,9 @@
                     <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Modificar</button>
                 </p>
             </form>
+            
         </div>
+        
             <% } %>
         <div class="table-responsive">
 			<h3 class="text-center all-tittles">LISTA DE DOCTORES</h3>
@@ -127,7 +235,9 @@
                         <th>Doctor</th>
 						<th>Especialidad</th>
 						<th>Tipo de Doctor</th>                        
-						<th>Enfermera</th>						
+                        <th>Enfermera</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Finalizacion</th>						
                         <th>Modificar</th>
                         <th>Ver fecha de contrato</th>
 						</tr>
