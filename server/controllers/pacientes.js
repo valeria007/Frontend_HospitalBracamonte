@@ -48,6 +48,16 @@ const { Pacientes } = model;
           res.status(200).json(data);
         });  
   }
+
+  static paciente_id(req, res){
+    var id = req.params.id;  
+    Pacientes.findAll({
+      where: {id : id}
+        //attributes: ['id', ['description', 'descripcion']]
+        }).then((data) => {
+          res.status(200).json(data);
+        });  
+  }
 }
         
 export default Paciente;

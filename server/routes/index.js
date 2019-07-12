@@ -12,6 +12,8 @@ import Intern from '../controllers/internacion';
 import Responsables from '../controllers/responsable_paciente';
 import Antecedentes from '../controllers/antecedentes_paciente';
 import Alergias from '../controllers/alergias_paciente';
+import Examen_Fisico from '../controllers/examen_fisico_pacientes';
+
 
 import RecetaInternacion from '../controllers/receta_internacion';
 
@@ -52,6 +54,7 @@ app.post('/api/updateCama_estado/:idCama',Camas.Update_cama_estado); // esta rut
 app.post('/api/pacientes', Paciente.registroPaciente);
 app.get('/api/pacientes', Paciente.getPaciente);
 app.get('/api/onlyPaciente/:id', Paciente.OnlyPaciente);
+app.get('/api/paciente_id/:id', Paciente.paciente_id);
 
 ////citas
 app.post('/api/reg_cita/:id_Paciente', Citas_medica.reg_cita);
@@ -123,16 +126,34 @@ app.get('/api/One_Internacion/:id', Intern.One_Internacion);
 
 
 //responssables del apciente
-app.post('/api/responsable', Responsables.respRegsitro);
+app.post('/api/responsable/:id_paciente', Responsables.respRegsitro);
 app.get('/api/responsable', Responsables.list_tesponsable);
+app.get('/api/responsable_list/:id_paciente', Responsables.responsable_list); //ruta para poder mostrar la lista de responsables del paciente
+app.get('/api/update_responsable/:id', Responsables.one_Responsables); //ruta para poder sacar mostrar un responsable para que sea actualizado
+app.post('/api/update_responsable/:id', Responsables.update_Responsable)
+
 
 //antecedentes del paciente
-app.post('/api/antecedentes', Antecedentes.reg_antecedente);
+app.post('/api/antecedentes/:id_paciente', Antecedentes.reg_antecedente);
 app.get('/api/antecedentes', Antecedentes.list_antecedentes);
+app.get('/api/one_ant/:id_paciente', Antecedentes.antecedentes) //ruta para poder mostrar todos los antecedentes de un solo paciente
+app.get('/api/update_antecedente/:id',Antecedentes.antecedenteOne) // esta ruta me mostrara un antecedente segun id para que sea actualizado
+app.post('/api/update_antecedente/:id', Antecedentes.updateAntecedente) //esta ruta es para poder actualizar un antecedente
 
 //alergais de de los pacientes
-app.post('/api/alergias', Alergias.reg_alergias);
+app.post('/api/alergias/:id_paciente', Alergias.reg_alergias);
 app.get('/api/alergias', Alergias.list_alergias);
+app.get('/api/alergias_list/:id_paciente', Alergias.alergias_list); // lista de alergias del paciente
+app.get('/api/One_alergias/:id', Alergias.antecedenteOne);// mostrar una alergia para poder ser actulizado
+app.post('/api/update_alergia/:id', Alergias.update_alergia)
+
+//examen fisico del paciente
+app.post('/api/examen_fisico/:id_paciente', Examen_Fisico.reg_examen_fisico);
+app.get('/api/list_examenFisico', Examen_Fisico.list_tesponsable);
+app.get('/api/exFisico_list/:id_paciente', Examen_Fisico.exFisco_list);// ruta para poder mostrar los examenes fisicos del paciente
+app.get('/api/one_exFisico/:id', Examen_Fisico.one_exFisco);// ruta para poder mosrtrar un examen fisico para que pueda ser actualizado
+app.post('/api/update_exFisico/:id', Examen_Fisico.update_exFisico); //esta ruta es para poder actualizar los examenes fisicos de un paciente
+
 
 
 //receta de Internacion
