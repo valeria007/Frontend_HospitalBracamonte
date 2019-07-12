@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Examen Fisico</title>
+	<title>Datos Responsable</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("../partials/head") -%>
@@ -38,7 +38,7 @@
 	<!-- Content page -->
 	<div class="container-fluid col-md-12" id="">
 		<div class="page-header  col-md-6">	
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Historial Clinico<small></small></h1>  
+			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Datos de Responsable<small></small></h1>  
 		</div><br><br>
 		<div class="btn-group  col-md-3">
 			<button type="button" class="btn btn-info btn-raised"
@@ -72,141 +72,60 @@
 		
 		</div>
 	</div>
-	<!-- Examen Fisico-->
+	<!-- Alergias-->
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade active in" id="new">
 		  <div class="container-fluid">
 			<div class="row">
 			
 			  <form action="" method="POST">
-								<div class="grupo" id="cabeza">
-
-				<p>Datos del Paciente </p>
+				
+				<p>Datos del Paciente</p>
+				<div class="grupo" id="cabeza">
 				  <div id="tres2">
-					<div class="entrada">Nombre Completo:<br>
+					<div class="entrada">Apellido Paterno :<br>
 					  <input type="text" name="" value=""><br>
 					</div>
-					<div class="entrada">CI.:<br>
+					<div class="entrada">Apellido Materno :<br>
 					  <input type="text" name="" value=""><br>
 					</div>
-					<div class="entrada">Sexo:<br>
+					<div class="entrada">Nombre(s) :<br>
 					  <input type="text" name="" value=""><br>
 					</div>
-				  </div>
-				  <div id="tres2">
-					<div class="entrada">Fecha de Nacimiento:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Dirección:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Telefono:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-				  <div id="tres2">
-					<div class="entrada">Estado Civil:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					
 				  </div>
 				</div>
 				<br>
-				<p>Examen Físico General</p>
+				<p>Datos de Responsable</p>
 				<div class="grupo" id="cabeza">
 				  <div id="tres2">
-					<div class="entrada">Estado General:<br>
+					<div class="entrada">Nombre:<br>
 						<input type="text" name="" value=""size="10"><br>
 					</div>
-					<div class="entrada">Facies:<br>
+					<div class="entrada">Apellido Paterno:<br>
 					  <input type="text" name="" value="" size="20"><br>
 					</div>
-					<div class="entrada">Presión Arterial:<br>
+					<div class="entrada">Apellido Materno:<br>
 					  <input type="text" name="" value=""size="10"><br>
 					</div>
 					
 				  </div>
 				  	<div id="tres2">
-						<div class="entrada">Estado Nutricional:<br>
+						<div class="entrada">Dirección:<br>
 							<input type="text" name="" value=""size="10"><br>
 						</div>
-						<div class="entrada">Peso:<br>
+						<div class="entrada">CI:<br>
 						  <input type="text" name="" value="" size="20"><br>
 						</div>
-						<div class="entrada">Frecuencia Cardiaca:<br>
+						<div class="entrada">Teléfono:<br>
 						  <input type="text" name="" value=""size="10"><br>
 						</div>
 						
-                    </div>
-                      	<div id="tres2">
-						<div class="entrada">Saturación de Oxigeno:<br>
-							<input type="text" name="" value=""size="10"><br>
-						</div>
-						<div class="entrada">Fecha de Revisión:<br>
-						  <input type="text" name="" value="" size="20"><br>
-						</div>
 					</div>
-
 				 
 				
 				</div>
 				<br>
-				<p>Diagnostico </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Diagnostico:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-			  
-				</div>
-				<br>
-				<p>Antecedentes </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Antecedes de Familiares:<br>
-						<input type="text" name="" value="" size="20"><br>
-					  </div>
-					<div class="entrada">Antecedes de Patologicos:<br>
-						  <input type="text" name="" value="" size="20"><br>
-					</div>
-					<div class="entrada">Antecedes no Patologicos:<br>
-						  <input type="text" name="" value=""size="10"><br>
-					</div>
-					<div id="tres2">
-						<div class="entrada">Gineco Obstretico:<br>
-							<input type="text" name="" value=""size="10"><br>
-						</div>
-						<div class="entrada">Descripción:<br>
-							<input type="text" name="" value=""size="10"><br>
-					  	</div>  
-					</div>
-				  </div>
-			  
-				</div>
-				<br>
-				<p>Receta </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Receta:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Fecha:<br>
-						<input type="text" name="" value=""><br>
-					</div>
-				  </div>
-			  
-				</div>
-				<br>
-				<p>Diagnostico </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Diagnostico:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-			  
-				</div>
+				
 				<br>
 				
 				  

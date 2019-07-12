@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Examen Fisico</title>
+	<title>Antecedentes</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("../partials/head") -%>
@@ -38,7 +38,7 @@
 	<!-- Content page -->
 	<div class="container-fluid col-md-12" id="">
 		<div class="page-header  col-md-6">	
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Historial Clinico<small></small></h1>  
+			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Antecedentes<small></small></h1>  
 		</div><br><br>
 		<div class="btn-group  col-md-3">
 			<button type="button" class="btn btn-info btn-raised"
@@ -72,106 +72,53 @@
 		
 		</div>
 	</div>
-	<!-- Examen Fisico-->
+	<!-- Antecedentes -->
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade active in" id="new">
 		  <div class="container-fluid">
 			<div class="row">
 			
 			  <form action="" method="POST">
-								<div class="grupo" id="cabeza">
-
-				<p>Datos del Paciente </p>
-				  <div id="tres2">
-					<div class="entrada">Nombre Completo:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">CI.:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Sexo:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-				  <div id="tres2">
-					<div class="entrada">Fecha de Nacimiento:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Dirección:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Telefono:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-				  <div id="tres2">
-					<div class="entrada">Estado Civil:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					
-				  </div>
-				</div>
-				<br>
-				<p>Examen Físico General</p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Estado General:<br>
-						<input type="text" name="" value=""size="10"><br>
-					</div>
-					<div class="entrada">Facies:<br>
-					  <input type="text" name="" value="" size="20"><br>
-					</div>
-					<div class="entrada">Presión Arterial:<br>
-					  <input type="text" name="" value=""size="10"><br>
-					</div>
-					
-				  </div>
-				  	<div id="tres2">
-						<div class="entrada">Estado Nutricional:<br>
-							<input type="text" name="" value=""size="10"><br>
-						</div>
-						<div class="entrada">Peso:<br>
-						  <input type="text" name="" value="" size="20"><br>
-						</div>
-						<div class="entrada">Frecuencia Cardiaca:<br>
-						  <input type="text" name="" value=""size="10"><br>
-						</div>
-						
-                    </div>
-                      	<div id="tres2">
-						<div class="entrada">Saturación de Oxigeno:<br>
-							<input type="text" name="" value=""size="10"><br>
-						</div>
-						<div class="entrada">Fecha de Revisión:<br>
-						  <input type="text" name="" value="" size="20"><br>
-						</div>
-					</div>
-
-				 
 				
-				</div>
-				<br>
-				<p>Diagnostico </p>
+				<p>Datos del Paciente</p>
 				<div class="grupo" id="cabeza">
 				  <div id="tres2">
-					<div class="entrada">Diagnostico:<br>
+					<div class="entrada">Apellido Paterno :<br>
+					  <input type="text" name="" value=""><br>
+					</div>
+					<div class="entrada">Apellido Materno :<br>
+					  <input type="text" name="" value=""><br>
+					</div>
+					<div class="entrada">Nombre(s) :<br>
 					  <input type="text" name="" value=""><br>
 					</div>
 				  </div>
-			  
 				</div>
 				<br>
 				<p>Antecedentes </p>
 				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Antecedes de Familiares:<br>
-						<input type="text" name="" value="" size="20"><br>
-					  </div>
-					<div class="entrada">Antecedes de Patologicos:<br>
-						  <input type="text" name="" value="" size="20"><br>
+				  	<div id="tres2">
+						<div class="entrada">Fecha:<br>
+					  		<input  type="date" name="" require><br>
+						</div>
+						<div class="entrada">Antecedes Patologicos:<br>
+					  		<input type="text" name="" value="" size="20"><br>
+						</div>
+						<div class="entrada">Antecedes Patologicos de riesgo:<br>
+					  		<input type="text" name="" value=""size="10"><br>
+						</div>
 					</div>
-					<div class="entrada">Antecedes no Patologicos:<br>
-						  <input type="text" name="" value=""size="10"><br>
+					<div id="tres2">
+						<div class="entrada">Antecedes de Familiares:<br>
+							<input type="text" name="" value="" size="20"><br>
+					  	</div>
+						<div class="entrada">Antecedes de Patologicos:<br>
+					  		<input type="text" name="" value="" size="20"><br>
+						</div>
+						<div class="entrada">Antecedes no Patologicos:<br>
+					  		<input type="text" name="" value=""size="10"><br>
+						</div>
+						
 					</div>
 					<div id="tres2">
 						<div class="entrada">Gineco Obstretico:<br>
@@ -181,32 +128,10 @@
 							<input type="text" name="" value=""size="10"><br>
 					  	</div>  
 					</div>
-				  </div>
-			  
+				
 				</div>
 				<br>
-				<p>Receta </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Receta:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-					<div class="entrada">Fecha:<br>
-						<input type="text" name="" value=""><br>
-					</div>
-				  </div>
-			  
-				</div>
-				<br>
-				<p>Diagnostico </p>
-				<div class="grupo" id="cabeza">
-				  <div id="tres2">
-					<div class="entrada">Diagnostico:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-			  
-				</div>
+				
 				<br>
 				
 				  
@@ -216,7 +141,7 @@
 				  </p>
 				</form>
 				<div class="table-responsive">
-					<h3 class="text-center all-tittles">LISTA DE DATOS DE RESPONSABLE</h3>
+					<h3 class="text-center all-tittles">LISTA DE AlERGIAS</h3>
 					<div class="table-wrapper">
 						<div id="correo">
 							<div class="entrada">
@@ -230,12 +155,9 @@
 							<thead>
 								<tr>
 								<th>#</th>
-								<th>Nombre</th>
-								<th>Apellido Paterno</th>
-								<th>Apellido Materno</th>
-								<th>Dirección</th>
-								<th>CI</th>
-								<th>Teléfono</th>
+								<th>Fecha</th>
+								<th>Medicamentos</th>
+								<th>Otros</th>
 								<th>Dar de baja </th>
 								
 								</tr>
@@ -243,9 +165,6 @@
 							<tbody>
 						
 								<tr>
-								<td></td>
-								<td></td>
-								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
