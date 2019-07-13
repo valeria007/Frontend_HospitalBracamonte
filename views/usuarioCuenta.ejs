@@ -25,7 +25,11 @@
 				<h1 class="text-titles"><i class="zmdi zmdi zmdi-accounts-add zmdi-hc-fw"></i> Registro de Cuentas </h1>
 			</div>
 		</div>
+		
 		<div class="container-fluid">
+				<%if(mensaje != null) { %>
+				<h3 style="color:rgb(200, 3, 3);"><%=mensaje%></h3>
+				<% } %>
 				<form action="/usuarios/crearCuenta" method="POST" onsubmit="return validar()">
 					<div class="grupo" id="cabeza">
 						<div id="cuatro">
