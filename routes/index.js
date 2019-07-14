@@ -87,6 +87,11 @@ router.get('/vistaPrimPaciente',(req, res) => {
 
 // se movio esta ruta  a emergencia
 
+//para las vistas de hospitaliacion
+router.get('/homeHospitalizacion', (req,res) => {
+  res.render('homeHospitalizacion')
+});
+
 
 //hospitalizacion 
 
@@ -183,5 +188,9 @@ router.get('/datos_responsable', (req,res) => {
 router.get('/VerHistorial', (req,res) => {
   res.render('VerHistorial')
 });
+router.get('/ordenLaboratorio', (req,res) => {
+  res.render('ordenLaboratorio')
+});
+
 
 module.exports = router;

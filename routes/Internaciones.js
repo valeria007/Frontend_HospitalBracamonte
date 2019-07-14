@@ -499,4 +499,8 @@ router.post('/update_epicrisis/:id' , (req,res) => {
 
 
 
+//prueba
+router.get('/alergiasvis', (req,res) => {
+    res.render('hospitalizaciones/alergias')
+  });
 module.exports = router;
