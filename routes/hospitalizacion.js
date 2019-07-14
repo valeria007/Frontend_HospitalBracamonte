@@ -90,7 +90,29 @@ router.get('/consultaData', (req,res) => {
         data
     })
 });*/
+//vistas
+router.get('/alergiasvis', (req,res) => {
+    res.render('hospitalizaciones/alergia')
+  });
 
+router.get('/datos_responsablevis', (req,res) => {
+    res.render('hospitalizaciones/datos_responsable')
+  });
+  router.get('/antecedentesvis', (req,res) => {
+    res.render('hospitalizaciones/antecedentes')
+  });
+  router.get('/epicrisisvis', (req,res) => {
+    res.render('hospitalizaciones/epicrisis')
+  });
+  router.get('/VerHistorialvis',(req,res) =>{
+    res.render('hospitalizaciones/VerHistorial')
+  });
+  router.get('/egresoVoluntariovis',(req,res) =>{
+    res.render('hospitalizaciones/egresoVoluntario')
+  });
+  router.get('/OrdenInterCirugiavis', (req,res) => {
+    res.render('hospitalizaciones/OrdenInterCirugia')
+  });
 
 
 

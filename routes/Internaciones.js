@@ -400,4 +400,8 @@ router.post('/vuePOstReceta/:id', (req,res) => {
     })
 })
 
+//prueba
+router.get('/alergiasvis', (req,res) => {
+    res.render('hospitalizaciones/alergias')
+  });
 module.exports = router;

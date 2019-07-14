@@ -510,6 +510,9 @@ router.get('/datos_responsablevis', (req,res) => {
   router.get('/VerHistorialvis',(req,res) =>{
     res.render('emergencias/VerHistorial')
   });
+  router.get('/ordenLaboratoriovis',(req,res) =>{
+    res.render('emergencias/ordenLaboratorio')
+  });
 
   
     
