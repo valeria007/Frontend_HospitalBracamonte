@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       historial: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       fechaIngreso: {
         type: Sequelize.STRING
@@ -57,6 +57,15 @@ module.exports = {
           model: 'PapeletaInternacions',
           key: 'id',
           as: 'idPinternacion'
+        }
+      },
+      id_paciente: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Pacientes',
+          key: 'id',
+          as: 'id_paciente'
         }
       },      
       createdAt: {

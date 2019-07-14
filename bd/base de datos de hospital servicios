@@ -46,3 +46,8 @@ sequelize model:create --name examen_fisico --attributes estado_general:text,fac
 
 sequelize model:create --name receta_internacion --attributes receta_de:string,historial:integer,fechaEmicion:string,nombre_doctor:text,medicamentos:text,id_internacion:integer
  
+
+epicrisis
+
+sequelize model:create --name epicrisis --attributes historial:integer,diagnostico_ingreso:text,resumenExmen_clinico:text,resumen_evolucion:text,medicamentos_usados:text,diagnosticoPos_operatorio:text,intervenciones_quirurgicas:text,resAnatomia_patologica:text,resAllasgos_lab:text,diagnostico_final:text,estadoPaciente_alta:text,result_autopcia:text
+

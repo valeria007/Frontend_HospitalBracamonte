@@ -17,6 +17,8 @@ import Examen_Fisico from '../controllers/examen_fisico_pacientes';
 
 import RecetaInternacion from '../controllers/receta_internacion';
 
+import Epicrisis from '../controllers/epicrisis'; 
+
 
 export default (app) => {
 
@@ -53,7 +55,7 @@ app.post('/api/updateCama_estado/:idCama',Camas.Update_cama_estado); // esta rut
 ///reg_pacientes
 app.post('/api/pacientes', Paciente.registroPaciente);
 app.get('/api/pacientes', Paciente.getPaciente);
-app.get('/api/onlyPaciente/:id', Paciente.OnlyPaciente);
+app.get('/api/onlyPaciente/:id', Paciente.OnlyPaciente); // mostrar pacientes segun historial
 app.get('/api/paciente_id/:id', Paciente.paciente_id);
 
 ////citas
@@ -124,6 +126,9 @@ app.get('/api/list_internacion_paciente/:id_Pinternacion/:historial', Intern.lis
 app.post('/api/update_form_internacion/:id', Intern.update_form_internacion) // ruta para actulizar form internacion
 app.get('/api/One_Internacion/:id', Intern.One_Internacion);
 
+app.get('/api/list_internacion_especialidad/:especialidad', Intern.list_internacion_especialidad); // esta ruta listara todas las internaciones segun especialidad
+app.get('/api/One_intern/:id', Intern.One_intern);// ruta para poder mostrar una solo internacion del paciente
+
 
 //responssables del apciente
 app.post('/api/responsable/:id_paciente', Responsables.respRegsitro);
@@ -159,4 +164,10 @@ app.post('/api/update_exFisico/:id', Examen_Fisico.update_exFisico); //esta ruta
 //receta de Internacion
 app.post('/api/receta_interncaion/:id_internacion', RecetaInternacion.reg_recetaInter);
 app.get('/api/list_receta_internacion', RecetaInternacion.listReceta_internacion);
+
+//epicrisis
+app.post('/api/epicrisis/:id_internacion', Epicrisis.reg_epicrisis);
+app.get('/api/epicrisis', Epicrisis.getEpicrisis)
+app.get('/api/one_epicrisis/:id_internacion', Epicrisis.Epicrisis_intenracion);
+app.post('/api/update_epicrisis/:id', Epicrisis.updateEpicrisis);
 };

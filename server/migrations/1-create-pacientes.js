@@ -21,7 +21,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       apellidom:  {
-        allowNull:false,
         type: Sequelize.STRING
       },
       ci: {
@@ -37,7 +36,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       estadocivil:  {
-        //allowNull:faslse,
         type: Sequelize.STRING
       },
       direccion:  {

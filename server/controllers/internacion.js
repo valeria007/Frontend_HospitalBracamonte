@@ -1,15 +1,27 @@
 import model from '../models';
 
 const { Internaciones } = model;
+const { PapeletaInternacion } = model;
+
+const { Consultas } = model;
+const { emergencia } = model;
+const { Citas_Medicas } = model;
+const { Pacientes } = model;
 
 const { Camas } = model;
 const { Salas } = model;
 
 class Intern { 
     static Internacion(req,res){
+      Pacientes.findAll({
+        where: {numeroHistorial : req.body.historial}
+      })
+      .then((datos) => {
+        var id = datos[0].id
         const { historial,fechaIngreso,tipoPaciente,institucion,provieneDE,observacion,especialidad,sala,cama,doctor,diagnostico } = req.body 
         const { idCama } = req.params
         const { idPinternacion } = req.params
+        var id_paciente = id;
         return Internaciones
         .create({
             historial,
@@ -24,13 +36,17 @@ class Intern {
             doctor,
             diagnostico,
             idCama,
-            idPinternacion
+            idPinternacion,
+            id_paciente
         })
         .then(data => res.status(200).send({
             success: true,
             message: "Internacion",
             data
         }))
+
+      })
+        
     }
     // Servicio para para mostrar Internaciones
     static listInternaciones(req, res) {
@@ -147,6 +163,37 @@ class Intern {
        }).then((data) => {
          res.status(200).json(data);
        });     
+    }
+
+    // ruta para poder mostrar una lista segun especialidad
+    static list_internacion_especialidad(req, res){                
+      const { especialidad } = req.params
+      Internaciones.findAll({
+         where: {especialidad: especialidad},
+         //attributes: ['id', ['description', 'descripcion']]
+        include:[{
+          model:Pacientes
+        }]
+        
+       }).then((data) => {
+         res.status(200).json(data);
+       });     
+  }
+  //ruta para poder mostrar una internacion segun id
+  static One_intern(req, res){                
+    const { id } = req.params
+    Internaciones.findAll({
+       where: {id: id},
+       //attributes: ['id', ['description', 'descripcion']]
+       include:[
+         { model: Camas, attributes:['id','numeroCama'],
+        include:[
+          {model:Salas, attributes:['id','descripcionSala']}
+        ] }
+       ]
+     }).then((data) => {
+       res.status(200).json(data);
+     });     
   }
  }
 

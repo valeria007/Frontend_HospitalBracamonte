@@ -16,7 +16,6 @@ class Sala {
             where: {nombre : req.body.nombre}
           })
           .then((datos) => {            
-            console.log(datos[0].id)
             var id = datos[0].id;
             const { nombre, descripcionSala, piso } = req.body
             var  especialidadID  = id

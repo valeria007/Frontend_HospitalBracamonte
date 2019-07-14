@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     Pacientes.hasMany(models.Citas_Medicas, {
       foreignKey: 'id_Paciente',
     });
+    Pacientes.hasMany(models.Internaciones, {
+      foreignKey: 'id_paciente',
+    });
     Pacientes.hasMany(models.responsables, {
       foreignKey: 'id_paciente',
     });
