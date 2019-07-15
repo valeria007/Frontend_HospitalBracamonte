@@ -60,6 +60,7 @@ router.get('/viewTemporal', (req,res) => {
 //serv para mostrar home hospitalizacion o internacion
 router.get('/hospitalizacion/:especialidad',(req, res) => {
     const { especialidad } = req.params
+    especialidad1 = req.params.especialidad;
     res.render('hospitalizaciones/homeHospitalizacion',{
         especialidad //esto manda la especialdad
     })       
@@ -399,6 +400,104 @@ router.post('/vuePOstReceta/:id', (req,res) => {
         res.status(200).json(data)
     })
 })
+
+
+/*
+<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<
+            lista de Internados
+>>>>>>><<<<<<<<<<>>>>>>>>>><<<<>>><>>><<>>><<>>><
+<<<<<<<>><<<<><<<>><<<><<<>><<>>><<>>><<>>>><<<>>
+*/
+
+router.get('/list_internadios', (req,res) => {
+    fetch('http://localhost:3000/api/list_internacion_especialidad/'+especialidad1)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(list_internacion => { 
+        res.render('hospitalizaciones/pacientes_de_internacion',{
+            list_internacion,
+            especialidad:especialidad1
+        })        
+    }) 
+})
+
+router.get('/paciente_internacion/:id', (req,res) => {
+    const { id } = req.params;
+    var data_paciente;
+    fetch('http://localhost:3000/api/One_intern/'+id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(one_internacion => { 
+        paciente(one_internacion[0].historial)
+        function paciente(data){
+            fetch('http://localhost:3000/api/onlyPaciente/'+data)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => { 
+                
+                res.render('hospitalizaciones/paciente_internacion',{
+                    especialidad:especialidad1,
+                    one_internacion,
+                    data_paciente:data
+                    
+                })    
+            }) 
+        }   
+    })    
+})
+
+router.get('/one_epicrisis/:id_internacion', (req,res) => {
+    const { id_internacion } = req.params;
+    fetch('http://localhost:3000/api/one_epicrisis/'+id_internacion)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+       res.status(200).json(data);      
+    }) 
+})
+
+router.post('/Vue_reg_epicrisis/:id_paciente', (req,res) => {
+    const { id_paciente } = req.params;
+    console.log(id_paciente)
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/epicrisis/'+id_paciente,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)
+    })
+})
+
+//ruta para poder actulziar epicrisis
+router.post('/update_epicrisis/:id' , (req,res) => {
+    const { id } = req.params;
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/update_epicrisis/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        console.log(data, "  respuesta del update")
+        res.status(200).json(data)
+    })
+})
+
+
+
 
 //prueba
 router.get('/alergiasvis', (req,res) => {

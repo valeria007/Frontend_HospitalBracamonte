@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Paciente Internacion</title>
+    <%- include("../partials/head") -%>
+    <script language="JavaScript">
+        function edad(Fecha){
+        fecha = new Date(Fecha)
+        hoy = new Date()
+        ed = parseInt((hoy -fecha)/365/24/60/60/1000)
+        document.getElementById('#pepe').value = "tienes " + ed + " años"
+        }
+    </script>
+</head>
+<body>
+        
+
+    <!-- SideBar -->
+	<%- include("partials/menu") -%>
+    <!-- SideBar Menu Hospital-->
+    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+           <li>
+               <a href="/internaciones/hospitalizacion/<%=especialidad%>">
+                   <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=especialidad%>
+               </a>
+           </li>
+                      
+           <!-- Emergencias -->
+           <li>
+               <a href="#!" class="btn-sideBar-SubMenu">
+                   <i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
+               </a>
+               <ul class="list-unstyled full-box">
+                   <li><a href="/internaciones/ListaInternacionF/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+                             
+               </ul>
+           </li> 
+           </ul>
+   <%- include("partials/footer") -%>
+   <!-- Content page-->
+   <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+       <!-- NavBar -->
+	    <nav class="full-box dashboard-Navbar">
+            <ul class="full-box list-unstyled text-right">
+                <li class="pull-left">
+                    <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Content page -->
+       <div id="app">  
+           
+	        <div class="container-fluid">
+                <h4 v-on:click="ocultar2" > Area de Internacion del paciente </h4> 
+                <input type="radio" v-model="ocultar.genData" :value="true">mostrar detalles 
+                <input type="radio" v-model="ocultar.genData" :value="false">ocultar detalles
+                <template v-if="ocultar.genData">
+                    <div  class="grupo" id="cabeza">
+                        <div id="tres2">
+                            <div class="entrada">Historial N°: 
+                                <label><font color="black"><%=data_paciente[0].numeroHistorial%></font></label>
+                                <input type="hidden" v-model="historial" :value='<%=data_paciente[0].numeroHistorial%>'>
+                            </div>
+                            <div class="entrada">Area De:
+                                <label><font color="black"><%=one_internacion[0].especialidad%></font></label>
+                            </div>
+                            <div class="entrada">
+                                <label><font color="black"><%=one_internacion[0].Cama.Sala.descripcionSala%></font></label>
+                            </div>
+                            <div class="entrada">Cama N°:
+                                <label><font color="black"><%=one_internacion[0].Cama.numeroCama%></font></label>
+                            </div>
+                        </div>                
+                    </div>
+                    <p>Datos Generales del Paciente</p>
+                    <div class="grupo" id="cabeza">
+                        <div id="cuatro">
+                            <div class="entrada">Nombre Completo: 
+                                <label><font color="black"><%=data_paciente[0].nombre%>  <%=data_paciente[0].apellidop%>  <%=data_paciente[0].apellidom%></font></label>
+                            </div>
+                            <div class="entrada"> Fecha Nacido: 
+                                <label><font color="black"> <%=data_paciente[0].fechanacimiento%></font></label>
+                            </div>
+                            <div class="entrada">Sexo:
+                                <label><font color="black"> <%=data_paciente[0].sexo%></font></label>
+                            </div>
+                            <div class="entrada">C.I.:
+                                <label><font color="black"> <%=data_paciente[0].ci%></font></label>
+                            </div>
+
+                        </div>                
+                    </div>
+                </template>
+            </div>
+            <br>
+           
+            <div class="container-fluid">
+		    	<div class="row">
+                    <div class="col-md-12 ">
+		    			<ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+		    			  	<li v-on:click="oneEpicrisis(<%=one_internacion[0].id%>), idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>)"><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Epicrisis </a></li>
+		    				<li class="active"><a href="#listFalse" data-toggle="tab">Pacientes atendidos</a></li>
+		    				<li><a href="#">Refresh</a></li>
+		    			</ul>
+		    		</div>
+                </div>
+            </div>	
+    
+		    <div class="col-xs-20 col-md-10 col-md-offset-1">
+                <div id="myTabContent" class="tab-content">
+		    	    <div class="tab-pane fade" id="list">
+                        <h1>Epicrisis</h1>                   
+                        <div class="container-fluid"> 
+                            <template v-if="one_epicrisis.length">
+
+                                <h3>update</h3>                                                         
+                                <form @submit="updateEpicrisis">
+
+                                    <div class="tres2" id="cabeza"> 
+                                        <div class="entrada"> Fecha de Internacion  
+                                            <input type="date" name="" v-model="fecha_internacion" >
+                                        </div>   
+                                        <div class="entrada"> Fecha de Alta   
+                                            <input type="date" name=""  v-model="fecha_alta">
+                                        </div>                           
+                                    </div>
+
+                                    <p>Diagnostico De ingreso</p>
+                                    <div class="grupo" id="cabeza">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+                                                        <li><a href="#Diagnostico" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Diagnostico de Ingreso </a></li>
+                                                        <li><a href="#ResumenExamenClinico" data-toggle="tab">Resumen del examne Clinico</a></li>
+                                                        <li><a href="#Resumen" data-toggle="tab">Resumen de la evolucion</a></li>
+                                                        <li><a href="#">Refresh</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="container-fluid">           
+                                            <div class="row">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade active in" id="Diagnostico">                                                    
+                                                        <textarea name="" id="" cols="10" rows="5" v-model="diasnostico_ingreso"></textarea>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="ResumenExamenClinico">                                                    
+                                                        <textarea name="" id="" cols="10" rows="5" v-model="res_examen_clinico"></textarea>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="Resumen">                                                    
+                                                        <textarea name="" id="" cols="10" rows="5" v-model="res_evolucion"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>        
+                                    </div>
+                                    <p>Antecedentes </p>
+                                    <div class="grupo" id="cabeza">
+                                        <div class="container-fluid">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+                                                            <li><a href="#d1" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Drogas usadas para el tratamiento medico </a></li>
+                                                            <li><a href="#d2" data-toggle="tab">Diagnostico post operatorio</a></li>
+                                                            <li><a href="#d3" data-toggle="tab">Intervenciones Quirurgicas</a></li>
+                                                            <li><a href="#d4" data-toggle="tab">Resultado de anatomia patologico:</a></li>
+                                                            <li><a href="#">Refresh</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">           
+                                                <div class="row">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade active in" id="d1">                                                    
+                                                            <textarea name="" id="" cols="10" rows="5" v-model="meds_usados"></textarea>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="d2">                                                    
+                                                            <textarea name="" id="" cols="10" rows="5" v-model="diag_pos_operatorio"></textarea>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="d3">                                                    
+                                                            <textarea name="" id="" cols="10" rows="5" v-model="cirugias"></textarea>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="d4">                                                    
+                                                            <textarea name="" id="" cols="10" rows="5" v-model="res_anatomia_patologica"></textarea>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grupo" id="cabeza">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+                                                        <li class="active"><a href="#d5" data-toggle="tab"><i class="zmdi zmdi-assignment"></i>Resumen de los allasgos laboratoriales </a></li>
+                                                        <li><a href="#d6" data-toggle="tab">Diagnostico Final</a></li>
+                                                        <li><a href="#d7" data-toggle="tab">Estado del paciente al ser dado de alta e indicaciones</a></li>
+                                                        <li><a href="#d8" data-toggle="tab">Resultado de autopcia :</a></li>
+                                                        <li><a href="#">Refresh</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade active in" id="d5">                                                    
+                                                <textarea name="" id="" cols="10" rows="5" v-model="res_lab"></textarea>
+                                            </div>
+                                            <div class="tab-pane fade" id="d6">                                                    
+                                                <textarea name="" id="" cols="10" rows="5" v-model="diagnostico_final"></textarea>
+                                            </div>
+                                            <div class="tab-pane fade" id="d7">                                                    
+                                                <textarea name="" id="" cols="10" rows="5" v-model="estado_paciente_alta"></textarea>
+                                            </div>
+                                            <div class="tab-pane fade" id="d8">                                                    
+                                                <textarea name="" id="" cols="10" rows="5" v-model="res_autopcia"></textarea>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <p class="text-center">
+                                        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                        <button type="submit" class="btn btn-danger btn-raised" @click="oneEpicrisis(<%=one_internacion[0].id%>)"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Actualizar </button>
+                                    </p>
+
+                                </form>
+
+                            </template> 
+
+
+                            <template v-else >
+                                    <form @submit="formSubmit">
+
+                                            <div class="tres2" id="cabeza"> 
+                                                <div class="entrada"> Fecha de Internacion  
+                                                    <input type="date" name="" v-model="fecha_internacion" >
+                                                </div>   
+                                                <div class="entrada"> Fecha de Alta   
+                                                    <input type="date" name=""  v-model="fecha_alta">
+                                                </div>                           
+                                            </div>
+        
+                                            <p>Diagnostico De ingreso</p>
+                                            <div class="grupo" id="cabeza">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-md-12 ">
+                                                            <ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+                                                                <li><a href="#Diagnostico" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Diagnostico de Ingreso </a></li>
+                                                                <li><a href="#ResumenExamenClinico" data-toggle="tab">Resumen del examne Clinico</a></li>
+                                                                <li><a href="#Resumen" data-toggle="tab">Resumen de la evolucion</a></li>
+                                                                <li><a href="#">Refresh</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="container-fluid">           
+                                                    <div class="row">
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane fade active in" id="Diagnostico">                                                    
+                                                                <textarea name="" id="" cols="10" rows="5" v-model="diasnostico_ingreso"></textarea>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="ResumenExamenClinico">                                                    
+                                                                <textarea name="" id="" cols="10" rows="5" v-model="res_examen_clinico"></textarea>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="Resumen">                                                    
+                                                                <textarea name="" id="" cols="10" rows="5" v-model="res_evolucion"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>        
+                                            </div>
+                                            <p>Antecedentes </p>
+                                            <div class="grupo" id="cabeza">
+                                                <div class="container-fluid">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-md-12 ">
+                                                                <ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+                                                                    <li><a href="#d1" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Drogas usadas para el tratamiento medico </a></li>
+                                                                    <li><a href="#d2" data-toggle="tab">Diagnostico post operatorio</a></li>
+                                                                    <li><a href="#d3" data-toggle="tab">Intervenciones Quirurgicas</a></li>
+                                                                    <li><a href="#d4" data-toggle="tab">Resultado de anatomia patologico:</a></li>
+                                                                    <li><a href="#">Refresh</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="container-fluid">           
+                                                        <div class="row">
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane fade active in" id="d1">                                                    
+                                                                    <textarea name="" id="" cols="10" rows="5" v-model="meds_usados"></textarea>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="d2">                                                    
+                                                                    <textarea name="" id="" cols="10" rows="5" v-model="diag_pos_operatorio"></textarea>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="d3">                                                    
+                                                                    <textarea name="" id="" cols="10" rows="5" v-model="cirugias"></textarea>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="d4">                                                    
+                                                                    <textarea name="" id="" cols="10" rows="5" v-model="res_anatomia_patologica"></textarea>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="grupo" id="cabeza">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-md-12 ">
+                                                            <ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+                                                                <li class="active"><a href="#d5" data-toggle="tab"><i class="zmdi zmdi-assignment"></i>Resumen de los allasgos laboratoriales </a></li>
+                                                                <li><a href="#d6" data-toggle="tab">Diagnostico Final</a></li>
+                                                                <li><a href="#d7" data-toggle="tab">Estado del paciente al ser dado de alta e indicaciones</a></li>
+                                                                <li><a href="#d8" data-toggle="tab">Resultado de autopcia :</a></li>
+                                                                <li><a href="#">Refresh</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade active in" id="d5">                                                    
+                                                        <textarea name="" id="" cols="10" rows="5" v-model="res_lab"></textarea>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="d6">                                                    
+                                                        <textarea name="" id="" cols="10" rows="5" v-model="diagnostico_final"></textarea>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="d7">                                                    
+                                                        <textarea name="" id="" cols="10" rows="5" v-model="estado_paciente_alta"></textarea>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="d8">                                                    
+                                                        <textarea name="" id="" cols="10" rows="5" v-model="res_autopcia"></textarea>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <p class="text-center">
+                                                <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                <button type="submit" class="btn btn-danger btn-raised" v-on:click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>)"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar</button>
+                                            </p>
+        
+                                        </form>
+                            </template> 
+                        </div>
+                        <div class="table-responsive">
+                            <h3 class="text-center all-tittles">LISTA DE DATOS DE RESPONSABLE</h3>
+                            <div class="table-wrapper">
+                                <div id="correo">
+                                    <div class="entrada">
+                                        <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                    </div>
+                                    <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                                        <input type="text" id="searchInput" placeholder="Buscar.."><br>
+                                    </div>
+                                </div>
+                                <table class="fl-table" id="myTable">
+                                    <thead>
+                                        <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido Paterno</th>
+                                        <th>Apellido Materno</th>
+                                        <th>Dirección</th>
+                                        <th>CI</th>
+                                        <th>Teléfono</th>
+                                        <th>Dar de baja </th>
+                                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    
+                                        <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><a href="" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>                                                                                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade active in" id="listFalse">
+                        <h1>hola esto es otra cosa</h1>
+                        <input type="hidden" name=""> 
+                            hola 
+                        </input>
+                    </div>    
+                </div>    
+            </div>
+		       
+        </div>
+        <!-- http://www.forosdelweb.com/f13/calcular-edad-segun-fecha-nacimiento-180093/  calcular la edad -->
+        
+   </section>   
+   <%- include("../partials/scripts") -%>
+   <script src="/js/vue/epicrisis.js"></script>
+  
+</body>
+</html>

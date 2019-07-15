@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Pacientes Internados</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<%- include("../partials/head") -%>
+</head>
+<body class="dashboard-sideBar-imagg cover">
+	<!-- SideBar -->
+	<%- include("partials/menu") -%>
+	 <!-- SideBar Menu Hospital-->
+	 <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+			<li>
+				<a href="/internaciones/hospitalizacion/<%=especialidad%>">
+					<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=especialidad%>
+				</a>
+			</li>
+					   
+			<!-- Emergencias -->
+			<li>
+				<a href="#!" class="btn-sideBar-SubMenu">
+					<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
+				</a>
+				<ul class="list-unstyled full-box">
+					<li><a href="/internaciones/ListaInternacionF/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
+							  
+				</ul>
+			</li> 
+			</ul>
+	<%- include("partials/footer") -%>
+	<!-- Content page-->
+<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+	<!-- NavBar -->
+	<nav class="full-box dashboard-Navbar">
+		<ul class="full-box list-unstyled text-right">
+			<li class="pull-left">
+		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+			</li>
+		</ul>
+	</nav>
+	<!-- Content page -->
+	<div class="container-fluid">
+		<div class="page-header">
+			<h1 class="text-titles"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i> Pacientes Internados </h1>
+		</div>
+	</div>
+	<!--Listas de Emergencias-->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- PAcientes no Atendidos-->
+				<p class="text-center">
+						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+					</p>
+						<div class="table-responsive" >
+							<table class="fl-table">
+								<thead>
+									  <tr>
+										<th class="text-center">#</th>
+										<th class="" WIDTH="15%">N° de historia </th>
+										<th class="" WIDTH="20%">Nombre del Paciente</th>
+										<th class="" WIDTH="20%">Apellido paterno</th>
+										<th class="" WIDTH="20%">Apellido materno</th>	
+										<th class="" WIDTH="20%">Fecha Ingreso</th>	
+										<th class="text-center" WIDTH="20%">Opciones</th> 
+									  </tr>
+								</thead>
+								<tbody>
+
+									<%for(var i = 0; i< list_internacion.length; i++) { %>
+										<tr>
+											<td><%=i+1%></td>
+											<td><%=list_internacion[i].historial%></td>
+											<td><%=list_internacion[i].Paciente.nombre%></td>
+											<td><%=list_internacion[i].Paciente.apellidop%></td>
+											<td><%=list_internacion[i].Paciente.apellidom%></td>
+											<td><%=list_internacion[i].fechaIngreso%></td>
+											<td class="text-center" ><a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											
+										</tr>
+									<% } %>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+	  			
+						</div>
+					</div>
+</section>
+	<!--====== Scripts -->
+	<%- include("../partials/scripts") -%>
+</body>
+</html>
