@@ -18,7 +18,9 @@ import Examen_Fisico from '../controllers/examen_fisico_pacientes';
 import RecetaInternacion from '../controllers/receta_internacion';
 
 import Epicrisis from '../controllers/epicrisis'; 
-
+import OrdenIntervencion from '../controllers/orden_intervencion'; 
+import NotaEvolucion from '../controllers/nota_evolucion'; 
+import Diag_tratameinto from '../controllers/diagTratameinto_internacion'; 
 
 export default (app) => {
 
@@ -170,4 +172,25 @@ app.post('/api/epicrisis/:id_internacion', Epicrisis.reg_epicrisis);
 app.get('/api/epicrisis', Epicrisis.getEpicrisis)
 app.get('/api/one_epicrisis/:id_internacion', Epicrisis.Epicrisis_intenracion);
 app.post('/api/update_epicrisis/:id', Epicrisis.updateEpicrisis);
+app.get('/api/deleteEpicrisis/:id', Epicrisis.deleteEpicrisis);
+
+//oreden de intervencion
+app.post('/api/reg_ordenIntervencion/:id_internacion', OrdenIntervencion.reg_OrdenIntervencion); //ruta para poder insertar en orden intervencion
+app.get('/api/getOrdenIntervencion', OrdenIntervencion.getOrdenIntervencion );
+app.get('/api/List_Orden_intenrvencion/:id_internacion', OrdenIntervencion.list_Orden_intenrvencion); // lista de ordenes de intervencion del paciente
+app.post('/api/updateInternacion/:id', OrdenIntervencion.updateOrdenIntervencion);
+app.get('/api/One_Orden_intenrvencion/:id', OrdenIntervencion.One_Orden_intenrvencion); // sacar una orden de internacion
+
+
+//nota de internacion
+app.post('/api/reg_notaEvolucion/:id_internacion', NotaEvolucion.reg_notaEvolucion ) // ruta para poder insertar en nota evolucion
+app.get('/api/nota_evolucion', NotaEvolucion.notaEvolucion);
+app.get('/api/list_notaEvolucion/:id_internacion', NotaEvolucion.list_notaEvolucion);// esta ruta es para poder traer la lista de notas del paciente segun el id de la interncaion
+app.get('/api/one_notaEvolucion/:id_nota', NotaEvolucion.One_notaEvolucion)
+
+//Diagnostico Tratamiento de internacion
+app.post('/api/reg_diagTratameinto/:id_internacion', Diag_tratameinto.reg_diagTratameinto);
+app.get('/api/diagTratamiento', Diag_tratameinto.diagTratamiento);
+app.get('/api/list_DiagnosticoTratameinto/:id_internacion', Diag_tratameinto.list_DiagnosticoTratameinto);
+app.get('/api/One_DiagTratamiento/:id', Diag_tratameinto.One_DiagTratamiento);
 };

@@ -68,7 +68,8 @@ class Epicrisis{
             })
             .then(update => {
               res.status(200).send({
-                message: 'Sala actualizado',
+                success: true,
+                message: 'Se Modifico',
                 data: {                  
                     Fecha_internacion: Fecha_internacion || update.Fecha_internacion,
                     Fecha_alta: Fecha_alta || update.Fecha_alta,  
@@ -89,6 +90,26 @@ class Epicrisis{
             .catch(error => res.status(400).send(error));
           })
           .catch(error => res.status(400).send(error));
+    }
+
+    // ruta para poder borrar epicrisis
+    static deleteEpicrisis(req, res) {
+      return epicrisis
+        .findByPk(req.params.id)
+        .then(data => {
+          if(!data) {
+            return res.status(400).send({
+            message: 'Book Not Found',
+            });
+          }
+          return data
+            .destroy()
+            .then(() => res.status(200).send({
+              message: 'Successfully deleted'
+            }))
+            .catch(error => res.status(400).send(error));
+        })
+        .catch(error => res.status(400).send(error))
     }
 }
 

@@ -51,3 +51,15 @@ epicrisis
 
 sequelize model:create --name epicrisis --attributes historial:integer,diagnostico_ingreso:text,resumenExmen_clinico:text,resumen_evolucion:text,medicamentos_usados:text,diagnosticoPos_operatorio:text,intervenciones_quirurgicas:text,resAnatomia_patologica:text,resAllasgos_lab:text,diagnostico_final:text,estadoPaciente_alta:text,result_autopcia:text
 
+Orden de intervencion
+sequelize model:create --name orden_Intervencion --attributes historial:integer,fechaOrden:string,motivoInternacion:text,resumneDatosClinicos:text,examenComplementario:text,diagnostico:text,resumenEgreso:text,tratamientoindica:text,diagnosticoEgreso:text,planManejoTratamiento:text,resAutopcio:text,observacion:text,condicionEgreso:string,CausaEgreso:string,id_internacion:integer
+
+
+
+notas de evolucion del paciente en internacion
+
+sequelize model:create --name nota_evolucion_Paciente --attributes fecha:string,hora:string,nota_evolucion:text,id_internacion:integer
+
+diganostico y tratamientos
+
+sequelize model:create --name diagnostico_tratamientos --attributes historial:integer,fehca:string,sintomas:text,examenFisico:text,diagnostico:text,tratamiento:text,medicamentos:string,dosis:string,frecuencia:string,duracion:string,estudios:string

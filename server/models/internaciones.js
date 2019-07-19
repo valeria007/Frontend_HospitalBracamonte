@@ -24,6 +24,17 @@ module.exports = (sequelize, DataTypes) => {
     Internaciones.hasMany(models.epicrisis, {
       foreignKey: 'id_internacion',
     });
+    Internaciones.hasMany(models.nota_evolucion_Paciente, {
+      foreignKey: 'id_internacion',
+    });
+    Internaciones.hasMany(models.orden_Intervencion, {
+      foreignKey: 'id_internacion',
+    });
+    Internaciones.hasMany(models.diagnostico_tratamientos, {
+      foreignKey: 'id_internacion',
+    });
+
+
     Internaciones.belongsTo(models.Pacientes, {
       foreignKey: 'id_paciente',
       onDelete: 'CASCADE'
