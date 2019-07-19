@@ -476,7 +476,7 @@ router.post('/Vue_reg_epicrisis/:id_paciente', (req,res) => {
     })
 })
 
-//ruta para poder actulziar epicrisis
+//ruta para poder actulziar epicrisis con vue
 router.post('/update_epicrisis/:id' , (req,res) => {
     const { id } = req.params;
     var data = req.body;
@@ -491,13 +491,144 @@ router.post('/update_epicrisis/:id' , (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-        console.log(data, "  respuesta del update")
         res.status(200).json(data)
     })
 })
 
 
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                rutas para orden de intervencion con vue
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+*/
+router.post('/Vue_regOrden_Intervencion/:id_internacion' , (req,res) => {
+    const { id_internacion } = req.params;
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/reg_ordenIntervencion/'+id_internacion,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        console.log(data);
+        res.status(200).json(data)
+    })
+})
 
+//ruta para poder traer la lista de intervenciones del paciente 
+router.get('/Vue_list_ord_intervencion/:id_internacion', (req,res) => {
+    const { id_internacion } = req.params;
+    fetch('http://localhost:3000/api/List_Orden_intenrvencion/'+id_internacion)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+       res.status(200).json(data);      
+    }) 
+})
+
+//ruta para poder sacar una orden de intervencion 
+router.get('/vueOne_ordintervencion/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:3000/api/One_Orden_intenrvencion/'+id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+       res.status(200).json(data);      
+    }) 
+})
+
+//esta ruta es para poder insertar en nota de evolucion
+router.post('/Vue_regNotaEvolucion/:id_internacion', (req,res) => {
+    const { id_internacion } = req.params;
+    var data  = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/reg_notaEvolucion/'+id_internacion,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)
+    })
+
+})
+
+router.get('/vue_listEvolucion/:id_internacion', (req,res) => {
+    const { id_internacion } = req.params;
+    fetch('http://localhost:3000/api/list_notaEvolucion/'+id_internacion)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+       res.status(200).json(data);      
+    }) 
+
+})
+
+router.get('/vue_one_notaEvolucion/:id_nota', (req,res) => {
+    const { id_nota } = req.params;
+    fetch('http://localhost:3000/api/one_notaEvolucion/'+id_nota)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+       res.status(200).json(data);      
+    }) 
+})
+
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            Ruta para poder insertar en diagnostico
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.post('/Vue_reg_diagnostico/:id_internacion', (req,res) => {
+    const { id_internacion } = req.params;
+    var data  = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3000/api/reg_diagTratameinto/'+id_internacion,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)
+    })
+})
+
+router.get('/Vue_list_diagnostico/:id_internacion' , (req,res) => {
+    const { id_internacion } = req.params; 
+    fetch('http://localhost:3000/api/list_DiagnosticoTratameinto/'+id_internacion)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+       res.status(200).json(data);      
+    }) 
+})
+
+router.get('/Vue_oneTratamiento/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:3000/api/One_DiagTratamiento/'+id)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+       res.status(200).json(data);      
+    }) 
+})
 
 //prueba
 router.get('/alergiasvis', (req,res) => {

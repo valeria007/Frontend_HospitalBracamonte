@@ -8,8 +8,6 @@ const carMedicamentos = new Vue({
         items : {},
         totalQty : 0,
         totalPrice : 0,
-        
-        carrito:'',
 
         codigoCompra:'',
         boletaPago:'',
@@ -45,7 +43,6 @@ const carMedicamentos = new Vue({
                 }   
                 this.itemsCar = car;
                 this.add(car,id);
-                this.carrito = this.generateArray()
             })            
         },       
 
@@ -117,6 +114,18 @@ const carMedicamentos = new Vue({
                 .catch(function (error) {
                     console.log(error)
                 });
+
+                this.codigoCompra = ""
+                this.boletaPago = ""
+                this.tipoMaterial = ""
+                this.fechaIngreso = ""
+                this.proveedor = ""
+                this.Observaciones = ""
+                this.totalPrice = 0;
+                this.totalQty = 0;
+                this.items = {};
+                
+                
             }            
         },
         pedidos(){
@@ -126,6 +135,10 @@ const carMedicamentos = new Vue({
               this.getPedido = response.data
               console.log(this.getPedido)
             })
+        },
+
+        quitar(a,b){
+            this.items = {};
         }
     }    
 })

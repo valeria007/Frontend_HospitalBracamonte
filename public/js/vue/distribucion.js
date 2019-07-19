@@ -2,7 +2,6 @@ const pedidos =  new Vue({
     el:"#pedidos",
     data : () =>({
         medicamentos:[],
-        carrito:'', // esto es para que se añada en la lista de medicamentos
 
         items : {},
         totalQty : 0,
@@ -40,8 +39,7 @@ const pedidos =  new Vue({
                    
                 }                
                 this.add(car,id);
-                this.carrito = this.generateArray()
-                console.log(this.carrito);   
+                
             })            
         },       
 
@@ -71,7 +69,6 @@ const pedidos =  new Vue({
             if (this.items[id].qty <= 0) {
                 console.log(this.items[id])
                 delete this.items[id];
-                this.items[id] = null
             }
         },
 
@@ -104,13 +101,21 @@ const pedidos =  new Vue({
                 })
                 .then(function (response) {
                     console.log(response)
-                    this.respuestaPost = "Se enviaron los datos" ;
                 })
                 .catch(function (error) {
                     console.log(error)
                 });
+
+                this.codigo = '';
+                this.responsable= '';
+                this.recibe = '';
+                this. fechaLlegada = '';
+                this.items = {};
+                this.totalQty = 0;
+                this.totalPrice = 0;
+                this.respuestaPost = "listo"
             } 
-            console.log(this.respuestaPost)           
+       
         },
 
         //ruta para mostrar las distribuciones que se hace
@@ -134,7 +139,6 @@ const pedidos =  new Vue({
                 })
                 .then(function (response) {
                     console.log(response, "  <<< esto es la respuesta")
-                   
                 })
                 .catch(function (error) {
                     console.log(error)
