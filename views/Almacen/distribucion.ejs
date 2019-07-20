@@ -157,7 +157,7 @@
 												</div>
 										</div><br>
 										
-										<%if (products != null ) { %>
+										
 												<div class="table-wrapper">
 													<table class="fl-table">
 														<thead>
@@ -173,30 +173,26 @@
 														</thead>
 														
 															
-															<tbody v-for="(car, index) of carrito">
+															<tbody v-for="(car, index) in items">
 																<tr>
-																	<td>{{ index + 1 }}</td>
+																	<td>1</td>
 																	<td>{{car.item.codificacion}}</td>
 																	<td>{{car.item.nombre}}</td>
 																	<td>{{car.item.presentacion}}</td>
 																	<td>{{car.qty}}</td>
-																	<td> <a href="#" @click="reduceByOne(car.item.id)">Reducir</a>   </td>
-																	<td><a href="#" @click="removeItem(car.item.id)">Eliminar</a> </td>    
+																	<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
+																	<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
 																</tr>
 															<tbody>
 															
 														
 													</table>
 												</div>
-											
-											<% } else { %>
-												<h2> Seleccione Productos </h2>
-											<% } %>
 				
 								</div>
 								<p class="text-center">
 										<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-										<button @click="reduce" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" onclick="location.href='/esto';"></i> &nbsp;&nbsp; Guardar </button>
+										<button @click="reduce" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar </button>
 								</p>
 						</form>
 					</div>
@@ -249,7 +245,7 @@
 	<!--====== Scripts -->
 	<%- include("../partials/scripts") -%>
 	<!--<script src="/js/paginacion.js"></script>	-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+	
 	<script src="/js/vue/distribucion.js"></script>
 	<script src="/js/get/consultaget.js"></script>	
 </body>

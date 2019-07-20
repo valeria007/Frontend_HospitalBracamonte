@@ -33,7 +33,7 @@
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;"  id="links">
                         <li class="active"><a v-on:click="pedidos" href="#new" data-toggle="tab">Lista de Pedidos</a></li>
                         <li><a href="#list" data-toggle="tab">Nuevo Pedido</a></li>
-                        <li><a href="#listMedicament" data-toggle="tab">Lista de medicamentos</a></li>
+                        <li><a href="#listMedicament" data-toggle="tab" v-on:click="agregar">Lista de medicamentos</a></li>
                         <li><a href="#">Refresh</a></li>
 					</ul>
                                         
@@ -159,7 +159,7 @@
 
                                     <span style="color: red;">{{respuestaPost}}</span>
                                     <div class="row">
-                    
+                                                                                
                                         <form @submit="formSubmit" method="POST">
                                             <div id="cabeza">
                                                 <h2 class="text-center all-tittles">REGISTRO DE COMPRA</h2>
@@ -201,7 +201,9 @@
                                                         </select><br>
                                                     </div>                                                    
                                                 </div><br>
+
                                                 <div class="table-wrapper">
+                                                    <a @click="quitar"> Limpiar Carrito </a>
                                                     <table class="fl-table">
                                                         <thead>
                                                             <tr>
@@ -217,17 +219,17 @@
                                                             <th>Eliminar todo</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody v-for="(car, index) in carrito">                                                    
+                                                        <tbody v-for="(car, index) in items">                                                    
                                                             <tr>
-                                                                <td>{{index +1}}</td>
+                                                                <td>{{index + 1}}</td>
                                                                 <td>{{car.qty}}</td>
                                                                 <td>{{car.item.codificacion}}</td>
                                                                 <td>{{car.item.nombre}}</td>
                                                                 <td>{{car.item.cantidad}}</td>
                                                                 <td>{{car.item.price}}</td>
                                                                 <td>{{car.price}}</td>
-                                                                <td> <a href="#" @click="reduceByOne(car.item.id)">Reducir</a>   </td>
-                                                                <td><a href="#" @click="removeItem(car.item.id)">Eliminar</a> </td>                                                        
+                                                                <td> <a @click="reduceByOne(car.item.id)">Reducir</a>   </td>
+                                                                <td><a @click="removeItem(car.item.id)">Eliminar</a> </td>                                                        
                                                            </tr>                                                   
                                                         <tbody>
                                                     </table>
@@ -259,8 +261,8 @@
                             </div>
 
                             <div class="tab-pane fade" id="listMedicament">
-                                <div class="table-wrapper" >                              
-                                    <button v-on:click="agregar">Mostrar Medicamentos</button>                                   
+                               
+                                <div class="table-wrapper" >                                                          
                                     <div id="correo">
                                         <div class="entrada">
                                             <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
@@ -277,18 +279,18 @@
                                                 <th>Nombre</th>
                                                 <th>Cantidad</th>
                                                 <th>Precio</th> 
-                                                <th>numere cantidad</th>
+                                                
                                                 <th>Añadir</th>                                           
                                             </tr>
                                         </thead>
                                         <tbody v-for="(item, index) of medicamentos">
                                             <tr>
-                                                <td>{{index +1}}</td>
+                                                <td>{{index + 1}}</td>
                                                 <td>{{item.codificacion}}</td>
                                                 <td>{{item.nombre}}</td>
                                                 <td>{{item.cantidad}}</td>
                                                 <td>{{item.precio}}</td>
-                                                <td><input type="text"  placeholder="esto para despues "></td>
+                                                
                                                 <td>                                                    
                                                     <!--<input type="checkbox" v-model="otro" 
                                                     :value="{

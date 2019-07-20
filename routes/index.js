@@ -192,5 +192,8 @@ router.get('/ordenLaboratorio', (req,res) => {
   res.render('ordenLaboratorio')
 });
 
+router.get('/table_prueba', (req,res) => {
+  res.render('hospitalizaciones/z_prueba_table')
+})
 
 module.exports = router;

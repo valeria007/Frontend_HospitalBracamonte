@@ -57,6 +57,7 @@
                 <h4 v-on:click="ocultar2" > Area de Internacion del paciente </h4> 
                 <input type="radio" v-model="ocultar.genData" :value="true">mostrar detalles 
                 <input type="radio" v-model="ocultar.genData" :value="false">ocultar detalles
+
                 <template v-if="ocultar.genData">
                     <div  class="grupo" id="cabeza">
                         <div id="tres2">
@@ -96,28 +97,35 @@
                 </template>
             </div>
             <br>
-           
+            
             <div class="container-fluid">
 		    	<div class="row">
                     <div class="col-md-12 ">
 		    			<ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
-		    			  	<li v-on:click="oneEpicrisis(<%=one_internacion[0].id%>), idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>)"><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Epicrisis </a></li>
-		    				<li class="active"><a href="#listFalse" data-toggle="tab">Pacientes atendidos</a></li>
-		    				<li><a href="#">Refresh</a></li>
+		    			  	<li v-on:click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>),oneEpicrisis()"><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Epicrisis </a></li>
+                            <li class="active"><a href="#listFalse" data-toggle="tab">Orden de Intervencion</a></li>
+		    				<li><a href="#notasEvolucion" data-toggle="tab"> Notas de Evoluciones</a></li>                             
+		    				<li @click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>)"><a href="#diagTratameinto" data-toggle="tab">Diagnostico</a></li>
 		    			</ul>
 		    		</div>
                 </div>
-            </div>	
-    
+            </div>
+        
 		    <div class="col-xs-20 col-md-10 col-md-offset-1">
                 <div id="myTabContent" class="tab-content">
 		    	    <div class="tab-pane fade" id="list">
                         <h1>Epicrisis</h1>                   
                         <div class="container-fluid"> 
+                            <textarea name="" id="" cols="3" rows="10">{{$data}}</textarea>
+                            <!--
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                            UPDATE EPICRISIS
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                            -->
                             <template v-if="one_epicrisis.length">
 
                                 <h3>update</h3>                                                         
-                                <form @submit="updateEpicrisis">
+                                <form @submit="updateEpicrisis" >
 
                                     <div class="tres2" id="cabeza"> 
                                         <div class="entrada"> Fecha de Internacion  
@@ -225,13 +233,18 @@
                                     </div>
                                     <p class="text-center">
                                         <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                        <button type="submit" class="btn btn-danger btn-raised" @click="oneEpicrisis(<%=one_internacion[0].id%>)"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Actualizar </button>
+                                        <button type="submit" class="btn btn-danger btn-raised" ><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Actualizar </button>
+                                       
                                     </p>
 
                                 </form>
-
                             </template> 
 
+                             <!--
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                            REGISTRAR EPICRISIS
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                            -->
 
                             <template v-else >
                                     <form @submit="formSubmit">
@@ -342,7 +355,7 @@
                                             </div>
                                             <p class="text-center">
                                                 <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                <button type="submit" class="btn btn-danger btn-raised" v-on:click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>)"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar</button>
+                                                <button @onmouseup="oneEpicrisis(<%=one_internacion[0].id%>)" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar</button>
                                             </p>
         
                                         </form>
@@ -389,21 +402,609 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--  
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                                                            Esta parte es para orden de intervencion   
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    -->
                     <div class="tab-pane fade active in" id="listFalse">
-                        <h1>hola esto es otra cosa</h1>
-                        <input type="hidden" name=""> 
-                            hola 
-                        </input>
-                    </div>    
+                         <!--
+                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                        LISTA DE ORDENES DE INTERVECION
+                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        -->
+                        <h5> Lista de Ordenes de Intervencion </h5> 
+                        <a @click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>),ListOrd_intervencion(<%=one_internacion[0].id%>)"> ver  </a>
+                        <input @click="ListOrd_intervencion(<%=one_internacion[0].id%>)" type="radio" v-model="ocultar.table" :value="true">Ver Lista
+                        <input type="radio" v-model="ocultar.table" :value="false">Ocultar Lista
+                    
+                        <template v-if="ocultar.table">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive" >
+                                            <table class="fl-table">
+                                                <thead>
+                                                      <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th >Fecha de Intervencion </th>
+                                                        <th >Motivo Intervencion</th>
+                                                        <th >Diagnostico</th>
+                                                        <th >Observacion</th>	
+                    
+                                                        <th >Opciones</th> 
+                                                      </tr>
+                                                </thead>
+                                                <tbody v-for="(list, index) in orden_internacion.list_Orden_intervencion">
+                                                
+                                                   <tr>
+                                                       <td>{{index + 1}}</td>
+                                                       <td>{{list.fechaOrden}}</td>
+                                                       <td>{{list.motivoInternacion}}</td>
+                                                       <td>{{list.diagnostico}}</td>
+                                                       <td>{{list.observacion}}</td>
+                                                       <td><a @click="OneOrd_intervencion(list.id)">Ver</a></td>
+                                                   </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <!--  
+                            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        -->
+                        <div>   <!--   Vue para Orden Intervnecion   -->
+
+                            <h3>Orden de Intervencion</h3>
+                            <div v-if="!orden_internacion.one_intervencion.length">
+                                <form @submit="postOrden_Intervencion">
+                                
+                                    <div class="grupo" id="cabeza">
+                                        <div class="entrada">
+                                            <div class="entrada">Fecha Intervencion:<br>
+                                                <input type="date" name="" id=""  v-model="orden_internacion.reg_orden_intervencion.fechaOrden">
+                                            </div>                           
+                                        </div>
+                                        <div id="correo">                                 
+                                            <div class="entrada">Motivo de Internación:<br>
+                                                <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.motivoInternacion"></textarea>
+                                            </div>
+                                            <div class="entrada">Resumen de Datos Clínicos:<br>
+                                                <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.resumneDatosClinicos"></textarea>
+                                            </div>
+                                        </div>	
+                                        <div id="correo">
+                                            <div class="entrada">Examenes Complementarios:<br>
+                                              <textarea class="large-compact" name="" cols="" rows=""v-model="orden_internacion.reg_orden_intervencion.examenComplementario"></textarea>
+                                            </div>
+                                            <div class="entrada">Diagnostico:<br>
+                                              <textarea class="large-compact" name="" cols="" rows=""v-model="orden_internacion.reg_orden_intervencion.diagnostico"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="grupo" id="cabeza">
+                                        <div id="correo">
+                                            <div class="entrada">Resumen de egreso<br>
+                                                <textarea class="large-compact" name="" cols="50" rows="" v-model="orden_internacion.reg_orden_intervencion.resumenEgreso"></textarea>
+                                            </div>
+                                            <div class="entrada">tratamiento Indicado:<br>
+                                                <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.tratamientoIndicado"></textarea>
+                                            </div>
+                                        </div>
+                                        <div id="correo">
+                                            <div class="entrada">Diagnostico de egreso<br>
+                                                <textarea class="large-compact" name="" cols="50" rows="" v-model="orden_internacion.reg_orden_intervencion.diagnosticoEgreso"></textarea>
+                                            </div>
+                                            <div class="entrada">Plan de manejo de tratamiento:<br>
+                                                <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.planManejoTratamiento"></textarea>
+                                            </div>
+                                        </div>
+                                        <div id="correo">
+                                            <div class="entrada">Resultados de autopcia:<br>
+                                                <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.resAutopcia"></textarea>
+                                            </div>
+                                            <div class="entrada">Breve comentario final:<br>
+                                              <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.observacion"></textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <br>
+                                    <div class="grupo" id="cabeza">
+                                    
+                                        <div id="">
+                                            <div class="entrada">Condición al egreso:<br>
+                                                <div class="col-md-9">
+                                                    <label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="IsSmallBusiness" name="IsSmallBusiness" type="radio" value="Alta Médica" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso">Alta Médica</label>
+                                                    <label class="radio-inline"><input id="IsSmallBusiness"  type="radio" value="Transferencia" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso">Transferencia</label>
+                                                    <label class="radio-inline"><input id="IsSmallBusiness"  type="radio" value="Abandono" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso">Abandono</label>
+                                                    <label class="radio-inline"><input id="IsSmallBusiness"  type="radio" value="Fallesimiento" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso">Fallesimiento</label>
+                                                    <span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso"></span>
+                                                </div><br>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                    <br>
+                                    <div class="grupo" id="cabeza">
+                                        <div id="">
+                                            <div class="entrada">Causa de egreso:<br>
+                                                <div class="col-md-9">
+                                                    <label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="IsSmallBusiness"  type="radio" value="Curado" v-model="orden_internacion.reg_orden_intervencion.CausaEgreso">Curado</label>
+                                                    <label class="radio-inline"><input id="IsSmallBusiness" type="radio" value="Mejorado" v-model="orden_internacion.reg_orden_intervencion.CausaEgreso">Mejorado</label>
+                                                    <label class="radio-inline"><input id="IsSmallBusiness" type="radio" value="Mismo Estado" v-model="orden_internacion.reg_orden_intervencion.CausaEgreso">Mismo Estado</label>
+                                                    <span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true" v-model="orden_internacion.reg_orden_intervencion.CausaEgreso"></span>
+                                                </div><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-center">
+                                        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 15px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                        <button @onmouseup="ListOrd_intervencion(<%=one_internacion[0].id%>)" @click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>)" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar</button>
+                                        <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
+                                    </p>
+                                </form>
+                            </div>
+
+                            <!--
+                                ///////////////////////////////
+                                mostrar la una intervencion 
+                            -->
+                            
+                            <div v-else>
+                               <a @click="volver"> limpiar </a>
+                                    <form>
+                                
+                                            <div class="grupo" id="cabeza">
+                                                <div class="entrada">
+                                                    <div class="entrada">Fecha Intervencion:<br>
+                                                        <input type="date" name="" id=""  v-model="orden_internacion.reg_orden_intervencion.fechaOrden">
+                                                    </div>                           
+                                                </div>
+                                                <div id="correo">                                 
+                                                    <div class="entrada">Motivo de Internación:<br>
+                                                        <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.motivoInternacion"></textarea>
+                                                    </div>
+                                                    <div class="entrada">Resumen de Datos Clínicos:<br>
+                                                        <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.resumneDatosClinicos"></textarea>
+                                                    </div>
+                                                </div>	
+                                                <div id="correo">
+                                                    <div class="entrada">Examenes Complementarios:<br>
+                                                      <textarea class="large-compact" name="" cols="" rows=""v-model="orden_internacion.reg_orden_intervencion.examenComplementario"></textarea>
+                                                    </div>
+                                                    <div class="entrada">Diagnostico:<br>
+                                                      <textarea class="large-compact" name="" cols="" rows=""v-model="orden_internacion.reg_orden_intervencion.diagnostico"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="grupo" id="cabeza">
+                                                <div id="correo">
+                                                    <div class="entrada">Resumen de egreso<br>
+                                                        <textarea class="large-compact" name="" cols="50" rows="" v-model="orden_internacion.reg_orden_intervencion.resumenEgreso"></textarea>
+                                                    </div>
+                                                    <div class="entrada">tratamiento Indicado:<br>
+                                                        <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.tratamientoIndicado"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div id="correo">
+                                                    <div class="entrada">Diagnostico de egreso<br>
+                                                        <textarea class="large-compact" name="" cols="50" rows="" v-model="orden_internacion.reg_orden_intervencion.diagnosticoEgreso"></textarea>
+                                                    </div>
+                                                    <div class="entrada">Plan de manejo de tratamiento:<br>
+                                                        <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.planManejoTratamiento"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div id="correo">
+                                                    <div class="entrada">Resultados de autopcia:<br>
+                                                        <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.resAutopcia"></textarea>
+                                                    </div>
+                                                    <div class="entrada">Breve comentario final:<br>
+                                                      <textarea class="large-compact" name="" cols="" rows="" v-model="orden_internacion.reg_orden_intervencion.observacion"></textarea>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <br>
+                                            <div class="grupo" id="cabeza">
+                                            
+                                                <div id="">
+                                                    <div class="entrada">Condición al egreso:<br>
+                                                        <div class="col-md-9">
+                                                            <label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="IsSmallBusiness" name="IsSmallBusiness" type="radio" value="Alta Médica" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso">Alta Médica</label>
+                                                            <label class="radio-inline"><input id="IsSmallBusiness"  type="radio" value="Transferencia" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso">Transferencia</label>
+                                                            <label class="radio-inline"><input id="IsSmallBusiness"  type="radio" value="Abandono" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso">Abandono</label>
+                                                            <label class="radio-inline"><input id="IsSmallBusiness"  type="radio" value="Fallesimiento" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso">Fallesimiento</label>
+                                                            <span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true" v-model="orden_internacion.reg_orden_intervencion.condicionEgreso"></span>
+                                                        </div><br>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                            <br>
+                                            <div class="grupo" id="cabeza">
+                                                <div id="">
+                                                    <div class="entrada">Causa de egreso:<br>
+                                                        <div class="col-md-9">
+                                                            <label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="IsSmallBusiness"  type="radio" value="Curado" v-model="orden_internacion.reg_orden_intervencion.CausaEgreso">Curado</label>
+                                                            <label class="radio-inline"><input id="IsSmallBusiness" type="radio" value="Mejorado" v-model="orden_internacion.reg_orden_intervencion.CausaEgreso">Mejorado</label>
+                                                            <label class="radio-inline"><input id="IsSmallBusiness" type="radio" value="Mismo Estado" v-model="orden_internacion.reg_orden_intervencion.CausaEgreso">Mismo Estado</label>
+                                                            <span class="field-validation-valid help-block" data-valmsg-for="PhoneNumber" data-valmsg-replace="true" v-model="orden_internacion.reg_orden_intervencion.CausaEgreso"></span>
+                                                        </div><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="text-center">
+                                                <button @click="volver" type="reset" class="btn btn-info btn-raised" style="margin-right: 15px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
+                                            </p>
+                                        </form>
+                                    </div>
+                        </div>
+                    </div>
+                    <!--  
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                                                            esta parte es para las notas de evolucion
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    -->
+                    <div class="tab-pane fade " id="notasEvolucion">
+                        <h5> Lista de Notas de Evolucion </h5> 
+                        <a @click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>),list_notaEvolucion()"> ver  </a>
+                        <input @click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>),list_notaEvolucion()" type="radio" v-model="ocultar.list_notasEvolucion" :value="true" >Ver Lista
+                        <input type="radio" v-model="ocultar.list_notasEvolucion" :value="false">Ocultar Lista
+                        <h4>{{mensaje}}</h4>
+                        <template v-if="ocultar.list_notasEvolucion">
+                           
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive" >
+                                            <table class="fl-table">
+                                                <thead>
+                                                      <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th >Fecha </th>
+                                                        <th >Descripcion</th>                                                
+                                                        <th >Observacion</th>	                   
+                                            
+                                                      </tr>
+                                                </thead>
+                                                <tbody v-for="(list_nota, index) in nota_evolucion.listNotas_evolucion">
+                                                
+                                                   <tr>
+                                                       <td>{{index + 1}}</td>
+                                                       <td>{{list_nota.fecha}}</td>
+                                                       <td>{{list_nota.nota_evolucion}}</td>
+                                                       <td><a @click="one_evolucion(list_nota.id)" >Ver</a></td>
+                                                   </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <h2>Notas de Evoluciones</h2>
+                        <template v-if="nota_evolucion.one_notaEvolucion">   
+                            <a @click="limpiar_oneLista_nota()">Limpiar</a>               
+                            <div class="grupo" id="cabeza">
+                                <form @submit="reg_nota_evolucion">
+                                    <div class="entrada">
+                                        <div class="entrada">Fecha Nota Evolucion:<br>
+                                            <input type="datetime-local" name="" id=""  v-model="nota_evolucion.fecha">
+                                        </div>                        
+                                    </div>
+                                    <h3>Nota de Evolucion</h3>
+                                    <div id="entrada">
+                                       <textarea class="large-compact" name="" id="" cols="30" rows="10" v-model="nota_evolucion.nota_evolucion"></textarea>
+                                    </div>
+                                    <p class="text-center">
+                                        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 15px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                        <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
+                                    </p>
+                                </form>                  
+                                <br>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="grupo" id="cabeza">
+                                <form @submit="reg_nota_evolucion">
+                                    <div class="entrada">
+                                        <div class="entrada">Fecha Nota Evolucion:<br>
+                                            <input type="datetime-local" name="" id=""  v-model="nota_evolucion.fecha">
+                                        </div>                        
+                                    </div>
+                                    <h3>Nota de Evolucion</h3>
+                                    <div id="entrada">
+                                       <textarea class="large-compact" name="" id="" cols="30" rows="10" v-model="nota_evolucion.nota_evolucion"></textarea>
+                                    </div>
+                                    <p class="text-center">
+                                        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 15px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                        <button @click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>)" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar</button>
+                                        <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
+                                    </p>
+                                </form>                  
+                                <br>
+                            </div>
+                        </template>
+                        <br>
+                        <br><br>
+                    </div>
+                    <!--  
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                                                            esta parte es para daignostico Tratamiento
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<«
+                    -->
+                    <div class="tab-pane fade " id="diagTratameinto">
+                        <h3>Diagnostico</h3>
+                        <a @click="listaDiagnostico"> ver  </a>
+                        <input @click="listaDiagnostico" type="radio" v-model="ocultar.list_diagReseta" :value="true">Ver Lista
+                        <input type="radio" v-model="ocultar.list_diagReseta" :value="false">Ocultar Lista
+                    
+                        <template v-if="ocultar.list_diagReseta">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive" >
+                                            <table class="fl-table">
+                                                <thead>
+                                                      <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th >Fecha </th>
+                                                        <th >Sintomas</th>
+                                                        <th >Tratamiento</th>                                                   
+                    
+                                                        <th >Opciones</th> 
+                                                      </tr>
+                                                </thead>
+                                                <tbody v-for="(list, index) in daigTratameinto.listDiagnostico">
+                                                
+                                                   <tr>
+                                                       <td>{{index + 1}}</td>
+                                                       <td>{{list.fecha}}</td>
+                                                       <td>{{list.sintomas}}</td>
+                                                       <td>{{list.tratamiento}}</td>
+                                                       
+                                                       <td><a @click="one_Diagnostico(list.id)">Ver</a></td>
+                                                   </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <br>
+                        <template v-if="!daigTratameinto.one_diagTratamiento">                        
+                            <form @submit="reg_diagnostico">
+                                <div class="grupo" id="cabeza">
+                                    <div id="correo">
+                                        <div class="entrada">Sintomas:<br>
+                                            <textarea class="large-compact" name="" cols="50" rows=""  v-model="daigTratameinto.sintomas"></textarea>
+                                        </div>
+                                        <div class="entrada">Examen Fisico:<br>
+                                            <textarea class="large-compact" name="" cols="" rows="" v-model="daigTratameinto.examenFisico"></textarea>
+                                        </div>
+                                    </div>
+                                    <div id="correo">
+                                        <div class="entrada">Diagnostico:<br>
+                                            <textarea class="large-compact" name="" cols="50" rows="" v-model="daigTratameinto.diagnostico"></textarea>
+                                        </div>
+                                        <div class="entrada">Tratamiento:<br>
+                                            <textarea class="large-compact" name="" cols="" rows="" v-model="daigTratameinto.tratamiento"></textarea>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <br>
+                                <div class="grupo" id="cabeza">
+                                    <div id="cuatro" >
+                                        <div class="entrada"> Medicamento: <br>
+                                            <input type="text" name="" id="" v-model="daigTratameinto.med.medic">
+                                        </div>
+                                        <div class="entrada"> Dosis: <br>
+                                            <input type="text" name="" id="" v-model="daigTratameinto.med.dosis">
+                                        </div>
+                                        <div class="entrada"> Frecuencia: <br>
+                                            <input type="text" name="" id="" v-model="daigTratameinto.med.frecuencia">
+                                        </div>
+                                        <div class="entrada"> Duracion: <br>
+                                            <input type="text" name="" id="" v-model="daigTratameinto.med.duracion">
+                                        </div>                                    
+                                    </div>
+                                
+                                        <a @click="inserMed" > Insertar </a>
+                                
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive" >
+                                            <table class="fl-table">
+                                            
+                                                <tbody v-for="(list, index) in daigTratameinto.medicamentos">
+                                                
+                                                   <tr>
+                                                        <td>{{index + 1}} </td>
+                                                        <td>{{list.medicamento}}</td>
+                                                        <td>{{list.dosis}} </td>
+                                                        <td>{{list.frecuencia}}</td>
+                                                        <td>{{list.duracion}}</td>
+                                                        <td> <a @click="eliminarMed(index)"> Eliminar </a></td>
+                                                   </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div class="grupo" id="cabeza">
+                                    <div id="tres2" >
+                                        <div class="entrada"> Estudio: <br>
+                                            <input type="text" name="" id="" v-model="daigTratameinto.est.estud">
+                                        </div>
+                                        <div class="entrada"> Nombre estudio: <br>
+                                            <input type="text" name="" id="" v-model="daigTratameinto.est.nombre_estudio">
+                                        </div>
+                                    </div>
+                                    <a @click="inserEstudio"> Insertar </a>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive" >
+                                            <table class="fl-table">
+                                            
+                                                <tbody v-for="(list, index) in daigTratameinto.estudios">
+                                                
+                                                   <tr>
+                                                       <td>{{index + 1}} </td>
+                                                       <td>{{list.estudios}}</td>  
+                                                       <td>{{list.nombreEstudio}}</td>  
+                                                       <td> <a @click="eliminarEstudio(index)"> Eliminar </a></td>                                          
+                                                   </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <p class="text-center">
+                                    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 15px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                    <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar</button>
+                                    <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
+                                </p>
+                            </form>
+                        </template>
+
+                        <template v-else >
+                            <a @click="limpiar_oneDiagnostico"> Volver </a>
+                                <form>
+                                        <div class="grupo" id="cabeza">
+                                            <div id="correo">
+                                                <div class="entrada">Sintomas:<br>
+                                                    <textarea class="large-compact" name="" cols="50" rows=""  v-model="daigTratameinto.sintomas"></textarea>
+                                                </div>
+                                                <div class="entrada">Examen Fisico:<br>
+                                                    <textarea class="large-compact" name="" cols="" rows="" v-model="daigTratameinto.examenFisico"></textarea>
+                                                </div>
+                                            </div>
+                                            <div id="correo">
+                                                <div class="entrada">Diagnostico:<br>
+                                                    <textarea class="large-compact" name="" cols="50" rows="" v-model="daigTratameinto.diagnostico"></textarea>
+                                                </div>
+                                                <div class="entrada">Tratamiento:<br>
+                                                    <textarea class="large-compact" name="" cols="" rows="" v-model="daigTratameinto.tratamiento"></textarea>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <br>
+                                        
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive" >
+                                                    <table class="fl-table">
+
+                                                        <thead>
+                                                            <th>#</th>
+                                                            <th>Medicamento</th>
+                                                            <th>Dosis</th>
+                                                            <th>Frecuencia</th>
+                                                            <th>Duracion</th>
+                                                            <th>Opciones</th>
+                                                        </thead>
+                                                    
+                                                        <tbody v-for="(list, index) in daigTratameinto.medicamentos">
+                                                        
+                                                           <tr>
+                                                                <td>{{index + 1}} </td>
+                                                                <td>{{list.medicamento}}</td>
+                                                                <td>{{list.dosis}} </td>
+                                                                <td>{{list.frecuencia}}</td>
+                                                                <td>{{list.duracion}}</td>
+                                                                <td> <a @click="eliminarMed(index)"> Eliminar </a></td>
+                                                           </tr>
+        
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <br>
+                                       
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive" >
+                                                    <table class="fl-table">
+
+                                                        <thead>
+                                                            <th>#</th>
+                                                            <th>Estudio</th>
+                                                            <th>Nombre del Estudio</th>
+                                                            <th>Opciones</th>
+                                                        </thead>
+                                                    
+                                                        <tbody v-for="(list, index) in daigTratameinto.estudios">
+                                                        
+                                                           <tr>
+                                                               <td>{{index + 1}} </td>
+                                                               <td>{{list.estudios}}</td>  
+                                                               <td>{{list.nombreEstudio}}</td>  
+                                                               <td> <a @click="eliminarEstudio(index)"> Eliminar </a></td>                                          
+                                                           </tr>
+        
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <p class="text-center">
+                                            <button type="reset" class="btn btn-info btn-raised" style="margin-right: 15px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                            <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
+                                        </p>
+                                    </form>
+                        </template>
+                    </div>
+                    
                 </div>    
             </div>
 		       
         </div>
+        <br>
         <!-- http://www.forosdelweb.com/f13/calcular-edad-segun-fecha-nacimiento-180093/  calcular la edad -->
         
    </section>   
    <%- include("../partials/scripts") -%>
-   <script src="/js/vue/epicrisis.js"></script>
-  
+   <script src="/js/vue/epicrisis.js"></script>  
 </body>
 </html>
