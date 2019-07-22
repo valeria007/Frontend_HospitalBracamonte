@@ -3,6 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 var url = require('./url/export');
+const datas = require('./url/export');
 
 router.get('/cuaderno',(req,res) => {
     res.render('cuadernos/homeCuaderno');
@@ -29,7 +30,6 @@ router.get('/especialidad', (req,res) => {
         }) 
     
 });
-
 //serv para poder sacar una sola especialidad para que pueda ser actualizado
 var espONE;
 router.get('/oneEsp/:id', (req,res) => {
@@ -188,8 +188,15 @@ router.get('/limpiarMDoc', (req,res) => {
 })
 
 router.get('/docCuaderno', (req,res) => {
-    
-    fetch(url.name.pruebas+'/personal/personal')
+    console.log(datas.name.token, " <<< esto deberia funcionar")
+    var token = {
+        method: 'GET',
+        headers:{
+          'Content-type' : "application/json",
+          'Authorization': datas.name.token
+        }
+    }
+    fetch(url.name.pruebas+'/api/Only_Medicos',token)
     .then(res => res.json())
     .then(resp => { 
         res.render('cuadernos/turnos',{
@@ -243,7 +250,7 @@ let idCuaderno, esp; // esto trae el id para insertar datos en la tabla doctor
 router.get('/getEsp/:id', (req,res) => {
     const { id } = req.params
     idCuaderno = id;
-    fetch(url.name.cuadernos+'/api/especialidad')
+    fetch(url.name.cuadernos+'/api/list_consEsp')
     .then(res => res.json())
     .then(resp => { 
         esp = resp;
@@ -456,6 +463,89 @@ router.get('/delturno/:id', (req, res) => {
         res.redirect('/cuaderno/turnos');
     });
   });
+
+
+  /* 
+<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                    rutas para especialidad consulta
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>><<<>>><<<>>><<>>><<>>><<<>>><<>><<<>>><<<>>><<<<
+*/
+//ruta para  especialidad consulta
+var id_esp, oneEsp_consulta;
+
+router.get('/one_null', (req,res) => {
+    oneEsp_consulta = null
+    res.redirect('/cuaderno/especialidad_consulta/'+id_esp)
+})
+
+router.get('/especialidad_consulta/:id_especialidad', (req,res) => {
+    const { id_especialidad } = req.params;
+    id_esp = id_especialidad;
+    fetch('http://localhost:4600/api/list_EspCons/'+id_especialidad)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        res.render('cuadernos/Especialidad_Consulta',{
+            resp,
+            id_especialidad,
+            oneEsp_consulta
+        });
+    });
+    
+})
+
+router.get('/one_consultaEsp/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:4600/api/OneEspCons/'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        oneEsp_consulta = resp;
+        res.redirect('/cuaderno/especialidad_consulta/'+id_esp)        
+    });
+})
+
+//ruta para poder insertar en conaulta internacion
+router.post('/reg_especialidad_consulta/:id_especialidad', (req,res) => {
+    const { id_especialidad } = req.params
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch(url.name.cuadernos+'/api/reg_consEsp/'+id_especialidad,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {   
+        res.redirect('/cuaderno/especialidad_consulta/'+id_especialidad)
+       
+    })  
+})
+
+//ruta para poder actualizar especialidad consultorio
+router.post('/update_consulta_especialidad/:id', (req,res) => {
+    const { id } = req.params
+    var data = req.body
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch(url.name.cuadernos+'/api/modifyEspCons/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {   
+        res.redirect('/cuaderno/especialidad_consulta/'+id_esp)
+       
+    })  
+})
 
 
 module.exports = router;

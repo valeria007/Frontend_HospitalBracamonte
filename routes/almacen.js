@@ -18,12 +18,19 @@ router.get('/reportes_pedidos', (req,res) => {
 router.get('/reportes_salidas', (req,res) => {
     res.render('Almacen/reportes_salidas');
 });
+
+
+router.get('/volver', (req,res) => {
+    oneGrupoAsig = null
+    res.redirect('/almacen/grupoAsig'); 
+})
+
 ///estos serv son para añadir a la tabla o al modelo grupo Asignacion
 router.get('/grupoAsig',(req, res) => {
     fetch('http://localhost:3500/api/asignacion')   
         .then(resp => resp.json())
         .then(resp =>{
-            res.render('Almacen/grupoAsig',{resp});
+            res.render('Almacen/grupoAsig',{resp,oneGrupoAsig});
     })
     .catch(error => {
         console.error('Error:', error)
@@ -53,12 +60,14 @@ router.post('/grupoAsig', (req, res) => {
     })
 });
 
+var oneGrupoAsig;
 router.get('/GrupoAsigONLY/:id', (req,res) => {
     var id = req.params
     fetch('http://localhost:3500/api/GrupoAsigONLY/'+id.id)   
         .then(resp => resp.json())
         .then(resp =>{
-            res.render('Almacen/grupoAsigUPDATE',{resp});
+            oneGrupoAsig = resp;
+            res.redirect('/almacen/grupoAsig'); 
     })
     .catch(error => {
         console.error('Error:', error)
@@ -80,7 +89,7 @@ router.post('/updateGPA/:id', (req,res) =>{
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {      
-      res.redirect('/almacen/grupoAsig');
+      res.redirect('/almacen/GrupoAsigONLY/'+id.id);
     })
 
 });

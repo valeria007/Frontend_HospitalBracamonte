@@ -7,7 +7,7 @@ var Static = require('../public/static/datas');
 // ruta para mostrar tipos de consulta que un paciente puede requerir
 router.get('/listaConusltas', (req,res) => {
 
-    fetch('http://localhost:4600/api/especialidad')        
+    fetch('http://localhost:4600/api/list_consEsp')        
         .then(resp => resp.json())
         .then(resp =>{            
             res.render('HomeLIstConsultasMedicas',{
