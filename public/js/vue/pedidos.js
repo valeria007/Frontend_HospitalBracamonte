@@ -1,9 +1,13 @@
+Vue.filter('numeral', function (value) {
+    return numeral(value).format('0,0');
+  })
 const carMedicamentos = new Vue({
     el: '#carMedicamentos',    
     data : () => ({
         medicamentos: [],
         itemsCar:[],
         qty:[],
+        cantidadMedicamento:'',
         
         items : {},
         totalQty : 0,
@@ -18,19 +22,125 @@ const carMedicamentos = new Vue({
 
         respuestaPost:'',
 
-        getPedido:[]
+        searchItem: '',
+        getPedido:[],
+        filteredItems: [],
+        paginatedItems: [],
+        selectedItems: [],
+        pagination: {
+            range: 5,
+            currentPage: 1,
+            itemPerPage: 8,
+            getPedido: [],
+            filteredItems: [],
+        },
+
+        //Buaqueda de medicamentos
+        searchQuery:'',
+        resources:[]
     }),
+    ready() {
+        this.filteredItems = this.getPedido
+        this.buildPagination()
+        this.selectPage(1)    
+    },
+    //esto es de busqueda de medicamentos
+    computed:{
+      filteredResources (){
+        if(this.searchQuery){
+        return this.resources.filter((item)=>{
+          return item.nombre.startsWith(this.searchQuery) || item.presentacion.startsWith(this.searchQuery)
+          || item.unidades.startsWith(this.searchQuery)
+        })
+        }else{
+          return this.resources;
+        }
+      }
+    },
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     methods:{
+        clearSearchItem(){
+            this.searchItem = undefined
+            this.searchInTheList('')
+        },
+        searchInTheList(searchText, currentPage){
+            if(_.isUndefined(searchText)){
+              this.filteredItems = _.filter(this.getPedido, function(v, k){
+                return !v.selected
+              })
+            }
+            else{
+              this.filteredItems = _.filter(this.getPedido, function(v, k){
+                return !v.selected && v.proveedor.toLowerCase().indexOf(searchText.toLowerCase()) > -1 || !v.selected && v.boletaPago.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+                || !v.selected && v.fechaIngreso.toLowerCase().indexOf(searchText.toLowerCase()) > -1 || !v.selected && v.codigoCompra.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+              })
+            }
+            this.filteredItems.forEach(function(v, k){
+              v.key = k+1
+            })  
+            this.buildPagination()
+            
+            if(_.isUndefined(currentPage)){
+              this.selectPage(1) 
+            }
+            else{
+              this.selectPage(currentPage)
+            }
+        },
+        buildPagination(){
+            let numberOfPage = Math.ceil(this.filteredItems.length/this.pagination.itemPerPage)
+            this.pagination.getPedido = []
+            for(var i=0; i<numberOfPage; i++){
+              this.pagination.getPedido.push(i+1)
+            }
+        },
+        selectPage(item) {
+            this.pagination.currentPage = item
+            
+            let start = 0
+            let end = 0
+            if(this.pagination.currentPage < this.pagination.range-2){
+              start = 1
+              end = start+this.pagination.range-1
+            }
+            else if(this.pagination.currentPage <= this.pagination.getPedido.length && this.pagination.currentPage > this.pagination.getPedido.length - this.pagination.range + 2){
+              start = this.pagination.getPedido.length-this.pagination.range+1
+              end = this.pagination.getPedido.length
+            }
+            else{
+              start = this.pagination.currentPage-2
+              end = this.pagination.currentPage+2
+            }
+            if(start<1){
+              start = 1
+            }
+            if(end>this.pagination.getPedido.length){
+              end = this.pagination.getPedido.length
+            }
+            
+            this.pagination.filteredItems = []
+            for(var i=start; i<=end; i++){
+              this.pagination.filteredItems.push(i);
+            }
+            
+            this.paginatedItems = this.filteredItems.filter((v, k) => {
+              return Math.ceil((k+1) / this.pagination.itemPerPage) == this.pagination.currentPage
+            })
+        },
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        //esto
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         agregar: function (){
             axios
             .get('http://localhost:7000/pedidos/vuePedidos')
             .then(response => {
-              this.medicamentos = response.data;
-              //console.log(response.data)
+              this.resources = response.data;
+              console.log(this.resources)
               
             })
         },
         insertar: function (id){
+          for(var i = 0; i < this.cantidadMedicamento; i++){
             axios
             .get('http://localhost:7000/pedidos/carrito/'+id)
             .then(response => {
@@ -43,7 +153,8 @@ const carMedicamentos = new Vue({
                 }   
                 this.itemsCar = car;
                 this.add(car,id);
-            })            
+            }) 
+          }           
         },       
 
         add: function(item, id)  {

@@ -5,8 +5,44 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <%- include("../partials/head") -%>
+    <style>
+        #input-search{
+            width: 300px;
+            height: 40px;
+            font-size: 20px;
+            text-indent: 10px;
+        }
+        .content-search{
+            
+            width: 80%;
+            height: 25vh;
+            position: absolute;
+            top: 330px;
+            left: 50px;
+            background: rgba(0, 14, 47, 0.897);
+            display: none;
+        }
+        /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
-    
+        .content-table table{
+            width: 100%;
+        }
+
+        tbody tr td a{
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        tbody tr td a:hover{
+            background: rgba(0,0,0,0.3);
+        }
+
+        #table_length, #table_filter, #table_info, #table_paginate{
+            display: none;
+        }
+    </style>
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -22,10 +58,10 @@
 			</ul>
 		</nav>
 		<!-- Content page -->
-		<div class="container-fluid">
+		<div class="container-fluid" id="search">
 			<div class="page-header">
-				<h1 class="text-titles"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Pedidos </h1>
-			</div>
+                <h1 class="text-titles"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Pedidos </h1>    
+            </div>     
 		</div>
 		<div class="container-fluid">
 			<div class="row" >
@@ -113,9 +149,47 @@
                                                 <div class="entrada">
                                                     <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
                                                 </div>
-                                                <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-                                                    <input type="text" id="searchInput" placeholder="Buscar.."><br>
+                                                <!-- 
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                                                    lista de Pedidos
+                                                    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                -->
+                                                <div class="box m-form">
+                                                    <label class="label">Search Person Name</label>
+                                                    <div class="control is-grouped">
+                                                      <p class="control is-expanded">
+                                                        <input class="input" v-model="searchItem" v-on:keyup="searchInTheList(searchItem)" type="text" placeholder="Find a person">
+                                                        <span class="help is-dark"><strong>{{filteredItems.length | numeral}}</strong> of {{getPedido.length | numeral}} person found</span>
+                                                      </p>
+                                                      <p class="control">
+                                                        <a class="button is-info" @:click="clearSearchItem" v-bind:class="{'is-disabled': searchItem==''}">
+                                                          Clear
+                                                        </a>
+                                                      </p>
+                                                    </div>     
                                                 </div>
+                                                
+                                                <nav class="pagination m-pagination">
+                                                    <a class="button" v-on:click="selectPage(this.pagination.currentPage-1)" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[0] || this.pagination.getPedido.length==0}">Previous</a>
+                                                    <a class="button" v-on:click="selectPage(this.pagination.currentPage+1)" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[this.pagination.getPedido.length-1] || this.pagination.getPedido.length==0}">Next page</a>
+                                                    <ul>
+                                                      <li>
+                                                        <a class="button" v-on:click="selectPage(pagination.getPedido[0])" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[0] || this.pagination.getPedido.length==0}">
+                                                          First
+                                                        </a>
+                                                      </li>
+                                                      <li class="is-space"></li>
+                                                      <li v-for="item in pagination.filteredItems">
+                                                        <a class="button" v-on:click="selectPage(item)" v-bind:class="{'is-info': item == pagination.currentPage}">{{item | numeral}}</a>
+                                                      </li>
+                                                      <li class="is-space"></li>
+                                                      <li>
+                                                        <a class="button" v-on:click="selectPage(pagination.getPedido[pagination.getPedido.length-1])" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[this.pagination.getPedido.length-1] || this.pagination.getPedido.length==0}">
+                                                          Last
+                                                        </a>
+                                                      </li>
+                                                    </ul>
+                                                </nav>
                                             </div>
                                             <table class="fl-table" id="myTable">
                                                 <thead>
@@ -131,7 +205,7 @@
                                                     <th>Opciones</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody v-for="(pedido, index) in getPedido">
+                                                <tbody v-for="(pedido, index) in paginatedItems">
                                                     <tr>
                                                         <td>{{index + 1}}</td>
                                                         <td>{{pedido.codigoCompra}}</td>
@@ -158,6 +232,11 @@
                                     <% } %>
 
                                     <span style="color: red;">{{respuestaPost}}</span>
+                                    <!-- 
+                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                        ///registro de compras
+                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                     -->
                                     <div class="row">
                                                                                 
                                         <form @submit="formSubmit" method="POST">
@@ -202,21 +281,60 @@
                                                     </div>                                                    
                                                 </div><br>
 
+                                                            
+                                                <!--
+                                                    Carrito de medicamentos                                                    
+                                                -->
                                                 <div class="table-wrapper">
+                                                    <!--
+                                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                                                        buscar mediacmentos
+                                                        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                    -->      
+                                                    <input type="search" id="input-search" v-model="searchQuery" placeholder="Buscar" @click="agregar" autocomplete="off"> <br>
+
+                                                    <div class="content-search">
+                                                        <div class="content-table">
+                                                            <table id="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th>Cantidad  {{cantidadMedicamento}}</th>
+                                                                        <th>Nombre</th>
+                                                                        <th>Precentacion</th>
+                                                                        <th>Cantidad</th>                                                                     
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody v-for="item in filteredResources">
+                                                                    <tr>
+                                                                        <td> <a @click="insertar(item.id)"> Insertar </a>   </td>
+                                                                        <td><input type="number" style="width:60px;height:30px;" v-model="cantidadMedicamento"></td>
+                                                                        <td><a target="_blank">{{item.nombre}}</a></td>
+                                                                        <td><a target="_blank">{{item.presentacion}}</a></td>
+                                                                        <td><a target="_blank">{{item.unidades}}</a></td>
+                                                                       
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
                                                     <a @click="quitar"> Limpiar Carrito </a>
                                                     <table class="fl-table">
                                                         <thead>
                                                             <tr>
-                                                            <th>#</th>
-                                                            <th>Cantidad del Producto</th>
-                                                            <th>Codigo</th>
-                                                            <th>Descripcion</th>
-                                                            <th>Cantidad</th>
-                                                            
-                                                            <th>Precio</th>
-                                                            <th>Precio Toal</th>
-                                                            <th>Eliminar</th>
-                                                            <th>Eliminar todo</th>
+                                                                <th>#</th>
+                                                                <th>Cantidad del Producto</th>
+                                                                <th>Codigo</th>
+                                                                <th>Descripcion</th>
+                                                                <th>Cantidad</th>
+                                                                
+                                                                <th>Precio</th>
+                                                                <th>Precio Toal</th>
+                                                                <th>Eliminar</th>
+                                                                <th>Eliminar todo</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody v-for="(car, index) in items">                                                    
@@ -261,50 +379,48 @@
                             </div>
 
                             <div class="tab-pane fade" id="listMedicament">
+
+                                <textarea  id="" cols="30" rows="10">{{$data.resources}}</textarea>
                                
                                 <div class="table-wrapper" >                                                          
                                     <div id="correo">
                                         <div class="entrada">
                                             <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
                                         </div>
-                                        <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-                                            <input type="text" id="searchInput" placeholder="Buscar.."><br>
+                                    </div>  
+                                    
+                                    <div class="content-search">
+                                        <div class="content-table">
+
+                                                <table class="fl-table" id="table" >                                        
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nombre</th>                                                                                                                                               
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody v-for="(item, index) of medicamentos">
+                                                        <tr>
+                    
+                                                            <td>{{ item.nombre }}</td>                                                            
+                                                            
+                                                             <!--<td>                                                    
+                                                               <input type="checkbox" v-model="otro" 
+                                                                :value="{
+                                                                    codificacion:item.codificacion, 
+                                                                    nombre: item.nombre,
+                                                                    cantidad: item.cantidad, 
+                                                                    
+                                                                    precio: item.precio, 
+                                                                }">
+                                                                <button @click="insertar(item.id)">Agregar</button>                                              
+                                                            </td> -->  
+                                                        </tr>                                               
+                                                    </tbody>
+                                                </table>    
+                                            </div>
                                         </div>
-                                    </div>    
-                                    <table class="fl-table" id="myTable" >                                        
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Codificación</th>
-                                                <th>Nombre</th>
-                                                <th>Cantidad</th>
-                                                <th>Precio</th> 
-                                                
-                                                <th>Añadir</th>                                           
-                                            </tr>
-                                        </thead>
-                                        <tbody v-for="(item, index) of medicamentos">
-                                            <tr>
-                                                <td>{{index + 1}}</td>
-                                                <td>{{item.codificacion}}</td>
-                                                <td>{{item.nombre}}</td>
-                                                <td>{{item.cantidad}}</td>
-                                                <td>{{item.precio}}</td>
-                                                
-                                                <td>                                                    
-                                                    <!--<input type="checkbox" v-model="otro" 
-                                                    :value="{
-                                                        codificacion:item.codificacion, 
-                                                        nombre: item.nombre,
-                                                        cantidad: item.cantidad, 
-                                                        
-                                                        precio: item.precio, 
-                                                    }"> -->  
-                                                    <button @click="insertar(item.id)">Agregar</button>                                              
-                                                </td>
-                                            </tr>                                               
-                                        </tbody>
-                                    </table>               
+                                    </div>
+                                               
                                 </div>
                             </div>
                             
@@ -316,7 +432,26 @@
 	</section>
 	<!--====== Scripts -->
     <%- include("../partials/scripts") -%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
     <script src="/js/vue/pedidos.js"></script>
-    <script src="/js/get/consultaget.js"></script>	
+
+    <script src="https://dl.dropboxusercontent.com/s/5mqlcxg4264ri32/jquery.dataTables.min.js"></script>
+
+    <script>
+        var buscador = $("#table").DataTable();
+
+        $("#input-search").keyup(function(){
+
+            buscador.search($(this).val()).draw();
+
+            if ($("#input-search").val() == ""){
+                $(".content-search").fadeOut(300);
+            }else{
+                $(".content-search").fadeIn(300);
+            }
+        })
+    </script>
+
 </body>
 </html>
