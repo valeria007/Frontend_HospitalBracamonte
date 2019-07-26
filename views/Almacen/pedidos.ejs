@@ -5,6 +5,36 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <%- include("../partials/head") -%>
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                      <div class="modal-container">
+                        
+                          <div class="modal-header">
+                            <slot name="header">
+                                    default header
+                                    </slot>
+                                  </div>
+                          
+                                  <div class="modal-body">
+                                    <slot name="body">                        
+
+                                      </slot>
+                                  </div>
+                          
+                                  <div class="modal-footer">
+                                  <slot name="footer">
+                              default footer <br>
+                              <a  @click="$emit('close')"> OK </a>
+                            </slot>
+                          </div>
+                      </div>
+                </div>
+            </div>
+        </transition>
+    </script>
+    
     <style>
         #input-search{
             width: 300px;
@@ -42,6 +72,92 @@
         #table_length, #table_filter, #table_info, #table_paginate{
             display: none;
         }
+
+        .modal-mask {
+          position: fixed;
+          z-index: 9998;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, .5);
+          display: table;
+          transition: opacity .3s ease;
+        }
+
+        .modal-wrapper {
+          display: table-cell;
+          vertical-align: middle;
+        }
+
+        .modal-container {
+          width: 1000px;
+          margin: 0px auto;
+          padding: 20px 30px;
+          background-color: #fff;
+          border-radius: 2px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+          transition: all .3s ease;
+          font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .modal-header h3 {
+          margin-top: 0;
+          color: #42b983;
+        }
+
+        .modal-body {
+          margin: 20px 0;
+        }
+
+        .modal-default-button {
+          float: right;
+        }
+
+        /*
+         * The following styles are auto-applied to elements with
+         * transition="modal" when their visibility is toggled
+         * by Vue.js.
+         *
+         * You can easily play with the modal transition by editing
+         * these styles.
+         */
+            
+        .modal-enter {
+          opacity: 0;
+        }
+        
+        .modal-leave-active {
+          opacity: 0;
+        }
+        
+        .modal-enter .modal-container,
+        .modal-leave-active .modal-container {
+          -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+        }
+
+        /*
+            css pagination
+        */
+        .pagination1 {
+          display: inline-block;
+        }
+
+        .pagination1 a {
+          color: black;
+          float: left;
+          padding: 8px 16px;
+          text-decoration: none;
+        }
+
+        .pagination1 a.active {
+          background-color: #4CAF50;
+          color: white;
+        }
+
+        .pagination1 a:hover:not(.active) {background-color: #ddd;}
+
     </style>
 </head>
 <body class="dashboard-sideBar-imagg cover">
@@ -67,14 +183,14 @@
 			<div class="row" >
 				<div class="col-xs-12" id="carMedicamentos">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;"  id="links">
-                        <li class="active"><a v-on:click="pedidos" href="#new" data-toggle="tab">Lista de Pedidos</a></li>
-                        <li><a href="#list" data-toggle="tab">Nuevo Pedido</a></li>
+                        <li><a v-on:click="searchInTheList('')" href="#new" data-toggle="tab">Lista de Pedidos</a></li>
+                        <li class="active"><a href="#list" data-toggle="tab">Nuevo Pedido</a></li>
                         <li><a href="#listMedicament" data-toggle="tab" v-on:click="agregar">Lista de medicamentos</a></li>
                         <li><a href="#">Refresh</a></li>
 					</ul>
                                         
                     <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade active in" id="new">                            
+                        <div class="tab-pane fade" id="new">                            
                             <div class="container-fluid">
                                 <div class="row">
                                     <a class="btn btn-success btn-lg active btn-raised" role="button" aria-pressed="true" href="/pedidos/limpiar"><i class="zmdi zmdi-long-arrow-return"> VOLVER</a></i>
@@ -155,11 +271,11 @@
                                                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                 -->
                                                 <div class="box m-form">
-                                                    <label class="label">Search Person Name</label>
+                                                    <label class="label">Buscar Pedidos</label>
                                                     <div class="control is-grouped">
                                                       <p class="control is-expanded">
-                                                        <input class="input" v-model="searchItem" v-on:keyup="searchInTheList(searchItem)" type="text" placeholder="Find a person">
-                                                        <span class="help is-dark"><strong>{{filteredItems.length | numeral}}</strong> of {{getPedido.length | numeral}} person found</span>
+                                                        <input class="input" v-model="searchItem" v-on:keyup="searchInTheList(searchItem)" type="text" placeholder="Find a person"> <br>
+                                                        <span class="help is-dark"><strong>{{filteredItems.length | numeral}}</strong> de {{getPedido.length | numeral}} Pedidos Encontrados</span>
                                                       </p>
                                                       <p class="control">
                                                         <a class="button is-info" @:click="clearSearchItem" v-bind:class="{'is-disabled': searchItem==''}">
@@ -168,28 +284,15 @@
                                                       </p>
                                                     </div>     
                                                 </div>
+                                                <div class="pagination1">
+                                                    <a class="button" v-on:click="selectPage(pagination.getPedido[0])" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[0] || this.pagination.getPedido.length==0}">&laquo;</a>
+                                                    <template v-for="item in pagination.filteredItems">
+                                                        <a v-on:click="selectPage(item)" v-bind:class="{'is-info': item == pagination.currentPage}">{{item | numeral}}</a>
+                                                    </template>
+                                                    <a class="button" v-on:click="selectPage(pagination.getPedido[pagination.getPedido.length-1])" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[this.pagination.getPedido.length-1] || this.pagination.getPedido.length==0}">&raquo;</a>
+                                                </div>
                                                 
-                                                <nav class="pagination m-pagination">
-                                                    <a class="button" v-on:click="selectPage(this.pagination.currentPage-1)" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[0] || this.pagination.getPedido.length==0}">Previous</a>
-                                                    <a class="button" v-on:click="selectPage(this.pagination.currentPage+1)" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[this.pagination.getPedido.length-1] || this.pagination.getPedido.length==0}">Next page</a>
-                                                    <ul>
-                                                      <li>
-                                                        <a class="button" v-on:click="selectPage(pagination.getPedido[0])" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[0] || this.pagination.getPedido.length==0}">
-                                                          First
-                                                        </a>
-                                                      </li>
-                                                      <li class="is-space"></li>
-                                                      <li v-for="item in pagination.filteredItems">
-                                                        <a class="button" v-on:click="selectPage(item)" v-bind:class="{'is-info': item == pagination.currentPage}">{{item | numeral}}</a>
-                                                      </li>
-                                                      <li class="is-space"></li>
-                                                      <li>
-                                                        <a class="button" v-on:click="selectPage(pagination.getPedido[pagination.getPedido.length-1])" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.getPedido[this.pagination.getPedido.length-1] || this.pagination.getPedido.length==0}">
-                                                          Last
-                                                        </a>
-                                                      </li>
-                                                    </ul>
-                                                </nav>
+                                                
                                             </div>
                                             <table class="fl-table" id="myTable">
                                                 <thead>
@@ -220,12 +323,17 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+
+                                            <!--
+                                                <>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                <>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                            -->
                                         </div>
                                     </div>
                                 </div>
                             </div>  
 
-                            <div class="tab-pane fade" id="list">
+                            <div class="tab-pane fade active in" id="list">
                                 <div class="container-fluid">
                                     <%if(message) { %>
                                         <h2>Porfavor selecione productos para el pedido</h2>
@@ -292,9 +400,68 @@
                                                                                         buscar mediacmentos
                                                         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                                         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                                                    -->      
-                                                    <input type="search" id="input-search" v-model="searchQuery" placeholder="Buscar" @click="agregar" autocomplete="off"> <br>
+                                                    --> 
+                                                    
+                                                    <!--esto es el modal vue
+                                                        que va a contener tambien tambien una tabla pagination
+                                                    -->
+                                                    <a @click="showModal = true, searchInTheListMed('')">Show Modal</a>
+                                                    <!-- use the modal component, pass in the prop -->
+                                                    <modal v-if="showModal" @close="showModal = false">                                                
+                                                        <h3 slot="header">modal vue</h3>
+                                                        <div slot="body">
+                                                            <div class="box m-form">
+                                                                <label class="label">Buscar Medicamentos</label>
+                                                                <div class="control is-grouped">
+                                                                  <p class="control is-expanded">
+                                                                    <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el nombre y la Presentacion"><br>
+                                                                    <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
+                                                                  </p>
+                                                                  <p class="control">
+                                                                    <a class="button is-info" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">
+                                                                      Clear
+                                                                    </a>
+                                                                  </p>
+                                                                </div>     
+                                                            </div> 
 
+                                                            <div class="pagination1">
+                                                                <a v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}">&laquo;</a>
+                                                                <template v-for="item in paginationMeds.filteredMeds">
+                                                                    <a    v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
+                                                                </template>
+                                                                <a v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">&raquo;</a>
+                                                            </div>
+                                                            <table class="fl-table" id="myTable">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th>Cantidad</th>
+                                                                        <th>Nombre</th>
+                                                                        <th>Precentacion</th>
+                                                                        <th>Cantidad</th>   
+                                                                   
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody v-for="(med, index) in paginatedMeds">
+                                                                    <tr>
+                                                                        <td><a @click="insertar(med.id)" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a> </td>
+                                                                        <td><input type="number" style="width:60px;height:30px;" v-model="cantidadMedicamento"></td>
+                                                                        <td>{{med.nombre}}</td>
+                                                                        <td>{{med.presentacion}}</td>
+                                                                        <td>{{med.unidades}}</td>
+                                                                       
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>                                             
+                                                        </div>
+                                                    </modal>
+                                                    <!--
+                                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                    -->
+                                                    <br>
+                                                    <input type="search" id="input-search" v-model="searchQuery" placeholder="Buscar" @click="agregar" autocomplete="off"> <br>                                            
                                                     <div class="content-search">
                                                         <div class="content-table">
                                                             <table id="table">
@@ -452,6 +619,5 @@
             }
         })
     </script>
-
 </body>
 </html>

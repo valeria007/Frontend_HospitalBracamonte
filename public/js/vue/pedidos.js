@@ -1,13 +1,22 @@
+Vue.component('modal', {
+  template: '#modal-template'
+})
+
 Vue.filter('numeral', function (value) {
     return numeral(value).format('0,0');
   })
 const carMedicamentos = new Vue({
     el: '#carMedicamentos',    
     data : () => ({
+      
+
+        aljand:'aljand 321',
+
         medicamentos: [],
         itemsCar:[],
         qty:[],
         cantidadMedicamento:'',
+        showModal: false,
         
         items : {},
         totalQty : 0,
@@ -26,7 +35,6 @@ const carMedicamentos = new Vue({
         getPedido:[],
         filteredItems: [],
         paginatedItems: [],
-        selectedItems: [],
         pagination: {
             range: 5,
             currentPage: 1,
@@ -37,12 +45,48 @@ const carMedicamentos = new Vue({
 
         //Buaqueda de medicamentos
         searchQuery:'',
-        resources:[]
+        resources:[],
+        //<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        //pra medicamentos pag search
+        
+        searchMed: '',
+        ListMedicamentos:[],
+        filteredMeds: [],
+        paginatedMeds: [],
+        paginationMeds: {
+            range: 5,
+            currentPage: 1,
+            itemPerPage: 2,
+            ListMedicamentos: [],
+            filteredMeds: [],
+        },
+       
+  
     }),
+    created:function() {
+      fetch('http://localhost:7000/pedidos/vuePedidos')
+      .then(res => res.json())
+      .then(res => {
+        this.ListMedicamentos = res;
+      })
+
+      axios
+            .get('http://localhost:7000/pedidos/vuePEDIDOS1')
+            .then(response => {
+              this.getPedido = response.data
+              console.log(this.getPedido)
+            })
+    },
     ready() {
-        this.filteredItems = this.getPedido
-        this.buildPagination()
-        this.selectPage(1)    
+      this.filteredItems = this.getPedido
+      this.buildPagination()
+      this.selectPage(1)    
+      //esta parte es para el modal de buscar mecicamentos
+      this.filteredMeds = this.ListMedicamentos
+      this.buildPaginationMed()
+      this.selectPageMed(1)  
+      //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     },
     //esto es de busqueda de medicamentos
     computed:{
@@ -55,7 +99,7 @@ const carMedicamentos = new Vue({
         }else{
           return this.resources;
         }
-      }
+      },
     },
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     methods:{
@@ -130,6 +174,96 @@ const carMedicamentos = new Vue({
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         //esto
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        /*
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                             esta parte es para el modal de buscar mecicamentos
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        */
+       
+       clearSearchItemMed(){
+        this.searchMed = undefined
+        this.searchInTheListMed('')
+        },
+        searchInTheListMed(searchText, currentPage){
+            if(_.isUndefined(searchText)){
+              this.filteredMeds = _.filter(this.ListMedicamentos, function(v, k){
+                return !v.selected
+              })
+            }
+            else{
+              this.filteredMeds = _.filter(this.ListMedicamentos, function(v, k){
+                return !v.selected && v.nombre.toLowerCase().indexOf(searchText.toLowerCase()) > -1 || !v.selected && v.presentacion.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+                || !v.selected && v.unidades.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+               
+              })
+            }
+            this.filteredMeds.forEach(function(v, k){
+              v.key = k+1
+            })  
+            this.buildPaginationMed()
+
+            if(_.isUndefined(currentPage)){
+              this.selectPageMed(1) 
+            }
+            else{
+              this.selectPageMed(currentPage)
+            }
+        },
+        buildPaginationMed(){
+            let numberOfPage = Math.ceil(this.filteredMeds.length/this.paginationMeds.itemPerPage)
+            this.paginationMeds.ListMedicamentos = []
+            for(var i=0; i<numberOfPage; i++){
+              this.paginationMeds.ListMedicamentos.push(i+1)
+            }
+        },
+        selectPageMed(item) {
+            this.paginationMeds.currentPage = item
+
+            let start = 0
+            let end = 0
+            if(this.paginationMeds.currentPage < this.paginationMeds.range-2){
+              start = 1
+              end = start+this.paginationMeds.range-1
+            }
+            else if(this.paginationMeds.currentPage <= this.paginationMeds.ListMedicamentos.length && this.paginationMeds.currentPage > this.paginationMeds.ListMedicamentos.length - this.paginationMeds.range + 2){
+              start = this.paginationMeds.ListMedicamentos.length-this.paginationMeds.range+1
+              end = this.paginationMeds.ListMedicamentos.length
+            }
+            else{
+              start = this.paginationMeds.currentPage-2
+              end = this.paginationMeds.currentPage+2
+            }
+            if(start<1){
+              start = 1
+            }
+            if(end>this.paginationMeds.ListMedicamentos.length){
+              end = this.paginationMeds.ListMedicamentos.length
+            }
+
+            this.paginationMeds.filteredMeds = []
+            for(var i=start; i<=end; i++){
+              this.paginationMeds.filteredMeds.push(i);
+            }
+
+            this.paginatedMeds = this.filteredMeds.filter((v, k) => {
+              return Math.ceil((k+1) / this.paginationMeds.itemPerPage) == this.paginationMeds.currentPage
+            })
+        },
+
+        /*
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        */
+
+        
         agregar: function (){
             axios
             .get('http://localhost:7000/pedidos/vuePedidos')
