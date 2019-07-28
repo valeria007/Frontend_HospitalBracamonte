@@ -29,7 +29,7 @@ router.get('/listEmergencia/:id', (req, res) => {
     if (dataEmergencia == null){
         res.redirect('/emergencia/oneVista');
     }
-    fetch('http://localhost:3000/api/PacienteCita/emergencia') //esta ruta solo trae las citas de tipo emergencia y que el estado sea true
+    fetch('http://localhost:3000/api/PacienteCita/Emergencia') //esta ruta solo trae las citas de tipo emergencia y que el estado sea true
         
         .then(resp => resp.json())
         .then(resp =>{ 
@@ -59,7 +59,7 @@ var dataEmergencia; //esta variable tarea datos las citas que ya fueron llenados
 router.get('/dataEmergencia/:id', (req,res) => {
     var DogOenf = req.params.id;
     Static.static_data.dogEnf = req.params.id;
-    fetch('http://localhost:3000/api/PacienteCitaFalse/emergencia') //esta ruta solo trae las citas de tipo emergencia y que el estado sea true
+    fetch('http://localhost:3000/api/PacienteCitaFalse/Emergencia') //esta ruta solo trae las citas de tipo emergencia y que el estado sea true
         .then(resp => resp.json())
         .then(resp =>{ 
             dataEmergencia = resp;

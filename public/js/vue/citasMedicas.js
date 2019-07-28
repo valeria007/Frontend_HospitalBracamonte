@@ -12,7 +12,7 @@ const citas = new Vue({
     }),
     mounted(){
         axios
-        .get('http://localhost:7000/paciente/vueEspecialidades/')
+        .get('http://localhost:7000/paciente/vueEspecialidades_consulta/')
         .then(response => (
           this.especialidades = response.data
         ))

@@ -28,31 +28,63 @@
 		</div>
 		<!-- Registro de nuevos proveedores-->
 		<div class="container-fluid">
-			<form action="/proveedores/proveedores" method="POST">
-				<div class="grupo" id="cabeza">
-					<div id="correo">
-						<div class="entrada">Nombre del Proveedor:<br>
-							<input  type="text" name="nombre"><br>
+
+			<%if(one_proveedor == null) { %>
+				<form action="/proveedores/proveedores" method="POST">
+					<div class="grupo" id="cabeza">
+						<div id="correo">
+							<div class="entrada">Nombre del Proveedor:<br>
+								<input  type="text" name="nombre"><br>
+							</div>
+							<div class="entrada">Email:<br>
+								<input type="email" name="email"><br>
+							</div>
+							<div class="entrada">Direccion:<br>
+								<input  type="text"  name="direccion"><br>
+							</div>
+							<div class="entrada">Telefono:<br>
+								<input  type="text"  name="telefono"><br>
+							</div>
+							<div class="entrada">Empresa o Institucion:<br>
+								<input  type="text" name="empresa"><br>
+							</div>
 						</div>
-						<div class="entrada">Email:<br>
-							<input type="email" name="email"><br>
-						</div>
-						<div class="entrada">Direccion:<br>
-							<input  type="text"  name="direccion"><br>
-						</div>
-						<div class="entrada">Telefono:<br>
-							<input  type="text"  name="telefono"><br>
-						</div>
-						<div class="entrada">Empresa o Institucion:<br>
-							<input  type="text" name="empresa"><br>
+					</div>							
+					<p class="text-center">
+						<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+						<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+					</p>
+				</form>
+			<% } else { %>	
+				<h3>Formulario de Actualizacion</h3>
+				<a href="/proveedores/volver ">Volver</a>
+				<form action="/proveedores/UpdateProveedor/<%=one_proveedor[0].id%>" method="POST">
+					<div class="grupo" id="cabeza">
+						<div id="correo">
+							<div class="entrada">Nombre del Proveedor:<br>
+								<input  type="text" name="nombre" value="<%=one_proveedor[0].nombre%>"><br>
+							</div>
+							<div class="entrada">Email:<br>
+								<input  type="email" name="email" value="<%=one_proveedor[0].email%>"><br>
+							</div>
+							<div class="entrada">Direccion:<br>
+								<input type="text"  name="direccion" value="<%=one_proveedor[0].direccion%>"><br>
+							</div>
+							<div class="entrada">Telefono:<br>
+								<input type="text" name="telefono" value="<%=one_proveedor[0].telefono%>"><br>
+							</div>
+							<div class="entrada">Empresa o Institucion:<br>
+								<input type="text" name="empresa" value="<%=one_proveedor[0].empresa%>"><br>
+							</div>
 						</div>
 					</div>
-				</div>							
-				<p class="text-center">
-					<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-					<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-				</p>
-			</form>
+					<p class="text-center">
+						<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+						<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar </button>
+					</p>
+				</form>
+			<% } %>
+
 		</div>
 		<!-- Listas de Proveedores-->
 		<div class="table-responsive">

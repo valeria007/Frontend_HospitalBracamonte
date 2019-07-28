@@ -1,102 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Table Prueba</title>
 </head>
-
 <body>
-    <h1>hola esto es la tabla aljand</h1>
+  <h1>aljand table</h1>
+  
+  <div id="app">
 
-    <div id="tabledemo">
-            <h3>Vue Datatable example</h3>
-            Filter by anything: <input v-model="search">
-            <hr>
-            <data-table :comments="filteredComments"></data-table>
-          </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" style="font-weight:bold"><span class="glyphicon glyphicon-align-justify"></span> All Resources</div>
+        <div class="row">
+            <div class="search-wrapper panel-heading col-sm-12">
+                <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+            </div>                        
+        </div>
+        <div class="panel-body" style="max-height: 400px;overflow-y: scroll;">
+          <table v-if="resources.length" class="table">
+              <thead>
+                  <tr>
+                      <th>Resource</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="item in filteredResources">
+                      <td><a v-bind:href="item.uri" target="_blank">{{item.title}}</a></td>
+                      <td><a v-bind:href="item.uri" target="_blank">{{item.category}}</a></td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+   </div>
+   
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="/axios/dist/axios.min.js"></script>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script>
-        Vue.component('data-table', {
-  render: function (createElement) {
-    return createElement(
-      "table", null, []
-      )
-  },
-  props: ['comments'],
-  data() {
-    return {
-      headers: [
-        { title: 'Name' },
-        { title: 'Email' },
-        { title: 'Body' },
-        ],
-      rows: [] ,
-      dtHandle: null
-    }
-  },
-  watch: {
-    comments(val, oldVal) {
-      let vm = this;
-      vm.rows = [];
-      val.forEach(function (item) {
-        let row = [];
-        row.push(item.name);
-        row.push('<a href="mailto://' + item.email + '">' + item.email + '</a>');
-        row.push(item.body);
-        vm.rows.push(row);
-      });
-      vm.dtHandle.clear();
-      vm.dtHandle.rows.add(vm.rows);
-      vm.dtHandle.draw();
-    }
-  },
-  mounted() {
-    let vm = this;
-    vm.dtHandle = $(this.$el).DataTable({
-      columns: vm.headers,
-      data: vm.rows,
-      searching: true,
-      paging: true,
-      info: false
-    });
-  }  
-});
-
-new Vue({
-  el: '#tabledemo',
-  data: {
-    comments: [],
-    search: ''
-  },
-  computed: {
-    filteredComments: function () {
-      let self = this
-      let search = self.search.toLowerCase()
-      return self.comments.filter(function (comments) {
-        return  comments.name.toLowerCase().indexOf(search) !== -1 ||
-          comments.email.toLowerCase().indexOf(search) !== -1 ||
-          comments.body.toLowerCase().indexOf(search) !== -1
-      })
-    }
-  },
-  mounted() {
-    let vm = this;
-    $.ajax({
-      url: 'https://jsonplaceholder.typicode.com/comments',
-      success(res) {
-        vm.comments = res;
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          searchQuery:'',
+        resources:[
+        {title:"aaa",uri:"aaaa.com",category:"zzz",icon:null},
+         {title:"add",uri:"aaaa.com",category:"aljand",icon:null},
+          {title:"aff",uri:"aaaa.com",category:"a",icon:null},
+        {title:"bbb",uri:"bbbb.com",category:"b",icon:null},
+        {title:"bdd",uri:"bbbb.com",category:"b",icon:null},
+        {title:"bsb",uri:"bbbb.com",category:"b",icon:null},
+        {title:"ccc",uri:"cccc.com",category:"15515",icon:null},
+        {title:"ddd",uri:"dddd.com",category:"d",icon:null}
+        ]
+        };
+      },
+      computed: {
+        filteredResources (){
+          if(this.searchQuery){
+          return this.resources.filter((item)=>{
+            return item.title.startsWith(this.searchQuery) || item.category.startsWith(this.searchQuery)
+          })
+          }else{
+            return this.resources;
+          }
+        }
       }
-    });
-  }
-});
-    </script>
+    
+    
+    })
+  </script>
 </body>
 </html>

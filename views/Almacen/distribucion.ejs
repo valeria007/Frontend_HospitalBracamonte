@@ -6,7 +6,98 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Inicio</title>
 	<%- include("../partials/head") -%>
-	<link rel="stylesheet" href="/css/form.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+	<script type="text/x-template" id="modal-template">
+		<transition name="modal">
+		  <div class="modal-mask">
+			<div class="modal-wrapper">
+			  <div class="modal-container">
+	  
+				<div class="modal-header">
+				  <slot name="header">
+					default header
+				  </slot>
+				</div>
+	  
+				<div class="modal-body">
+				  <slot name="body">
+					default body
+				  </slot>
+				</div>
+	  
+				<div class="modal-footer">
+				  <slot name="footer">
+					default footer <br>
+					<a class="modal-default-button" @click="$emit('close')">
+					  OK
+					</a>
+				  </slot>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</transition>
+	  </script>
+
+	  <style>
+		.modal-mask {
+		  position: fixed;
+		  z-index: 9998;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  background-color: rgba(0, 0, 0, .5);
+		  display: table;
+		  transition: opacity .3s ease;
+		}
+		.modal-wrapper {
+		  display: table-cell;
+		  vertical-align: middle;
+		}
+		.modal-container {
+		  width: 1000px;
+		  margin: 0px auto;
+		  padding: 20px 30px;
+		  background-color: #fff;
+		  border-radius: 2px;
+		  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+		  transition: all .3s ease;
+		  font-family: Helvetica, Arial, sans-serif;
+		}
+		.modal-header h3 {
+		  margin-top: 0;
+		  color: #42b983;
+		}
+		.modal-body {
+		  margin: 20px 0;
+		}
+		.modal-default-button {
+		  float: right;
+		}
+		/*
+		 * The following styles are auto-applied to elements with
+		 * transition="modal" when their visibility is toggled
+		 * by Vue.js.
+		 *
+		 * You can easily play with the modal transition by editing
+		 * these styles.
+		 */
+		.modal-enter {
+		  opacity: 0;
+		}
+		.modal-leave-active {
+		  opacity: 0;
+		}
+		.modal-enter .modal-container,
+		.modal-leave-active .modal-container {
+		  -webkit-transform: scale(1.1);
+		  transform: scale(1.1);
+		}
+	  </style>
+
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -24,17 +115,17 @@
 	<!-- Content page -->
 	<div class="container-fluid">
 		<div class="page-header">
-	        <h1 class="text-titles"><i class="zmdi zmdi-widgets zmdi-hc-fw"></i>Distribucion</h1>
+	        <h1 style="font-size:300%;"><i class="zmdi zmdi-widgets zmdi-hc-fw"></i>Distribucion</h1>
 		</div>
 	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12" id="pedidos">
-				<ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
-				  <li class="active"><a v-on:click="Listdistribuciones" href="#new" data-toggle="tab">Lista de Disribuciones</a></li>
+				<ul class="nav " style="margin-bottom: 10px;" >
+				  <li class="active"><a v-on:click="searchInTheList('')" href="#new" data-toggle="tab">Lista de Disribuciones</a></li>
 					<li><a href="#list" data-toggle="tab">Nuevo Distribución</a></li>
 					<li><a v-on:click="medicamento" href="#listMedicament" data-toggle="tab">Lista de medicamentos</a></li>
-					<li><a href="#">Refresh</a></li>
+					
        	 		</ul>
 				<!-- lista Medicamento -->
 				<div id="myTabContent" class="tab-content">
@@ -101,36 +192,81 @@
 											<div class="entrada">
 													<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
 											</div>
-											<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-													<input type="text" id="searchInput" placeholder="Buscar.."><br>
-											</div>
 									</div>
-									<table class="fl-table" id="myTable">
+
+									<!-- 
+										>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+										esta parte  es para la pagiantions
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+									 -->
+			
+									 <div class="box m-form">									
+									   <div class="control is-grouped">
+										 <p class="control is-expanded">
+										   <input class="input" v-model="searchItem" v-on:keyup="searchInTheList(searchItem)" type="text" placeholder="Buscar">
+										   <span class="help is-dark"><strong>{{filteredItems.length | numeral}}</strong> de {{lis_pedidos.length | numeral}} Dedidos</span>
+										 </p>
+										 <p class="control">
+										   <a class="button is-info" v-on:click="clearSearchItem" v-bind:class="{'is-disabled': searchItem==''}">
+											 Clear
+										   </a>
+										 </p>
+									   </div>
+									 </div>
+									 
+									 <nav class="pagination m-pagination">
+									   <a class="button" @click="selectPage(pagination.currentPage-1)" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.lis_pedidos[0] || this.pagination.lis_pedidos.length==0}">Previous</a>
+									   <a class="button" @click="selectPage(pagination.currentPage+1)" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.lis_pedidos[this.pagination.lis_pedidos.length-1] || this.pagination.lis_pedidos.length==0}">Next page</a>
+									   <ul>
+										 <li>
+										   <a class="button" v-on:click="selectPage(pagination.lis_pedidos[0])" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.lis_pedidos[0] || this.pagination.lis_pedidos.length==0}">
+											 First
+										   </a>
+										 </li>
+										 <li class="is-space"></li>
+										 <li v-for="item in pagination.filteredItems">
+										   <a class="button" v-on:click="selectPage(item)" v-bind:class="{'is-info': item == pagination.currentPage}">{{item | numeral}}</a>
+										 </li>
+										 <li class="is-space"></li>
+										 <li>
+										   <a class="button" v-on:click="selectPage(pagination.lis_pedidos[pagination.lis_pedidos.length-1])" v-bind:class="{'is-disabled': this.pagination.currentPage==this.pagination.lis_pedidos[this.pagination.lis_pedidos.length-1] || this.pagination.lis_pedidos.length==0}">
+											 Last
+										   </a>
+										 </li>
+									   </ul>
+									 </nav>
+									 <div class="table-wrapper">
+									   <table class="fl-table">
 										<thead>
-											<tr>
-												<th>#</th>
-												<th>Codigo</th>
-												<th>Responsable</th>
-												<th>Recibe</th>
-												<th>Fecha de Envio</th>
-												<th>Ver</th>
-											</tr>
-									</thead>
-									<tbody  v-for="(distribucion, index) of listDistribucion">
-										<tr>
-											<td>{{index + 1}}</td>
-											<td>{{distribucion.codigo}}</td>
-											<td>{{distribucion.responsable}}</td>
-											<td>{{distribucion.recibe}}</td>
-											<td>{{distribucion.fechaLlegada}}</td>
-											<td><a :href="'/distribucion/onlyDist/' + distribucion.id" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-										</tr>
+												<tr>
+														<th class="m-table-index">#</th>
+														<th>Cadigo</th>
+														<th>Responsable</th>
+														<th>Recibe</th>
+														<th>Fecha Llegada</th>
+														<th>Ver</th>
+														
+													  </tr>
+										</thead>
+										<tbody>
+												<tr v-for="(item, index) in paginatedItems">
+														<td>{{index +1}}</td>
+														<td>{{item.codigo}}</td>
+														<td>{{item.responsable}}</td>
+														<td>{{item.recibe}}</td>
+														<td>{{item.fechaLlegada}}</td>
+														
+														<td><a :href="'/distribucion/onlyDist/' + item.id" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+													  </tr>
+										</tbody>
+							
+									   </table>
+									 </div>
 
-
-										
-
-									</tbody>
-								</table>
+									<!--
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+									-->
 						</div>
 					</div>  
 					</div>
@@ -141,55 +277,125 @@
 						<% } %>	
 						<span style="color: red;">{{respuestaPost}}</span>
 						<form @submit="formSubmit" method="POST">
-								<div class="grupo" id="cabeza">
-										<div id="correo">
-												<div class="entrada">Codigo:<br>
-														<input type="text" v-model="codigo"><br>
-												</div>
-												<div class="entrada">Nombre de Responsable:<br>
-													<input type="text" v-model="responsable"><br>
-												</div>
-												<div class="entrada">Recibe:<br>
-													<input  type="text"  v-model="recibe"><br>
-												</div>
-												<div class="entrada">Fecha de Distribucion:<br>
-													<input  type="date"  v-model="fechaLlegada"><br>
-												</div>
-										</div><br>
+							<div class="grupo" id="cabeza">
+								<div id="correo">
+									<div class="entrada">Codigo:<br>
+											<input type="text" v-model="codigo"><br>
+									</div>
+									<div class="entrada">Nombre de Responsable:<br>
+										<input type="text" v-model="responsable"><br>
+									</div>
+									<div class="entrada">Recibe:<br>
+										<input  type="text"  v-model="recibe"><br>
+									</div>
+									<div class="entrada">Fecha de Distribucion:<br>
+										<input  type="date"  v-model="fechaLlegada"><br>
+									</div>
+								</div><br>	
+								<!--
+								<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+													modal view
+								<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<													
+								-->
+								<a @click="showModal = true, searchInTheListMed('')">Buscar Medicamentos</a>
+  								<!-- use the modal component, pass in the prop -->
+  								<modal v-if="showModal" @close="showModal = false">
+  							
+								  	<h3 slot="header">custom header</h3>
+								  	<div slot="body">
+										<div class="box m-form">
+											<label class="label">Buscar Medicamentos</label>
+											<div class="control is-grouped">
+											  <p class="control is-expanded">
+												<input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el nombre y la Presentacion"><br>
+												<span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
+											  </p>
+											  <p class="control">
+												<a class="button is-info" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">
+												  Clear
+												</a>
+											  </p>
+											</div>     
+										</div>
+										<nav class="pagination m-pagination">
+											<a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Previous</a>
+											<a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Next page</a>
+											<ul>
+											  <li>
+												<a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}">
+												  First
+												</a>
+											  </li>
+											  <li class="is-space"></li>
+											  <li v-for="item in paginationMeds.filteredMeds">
+												<a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
+											  </li>
+											  <li class="is-space"></li>
+											  <li>
+												<a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">
+												  Last
+												</a>
+											  </li>
+											</ul>
+										</nav>
+										<table class="table is-bordered is-striped is-narrow">
+											<thead>
+												<tr>
+													<th></th>												
+													<th>Nombre</th>
+													<th>Precentacion</th>
+													<th>Cantidad</th>   
+											   
+												</tr>
+											</thead>
+											<tbody v-for="(med, index) in paginatedMeds">
+												<tr>
+													<td><a @click="insertar(med.id)" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a> </td>												
+													<td>{{med.nombre}}</td>
+													<td>{{med.presentacion}}</td>
+													<td>{{med.unidades}}</td>
+												   
+												</tr>
+											</tbody>
+										</table>   
+									</div>							
+								</modal>
+								<!--
+								<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+								<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<													
+								-->					  
+								<div class="table-wrapper">
+									<table class="fl-table">
+										<thead>
+											<tr>
+											<th>#</th>	
+											<th>Codigo</th>
+											<th>Descripcion</th>
+											<th>Unidad</th>
+											<th>Cantidad</th>
+											<th>Eliminar</th>
+											<th>Quitar</th>
+											</tr>
+										</thead>
 										
+											
+										<tbody v-for="(car, index) in items">
+											<tr>
+												<td>{{index}}</td>
+												<td>{{car.item.codificacion}}</td>
+												<td>{{car.item.nombre}}</td>
+												<td>{{car.item.presentacion}}</td>
+												<td>{{car.qty}}</td>
+												<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
+												<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
+											</tr>
+										<tbody>
+											
 										
-												<div class="table-wrapper">
-													<table class="fl-table">
-														<thead>
-															<tr>
-															<th>#</th>	
-															<th>Codigo</th>
-															<th>Descripcion</th>
-															<th>Unidad</th>
-															<th>Cantidad</th>
-															<th>Eliminar</th>
-															<th>Quitar</th>
-															</tr>
-														</thead>
-														
-															
-															<tbody v-for="(car, index) in items">
-																<tr>
-																	<td>1</td>
-																	<td>{{car.item.codificacion}}</td>
-																	<td>{{car.item.nombre}}</td>
-																	<td>{{car.item.presentacion}}</td>
-																	<td>{{car.qty}}</td>
-																	<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
-																	<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
-																</tr>
-															<tbody>
-															
-														
-													</table>
-												</div>
+									</table>
+								</div>											
 				
-								</div>
+							</div>
 								<p class="text-center">
 										<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
 										<button @click="reduce" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar </button>
@@ -198,7 +404,7 @@
 					</div>
 					<!-- mostrar lista de medicamentos -->
 					<div class="tab-pane fade" id="listMedicament">
-						<div class="table-wrapper" id="app">
+						<div class="table-wrapper">
 								<div id="correo">
 										<div class="entrada">
 												<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
@@ -232,6 +438,8 @@
 									</tr>
 								</tbody>
 							</table>
+
+							
 						</div>
 					</div>
 				</div>  
@@ -245,8 +453,8 @@
 	<!--====== Scripts -->
 	<%- include("../partials/scripts") -%>
 	<!--<script src="/js/paginacion.js"></script>	-->
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 	<script src="/js/vue/distribucion.js"></script>
-	<script src="/js/get/consultaget.js"></script>	
 </body>
 </html>

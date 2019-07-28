@@ -198,8 +198,8 @@ router.get('/doctorTurno/:id', (req,res) => {
 })
 
 //ruta para mostrar especialidades
-router.get('/vueEspecialidades', (req,res) => {
-  fetch(url.name.cuadernos+'/api/especialidad')
+router.get('/vueEspecialidades_consulta', (req,res) => {
+  fetch(url.name.cuadernos+'/api/list_consEsp')
   .then(resp => resp.json())
   .then(resp =>{
    res.status(200).json(resp);
@@ -209,7 +209,7 @@ router.get('/vueEspecialidades', (req,res) => {
 //ruta para mostrar docotres
 router.get('/vueDoctores/:esp/:dia/:turno', (req,res) => {
   var data = req.params
-  fetch(url.name.cuadernos+'/api/espTurno/'+data.esp+"/"+data.dia+"/"+data.turno)
+  fetch(url.name.cuadernos+'/api/Esp_Turnos/'+data.esp+"/"+data.dia+"/"+data.turno)
   .then(resp => resp.json())
   .then(resp =>{
    res.status(200).json(resp);
