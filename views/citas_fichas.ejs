@@ -70,7 +70,9 @@
 							</div>
 						<div class="entrada">Hora:<br>
 							<input  type="text" name="hora"><br>
+							
 						</div>
+
 						<div class="entrada">Tipo de Paciente:<br>
 							<div class="col-md-9">
 								<label class="radio-inline"><input checked="checked" data-val="true" data-val-required="The IsSmallBusiness field is required." id="IsSmallBusiness" name="IsSmallBusiness" type="radio" value="False">Asegurado</label>
@@ -82,11 +84,36 @@
 							<input type="text" name="saldo_total"><br>
 						</div>
 					</div>
+					<div class="grupo" id="cabeza">
+						<div id="correo">
+						<div class="correo" >Mañana <br>
+
+							<input type="radio" name="hora" value="1">8:00 am<br>
+							<input type="radio" name="hora" value="1">8:30 am<br>
+							<input type="radio" name="hora" value="1">9:00 am<br>
+							<input type="radio" name="hora" value="1">9:30 am<br>
+							<input type="radio" name="hora" value="1">10:00 am<br>
+							<input type="radio" name="hora" value="1">10:30 am<br>
+							<input type="radio" name="hora" value="1">11:00 am<br>
+						</div>
+						<div class="correo" > Tarde <br>
+							<input type="radio" name="hora" value="1">14:30 pm<br>
+							<input type="radio" name="hora" value="1">15:00 pm<br>
+							<input type="radio" name="hora" value="1">15:30 pm<br>
+							<input type="radio" name="hora" value="1">16:00 pm<br>
+							<input type="radio" name="hora" value="1">16:30 pm<br>
+							<input type="radio" name="hora" value="1">17:00 pm<br>
+							<input type="radio" name="hora" value="1">17:30 pm<br>
+						</div>
+						</div>
+					</div>
+
 					<p class="text-center">
 						<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
 						<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
 					</p>
 				</div>
+		
 			</form>	
 			<% } else { %>
 				<a href="/paciente/clean"> Volver </a>
