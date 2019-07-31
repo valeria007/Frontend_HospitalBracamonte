@@ -16,3 +16,5 @@ const input = document.querySelector('#searchInput');
 const items = document.querySelector('#myTable');
 
 showSearchedItems(input, items);
+
+

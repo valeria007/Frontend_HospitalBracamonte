@@ -6,8 +6,9 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
 	<link rel="stylesheet" href="/css/form1.css">
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
+<body class="dashboard-sideBar-imagg cover"onload="Init ()">
 	<!-- SideBar -->
 	<%- include("partials/menu") -%>
 	<!-- Content page-->
@@ -80,37 +81,73 @@
 							<input type="text" name="saldo_total"><br>
 						</div>
 					</div>
-					<p>Hora de Recerva:</p>
+					<p class="text-center">Hora de Recerva:</p>
 					<div class="grupo" id="cabeza">
 						<div id="correo">
 						<div class="correo" >Mañana <br>
 
-							<input type="radio" name="hora" value="1">8:00 am<br>
-							<input type="radio" name="hora" value="1">8:30 am<br>
-							<input type="radio" name="hora" value="1">9:00 am<br>
-							<input type="radio" name="hora" value="1">9:30 am<br>
-							<input type="radio" name="hora" value="1">10:00 am<br>
-							<input type="radio" name="hora" value="1">10:30 am<br>
-							<input type="radio" name="hora" value="1">11:00 am<br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">8:00 am</label><br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">8:30 am</label>
+							<br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">9:00 am</label><br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">9:30 am</label>
+							<br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">10:00 am</label><br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">10:30 am</label>
+							<br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">11:00 am</label><br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">11:30 am</label><br>
+
 						</div>
 						<div class="correo" > Tarde <br>
-							<input type="radio" name="hora" value="1">14:30 pm<br>
-							<input type="radio" name="hora" value="1">15:00 pm<br>
-							<input type="radio" name="hora" value="1">15:30 pm<br>
-							<input type="radio" name="hora" value="1">16:00 pm<br>
-							<input type="radio" name="hora" value="1">16:30 pm<br>
-							<input type="radio" name="hora" value="1">17:00 pm<br>
-							<input type="radio" name="hora" value="1">17:30 pm<br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">14:00 pm</label><br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">14:30 pm</label>
+							<br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">15:00 pm</label><br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">15:30 pm</label>
+							<br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">16:00 pm</label><br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">16:30 pm</label>
+							<br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">17:00 am</label><br>
+							<label class="radio-inline"><input type="radio"  name="indoor-outdoor" onclick="OnChangeCheckbox (this)" id="myCheckbox" /></label>
+							<label for="myCheckbox">17:30 am</label><br>
 						</div>
+					
+						
 						</div>
+						<div class="entrada">
+								Pacientes de urgecia:<br />
+								<label class="radio-inline"><input type="checkbox" id="check1" name="indoor-outdoor" onclick="ShowHideTextBox (this)"/></label>
+								
+								<input type="text" id="input1" value="hora de Recerva"/>
+							
+						</div>
+						
 					</div>
+					
 
 					<p class="text-center">
 						<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
 						<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
 					</p>
 				</div>
-		
+			
 			</form>	
 			<% } else { %>
 				<a href="/paciente/clean"> Volver </a>
