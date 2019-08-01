@@ -221,6 +221,7 @@ router.get('/ListaDoc', (req,res) => {
     .then(res => res.json())
     .then(resp => { 
        listDoc = resp;
+       console.log(resp, "  >>>>>>>>>>>>>>>>>>>< esto son los doctores")
        res.redirect('/cuaderno/docCuaderno')
     })
     .catch(error => {
@@ -545,6 +546,110 @@ router.post('/update_consulta_especialidad/:id', (req,res) => {
         res.redirect('/cuaderno/especialidad_consulta/'+id_esp)
        
     })  
+})
+/*
+    Ruta horarios de turno
+    <<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+var idTurno, cantidad;
+router.get('/horarios_turnos/:cantidad_fichas/:id_turnos', (req,res) => {
+    const { id_turnos, cantidad_fichas} = req.params
+    idTurno = id_turnos;
+    cantidad = cantidad_fichas;
+    fetch('http://localhost:4600/api/listHoras_turno/'+id_turnos)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error:', error))
+        .then(resp =>{
+            res.render('cuadernos/horarios_turnos',{
+                resp
+            })
+    });  
+})
+
+    var hora = [];
+    
+    var numero = 0
+    router.post('/insertarHorarios', (req,res) => {        
+        var data = req.body
+        console.log(data, " <<<<>") 
+        var horas = 8;
+        var minutos = 0, num = data.minutos *1
+        hora.push({h:horas+":"+minutos})
+        for(var i = 0; i < cantidad - 1; i++){                           
+            if(minutos == 60){
+                minutos = 0
+                horas++  
+                hora.push({h:horas+":"+minutos})
+            }else {
+                minutos = minutos + num; 
+                if (minutos == 60){
+                    minutos = 0
+                    horas++
+                }
+                hora.push({h:horas+":"+minutos})
+                            
+            } 
+                     
+        }
+       insertar(hora)        
+        function insertar(hora1){        
+        for(var i = 0; i < hora1.length; i++){
+            numero = numero + 1
+            var data = {
+                hora : hora1[i].h
+            }
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch(url.name.cuadernos+'/api/hora_turno/'+idTurno,esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(resp => {  
+                })         
+            }     
+            if(hora.length == numero){
+                res.redirect('/cuaderno/horarios_turnos/'+cantidad+"/"+idTurno)
+                hora = []
+                numero = 0
+            }
+        } 
+    }) 
+
+router.get('/de_paso',(req,res) => {
+    fetch('http://localhost:4600/api/listHoras_turno/'+idTurno)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error:', error))
+        .then(resp =>{
+            res.redirect('/cuaderno/horarios_turnos/'+cantidad+"/"+idTurno)
+    });  
+})
+
+router.get('/horaslist', (req,res) => {
+
+    fetch('http://localhost:4600/api/listHoras_turno/'+idTurno)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error:', error))
+        .then(resp =>{
+            
+            eliminar(resp)
+            function eliminar(resp){
+                for( var i = 0; i < resp.length; i++){
+                    fetch('http://localhost:4600/api/delete_horas_turnos/'+resp[i].id)
+                    .then(resp => resp.json())
+                    .catch(error => console.error('Error:', error))
+                    .then(resp =>{
+                    }); 
+                }
+                
+            }
+            
+    }); 
+    res.redirect('/cuaderno/de_paso')   
 })
 
 
