@@ -5,10 +5,11 @@ const { Pacientes } = model;
 class Citas_medica {
     
     static reg_cita(req, res) {
-        const { estado,codigo_p,turno,medico,especialidad,hora,saldo_total,id_especialidad } = req.body
+        const { numero_ficha,estado,codigo_p,turno,medico,especialidad,hora,saldo_total,id_especialidad } = req.body
         const { id_Paciente } = req.params;
         return Citas_Medicas
           .create({
+            numero_ficha,
             estado,            
             codigo_p,
             turno,

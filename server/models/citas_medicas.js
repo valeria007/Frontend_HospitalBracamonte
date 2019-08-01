@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Citas_Medicas = sequelize.define('Citas_Medicas', {
+    numero_ficha:DataTypes.INTEGER,
     estado: DataTypes.BOOLEAN,
     codigo_p: DataTypes.INTEGER,
     turno: DataTypes.TEXT,

@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      numero_ficha: {
+        type: Sequelize.INTEGER,
+      },
       estado: {
         type: Sequelize.BOOLEAN, 
         allowNull: false, 
