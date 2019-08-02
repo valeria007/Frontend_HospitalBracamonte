@@ -233,6 +233,30 @@ function reservar(id){
   })
 }
 
+router.post('/Vue_estado_libre_horas/:id', (req,res) => {
+  const { id } = req.params;
+  var estado = {
+    estado: "libre"
+  }
+  var esto = {
+    method: 'POST',
+    body: JSON.stringify(estado),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp => {
+    console.log(resp, " <<<<<<<<<<<<<")
+    res.status(200).json({
+      msg: true,
+      resp      
+    })
+  })
+})
+
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

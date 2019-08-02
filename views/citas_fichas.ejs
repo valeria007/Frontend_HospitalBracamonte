@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<%- include("partials/head") -%>
-	<link rel="stylesheet" href="/css/form1.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -56,8 +55,10 @@
 						</div>
 						<div class="entrada">Consultorio De:<br>
 							<select  name="especialidad" @click="especilida" v-model="selectEsp">
-								<option v-for="(especialidad, index) of especialidades" >{{especialidad.nombre}}</option>
-								
+								<option disabled="disabled" value>Seleccione</option>
+								<template v-for="(especialidad, index) in especialidades">									
+									<option>{{especialidad.nombre}}</option>
+								</template>
 							</select><br>
 						</div>
 					</div>
@@ -94,7 +95,8 @@
 							<label for="">{{horas.h}}</label><br>						
 						</template>	
 
-						<p>Horas Atendido:</p>
+						<p>Horas Atendido:</p> 
+						<a @click="liverar(),saca_horas()">Liberar</a><br>
 						<template v-for="(horas, index, key) in horas_Turno_atendido">
 							<label for="">{{index+1}}</label>
 							<label for="">{{horas.h}}</label><br>						
