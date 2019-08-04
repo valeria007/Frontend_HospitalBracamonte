@@ -122,8 +122,8 @@ router.get('/renderConsulta', (req,res)=> {
           .then(resp => resp.json())
           .then(resp =>{
             cita = resp;
-            //console.log(resp, "esto es la cita")
-            res.redirect('/medico/updateConsulta');           
+            console.log(resp, "  <<<<<<<<<<<<<esto es la cita")
+            res.redirect('/medico/updateConsulta');                       
         })
         .catch(error => {
             console.error('Error:', error)
@@ -164,10 +164,10 @@ router.get('/consultaData', (req,res) => {
         
         .then(resp => resp.json())
         .then(resp =>{
-            console.log(resp, "    esta paciente consulta con historial y especialidad ");
             if (dataPaciente == null){
                 res.send("no hay datos en Datapaciente en routes/medico serv renderConsulta")
             }else{
+                //console.log(cita, 'esto es paciente  <<<<<<<<<<<<<')
                 res.render('consultaMedica',{
                     dataPaciente,
                     idCIta, // este es el id de la cita medica que viene desde /consulta/:historial/:idCitaMedica'
@@ -228,6 +228,7 @@ router.post('/regConsulta/:id', (req, res) => {
     var citaID = req.params;
    // console.log(citaID," es esto<<<<<<<<<<<<<<<<<<<")
     var datos = req.body;
+    //console.log(datos.hora.split("/")[1], "   <<<<<<<<<<<<<<  eso post")
     var esto = {
         method: 'POST',
         body: JSON.stringify(datos),
@@ -239,8 +240,27 @@ router.post('/regConsulta/:id', (req, res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-        //console.log(data, "  respuesta del post reg_consulta")
-      res.redirect('/medico/estado');
+        atendido(datos.hora.split("/")[1])
+        function atendido(id){
+            var estado = {
+                estado: "atendido"
+            }
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(estado),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(resp => {
+                console.log(resp)
+                res.redirect('/medico/estado');
+            })
+        }
+      
     })
 });
 

@@ -57,7 +57,6 @@ fetch('http://localhost:3000/api/pacientes',esto)
 //cita medica o ficha que se le va a dar al paciente
 router.post('/cita_medica/:id', (req,res) => {
   var id = req.params;
-  var historial = req.body.codigo_p;
   var datos = req.body;
   var esto = {
     method: 'POST',
@@ -65,13 +64,35 @@ router.post('/cita_medica/:id', (req,res) => {
     headers:{
       'Content-type' : "application/json"
     }
-};
+  };
   fetch('http://localhost:3000/api/reg_cita/'+id.id,esto)
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
-  .then(data => {
-    res.redirect('/paciente/citas');
-})
+  .then(resp => {
+
+    cambiarEstadoHOra(datos.hora.split("/")[1]);
+
+    function cambiarEstadoHOra(id){
+      var estado = {
+        estado: "reservado"
+      }
+      var esto = {
+        method: 'POST',
+        body: JSON.stringify(estado),
+        headers:{
+          'Content-type' : "application/json"
+        }
+      };
+      fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(resp => {
+        console.log(resp, "  <<<<")
+        res.redirect('/paciente/citas');
+      })
+    }
+    
+  })
 });
 
 
@@ -148,23 +169,69 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
 
 router.post('/updateCita/:id',(req,res) => {
   const { id } = req.params;
-  var data = req.body;
+  if(req.body.especialidad == null){
+    console.log("por favor selecione especialidad")
+  }else if(req.body.medico == null){
+    console.log("por favor selecione medico")
+    
+  }else{
+    var update = req.body;
+    console.log(update, " <<<<<<<<<<<<< esto es")
+    var esto = {
+      method: 'POST',
+      body: JSON.stringify(update),
+      headers:{
+        'Content-type' : "application/json"
+      }
+    };
+      fetch('http://localhost:3000/api/updateCita/'+id,esto)
+      .then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(data => {
+        liberar(citaUpdate[0].hora.split("/")[1])
+        reservar(update.hora.split("/")[1])
+        res.redirect('/paciente/onliCita/'+id);
+    })
+  }
+})
+
+function liberar (id){
+  var estado = {
+    estado: "libre"
+  }
   var esto = {
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify(estado),
     headers:{
       'Content-type' : "application/json"
     }
   };
-    fetch('http://localhost:3000/api/updateCita/'+id,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {
-      res.redirect('/paciente/onliCita/'+id);
+  fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp => {
+    console.log(resp, "  liverado")
   })
+}
 
-})
-
+function reservar(id){
+  var estado = {
+    estado: "reservado"
+  }
+  var esto = {
+    method: 'POST',
+    body: JSON.stringify(estado),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp => {
+    console.log(resp, " reservado")
+  })
+}
 
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

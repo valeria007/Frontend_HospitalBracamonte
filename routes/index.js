@@ -85,6 +85,8 @@ router.get('/vistaPrimPaciente',(req, res) => {
   res.render('vistaPrimPaciente')
 });
 
+
+
 // se movio esta ruta  a emergencia
 
 //para las vistas de hospitaliacion

@@ -82,7 +82,7 @@
 											<td><%=resp[i].Paciente.nombre %></td>
 											<td><%=resp[i].Paciente.apellidop %></td>
 											<td><%=resp[i].Paciente.apellidom %></td>
-											<td><%=resp[i].hora %></td>
+											<td><%=resp[i].hora.split("/")[0] %></td>
 											<td class="text-center"><a href="/medico/consulta/<%=resp[i].codigo_p%>/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-edit zmdi-hc-lg"></i></a></td>
 											
 											
@@ -130,7 +130,7 @@
 												<td><%=falseCita[i].Paciente.nombre %></td>
 												<td><%=falseCita[i].Paciente.apellidop %></td>
 												<td><%=falseCita[i].Paciente.apellidom %></td>
-												<td><%=falseCita[i].hora %></td>
+												<td><%=falseCita[i].hora.split("/")[0] %></td>
 												<td class="text-center"><a href="/medico/consulta/<%=falseCita[i].codigo_p%>/<%=falseCita[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-edit zmdi-hc-lg"></i></a></td>
 												
 												
