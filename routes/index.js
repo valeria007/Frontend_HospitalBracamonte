@@ -70,8 +70,15 @@ router.post('/login', (req,res)  => {
   })
   }
 })
+
+router.get('/forrm',(req, res) => {
+  res.render('forrm')
+});
 router.get('/servicios',(req, res) => {
   res.render('servicios')
+});
+router.get('/usuarios',(req, res) => {
+  res.render('usuarios')
 });
 
  //vista de doctor
