@@ -70,8 +70,23 @@ router.post('/login', (req,res)  => {
   })
   }
 })
+
+router.get('/forrm',(req, res) => {
+  res.render('forrm')
+});
 router.get('/servicios',(req, res) => {
   res.render('servicios')
+});
+router.get('/usuarios',(req, res) => {
+  res.render('usuarios')
+});
+
+
+router.get('/citas2',(req, res) => {
+  res.render('citas2')
+});
+router.get('/citas_fichas2',(req, res) => {
+  res.render('citas_fichas2')
 });
 
  //vista de doctor

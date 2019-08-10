@@ -8,11 +8,12 @@ const citas = new Vue({
 
         selectEsp:'',
         listCitas: '',        
-        selectDoctor:'sdlfk', // esto es para poder sacar el dato que desde doctor en aqui esta el id 
+        selectDoctor:'', // esto es para poder sacar el dato que desde doctor en aqui esta el id 
         
         horas_Turno:[],
         horas_Turno_reservado:[],
-        horas_Turno_atendido:[]
+        horas_Turno_atendido:[],
+        arr:[]
     }),
     
     mounted(){
@@ -25,6 +26,7 @@ const citas = new Vue({
     },
     methods:{
       especilida(){
+        if(this.selectEsp != ""){        
           axios
           .get('http://localhost:7000/paciente/vueDoctores/'+this.selectEsp+"/"+this.dia+"/"+this.turno)
           .then(response => {
@@ -40,89 +42,94 @@ const citas = new Vue({
             }              
             this.doctores = data
           })
+        }else{
+          console.log("no se seleciono nada")
+        }
       },
       saca_horas(){
-       
-        var horas_turnos, mayor = 0;
-        for(var i = 0; i < this.doctores.length; i++){
-          if(this.doctores[i].nombre == this.selectDoctor){
-           
-            horas_turnos = this.doctores[i].Fechas
-            console.log(this.doctores[i].nombre)
+        if(this.selectDoctor != ""){
+          var horas_turnos, mayor = 0;
+          for(var i = 0; i < this.doctores.length; i++){
+            if(this.doctores[i].nombre == this.selectDoctor){
+            
+              horas_turnos = this.doctores[i].Fechas
+              //console.log(this.doctores[i].nombre)
+            }
           }
-        }
-        //console.log(horas_turnos, "  fechas")
-        for(var i = 0; i < horas_turnos.length; i++){
-          if (horas_turnos[i].id > mayor){
-            mayor = horas_turnos[i].id;
-          };
-          
-        }
-         var orden =[]
-        for(var i = 0; i<horas_turnos.length; i++){
-          if(horas_turnos[i].id == mayor){
-           
-           orden = horas_turnos[i].Turnos[0].horas_of_trunos
+          //console.log(horas_turnos, "  fechas")
+          for(var i = 0; i < horas_turnos.length; i++){
+            if (horas_turnos[i].id > mayor){
+              mayor = horas_turnos[i].id;
+            };
+
           }
-        }
-        
-        arr = []
-        for(var i = 0; i < orden.length; i++){
-          if(orden[i].estado == "libre"){
-            arr.push({h:orden[i].hora, id:orden[i].id})
-            console.log(orden[i], "  <<<<")
-          }else{
-            console.log(" no hay nada ¿")
+           var orden =[]
+          for(var i = 0; i<horas_turnos.length; i++){
+            if(horas_turnos[i].id == mayor){
+            
+             orden = horas_turnos[i].Turnos[0].horas_of_trunos
+            }
           }
-          
+
+          arr = []
+          for(var i = 0; i < orden.length; i++){
+            if(orden[i].estado == "libre"){
+              arr.push({h:orden[i].hora, id:orden[i].id})
+              //console.log(orden[i], "  <<<<")
+            }
+
+          }
+          this.horas_Turno = arr.sort()
+        }else{
+          console.log("no se selecciono doctor")
         }
-        this.horas_Turno = arr.sort()
       },
       saca_horas_reservadas(){
-       
-        var horas_turnos, mayor = 0;
-        for(var i = 0; i < this.doctores.length; i++){
-          if(this.doctores[i].nombre == this.selectDoctor){
-           
-            horas_turnos = this.doctores[i].Fechas
-            console.log(this.doctores[i].nombre)
+        if(this.selectDoctor != ""){
+          var horas_turnos, mayor = 0;
+          for(var i = 0; i < this.doctores.length; i++){
+            if(this.doctores[i].nombre == this.selectDoctor){
+            
+              horas_turnos = this.doctores[i].Fechas
+              //console.log(this.doctores[i].nombre)
+            }
           }
-        }
-        //console.log(horas_turnos, "  fechas")
-        for(var i = 0; i < horas_turnos.length; i++){
-          if (horas_turnos[i].id > mayor){
-            mayor = horas_turnos[i].id;
-          };
-          
-        }
-         var orden =[]
-        for(var i = 0; i<horas_turnos.length; i++){
-          if(horas_turnos[i].id == mayor){
-           
-           orden = horas_turnos[i].Turnos[0].horas_of_trunos
+          //console.log(horas_turnos, "  fechas")
+          for(var i = 0; i < horas_turnos.length; i++){
+            if (horas_turnos[i].id > mayor){
+              mayor = horas_turnos[i].id;
+            };
+
           }
+           var orden =[]
+          for(var i = 0; i<horas_turnos.length; i++){
+            if(horas_turnos[i].id == mayor){
+            
+             orden = horas_turnos[i].Turnos[0].horas_of_trunos
+            }
+          }
+
+          arr = []
+          for(var i = 0; i < orden.length; i++){
+            if(orden[i].estado == "reservado"){
+              arr.push({h:orden[i].hora, id:orden[i].id})
+              //console.log(orden[i], "  <<<<")
+            }          
+          }
+          this.horas_Turno_reservado = arr.sort()
+        }else{
+          console.log("no se selecciono horas")
         }
         
-        arr = []
-        for(var i = 0; i < orden.length; i++){
-          if(orden[i].estado == "reservado"){
-            arr.push({h:orden[i].hora, id:orden[i].id})
-            console.log(orden[i], "  <<<<")
-          }else{
-            console.log(" no <<<<<<<<<<<<<")
-          }
-          
-        }
-        this.horas_Turno_reservado = arr.sort()
       },
       saca_horas_atendidas(){
-       
-        var horas_turnos, mayor = 0;
+        if(this.selectDoctor != ""){
+          var horas_turnos, mayor = 0;
         for(var i = 0; i < this.doctores.length; i++){
           if(this.doctores[i].nombre == this.selectDoctor){
            
             horas_turnos = this.doctores[i].Fechas
-            console.log(this.doctores[i].nombre)
+            //console.log(this.doctores[i].nombre)
           }
         }
         //console.log(horas_turnos, "  fechas")
@@ -140,17 +147,48 @@ const citas = new Vue({
           }
         }
         
-        arr = []
+        this.arr = []
         for(var i = 0; i < orden.length; i++){
           if(orden[i].estado == "atendido"){
-            arr.push({h:orden[i].hora, id:orden[i].id})
-            console.log(orden[i], "  <<<<")
-          }else{
-            console.log(" no 12 <<<<<<<<<<<<<")
+            this.arr.push({h:orden[i].hora, id:orden[i].id})
+            //console.log(orden[i], "  <<<<")
           }
           
         }
-        this.horas_Turno_atendido = arr.sort()
+        this.horas_Turno_atendido = this.arr.sort()
+        //console.log(this.horas_Turno_atendido)
+        } else {
+          console.log("no se selecciono doctro")
+        }
+        
+      },
+
+      liverar:function(){
+        if( this.horas_Turno_atendido != ""){
+          for(var i = 0; i < this.horas_Turno_atendido.length; i++){
+
+            var esto = {
+              method: 'POST',
+              headers:{
+                'Content-type' : "application/json"
+              }
+            };
+            fetch('http://localhost:7000/paciente/Vue_estado_libre_horas/'+this.horas_Turno_atendido[i].id,esto)
+            .then(res => res.json())
+            .then(res => {
+              if(res.msg == true){
+                this.horas_Turno_atendido = [];
+                this.arr = []
+                console.log(res, "esto es fetch")
+              }
+             
+
+            })
+          }
+        }else{
+          console.log("no hay nada para liverar")
+        }
+        
       },
       medicoTurnos(){
           /*axios
