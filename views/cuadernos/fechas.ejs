@@ -23,9 +23,11 @@
         <!-- Content page -->
         <div class="container-fluid">
             <div class="page-header">
-                <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Dar Doctor </h1>
+                <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Timpo de Contrado del Doctor</h1>
             </div>
         </div>
+
+        <a href="/cuaderno/volver_a_doctor">Atras</a>
         <%if(onlyFecha == null) { %>
         <div class="container-fluid">
         <form id="form" action="/cuaderno/fechas" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
@@ -93,8 +95,8 @@
                         <% for(var i=0; i< docFecha.length; i++) { %>
                         <tr>
                             <td><%=i+1%></td>
-                            <td><%=docFecha[i].fechaini%></td>
-                            <td><%=docFecha[i].fechafin%></td>
+                            <td><%=docFecha[i].fechaini.split("T")[0]%></td>
+                            <td><%=docFecha[i].fechafin.split("T")[0]%></td>
                             <td><a href="/cuaderno/onlyfecha/<%=docFecha[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
                             <td><a href="/cuaderno/fecahTurn/<%=docFecha[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
                         </tr>

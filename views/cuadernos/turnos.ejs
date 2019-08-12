@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <%- include("../partials/head") -%>
-    <link rel="stylesheet" href="/css/form1.css">
 </head>
 <body class="dashboard-sideBar-imagg cover">
 	<!-- SideBar -->
@@ -26,6 +25,7 @@
                 <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Dar Doctor </h1>
             </div>
         </div>
+        <a href="/cuaderno/Cuadernos">Atras</a>
         <%if (modifDoct == null) { %>
         <div class="container-fluid">
         <form id="form" action="/cuaderno/docCuaderno" method="post"  accept-charset="UTF-8" autocomplete="off" novalidate>
@@ -63,7 +63,7 @@
                 <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
             </p>
         </form>
-        <div class="grupo" id="cabeza">
+       <!--  <div class="grupo" id="cabeza">
                 <div class="panel with-nav-tabs panel-default">
                   <div class="panel-heading">
                     <ul class="nav nav-tabs">
@@ -107,7 +107,7 @@
                             <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                         </p>
                     </form></div>
-                    <!--Fecha de Contratos-->
+                    Fecha de Contratos
                       <div class="tab-pane fade" id="tab2default"><form id="form" action="" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
                         <div id="correo">
                                 <div class="entrada">Fecha de Inicio:<br>
@@ -123,7 +123,7 @@
                             <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> Guardar</button>
                         </p>
                     </form></div>
-                    <!--Turnos-->
+                    Turnos
                       <div class="tab-pane fade" id="tab3default"><form id="form" action="" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
                         <div id="correo">
                                     <div class="entrada">Cantidad de Fichas:<br>
@@ -168,7 +168,7 @@
                   </div>
                 </div>
               </div>
-        </div>
+        </div> -->
         <% } else { %>
             <div class="container-fluid">
                 
@@ -186,7 +186,7 @@
                         </div>                 
                         <div class="entrada">Especialidad:<br>
                             <select name="especialidad" >
-                                <option><%=modifDoct[0].Especialidade.nombre%></option>
+                                <option><%=modifDoct[0].Consulta_especilaida.nombre%></option>
                                 <option>---------------</option>
                                 <%for (var i=0; i < esp.length; i++) { %>
                                     <option><%=esp[i].nombre%></option>
@@ -236,23 +236,23 @@
 						<th>Especialidad</th>
 						<th>Tipo de Doctor</th>                        
                         <th>Enfermera</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha de Finalizacion</th>						
                         <th>Modificar</th>
-                        <th>Ver fecha de contrato</th>
+                        <th>Estadia del Doctor</th>					
+                        <th>Ver doctor</th>
 						</tr>
                     </thead>
                     <tbody>
                         <% for(var i=0; i< listDoc.length; i++) { %>
                         <tr>
-                        <td><%=i+1%></td>
-                        <td><%=listDoc[i].nombre%></td>
-						<td><%=listDoc[i].Consulta_especilaida.nombre%></td>
-						<td><%=listDoc[i].TDoctor%></td>
-						<td><%=listDoc[i].enfermera%></td>				     
-                        <td><a href="/cuaderno/midificarDoct/<%=listDoc[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
-                        <td><a href="/cuaderno/FechaDoc/<%=listDoc[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
-                    
+                            <td><%=i+1%></td>
+                            <td><%=listDoc[i].nombre%></td>
+						    <td><%=listDoc[i].Consulta_especilaida.nombre%></td>
+						    <td><%=listDoc[i].TDoctor%></td>
+						    <td><%=listDoc[i].enfermera%></td>				     
+                            <td><a href="/cuaderno/midificarDoct/<%=listDoc[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                            <td><a href="/cuaderno/FechaDoc/<%=listDoc[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                            <td><a href="/cuaderno/alldataDoctor/<%=listDoc[i].id%>/<%=listDoc[i].idCuaderno%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                            
 
                         </tr>
                         <% } %>

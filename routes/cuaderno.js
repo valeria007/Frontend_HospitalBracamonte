@@ -145,7 +145,6 @@ router.post('/cuadernos',(req,res) => {
     .then(data => { 
         if (data.success == false){
             message = data.message;
-            console.log(message);
            res.redirect('/cuaderno/Cuadernos')
         }else{
             message = null;
@@ -182,13 +181,17 @@ router.post('/updateCuaderno/:id', (req,res) => {
 */
 //-http://localhost:3600/personal/personal
 
+router.get('/volver_a_doctor', (req,res) => {
+    res.redirect('/cuaderno/getEsp/'+idCuaderno)
+})
+
 router.get('/limpiarMDoc', (req,res) => {
     modifDoct = null;
     res.redirect('/cuaderno/docCuaderno')
 })
 
 router.get('/docCuaderno', (req,res) => {
-    console.log(datas.name.token, " <<< esto deberia funcionar")
+    
     var token = {
         method: 'GET',
         headers:{
@@ -221,7 +224,7 @@ router.get('/ListaDoc', (req,res) => {
     .then(res => res.json())
     .then(resp => { 
        listDoc = resp;
-       console.log(resp, "  >>>>>>>>>>>>>>>>>>>< esto son los doctores")
+       
        res.redirect('/cuaderno/docCuaderno')
     })
     .catch(error => {
@@ -280,7 +283,7 @@ router.post('/docCuaderno', (req,res) => {
     .catch(error => console.error('Error:', error))
     .then(data => {     
         id_docCuaderno =  data.data.id
-        console.log(data);
+        
         res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno )   
        
     }) 
@@ -289,10 +292,11 @@ router.post('/docCuaderno', (req,res) => {
 //ruta para poder actualizar 
 router.post('/updateDoctCuaderno/:id', (req,res) => {
     const { id } = req.params
-    var data = req.body
+    var datas = req.body
+    
     var esto = {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(datas),
         headers:{
           'Content-type' : "application/json"
         }
@@ -300,7 +304,8 @@ router.post('/updateDoctCuaderno/:id', (req,res) => {
     fetch(url.name.cuadernos+'/api/modifyDocCuadern/'+id,esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(data => {     
+    .then(data => {   
+        
         res.redirect('/cuaderno/midificarDoct/'+id )   
        
     })  
@@ -315,6 +320,10 @@ router.post('/updateDoctCuaderno/:id', (req,res) => {
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
+
+router.get('/volverFechas', (req,res) => {
+    res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno) //    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+})
 
 router.get('/limpiarFecha',(req,res) => {
     onlyFecha = null
@@ -376,7 +385,7 @@ router.post('/fechas', (req,res) => {
     .catch(error => console.error('Error:', error))
     .then(data => {     
         idFechas = data.data.id
-        console.log(idFechas, " esto es el id de la fecha que se manda")
+        
         res.redirect('/cuaderno/turnos')
        
     })  
@@ -409,6 +418,10 @@ router.post('/updateFecha/:id', (req,res ) => {
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
+
+router.get('/volver_a_trunos', (req,res) => {
+    res.redirect('/cuaderno/turnos')
+})
 
 router.get('/turnos', (req,res) => {
     fetch(url.name.cuadernos+'/api/oneTurno/'+idFechas)
@@ -456,11 +469,11 @@ router.post('/turnos', (req,res) => {
 })
 router.get('/delturno/:id', (req, res) => {
     const { id }= req.params;
-    fetch('http://localhost:4600/api/DElserv/'+id)
+    fetch('http://localhost:4600/api/delete/'+id)
     .then(resp => resp.json())
     .catch(error => console.error('Error:', error))
     .then(resp =>{
-        console.log(resp);
+        
         res.redirect('/cuaderno/turnos');
     });
   });
@@ -548,15 +561,18 @@ router.post('/update_consulta_especialidad/:id', (req,res) => {
     })  
 })
 /*
-    Ruta horarios de turno
-    <<<<<<<<<<<<<<<<<<<<<<<
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        Ruta horarios de turno
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    
 */
 
-var idTurno, cantidad;
-router.get('/horarios_turnos/:cantidad_fichas/:id_turnos', (req,res) => {
-    const { id_turnos, cantidad_fichas} = req.params
+var idTurno, turn;
+router.get('/horarios_turnos/:id_turnos/:turno', (req,res) => {
+    const { id_turnos, turno} = req.params
     idTurno = id_turnos;
-    cantidad = cantidad_fichas;
+    turn = turno;
     fetch('http://localhost:4600/api/listHoras_turno/'+id_turnos)
         .then(resp => resp.json())
         .catch(error => console.error('Error:', error))
@@ -569,54 +585,130 @@ router.get('/horarios_turnos/:cantidad_fichas/:id_turnos', (req,res) => {
 
     var hora = [];
     
-    var numero = 0
+    var numero = 1
     router.post('/insertarHorarios', (req,res) => {        
         var data = req.body
-        console.log(data, " <<<<>") 
-        var horas = 8;
-        var minutos = 0, num = data.minutos *1
-        hora.push({h:horas+":"+minutos})
-        for(var i = 0; i < cantidad - 1; i++){                           
-            if(minutos == 60){
-                minutos = 0
-                horas++  
-                hora.push({h:horas+":"+minutos})
-            }else {
-                minutos = minutos + num; 
-                if (minutos == 60){
-                    minutos = 0
-                    horas++
-                }
-                hora.push({h:horas+":"+minutos})
-                            
-            } 
-                     
-        }
-       insertar(hora)        
-        function insertar(hora1){        
-        for(var i = 0; i < hora1.length; i++){
-            numero = numero + 1
-            var data = {
-                hora : hora1[i].h
+       
+        if(turn == "Mañanas"){
+            var horas = 8;
+            var minutos = 0, num = data.minutos *1
+            hora.push({h:horas+":"+minutos})
+            for(var i = 0; i < data.cantiFicha - 1; i++){  
+                if(horas == 12){
+                    hora = []
+                    res.send("Esa cantidad de fichas y el tiempo de atencion sobrepasa las 12 del medio dia")
+                    
+                }else{
+                    if(minutos == 60){
+                        minutos = 0
+                        horas++  
+                        hora.push({h:horas+":"+minutos})
+                    }else {
+                        minutos = minutos + num; 
+                        if (minutos == 60){
+                            minutos = 0
+                            horas++
+                        }
+                        hora.push({h:horas+":"+minutos})
+    
+                    } 
+                }                         
+               
+
             }
-            var esto = {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers:{
-                  'Content-type' : "application/json"
-                }
-            };
-            fetch(url.name.cuadernos+'/api/hora_turno/'+idTurno,esto)
-                .then(res => res.json())
-                .catch(error => console.error('Error:', error))
-                .then(resp => {  
-                })         
-            }     
-            if(hora.length == numero){
-                res.redirect('/cuaderno/horarios_turnos/'+cantidad+"/"+idTurno)
-                hora = []
-                numero = 0
+        }else if(turn == "Tardes"){
+            var horas = 14;
+            var minutos = 0, num = data.minutos *1
+            hora.push({h:horas+":"+minutos})
+            for(var i = 0; i < data.cantiFicha - 1; i++){
+                if(horas == 18) {
+                    hora = []
+                    res.send("se exedio")
+                }else{
+                    if(minutos == 60){
+                        minutos = 0
+                        horas++  
+                        hora.push({h:horas+":"+minutos})
+                    }else {
+                        minutos = minutos + num; 
+                        if (minutos == 60){
+                            minutos = 0
+                            horas++
+                        }
+                        hora.push({h:horas+":"+minutos})
+    
+                    } 
+                }                          
+               
+
             }
+        }else{
+            var horas = 18;
+            var minutos = 0, num = data.minutos *1
+            hora.push({h:horas+":"+minutos})
+            for(var i = 0; i < data.cantiFicha - 1; i++){    
+                if(horas == 22){
+                    hora = []
+                    res.send("se exedio en la cantidad de horas")
+                } else{
+                    if(minutos == 60){
+                        minutos = 0
+                        horas++  
+                        hora.push({h:horas+":"+minutos})
+                    }else {
+                        minutos = minutos + num; 
+                        if (minutos == 60){
+                            minutos = 0
+                            horas++
+                        }
+                        hora.push({h:horas+":"+minutos})
+    
+                    } 
+                }                      
+                
+
+            }
+        } 
+        
+        insertar(hora)        
+        function insertar(hora1){ 
+            fetch('http://localhost:4600/api/listHoras_turno/'+idTurno)
+            .then(resp => resp.json())
+            .catch(error => console.error('Error:', error))
+            .then(resp =>{
+                if(resp == ""){
+                    for(var i = 0; i < hora1.length; i++){
+                        
+                        var data = {
+                            hora : hora1[i].h
+                        }
+                        var esto = {
+                            method: 'POST',
+                            body: JSON.stringify(data),
+                            headers:{
+                              'Content-type' : "application/json"
+                            }
+                        };
+                        fetch(url.name.cuadernos+'/api/hora_turno/'+idTurno,esto)
+                        .then(res => res.json())
+                        .catch(error => console.error('Error:', error))
+                        .then(resp => { 
+                        })
+                        numero++  
+                        if(hora1.length -1  == numero){   
+                                              
+                            hora = []
+                            numero = 0
+                            res.redirect('/cuaderno/horarios_turnos/'+idTurno+"/"+turn)
+                        }else{
+                            console.log("  esto ")
+                        }  
+                                             
+                    }      
+                }else{
+                   res.send(" porfavor elimine las horas antes de volver a registrar ")
+                } 
+            });    
         } 
     }) 
 
@@ -625,7 +717,7 @@ router.get('/de_paso',(req,res) => {
         .then(resp => resp.json())
         .catch(error => console.error('Error:', error))
         .then(resp =>{
-            res.redirect('/cuaderno/horarios_turnos/'+cantidad+"/"+idTurno)
+            res.redirect('/cuaderno/horarios_turnos/'+idTurno+"/"+turn)
     });  
 })
 
@@ -652,5 +744,52 @@ router.get('/horaslist', (req,res) => {
     res.redirect('/cuaderno/de_paso')   
 })
 
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            ruta para poder todos los datos de un doctor
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*/
+
+router.get('/alldataDoctor/:id/:id_cuaderno', (req,res) => {
+    const  { id,id_cuaderno } = req.params
+    fetch('http://localhost:4600/api/docAllData/'+id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error:', error))
+        .then(resp =>{
+            res.render('cuadernos/dataDocAll',{
+                resp,
+                id_cuaderno
+            })
+    });
+})
+
+//ruta vue
+
+router.get('/vueCuaderno/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:4600/api/docAllData/'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        res.status(200).json(resp)
+    });
+})
+
+router.get('/VueDoctores/:id_cuaderno', (req,res) => {
+    const { id_cuaderno } = req.params
+    fetch(url.name.cuadernos+'/api/doctores/'+id_cuaderno)
+    .then(res => res.json())
+    .then(resp => { 
+       res.status(200).json(resp);
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
+})
 
 module.exports = router;
