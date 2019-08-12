@@ -70,8 +70,15 @@ router.post('/login', (req,res)  => {
   })
   }
 })
+
+router.get('/forrm',(req, res) => {
+  res.render('forrm')
+});
 router.get('/servicios',(req, res) => {
   res.render('servicios')
+});
+router.get('/usuarios',(req, res) => {
+  res.render('usuarios')
 });
 
  //vista de doctor
@@ -124,33 +131,7 @@ router.get('/almacen',(req, res) => {
   res.render('almacen')
 });
 
-router.get('/almacenamiento',(req, res) => {
-  res.render('almacenamiento')
-});
 
-router.get('/grupoAsig_Far',(req, res) => {
-  res.render('grupoAsig_Far')
-});
-
-router.get('/medicamentos_Far',(req, res) => {
-  res.render('medicamentos_Far')
-});
-
-router.get('/solicitudes',(req, res) => {
-  res.render('solicitudes')
-});
-
-router.get('/ventas',(req, res) => {
-  res.render('ventas')
-});
-
-router.get('/recetas_farm',(req, res) => {
-  res.render('recetas_farm')
-});
-
-router.get('/reportes_far',(req, res) => {
-  res.render('reportes_far')
-});
 //medicamento se movio a medicamento.js
 
 

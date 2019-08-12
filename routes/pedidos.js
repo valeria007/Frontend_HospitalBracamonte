@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+router.get('/pedidos',(req, res) => {
+    res.render('Almacen/pedidos')
+});
 
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>><>
@@ -100,15 +103,17 @@ router.get('/onliPedido/:id', (req,res) => {
     })  
 })
 
+
+
 //renderizar vista pedido
-router.get('/pedidos',(req, res) => {
+router.get('/est',(req,res)=> {
     if(proveedor == null){
         res.redirect('/pedidos/pedidos/proveedor')
     }else{
         fetch('http://localhost:3500/api/medicamento')   
         .then(resp => resp.json())
         .then(resp =>{
-            res.render('Almacen/pedidos',{
+            res.render('Almacen/reg_pedido',{
                 proveedor,
                 resp,
                 products : generateArray(),
@@ -125,7 +130,7 @@ router.get('/pedidos',(req, res) => {
             res.send("no hay coneccion con el servidor");
         })    
     }
-});
+})
 
 var grup;
 router.get('/grup', (req,res) => {
@@ -133,7 +138,7 @@ router.get('/grup', (req,res) => {
     .then(resp => resp.json())
     .then(resp =>{
         grup = resp;
-        res.redirect('/pedidos/pedidos');
+        res.redirect('/pedidos/est');
 })
 .catch(error => {
     console.error('Error:', error)
