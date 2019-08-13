@@ -7,15 +7,15 @@
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
-	<%- include("partials/head") -%>
-	<link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
-	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="css/animate.css" rel="stylesheet" type="text/css" />
-	<link href="css/admin.css" rel="stylesheet" type="text/css" />
-	<link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-	<link href="plugins/kalendar/kalendar.css" rel="stylesheet">
-	<link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
-	<link href="plugins/morris/morris.css" rel="stylesheet" />
+
+	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
 	<style>
 		div.a {
 			text-align: center;
@@ -31,7 +31,7 @@
 
 <body class="light_theme  fixed_header left_nav_fixed">
 	<!-- SideBar -->
-	<%- include("partials/menu") -%>
+
 	<!-- Content page-->
 	<div class="wrapper">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
@@ -50,165 +50,325 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="images/user.png" /><span class="user_adminname">John Doe</span> <b
+								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
-							<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-							<li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-							<li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-							<li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+							<li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+							<li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+							<li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+							<li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<!--\\\\\\\ header top bar end \\\\\\-->
 		</div>
+		<div class="inner">
+			<!--\\\\\\\ inner start \\\\\\-->
+			<div class="left_nav">
 
+				<!--\\\\\\\left_nav start \\\\\\-->
 
+				<div class="left_nav_slidebar">
+					<ul>
+						<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i
+									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
+									class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b>
+									</a> </li>
+							</ul>
+						</li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span
+									class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul>
+								<li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Personal</b> </a>
+								</li>
+								<li> <a href="/servicios"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Servicios</b> </a> </li>
+								<li> <a href="/usuarios/UsuraioCuenta"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Pacientes</b> </a> </li>
+							</ul>
+						</li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span
+									class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+								<li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+										<b class="theme_color">Citas Medicas</b>
+									</a> </li>
 
-
-
-
-
-
-
-
-
-
-
-
-		<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-			<!-- NavBar -->
-			<nav class="full-box dashboard-Navbar">
-				<ul class="full-box list-unstyled text-right">
-					<li class="pull-left">
-						<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-					</li>
-
-				</ul>
-			</nav>
-			<!-- Content page -->
-			<div class="container-fluid">
-				<div class="page-header">
-					<h1 class="text-titles"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Citas</h1>
+							</ul>
+						</li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span
+									class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Salas</b> </a> </li>
+								<li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Pacientes
+											Internacion</b> </a> </li>
+							</ul>
+						</li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span
+									class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b></b>Almacen </a>
+								</li>
+								<li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Solicitudes</b> </a>
+								</li>
+								<li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Recetas</b> </a> </li>
+								<li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b>
+									</a> </li>
+								<li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Inventarios</b> </a>
+								</li>
+							</ul>
+						</li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
+									class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Paciente
+											General</b> </a> </li>
+								<li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Proveedores</b> </a>
+								</li>
+								<li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Administracion</b> </a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 				</div>
 			</div>
+			<!--\\\\\\\left_nav end \\\\\\-->
+			<div class="contentpanel">
+				<!--\\\\\\\ contentpanel start\\\\\\-->
+				<div class="container clear_both padding_fix col-lg-8">
+					<br>
+					<br>
+					<br>
+					<div class="row">
 
-			<!--Dar cita medica-->
-			<div class="container-fluid">
+						<div class="col-lg-12 ">
 
 
-				<div id="myTabContent" class="tab-content">
-					<div id="correo">
+							<!-- Content page -->
+							<div class="container-fluid">
+								<div class="">
+									<h1 class="text-titles"><i class="fa fa-list-alt fa-hc-fw"></i> Citas</h1>
+								</div>
+							</div>
+				
+							<div id="main-content">
+								<div class="page-content">
 
-						<div class="entrada">
-							<button class="modal-open btn btn-info btn-raised btn-lg" data-modal="<h3 class='text-center'>REGISTRO DE NUEVO PACIENTE </h3>
-							<form  action='/paciente/postPaciente' method='post' >
-								<p> DATOS DEL PACIENTE</p>
-								<div id='cuatro'>
-									<div class='entrada'>Historial Clinico:<br>
-										<input type='text' name='Historial' ><br>
+
+									<div class="row">
+										<div class="col-md-12">
+											<div class="block-web">
+												<div class="header">
+													<div class="actions"> 
+														<a class="minimize" href="#"><i
+																class="fa fa-chevron-down"></i></a> <a class="refresh"
+															href="#"><i class="fa fa-repeat"></i></a> <a
+															class="close-down" href="#"><i class="fa fa-times"></i></a>
+													</div>
+													
+													<a href="javascript:void(0);" class="btn btn-primary btn-raised btn-lg" data-toggle="modal" data-target="#myModal">
+															<i class="fa fa-plus-square"></i> <span> Nuevo Paciente</span> </a>
+							
+													
+														<button type="button" value="Imprimir" onclick="window.print()"
+															class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp;
+															Imprimir</button>
+												
+												</div>
+												<div class="porlets-content">
+
+													<div class="table-responsive">
+														<table cellpadding="0" cellspacing="0" border="0"
+															class="display table table-bordered" id="hidden-table-info">
+															<thead>
+																<tr>
+																	<th class="text-center">#</th>
+																	<th>Historial Clinico</th>
+																	<th>Nombres</th>
+																	<th>Apellido</th>
+																	<th>CI.</th>
+																	<th class="hidden-phone">Fichaje</th>
+																	<th class="hidden-phone">Reconsulta</th>
+																	<th class="hidden-phone">Ver Fichas</th>
+																</tr>
+															</thead>
+															<tbody>
+
+																
+																<% for(var i=0; i < resp.length; i++) { %>
+																<tr class="gradeA">
+																	<td><%= i + 1 %></td>
+																	<td><%=resp[i].numeroHistorial%></td>
+																	<td><%=resp[i].nombre %></td>
+																	<td><%=resp[i].apellidop %></td>
+																	<td><%=resp[i].ci %></td>
+																	<td class="text-center"><a
+																			href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
+																			class="btn btn-success "><i
+																				class="fa fa-list-ol"></i></a>
+																	</td>
+																	<td class="text-center"><a
+																			href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
+																			class="btn btn-info btn-raised btn-xs"><i
+																				class="fa fa-retweet"></i></a>
+																	</td>
+																	<td class="text-center"><a
+																			href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
+																			class="btn btn-danger btn-raised btn-xs"><i
+																				class="fa fa-eye"></i></a>
+																	</td>
+																</tr>
+																<% } %>
+
+
+															</tbody>
+														</table>
+													</div>
+													<!--/table-responsive-->
+
+												</div>
+												<!--/porlets-content-->
+											</div>
+											<!--/block-web-->
+										</div>
+										<!--/col-md-12-->
 									</div>
-									<div class='entrada'>Apellido Paterno:<br>
-										<input type='text' name='apellidop' class='upper'><br>
-										</div>
-										<div class='entrada'>Apellido Materno:<br>
-											<input type='text' name='apellidom'><br>
-										</div>
-										<div class='entrada'>Nombre(s):<br>
-											<input type='text' name='nombre'><br>
+									<!--/row-->
+
+								</div>
+								<!--/page-content end-->
+							</div>
+							<!--/main-content end-->
+
+
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+								aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">&times;</button>
+
+											<h4 class="modal-title" id="myModalLabel">Datos del Paciente</h4>
+											<form action='/paciente/postPaciente' method='post'>
+
+												<div class="row">
+													<div class="col-lg-4">Historial Clinico:<br>
+														<input type='text' name='Historial'><br>
+													</div>
+													<div class="col-lg-4">Apellido Paterno:<br>
+														<input type='text' name='apellidop' class='upper'><br>
+													</div>
+													<div class="col-lg-4">Apellido Materno:<br>
+														<input type='text' name='apellidom'><br>
+													</div>
+
+												</div>
+
+												<div class="row">
+													<div class="col-lg-4">Nombre(s):<br>
+														<input type='text' name='nombre'><br>
+													</div>
+													<div class="col-lg-4">C.I.:<br>
+														<input type='text' name='ci'><br>
+													</div>
+													<div class="col-lg-4">Dirección:<br>
+														<input type='text' name='direccion'><br>
+													</div>
+
+												</div>
+												<div class="row">
+
+													<div class="col-lg-4">Sexo:<br>
+														<select name='sexo'>
+															<option>Hombre</option>
+															<option>Mujer</option>
+														</select><br>
+													</div>
+													<div class="col-lg-4">Fecha de Nacimiento:<br>
+														<input type='date' name='fechanacimiento'><br>
+													</div>
+
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default"
+														data-dismiss="modal">Close</button>
+													<button type='reset' class='btn btn-info'
+														style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i>
+														&nbsp;&nbsp; Limpiar</button>
+													<button type='submit' class='btn btn-danger'><i
+															class='zmdi zmdi-floppy'></i> &nbsp;&nbsp;
+														Guardar</button>
+												</div>
+											</form>
 										</div>
 									</div>
-									<div id='cuatro'>
-										<div class='entrada'>C.I.:<br>
-											<input type='text' name='ci'><br>
-										</div>
-										<div class='entrada'>Sexo:<br>
-											<select  name='sexo'>
-												<option>Hombre</option>
-												<option>Mujer</option>
-											</select><br>
-										</div>
-										<div class='entrada'>Dirección:<br>
-											<input type='text' name='direccion'><br>
-										</div>
-										<div class='entrada'>Fecha de Nacimiento:<br>
-											<input type='date' name='fechanacimiento'><br>
-										</div>
-									</div>
-									<p class='text-center'>
-										<button type='reset' class='btn btn-info' style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i> &nbsp;&nbsp; Limpiar</button>
-										<button type='submit' class='btn btn-danger'><i class='zmdi zmdi-floppy'></i> &nbsp;&nbsp; Guardar</button>
-									</p>
-								</form>"><i class="zmdi zmdi-accounts-add"></i> Nuevo Paciente</button>
-							<button type="button" value="Imprimir" onclick="window.print()"
-								class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp;
-								Imprimir</button>
+								</div>
+							</div>
+
+
+
 						</div>
-						<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-							<input type="text" id="searchInput" placeholder="Buscar.."><br>
-						</div>
+
 					</div>
-					<div class="tab-pane fade active in" id="Cita">
-						<div class="table-responsive">
 
-
-							<table class="fl-table" id="myTable">
-								<thead>
-									<tr>
-										<th class="text-center">#</th>
-										<th class="" WIDTH="10%">Historial Clinico</th>
-										<th class="" WIDTH="20%">Nombres </th>
-										<th class="" WIDTH="30%">Apellido </th>
-										<th class="" WIDTH="20%">ci</th>
-										<th class="text-center" WIDTH="10%">Fichaje</th>
-										<th class="text-center" WIDTH="10%">Reconsulta</th>
-										<th class="text-center" WIDTH="10%">Ver Fichas</th>
-									</tr>
-								</thead>
-								<tbody>
-									<% for(var i=0; i < resp.length; i++) { %>
-									<tr>
-										<td><%= i + 1 %></td>
-										<td><%=resp[i].numeroHistorial%></td>
-										<td><%=resp[i].nombre %></td>
-										<td><%=resp[i].apellidop %></td>
-										<td><%=resp[i].ci %></td>
-										<td class="text-center"><a
-												href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
-												class="btn btn-success btn-raised btn-xs"><i
-													class="zmdi zmdi-accounts-list-alt"></i></a></td>
-										<td class="text-center"><a
-												href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
-												class="btn btn-info btn-raised btn-xs"><i
-													class="zmdi zmdi-accounts-list-alt"></i></a></td>
-										<td class="text-center"><a
-												href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
-												class="btn btn-danger btn-raised btn-xs"><i
-													class="zmdi zmdi-accounts-list-alt"></i></a></td>
-									</tr>
-									<% } %>
-								</tbody>
-							</table>
-						</div>
-					</div>
+					<!--\\\\\\\ container  end \\\\\\-->
 				</div>
+				<!--\\\\\\\ content panel end \\\\\\-->
 			</div>
-		</section>
+			<!--\\\\\\\ inner end\\\\\\-->
+		</div>
+		<!--\\\\\\\ wrapper end\\\\\\-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!--====== Scripts -->
 
+		<script src="/js/jquery-2.1.0.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/common-script.js"></script>
+		<script src="/js/jquery.slimscroll.min.js"></script>
+		<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+		<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+		<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+		<script src="/plugins/edit-table/edit-table.js"></script>
 		<script>
 			jQuery(document).ready(function () {
 				EditableTable.init();
 			});
 		</script>
 
-		<script src="js/jPushMenu.js"></script>
-		<script src="js/side-chats.js"></script>
+		<script src="/js/jPushMenu.js"></script>
+		<script src="/js/side-chats.js"></script>
 
-		<%- include("partials/scripts") -%>
-		<script src="/js/modal.js"></script>
 </body>
 
 </html>
