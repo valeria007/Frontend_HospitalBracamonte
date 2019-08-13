@@ -128,7 +128,7 @@
             <br>
             
             <div class="porlets-content">
-					<form class="form-horizontal group-border-dashed" action="/usuarios/crearCuenta/" method="POST" parsley-validate novalidate>
+					<form class="form-horizontal group-border-dashed" action="/usuarios/crearCuenta/<%=id.id%>" method="POST" parsley-validate novalidate>
 					<div class="form-group col-sm-12">
 						
 						<div class="col-sm-6">
@@ -149,7 +149,7 @@
 					  
 					  <div class="col-sm-6">
 						  <label class="control-labe">Contraseña:</label>
-						<input type="text" name="pass"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca Contraseña" />
+						<input type="text" name="password"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca Contraseña" />
 					  </div>
 					  
 					  <div class="col-sm-6">

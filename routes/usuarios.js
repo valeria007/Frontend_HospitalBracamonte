@@ -150,7 +150,7 @@ router.post('/crearCuenta/:id', (req,res) => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://127.0.0.1:3600/api/user/'+id.id,enviar)
+  fetch('http://127.0.0.1:3600/api/UsuraioCuenta/'+id.id,enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {

@@ -18,7 +18,7 @@ router.get('/home',(req, res) => {
 
 var msg1,msg2,msg3 ;
 router.post('/login', (req,res)  => {
-  
+  console.log(req.body)
   const username = req.body.username;
   const password = req.body.password;  
  
