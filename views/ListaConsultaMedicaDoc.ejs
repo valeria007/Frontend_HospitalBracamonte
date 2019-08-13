@@ -3,7 +3,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Consulta Medica</title>
+	<title>Lista de Consulta Medica</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 	<meta name="viewport"
@@ -16,319 +16,239 @@
 	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
 	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-	
+
 	<style>
-			div.a {
-			  text-align: center;
-			}
-		
-			h1.letras {
-			  font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-		
-			}
-		  </style>
-	<%- include("partials/head") -%>
+		div.a {
+			text-align: center;
+		}
+
+		h1.letras {
+			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+		}
+	</style>
+
 </head>
 
 <body class=" light_theme  fixed_header left_nav_fixed">
-	
 
-	  <!-- Content page-->
-	  <div class="wrapper">
-			<!--\\\\\\\ wrapper Start \\\\\\-->
-			<div class="header_bar">
-			  <!--\\\\\\\ header Start \\\\\\-->
-			  <div class="brand">
+
+	<!-- Content page-->
+	<div class="wrapper">
+		<!--\\\\\\\ wrapper Start \\\\\\-->
+		<div class="header_bar">
+			<!--\\\\\\\ header Start \\\\\\-->
+			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-		
-			  </div>
-			  <!--\\\\\\\ brand end \\\\\\-->
-			  <div class="header_top_bar">
+
+			</div>
+			<!--\\\\\\\ brand end \\\\\\-->
+			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-		
+
 				<div class="top_right_bar">
-		
-				  <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-						src="images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-					<ul class="dropdown-menu">
-					  <div class="top_pointer"></div>
-					  <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-					  <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-					  <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-					  <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-					</ul>
-				  </div>
+
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+							<li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+							<li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+							<li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+						</ul>
+					</div>
 				</div>
-			  </div>
-			  <!--\\\\\\\ header top bar end \\\\\\-->
 			</div>
-			<div class="inner">
-			  <!--\\\\\\\ inner start \\\\\\-->
-			  <div class="left_nav">
-		
+			<!--\\\\\\\ header top bar end \\\\\\-->
+		</div>
+		<div class="inner">
+			<!--\\\\\\\ inner start \\\\\\-->
+			<div class="left_nav">
+
 				<!--\\\\\\\left_nav start \\\\\\-->
-		
+
 				<div class="left_nav_slidebar">
-				  <ul>
-					<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
-						  class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-					  <ul>
-						<li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
-					  </ul>
-					</li>
-					<li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="plus"><i
-							class="fa fa-plus"></i></span></a>
-					  <ul>
-						<li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Personal</b> </a>
+					<ul>
+						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
+									class="left_nav_pointer"></span> <span class="plus"><i
+										class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> <a href="/medico/renderVistaDocotr/<%=consultamedica%>"> <span>&nbsp;</span> <i
+											class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+							</ul>
 						</li>
-						<li> <a href="/servicios"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Servicios</b> </a> </li>
-						<li> <a href="/usuarios/UsuraioCuenta"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
-							<b>Pacientes</b> </a> </li>
-					  </ul>
-					</li>
-					<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i
-							class="fa fa-plus"></i></span></a>
-					  <ul class="opened" style="display:block">
-						<li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b>
-						  </a> </li>
-						<li> <a href="/citas2"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b
-							  class="theme_color">Citas2</b> </a> </li>
-		
-						<li> <a href="/citas_fichas2"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b
-							  class="theme_color">citas_fichas2</b> </a> </li>
-		
-					  </ul>
-					</li>
-					<li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i
-							class="fa fa-plus"></i></span> </a>
-					  <ul>
-						<li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-						<li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes
-							  Internacion</b> </a> </li>
-					  </ul>
-					</li>
-					<li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i
-							class="fa fa-plus"></i></span> </a>
-					  <ul>
-						<li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
+									class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
+										class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+								<li> <a href="/medico/listfalseConsulta/<%=consultamedica%>"> <span>&nbsp;</span> <i
+											class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>
+									</a> </li>
+							</ul>
 						</li>
-						<li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a>
-						</li>
-						<li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-						<li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-						<li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a>
-						</li>
-					  </ul>
-					</li>
-					<li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i
-							class="fa fa-plus"></i></span> </a>
-					  <ul>
-						<li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente
-							  General</b> </a> </li>
-						<li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a>
-						</li>
-						<li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a>
-						</li>
-					  </ul>
-					</li>
-				  </ul>
+						<%- include("partials/footerDocotr") -%>
+					</ul>
+					
 				</div>
-			  </div>
-			  <!--\\\\\\\left_nav end \\\\\\-->
-			  <div class="contentpanel">
+			</div>
+			<!--\\\\\\\left_nav end \\\\\\-->
+			<div class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
-				  <br>
-				  <br>
-				  <br>
-				  <div class="row">
-		
-					<div class="col-lg-12 ">
+					<br>
 
+					<div class="row">
 
+						<div class="col-lg-12 ">
 
-
-
-
-
-
-
-
-	<li>
-		<a href="/medico/renderVistaDocotr/<%=consultamedica%>">
-			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
-		</a>
-	</li>
-
-	<li>
-		<a href="#!" class="btn-sideBar-SubMenu">
-			<i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Consultas externas <i
-				class="zmdi zmdi-caret-down pull-right"></i>
-		</a>
-		<ul class="list-unstyled full-box">
-			<li><a href="/medico/listfalseConsulta/<%=consultamedica%>"><i
-						class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
-
-		</ul>
-	</li>
-	<%- include("partials/footerDocotr") -%>
-	<!-- Content page-->
-	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt ">
-		<!-- NavBar -->
-		<nav class="full-box dashboard-Navbar ">
-			<ul class="full-box list-unstyled text-right dashboard-sideBar-ctttt ">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-			</ul>
-		</nav>
-		<!-- Content page -->
-		<div class="container-fluid">
-			<div class="page-header">
-				<h1 class="text-titles"><i class="zmdi zmdi-file-plus zmdi-hc-fw"></i>Consulta Externa</h1>
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-						<li class="active"><a href="#ListPaciente" data-toggle="tab"><i
-									class="zmdi zmdi-assignment"></i> Pacientes no Atendidos </a></li>
-						<li><a href="#Pacientes" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Pacientes
-								atendidos</a></li>
-					</ul>
-					<!--Tabla de Pacientes Atendidos-->
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade active in" id="ListPaciente">
-							<div class="table-responsive">
-								<div id="correo">
-									<div class="entrada">
-										<button type="button" value="Imprimir" onclick="window.print()"
-											class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i>
-											&nbsp;&nbsp; Imprimir</button>
-									</div>
-									<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-										<input type="text" id="searchInput" placeholder="Buscar.."><br>
-									</div>
+							<!-- Content page -->
+							<div class="container-fluid">
+								<div class="page-header">
+									<h1 class="text-titles"><i class="fa fa-user-md"></i> Consulta Externa</h1>
 								</div>
-								<table class="fl-table" id="myTable">
-									<thead>
-										<tr>
-											<th class="text-center">#</th>
-											<th class="" WIDTH="15%">N° de historia </th>
-											<th class="" WIDTH="20%">Nombre del Paciente</th>
-											<th class="" WIDTH="20%">Apellido paterno</th>
-											<th class="" WIDTH="20%">Apellido materno</th>
-											<th class="" WIDTH="20%">Hora de Atencion</th>
-											<th class="text-center" WIDTH="20%">Reg.Consulta </th>
-										</tr>
-									</thead>
-									<tbody>
-										<% if(resp != null) { %>
-										<% for(var i=0; i< resp.length; i++) { %>
-										<tr>
-											<td><%= i + 1 %></td>
-											<td><%=resp[i].codigo_p %></td>
-											<td><%=resp[i].Paciente.nombre %></td>
-											<td><%=resp[i].Paciente.apellidop %></td>
-											<td><%=resp[i].Paciente.apellidom %></td>
-											<td><%=resp[i].hora.split("/")[0] %></td>
-											<td class="text-center"><a
-													href="/medico/consulta/<%=resp[i].codigo_p%>/<%=resp[i].id%>"
-													class="btn btn-success btn-raised btn-xs"><i
-														class="zmdi zmdi-edit zmdi-hc-lg"></i></a></td>
-
-
-										</tr>
-										<% } %>
-										<% } else { %>
-										<tr>
-											<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
-										</tr>
-										<% } %>
-									</tbody>
-								</table>
 							</div>
-						</div>
-						<!-- lista de pacientes atendidos-->
-						<div class="tab-pane fade" id="Pacientes">
-							<div class="table-responsive">
-								<div id="correo">
-									<div class="entrada">
-										<button type="button" value="Imprimir" onclick="window.print()"
-											class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i>
-											&nbsp;&nbsp; Imprimir</button>
-									</div>
-									<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-										<input type="text" id="searchInput" placeholder="Buscar.."><br>
-									</div>
+
+							<div id="main-content">
+								<div class="page-content">
+
+										<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+
+											<li class="active"><a href="#neww" data-toggle="tab">Pacientes no Atendidos</a></li>
+											<li><a href="#listt" data-toggle="tab">Pacientes Atendidos</a></li>
+
+										</ul>
+										<div id="myTabContent" class="tab-content">
+											<div class="tab-pane fade active in " id="neww">
+
+												<table class="display table table-bordered table-striped"
+													id="dynamic-table">
+													<thead>
+														<tr>
+															<th class="text-center">#</th>
+															<th class="" WIDTH="15%">N° de historia </th>
+															<th class="" WIDTH="20%">Nombre del Paciente</th>
+															<th class="" WIDTH="20%">Apellido paterno</th>
+															<th class="" WIDTH="20%">Apellido materno</th>
+															<th class="" WIDTH="20%">Hora de Atencion</th>
+															<th class="text-center" WIDTH="20%">Reg.Consulta </th>
+														</tr>
+													</thead>
+													<tbody>
+														<% if(resp != null) { %>
+														<% for(var i=0; i< resp.length; i++) { %>
+														<tr class="gradeX">
+															<td><%= i + 1 %></td>
+															<td><%=resp[i].codigo_p %></td>
+															<td><%=resp[i].Paciente.nombre %></td>
+															<td><%=resp[i].Paciente.apellidop %></td>
+															<td><%=resp[i].Paciente.apellidom %></td>
+															<td><%=resp[i].hora.split("/")[0] %></td>
+															<td class="text-center"><a
+																	href="/medico/consulta/<%=resp[i].codigo_p%>/<%=resp[i].id%>"
+																	class=" btn btn-info "><i
+																		class="fa fa-stethoscope"></i></a></td>
+
+
+														</tr>
+														<% } %>
+														<% } else { %>
+														<tr>
+															<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
+														</tr>
+														<% } %>
+													</tbody>
+												</table>
+											</div>
+											<div class="tab-pane fade " id="listt">
+
+												<table class="display table table-bordered table-striped"
+													id="dynamic-tablee">
+													<thead>
+														<tr>
+
+															<th>#</th>
+															<th>N° de historia </th>
+															<th>Nombre del Paciente</th>
+															<th>Apellido paterno</th>
+															<th>Apellido materno</th>
+															<th>Hora de Atencion</th>
+															<th class="text-center">Modificar</th>
+
+														</tr>
+													</thead>
+													<tbody>
+
+
+														<% if(falseCita != null) { %>
+
+														<% for(var i=0; i< falseCita.length; i++) { %>
+														<tr class="gradeX">
+															<td><%= i + 1 %></td>
+															<td><%=falseCita[i].codigo_p %></td>
+															<td><%=falseCita[i].Paciente.nombre %></td>
+															<td><%=falseCita[i].Paciente.apellidop %></td>
+															<td><%=falseCita[i].Paciente.apellidom %></td>
+															<td><%=falseCita[i].hora.split("/")[0] %></td>
+															<td class="text-center"><a
+																	href="/medico/consulta/<%=falseCita[i].codigo_p%>/<%=falseCita[i].id%>"
+																	class="btn btn-success "><i
+																		class="fa fa-edit "></i></a></td>
+
+
+														</tr>
+														<% } %>
+														<% } else { %>
+														<tr>
+															<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
+														</tr>
+														<% } %>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="entrada">
+											<button type="button" value="Imprimir" onclick="window.print()"
+												class="btn btn-success btn-raised btn-lg"><i
+													class="zmdi zmdi-print"></i>
+												&nbsp;&nbsp; Imprimir</button>
+										</div>
+										<!--/porlets-content-->
+
+
 								</div>
-								<table class="fl-table" id="myTable">
-									<thead>
-										<tr>
-											<th class="text-center">#</th>
-											<th class="" WIDTH="15%">N° de historia </th>
-											<th class="" WIDTH="20%">Nombre del Paciente</th>
-											<th class="" WIDTH="20%">Apellido paterno</th>
-											<th class="" WIDTH="20%">Apellido materno</th>
-											<th class="" WIDTH="20%">Hora de Atencion</th>
-											<th class="text-center" WIDTH="20%">Modificar</th>
-										</tr>
-									</thead>
-									<tbody>
-										<% if(falseCita != null) { %>
-
-										<% for(var i=0; i< falseCita.length; i++) { %>
-										<tr>
-											<td><%= i + 1 %></td>
-											<td><%=falseCita[i].codigo_p %></td>
-											<td><%=falseCita[i].Paciente.nombre %></td>
-											<td><%=falseCita[i].Paciente.apellidop %></td>
-											<td><%=falseCita[i].Paciente.apellidom %></td>
-											<td><%=falseCita[i].hora.split("/")[0] %></td>
-											<td class="text-center"><a
-													href="/medico/consulta/<%=falseCita[i].codigo_p%>/<%=falseCita[i].id%>"
-													class="btn btn-success btn-raised btn-xs"><i
-														class="zmdi zmdi-edit zmdi-hc-lg"></i></a></td>
-
-
-										</tr>
-										<% } %>
-										<% } else { %>
-										<tr>
-											<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
-										</tr>
-										<% } %>
-									</tbody>
-								</table>
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
 
 	<script src="/js/jquery-2.1.0.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/common-script.js"></script>
-    <script src="/js/jquery.slimscroll.min.js"></script>
-    <script src="/plugins/data-tables/jquery.dataTables.js"></script>
-    <script src="/plugins/data-tables/DT_bootstrap.js"></script>
-    <script src="/plugins/data-tables/dynamic_table_init.js"></script>
-    <script src="/plugins/edit-table/edit-table.js"></script>
-    <script>
-      jQuery(document).ready(function () {
-        EditableTable.init();
-      });
-    </script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/common-script.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
 
-    <script src="/js/jPushMenu.js"></script>
-    <script src="/js/side-chats.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+	<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/edit-table/edit-table.js"></script>
+	<script>
+		jQuery(document).ready(function () {
+			EditableTable.init();
+		});
+	</script>
+
+	<script src="/js/jPushMenu.js"></script>
+	<script src="/js/side-chats.js"></script>
 
 </body>
 
