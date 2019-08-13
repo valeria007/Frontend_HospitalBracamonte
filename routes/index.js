@@ -41,7 +41,7 @@ router.post('/login', (req,res)  => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://localhost:3600/api/signin',enviar)
+  fetch('http://localhost:3600/api/login',enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {

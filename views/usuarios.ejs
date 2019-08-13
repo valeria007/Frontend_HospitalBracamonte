@@ -2,7 +2,8 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HOSPITAL</title>
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>USUARIOS</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -73,7 +74,7 @@
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block">
                 <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Personal</b> </a> </li>
-                <li> <a href="/servicios"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Servicios</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
                 <li> <a href="/usuarios/UsuraioCuenta"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
               </ul>
             </li>
@@ -118,7 +119,7 @@
         <div class="col-md-12">
           <div class="block-web">
             <div class="header">
-              <div class="info blue_symbols"><i class="fa fa-users icon"></i></div>
+              <div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
               <h3 class="content-header ">Registro de Personal</h3>
             </div>
             <br>
@@ -157,11 +158,11 @@
                     </div>
                     <div class="col-sm-3">
                         <label class="control-labe">Telefono:</label>
-                      <input parsley-type="phone" type="text" class="form-control" name="telefono" required placeholder="(XXX) XXXX XXX" />
+                      <input  type="text" class="form-control" name="telefono" required placeholder="(XXX) XXXX XXX" />
                     </div>
                     <div class="col-sm-2">
                         <label >Cargo:</label>
-                        <select class="form-control" id="source">
+                        <select class="form-control" id="source" name="cargo">
                             <option value="medico">Medico</option>
                             <option value="enfermera">Enfermera</option>
                             <option value="personal">Personal</option>
@@ -185,7 +186,7 @@
       </div><!--/row-->
       
       
-      <div class="row">
+      <div class="row" id="roles">
         <div class="col-md-12">
           <div class="block-web">
            <div class="header">
@@ -202,8 +203,8 @@
                     <th>Apellido Materno</th>
                     <th>C.I.</th>
                     <th>Cargo</th>
-                    <th>Modificar</th>
-                    <th>Dar de Baja</th>
+                    <th>Opciones</th>
+                    
                     </tr>
                   </thead>
                   <tbody>
@@ -217,14 +218,117 @@
                     <td><%=resp[i].apellidom %></td>
                     <td><%=resp[i].ci %></td>
                     <td><%=resp[i].cargo %></td>										
-                    <td><a href="/usuarios/usuarios/<%=resp[i].id %>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-                    <td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+                    <td>
+                       
+                      <a href="/usuarios/usuarios/<%=resp[i].id %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user text-muted"></i></a><span>&nbsp;</span>
+                      <a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
+                      <a href="/usuarios/usuarios/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
+                      <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver cuentas"><i class="fa fa-eye text-muted"></i></a>
+                    
+                    </td>
+                    
                     </tr>
                   <% } %>
                   <% } %>
                   <tbody>
                 </table>
               </div><!--/table-responsive-->
+              <!--
+                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                          modal par mostrar datos
+                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+              -->
+              <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="info blue_symbols"><i class="fa fa-users icon" ></i></div>
+                        <h4 class="modal-title" id="myModalLabel">Cuenta</h4>
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <div class="porlets-content ">
+                                <form class="form-horizontal group-border-dashed">
+                                  <div class="form-group col-sm-12">
+                                      <div class="col-sm-6">
+                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">nombre:</label>
+                                          <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.nombre}}</label>  
+                                            </div>
+                                  </div>
+                                    
+                                  <div class="form-group col-sm-12">
+                                      <div class="col-sm-6">
+                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">Apellido Paterno:</label><span>&nbsp;</span>
+                                          <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.apellidop}}</label>                                        
+                                      </div>
+                                      
+                                      <div class="col-sm-6">
+                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">Apellido Materno:</label>
+                                          <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{{roles.apellidom}}</label>  
+                                      </div>
+                                      
+                                      
+                                      
+                                      
+                                  </div><!--/form-group--> 
+                                  
+                                  <div class="form-group col-sm-12">
+                                      <div class="col-sm-6">
+                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">direccion</label>
+                                          <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.direcion}}</label>  
+                                          </div>
+                                    
+                                  </div> 
+                                  
+                                    <div class="form-group col-sm-12">  
+                                        <div class="col-sm-6">
+                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">telefono:</label>
+                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.telefono}}</label>
+                                            </div>
+                                    
+                                        <div class="col-sm-6">
+                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">cargo:</label>
+                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.cargo}}</label>
+                                            </div>
+                                     </div>
+                                     <div class="form-group col-sm-12">     
+                                        <div class="col-sm-6">
+                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">cuenta {{email}}</label>
+                                            <select v-model="email" v-on:click="mostrar_roles">
+                                              <template v-for="rol in roles.roles" >
+                                              <option>{{rol.email}}</option>
+                                            </template>
+                                            </select>
+                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span></label>
+                                          </div>
+                                        <div class="col-sm-6">
+                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">rol</label>
+                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.rolUser}}</label>
+                                          </div>
+                                  </div><!--/form-group--> 
+                                  
+                                  <div class="form-group">
+                                      <div class="col-sm-offset-5 col-sm-10">
+                                  
+                                        <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                                      </div>
+                                    </div><!--/form-group--> 
+                                  
+                                </form>
+                              </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <!--
+                  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                -->
             </div><!--/porlets-content-->
             
             
@@ -241,59 +345,7 @@
 </div>
 <!--\\\\\\\ wrapper end\\\\\\-->
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <div class="info blue_symbols"><i class="fa fa-users icon"></i></div>
-        <h4 class="modal-title" id="myModalLabel">Cuenta</h4>
-      </div>
-      <form class="form-horizontal group-border-dashed" action="/usuario" method="POST" parsley-validate novalidate>
-        <div class="form-group">
-            
-            <div class="col-sm-4">
-                <label class="control-labe">Cuenta:</label>
-              <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Cuenta" />
-            </div>
-            
-            <div class="col-sm-4">
-                <label class="control-labe">Email:</label>
-              <input type="email" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Email" />
-            </div>
-        </div><!--/form-group--> 
-        
-       
-       
-        <div class="form-group">
-          
-          <div class="col-sm-4">
-              <label class="control-labe">Contraseña:</label>
-            <input type="password" name="ci"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca contraseña" />
-          </div>
-          
-          <div class="col-sm-4">
-              <label class="control-labe">Repita Contraseña:</label>
-            <input type="password" class="form-control" name="direcion" parsley-trigger="change"   required placeholder="Repita contraseña" />
-          </div>
-          
-        </div><!--/form-group--> 
-        
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-10">
-              <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-              <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-            </div>
-          </div><!--/form-group--> 
-        
-      </form>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 <script src="/js/jquery-2.1.0.js"></script>
@@ -369,8 +421,10 @@
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+<script src="/js/vue/roles.js"></script>
 
 </body>
 </html>

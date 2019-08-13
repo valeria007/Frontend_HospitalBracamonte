@@ -4,6 +4,27 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          rutas vue
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/roles/:id', (req,res) => {
+  const { id } = req.params
+  fetch('http://127.0.0.1:3600/api/oneMOstrar/'+id)
+        .then(resp => resp.json())
+        .then(resp =>{
+          console.log(resp)
+          res.status(200).json(resp)
+     });
+})
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
 router.get('/usuarios',(req, res) => {
   var esto = {
     method: 'GET',
@@ -38,14 +59,14 @@ router.get('/usuarios',(req, res) => {
           body: JSON.stringify(data),
           headers:{
             'Content-type' : "application/json",
-            'Authorization': datas.name.token
+            //'Authorization': datas.name.token
           }
       };
-      fetch('http://localhost:3600/api/personal/',esto)
+      fetch('http://localhost:3600/api/personal',esto)
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(data => {
-         
+         console.log(data, "  <<<<<<<<<<<<<<< esto es post")
           if (data.success == false){
               res.send(data)
           }else{
@@ -97,65 +118,46 @@ router.post('/updatePersonal/:id',(req,res) => {
     res.redirect('/usuarios/usuarios')
   })
 });
-
-
-router.get('/UsuraioCuenta', (req,res) => {
-  
-  fetch('http://localhost:3600/api/list')
+router.get('/UsuraioCuenta/:id', (req,res) => {
+  var id = req.params
+  fetch('http://127.0.0.1:3600/api/mostrarCuenta/'+id.id)
         .then(resp => resp.json())
         .then(resp =>{
           //console.log(resp)
           if (resp == null){
             res.render('usuarioCuenta',{
-              mensaje,
+              id,
               resp
             });
           }else{
             res.render('usuarioCuenta',{
-              mensaje,
+              id,
               resp
             });
           }
      });
 });
 
-var mensaje;
-router.post('/crearCuenta', (req,res) => {
-  if(req.body.password != req.body.password2){
-    mensaje = 'Las contraceñas no son igiales por favor no insista'
-    res.redirect('/usuarios/UsuraioCuenta');
-  }else{
-
-  var data = req.body;  
-  var esto = {
+router.post('/crearCuenta/:id', (req,res) => {
+  var id = req.params
+  //console.log(id, "    este es el id >>>>>>>>>>>>>>>>>>>>>>>>><" )
+  var data = req.body
+  //console.log(data, "  esto quiero");
+  var enviar = {
     method: 'POST',
     body: JSON.stringify(data),
-    headers:{
+    headers: {
       'Content-type' : "application/json"
-          
     }
-    };
-    fetch('http://localhost:3600/api/signup',esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {
-        
-        if (data.success == false){
-          console.log(data.msg)
-          mensaje = data.msg
-          res.redirect('/usuarios/UsuraioCuenta');
-        }else{
-          mensaje = null;
-          res.redirect('/usuarios/UsuraioCuenta');
-
-        }
-        
-    })
   }
-      
+  fetch('http://127.0.0.1:3600/api/user/'+id.id,enviar)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+   // console.log(resp)
+    res.redirect('/usuarios/UsuraioCuenta/'+id.id)
+  })
 });
-
-
 
 
 module.exports = router;

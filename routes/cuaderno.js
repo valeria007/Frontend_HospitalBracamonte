@@ -109,7 +109,7 @@ router.get('/Cuadernos', (req,res) => {
         })
         .catch(error => {
             console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
+            res.render('404error');
         })     
 })
 //ruta para poder sacar una solo cuaderno
@@ -189,13 +189,13 @@ router.get('/limpiarMDoc', (req,res) => {
 
 router.get('/docCuaderno', (req,res) => {
     console.log(datas.name.token, " <<< esto deberia funcionar")
-    var token = {
+   var token = {
         method: 'GET',
         headers:{
           'Content-type' : "application/json",
-          'Authorization': datas.name.token
+          /*'Authorization': datas.name.token*/
         }
-    }
+}
     fetch(url.name.pruebas+'/api/Only_Medicos',token)
     .then(res => res.json())
     .then(resp => { 

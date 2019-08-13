@@ -825,7 +825,7 @@ h5{padding:10px;}
     color: #F0AD4E;
 }
 .login_page{ width:100%; position:absolute;}
-.login_content {margin: 0 auto; padding: 20px 0;position: relative;text-align: center; transition: all 550ms ease-in-out 0s;width: 320px; margin-top:185px; border:2px solid #cccccc; border-radius:5px; padding:20px;background-color: #FFFFFF;}
+.login_content {margin: 0 auto; padding: 10px 0;position: relative;text-align: center; transition: all 550ms ease-in-out 0s;width: 320px; margin-top:50px; border:2px solid #cccccc; border-radius:5px; padding:20px;background-color: #FFFFFF;}
 .col-sm-10 { width: 100.333%;}
 .login_heading{background-color:#5DCFF3; color:#FFFFFF; margin-bottom:20px; font-size:20px; text-transform:uppercase;}
 .lable_margin{margin-top:8px; float:left;}
@@ -3051,3 +3051,9 @@ select, input[type="file"] { height: 34px !important;line-height: 30px;}
     margin-right: auto;
 
   }
+.mover {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 500px;
+}
