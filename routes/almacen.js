@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+router.get('/pedidos',(req, res) => {
+    res.render('Almacen/pedidos')
+});
+
 
 router.get('/home', (req,res) => {
     res.render('Almacen/home');

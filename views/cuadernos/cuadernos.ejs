@@ -1,123 +1,328 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Inicio</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
-	<link rel="stylesheet" href="/css/form1.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>CUADERNOS</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- Content page-->
-	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-		<!-- NavBar -->
-		<nav class="full-box dashboard-Navbar">
-			<ul class="full-box list-unstyled text-right">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-			</ul>
-		</nav>
-		<!-- Content page -->
-		<div class="container-fluid">
-			<div class="page-header">
-				<h1 class="text-titles"><i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Registros de Cuadernos </h1>
-			</div>
-		</div>
-		<!--Cuadernos-->
-		<%if(message) { %>
-			<h2><%=message%></h2>
-		<% } %>
-		
-		
-		<div class="container-fluid">
-				
-				<% if (OnlyC == null) { %>
-					<form action="/cuaderno/cuadernos" method="POST">
-						<div class="grupo" id="cabeza">
-							<div id="tres2">
-								<div class="entrada">Codigo:<br>
-									<input type="text" ><br>
-								</div>
-								<div class="entrada">Grupo de Asignacion:<br>
-									<input type="text" name="grupo"><br>
-								</div>
-								<div class="entrada">Titulo de Cuaderno:<br>
-									<input type="text" name="titulo"><br>
-								</div>
-							</div>
-							<p class="text-center">
-								<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-								<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-							</p>
-						</div>
-					</form>
-				<% } else { %>
-					<form action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST">
-						<div class="grupo" id="cabeza">
-							<div id="tres2">
-								<div class="entrada">Codigo:<br>
-									<input type="text" value="<%=OnlyC[0].id%>"><br>
-								</div>
-								<div class="entrada">Grupo de Asignacion:<br>
-									<input class="ma" type="text" name="grupo" value="<%=OnlyC[0].grupo%>"><br>
-								</div>
-								<div class="entrada">Titulo de Cuaderno:<br>
-									<input class="ma" type="text" name="titulo" value="<%=OnlyC[0].titulo%>"><br>
-								</div>
-							</div>
-							<p class="text-center">
-								<a class="btn btn-success btn-lg active btn-raised" role="button" aria-pressed="true" href="/cuaderno/limpiarC"><i class="zmdi zmdi-long-arrow-return"> VOLVER</a></i>
-								<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
-							</p>
-						</div>
-					</form>
-				<% } %>
-		</div>
-		<!-- Lista de Cuadernos-->
-		<div class="table-responsive">
-			<h3 class="text-center all-tittles">LISTA DE CUADERNOS VIGENTES</h3>
-            <div class="table-wrapper">
-				<div id="correo">
-					<div class="entrada">
-						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-					</div>
-					<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-						<input type="text" id="searchInput" placeholder="Buscar.."><br>
-					</div>
-				</div>
-				<table class="fl-table" id="myTable">
-                    <thead>
-                        <tr>
-						<th>Codigo</th>
-						<th>Grupo de Asignacion</th>
-                        <th>Titulo de Cuaderno</th>
-						<th>Fecha de Creacion</th>
-						<th>Modificar</th>
-						<th>Dar Doctor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-						<% for(var i=0; i< resp.length; i++) { %>
-                        <tr>
-                        <td><%=resp[i].id%></td>
-                        <td><%=resp[i].grupo%></td>
-						<td><%=resp[i].titulo%></td>
-						<td><%=resp[i].createdAt%></td>
-                        <td><a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
-    					<td><a href="/cuaderno/getEsp/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi zmdi-account-add"></i></a></td>
-						</tr>
-						<% } %>
-                    <tbody>
-				</table>
-			</div>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <!--\\\\\\\ wrapper Start \\\\\\-->
+  <div class="header_bar">
+    <!--\\\\\\\ header Start \\\\\\-->
+    <div class="brand">
+      <!--\\\\\\\ brand Start \\\\\\-->
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      
+    </div>
+    <!--\\\\\\\ brand end \\\\\\-->
+    <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+      
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div>
+       
+      </div>
+    </div>
+    <!--\\\\\\\ header top bar end \\\\\\-->
+  </div>
+  <!--\\\\\\\ header end \\\\\\-->
+  <div class="inner">
+    <!--\\\\\\\ inner start \\\\\\-->
+    <div class="left_nav">
+      <!--\\\\\\\left_nav start \\\\\\-->
+      
+      <div class="left_nav_slidebar">
+          <ul>
+            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Personal</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Cuadernos</b> </a> </li>
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
+                <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+                <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+                <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+                <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
+                <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
         </div>
     </div>
-	</section>
-	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
-	<script>"/js/validaciones.js"</script>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel">
+      <!--\\\\\\\ contentpanel start\\\\\\-->
+
+        <!--\\\\\\\ container  start \\\\\\-->
+        <div class="container clear_both padding_fix">
+        <br>
+         <div class="row">
+        <div class="col-md-12">
+          <div class="block-web">
+            <div class="header">
+              <div class="info blue_symbols"><i class="fa fa-medkit icon"></i></div>
+              <h3 class="content-header ">Creacion Cuadernos</h3>
+            </div>
+            <br>
+            <br>
+            <div class="porlets-content">
+                <% if (OnlyC == null) { %>
+                <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos" method="POST" parsley-validate novalidate>
+                  <div class="form-group">
+                      
+                      <div class="col-sm-4">
+                          <label class="control-labe">Codigo:</label>
+                        <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" />
+                      </div>
+                      
+                      <div class="col-sm-4">
+                          <label class="control-labe">Grupo de Asignacion:</label>
+                        <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" />
+                      </div>
+                      <div class="col-sm-4">
+                          <label class="control-labe">Titulo de Cuaderno:</label>
+                        <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" />
+                      </div>
+                  </div><!--/form-group--> 
+                  
+                  <div class="form-group">
+                      <div class="col-sm-offset-4 col-sm-10">
+                        <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                        <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                      </div>
+                    </div><!--/form-group--> 
+                  
+                </form>
+                <% } else { %>
+                  <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST" parsley-validate novalidate>
+                    <div class="form-group">
+                        
+                        <div class="col-sm-4">
+                            <label class="control-labe">Codigo:</label>
+                          <input type="text" value="<%=OnlyC[0].id%>" class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" />
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <label class="control-labe">Grupo de Asignacion:</label>
+                          <input type="text"  name="grupo" value="<%=OnlyC[0].grupo%>" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-labe">Titulo de Cuaderno:</label>
+                          <input type="text" name="titulo" value="<%=OnlyC[0].titulo%>" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" />
+                        </div>
+                    </div><!--/form-group--> 
+                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                          <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiarC">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                          <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                          <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                          
+                        </div>
+                      </div><!--/form-group--> 
+                    
+                  </form>
+                  <% } %>
+              </div>
+          </div><!--/block-web--> 
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+      
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block-web">
+           <div class="header">
+             
+              <h3 class="content-header">Lista Cuadernos</h3>
+            </div>
+         <div class="porlets-content">
+            <div class="table-responsive">
+                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                  <thead>
+                      <tr>
+                      <th>Codigo</th>
+                      <th>Grupo de Asignacion</th>
+                      <th>Titulo de Cuaderno</th>
+                      <th>Fecha de Creacion</th>
+                      <th>Opciones</th>
+                      
+                      </tr>
+                  </thead>
+                  <tbody>
+            
+                  <% for(var i=0; i< resp.length; i++) { %>
+                    <tr>
+                      <td><%=resp[i].id%></td>
+                      <td><%=resp[i].grupo%></td>
+						          <td><%=resp[i].titulo%></td>
+						          <td><%=resp[i].createdAt%></td>								
+                    <td>
+                      <a href="/cuaderno/getEsp/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Medico"><i class="fa fa fa-user-md text-muted"></i></a><span>&nbsp;</span>
+                      <a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
+                      <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
+                      
+                    
+                    </td>
+                    
+                    </tr>
+                  <% } %>
+                  
+                  <tbody>
+                </table>
+              </div><!--/table-responsive-->
+            </div><!--/porlets-content-->
+            
+            
+          </div><!--/block-web--> 
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+      
+        </div>
+      <!--\\\\\\\ container  end \\\\\\-->
+    
+    <!--\\\\\\\ content panel end \\\\\\-->
+  </div>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
 </body>
 </html>

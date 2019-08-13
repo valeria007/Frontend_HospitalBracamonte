@@ -825,7 +825,7 @@ h5{padding:10px;}
     color: #F0AD4E;
 }
 .login_page{ width:100%; position:absolute;}
-.login_content {margin: 0 auto; padding: 20px 0;position: relative;text-align: center; transition: all 550ms ease-in-out 0s;width: 320px; margin-top:185px; border:2px solid #cccccc; border-radius:5px; padding:20px;background-color: #FFFFFF;}
+.login_content {margin: 0 auto; padding: 10px 0;position: relative;text-align: center; transition: all 550ms ease-in-out 0s;width: 320px; margin-top:50px; border:2px solid #cccccc; border-radius:5px; padding:20px;background-color: #FFFFFF;}
 .col-sm-10 { width: 100.333%;}
 .login_heading{background-color:#5DCFF3; color:#FFFFFF; margin-bottom:20px; font-size:20px; text-transform:uppercase;}
 .lable_margin{margin-top:8px; float:left;}
@@ -1954,12 +1954,13 @@ input {
 .inbox_orange .widget_inbox_header{color:#FFFFFF!important;}
 .inbox_blue .widget_inbox ul li a{color:#123e57!important;}
 .information{ padding:15px; color:#FFFFFF; border:none; margin-bottom:20px; display:block; width:100%; float:left;}
-.info{ border-radius:50%; float: left; height:80px; width:80px; }
-.info .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:20px; margin:17px 0px 0px 14px;}
+.info{ border-radius:80%; float: left; height:80px; width:80px; }
+.info .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:17px 0px 0px 14px;}
 .red_symbols{background:#e84c3d;}
 .green_symbols{background:#3ac3a9;}
 .blue_symbols{background:#00a2d3;}
 .gray_symbols{background:#27394d;}
+
 
 .information_inner{ position:relative; text-align:center;}
 .information_inner p{ margin-bottom:5px; display:inline-block;}
@@ -1970,7 +1971,7 @@ input {
 .blue_info{ background:#fff; color:#00a2d3;}
 .gray_info{ background:#fff; color:#34495e;}
 .infoprogress_green{ height:6px; background:#21937c; margin-bottom:5px; margin-top:28px;}
-.infoprogress_blue{ height:6px; background:#01799e; margin-bottom:5px;margin-top:28px;}
+.infoprogress_blue{ height:6px; background:#01799e; margin-bottom:10px;margin-top:28px;}
 .infoprogress_red{ height:6px; background:#b42819; margin-bottom:5px;margin-top:28px;}
 .infoprogress_gray{ height:6px; background:#11273e; margin-bottom:5px;margin-top:28px;}
 .greenprogress{ width:80%; background:#3ac3a9; height:100%;}
@@ -3050,4 +3051,13 @@ select, input[type="file"] { height: 34px !important;line-height: 30px;}
     margin-left: auto;
     margin-right: auto;
 
+  }
+.mover {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 500px;
+}
+.entrada {
+    padding: 6px;
   }

@@ -26,13 +26,37 @@
 				<h1 class="text-titles"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Lista de Horas del Doctor </h1>
 			</div>
     </div>
-
+    <a href="/cuaderno/volver_a_trunos">Atras</a>
     <div id="correo">
         <form action="/cuaderno/insertarHorarios" method="POST">
+            <div class="entrada">Cantidad de Fichas:<br>
+                <select name="cantiFicha" >
+
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>  
+                    <option>12</option>      
+                    <option>13</option>      
+                    <option>14</option>      
+                    <option>15</option>
+                    <option>16</option> 
+                    <option>17  </option>                                     
+
+                </select><br>
+            </div>
             <label >  cantidad maxima de fichas del doctor </label>
             <div class="entrada">Intervalo de horas <br>
                <select id="" name="minutos">
                     <option value="15"> 15 minutos </option>
+                    <option value="20"> 20 minutos </option>
                    <option value="30"> 30 minutos </option>
                </select>
             </div>
@@ -65,10 +89,9 @@
                 </thead>
                 <tbody>
                 <% for(var i = 0; i < resp.length; i++) { %>
-                    <tr>
-                        
+                    <tr>                        
                         <td><%= i+1 %></td>   
-                        <td><%=resp[i].hora%></td>                
+                        <td><%= resp[i].hora %></td>                
                     </tr>
                 <% } %>
                 <tbody>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <%- include("../partials/head") -%>
+</head>
+<body>
+    <%- include("partials/menu") -%>
+
+    <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+        <nav class="full-box dashboard-Navbar">
+			<ul class="full-box list-unstyled text-right">
+				<li class="pull-left">
+					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+				</li>
+			</ul>
+		</nav>
+       
+
+        <div class="container-fluid" id="cuadernos">
+            <div class="container-fluid">
+                <div class="page-header">
+                    <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Doctor</h1>
+                </div>
+                    
+            </div>
+            <a href="/cuaderno/volver_a_doctor">Atras</a>
+            <!-- esto es para el buscador de los doctores -->
+            <div class="container-fluid">
+                <div class="row">
+                   
+                    <div class="col-sm-4">  
+                                                            
+                        <button @click="buscador(<%=id_cuaderno%>)" class="btn btn-primary" v-if="!buscar.lists.length">Buscar Doctor</button>
+                       
+                        <ul class="list-group" v-else>
+                            <li class="list-group-item">
+                                <input type="text" placeholder="buscar" class="form-control" v-model="buscar.name">
+                            </li>
+                            <li v-for="item in search" class="list-group-item">
+                                <a :href="'/cuaderno/alldataDoctor/'+item.id+'/'+item.idCuaderno">{{item.nombre}}</a>                                
+                            </li>
+                            <button @click="deleteList" type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>  
+                        </ul>
+                    </div>            
+                </div>            
+            </div>
+           <!--  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+            <div class="grupo" id="cabeza">
+                <div id="cuatro">
+                    <div class="entrada"> Nombre Completto del doctor <br>
+                        <label for=""><%=resp[0].nombre%></label>
+                    </div>
+                    <div class="entrada"> Tipo Doctor <br>
+                        <label for=""><%=resp[0].TDoctor%></label>
+                    </div>
+                    <div class="entrada">Enfermera<br>
+                        <label for=""><%=resp[0].enfermera%></label>
+                    </div>
+                    <div class="entrada"> Fecha de estadia del doctor<br>
+                        <select v-model="id" @click="mostrar(<%=resp[0].id%>)"> 
+                                <option disabled="disabled" value>Seleccione</option>
+                            <%for(var i = 0; i< resp[0].Fechas.length; i++) {%>
+                                <option value="<%=resp[0].Fechas[i].id%>"> Del <%=resp[0].Fechas[i].fechaini.split("T")[0]%> al <%=resp[0].Fechas[i].fechafin.split("T")[0]%> </option>
+                            <%}%>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+
+                
+
+                <h3 class="text-center all-tittles">LISTA DE TURNOS</h3>
+                <div class="table-wrapper">
+                    <div id="correo">
+                        <div class="entrada">
+                            <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+                        </div>
+                        <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+                            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
+                        </div>
+                    </div>
+                    <table class="fl-table" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Dia de atencion</th>
+                                <th>Turno</th>
+                                <th>Horas</th>                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(data, index) in Turnos">
+                              <td>{{index+1}}</td>
+                              <td>{{data.diasAten}}</td>
+                              <td>{{data.turno}}</td>
+                          </tr>
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <%- include("../partials/scripts") -%>
+    <script src="/js/vue/Cuadernos.js"></script>
+</body>
+</html>
