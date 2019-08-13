@@ -17,32 +17,20 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-			</ul>
+            </ul>
+            
 		</nav>
         <!-- Content page -->
         <div class="container-fluid">
             <div class="page-header">
-                <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Dar Doctor </h1>
+                <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Dar turnos al Doctor </h1>
             </div>
+            <a href="/cuaderno/volverFechas">Atras</a>
         </div>
         <div class="container-fluid">
         <form id="form" action="/cuaderno/turnos" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
             <div class="grupo" id="cabeza">
                 <div id="correo">
-                        <div class="entrada">Cantidad de Fichas:<br>
-                            <select name="cantiFicha" >
-
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>                             
-
-                            </select><br>
-                        </div>
                         <div class="entrada">Dia de atencion:<br>
                             <select name="diasAten" >
                                 <option>Lunes</option>
@@ -55,7 +43,7 @@
                             </select><br>
                         </div>
                         <div class="entrada">Turno:<br>
-                            <select name="turno" >
+                            <select name="turno" >                               
                                 <option>Mañanas</option>
                                 <option>Tardes</option>
                                 <option>Noches</option>
@@ -86,10 +74,10 @@
                     <thead>
                         <tr>
 						<th>#</th>
-						<th>Cantidad Fichas</th>
 						<th>Dia de atencion</th>
                         <th>Turno</th>
                         <th>Eliminar</th>
+                        <th>Horas</th>
 						
 						</tr>
                     </thead>
@@ -97,11 +85,10 @@
                         <% for ( var i = 0; i < resp.length; i++) { %>
                         <tr>
                             <td><%=i+1%></td>
-                            <td><%=resp[i].cantiFicha%></td>
                             <td><%=resp[i].diasAten%></td>
-                            <td><%=resp[i].turno%>< 
+                            <td><%=resp[i].turno%></td>
                             <td><a href="/cuaderno/delturno/<%=resp[i].id%>" class="btn btn-danger btn-raised btn-xs "><i class="zmdi zmdi-close-circle"></i></a></td>
-                            <td><a href="/cuaderno/horarios_turnos/<%=resp[i].cantiFicha%>/<%=resp[i].id%>" class="btn btn-danger btn-raised btn-xs "><i class="zmdi zmdi-close-circle"></i></a></td>
+                            <td><a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" class="btn btn-danger btn-raised btn-xs "><i class="zmdi zmdi-close-circle"></i></a></td>
                         </tr>
                         <% } %>
                     <tbody>

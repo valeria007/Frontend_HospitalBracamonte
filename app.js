@@ -26,6 +26,7 @@ app.use('/paciente', require('./routes/paciente'));
 app.use('/medico', require('./routes/medico'));
 app.use('/usuarios', require('./routes/usuarios'));
 app.use('/almacen', require('./routes/almacen'));
+app.use('/farmacia', require('./routes/farmacia'));
 app.use('/medicamento', require('./routes/medicamento'));
 app.use('/proveedores', require('./routes/proveedores'));
 app.use('/pedidos', require('./routes/pedidos'));

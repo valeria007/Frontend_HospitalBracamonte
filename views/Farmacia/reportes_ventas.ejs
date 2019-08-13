@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>HOSPITAL</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -35,6 +36,7 @@
   font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
   
 }
+</style>
 </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
@@ -77,138 +79,99 @@
       <div class="left_nav_slidebar">
         <ul>
           <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul >
+            <ul>
               <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
             </ul>
           </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul class="opened" style="display:block">
-              <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-              <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
-              <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-              <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-              <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
-              <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Almacenamiento</b> </a> </li>
+              <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
+              <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+              <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
+              <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
             </ul>
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-              <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-              <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-              <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+            <ul class="opened" style="display:block">
+              <li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reportes de Sol.</b> </a> </li>
+              <li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Ven.</b> </a> </li>
+              <li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
+              <li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+              <li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
     <!--\\\\\\\left_nav end \\\\\\-->
-    <div class="contentpanel"><br>
+    <div class="contentpanel">
       <!--\\\\\\\ contentpanel start\\\\\\-->
-      <!--Formulario-->
-      <div class="container clear_both padding_fix">
-			<!--\\\\\\\ container  start \\\\\\-->
-		  
-		  <div class="row">
-					<div class="col-md-12">
-						<div class="block-web">
+			<div class="container clear_both padding_fix">
+				<!--\\\\\\\ container  start \\\\\\-->
+					<div id="main-content">
+					<div class="page-content">
+						<div class="row">
+						<div class="col-md-12">
+						 <div class="block-web">
 							<div class="header">
-								<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-								<h3 class="content-header"> <i class="fa fa-medkit icon"></i>  Registrar Medicamento</h3>
+								<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+								<h3 class="content-header"><i class="fa fa-bar-chart-o icon"></i>  Reporte de Ventas</h3>
 							</div>
 							<div class="porlets-content">
-								<% if (dataGRUPOa == null) {%>
-									<h1>Ocurrio un problema con el servidor por favor intenta volver a entrar en esta pagina desde una pestaña anterior</h1>
-								<% } else {%>	
-								<form action="/medicamento/updateMedicamento/<%=resp[0].id%>" method="POST" parsley-validate novalidate>
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Grupo de Asignación:</label>
-											<select  name="grupoAsig">
-												<option ><%=resp[0].grupoAsig%></option>
-												<% for(var i=0; i< dataGRUPOa.length; i++) {%>
-												<option><%=dataGRUPOa[i].descripcion%></option>
-												<% } %>
-											</select>
-										</div>
-										<div class="form-group">
-											<label>Generico:</label>
-											<input type="text" name="generico" value="<%=resp[0].generico%>"class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Presentacion:</label>
-											<input type="text" name="presentacion" value="<%=resp[0].presentacion%>" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Cantidad:</label>
-											<input type="text" name="cantidad" value="<%=resp[0].cantidad%>" class="form-control">
-										</div>
-									</div>  
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Codificación:</label>
-											<input type="text" value="<%=resp[0].codificacion%>" name="codificacion" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Unidad de Medida:</label>
-											<input type="text" name="unidadMedida" value="<%=resp[0].unidadMedida%>" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Fecha de Llegada:</label>
-											<input type="date" name="fechaLLEgada" value="<%=resp[0].fechaLLEgada%>" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Cantidad por Unidades:</label>
-											<input type="text" name="unidades" value="<%=resp[0].unidades%>" class="form-control">
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Nombre:</label>
-											<input  type="text" name="nombre" value="<%=resp[0].nombre%>"  required class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Concentracion:</label>
-											<input type="text" name="concentracion" value="<%=resp[0].concentracion%>" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Fecha de Vencimiento:</label>
-											<input type="date" name="fechaVencimiento" value="<%=resp[0].fechaVencimiento%>" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Precio:</label>
-											<input  type="text" name="precio" value="<%=resp[0].precio%>" class="form-control">
-										</div>
-									</div>
-									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-									<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-								</form>
-							<% } %>
-							</div>
-						</div>
-					</div>
-				</div><!--/row-->
-		  </div>
+								<div class="panel-body">
+								<!-- Button trigger modal -->
+								<button data-target="#myModal2" data-toggle="modal" class="btn btn-success btn-lg mb10"> Seleccione Aqui </button>
+								</div>  
+								<div class="table-responsive">
+								<table  class="display table table-bordered table-striped " id="dynamic-table">
+									<thead>
+									<tr>
+									<th>Fecha</th>
+									<th>Responsable</th>
+									<th>Proveedor</th>
+									<th>Status de Compra</th>
+									<th>Tipo de Material</th>
+									<th>Stock de Ingresos</th>
+									<th>Stock Total</th>
+									<th>stock de Salidas</th>
+									<th>Precio de Compra</th>
+									<th>Precio de Venta</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+									<td>1</td>
+									<td>123</td>
+									<td>a</td>
+									<td>a</td>
+									<td>a</td>
+									<td>a</td>
+									<td>a</td>
+									<td>a</td>
+									<td>a</td>
+									<td>a</td>
+									</tr>
+									<tbody>
+								</table>
+								</div><!--/table-responsive-->
+							</div><!--/porlets-content-->
+							</div><!--/block-web--> 
+						</div><!--/col-md-12--> 
+						</div><!--/row-->
+					</div><!--/page-content end--> 
+					</div><!--/main-content end--> 
+				
+				
+				
+				</div>
     <!--\\\\\\\ content panel end \\\\\\-->
   </div>
   <!--\\\\\\\ inner end\\\\\\-->
 </div>
 <!--\\\\\\\ wrapper end\\\\\\-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--Modal-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 
 

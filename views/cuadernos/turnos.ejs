@@ -271,44 +271,29 @@
                         <th>Especialidad</th>
                         <th>Tipo de Doctor</th>                        
                         <th>Enfermera</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha de Finalizacion</th>						
                         <th>Modificar</th>
-                        <th>Ver fecha de contrato</th>
-                      
-                      </tr>
-                  </thead>
-                  <tbody>
-            
-                    <% for(var i=0; i< listDoc.length; i++) { %>
-                    <tr>
-                        <td><%=i+1%></td>
-                        <td><%=listDoc[i].nombre%></td>
-                        <td><%=listDoc[i].Consulta_especilaida.nombre%></td>
-                        <td><%=listDoc[i].TDoctor%></td>
-                        <td><%=listDoc[i].enfermera%></td>				 								
-                    <td>
-                        <span>&nbsp;</span>
-                        <span>&nbsp;</span>
-                        <span>&nbsp;</span>
-                      <a href="/cuaderno/getEsp/<%=resp[i].id%>"  data-toggle="tooltip" class="btn btn-success tooltips" data-original-title="Dar Medico"><i class="glyphicon glyphicon-user"></i></a><span>&nbsp;</span>
-                      <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>"  data-toggle="tooltip" class="btn btn-danger tooltips" data-original-title="Editar"><i class="glyphicon glyphicon-edit"></i></a><span>&nbsp;</span>
-                    
-                    </td>
-                    
-                    </tr>
-                  <% } %>
-                  
-                  <tbody>
-                </table>
-              </div><!--/table-responsive-->
-            </div><!--/porlets-content-->
-            
-            
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
-      
+                        <th>Estadia del Doctor</th>					
+                        <th>Ver doctor</th>
+						</tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i< listDoc.length; i++) { %>
+                        <tr>
+                            <td><%=i+1%></td>
+                            <td><%=listDoc[i].nombre%></td>
+						    <td><%=listDoc[i].Consulta_especilaida.nombre%></td>
+						    <td><%=listDoc[i].TDoctor%></td>
+						    <td><%=listDoc[i].enfermera%></td>				     
+                            <td><a href="/cuaderno/midificarDoct/<%=listDoc[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                            <td><a href="/cuaderno/FechaDoc/<%=listDoc[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                            <td><a href="/cuaderno/alldataDoctor/<%=listDoc[i].id%>/<%=listDoc[i].idCuaderno%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                            
+
+                        </tr>
+                        <% } %>
+                    <tbody>
+				</table>
+            </div>
         </div>
       <!--\\\\\\\ container  end \\\\\\-->
     
