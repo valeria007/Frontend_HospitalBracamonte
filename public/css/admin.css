@@ -3057,3 +3057,6 @@ select, input[type="file"] { height: 34px !important;line-height: 30px;}
 	text-align: center;
 	width: 500px;
 }
+.entrada {
+    padding: 6px;
+  }
