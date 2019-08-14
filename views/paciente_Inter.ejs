@@ -1,261 +1,331 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Inicio</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ESPECILAIDADES</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+<style>
+        .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+      .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+      </style>
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- Content page-->
-	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-		<!-- NavBar -->
-		<nav class="full-box dashboard-Navbar">
-			<ul class="full-box list-unstyled text-right">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<!-- Content page -->
-		<div class="container-fluid">
-			<div class="page-header">
-				<h1 class="text-titles"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i>Pacientes Internados</h1>
-			</div>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <!--\\\\\\\ wrapper Start \\\\\\-->
+  <div class="header_bar">
+    <!--\\\\\\\ header Start \\\\\\-->
+    <div class="brand">
+      <!--\\\\\\\ brand Start \\\\\\-->
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      
+    </div>
+    <!--\\\\\\\ brand end \\\\\\-->
+    <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+      
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
         </div>
-        <!--Internacion de Pacientes-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                        <li class="active"><a href="#new" data-toggle="tab">Lista</a></li>
-                        <li><a href="#list" data-toggle="tab">Nuevo</a></li>
-                    </ul>
-                    <!--Lista de Pacientes Internados -->
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade active in" id="new">
-                            <div class="container-fluid">
-                                <div class="col-xs-12 lead">
-                                    <ul class="breadcrumb">
-                                        <li class="active"><a href="#listaA" data-toggle="tab">Internados</a></li>
-                                        <li><a href="#listaB" data-toggle="tab">Historial de Internados</a></li>
-                                        <li><a href="#listaC" data-toggle="tab">Diagnosticos Pendientes</a></li>
-                                        <li><a href="#listaD" data-toggle="tab">Transferidos</a></li>
-                                    </ul>
-                                    <div id="myTabContent" class="tab-content">
-                                        <!--Lista de Internados-->
-                                        <div class="tab-pane fade active in" id="listaA">
-                                            <div class="container-fluid">
-                                                <table class="fl-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Historial Clinico</th>
-                                                            <th>Nombre de Paciente</th>
-                                                            <th>Especialidad</th>
-                                                            <th>Ubicacion</th>
-                                                            <th>Fecha de Ingreso</th>
-                                                            <th>Fecha de Salida</th>
-                                                            <th>Modificar</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <!--Lista Historial de Internados-->
-                                        <div class="tab-pane fade" id="listaB">
-                                            <div class="container-fluid">
-                                                <table class="fl-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Historial Clinico</th>
-                                                            <th>Nombre de Paciente</th>
-                                                            <th>Especialidad</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <!--Lista Diagnosticos Pendientes-->
-                                        <div class="tab-pane fade" id="listaC">
-                                            <div class="container-fluid">
-                                                <table class="fl-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Historial Clinico</th>
-                                                            <th>Nombre de Paciente</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <!--Lista Transferidos-->
-                                        <div class="tab-pane fade" id="listaD">
-                                            <div class="container-fluid">
-                                                <table class="fl-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Historial Clinico</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </div>   
-                            </div>
-                        </div>
-                        <!--Registro de  Pacientes Internados-->
-                        <div class="tab-pane fade" id="list">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <form action="">
-                                        <h2 class="text-center all-tittles">REGISTRO DE PACIENTES INTERNADOS</h2>
-                                        <div class="col-md-12 panel-body">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Historial Clinico</label>
-                                                        <input class="form-control" type="text">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Edad</label>
-                                                        <input class="form-control" type="text">    
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Fecha de Ingreso</label>
-                                                        <input class="form-control" type="date">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Nombre</label>
-                                                        <input class="form-control" type="text">
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Tipo de Paciente</label>
-                                                        <select class="form-control">
-                                                            <option>INSTITUCIONAL</option>
-                                                            <option>COMBENIO</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Institucion</label>
-                                                        <select class="form-control">
-                                                            <option>NINGUNO</option>
-                                                            <option>CAJA NACIONAL DE SALUD</option>
-                                                            <option>CAJA PETROLERA DE SALUD</option>
-                                                            <option>SEGURO UNIVERSITARIO</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Proviene de:</label>
-                                                        <select class="form-control">
-                                                            <option>CONSULTA EXTERNA</option>
-                                                            <option>EMERGENCIA</option>
-                                                            <option>TRASPAZO</option>
-                                                        </select>
-                                                    </div>               
-                                                </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Observaciones</label>
-                                                <input class="form-control" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 panel-body">
-                                            <div class="col-md-12">
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Especialidad</label>
-                                                        <select class="form-control">
-                                                            <option>Pediatria</option>
-                                                            <option>Medicina General</option>
-                                                            <option>Cirugia General</option>
-                                                            <option>Ginecologia y Obstetricia</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Descricion</label>
-                                                        <select class="form-control">
-                                                            <option>Sala H.- Niños</option>
-                                                            <option>Sala H.- Hombres</option>
-                                                            <option>Sala H.- Mujeres</option>
-                                                            <option>Sala H.- 3ra. Edad</option>
-                                                            <option>Sala H.- Cirugia General</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Cama</label>
-                                                        <select class="form-control">
-                                                            <option>Cama 1</option>
-                                                            <option>Cama 2</option>
-                                                            <option>Cama 3</option>
-                                                            <option>Cama 4</option>
-                                                            <option>Cama 5</option>
-                                                        </select>
-                                                    </div>
-                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Descricion</label>
-                                                <select class="form-control">
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Camila Mamani</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                    <option>Dr. Luis Copa</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Diagnostico de Prescripcion</label>
-                                                <select class="form-control">
-                                                    <option>Lista de Enferedades</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <p class="text-center">
-                                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                            <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                        </p>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+       
+      </div>
+    </div>
+    <!--\\\\\\\ header top bar end \\\\\\-->
+  </div>
+  <!--\\\\\\\ header end \\\\\\-->
+  <div class="inner">
+    <!--\\\\\\\ inner start \\\\\\-->
+    <div class="left_nav">
+      <!--\\\\\\\left_nav start \\\\\\-->
+      
+      <div class="left_nav_slidebar">
+          <ul>
+            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul >
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Personal</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Servicios</b> </a> </li>
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle "></i> Especialidad</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Salas</b> </a> </li>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Pacientes Internacion</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
+                <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+                <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+                <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+                <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
+                <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel">
+      <!--\\\\\\\ contentpanel start\\\\\\-->
+
+        <!--\\\\\\\ container  start \\\\\\-->
+        <div class="container clear_both padding_fix">
+        <br>
+         <div class="row">
+        <div class="col-md-12">
+          <div class="block-web full">
+            <div class="header">
+                <br>
+                <br>
+              <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
+              <h3 class="content-header ">Pacientes Internados</h3>
             </div>
+            <br>
+            <br>
+                  <ul class="nav nav-tabs nav-justified nav_bg">
+                    <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-user"></i>Internados</a></li>
+                    <li class=""><a href="#pacienteatendidos" data-toggle="tab"><i class="fa fa-pencil"></i> Historial Internados</a></li>
+                    <li class=""><a href="#user-activities" data-toggle="tab"><i class="fa fa-laptop"></i> Activities</a></li>
+                    <li class=""><a href="#mymessage" data-toggle="tab"><i class="fa fa-envelope"></i> Message</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane animated fadeInRight active" id="about">
+                            <div class="header">
+             
+                                    <h3 class="content-header">Lista Cuentas</h3>
+                                  </div>
+                            <div class="porlets-content">
+                                    <div class="table-responsive">
+                                        <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                            <thead>
+                                                <tr>
+                                                        <th>#</th>
+                                                        <th>Historial Clinico</th>
+                                                        <th>Nombre de Paciente</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Ubicacion</th>
+                                                        <th>Fecha de Ingreso</th>
+                                                        <th>Fecha de Salida</th>
+                                                        <th>Modificar</th>
+                                                </tr>
+                                        </table>
+                                      </div><!--/table-responsive-->
+                                    </div><!--/porlets-content-->
+                    </div>
+                    <div class="tab-pane animated fadeInRight" id="pacienteatendidos">
+                            <div class="header">
+             
+                                    <h3 class="content-header">Lista Cuentas</h3>
+                                  </div>
+                            <div class="porlets-content">
+                                    <div class="table-responsive">
+                                        <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                            <thead>
+                                                <tr>
+                                                        <th>#</th>
+                                                        <th>Historial Clinico</th>
+                                                        <th>Nombre de Paciente</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Ubicacion</th>
+                                                        <th>Fecha de Ingreso</th>
+                                                        <th>Fecha de Salida</th>
+                                                        <th>Modificar</th>
+                                                </tr>
+                                        </table>
+                                      </div><!--/table-responsive-->
+                                    </div><!--/porlets-content-->
+                    </div>
+                    <div class="tab-pane" id="user-activities">
+                            <div class="header">
+             
+                                    <h3 class="content-header">Lista </h3>
+                                  </div>
+                            <div class="porlets-content">
+                                    <div class="table-responsive">
+                                        <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                            <thead>
+                                                <tr>
+                                                        <th>#</th>
+                                                        <th>Historial Clinico</th>
+                                                        <th>Nombre de Paciente</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Ubicacion</th>
+                                                        <th>Fecha de Ingreso</th>
+                                                        <th>Fecha de Salida</th>
+                                                        <th>Modificar</th>
+                                                </tr>
+                                        </table>
+                                      </div><!--/table-responsive-->
+                                    </div><!--/porlets-content-->
+                   
+                  </div>
+                  <div class="tab-pane" id="mymessage">
+                        <div class="header">
+         
+                                <h3 class="content-header">Lista gffgf</h3>
+                              </div>
+                        <div class="porlets-content">
+                                <div class="table-responsive">
+                                    <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                        <thead>
+                                            <tr>
+                                                    <th>#</th>
+                                                    <th>Historial Clinico</th>
+                                                    <th>Nombre de Paciente</th>
+                                                    <th>Especialidad</th>
+                                                    <th>Ubicacion</th>
+                                                    <th>Fecha de Ingreso</th>
+                                                    <th>Fecha de Salida</th>
+                                                    <th>Modificar</th>
+                                            </tr>
+                                    </table>
+                                  </div><!--/table-responsive-->
+                                </div><!--/porlets-content-->
+               
+              </div>
+                  <!--/tab-content-->
+                
+                
+              
+            
+          </div>
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+      
+      
         </div>
-	    </section>
-	<!--====== Scripts -->
-	<%- include("partials/scripts") -%>
+      <!--\\\\\\\ container  end \\\\\\-->
+    
+    <!--\\\\\\\ content panel end \\\\\\-->
+  </div>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+
+
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
 </body>
 </html>
