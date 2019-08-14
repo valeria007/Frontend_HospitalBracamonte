@@ -11,6 +11,7 @@ const carMedicamentos = new Vue({
       
 
         aljand:'aljand 321',
+        mostrar:false,
 
         medicamentos: [],
         itemsCar:[],
@@ -69,6 +70,7 @@ const carMedicamentos = new Vue({
       .then(res => res.json())
       .then(res => {
         this.ListMedicamentos = res;
+        console.log(this.ListMedicamentos)
       })
 
       axios
@@ -384,6 +386,6 @@ const carMedicamentos = new Vue({
 
         quitar(a,b){
             this.items = {};
-        }
+        },
     }    
 })

@@ -1,660 +1,429 @@
-<!DOCTYPE >
-<html >
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HOSPITAL</title>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-	<link rel="/stylesheet" href="/css/selectBuscar.css">
-	
-	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-	<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-	
-<style>
-		div.a {
-				text-align: center;
-		}
-		h1.letras {
-  font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-  
-}
-</style>
-<script type="text/x-template" id="modal-template">
-  <transition name="modal">
-      <div class="modal-mask">
-          <div class="modal-wrapper">
-                <div class="modal-container">
-                  
-                    <div class="modal-header">
-                      <slot name="header">
-                              default header
-                              </slot>
-                            </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <%- include("../partials/head") -%>	
+  <script type="text/x-template" id="modal-template">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+                  <div class="modal-container">
                     
-                            <div class="modal-body">
-                              <slot name="body">                        
-
+                      <div class="modal-header">
+                        <slot name="header">
+                                default header
                                 </slot>
-                            </div>
-                    
-                            <div class="modal-footer">
-                            <slot name="footer">
-                        default footer <br>
-                        <a  @click="$emit('close')"> OK </a>
-                      </slot>
-                    </div>
-                </div>
-          </div>
-      </div>
-  </transition>
-</script>
+                              </div>
+                      
+                              <div class="modal-body">
+                                <slot name="body">                        
 
-<style>
-  #input-search{
-      width: 300px;
-      height: 40px;
-      font-size: 20px;
-      text-indent: 10px;
-  }
-  .content-search{
-      
-      width: 80%;
-      height: 25vh;
-      position: absolute;
-      top: 330px;
-      left: 50px;
-      background: rgba(0, 14, 47, 0.897);
-      display: none;
-  }
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+                                  </slot>
+                              </div>
+                      
+                              <div class="modal-footer">
+                              <slot name="footer">
+                          default footer <br>
+                          <a  @click="$emit('close')"> OK </a>
+                        </slot>
+                      </div>
+                  </div>
+            </div>
+        </div>
+    </transition>
+  </script>
 
-  .content-table table{
+  <style>
+    #input-search{
+        width: 300px;
+        height: 40px;
+        font-size: 20px;
+        text-indent: 10px;
+    }
+    .content-search{
+        
+        width: 80%;
+        height: 25vh;
+        position: absolute;
+        top: 330px;
+        left: 50px;
+        background: rgba(0, 14, 47, 0.897);
+        display: none;
+    }
+    /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+    .content-table table{
+        width: 100%;
+    }
+
+    tbody tr td a{
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+    }
+
+    tbody tr td a:hover{
+        background: rgba(0,0,0,0.3);
+    }
+
+    #table_length, #table_filter, #table_info, #table_paginate{
+        display: none;
+    }
+
+    .modal-mask {
+      position: fixed;
+      z-index: 9998;
+      top: 0;
+      left: 0;
       width: 100%;
-  }
+      height: 100%;
+      background-color: rgba(0, 0, 0, .5);
+      display: table;
+      transition: opacity .3s ease;
+    }
 
-  tbody tr td a{
-      display: block;
-      padding: 10px;
-      color: white;
+    .modal-wrapper {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .modal-container {
+      width: 1000px;
+      margin: 0px auto;
+      padding: 20px 30px;
+      background-color: #fff;
+      border-radius: 2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+      transition: all .3s ease;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    .modal-header h3 {
+      margin-top: 0;
+      color: #42b983;
+    }
+
+    .modal-body {
+      margin: 20px 0;
+    }
+
+    .modal-default-button {
+      float: right;
+    }
+
+    /*
+     * The following styles are auto-applied to elements with
+     * transition="modal" when their visibility is toggled
+     * by Vue.js.
+     *
+     * You can easily play with the modal transition by editing
+     * these styles.
+     */
+        
+    .modal-enter {
+      opacity: 0;
+    }
+    
+    .modal-leave-active {
+      opacity: 0;
+    }
+    
+    .modal-enter .modal-container,
+    .modal-leave-active .modal-container {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    /*
+        css pagination
+    */
+    .pagination1 {
+      display: inline-block;
+    }
+
+    .pagination1 a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
       text-decoration: none;
-  }
+    }
 
-  tbody tr td a:hover{
-      background: rgba(0,0,0,0.3);
-  }
+    .pagination1 a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
 
-  #table_length, #table_filter, #table_info, #table_paginate{
-      display: none;
-  }
+    .pagination1 a:hover:not(.active) {background-color: #ddd;}
 
-  .modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    display: table;
-    transition: opacity .3s ease;
-  }
-
-  .modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-  }
-
-  .modal-container {
-    width: 1000px;
-    margin: 0px auto;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-    transition: all .3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-  }
-
-  .modal-header h3 {
-    margin-top: 0;
-    color: #42b983;
-  }
-
-  .modal-body {
-    margin: 20px 0;
-  }
-
-  .modal-default-button {
-    float: right;
-  }
-
-  /*
-   * The following styles are auto-applied to elements with
-   * transition="modal" when their visibility is toggled
-   * by Vue.js.
-   *
-   * You can easily play with the modal transition by editing
-   * these styles.
-   */
-      
-  .modal-enter {
-    opacity: 0;
-  }
-  
-  .modal-leave-active {
-    opacity: 0;
-  }
-  
-  .modal-enter .modal-container,
-  .modal-leave-active .modal-container {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-
-  /*
-      css pagination
-  */
-  .pagination1 {
-    display: inline-block;
-  }
-
-  .pagination1 a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-  }
-
-  .pagination1 a.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-
-  .pagination1 a:hover:not(.active) {background-color: #ddd;}
-
-</style>
+  </style>
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
-  <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
-    <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
-    </div>
-    <!--\\\\\\\ brand end \\\\\\-->
-    <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-    
-      <div class="top_right_bar">
-        
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+  <div class="wrapper">
+    <%- include("../partials/menu") -%>
+    <div class="inner">
+      <div class="left_nav">
+        <!--\\\\\\\left_nav start \\\\\\-->
+        <div class="left_nav_slidebar">
+          <ul>
+            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
+                <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pedidos</b> </a> </li>
+                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+              </ul>
+            </li>
           </ul>
-        </div> 
-      </div>
+        </div>
+      </div>      
     </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
-  <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
-    <div class="left_nav">
 
-      <!--\\\\\\\left_nav start \\\\\\-->
-    
-      <div class="left_nav_slidebar">
-        <ul>
-          <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul >
-              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul class="opened" style="display:block">
-              <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-              <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
-              <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-              <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pedidos</b> </a> </li>
-              <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
-              <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-              <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-              <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-              <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
+  <div id="carMedicamentos">
     <div class="contentpanel"><br>
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <!--Formulario-->
-      <div class="container clear_both padding_fix" id="carMedicamentos">
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="row">
+      <div class="container clear_both padding_fix" >
+      <!--\\\\\\\ container  start \\\\\\-->
+      <div class="row">
           <div class="col-md-12">
             <div class="block-web">
               <div class="header">
-                <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                  <h3 class="content-header"><i class="fa fa-shopping-cart icon"></i> Registro de Pedido</h3>
+               
+                <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar" ><i class="fa fa-chevron-down"></i></a> <a class="close-down"><i class="fa fa-times"></i></a> </div>
+                <h3 class="content-header">Validation Types</h3>
+              </div>
+              <div class="porlets-content" v-if="mostrar">
+                <form class="form-horizontal group-border-dashed" action="#" parsley-validate novalidate>
+                  
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Codigo de Compra:</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" required placeholder="Type something" />
+                    </div>
+                  </div><!--/form-group--> 
+
+                  <div class="form-group">                  
+                    <label class="col-sm-3 control-label">Especifique el estatus de la compra:</label>
+                    <div class="col-sm-6">
+                      <select class="form-control" id="source" v-model="boletaPago">
+                        <optgroup label="Estatus de la compra">
+                          <option>FACTURA</option>
+                          <option>BOLETA DE VENTA</option>
+                          <option>NOTA DE CREDITO</option>
+                          <option>NOTA DE DEBITO</option>
+                          <option>CONTROL INTERNO </option>
+                        </optgroup>                       
+                      </select>
+                    </div><!--/col-sm-9-->                    
+                  </div><!--/form-group--> 
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Tipo de Material:</label>                    
+                    <div class="col-sm-6">
+                      <select class="form-control" id="source" v-model="tipoMaterial">
+                        <optgroup label="Tipo de Material">
+                          <% for(var i=0; i< grup.length; i++) { %>
+                            <option><%=grup[i].descripcion%></option>                                                            
+                          <% } %>
+                        </optgroup>                       
+                      </select>
+                    </div><!--/col-sm-9--> 
+                  </div><!--/form-group--> 
+                  <div class="form-group">
+                   
+                    <label class="control-label col-md-3">Fecha de Ingreso:</label>
+                    <div class="col-md-6 col-xs-10">
+                      <input type="text" value="" size="16" class="form-control form-control-inline input-medium default-date-picker">
+                      <span class="help-block">Select date</span> </div>
+                      
+                  </div><!--/form-group--> 
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Proveedor:</label>
+                    <div class="col-sm-6">
+                      <select class="form-control" id="source" v-model="proveedor">
+                        <optgroup label="Proveedor">
+                          <%if (proveedor) { %>
+                            <%for(var i=0; i < proveedor.length; i++) {%>
+                            <option> <%=proveedor[i].nombre%></option>
+                            <% } %>
+                          <% } else { %>
+                            <option value="">No hay Proveedores</option>                                                           
+                          <% } %>
+                        </optgroup>                       
+                      </select>
+                    </div><!--/col-sm-9--> 
+                  </div><!--/form-group--> 
+                  
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Observaciones</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control"></textarea>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button class="btn btn-default">Cancel</button>
+                    </div>
+                  </div><!--/form-group--> 
+                </form>
+              </div><!--/porlets-content--> 
+            </div><!--/block-web--> 
+          </div><!--/col-md-12--> 
+        </div><!--/row-->   
+        
+        <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New Task</span> </a> <br>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Compose New Task</h4>
+              </div>
+              <div class="row">
+                  <div class="col-lg-12"> 
+                      <section class="panel default blue_title h2">
+                      <div class="panel-heading">
+                       hover<span class="semi-bold">table</span> 
+                      </div>
+                      <div class="panel-body">
+                      
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Username</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td colspan="2">Larry the Bird</td>
+                      <td>@twitter</td>
+                    </tr>
+                  </tbody>
+                </table>
+             
+                      </div>
+                      </section>
+                      </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+	  
+        <div class="row">
+            <div class="col-md-6">
+              <div class="block-web">
+               <div class="header">
+                  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+                  <h3 class="content-header">Data Table</h3>
                 </div>
-                <div class="porlets-content">
-                  <span style="color: red;">{{respuestaPost}}</span>
-                    <form @submit="formSubmit" method="POST" parsley-validate novalidate>
-                      <h2 class="text-center all-tittles">REGISTRO DE COMPRA</h2>
-                      <div class="col-md-12">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Codigo de Pedido</label>
-                            <input type="text" v-model="codigoCompra" parsley-trigger="change" required placeholder="Enter user name" class="form-control">
-                          </div><!--/form-group-->
-                          <div class="form-group">
-                            <label>Tipo de Material:</label>
-                            <select v-model="tipoMaterial">
-                              <% for(var i=0; i< grup.length; i++) { %>
-                              <option><%=grup[i].descripcion%></option>                                                            
-                              <% } %>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                              <label>Proveedor:</label>
-                                    <select v-model="proveedor">
-                                        <%if (proveedor) { %>
-                                            <%for(var i=0; i < proveedor.length; i++) {%>
-                                            <option> <%=proveedor[i].nombre%></option>
-                                            <% } %>
-                                        <% } else { %>
-                                           <option value="">No hay Proveedores</option>                                                           
-                                           <% } %>
-                                        </select>
-                                </div>
-                                
-                            </div>
-                            <div class="col-md-6">
-                                
-                                <div class="form-group">
-                                    <label>Fecha de Ingreso:</label>
-                                    <input type="date" v-model="fechaIngreso"  class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <label>Estatus de la compra:</label>
-                                  <select v-model="boletaPago">
-                                      <option>FACTURA</option>
-                                      <option>BOLETA DE VENTA</option>
-                                      <option>NOTA DE CREDITO</option>
-                                      <option>NOTA DE DEBITO</option>
-                                      <option>CONTROL INTERNO </option>
-                                  </select>
-                              </div>
-                                <div class="form-group">
-                                    <label>Encargado:</label>
-                                    <input type="date" v-model="fechaIngreso"  class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <!--modal-->
-
-                        <div class="panel-body">
-                        <!-- Button trigger modal -->
-                          <button data-target="#myModal2" data-toggle="modal" class="btn btn-primary btn-lg mb10"> lista de med. </button>
-                          <button data-target="#myModal3" data-toggle="modal" class="btn btn-primary btn-lg mb10"> nuevo producto </button>
-                        </div>  
-                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                  <h4 class="modal-title" id="myModalLabel">Reportes de Pedidos</h4>
-                                </div>
-                                <div class="modal-body"> 
-                                        <div class="box m-form">
-                                                <label class="label">Buscar Medicamentos</label>
-                                                <div class="control is-grouped">
-                                                  <p class="control is-expanded">
-                                                    <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el nombre y la Presentacion"><br>
-                                                    <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
-                                                  </p>
-                                                  <p class="control">
-                                                    <a class="button is-info" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">
-                                                      Clear
-                                                    </a>
-                                                  </p>
-                                                </div>     
-                                            </div> 
-    
-                                            <div class="pagination1">
-                                                <a v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}">&laquo;</a>
-                                                <template v-for="item in paginationMeds.filteredMeds">
-                                                    <a    v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
-                                                </template>
-                                                <a v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">&raquo;</a>
-                                            </div>
-                                            <table class="fl-table" id="myTable">
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Cantidad</th>
-                                                        <th>Nombre</th>
-                                                        <th>Precentacion</th>
-                                                        <th>Cantidad</th>   
-                                                   
-                                                    </tr>
-                                                </thead>
-                                                <tbody v-for="(med, index) in paginatedMeds">
-                                                    <tr>
-                                                        <td><a @click="insertar(med.id)" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a> </td>
-                                                        <td><input type="number" style="width:60px;height:30px;" v-model="cantidadMedicamento"></td>
-                                                        <td>{{med.nombre}}</td>
-                                                        <td>{{med.presentacion}}</td>
-                                                        <td>{{med.unidades}}</td>
-                                                       
-                                                    </tr>
-                                                </tbody>
-                                            </table>           
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                        <!--<a @click="showModal = true, searchInTheListMed('')">Show Modal</a>
-
-                        <modal v-if="showModal" @close="showModal = false">                                                
-                                <h3 slot="header">modal vue</h3>
-                                <div slot="body">
-                                    <div class="box m-form">
-                                        <label class="label">Buscar Medicamentos</label>
-                                        <div class="control is-grouped">
-                                          <p class="control is-expanded">
-                                            <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el nombre y la Presentacion"><br>
-                                            <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
-                                          </p>
-                                          <p class="control">
-                                            <a class="button is-info" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">
-                                              Clear
-                                            </a>
-                                          </p>
-                                        </div>     
-                                    </div> 
-
-                                    <div class="pagination1">
-                                        <a v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}">&laquo;</a>
-                                        <template v-for="item in paginationMeds.filteredMeds">
-                                            <a    v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
-                                        </template>
-                                        <a v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">&raquo;</a>
-                                    </div>
-                                    <table class="fl-table" id="myTable">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Cantidad</th>
-                                                <th>Nombre</th>
-                                                <th>Precentacion</th>
-                                                <th>Cantidad</th>   
-                                           
-                                            </tr>
-                                        </thead>
-                                        <tbody v-for="(med, index) in paginatedMeds">
-                                            <tr>
-                                                <td><a @click="insertar(med.id)" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a> </td>
-                                                <td><input type="number" style="width:60px;height:30px;" v-model="cantidadMedicamento"></td>
-                                                <td>{{med.nombre}}</td>
-                                                <td>{{med.presentacion}}</td>
-                                                <td>{{med.unidades}}</td>
-                                               
-                                            </tr>
-                                        </tbody>
-                                    </table>                                             
-                                </div>
-                            </modal>-->
-                        <!---->
-                        <input type="search" id="input-search" v-model="searchQuery" placeholder="Buscar" @click="agregar" autocomplete="off">
-                        <div class="table-responsive">
-                                <table  class="display table table-bordered table-striped">
-                                    <thead>
-                                        <th></th>
-                                        <th>Cantidad  {{cantidadMedicamento}}</th>
-                                        <th>Nombre</th>
-                                        <th>Precentacion</th>
-                                        <th>Cantidad</th>                                                                     
-                                    </tr>
-                                </thead>
-                                <tbody v-for="item in filteredResources">
-                                    <tr>
-                                        <td> <a @click="insertar(item.id)"> Insertar </a>   </td>
-                                        <td><input type="number" style="width:60px;height:30px;" v-model="cantidadMedicamento"></td>
-                                        <td><a target="_blank">{{item.nombre}}</a></td>
-                                        <td><a target="_blank">{{item.presentacion}}</a></td>
-                                        <td><a target="_blank">{{item.unidades}}</a></td>
-                                        </tr>
-                                </tbody>
-                                </table>
-                              </div>
-                              <a @click="quitar"> Limpiar Carrito </a>
-                              <div class="table-responsive">
-                                    <table  class="display table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                    <th>#</th>
-                                                    <th>Codigo</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Cantidad</th>
-                                                    
-                                                    <th>Precio</th>
-                                                    <th>Eliminar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody v-for="(car, index) in items">                                                    
-                                                <tr>
-                                                    <td>{{index + 1}}</td>
-                                                    <td>{{car.qty}}</td>
-                                                    <td>{{car.item.codificacion}}</td>
-                                                    <td>{{car.item.nombre}}</td>
-                                                    <td>{{car.item.cantidad}}</td>
-                                                    <td>{{car.item.price}}</td>
-                                                    <td>{{car.price}}</td>
-                                                    <td> <a @click="reduceByOne(car.item.id)">Reducir</a>   </td>
-                                                    <td><a @click="removeItem(car.item.id)">Eliminar</a> </td>                                                        
-                                               </tr>    
-                                    </tbody>
-                                    </table>
-                                  </div>
-                                  <div class="col-md-12">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <div class="col-sm-9">
-                                                    <div class="input-group"> <span class="input-group-addon">S/ Sub Total</span>
-                                                        <input type="text" class="form-control" placeholder=" Sub Total">
-                                                    </div>
-                                                </div>
-                                              </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <div class="col-sm-9">
-                                                    <div class="input-group"> <span class="input-group-addon">S/ IGV 18.00%:</span>
-                                                        <input type="text" class="form-control" placeholder="IGV">
-                                                    </div>
-                                                </div>
-                                              </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <div class="col-sm-9">
-                                                    <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                        <input type="text" class="form-control" placeholder="Total">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-center">
-                                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-                <button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-                                    </p>
-
-                        <!--/form-group-->
-                        <!--/form-group-->
-                        <!--/checkbox-->
-                      </form>
-                    </div><!--/porlets-content-->
-                  </div><!--/block-web--> 
-                </div><!--/col-md-6-->
+             <div class="porlets-content">
+                <div class="table-responsive">
+                    <table  class="display table table-bordered table-striped" id="dynamic-table">
+                      <thead>
+                        <tr>
+                            <th></th>
+                            <th>Cantidad</th>
+                            <th>Nombre</th>
+                            <th>Precentacion</th>
+                            <th>Cantidad</th> 
+                        </tr>
+                      </thead>
+                      <tbody v-for="(med, index) in ListMedicamentos">
+                        
+                          <td><a @click="insertar(med.id)" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a> </td>
+                          <td><input type="number" style="width:60px;height:30px;" v-model="cantidadMedicamento"></td>
+                          <td>{{med.nombre}}</td>
+                          <td>{{med.presentacion}}</td>
+                          <td>{{med.unidades}}</td>
+              
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th>Rendering engine</th>
+                          <th>Browser</th>
+                          <th>Platform(s)</th>
+                          <th class="hidden-phone">Engine version</th>
+                          <th class="hidden-phone">CSS grade</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div><!--/table-responsive-->
+                </div><!--/porlets-content-->
                 
-              </div><!--/row-->
-</div>
+                
+              </div><!--/block-web--> 
+            </div><!--/col-md-12--> 
+          </div><!--/row-->
+	  
+	  
+			
+			</div>
     <!--\\\\\\\ content panel end \\\\\\-->
+    </div>
+
   </div>
-  <!--\\\\\\\ inner end\\\\\\-->
-</div>
-<!--\\\\\\\ wrapper end\\\\\\-->
+  </div>
+  <%- include("../partials/scripts") -%>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+  <script src="/js/vue/pedidos.js"></script>
 
+  <script src="https://dl.dropboxusercontent.com/s/5mqlcxg4264ri32/jquery.dataTables.min.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="/js/jquery-2.1.0.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/common-script.js"></script>
-<script src="/js/jquery.slimscroll.min.js"></script>
-<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-<script src="/plugins/data-tables/dynamic_table_init.js"></script>
-<script src="/plugins/edit-table/edit-table.js"></script>
-
-<script src="/js/selectBuscar.js"></script>
-
-<!--Validaciones-->
-<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
-<script src="/plugins/checkbox/zepto.js"></script>
-<script src="/plugins/checkbox/icheck.js"></script>
-<script src="/js/icheck-init.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
-<script type="text/javascript" src="/js/form-components.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
-<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
-<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
-<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
-
-
-
-<script src="/plugins/validation/parsley.min.js"></script>
-
-<script>
-
-
-/*==Porlets Actions==*/
-    $('.minimize').click(function(e){
-      var h = $(this).parents(".header");
-      var c = h.next('.porlets-content');
-      var p = h.parent();
-      
-      c.slideToggle();
-      
-      p.toggleClass('closed');
-      
-      e.preventDefault();
-    });
-    
-    $('.refresh').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
-      
-      loading.appendTo(p);
-      loading.fadeIn();
-      setTimeout(function() {
-        loading.fadeOut();
-      }, 1000);
-      
-      e.preventDefault();
-    });
-    
-    $('.close-down').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      
-      p.fadeOut(function(){
-        $(this).remove();
-      });
-      e.preventDefault();
-    });
-
-</script>
-<script>
-    jQuery(document).ready(function() {
-			EditableTable.init()
-		});
- </script>
- 
- <script src="/js/jPushMenu.js"></script> 
-<script src="/js/side-chats.js"></script>
-
-
-
-<script>
-	$('#bs').materialSelect({
-		BSsearchIn: true
-	});
-</script>
- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-<script src="/axios/dist/axios.min.js"></script>
-<script src="/js/get/getECP.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
-<script src="/js/vue/pedidos.js"></script>
-
-<script src="https://dl.dropboxusercontent.com/s/5mqlcxg4264ri32/jquery.dataTables.min.js"></script>
-
-
+  <script>
+    var buscador = $("#table").DataTable();
+    $("#input-search").keyup(function(){
+        buscador.search($(this).val()).draw();
+        if ($("#input-search").val() == ""){
+            $(".content-search").fadeOut(300);
+        }else{
+            $(".content-search").fadeIn(300);
+        }
+    })
+  </script>
 </body>
 </html>
+

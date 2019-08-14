@@ -26,15 +26,22 @@ router.get('/reportes_salidas', (req,res) => {
 
 router.get('/volver', (req,res) => {
     oneGrupoAsig = null
+    pass = null
     res.redirect('/almacen/grupoAsig'); 
 })
-
+var msg, pass, err;
 ///estos serv son para añadir a la tabla o al modelo grupo Asignacion
 router.get('/grupoAsig',(req, res) => {
     fetch('http://localhost:3500/api/asignacion')   
         .then(resp => resp.json())
         .then(resp =>{
-            res.render('Almacen/grupoAsig',{resp,oneGrupoAsig});
+            res.render('Almacen/grupoAsig',{
+                resp,
+                oneGrupoAsig,
+                msg,
+                pass,
+                err
+            });
     })
     .catch(error => {
         console.error('Error:', error)
@@ -56,10 +63,16 @@ router.post('/grupoAsig', (req, res) => {
     .catch(error => console.error('Error:', error))
     .then(data => { 
         if(data.success == false){
-            res.send(data.message)
+            msg = data.message;
+            err = req.body;
+            console.log(err.codigo, " esto es el err <<<<<<<<<<<<<<<<<")
+            res.redirect('/almacen/grupoAsig');
+            pass = null
         }else{
-            console.log(data)
+            pass = data.message;
             res.redirect('/almacen/grupoAsig'); 
+            msg = null;
+            err = null;
         }
     })
 });
@@ -92,8 +105,16 @@ router.post('/updateGPA/:id', (req,res) =>{
     fetch('http://localhost:3500/api/GrupoAsigUPDATE/'+id.id,esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(data => {      
-      res.redirect('/almacen/GrupoAsigONLY/'+id.id);
+    .then(data => {   
+      if (data.success == false){
+          msg = data.message
+          res.redirect('/almacen/GrupoAsigONLY/'+id.id);
+      }else{
+        pass = data.message
+        res.redirect('/almacen/GrupoAsigONLY/'+id.id);       
+        msg = null
+      }  
+      
     })
 
 });
