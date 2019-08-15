@@ -159,13 +159,13 @@
               <% } else { %>
               <form class="form-horizontal group-border-dashed" action="/almacen/updateGPA/<%=oneGrupoAsig[0].id%>" method="POST" parsley-validate novalidate>
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">Codigo</label>
+                  <label class="col-sm-3 control-label">Codigo:</label>
                   <div class="col-sm-6">
                     <input type="text" class="form-control" value="<%=oneGrupoAsig[0].codigo%>" required parsley-minlength="3" name="codigo" />
                   </div>
                 </div><!--/form-group--> 
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">Descripcion</label>
+                  <label class="col-sm-3 control-label">Descripcion:</label>
                   <div class="col-sm-6">
                     <input type="text" class="form-control" value="<%=oneGrupoAsig[0].descripcion%>"  required parsley-minlength="6" name="descripcion" />
                   </div>
