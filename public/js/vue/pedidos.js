@@ -19,7 +19,7 @@ const carMedicamentos = new Vue({
         cantidadMedicamento:'',
         showModal: false,
         
-        items : {},
+        listItems : {},
         totalQty : 0,
         totalPrice : 0,
 
@@ -275,63 +275,63 @@ const carMedicamentos = new Vue({
               
             })
         },
-        insertar: function (id){
-          for(var i = 0; i < this.cantidadMedicamento; i++){
+        insertar: function (id){          
             axios
             .get('http://localhost:7000/pedidos/carrito/'+id)
             .then(response => {
-                var car = {
-                    id: response.data.id,
-                    codificacion: response.data.codificacion,
-                    nombre: response.data.nombre,
-                    cantidad: response.data.cantidad,
-                    price: response.data.price
-                }   
-                this.itemsCar = car;
-                this.add(car,id);
+              var car = {
+                  id: response.data.id,
+                  codificacion: response.data.codificacion,
+                  nombre: response.data.nombre,
+                  cantidad: response.data.cantidad,
+                  price: response.data.price
+              }   
+              this.itemsCar = car;
+              this.add(car,id);
             }) 
-          }           
+                     
         },       
 
         add: function(item, id)  {
-            let storedItem = this.items[id];
-            if (!storedItem) {
-                storedItem = this.items[id] = {
-                    item: item,
-                    qty: 0,
-                    price: 0
-                };
-                
-            }
-            storedItem.qty++;
-            storedItem.price = storedItem.item.price * storedItem.qty;
-            this.totalQty++;
-            this.totalPrice += 1*storedItem.item.price;
+          let storedItem = this.listItems[id];
+          console.log(storedItem)
+          if (!storedItem) {
+              storedItem = this.listItems[id] = {
+                  item: item,
+                  qty: 0,
+                  price: 0
+              };
+
+          }
+          storedItem.qty++;
+          storedItem.price = storedItem.item.price * storedItem.qty;
+          this.totalQty++;
+          this.totalPrice += 1*storedItem.item.price;
             
         },
 
         reduceByOne (id) {
-            this.items[id].qty--;
-            this.items[id].price -= this.items[id].item.price;
+            this.listItems[id].qty--;
+            this.listItems[id].price -= this.listItems[id].item.price;
             this.totalQty--;
-            this.totalPrice -= this.items[id].item.price;
+            this.totalPrice -= this.listItems[id].item.price;
     
-            if (this.items[id].qty <= 0) {
-                console.log(this.items[id])
-                delete this.items[id];
+            if (this.listItems[id].qty <= 0) {
+                console.log(this.listItems[id])
+                delete this.listItems[id];
             }
         },
 
         removeItem(id) {
-            this.totalQty -= this.items[id].qty;
-            this.totalPrice -= this.items[id].price;
-            delete this.items[id];
+            this.totalQty -= this.listItems[id].qty;
+            this.totalPrice -= this.listItems[id].price;
+            delete this.listItems[id];
         },
 
         generateArray: function () {
             let arr = [];
-            for (const id in this.items) {
-                arr.push(this.items[id]);
+            for (const id in this.listItems) {
+                arr.push(this.listItems[id]);
             }
             return arr;
         },
@@ -342,38 +342,47 @@ const carMedicamentos = new Vue({
                 this.respuestaPost = "No se seleciono un producto"
                 console.log(this.respuestaPost)
             }else{
-                axios.post('http://localhost:7000/pedidos/PostCarrito', {
-                    codigoCompra:this.codigoCompra,
-                    boletaPago:this.boletaPago,
-                    tipoMaterial:this.tipoMaterial,
-                    fechaIngreso:this.fechaIngreso,
-                    proveedor:this.proveedor,
-                    productosDelPedido: this.generateArray(),
-                    Observaciones:this.Observaciones,
-                    subTotal:this.totalPrice,
-                    iva:this.totalPrice * 0.13,
-                    total:this.totalPrice + this.totalPrice * 0.13
-                })
-                .then(function (response) {
-                    console.log(response)
-                    this.respuestaPost = '';
-                })
-                .catch(function (error) {
-                    console.log(error)
-                });
+              var data  = {
+                codigoCompra:this.codigoCompra,
+                boletaPago:this.boletaPago,
+                tipoMaterial:this.tipoMaterial,
+                fechaIngreso:this.fechaIngreso,
+                proveedor:this.proveedor,
+                productosDelPedido: this.generateArray(),
+                Observaciones:this.Observaciones,
+                subTotal:this.totalPrice,
+                iva:this.totalPrice * 0.13,
+                total:this.totalPrice + this.totalPrice * 0.13
+              };
+              var esto = {
+                  method: 'POST',
+                  body: JSON.stringify(data),
+                  headers:{
+                    'Content-type' : "application/json"
+                  }
+              };
+              fetch('http://localhost:7000/pedidos/PostCarrito',esto)
+              .then(res => res.json())
+              .catch(error => console.error('Error:', error))
+              .then(data => { 
+                if(data.success == false){
+                  this.respuestaPost = data.message;
+                }else{
+                  this.respuestaPost = data.message;
 
-                this.codigoCompra = ""
-                this.boletaPago = ""
-                this.tipoMaterial = ""
-                this.fechaIngreso = ""
-                this.proveedor = ""
-                this.Observaciones = ""
-                this.totalPrice = 0;
-                this.totalQty = 0;
-                this.items = {};
-                
-                
-            }            
+                  this.codigoCompra = ""
+                  this.boletaPago = ""
+                  this.tipoMaterial = ""
+                  this.fechaIngreso = ""
+                  this.proveedor = ""
+                  this.Observaciones = ""
+                  this.totalPrice = 0;
+                  this.totalQty = 0;
+                  this.listItems = {};   
+                }
+                console.log(data)
+              })             
+            }        
         },
         pedidos(){
             axios
@@ -385,7 +394,7 @@ const carMedicamentos = new Vue({
         },
 
         quitar(a,b){
-            this.items = {};
+            this.listItems = {};
         },
     }    
 })

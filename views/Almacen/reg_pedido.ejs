@@ -6,161 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <%- include("../partials/head") -%>	
-  <script type="text/x-template" id="modal-template">
-    <transition name="modal">
-        <div class="modal-mask">
-            <div class="modal-wrapper">
-                  <div class="modal-container">
-                    
-                      <div class="modal-header">
-                        <slot name="header">
-                                default header
-                                </slot>
-                              </div>
-                      
-                              <div class="modal-body">
-                                <slot name="body">                        
-
-                                  </slot>
-                              </div>
-                      
-                              <div class="modal-footer">
-                              <slot name="footer">
-                          default footer <br>
-                          <a  @click="$emit('close')"> OK </a>
-                        </slot>
-                      </div>
-                  </div>
-            </div>
-        </div>
-    </transition>
-  </script>
-
-  <style>
-    #input-search{
-        width: 300px;
-        height: 40px;
-        font-size: 20px;
-        text-indent: 10px;
-    }
-    .content-search{
-        
-        width: 80%;
-        height: 25vh;
-        position: absolute;
-        top: 330px;
-        left: 50px;
-        background: rgba(0, 14, 47, 0.897);
-        display: none;
-    }
-    /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
-
-    .content-table table{
-        width: 100%;
-    }
-
-    tbody tr td a{
-        display: block;
-        padding: 10px;
-        color: white;
-        text-decoration: none;
-    }
-
-    tbody tr td a:hover{
-        background: rgba(0,0,0,0.3);
-    }
-
-    #table_length, #table_filter, #table_info, #table_paginate{
-        display: none;
-    }
-
-    .modal-mask {
-      position: fixed;
-      z-index: 9998;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, .5);
-      display: table;
-      transition: opacity .3s ease;
-    }
-
-    .modal-wrapper {
-      display: table-cell;
-      vertical-align: middle;
-    }
-
-    .modal-container {
-      width: 1000px;
-      margin: 0px auto;
-      padding: 20px 30px;
-      background-color: #fff;
-      border-radius: 2px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-      transition: all .3s ease;
-      font-family: Helvetica, Arial, sans-serif;
-    }
-
-    .modal-header h3 {
-      margin-top: 0;
-      color: #42b983;
-    }
-
-    .modal-body {
-      margin: 20px 0;
-    }
-
-    .modal-default-button {
-      float: right;
-    }
-
-    /*
-     * The following styles are auto-applied to elements with
-     * transition="modal" when their visibility is toggled
-     * by Vue.js.
-     *
-     * You can easily play with the modal transition by editing
-     * these styles.
-     */
-        
-    .modal-enter {
-      opacity: 0;
-    }
-    
-    .modal-leave-active {
-      opacity: 0;
-    }
-    
-    .modal-enter .modal-container,
-    .modal-leave-active .modal-container {
-      -webkit-transform: scale(1.1);
-      transform: scale(1.1);
-    }
-
-    /*
-        css pagination
-    */
-    .pagination1 {
-      display: inline-block;
-    }
-
-    .pagination1 a {
-      color: black;
-      float: left;
-      padding: 8px 16px;
-      text-decoration: none;
-    }
-
-    .pagination1 a.active {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    .pagination1 a:hover:not(.active) {background-color: #ddd;}
-
-  </style>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -202,8 +50,11 @@
     <div class="contentpanel"><br>
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <!--Formulario-->
+      
       <div class="container clear_both padding_fix" >
       <!--\\\\\\\ container  start \\\\\\-->
+      <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New Task</span> </a> <br> <br> <br>
+
       <div class="row">
           <div class="col-md-12">
             <div class="block-web">
@@ -211,14 +62,16 @@
                
                 <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar" ><i class="fa fa-chevron-down"></i></a> <a class="close-down"><i class="fa fa-times"></i></a> </div>
                 <h3 class="content-header">Validation Types</h3>
+                <span style="color: red;">{{respuestaPost}}</span>
               </div>
               <div class="porlets-content" v-if="mostrar">
-                <form class="form-horizontal group-border-dashed" action="#" parsley-validate novalidate>
+                 
+                <form @submit="formSubmit" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                   
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Codigo de Compra:</label>
                     <div class="col-sm-6">
-                      <input type="text" class="form-control" required placeholder="Type something" />
+                      <input type="text" class="form-control" required placeholder="Type something" v-model="codigoCompra" />
                     </div>
                   </div><!--/form-group--> 
 
@@ -253,9 +106,9 @@
                    
                     <label class="control-label col-md-3">Fecha de Ingreso:</label>
                     <div class="col-md-6 col-xs-10">
-                      <input type="text" value="" size="16" class="form-control form-control-inline input-medium default-date-picker">
-                      <span class="help-block">Select date</span> </div>
-                      
+                      <input type="text" value="" size="16" class="form-control form-control-inline input-medium default-date-picker" v-model="fechaIngreso">
+                      <span class="help-block">Select date</span> 
+                    </div>                      
                   </div><!--/form-group--> 
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Proveedor:</label>
@@ -277,7 +130,7 @@
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Observaciones</label>
                     <div class="col-sm-6">
-                      <textarea class="form-control"></textarea>
+                      <textarea class="form-control" v-model="Observaciones"></textarea>
                     </div>
                   </div>
                   
@@ -294,55 +147,84 @@
           </div><!--/col-md-12--> 
         </div><!--/row-->   
         
-        <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New Task</span> </a> <br>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Compose New Task</h4>
+                <h4 class="modal-title" id="myModalLabel">Buscar Medicamentos</h4>
               </div>
               <div class="row">
-                  <div class="col-lg-12"> 
-                      <section class="panel default blue_title h2">
-                      <div class="panel-heading">
-                       hover<span class="semi-bold">table</span> 
-                      </div>
-                      <div class="panel-body">
-                      
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Username</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
-             
-                      </div>
-                      </section>
-                      </div>
+
+                <!-- 
+                  /////////////
+                  table
+                -->
+                <div class="col-xs-10 col-md-offset-1">
+                  <br>
+                  <label >buscar</label>
+                    <div class="control is-grouped">
+                        <p class="control is-expanded">
+                        <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el nombre y la Presentacion"><br>
+                        <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
+                        </p>
+                        <p class="control">
+                        <a class="button is-info" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">
+                          Clear
+                        </a>
+                        </p>
+                    </div>
+                </div> 
+                <div class="col-xs-10 col-md-offset-1">
+                    <nav class="pagination m-pagination">
+                        <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Previous</a>
+                        <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Next page</a>
+                        <ul>
+                          <li>
+                          <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}">
+                            First
+                          </a>
+                          </li>
+                          <li class="is-space"></li>
+                          <li v-for="item in paginationMeds.filteredMeds">
+                          <a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
+                          </li>
+                          <li class="is-space"></li>
+                          <li>
+                          <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">
+                            Last
+                          </a>
+                          </li>
+                        </ul>
+                      </nav>
+                </div>
+                  <div class="col-xs-10 col-md-offset-1">
+                      <table class="table is-bordered is-striped is-narrow">
+                          <thead>
+                            <tr>
+                              <th></th>												
+                              <th>Nombre</th>
+                              <th>Precentacion</th>
+                              <th>Cantidad</th>   
+                             
+                            </tr>
+                          </thead>
+                          <tbody v-for="(med, index) in paginatedMeds">
+                            <tr>
+                              <td><a @click="insertar(med.id)" class="btn btn-success btn-raised btn-xs">esto</a> </td>												
+                              <td>{{med.nombre}}</td>
+                              <td>{{med.presentacion}}</td>
+                              <td>{{med.unidades}}</td>
+                               
+                            </tr>
+                          </tbody>
+                        </table>   
+                  </div>
+                 
+                <!-- 
+                  ////////
+                 -->
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -351,79 +233,98 @@
             </div>
           </div>
         </div>
-	  
-        <div class="row">
-            <div class="col-md-6">
-              <div class="block-web">
-               <div class="header">
-                  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                  <h3 class="content-header">Data Table</h3>
-                </div>
-             <div class="porlets-content">
-                <div class="table-responsive">
-                    <table  class="display table table-bordered table-striped" id="dynamic-table">
-                      <thead>
-                        <tr>
-                            <th></th>
-                            <th>Cantidad</th>
-                            <th>Nombre</th>
-                            <th>Precentacion</th>
-                            <th>Cantidad</th> 
-                        </tr>
-                      </thead>
-                      <tbody v-for="(med, index) in ListMedicamentos">
-                        
-                          <td><a @click="insertar(med.id)" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a> </td>
-                          <td><input type="number" style="width:60px;height:30px;" v-model="cantidadMedicamento"></td>
-                          <td>{{med.nombre}}</td>
-                          <td>{{med.presentacion}}</td>
-                          <td>{{med.unidades}}</td>
-              
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th>Rendering engine</th>
-                          <th>Browser</th>
-                          <th>Platform(s)</th>
-                          <th class="hidden-phone">Engine version</th>
-                          <th class="hidden-phone">CSS grade</th>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div><!--/table-responsive-->
-                </div><!--/porlets-content-->
+      
+        <div class="col-lg-12"> 
+            <section class="panel default blue_title h2">
+            <div class="panel-heading">
+             Lista<span class="semi-bold">Pedidos</span> 
+            </div>
+            <div class="panel-body">
+            
+      <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Cantidad del Producto</th>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
                 
-                
-              </div><!--/block-web--> 
-            </div><!--/col-md-12--> 
-          </div><!--/row-->
+                <th>Precio</th>
+                <th>Precio Toal</th>
+                <th>Eliminar</th>
+                <th>Eliminar todo</th>
+            </tr>
+        </thead>
+        <tbody v-for="(car, index) in listItems">                                                    
+          <tr>
+            <td>{{index}}</td>
+            <td> <input type="number" @click="generateArray" v-model="car.qty"> </td>
+            <td>{{car.item.codificacion}}</td>
+            <td>{{car.item.nombre}}</td>
+            <td>{{car.item.cantidad}}</td>
+            <td>{{car.item.price}}</td>
+            <td>{{car.price}}</td>
+            <td> <a @click="reduceByOne(car.item.id)">Reducir</a>   </td>
+            <td><a @click="removeItem(car.item.id)">Eliminar</a> </td>                                                        
+           </tr>                                                   
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Sub Total</th>
+            <th></th>
+            <th>{{totalPrice}}</th>
+
+          </tr>
+          <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>Iva</th>
+              <th></th>
+              <th>{{totalPrice * 0.13}}</th>
+  
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+                <th></th>
+                <th>{{totalPrice + totalPrice * 0.13}}</th>
+    
+              </tr>
+        </tfoot>
+      </table>
+   
+            </div>
+            </section>
+            </div>
 	  
 	  
-			
+            <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
 			</div>
     <!--\\\\\\\ content panel end \\\\\\-->
     </div>
-
+ 
   </div>
   </div>
   <%- include("../partials/scripts") -%>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
   <script src="/js/vue/pedidos.js"></script>
-
-  <script src="https://dl.dropboxusercontent.com/s/5mqlcxg4264ri32/jquery.dataTables.min.js"></script>
-
-  <script>
-    var buscador = $("#table").DataTable();
-    $("#input-search").keyup(function(){
-        buscador.search($(this).val()).draw();
-        if ($("#input-search").val() == ""){
-            $(".content-search").fadeOut(300);
-        }else{
-            $(".content-search").fadeIn(300);
-        }
-    })
-  </script>
 </body>
 </html>
 
