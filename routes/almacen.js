@@ -3,7 +3,19 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 router.get('/pedidos',(req, res) => {
-    res.render('Almacen/pedidos')
+    fetch('http://localhost:3500/api/pedido')   
+        .then(resp => resp.json())
+        .then(resp =>{
+            console.log(resp)
+            res.render('Almacen/pedidos',{
+               
+                resp
+            })
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
 });
 
 
