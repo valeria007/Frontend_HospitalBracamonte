@@ -1,0 +1,539 @@
+<!DOCTYPE >
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HOSPITAL</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+	<link rel="/stylesheet" href="/css/selectBuscar.css">
+	
+	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+	<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+	<script type="text/x-template" id="modal-template">
+		<transition name="modal">
+		  <div class="modal-mask">
+			<div class="modal-wrapper">
+			  <div class="modal-container">
+	  
+				<div class="modal-header">
+				  <slot name="header">
+					default header
+				  </slot>
+				</div>
+	  
+				<div class="modal-body">
+				  <slot name="body">
+					default body
+				  </slot>
+				</div>
+	  
+				<div class="modal-footer">
+				  <slot name="footer">
+					default footer <br>
+					<a class="modal-default-button" @click="$emit('close')">
+					  OK
+					</a>
+				  </slot>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</transition>
+	  </script>
+
+	  <style>
+		.modal-mask {
+		  position: fixed;
+		  z-index: 9998;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  background-color: rgba(0, 0, 0, .5);
+		  display: table;
+		  transition: opacity .3s ease;
+		}
+		.modal-wrapper {
+		  display: table-cell;
+		  vertical-align: middle;
+		}
+		.modal-container {
+		  width: 1000px;
+		  margin: 0px auto;
+		  padding: 20px 30px;
+		  background-color: #fff;
+		  border-radius: 2px;
+		  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+		  transition: all .3s ease;
+		  font-family: Helvetica, Arial, sans-serif;
+		}
+		.modal-header h3 {
+		  margin-top: 0;
+		  color: #42b983;
+		}
+		.modal-body {
+		  margin: 20px 0;
+		}
+		.modal-default-button {
+		  float: right;
+		}
+		/*
+		 * The following styles are auto-applied to elements with
+		 * transition="modal" when their visibility is toggled
+		 * by Vue.js.
+		 *
+		 * You can easily play with the modal transition by editing
+		 * these styles.
+		 */
+		.modal-enter {
+		  opacity: 0;
+		}
+		.modal-leave-active {
+		  opacity: 0;
+		}
+		.modal-enter .modal-container,
+		.modal-leave-active .modal-container {
+		  -webkit-transform: scale(1.1);
+		  transform: scale(1.1);
+		}
+	  </style>
+
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <!--\\\\\\\ wrapper Start \\\\\\-->
+  <div class="header_bar">
+    <!--\\\\\\\ header Start \\\\\\-->
+    <div class="brand">
+      <!--\\\\\\\ brand Start \\\\\\-->
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      
+    </div>
+    <!--\\\\\\\ brand end \\\\\\-->
+    <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+    
+      <div class="top_right_bar">
+        
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div> 
+				</div>
+        </div> 
+      </div>
+    </div>
+    <!--\\\\\\\ header top bar end \\\\\\-->
+  </div>
+  <!--\\\\\\\ header end \\\\\\-->
+  <div class="inner">
+    <!--\\\\\\\ inner start \\\\\\-->
+    <div class="left_nav">
+
+      <!--\\\\\\\left_nav start \\\\\\-->
+    
+      <div class="left_nav_slidebar">
+        <ul>
+          <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul >
+              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul class="opened" style="display:block">
+              <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+              <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
+              <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+              <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pedidos</b> </a> </li>
+              <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+              <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+              <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+              <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+              <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel"><br>
+      <!--\\\\\\\ contentpanel start\\\\\\-->
+      <!--Formulario-->
+      <div class="container clear_both padding_fix">
+					<%if (message != null) { %>
+						<h2>Porfavor seleccione producto de la lista de medicamentos</h2>
+					<% } %>	
+					<span style="color: red;">{{respuestaPost}}</span>
+					<form @submit="formSubmit" method="POST" parsley-validate novalidate>
+							<h2 class="text-center all-tittles">REGISTRO DE DISTRIBUCION</h2>
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Codigo de Distribucion</label>
+										<input type="text" v-model="codigo" parsley-trigger="change" required placeholder="Enter user name" class="form-control">
+									</div><!--/form-group-->
+									<div class="form-group">
+											<label>Recibe:</label>
+											<input type="text"  v-model="recibe" class="form-control">
+									</div>
+										</div>
+										<div class="col-md-6">
+												
+												<div class="form-group">
+														<label>Fecha de Distribucion:</label>
+														<input type="date"  v-model="fechaLlegada"  class="form-control">
+												</div>
+												<div class="form-group">
+														<label>Encargado:</label>
+														<input type="text" v-model="responsable" class="form-control">
+												</div>
+										</div>
+								</div>
+									<!--
+								<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+													modal view
+								<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<													
+								-->
+								<a @click="showModal = true, searchInTheListMed('')">Buscar Medicamentos</a>
+  								<!-- use the modal component, pass in the prop -->
+  								<modal v-if="showModal" @close="showModal = false">
+  							
+								  	<h3 slot="header">custom header</h3>
+								  	<div slot="body">
+										<div class="box m-form">
+											<label class="label">Buscar Medicamentos</label>
+											<div class="control is-grouped">
+											  <p class="control is-expanded">
+												<input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el nombre y la Presentacion"><br>
+												<span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
+											  </p>
+											  <p class="control">
+												<a class="button is-info" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">
+												  Clear
+												</a>
+											  </p>
+											</div>     
+										</div>
+										<nav class="pagination m-pagination">
+											<a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Previous</a>
+											<a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Next page</a>
+											<ul>
+											  <li>
+												<a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}">
+												  First
+												</a>
+											  </li>
+											  <li class="is-space"></li>
+											  <li v-for="item in paginationMeds.filteredMeds">
+												<a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
+											  </li>
+											  <li class="is-space"></li>
+											  <li>
+												<a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">
+												  Last
+												</a>
+											  </li>
+											</ul>
+										</nav>
+										<table class="table is-bordered is-striped is-narrow">
+											<thead>
+												<tr>
+													<th></th>												
+													<th>Nombre</th>
+													<th>Precentacion</th>
+													<th>Cantidad</th>   
+											   
+												</tr>
+											</thead>
+											<tbody v-for="(med, index) in paginatedMeds">
+												<tr>
+													<td><a @click="insertar(med.id)" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a> </td>												
+													<td>{{med.nombre}}</td>
+													<td>{{med.presentacion}}</td>
+													<td>{{med.unidades}}</td>
+												   
+												</tr>
+											</tbody>
+										</table>   
+									</div>							
+								</modal>
+								<!--
+								<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+								<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<													
+								-->		
+								<div class="table-wrapper">
+									<table class="fl-table">
+										<thead>
+											<tr>
+											<th>#</th>	
+											<th>Codigo</th>
+											<th>Descripcion</th>
+											<th>Unidad</th>
+											<th>Cantidad</th>
+											<th>Eliminar</th>
+											<th>Quitar</th>
+											</tr>
+										</thead>
+										
+											
+										<tbody v-for="(car, index) in items">
+											<tr>
+												<td>{{index}}</td>
+												<td>{{car.item.codificacion}}</td>
+												<td>{{car.item.nombre}}</td>
+												<td>{{car.item.presentacion}}</td>
+												<td>{{car.qty}}</td>
+												<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
+												<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
+											</tr>
+										<tbody>
+											
+										
+									</table>
+								</div>											
+				
+							</div>
+								<p class="text-center">
+										<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+										<button @click="reduce" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar </button>
+								</p>
+						</form>
+					</div>
+					<!-- mostrar lista de medicamentos -->
+					<div class="tab-pane fade" id="listMedicament">
+						<div class="table-wrapper">
+								<div id="correo">
+										<div class="entrada">
+												<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+										</div>
+										<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
+												<input type="text" id="searchInput" placeholder="Buscar.."><br>
+										</div>
+								</div>
+								<table class="fl-table" id="myTable">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Codificación</th>
+										<th>Nombre</th>
+										<th>unidades</th>
+										<th>Precio</th>  
+										
+										<th>Añadir</th>                                           
+									</tr>
+								</thead>
+								<tbody v-for="(medicamento, index) of medicamentos">
+									<tr>
+										<td>{{index + 1}}</td>
+										<td>{{medicamento.codificacion}}</td>
+										<td>{{medicamento.nombre}}</td>
+										<td>{{medicamento.unidades}}</td>
+										<td>{{medicamento.precio}}</td>
+										<td>
+											<button @click="insertar(medicamento.id)">Agregar</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							
+						</div>
+					</div><div class="table-wrapper">
+							<table class="fl-table">
+								<thead>
+									<tr>
+									<th>#</th>	
+									<th>Codigo</th>
+									<th>Descripcion</th>
+									<th>Unidad</th>
+									<th>Cantidad</th>
+									<th>Eliminar</th>
+									<th>Quitar</th>
+									</tr>
+								</thead>
+								
+									
+								<tbody v-for="(car, index) in items">
+									<tr>
+										<td>{{index}}</td>
+										<td>{{car.item.codificacion}}</td>
+										<td>{{car.item.nombre}}</td>
+										<td>{{car.item.presentacion}}</td>
+										<td>{{car.qty}}</td>
+										<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
+										<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
+									</tr>
+								<tbody>
+									
+								
+							</table>
+						</div>											
+		
+					</div>
+						<p class="text-center">
+								<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+								<button @click="reduce" type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy" ></i> &nbsp;&nbsp; Guardar </button>
+						</p>
+								
+							</form>
+							
+          </div>
+    <!--\\\\\\\ content panel end \\\\\\-->
+  </div>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+
+<script src="/js/selectBuscar.js"></script>
+
+<!--Validaciones-->
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+									<!-- 
+										>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+										esta parte  es para la pagiantions
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+									 -->
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+<script>
+    jQuery(document).ready(function() {
+			EditableTable.init()
+		});
+ </script>
+ 
+ <script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
+
+
+<script>
+	$('#bs').materialSelect({
+		BSsearchIn: true
+	});
+</script>
+ <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="/axios/dist/axios.min.js"></script>
+<script src="/js/get/getECP.js"></script>
+
+<!--<script src="/js/paginacion.js"></script>	-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+<script src="/js/vue/distribucion.js"></script>
+
+</body>
+</html>

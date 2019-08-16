@@ -24,6 +24,16 @@ router.get('/solicitudes',(req, res) => {
     res.render('Farmacia/solicitudes')
 });
   
+router.get('/recetas_farm',(req, res) => {
+    res.render('Farmacia/recetas_farm')
+});
+router.get('/reg_receta',(req, res) => {
+    res.render('Farmacia/reg_receta')
+  });
+  router.get('/volver2', (req,res) => {
+    oneGrupoAsig = null
+    res.redirect('/farmacia/recetas_farm'); 
+})
 router.get('/ventas',(req, res) => {
     res.render('Farmacia/ventas')
 });
@@ -31,6 +41,10 @@ router.get('/ventas',(req, res) => {
   router.get('/reg_venta',(req, res) => {
     res.render('Farmacia/reg_venta')
   });
+  router.get('/volver1', (req,res) => {
+    oneGrupoAsig = null
+    res.redirect('/farmacia/ventas'); 
+})
   
   router.get('/reportes_facturacion',(req, res) => {
     res.render('Farmacia/reportes_facturacion')
