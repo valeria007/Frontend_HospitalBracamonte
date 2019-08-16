@@ -28,16 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 	
-<style>
-		div.a {
-				text-align: center;
-		}
-		h1.letras {
-  font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-  
-}
-</style>
-</style>
+
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -76,7 +67,7 @@
 
       <!--\\\\\\\left_nav start \\\\\\-->
     
-			<div class="left_nav_slidebar">
+      <div class="left_nav_slidebar">
         <ul>
           <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
@@ -85,14 +76,14 @@
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul class="opened" style="display:block">
-              <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  class="theme_color">Almacenamiento</b> </a> </li>
+              <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
               <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
-              <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+              <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Recetas</b> </a> </li>
               <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
               <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
             </ul>
           </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
               <li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
               <li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
@@ -105,79 +96,60 @@
       </div>
     </div>
     <!--\\\\\\\left_nav end \\\\\\-->
-    <div class="contentpanel"><br>
+    <div class="contentpanel">
       <!--\\\\\\\ contentpanel start\\\\\\-->
-			<div class="container clear_both padding_fix">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="block-web">
-								<div class="header">
-									<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                <h3 class="content-header"> <i class="fa fa-list icon"></i>  Registrar Grupo de Asignacion</h3>
-								</div>
-								<div class="porlets-content">
-								<form  class="form-horizontal group-border-dashed" action="" method="POST" parsley-validate novalidate>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Codigo:</label>
-										<div class="col-sm-6">
-											<input type="text" required class="form-control"  name="codigo" />
-										</div>
-									</div><!--/form-group--> 
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Descripcion:</label>
-										<div class="col-sm-6">
-											<input type="text" required class="form-control" name="descripcion" />
-										</div>
-									</div><!--/form-group--> 
-									<div class="form-group">
-										<div class="col-sm-offset-2 col-sm-10">
-											<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-											<button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-											<a class="btn btn-success" href="/farmacia/almacenamiento"><i class="fa fa-arrow-left"></i> Volver a Medicamentos</a>
-										</div>
-									</div><!--/form-group--> 
-								</form>
-								</div><!--/porlets-content--> 
-							</div><!--/block-web--> 
-						</div><!--/col-md-12--> 
-					</div>
-				</div>
-				<div class="container clear_both padding_fix">
-					<div id="main-content">
-						<div class="page-content">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="block-web">
-										<div class="porlets-content">
-											<div class="table-responsive">
-												<table  class="display table table-bordered table-striped" id="dynamic-table">
-													<thead>
-														<tr>
-															<th>#</th>
-															<th>Codigo</th>
-															<th>Descripcion</th>
-															<th class="hidden-phone">Modificar</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>123</td>
-															<td>a</td>
-															<td>a</td>
-															<td class="center hidden-phone">
-																<a class="btn btn-success" href=""><i class="fa fa-refresh"></i> </a>
-															</td>
-															</tr>
-													</tbody>
-												</table>
-											</div><!--/table-responsive-->
-										</div><!--/porlets-content-->
-									</div><!--/block-web--> 
-								</div><!--/col-md-12--> 
-							</div><!--/row-->
-						</div>
-					</div> 
-				</div> 
+      <div class="container clear_both padding_fix">
+            <!--\\\\\\\ table \\\\\\-->
+            <div id="main-content">
+              <div class="page-content">
+                <div class="row">
+                  <div class="col-md-12">
+                       <div class="block-web">
+                      <div class="header">
+                        <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+                        <h3 class="content-header"> <i class="fa fa-user-md icon"></i> Recetas</h3>
+                      </div>
+                      <div class="porlets-content">
+                            <div class="panel-body">
+                              <!-- Button trigger modal -->
+                                      <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/Farmacia/reg_receta" >Nueva Receta</button>
+                                  </div>
+                        <div class="table-responsive">
+                          <table  class="display table table-bordered table-striped " id="dynamic-table">
+                              <thead>
+                                  <tr>
+                                  <th>Codigo Ven.</th>
+                                  <th>Fecha</th>
+                                  <th>Historial</th>
+                                  <th>Paciente</th>
+                                  <th>T. Paciente</th>
+                                  <th>Empleado</th>
+                                  <th>Opciones</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                  <td>1</td>
+                                  <td>123</td>
+                                  <td>a</td>
+                                  <td>a</td>
+                                  <td>a</td>
+                                  <td>a</td>
+                                  <td><a class="btn btn-success" href=""><i class="fa fa-refresh"></i> </a></td>
+                                  </tr>
+                              <tbody>
+                          </table>
+                        </div><!--/table-responsive-->
+                      </div><!--/porlets-content-->
+                    </div><!--/block-web--> 
+                  </div><!--/col-md-12--> 
+                  </div><!--/row-->
+              </div><!--/page-content end--> 
+            </div><!--/main-content end--> 
+            
+            
+            
+            </div>
     <!--\\\\\\\ content panel end \\\\\\-->
   </div>
   <!--\\\\\\\ inner end\\\\\\-->

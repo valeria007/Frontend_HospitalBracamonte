@@ -36,6 +36,9 @@
   
 }
 </style>
+<!--Select Buscador-->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+  
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -123,14 +126,12 @@
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-3 control-label">GRUPO DE ASIGNACION  <i class="fa fa-archive"></i>:</label>
                                 <div class="col-sm-7">
-                                  <select class="selectpicker"  multiple=""  data-live-search-placeholder="Buscar" tabindex="-98">
-                                    <optgroup label="Proveedores">
+                                  <select class="selectpicker" data-show-subtext="true" data-live-search="true">
                                     <option>Paco</option>
                                     <option>Luis</option>
                                     <option>Luna</option>
                                     <option>Daniela</option>
-                                    </optgroup>
-                                  </select><br>
+                                  </select>
                                 </div>
                               </div><!--/form-group-->
                           </div>  
@@ -288,6 +289,10 @@
  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="/axios/dist/axios.min.js"></script>
 <script src="/js/get/getECP.js"></script>
+<!--select Buscar-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
 
 </body>
 </html>
