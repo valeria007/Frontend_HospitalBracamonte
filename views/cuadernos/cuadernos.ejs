@@ -152,7 +152,7 @@
                     </div><!--/form-group--> 
                   
                 </form>
-                <% } else { %>
+                <% } else { %>           
                   <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST" parsley-validate novalidate>
                     <div class="form-group">
                         
@@ -215,11 +215,11 @@
                       <td><%=resp[i].id%></td>
                       <td><%=resp[i].grupo%></td>
 						          <td><%=resp[i].titulo%></td>
-						          <td><%=resp[i].createdAt%></td>								
+						          <td><%=resp[i].createdAt.split("T")[0]%></td>								
                     <td>
                       <a href="/cuaderno/getEsp/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Medico"><i class="fa fa fa-user-md text-muted"></i></a><span>&nbsp;</span>
                       <a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
-                      <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
+                      <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
                       
                     
                     </td>

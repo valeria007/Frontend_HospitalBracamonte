@@ -1,102 +1,366 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Turnos Doctor</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <%- include("../partials/head") -%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HOSPITAL</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- Content page-->
-	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-		<!-- NavBar -->
-		<nav class="full-box dashboard-Navbar">
-			<ul class="full-box list-unstyled text-right">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-            </ul>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <!--\\\\\\\ wrapper Start \\\\\\-->
+  <div class="header_bar">
+    <!--\\\\\\\ header Start \\\\\\-->
+    <div class="brand">
+      <!--\\\\\\\ brand Start \\\\\\-->
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      
+    </div>
+    <!--\\\\\\\ brand end \\\\\\-->
+    <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+      
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div>
+       
+      </div>
+    </div>
+    <!--\\\\\\\ header top bar end \\\\\\-->
+  </div>
+  <!--\\\\\\\ header end \\\\\\-->
+  <div class="inner">
+    <!--\\\\\\\ inner start \\\\\\-->
+    <div class="left_nav">
+      <!--\\\\\\\left_nav start \\\\\\-->
+      
+      <div class="left_nav_slidebar">
+          <ul>
+            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Personal</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Cuadernos</b> </a> </li>
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
+                <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+                <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+                <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+                <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
+                <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel">
+      <!--\\\\\\\ contentpanel start\\\\\\-->
+
+        <!--\\\\\\\ container  start \\\\\\-->
+        <div class="container clear_both padding_fix">
+        <br>
+        <a href="/cuaderno/volverFechas" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a></td>
+        <br>
+        <br>
+         <div class="row">
+        <div class="col-md-12">
+          <div class="block-web">
+            <div class="header">
+              <div class="info blue_symbols"><i class="fa fa-user-md icon"></i></div>
+              <h3 class="content-header ">Asignación Medico/Turnos</h3>
+            </div>
+            <br>
+            <br>
             
-		</nav>
-        <!-- Content page -->
-        <div class="container-fluid">
-            <div class="page-header">
-                <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>Dar turnos al Doctor </h1>
-            </div>
-            <a href="/cuaderno/volverFechas">Atras</a>
-        </div>
-        <div class="container-fluid">
-        <form id="form" action="/cuaderno/turnos" method="post" accept-charset="UTF-8" autocomplete="off" novalidate>
-            <div class="grupo" id="cabeza">
-                <div id="correo">
-                        <div class="entrada">Dia de atencion:<br>
-                            <select name="diasAten" >
-                                <option>Lunes</option>
-                                <option>Martes</option>
-                                <option>Miercoles</option>
-                                <option>Jueves</option>
-                                <option>Viernes</option>
-                                <option>Sabado</option>
-                                <option>Domingo</option>
-                            </select><br>
-                        </div>
-                        <div class="entrada">Turno:<br>
-                            <select name="turno" >                               
-                                <option>Mañanas</option>
-                                <option>Tardes</option>
-                                <option>Noches</option>
-                            </select><br>
-                        </div>
-                </div>
-              
-                
-            </div>
-            <p class="text-center">
-                <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>               
-                <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> Guardar</button>
-            </p>
-        </form>
-        </div>
-        <div class="table-responsive">
-			<h3 class="text-center all-tittles">LISTA DE TURNOS</h3>
-            <div class="table-wrapper">
-                <div id="correo">
-                    <div class="entrada">
-                        <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-                    </div>
-                    <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-                        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..."><br>
-                    </div>
-                </div>
-                <table class="fl-table" id="myTable">
-                    <thead>
-                        <tr>
-						<th>#</th>
-						<th>Dia de atencion</th>
-                        <th>Turno</th>
-                        <th>Eliminar</th>
-                        <th>Horas</th>
+            <div class="porlets-content">
+					<form class="form-horizontal group-border-dashed" action="/cuaderno/turnos" method="POST" parsley-validate novalidate>
+					<div class="form-group col-sm-12">
 						
-						</tr>
-                    </thead>
-                    <tbody>
-                        <% for ( var i = 0; i < resp.length; i++) { %>
+						<div class="col-sm-6">
+							<label class="control-labe">Dia de atencion:</label>
+                            <select  class="form-control" id="source" name="diasAten" >
+                                    <option>Lunes</option>
+                                    <option>Martes</option>
+                                    <option>Miercoles</option>
+                                    <option>Jueves</option>
+                                    <option>Viernes</option>
+                                    <option>Sabado</option>
+                                    <option>Domingo</option>
+                                </select>
+						</div>
+						
+						<div class="col-sm-6">
+							<label class="control-labe">Turno:</label>
+                            <select class="form-control" id="source" name="turno" >                               
+                                    <option>Mañanas</option>
+                                    <option>Tardes</option>
+                                    <option>Noches</option>
+                                </select>
+						</div>
+						
+					</div><!--/form-group-->  
+					
+					<div class="form-group">
+						<div class="col-sm-offset-4 col-sm-10">
+						  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+						  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+						</div>
+					  </div><!--/form-group--> 
+                  
+                </form>
+              </div>
+          </div><!--/block-web--> 
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+      
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block-web">
+           <div class="header">
+             
+              <h3 class="content-header">LISTA DE TURNOS</h3>
+            </div>
+         <div class="porlets-content">
+            <div class="table-responsive">
+                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                    <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Dia de atencion</th>
+                                <th>Turno</th>
+                                <th>Opciones</th>
+                                
+                                    
+                            </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i=0; i< resp.length; i++) { %>
                         <tr>
                             <td><%=i+1%></td>
                             <td><%=resp[i].diasAten%></td>
                             <td><%=resp[i].turno%></td>
-                            <td><a href="/cuaderno/delturno/<%=resp[i].id%>" class="btn btn-danger btn-raised btn-xs "><i class="zmdi zmdi-close-circle"></i></a></td>
-                            <td><a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" class="btn btn-danger btn-raised btn-xs "><i class="zmdi zmdi-close-circle"></i></a></td>
+                        <td>
+                            <a href="" data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_horas"><i class="fa fa-plus-square text-muted"></i></a>
+                            <a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_horas"><i class="fa fa-plus-square text-muted"></i></a>
+                            <a href="/cuaderno/delturno/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
+                                </td>
                         </tr>
                         <% } %>
-                    <tbody>
-				</table>
-            </div>
+                      <tbody>
+                </table>
+              </div><!--/table-responsive-->
+            </div><!--/porlets-content-->
+            
+            
+          </div><!--/block-web--> 
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+      
         </div>
-	</section>
-	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+      <!--\\\\\\\ container  end \\\\\\-->
+    
+    <!--\\\\\\\ content panel end \\\\\\-->
+  </div>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+<!-------MODALLLLL-------->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <div class="info blue_symbols"><i class="fa fa-user-md icon"></i></div>
+          <h3 class="content-header ">Asignación Medico/Horas</h3>
+        </div>
+        <div class="modal-body"> 
+            <div class="porlets-content">
+                <form class="form-horizontal group-border-dashed" action="/cuaderno/insertarHorarios" method="POST" parsley-validate novalidate>
+                <div class="form-group col-sm-12">
+                  
+                  <div class="col-sm-6">
+                    <label class="control-labe">Cantidad de Fichas:</label>
+                                  <select class="form-control" id="source" name="cantiFicha" >
+      
+                                          <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                          <option>11</option>  
+                                          <option>12</option>      
+                                          <option>13</option>      
+                                          <option>14</option>      
+                                          <option>15</option>
+                                          <option>16</option> 
+                                          <option>17  </option>                                     
+                      
+                                      </select>
+                                      <label class="control-labe" style="color:red;">*Cantidad Maxima de Fichas del Medico*</label>
+                  </div>
+                  
+                  <div class="col-sm-6">
+                    <label class="control-labe" >Intervalo de horas:</label>
+                                  <select class="form-control" id="source" name="minutos">
+                                          <option value="15"> 15 minutos </option>
+                                          <option value="20"> 20 minutos </option>
+                                         <option value="30"> 30 minutos </option>
+                                     </select>
+                  </div>
+                  
+                </div><!--/form-group-->  
+                
+                  <div class="modal-footer">
+                      <a href="/cuaderno/horaslist" class="btn btn-info btn-icon">Eliminar Todo <span>&nbsp;</span><i class="fa fa-minus-square"></i></a></td> <span>&nbsp;&nbsp;&nbsp;</span>
+                    <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                    <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                    </div>
+                      </form>
+                    </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
 </body>
 </html>
