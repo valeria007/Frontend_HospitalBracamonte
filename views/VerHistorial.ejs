@@ -1,46 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-	<title>Historial</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Historial</title>
+    <meta charset="UTF-8">
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+
+
+    <style>
+        div.a {
+            text-align: center;
+        }
+
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+        }
+    </style>
+    <%- include("partials/head") -%>
 </head>
-<body class=" full-box dashboard-sideBar-imagg cover " >
+<body class=" light_theme  fixed_header left_nav_fixed" >
 	<!-- SideBar -->
-	<%- include("partials/menudoc") -%>
 
-	<li>
-		<a href="/medico/renderVistaDocotr/">
-			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
-		</a>
-	</li>
+    <!-- Content page-->
+    <div class="wrapper">
+        <!--\\\\\\\ wrapper Start \\\\\\-->
+        <div class="header_bar">
+            <!--\\\\\\\ header Start \\\\\\-->
+            <div class="brand">
+                <!--\\\\\\\ brand Start \\\\\\-->
+                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
 
-    <li>
-		<a href="#!" class="btn-sideBar-SubMenu">
-			<i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Consultas externas <i class="zmdi zmdi-caret-down pull-right"></i>
-		</a>
-		<ul class="list-unstyled full-box">
-			<li><a href="/medico/listfalseConsulta"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
-					  
-		</ul>
-	</li>
-	<%- include("partials/footerDocotr") -%>
+            </div>
+            <!--\\\\\\\ brand end \\\\\\-->
+            <div class="header_top_bar">
+                <!--\\\\\\\ header top bar start \\\\\\-->
+                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+
+                <div class="top_right_bar">
+
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+                                src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+                                class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <div class="top_pointer"></div>
+                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--\\\\\\\ header top bar end \\\\\\-->
+        </div>
+        <div class="inner">
+            <!--\\\\\\\ inner start \\\\\\-->
+            <div class="left_nav">
+
+                <!--\\\\\\\left_nav start \\\\\\-->
+
+                <div class="left_nav_slidebar">
+                    <ul>
+                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
+                                    class="left_nav_pointer"></span> <span class="plus"><i
+                                        class="fa fa-plus"></i></span> </a>
+                            <ul>
+                                <li> <a href=""> <span>&nbsp;</span> <i
+                                            class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+                            </ul>
+                        </li>
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
+                                    class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
+                                        class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                                <li> <a href=""> <span>&nbsp;</span> <i
+                                            class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>
+                                    </a> </li>
+                            </ul>
+                        </li>
+                        <%- include("partials/footerDocotr") -%>
+                    </ul>
+
+                </div>
+            </div>
+            <!--\\\\\\\left_nav end \\\\\\-->
+            <div class="contentpanel">
+                <!--\\\\\\\ contentpanel start\\\\\\-->
+                <div class="container clear_both padding_fix col-lg-8">
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12 ">
+
+
 	<!-- Content page-->
-<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar dashboard-sideBar-imaggg cover ">
-		<ul class="full-box list-unstyled text-right dashboard-sideBar-ctttt">
-			<li class="pull-left">
-		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-			</li>
-			<li>
-				<a href="#!" class="btn-Notifications-area">
-					<i class="zmdi zmdi-notifications-none"></i>
-				</a>
-			</li>
-		</ul>
-	</nav>
+
 		<!-- Content page -->
 		<div class="container-fluid col-md-12" id="">
 				<div class="page-header  col-md-6">	
@@ -77,156 +158,438 @@
 			<div id="" class="col-md-2">
 		
 			  <div class="">
-				<a href="/medico/volver" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
+				<a href="/medico/volver" class="btn btn-success "><i class=""></i>Atras</a>	
 			  </div>
 			
 			</div>
 		</div>
 	<!-- Alergias de consultas-->
-	<div id="myTabContent" class="tab-content">
+	<div id="myTabContent" class="">
             <div class="tab-pane fade active in" id="new">
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-12">
-                
-                      <form action="" method="POST">
-                        <p>Datos del Paciente </p>
-                    <div class="grupo" id="cabeza">
-    
+
+
                     
-                      <div id="tres2">
-                        <div class="entrada">Nombre Completo:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
-                        <div class="entrada">CI.:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
-                        <div class="entrada">Sexo:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
-                      </div>
-                      <div id="tres2">
-                        <div class="entrada">Fecha de Nacimiento:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
-                        <div class="entrada">Dirección:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
-                        <div class="entrada">Telefono:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
-                      </div>
-                      <div id="tres2">
-                        <div class="entrada">Estado Civil:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
+                            <div class="block-web">
+                              <div class="header">
+                                <div class="actions"> <a class="minimize" href="#"><i
+                                      class="fa fa-chevron-down"></i></a> <a
+                                    class="close-down" href="#"><i
+                                      class="fa fa-times"></i></a> </div>
+                                <h3 class="content-header">Historial Clinico</h3>
+                              </div>
+                              <div class="">
+                                  <div class="form-group">
+                                      <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="col-sm-4 col-sm-4">
+                                        <div class="entrada ">
+                                          <h6 class=" blue_info">N° de Historia:</h6>
+                                          <input
+                                            value=""
+                                            class="form-control" readonly=""
+                                            value="Read only text goes here">
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4 col-sm-4">
+                                        <div class="form-group">
+                                          <div class="entrada">
+                                            <h6 class=" blue_info">Nombre Completo:</h6>
+                                              <input
+                                                value=""
+                                                class="form-control" readonly=""
+                                                value="Read only text goes here">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4 col-sm-4">
+                                        <div class="form-group">
+                                          <div class="entrada">
+                                            <h6 class=" blue_info">CI.:</h6>
+                                              <input
+                                                value=""
+                                                class="form-control" readonly=""
+                                                value="Read only text goes here">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-4 col-sm-4">
+                                          <div class="form-group">
+                                            <div class="entrada">
+                                              <h6 class=" blue_info">Sexo:</h6>
+                                                <input
+                                                  value=""
+                                                  class="form-control" readonly=""
+                                                  value="Read only text goes here">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-4">
+                                            <div class="form-group">
+                                              <div class="entrada">
+                                                <h6 class=" blue_info">Fecha de Nacimiento:</h6>
+                                                  <input
+                                                    value=""
+                                                    class="form-control" readonly=""
+                                                    value="Read only text goes here">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-4">
+                                          <div class="form-group">
+                                            <div class="entrada">
+                                              <h6 class=" blue_info">Fecha de Nacimiento:</h6>
+                                                <input
+                                                  value=""
+                                                  class="form-control" readonly=""
+                                                  value="Read only text goes here">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-4">
+                                          <div class="form-group">
+                                            <div class="entrada">
+                                              <h6 class=" blue_info">Dirección:</h6>
+                                                <input
+                                                  value=""
+                                                  class="form-control" readonly=""
+                                                  value="Read only text goes here">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-4">
+                                          <div class="form-group">
+                                            <div class="entrada">
+                                              <h6 class=" blue_info">Teléfono:</h6>
+                                                <input
+                                                  value=""
+                                                  class="form-control" readonly=""
+                                                  value="Read only text goes here">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-4">
+                                          <div class="form-group">
+                                            <div class="entrada">
+                                              <h6 class=" blue_info">Estado Civil:</h6>
+                                                <input
+                                                  value=""
+                                                  class="form-control" readonly=""
+                                                  value="Read only text goes here">
+                                            </div>
+                                          </div>
+                                        </div>
+          
+                                      </div>
+                                
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
                         
-                      </div>
-                    </div>
-                    <br>
-                    <p>Examen Físico General</p>
-                    <div class="grupo" id="cabeza">
-                      <div id="tres2">
-                        <div class="entrada">Estado General:<br>
-                            <input type="text" name="" value=""size="10"><br>
-                        </div>
-                        <div class="entrada">Facies:<br>
-                          <input type="text" name="" value="" size="20"><br>
-                        </div>
-                        <div class="entrada">Presión Arterial:<br>
-                          <input type="text" name="" value=""size="10"><br>
-                        </div>
-                        
-                      </div>
-                          <div id="tres2">
-                            <div class="entrada">Estado Nutricional:<br>
-                                <input type="text" name="" value=""size="10"><br>
+                        <div class="block-web">
+                            <div class="header">
+                                    <div class="actions"> <a class="minimize" href="#"><i
+                                          class="fa fa-chevron-down"></i></a> <a
+                                        class="close-down" href="#"><i
+                                          class="fa fa-times"></i></a>
+                                    </div>
+                                    <h3 class="content-header">Estado General</h3>
                             </div>
-                            <div class="entrada">Peso:<br>
-                              <input type="text" name="" value="" size="20"><br>
+                            <div class="form-group">
+                                <div class="row">
+                            <div class="col-md-12">
+                              <div class="col-sm-4 col-sm-4">
+                                <div class="entrada ">
+                                  <h6 class=" blue_info">Estado General:</h6>
+                                  <input
+                                    value=""
+                                    class="form-control" readonly=""
+                                    value="Read only text goes here">
+                                </div>
+                              </div>
+                              <div class="col-sm-4 col-sm-4">
+                                <div class="form-group">
+                                  <div class="entrada">
+                                    <h6 class=" blue_info">Facies:</h6>
+                                      <input
+                                        value=""
+                                        class="form-control" readonly=""
+                                        value="Read only text goes here">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-4 col-sm-4">
+                                <div class="form-group">
+                                  <div class="entrada">
+                                    <h6 class=" blue_info">Presión Arterial:</h6>
+                                      <input
+                                        value=""
+                                        class="form-control" readonly=""
+                                        value="Read only text goes here">
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              
                             </div>
-                            <div class="entrada">Frecuencia Cardiaca:<br>
-                              <input type="text" name="" value=""size="10"><br>
+                            <div class="col-md-12">
+                              <div class="col-sm-4 col-sm-4">
+                                <div class="form-group">
+                                  <div class="entrada">
+                                    <h6 class=" blue_info">Estado Nutricional:</h6>
+                                      <input
+                                        value=""
+                                        class="form-control" readonly=""
+                                        value="Read only text goes here">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-4 col-sm-4">
+                                  <div class="form-group">
+                                    <div class="entrada">
+                                      <h6 class=" blue_info">Peso:</h6>
+                                        <input
+                                          value=""
+                                          class="form-control" readonly=""
+                                          value="Read only text goes here">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-4 col-sm-4">
+                                <div class="form-group">
+                                  <div class="entrada">
+                                    <h6 class=" blue_info">Frecuencia Cardiaca:</h6>
+                                      <input
+                                        value=""
+                                        class="form-control" readonly=""
+                                        value="Read only text goes here">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-4 col-sm-4">
+                                <div class="form-group">
+                                  <div class="entrada">
+                                    <h6 class=" blue_info">Saturación de Oxigeno:</h6>
+                                      <input
+                                        value=""
+                                        class="form-control" readonly=""
+                                        value="Read only text goes here">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-4 col-sm-4">
+                                <div class="form-group">
+                                  <div class="entrada">
+                                    <h6 class=" blue_info">Fecha de Revisión:</h6>
+                                      <input
+                                        value=""
+                                        class="form-control" readonly=""
+                                        value="Read only text goes here">
+                                  </div>
+                                </div>
+                              </div>
+                             
+
                             </div>
+                            </div>
+                            </div>
+                          </div>
+                          <div class="block-web">
+                              <div class="header">
+                                      <div class="actions"> <a class="minimize" href="#"><i
+                                            class="fa fa-chevron-down"></i></a> <a
+                                          class="close-down" href="#"><i
+                                            class="fa fa-times"></i></a>
+                                      </div>
+                                      <h3 class="content-header">Diagnostico </h3>
+                              </div>
+                              <div class="form-group">
+                                  <div class="row">
+                              <div class="col-md-12">
+                                <div class="col-sm-4 col-sm-4">
+                                  <div class="entrada ">
+                                    <h6 class=" blue_info">Diagnostico:</h6>
+                                    <input
+                                      value=""
+                                      class="form-control" readonly=""
+                                      value="Read only text goes here">
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col-sm-4">
+                                  <div class="form-group">
+                                    <div class="entrada">
+                                      <h6 class=" blue_info">tratamiento:</h6>
+                                        <input
+                                          value=""
+                                          class="form-control" readonly=""
+                                          value="Read only text goes here">
+                                    </div>
+                                  </div>
+                                </div>  
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="block-web">
+                              <div class="header">
+                                      <div class="actions"> <a class="minimize" href="#"><i
+                                            class="fa fa-chevron-down"></i></a> <a
+                                          class="close-down" href="#"><i
+                                            class="fa fa-times"></i></a>
+                                      </div>
+                                      <h3 class="content-header">Antecedentes</h3>
+                              </div>
+                              <div class="form-group">
+                                  <div class="row">
+                              <div class="col-md-12">
+                                <div class="col-sm-4 col-sm-4">
+                                  <div class="entrada ">
+                                    <h6 class=" blue_info">Antecedes de Familiares:</h6>
+                                    <input
+                                      value=""
+                                      class="form-control" readonly=""
+                                      value="Read only text goes here">
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col-sm-4">
+                                  <div class="form-group">
+                                    <div class="entrada">
+                                      <h6 class=" blue_info">Antecedes de Patologicos:</h6>
+                                        <input
+                                          value=""
+                                          class="form-control" readonly=""
+                                          value="Read only text goes here">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col-sm-4">
+                                  <div class="form-group">
+                                    <div class="entrada">
+                                      <h6 class=" blue_info">Antecedes no Patologicos:</h6>
+                                        <input
+                                          value=""
+                                          class="form-control" readonly=""
+                                          value="Read only text goes here">
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                
+                              </div>
+                              <div class="col-md-12">
+                                <div class="col-sm-4 col-sm-4">
+                                  <div class="form-group">
+                                    <div class="entrada">
+                                      <h6 class=" blue_info">Gineco Obstretico:</h6>
+                                        <input
+                                          value=""
+                                          class="form-control" readonly=""
+                                          value="Read only text goes here">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4 col-sm-4">
+                                    <div class="form-group">
+                                      <div class="entrada">
+                                        <h6 class=" blue_info">Descripción:</h6>
+                                          <input
+                                            value=""
+                                            class="form-control" readonly=""
+                                            value="Read only text goes here">
+                                    </div>
+                                  </div>
+                                </div>
                             
-                        </div>
-                              <div id="tres2">
-                            <div class="entrada">Saturación de Oxigeno:<br>
-                                <input type="text" name="" value=""size="10"><br>
+                               
+  
+                              </div>
+                              </div>
+                              </div>
                             </div>
-                            <div class="entrada">Fecha de Revisión:<br>
-                              <input type="text" name="" value="" size="20"><br>
+                            <div class="block-web">
+                                <div class="header">
+                                        <div class="actions"> <a class="minimize" href="#"><i
+                                              class="fa fa-chevron-down"></i></a> <a
+                                            class="close-down" href="#"><i
+                                              class="fa fa-times"></i></a>
+                                        </div>
+                                        <h3 class="content-header">Recetas</h3>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                <div class="col-md-12">
+                                  <div class="col-sm-4 col-sm-4">
+                                    <div class="entrada ">
+                                      <h6 class=" blue_info">Receta:</h6>
+                                      <input
+                                        value=""
+                                        class="form-control" readonly=""
+                                        value="Read only text goes here">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4 col-sm-4">
+                                    <div class="form-group">
+                                      <div class="entrada">
+                                        <h6 class=" blue_info">Fecha:</h6>
+                                          <input
+                                            value=""
+                                            class="form-control" readonly=""
+                                            value="Read only text goes here">
+                                      </div>
+                                    </div>
+                                  </div>  
+                                </div>
+                                </div>
+                              </div>
                             </div>
-                        </div>
-    
-                     
+                    <br>
+                
                     
                     </div>
-                    <br>
-                    <p>Diagnostico </p>
-                    <div class="grupo" id="cabeza">
-                      <div id="tres2">
-                        <div class="entrada">Diagnostico:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
-                        <div class="entrada">tratamiento:<br>
-                            <input type="text" name="" value=""><br>
-                        </div>
-                      </div>
-                  
-                    </div>
-                    <br>
-                    <p>Antecedentes </p>
-                    <div class="grupo" id="cabeza">
-                      <div id="tres2">
-                        <div class="entrada">Antecedes de Familiares:<br>
-                            <input type="text" name="" value="" size="20"><br>
-                        </div>
-                        <div class="entrada">Antecedes de Patologicos:<br>
-                              <input type="text" name="" value="" size="20"><br>
-                        </div>
-                        <div class="entrada">Antecedes no Patologicos:<br>
-                              <input type="text" name="" value=""size="10"><br>
-                        </div>
-                      </div>
-                        <div id="tres2">
-                            <div class="entrada">Gineco Obstretico:<br>
-                                <input type="text" name="" value=""size="10"><br>
-                            </div>
-                            <div class="entrada">Descripción:<br>
-                                <input type="text" name="" value=""size="10"><br>
-                              </div>  
-                        </div>
-                    
-                    </div>
-                    <br>
-                    <p>Receta </p>
-                    <div class="grupo" id="cabeza">
-                      <div id="tres2">
-                        <div class="entrada">Receta:<br>
-                          <input type="text" name="" value=""><br>
-                        </div>
-                        <div class="entrada">Fecha:<br>
-                            <input type="text" name="" value=""><br>
-                        </div>
-                      </div>
-                  
-                    </div>
-                    <br>
-                    
+                   
                     <br>
                         <p class="text-center">
                             <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                             <button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
                         </p> 
-                    </form>
+                  
                   </div>
               </div>
             </div>
           </div>
-        </div>
-</section>
+
 	<!--====== Scripts -->
-	<%- include("partials/scripts") -%>
+ 
+  <script src="/js/get/consultaget.js"></script>
+
+
+  <script src="/js/jquery-2.1.0.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/common-script.js"></script>
+  <script src="/js/jquery.slimscroll.min.js"></script>
+
+  <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+  <script src="/plugins/data-tables/jquery.dataTables.js"></script>
+  <script src="/plugins/data-tables/DT_bootstrap.js"></script>
+  <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+  <script src="/plugins/edit-table/edit-table.js"></script>
+  <script>
+      jQuery(document).ready(function () {
+          EditableTable.init();
+      });
+  </script>
+
+  <script src="/js/jPushMenu.js"></script>
+  <script src="/js/side-chats.js"></script>
+
 </body>
 </html>
