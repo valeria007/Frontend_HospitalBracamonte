@@ -1,78 +1,232 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Emergencia</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>USUARIOS</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- SideBar Menu Hospital-->
-    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-		<li>
-			<a href="/emergencia/homeEmergencia">
-			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home </a>
-		</li>
-		<!-- Emergencias -->
-		<li>
-			<a href="#!" class="btn-sideBar-SubMenu">
-			<i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>		</a>
-			<ul class="list-unstyled full-box">
-				<li><a href="/emergencia/dataEmergencia"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
-			</ul>
-		</li>
-	</ul>
-	<%- include("partials/menuFooter") -%>
-	<!-- Content page-->
-<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-		<ul class="full-box list-unstyled text-right">
-			<li class="pull-left">
-		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-			</li>
-		</ul>
-	</nav>
-	<!-- Content page -->
-	<div class="container-fluid">
-		<div class="page-header">
-			<h1 class="text-titles"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i> Pacientes  </h1>
-		</div>
-	</div>
-	<!--Listas de Emergencias-->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<!-- PAcientes no Atendidos-->
-				<p class="text-center">
-						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-					</p>
-						<div class="table-responsive" >
-							<table class="fl-table">
-								<thead>
-									  <tr>
-										<th class="text-center">#</th>
-										<th class="" WIDTH="15%">N° de historia </th>
-										<th class="" WIDTH="20%">Nombre del Paciente</th>
-										<th class="" WIDTH="20%">Apellido paterno</th>
-										<th class="" WIDTH="20%">Apellido materno</th>	
-										<th class="" WIDTH="20%">Fecha</th>	
-										<th class="text-center" WIDTH="20%">Opciones</th> 
-									  </tr>
-								</thead>
-								<tbody>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <!--\\\\\\\ wrapper Start \\\\\\-->
+  <div class="header_bar">
+    <!--\\\\\\\ header Start \\\\\\-->
+    <div class="brand">
+      <!--\\\\\\\ brand Start \\\\\\-->
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      
+    </div>
+    <!--\\\\\\\ brand end \\\\\\-->
+    <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+      
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div>
+       
+      </div>
+    </div>
+    <!--\\\\\\\ header top bar end \\\\\\-->
+  </div>
+  <!--\\\\\\\ header end \\\\\\-->
+  <div class="inner">
+    <!--\\\\\\\ inner start \\\\\\-->
+    <div class="left_nav">
+      <!--\\\\\\\left_nav start \\\\\\-->
+      
+      <div class="left_nav_slidebar">
+          <ul>
+							<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+								<ul class="opened" style="display:block">
+									<li> <a href="/emergencia/homeEmergencia/doctor"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Inicio</b> </a> </li>
+								</ul>
+							</li>
+							<li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias <span class="plus"><i class="fa fa-plus"></i></span></a>
+								<ul>
+									<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Cita</b> </a> </li>
 									
-								</tbody>
-							</table>
-						</div>
-					</div>
-	  			
-						</div>
-					</div>
-</section>
-	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+								</ul>
+							</li>
+            
+          </ul>
+        </div>
+    </div>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel">
+      <!--\\\\\\\ contentpanel start\\\\\\-->
+
+        <!--\\\\\\\ container  start \\\\\\-->
+        <div class="container clear_both padding_fix">
+        <br>
+         <div class="row">
+        <div class="col-md-12">
+         
+            <div class="header">
+              <div class="info blue_symbols"><i class="fa fa-ambulance icon"></i></div> <br>
+              <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Paciente</h3>
+            </div>
+            <br>
+            <br>
+            
+          
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+			<br>
+			<br>
+      
+      <div class="row" id="roles">
+        <div class="col-md-12">
+          <div class="block-web">
+           <div class="header">
+             
+              <h3 class="content-header">Lista Personal</h3>
+            </div>
+         <div class="porlets-content">
+            <div class="table-responsive">
+                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                  <thead>
+											<tr>
+													<th class="text-center">#</th>
+													<th class="" WIDTH="15%">N° de historia </th>
+													<th class="" WIDTH="20%">Nombre del Paciente</th>
+													<th class="" WIDTH="20%">Apellido paterno</th>
+													<th class="" WIDTH="20%">Apellido materno</th>	
+													<th class="" WIDTH="20%">Fecha</th>	
+													<th class="text-center" WIDTH="20%">Opciones</th> 
+													</tr>
+                  </thead>
+                  <tbody>
+                 
+                  <tbody>
+                </table>
+              </div><!--/table-responsive-->
+              
+            </div><!--/porlets-content-->
+            
+            
+          </div><!--/block-web--> 
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+      
+        </div>
+      <!--\\\\\\\ container  end \\\\\\-->
+    
+    <!--\\\\\\\ content panel end \\\\\\-->
+  </div>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+<!-- Modal -->
+
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
+
 </body>
 </html>

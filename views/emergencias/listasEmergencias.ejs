@@ -1,151 +1,681 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Emergencia</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>USUARIOS</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- SideBar Menu Hospital-->
-    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-		<li>
-			<a href="/emergencia/homeEmergencia/<%=DogOenf%>">
-			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=DogOenf%></a>
-		</li>
-		<!-- Emergencias -->
-		<li>
-			<a href="#!" class="btn-sideBar-SubMenu">
-			<i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>		</a>
-			<ul class="list-unstyled full-box">
-				<li><a href="/emergencia/dataEmergencia/<%=DogOenf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
-			</ul>
-		</li>
-	</ul>
-	<%- include("partials/menuFooter") -%>
-	<!-- Content page-->
-<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-		<ul class="full-box list-unstyled text-right">
-			<li class="pull-left">
-		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-			</li>
-		</ul>
-	</nav>
-	<!-- Content page -->
-	<div class="container-fluid">
-		<div class="page-header">
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias </h1>
-		</div>
-	</div>
-	<!--Listas de Emergencias-->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					<li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Pacientes no Atendidos</a></li>
-					<li><a href="#Pacientes" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Pacientes atendidos</a></li>
-				</ul>
-				<!-- PAcientes no Atendidos-->
-				<div id="myTabContent" class="tab-content">
-					<div class="tab-pane fade active in" id="ListPaciente">
-						<div class="table-responsive" >
-								<div id="correo">
-									<div class="entrada">
-										<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <!--\\\\\\\ wrapper Start \\\\\\-->
+  <div class="header_bar">
+    <!--\\\\\\\ header Start \\\\\\-->
+    <div class="brand">
+      <!--\\\\\\\ brand Start \\\\\\-->
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      
+    </div>
+    <!--\\\\\\\ brand end \\\\\\-->
+    <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+      
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div>
+       
+      </div>
+    </div>
+    <!--\\\\\\\ header top bar end \\\\\\-->
+  </div>
+  <!--\\\\\\\ header end \\\\\\-->
+  <div class="inner">
+    <!--\\\\\\\ inner start \\\\\\-->
+    <div class="left_nav">
+      <!--\\\\\\\left_nav start \\\\\\-->
+      
+      <div class="left_nav_slidebar">
+          <ul>
+							<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+								<ul >
+									<li> <a href="/emergencia/homeEmergencia/<%=DogOenf%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+								</ul>
+							</li>
+							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias <span class="plus"><i class="fa fa-plus"></i></span></a>
+								<ul class="opened" style="display:block">
+									<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+									
+								</ul>
+							</li>
+            
+          </ul>
+        </div>
+    </div>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel">
+      <!--\\\\\\\ contentpanel start\\\\\\-->
+
+        <!--\\\\\\\ container  start \\\\\\-->
+        <div class="container clear_both padding_fix">
+					<div class="page-content">
+						<div class="row">
+								<div class="col-lg-12">
+										<section class="panel default blue_title h2">
+											<div class="panel-heading">portlet<span class="semi-bold"> Tabs</span> </div>
+											<div class="panel-body">
+												<ul class="nav nav-tabs" id="myTab">
+													<li class="active"><a data-toggle="tab" href="#Tab1">Tab1</a></li>
+													<li><a data-toggle="tab" href="#Tab2">Tab2</a></li>
+													<li><a data-toggle="tab" href="#Tab3">Tab3</a></li>
+												</ul>
+												<div class="tab-content" id="myTabContent">
+													<div id="Tab1" class="tab-pane fade in active">
+														<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+														<div class="row" >
+																<div class="col-md-12">
+																	<div class="block-web">
+																	 <div class="header">
+																		 
+																			<h3 class="content-header">Lista Personal</h3>
+																		</div>
+																 <div class="porlets-content">
+																		<div class="table-responsive">
+																				<table  class="display table table-bordered table-striped" id="dynamic-table">
+																					<thead>
+																							<tr>
+																									<th class="text-center">#</th>
+																									<th class="" WIDTH="15%">N° de historia </th>
+																									<th class="" WIDTH="20%">Nombre del Paciente</th>
+																									<th class="" WIDTH="20%">Apellido paterno</th>
+																									<th class="" WIDTH="20%">Apellido materno</th>	
+																									<th class="" WIDTH="20%">Fecha</th>	
+																									<th class="text-center" WIDTH="20%">Opciones</th> 
+																									</tr>
+																					</thead>
+																					<tbody>
+																				 
+																					<tbody>
+																				</table>
+																			</div><!--/table-responsive-->
+																			
+																		</div><!--/porlets-content-->
+																		
+																		
+																	</div><!--/block-web--> 
+																</div><!--/col-md-12--> 
+															</div><!--/row-->
+													</div>
+													<div id="Tab2" class="tab-pane fade">
+														<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet</p>
+														<div class="row">
+																<div class="col-md-12">
+																	<div class="block-web">
+																	 <div class="header">
+																			<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+																			<h3 class="content-header">Data Table</h3>
+																		</div>
+																 <div class="porlets-content">
+																		<div class="table-responsive">
+																				<table  class="display table table-bordered table-striped" id="dynamic-table2">
+																					<thead>
+																						<tr>
+																							<th>Rendering engine</th>
+																							<th>Browser</th>
+																							<th>Platform(s)</th>
+																							<th class="hidden-phone">Engine version</th>
+																							<th class="hidden-phone">CSS grade</th>
+																						</tr>
+																					</thead>
+																					<tbody>
+																						<tr class="gradeX">
+																							<td>Trident</td>
+																							<td>Internet
+																								Explorer 4.0</td>
+																							<td>Win 95+</td>
+																							<td class="center hidden-phone">4</td>
+																							<td class="center hidden-phone">X</td>
+																						</tr>
+																						<tr class="gradeC">
+																							<td>Trident</td>
+																							<td>Internet
+																								Explorer 5.0</td>
+																							<td>Win 95+</td>
+																							<td class="center hidden-phone">5</td>
+																							<td class="center hidden-phone">C</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Trident</td>
+																							<td>Internet
+																								Explorer 5.5</td>
+																							<td>Win 95+</td>
+																							<td class="center hidden-phone">5.5</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Trident</td>
+																							<td>Internet
+																								Explorer 6</td>
+																							<td>Win 98+</td>
+																							<td class="center hidden-phone">6</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Trident</td>
+																							<td>Internet Explorer 7</td>
+																							<td>Win XP SP2+</td>
+																							<td class="center hidden-phone">7</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Trident</td>
+																							<td>AOL browser (AOL desktop)</td>
+																							<td>Win XP</td>
+																							<td class="center hidden-phone">6</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Firefox 1.0</td>
+																							<td>Win 98+ / OSX.2+</td>
+																							<td class="center hidden-phone">1.7</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Firefox 1.5</td>
+																							<td>Win 98+ / OSX.2+</td>
+																							<td class="center hidden-phone">1.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Firefox 2.0</td>
+																							<td>Win 98+ / OSX.2+</td>
+																							<td class="center hidden-phone">1.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Firefox 3.0</td>
+																							<td>Win 2k+ / OSX.3+</td>
+																							<td class="center hidden-phone">1.9</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Camino 1.0</td>
+																							<td>OSX.2+</td>
+																							<td class="center hidden-phone">1.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Camino 1.5</td>
+																							<td>OSX.3+</td>
+																							<td class="center hidden-phone">1.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Netscape 7.2</td>
+																							<td>Win 95+ / Mac OS 8.6-9.2</td>
+																							<td class="center hidden-phone">1.7</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Netscape Browser 8</td>
+																							<td>Win 98SE+</td>
+																							<td class="center hidden-phone">1.7</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Netscape Navigator 9</td>
+																							<td>Win 98+ / OSX.2+</td>
+																							<td class="center hidden-phone">1.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.0</td>
+																							<td>Win 95+ / OSX.1+</td>
+																							<td class="center hidden-phone">1</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.1</td>
+																							<td>Win 95+ / OSX.1+</td>
+																							<td class="center hidden-phone">1.1</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.2</td>
+																							<td>Win 95+ / OSX.1+</td>
+																							<td class="center hidden-phone">1.2</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.3</td>
+																							<td>Win 95+ / OSX.1+</td>
+																							<td class="center hidden-phone">1.3</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.4</td>
+																							<td>Win 95+ / OSX.1+</td>
+																							<td class="center hidden-phone">1.4</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.5</td>
+																							<td>Win 95+ / OSX.1+</td>
+																							<td class="center hidden-phone">1.5</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.6</td>
+																							<td>Win 95+ / OSX.1+</td>
+																							<td class="center hidden-phone">1.6</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.7</td>
+																							<td>Win 98+ / OSX.1+</td>
+																							<td class="center hidden-phone">1.7</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Mozilla 1.8</td>
+																							<td>Win 98+ / OSX.1+</td>
+																							<td class="center hidden-phone">1.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Seamonkey 1.1</td>
+																							<td>Win 98+ / OSX.2+</td>
+																							<td class="center hidden-phone">1.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Gecko</td>
+																							<td>Epiphany 2.20</td>
+																							<td>Gnome</td>
+																							<td class="center hidden-phone">1.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Webkit</td>
+																							<td>Safari 1.2</td>
+																							<td>OSX.3</td>
+																							<td class="center hidden-phone">125.5</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Webkit</td>
+																							<td>Safari 1.3</td>
+																							<td>OSX.3</td>
+																							<td class="center hidden-phone">312.8</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Webkit</td>
+																							<td>Safari 2.0</td>
+																							<td>OSX.4+</td>
+																							<td class="center hidden-phone">419.3</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Webkit</td>
+																							<td>Safari 3.0</td>
+																							<td>OSX.4+</td>
+																							<td class="center hidden-phone">522.1</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Webkit</td>
+																							<td>OmniWeb 5.5</td>
+																							<td>OSX.4+</td>
+																							<td class="center hidden-phone">420</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Webkit</td>
+																							<td>iPod Touch / iPhone</td>
+																							<td>iPod</td>
+																							<td class="center hidden-phone">420.1</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Webkit</td>
+																							<td>S60</td>
+																							<td>S60</td>
+																							<td class="center hidden-phone">413</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Opera 7.0</td>
+																							<td>Win 95+ / OSX.1+</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Opera 7.5</td>
+																							<td>Win 95+ / OSX.2+</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Opera 8.0</td>
+																							<td>Win 95+ / OSX.2+</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Opera 8.5</td>
+																							<td>Win 95+ / OSX.2+</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Opera 9.0</td>
+																							<td>Win 95+ / OSX.3+</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Opera 9.2</td>
+																							<td>Win 88+ / OSX.3+</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Opera 9.5</td>
+																							<td>Win 88+ / OSX.3+</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Opera for Wii</td>
+																							<td>Wii</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Nokia N800</td>
+																							<td>N800</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Presto</td>
+																							<td>Nintendo DS browser</td>
+																							<td>Nintendo DS</td>
+																							<td class="center hidden-phone">8.5</td>
+																							<td class="center hidden-phone">C/A<sup>1</sup></td>
+																						</tr>
+																						<tr class="gradeC">
+																							<td>KHTML</td>
+																							<td>Konqureror 3.1</td>
+																							<td>KDE 3.1</td>
+																							<td class="center hidden-phone">3.1</td>
+																							<td class="center hidden-phone">C</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>KHTML</td>
+																							<td>Konqureror 3.3</td>
+																							<td>KDE 3.3</td>
+																							<td class="center hidden-phone">3.3</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>KHTML</td>
+																							<td>Konqureror 3.5</td>
+																							<td>KDE 3.5</td>
+																							<td class="center hidden-phone">3.5</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeX">
+																							<td>Tasman</td>
+																							<td>Internet Explorer 4.5</td>
+																							<td>Mac OS 8-9</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">X</td>
+																						</tr>
+																						<tr class="gradeC">
+																							<td>Tasman</td>
+																							<td>Internet Explorer 5.1</td>
+																							<td>Mac OS 7.6-9</td>
+																							<td class="center hidden-phone">1</td>
+																							<td class="center hidden-phone">C</td>
+																						</tr>
+																						<tr class="gradeC">
+																							<td>Tasman</td>
+																							<td>Internet Explorer 5.2</td>
+																							<td>Mac OS 8-X</td>
+																							<td class="center hidden-phone">1</td>
+																							<td class="center hidden-phone">C</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Misc</td>
+																							<td>NetFront 3.1</td>
+																							<td>Embedded devices</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">C</td>
+																						</tr>
+																						<tr class="gradeA">
+																							<td>Misc</td>
+																							<td>NetFront 3.4</td>
+																							<td>Embedded devices</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">A</td>
+																						</tr>
+																						<tr class="gradeX">
+																							<td>Misc</td>
+																							<td>Dillo 0.8</td>
+																							<td>Embedded devices</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">X</td>
+																						</tr>
+																						<tr class="gradeX">
+																							<td>Misc</td>
+																							<td>Links</td>
+																							<td>Text only</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">X</td>
+																						</tr>
+																						<tr class="gradeX">
+																							<td>Misc</td>
+																							<td>Lynx</td>
+																							<td>Text only</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">X</td>
+																						</tr>
+																						<tr class="gradeC">
+																							<td>Misc</td>
+																							<td>IE Mobile</td>
+																							<td>Windows Mobile 6</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">C</td>
+																						</tr>
+																						<tr class="gradeC">
+																							<td>Misc</td>
+																							<td>PSP browser</td>
+																							<td>PSP</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">C</td>
+																						</tr>
+																						<tr class="gradeU">
+																							<td>Other browsers</td>
+																							<td>All others</td>
+																							<td>-</td>
+																							<td class="center hidden-phone">-</td>
+																							<td class="center hidden-phone">U</td>
+																						</tr>
+																					</tbody>
+																					<tfoot>
+																						<tr>
+																							<th>Rendering engine</th>
+																							<th>Browser</th>
+																							<th>Platform(s)</th>
+																							<th class="hidden-phone">Engine version</th>
+																							<th class="hidden-phone">CSS grade</th>
+																						</tr>
+																					</tfoot>
+																				</table>
+																			</div><!--/table-responsive-->
+																		</div><!--/porlets-content-->
+																		
+																		
+																	</div><!--/block-web--> 
+																</div><!--/col-md-12--> 
+															</div><!--/row-->
+													</div>
+													
+												</div>
+											</div>
+										</section>
 									</div>
-									<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-										<input type="text" id="searchInput" placeholder="Buscar.."><br>
-									</div>
-								</div>
-								<table class="fl-table" id="myTable">
-								<thead>
-								  <tr>
-									<th class="text-center">#</th>
-									<th class="" WIDTH="15%">N° de historia </th>
-									<th class="" WIDTH="20%">Nombre del Paciente</th>
-									<th class="" WIDTH="20%">Apellido paterno</th>
-									<th class="" WIDTH="20%">Apellido materno</th>	
-									<th class="" WIDTH="20%">Hora de Atencion</th>	
-									<th class="text-center" WIDTH="20%">Reg. Consulta</th>
-									</tr>
-								</thead>
-								<tbody>
-									<% if(resp != null) { %>
-									  <% for(var i=0; i< resp.length; i++) { %>
-											<tr>
-												<td><%= i + 1 %></td>
-												<td><%=resp[i].codigo_p %></td>
-											  <td><%=resp[i].Paciente.nombre %></td>
-												<td><%=resp[i].Paciente.apellidop %></td>
-											  <td><%=resp[i].Paciente.apellidom %></td>
-											  <td><%=resp[i].hora %></td>
-											  <td class="text-center"><a href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-edit zmdi-hc-lg"></i></a></td>
-											</tr>
-										<% } %>
-									<% } else { %>
-											<tr>
-											  <td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
-										  </tr>
-									<% } %>
-								</tbody>
-							</table>
 						</div>
 					</div>
-	  			<!-- lista de pacientes atendidos-->
-					<div class="tab-pane fade" id="Pacientes">
-						<div class="table-responsive" >
-								<div id="correo">
-										<div class="entrada">
-											<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-										</div>
-										<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-											<input type="text" id="searchInput" placeholder="Buscar.."><br>
-										</div>
-									</div>
-								<table class="fl-table" id="myTable">
-								<thead>
-									<tr>
-									<th class="text-center">#</th>
-									<th class="" WIDTH="15%">N° de historia </th>
-									<th class="" WIDTH="20%">Nombre del Paciente</th>
-									<th class="" WIDTH="20%">Apellido paterno</th>
-									<th class="" WIDTH="20%">Apellido materno</th>	
-									<th class="" WIDTH="20%">Hora de Atencion</th>	
-									<th class="text-center" WIDTH="20%">Modificar</th>
-									</tr>
-								</thead>
-								<tbody>
-									<% if(dataEmergencia != null) { %>
-										<% for(var i=0; i< dataEmergencia.length; i++) { %>
-											<tr>
-												<td><%= i + 1 %></td>
-												<td><%=dataEmergencia[i].codigo_p %></td>
-												<td><%=dataEmergencia[i].Paciente.nombre %></td>
-												<td><%=dataEmergencia[i].Paciente.apellidop %></td>
-												<td><%=dataEmergencia[i].Paciente.apellidom %></td>
-												<td><%=dataEmergencia[i].hora %></td>
-												<td class="text-center" ><a href="/emergencia/GetEmergencia/<%=dataEmergencia[i].codigo_p%>/<%=dataEmergencia[i].id%>/<%=DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-											</tr>
-										<% } %>
-									<% } else { %>
-										<tr>
-											<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
-										</tr>
-									<% } %>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+      
+        </div>
+      <!--\\\\\\\ container  end \\\\\\-->
+    
+    <!--\\\\\\\ content panel end \\\\\\-->
+  </div>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+<!-- Modal -->
+
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
 </body>
 </html>
