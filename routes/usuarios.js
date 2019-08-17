@@ -25,6 +25,11 @@ router.get('/roles/:id', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
+router.get('/quitar', (req,res) => {
+  onlyUSer = null;
+  res.redirect('/usuarios/usuarios');
+})
+
 router.get('/usuarios',(req, res) => {
   var esto = {
     method: 'GET',
@@ -37,7 +42,7 @@ router.get('/usuarios',(req, res) => {
         .then(resp => resp.json())
         .then(resp =>{
           ///console.log(resp, "esto es el mensaje")
-        res.render('usuarios',{resp, msg });
+        res.render('usuarios',{resp, msg, onlyUSer});
      })
      .catch(error => {       
       console.error('Error:', error)
@@ -79,14 +84,15 @@ router.get('/usuarios',(req, res) => {
       }
         
     });
+  var onlyUSer;
   router.get('/usuarios/:id',(req, res) => {
     var id = req.params;
-    fetch('http://127.0.0.1:3600/personal/OnlyPersonal/'+id.id)
+    fetch('http://127.0.0.1:3600/api/personal/'+id.id)
         .then(resp => resp.json())
         .then(resp =>{
-        res.render('usuarioUpdate',{
-          resp
-        });
+          onlyUSer = resp
+          console.log(resp, " esto es only user ")
+        res.redirect('/usuarios/usuarios')
      });
   });
 router.get('/usuario/:id',(req, res) => {
@@ -111,13 +117,14 @@ router.post('/updatePersonal/:id',(req,res) => {
       'Content-type' : "application/json"
     }
   }
-  fetch('http://localhost:3600/api/updatePersonal/'+id.id,enviar)
+  fetch('http://localhost:3600/api/UpdaPersonal/'+id.id,enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    res.redirect('/usuarios/usuarios')
+    res.redirect('/usuarios/usuarios/'+id.id)
   })
 });
+
 router.get('/UsuraioCuenta/:id', (req,res) => {
   var id = req.params
   fetch('http://127.0.0.1:3600/api/mostrarCuenta/'+id.id)
