@@ -28,16 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 	
-<style>
-		div.a {
-				text-align: center;
-		}
-		h1.letras {
-  font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-  
-}
-</style>
-</style>
+
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -86,8 +77,8 @@
           <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul class="opened" style="display:block">
               <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
-              <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Movimientos</b> </a> </li>
-              <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+              <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
+              <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Recetas</b> </a> </li>
               <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
               <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
             </ul>
@@ -107,221 +98,58 @@
     <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">
       <!--\\\\\\\ contentpanel start\\\\\\-->
-	  <div class="container clear_both padding_fix">
-			<section class="panel default blue_title h2">
-				<div class="panel-heading"> <i class="fa fa-edit icon"></i> Solicitudes </div>
-					<div class="panel-body">
-						<div id="accordion" class="panel-group  accordion accordion-color">
-							<div class="panel panel-default">
-								<div class="panel-heading yellow">
-									<h4 class="panel-title">
-									<a href="#collapse5" data-parent="#accordion" data-toggle="collapse" class="collapsed">
-									Solicitudes Trimestrales
-									</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="collapse5" style="height: 0px;">
-									<div class="panel-body">
-										<form  action="" method="POST" parsley-validate novalidate>
-											<div class="col-md-12">
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>N° de Solicitud:</label>
-														<input type="text" name="" required class="form-control">
-													</div>
-												</div>  
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>Trimestre a Reportar:</label>
-														<select required class="form-control"  name="estado">
-															<option>Primer Trimestre</option>
-															<option>Segundo Trimestre</option>
-															<option>Tercer Trimestre</option>
-															<option>Cuarto Trimestre</option>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>Fecha:</label>
-														<input type="date" name="fechaLLEgada" required class="form-control">
-													</div>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Responsable:</label>
-														<input type="text" name="precio" required class="form-control">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Destino:</label>
-														<input type="text" name="precio" required class="form-control">
-													</div>
-												</div>
-											</div>
-											<div class="table-responsive">
-												<table  class="display table table-bordered table-striped">
-													<thead>
-														<tr>
-														<th>#</th>
-														<th>Cantidad del Producto</th>
-														<th>Codigo</th>
-														<th>Descripcion</th>
-														<th>Precio</th>
-														<th>Eliminar</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-														<td>1</td>
-														<td>123</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														</tr>
-													<tbody>
-												</table>
-											</div><!--/table-responsive-->
-											<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-											<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-										</form>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading blue">
-									<h4 class="panel-title">
-									<a href="#collapse6" data-parent="#accordion" data-toggle="collapse" class="collapsed">
-									Solicitud de Emergencia
-									</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="collapse6" style="height: 0px;">
-									<div class="panel-body">
-										<form  action="" method="POST" parsley-validate novalidate>
-											<div class="col-md-12">
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>N° de Solicitud:</label>
-														<input type="text" name="" required class="form-control">
-													</div>
-												</div>  
-												<div class="col-md-4">
-													<div class="form-group">
-														<label class="col-sm-3 control-label">Trimestre Emergencia:</label>
-														<div class="col-sm-6">
-															<div class="radio">
-																<label>
-																<input type="checkbox" value="bar" name="mincheck[]" required class="form-control"></label>
-															</div><!--/form-group--> 
-														</div>
-													</div><!--/form-group-->
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>Fecha:</label>
-														<input type="date" name="fechaLLEgada" required class="form-control">
-													</div>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Responsable:</label>
-														<input type="text" name="precio" required class="form-control">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Destino:</label>
-														<input type="text" name="precio" required class="form-control">
-													</div>
-												</div>
-											</div>
-											<div class="table-responsive">
-												<table  class="display table table-bordered table-striped ">
-													<thead>
-														<tr>
-														<th>#</th>
-														<th>Cantidad del Producto</th>
-														<th>Codigo</th>
-														<th>Descripcion</th>
-														<th>Cantidad</th>
-														<th>Precio</th>
-														<th>Eliminar</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-														<td>1</td>
-														<td>123</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														<td>a</td>
-														</tr>
-													<tbody>
-												</table>
-											</div><!--/table-responsive-->
-											<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-											<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-			</section>
-		
-		<!--\\\\\\\ container  start \\\\\\-->
-		<div id="main-content">
-			<div class="page-content">
-				<div class="row">
-				  <div class="col-md-12">
-				   <div class="block-web">
-					  <div class="header">
-						<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-						<h3 class="content-header">Tabla de Datos</h3>
-					</div>
-					<div class="porlets-content">
-						<div class="table-responsive">
-						  <table  class="display table table-bordered table-striped " id="dynamic-table">
-							<thead>
-								<tr>
-								<th>#</th>
-								<th>Nro. de Solicitud</th>
-								<th>Responsable</th>
-								<th>Fecha</th>
-								<th>Trimestre</th>
-								<th>Estado</th>
-								<th>Opciones</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								<td>1</td>
-								<td>123</td>
-								<td>a</td>
-								<td>a</td>
-								<td>a</td>
-								<td>a</td>
-								<td>a</td>
-								</tr>
-							<tbody>
-						  </table>
-						</div><!--/table-responsive-->
-					  </div><!--/porlets-content-->
-					</div><!--/block-web--> 
-				  </div><!--/col-md-12--> 
-				</div><!--/row-->
-			  </div><!--/page-content end--> 
-			</div><!--/main-content end--> 
-		</div>
+      <div class="container clear_both padding_fix">
+            <!--\\\\\\\ table \\\\\\-->
+            <div id="main-content">
+              <div class="page-content">
+                <div class="row">
+                  <div class="col-md-12">
+                       <div class="block-web">
+                      <div class="header">
+                        <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+                        <h3 class="content-header"> <i class="fa fa-user-md icon"></i> Recetas</h3>
+                      </div>
+                      <div class="porlets-content">
+                            <div class="panel-body">
+                              <!-- Button trigger modal -->
+                                      <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/Farmacia/reg_receta" >Nueva Receta</button>
+                                  </div>
+                        <div class="table-responsive">
+                          <table  class="display table table-bordered table-striped " id="dynamic-table">
+                              <thead>
+                                  <tr>
+                                  <th>Codigo Ven.</th>
+                                  <th>Fecha</th>
+                                  <th>Historial</th>
+                                  <th>Paciente</th>
+                                  <th>T. Paciente</th>
+                                  <th>Empleado</th>
+                                  <th>Opciones</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                  <td>1</td>
+                                  <td>123</td>
+                                  <td>a</td>
+                                  <td>a</td>
+                                  <td>a</td>
+                                  <td>a</td>
+                                  <td><a class="btn btn-success" href=""><i class="fa fa-refresh"></i> </a></td>
+                                  </tr>
+                              <tbody>
+                          </table>
+                        </div><!--/table-responsive-->
+                      </div><!--/porlets-content-->
+                    </div><!--/block-web--> 
+                  </div><!--/col-md-12--> 
+                  </div><!--/row-->
+              </div><!--/page-content end--> 
+            </div><!--/main-content end--> 
+            
+            
+            
+            </div>
     <!--\\\\\\\ content panel end \\\\\\-->
   </div>
   <!--\\\\\\\ inner end\\\\\\-->

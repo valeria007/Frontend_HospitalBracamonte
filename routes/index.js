@@ -121,6 +121,14 @@ router.get('/usuarios',(req, res) => {
   res.render('usuarios')
 });
 
+
+router.get('/citas2',(req, res) => {
+  res.render('citas2')
+});
+router.get('/citas_fichas2',(req, res) => {
+  res.render('citas_fichas2')
+});
+
  //vista de doctor
  
 // Historiales Clinicos
@@ -131,6 +139,8 @@ router.get('/reportes_pacientes',(req, res) => {
 router.get('/vistaPrimPaciente',(req, res) => {
   res.render('vistaPrimPaciente')
 });
+
+
 
 // se movio esta ruta  a emergencia
 

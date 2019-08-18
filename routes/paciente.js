@@ -7,6 +7,9 @@ var url = require('./url/export');
 router.get('/reg_paciente',(req, res) => {
     res.render('reg_paciente')
   });
+  router.get('/home', (req,res) => {
+    res.render('Fichas/home');
+});
   
 router.post('/postPaciente', (req,res) => {
   var aleatorio = Math.floor(Math.random()*(9000-1000))+1000
@@ -116,7 +119,7 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
   fetch('http://localhost:3000/api/OnlyCita/'+id.id)
   .then(resp => resp.json())
   .then(resp =>{
-    res.render('citas_fichas',{
+    res.render('Fichas/citas_fichas',{          //aqui esta la ruta
       historial: id.historial,
       id,
       pacienteCita, // esto contiene las citas de un paciente
@@ -157,7 +160,7 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
   fetch('http://localhost:3000/api/pacientes/')
   .then(resp => resp.json())
   .then(resp =>{
-    res.render('citas',{
+    res.render('Fichas/citas',{         //aqui esta la ruta
       resp
     });    
   })

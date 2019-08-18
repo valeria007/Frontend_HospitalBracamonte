@@ -125,6 +125,7 @@
             <br>
             <br>
             <div class="porlets-content">
+              <%if (onlyUSer == null) { %>
                 <form class="form-horizontal group-border-dashed" action="/usuarios/usuarios" method="POST" parsley-validate novalidate>
                   <div class="form-group">
                       
@@ -180,6 +181,68 @@
                     </div><!--/form-group--> 
                   
                 </form>
+              <% } else { %>
+                
+                <form class="form-horizontal group-border-dashed" action="/usuarios/updatePersonal/<%=onlyUSer.id%>" method="POST" parsley-validate novalidate>
+                  <div class="form-group">
+                      
+                      <div class="col-sm-4">
+                          <label class="control-labe">Apellido Paterno:</label>
+                        <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" value="<%=onlyUSer.apellidop%>" required placeholder="Introdusca Apellido" />
+                      </div>
+                      
+                      <div class="col-sm-4">
+                          <label class="control-labe">Apellido Materno:</label>
+                        <input type="text" class="form-control" parsley-trigger="change" name="apellidom" value="<%=onlyUSer.apellidom%>" required placeholder="Introdusca Apellido" />
+                      </div>
+                      <div class="col-sm-4">
+                          <label class="control-labe">Nombre(s):</label>
+                        <input type="text" class="form-control" parsley-trigger="change"  name="nombre" value="<%=onlyUSer.nombre%>" required placeholder="Introdusca Nombre" />
+                      </div>
+                  </div><!--/form-group--> 
+                  
+                 
+                 
+                  <div class="form-group">
+                    
+                    <div class="col-sm-3">
+                        <label class="control-labe">C.I.:</label>
+                      <input type="text" name="ci" value="<%=onlyUSer.ci%>"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I." />
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <label class="control-labe">Direccion:</label>
+                      <input type="text" class="form-control" name="direcion" value="<%=onlyUSer.direcion%>" parsley-trigger="change"   required placeholder="Introdusca C.I." />
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="control-labe">Telefono:</label>
+                      <input  type="text" class="form-control" name="telefono" value="<%=onlyUSer.telefono%>" required placeholder="(XXX) XXXX XXX" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label >Cargo:</label>
+                        <select class="form-control" id="source" name="cargo">
+                            <option><%=onlyUSer.cargo%></option>
+                            <option>-----------------------</option>
+                            <option value="medico">Medico</option>
+                            <option value="enfermera">Enfermera</option>
+                            <option value="personal">Personal</option>
+                            <option value="farmaseutico">Farmaseutico</option>
+                        </select>
+                          
+                    </div>
+                  </div><!--/form-group--> 
+                  
+                  <div class="form-group">
+                      <div class="col-sm-offset-4 col-sm-10">
+                          <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/usuarios/quitar">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                        <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                        <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                      </div>
+                    </div><!--/form-group--> 
+                  
+                </form>
+              <% } %>
+                
               </div>
           </div><!--/block-web--> 
         </div><!--/col-md-12--> 
@@ -213,19 +276,19 @@
                   <% } else { %>
                   <% for(var i=0; i< resp.length; i++) { %>
                     <tr>
-                    <td><%=resp[i].nombre %></td>
-                    <td><%=resp[i].apellidop %></td>
-                    <td><%=resp[i].apellidom %></td>
-                    <td><%=resp[i].ci %></td>
-                    <td><%=resp[i].cargo %></td>										
-                    <td>
-                       
-                      <a href="/usuarios/usuarios/<%=resp[i].id %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user text-muted"></i></a><span>&nbsp;</span>
-                      <a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
-                      <a href="/usuarios/usuarios/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
-                      <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver cuentas"><i class="fa fa-eye text-muted"></i></a>
-                    
-                    </td>
+                      <td><%=resp[i].nombre %></td>
+                      <td><%=resp[i].apellidop %></td>
+                      <td><%=resp[i].apellidom %></td>
+                      <td><%=resp[i].ci %></td>
+                      <td><%=resp[i].cargo %></td>										
+                      <td>
+
+                        <a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user text-muted"></i></a><span>&nbsp;</span>
+                        <a href="#!"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
+                        <a href="/usuarios/usuarios/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
+                        <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver cuentas"><i class="fa fa-eye text-muted"></i></a>
+                      
+                      </td>
                     
                     </tr>
                   <% } %>
