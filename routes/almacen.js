@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+const datas = require('./url/export');
+
+router.post('/loginAlmacen',(req,res) => {
+    var data = req.body
+    res.status(200).json(data)
+})
+
 router.get('/pedidos',(req, res) => {
     fetch('http://localhost:3500/api/pedido')   
         .then(resp => resp.json())
@@ -18,9 +25,38 @@ router.get('/pedidos',(req, res) => {
     }) 
 });
 
-
-router.get('/home', (req,res) => {
-    res.render('Almacen/home');
+router.get('/home/:id', (req,res) => {
+    const { id } = req.params
+    fetch('http://localhost:3600/api/user/'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+        if(datas.name.token[resp.id]){
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            }  
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3600/api/personal/'+resp.perso_id)
+                .then(resp => resp.json())
+                .catch(error => console.error('Error',error))
+                .then(resp => {
+                    //res.send(resp)
+                    res.render('Almacen/home',{
+                        resp
+                    })
+                    status = null
+                })
+            }else{
+                res.send("no tienes permiso fuera de aqui")
+            }
+        }else{
+            res.send("fuera de aqui si no tienes cuenta")
+        }
+        
+    })
 });
 router.get('/kardexValorizado', (req,res) => {
     res.render('Almacen/kardexValorizado');

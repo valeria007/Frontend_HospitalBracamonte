@@ -4,6 +4,26 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+var listItems = {}
+function tok(token,id){
+  let storedItem = listItems[id];
+    if (!storedItem) {
+      storedItem = listItems[id] = {
+        data: token,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in listItems) {
+      arr.push(listItems[id]);
+  }
+  return arr;
+}
+
 router.get('/',(req, res) => {
   res.render('index', { msg1, msg2, msg3 })
 });
@@ -45,7 +65,6 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -57,18 +76,39 @@ router.post('/login', (req,res)  => {
       msg3 = " Contraceña Incorrecta "
       res.redirect('/')   
     }else{
-      msg1=null;
-      msg2=null;
-      msg3 = null;
-      datas.name.token = resp.token
-      console.log( datas.name.token)
+      tok(resp,resp.user.id); //funcion para añadir token del usuario      
+      datas.name.token = listItems // esto es para añadir
+      fetch('http://localhost:3600/api/user/'+resp.user.id)
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(resp => {
 
-      res.redirect('/home')
-
+        if(resp.role.length <=1){
+          if(resp.role[0].name == "Almacen"){
+            //res.send(resp.role[0].name)
+            res.redirect('/almacen/home/'+resp.id)
+          }else{
+            res.send(resp.role)
+          }
+        }else{
+          res.redirect('/home')
+        }
+        
+        //res.redirect('/almacen/home/'+resp.user.id)
+      }) 
     }
     
   })
+    .catch(error => {
+      console.error('Error:', error)
+        res.send("No hay coneccion con el servidor")
+    }) 
   }
+})
+
+//ver token
+router.get('/token', (req,res) => {
+  res.send(datas.name.token)
 })
 
 router.get('/forrm',(req, res) => {

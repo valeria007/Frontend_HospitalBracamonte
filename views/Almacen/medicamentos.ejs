@@ -210,8 +210,8 @@
 				  <td><%=resp[i].grupoAsig%></td>
 				  <td><%=resp[i].codificacion%></td>
 				  <td><%=resp[i].nombre%></td>
-				  <td><%=resp[i].fechaLLEgada%></td>
-				  <td><%=resp[i].fechaVencimiento%></td>
+				  <td><%=resp[i].fechaLLEgada.split("T")[0]%></td>
+				  <td><%=resp[i].fechaVencimiento.split("T")[0]%></td>
 				  <td><%=resp[i].cantidad%></td>
 				  <td><%=resp[i].unidades%></td>
 				  <td><%=resp[i].precio%></td>
