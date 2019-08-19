@@ -191,27 +191,27 @@
 											<form action="/datos_generales_paciente/reg_alergias/<%=dataPaciente[0].id%>" method="POST">
 											  
 												<div class="col-md-12">
-														<div class="col-sm-4 col-sm-4">
-															<div class="entrada ">
-																<h6 class=" blue_info">N° de Historia:</h6>
+													<div class="col-sm-4 col-sm-4">
+														<div class="entrada ">
+															<h6 class=" blue_info">N° de Historia:</h6>
+															<input
+																value="<%=dataPaciente[0].numeroHistorial%>"
+																class="form-control" readonly=""
+																value="Read only text goes here">
+														</div>
+													</div>
+													<div class="col-sm-8 col-sm-9">
+														<div class="form-group">
+															<div class="entrada">
+																<h6 class=" blue_info">Nombre Completo:
+																</h6>
 																<input
-																	value="<%=dataPaciente[0].numeroHistorial%>"
+																	value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
 																	class="form-control" readonly=""
 																	value="Read only text goes here">
 															</div>
 														</div>
-														<div class="col-sm-8 col-sm-9">
-															<div class="form-group">
-																<div class="entrada">
-																	<h6 class=" blue_info">Nombre Completo:
-																	</h6>
-																	<input
-																		value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-																		class="form-control" readonly=""
-																		value="Read only text goes here">
-																</div>
-															</div>
-														</div>
+													</div>
 											
 												</div>
 											 

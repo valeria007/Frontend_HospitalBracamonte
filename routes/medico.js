@@ -309,7 +309,7 @@ router.get('/recetasOFconsulta', (req,res) => {
 
 });
 
-//serv para sacar consulta segun id para madar a la plantilla de receta
+//serv para sacar consulta segun id para mandar a la plantilla de receta
 var ConsultaOnly, hist;
 router.get('/TraerConsulta/:id/:historial', (req,res) => {
     var id = req.params;
