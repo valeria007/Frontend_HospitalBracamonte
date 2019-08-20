@@ -105,7 +105,7 @@
       </div>
     </div>
     <!--\\\\\\\left_nav end \\\\\\-->
-    <div class="contentpanel"><br>
+    <div class="contentpanel" id="pedidos"><br>
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <!--Formulario-->
       <div class="container clear_both padding_fix">
@@ -121,7 +121,7 @@
                       <div class="porlets-content">
                           <div class="panel-body">
                               <!-- Button trigger modal -->
-                              <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/distribucion/distribucion" >Nueva Distribucion</button>
+                              <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/distribucion/nueva_distribucion" >Nueva Distribucion</button>
                             </div>
                           
                         <div class="table-responsive">
@@ -138,15 +138,20 @@
 																	</tr>
 													</thead>
 													<tbody>
+                            <% for (var i = 0; i < resp.length; i++) { %>
 															<tr>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
+																	<td><%=i+1%></td>
+																	<td><%=resp[i].codigo%></td>
+																	<td><%=resp[i].responsable%></td>
+																	<td><%=resp[i].recibe%></td>
+																	<td><%=resp[i].fechaLlegada%></td>
 																	
-																	<td></td>
-																	</tr>
+																	<td class="center">
+					                          <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal" @click="onlyDistrubucion(<%=resp[i].id%>)"> <i class="fa fa-plus-square"></i> <span> New Task</span> </a> 
+
+                                  </td>
+                              </tr>
+                            <% } %>
 													</tbody>
                           </table>
                         </div><!--/table-responsive-->
@@ -157,6 +162,92 @@
               </div>
             </div> 
           </div>
+
+
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Compose New Task</h4>
+                  </div>
+                  
+                  <div class="row">
+                      <div class="col-md-12">
+                        <div class="block-web">          
+                          <div class="porlets-content">
+                            <form  method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
+                              
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">Codigo:</label>
+                                <div class="col-sm-6">
+                                  <input type="text" class="form-control" v-model="oneDistrbucion.codigo" disabled="">
+                                </div>
+                              </div><!--/form-group--> 
+                            
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">Recibe:</label>
+                                <div class="col-sm-6">
+                                  <input type="text" class="form-control" v-model="oneDistrbucion.recibe" disabled="">
+                                </div>
+                              </div><!--/form-group--> 
+                              
+                              <div class="form-group">
+                                  <label class="col-sm-3 control-label">Nombre de Responsable:</label>
+                                  <div class="col-sm-6">
+                                    <input type="text" class="form-control" v-model="oneDistrbucion.responsable" disabled="">
+                                  </div>
+                              </div><!--/form-group--> 
+                              
+                              <div class="form-group">
+                                  <label class="col-sm-3 control-label">Fecha de Distribucion:</label>
+                                  <div class="col-sm-6">
+                                    <input type="text" class="form-control" v-model="oneDistrbucion.fechaLlegada" disabled="">
+                                  </div>
+                              </div><!--/form-group--> 
+                    
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div> <!-- //row -->
+
+                    <div class="col-lg-12"> 
+                        <section class="panel default blue_title h2">
+          
+                          <div class="panel-body">
+                          
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th>#</th>	
+                                  <th>Nombre</th>
+											            <th>Precentacion</th>
+											            <th>Precio</th>
+											            <th>Cantidad</th>                                      
+                                </tr>
+                              </thead>
+                              <tbody v-for="(item, index) in oneDistrbucion.productos">
+                                <tr>
+                                  <td>{{index+1}}</td>
+                                  <td>{{item.item.nombre}}</td>
+                                  <td>{{item.item.presentacion}}</td>
+                                  <td>{{item.item.price}}</td>
+                                  <td>{{item.item.cantidad}}</td>
+                                </tr>                              
+                              </tbody>
+                            </table>                       
+                          </div>
+                        </section>
+                      </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
     <!--\\\\\\\ content panel end \\\\\\-->
   </div>
   <!--\\\\\\\ inner end\\\\\\-->
@@ -275,7 +366,7 @@
 </script>
  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="/axios/dist/axios.min.js"></script>
-<script src="/js/get/getECP.js"></script>
+<script src="/js/vue/distribucion.js"></script>
 
 </body>
 </html>

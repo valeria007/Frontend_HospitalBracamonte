@@ -2,17 +2,13 @@ Vue.filter('numeral', function (value) {
     return numeral(value).format('0,0');
 })
 
-Vue.component('modal', {
-    template: '#modal-template'   //<<<<<<<<<<<<< para modal view
-})
-
 const pedidos =  new Vue({
     el:"#pedidos",
     data : () => ({
         medicamentos:[],
         itemsCar:[],
 
-        items : {},
+        distribucionList : {},
         totalQty : 0,
         totalPrice : 0,
 
@@ -21,27 +17,15 @@ const pedidos =  new Vue({
         recibe:'',
         fechaLlegada:'',
 
+        //respuesta post
         respuestaPost:'',
+        rep_post_false:'',
+        respFalse: '',
+        pass:'',
 
         listDistribucion:[],
 
-        //table search pagination distribucion
-        searchItem: '',
-        lis_pedidos: [],
-        filteredItems: [],
-        paginatedItems: [],
-        selectedItems: [],
-        pagination: {
-          range: 5,
-          currentPage: 1,
-          itemPerPage: 8,
-          lis_pedidos: [],
-          filteredItems: [],
-        },
-
-        //pra modal view
-        showModal: false,
-       //<<<<<<<<<<<<<
+        oneDistrbucion:[],
 
        //para buscar medicamentos para la desitribucion
        searchMed: '',
@@ -59,126 +43,37 @@ const pedidos =  new Vue({
     }),
 
     mounted(){
-        axios
-        .get('http://localhost:7000/distribucion/vueDistribucion')
-        .then(response => {
-          console.log(response)
-          this.lis_pedidos = response.data;              
-        })
-
-        axios
-        .get('http://localhost:7000/distribucion/vueMedicamento')
-        .then(response => {
-          this.ListMedicamentos = response.data;          
-        })
+      fetch('http://localhost:7000/distribucion/vueMedicamento')
+      .then(res => res.json())
+      .then(res => {
+        for(var i = 0; i < res.length; i++){
+          this.ListMedicamentos.push({
+            id : res[i].id,
+            nombre : res[i].nombre,
+            cantidad : res[i].cantidad,
+            codificacion: res[i].codificacion,
+            precio : res[i].precio,
+            presentacion : res[i].presentacion,
+            unidades : res[i].unidades,
+            cant:0
+          }) 
+        }
+      })
     },
     ready() {
-        this.filteredItems = this.lis_pedidos
-        this.buildPagination()
-        this.selectPage(1)    
-
-        //para buscar medicamentos para la desitribucion
-        this.filteredMeds = this.ListMedicamentos
-        this.buildPaginationMed()
-        this.selectPageMed(1)  
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      //para buscar medicamentos para la desitribucion
+      this.filteredMeds = this.ListMedicamentos
+      this.buildPaginationMed()
+      this.selectPageMed(1)  
+      //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     },
 
     methods:{
-        
-        /*
-        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                    table search pagination distribucion
-        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        */
-
-        clearSearchItem(){
-            this.searchItem = undefined
-            this.searchInTheList('')
-        },
-        searchInTheList(searchText, currentPage){
-            if(_.isUndefined(searchText)){
-              this.filteredItems = _.filter(this.lis_pedidos, function(v, k){
-                return !v.selected
-              })
-            }
-            else{
-              this.filteredItems = _.filter(this.lis_pedidos, function(v, k){
-                return !v.selected && v.responsable.toLowerCase().indexOf(searchText.toLowerCase()) > -1 || !v.selected && v.recibe.toLowerCase().indexOf(searchText.toLowerCase()) > -1
-                || !v.selected && v.fechaLlegada.toLowerCase().indexOf(searchText.toLowerCase()) > -1 
-              })
-            }
-            this.filteredItems.forEach(function(v, k){
-              v.key = k+1
-            })  
-            this.buildPagination()
-
-            if(_.isUndefined(currentPage)){
-              this.selectPage(1) 
-            }
-            else{
-              this.selectPage(currentPage)
-            }
-        },
-        buildPagination(){
-            let numberOfPage = Math.ceil(this.filteredItems.length/this.pagination.itemPerPage)
-            this.pagination.lis_pedidos = []
-            for(var i=0; i<numberOfPage; i++){
-              this.pagination.lis_pedidos.push(i+1)
-            }
-        },
-        selectPage(item) {
-            this.pagination.currentPage = item
-
-            let start = 0
-            let end = 0
-            if(this.pagination.currentPage < this.pagination.range-2){
-              start = 1
-              end = start+this.pagination.range-1
-            }
-            else if(this.pagination.currentPage <= this.pagination.lis_pedidos.length && this.pagination.currentPage > this.pagination.lis_pedidos.length - this.pagination.range + 2){
-              start = this.pagination.lis_pedidos.length-this.pagination.range+1
-              end = this.pagination.lis_pedidos.length
-            }
-            else{
-              start = this.pagination.currentPage-2
-              end = this.pagination.currentPage+2
-            }
-            if(start<1){
-              start = 1
-            }
-            if(end>this.pagination.lis_pedidos.length){
-              end = this.pagination.lis_pedidos.length
-            }
-
-            this.pagination.filteredItems = []
-            for(var i=start; i<=end; i++){
-              this.pagination.filteredItems.push(i);
-            }
-
-            this.paginatedItems = this.filteredItems.filter((v, k) => {
-              return Math.ceil((k+1) / this.pagination.itemPerPage) == this.pagination.currentPage
-            })
-        },
-        selectItem(item){
-            item.selected = true
-            this.selectedItems.push(item)
-            this.searchInTheList(this.searchItem, this.pagination.currentPage)
-        },    
-        removeSelectedItem(item){
-            item.selected = false
-            this.selectedItems.$remove(item)
-            this.searchInTheList(this.searchItem, this.pagination.currentPage)
-        },   
-        /*
-        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        */
-        /*
-        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                    buscar medicamentos para el pedido
-        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        */
+      /*
+      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                  buscar medicamentos para el pedido
+      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      */
        clearSearchItemMed(){
         this.searchMed = undefined
         this.searchInTheListMed('')
@@ -253,15 +148,15 @@ const pedidos =  new Vue({
         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         */
         
-
-        medicamento: function (){
-            axios
-            .get('http://localhost:7000/distribucion/vueMedicamento')
-            .then(response => {
-              this.medicamentos = response.data;          
-            })
-        },
-        insertar(id){
+        insertar(id, cantidad){
+          if(cantidad == 0 || cantidad <= 0 || cantidad == ""){
+            this.pass = "";
+            if(cantidad == 0 || cantidad == ""){
+              this.respFalse = "Inserte una cantidad del producto"
+            }else if(cantidad <= 0){
+              this.respFalse = "Las cantidades no pueden ser negativas"
+            }
+          }else{
             axios
             .get('http://localhost:7000/pedidos/carrito/'+id)
             .then(response => {
@@ -273,17 +168,22 @@ const pedidos =  new Vue({
                     presentacion: response.data.presentacion,
                     price: response.data.price,
                    
-                }      
-                this.itemsCar = car          
-                this.add(car,id);
-                
-            })            
+                } 
+                this.itemsCar = car 
+                this.pass = " Se insertaron  "+cantidad + " productos" + " de " + car.nombre
+                this.respFalse = ""
+                for(var i = 0; i< cantidad; i++){
+                  this.add(car,id);
+                }         
+            })   
+          }
+                     
         },       
 
         add: function(item, id)  {
-            let storedItem = this.items[id];
+            let storedItem = this.distribucionList[id];
             if (!storedItem) {
-                storedItem = this.items[id] = {
+                storedItem = this.distribucionList[id] = {
                     item: item,
                     qty: 0,
                     price: 0
@@ -298,59 +198,78 @@ const pedidos =  new Vue({
         },
 
         reduceByOne (id) {
-            this.items[id].qty--;
-            this.items[id].price -= this.items[id].item.price;
+            this.distribucionList[id].qty--;
+            this.distribucionList[id].price -= this.distribucionList[id].item.price;
             this.totalQty--;
-            this.totalPrice -= this.items[id].item.price;
+            this.totalPrice -= this.distribucionList[id].item.price;
     
-            if (this.items[id].qty <= 0) {
-                console.log(this.items[id])
-                delete this.items[id];
+            if (this.distribucionList[id].qty <= 0) {
+                delete this.distribucionList[id];
             }
         },
 
         removeItem(id) {
-            this.totalQty -= this.items[id].qty;
-            this.totalPrice -= this.items[id].price;
-            delete this.items[id];
+            this.totalQty -= this.distribucionList[id].qty;
+            this.totalPrice -= this.distribucionList[id].price;
+            delete this.distribucionList[id];
         },
 
         generateArray: function () {
             let arr = [];
-            for (const id in this.items) {
-                arr.push(this.items[id]);
+            for (const id in this.distribucionList) {
+                arr.push(this.distribucionList[id]);
             }
             return arr;
         },
         formSubmit(e) {
             e.preventDefault();
             if( this.generateArray() == ""){
-                this.respuestaPost = "No se seleciono un producto"
+                this.rep_post_false = "No se seleciono un producto"
+                this.respuestaPost = ""
                 
             }else{
-                axios.post('http://localhost:7000/distribucion/vueMedicamento', {
-                    codigo:this.codigo,
-                    responsable:this.responsable,
-                    recibe:this.recibe,
-                    fechaLlegada:this.fechaLlegada,
-                    productos:this.generateArray(),
-                
-                })
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                });
+              var data = {
+                codigo:this.codigo,
+                responsable:this.responsable,
+                recibe:this.recibe,
+                fechaLlegada:this.fechaLlegada,
+                productos:this.generateArray(),
+              }
+              var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+              fetch('http://localhost:7000/distribucion/vueMedicamento',esto)
+              .then(res => res.json())
+              .catch(error => console.error('Error:', error))
+              .then(data => { 
 
-                this.codigo = '';
-                this.responsable= '';
-                this.recibe = '';
-                this. fechaLlegada = '';
-                this.items = {};
-                this.totalQty = 0;
-                this.totalPrice = 0;
-                this.respuestaPost = "listo"
+                if(data.success == false){
+                  this.rep_post_false = data.msg
+                  this.respuestaPost = ""
+                 
+                }else{
+                 
+                  this.codigo = '';
+                  this.responsable= '';
+                  this.recibe = '';
+                  this. fechaLlegada = '';
+                  this.distribucionList = {};
+                  this.totalQty = 0;
+                  this.totalPrice = 0;
+                  this.respuestaPost = ""
+
+                  this.respuestaPost = data.msg
+                  this.rep_post_false = ""
+                }
+                
+              })
+               
+
+                
             } 
        
         },
@@ -360,7 +279,7 @@ const pedidos =  new Vue({
             axios
             .get('http://localhost:7000/distribucion/vueDistribucion')
             .then(response => {
-              console.log(response)
+             
               this.listDistribucion = response.data;              
             })
         },
@@ -381,6 +300,16 @@ const pedidos =  new Vue({
                     console.log(error)
                 });
             }            
+        },
+
+        onlyDistrubucion(id){
+          fetch('http://localhost:7000/distribucion/onlyDist/'+id)
+          .then(res => res.json())
+          .catch(error => console.error('Error:', error))
+          .then(data => { 
+            this.oneDistrbucion = data[0]
+            console.log(this.oneDistrbucion, " <<<<<<<<<<<<<<<<<")
+          })
         }
     }
 })
