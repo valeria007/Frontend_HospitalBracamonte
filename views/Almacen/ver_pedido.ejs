@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pedido</title>
+    <%- include("../partials/head") -%>	
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+    <div class="wrapper">
+        <%- include("../partials/menu") -%>
+        <div class="inner">
+            <div class="left_nav">
+              <!--\\\\\\\left_nav start \\\\\\-->
+                <div class="left_nav_slidebar">
+                    <ul>
+                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                            <ul >
+                                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+                            </ul>
+                        </li>
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="left_nav_pointer"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                                <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+                                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
+                                <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pedidos</b> </a> </li>
+                                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                                <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+                            </ul>
+                        </li>
+                        <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+                            <ul>
+                                <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                                <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                                <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                                <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>      
+        </div>
+        <div class="contentpanel" id="ver_pedido">
+            <div class="container clear_both padding_fix">
+                <div id="main-content">
+                    <div class="page-content">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                              <div class="block-web">
+                                <div class="header">
+                                 
+                                    <div class="actions"> <a class="minimize" ><i class="fa fa-chevron-down"></i></a> <a class="close-down"><i class="fa fa-times"></i></a> </div>
+                                    <h3 class="content-header">Pedido</h3>   
+                                    <span style="color: red;">{{error}}</span>
+                                    <span style="color: blue;">{{msg}}</span>
+
+                                </div>
+                                <div class="porlets-content">
+
+                                    <a @click="update_cantidad">mostrar id</a>
+                                   
+                                    <form @submit="update" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
+                                    
+                                    <div class="form-group">
+                                            <label class="col-sm-3 control-label">Codigo de Compra:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].codigoCompra%>">
+                                            </div>
+                                        </div><!--/form-group--> 
+                                    
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Especifique el estatus de la compra:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].boletaPago%>">
+                                            </div>
+                                        </div><!--/form-group--> 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Tipo de Material:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].tipoMaterial%>">
+                                            </div>
+                                        </div><!--/form-group--> 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Fecha de Pedido:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].fechaIngreso%>">
+                                            </div>
+                                        </div><!--/form-group--> 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Proveedor:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].proveedor%>">
+                                            </div>
+                                        </div><!--/form-group--> 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Observaciones:</label>
+                                            <div class="col-sm-6">                                                   
+                                                <textarea name="" id="" cols="15" rows="5" class="form-control" readonly=""><%=resp[0].Observaciones%></textarea>
+                                            </div>
+                                        </div><!--/form-group--> 
+
+
+                                        <div class="form-group"  v-if="pedido == ''">
+                                          <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary" >Submit</button>
+                                            <button class="btn btn-default">Cancel</button>
+                                          </div>
+                                        </div><!--/form-group--> 
+                                    </form>
+                                </div><!--/porlets-content--> 
+                              </div><!--/block-web--> 
+                            </div><!--/col-md-12--> 
+                        </div><!--/row-->  
+    
+                        <template v-if="pedido == ''">
+                                <div class="col-md-12"> 
+
+                                        <a @click="ver(<%=resp[0].id%>)">ver lista de productos</a>
+                                        <section class="panel default blue_title h2">
+                                            <div class="panel-heading">
+                                            Observaciones de la llegada del <span class="semi-bold">pedido</span> 
+                                            </div>
+                                            <div class="panel-body">
+                                            
+                                                <table class="table table-hover">
+                                                  <thead>
+                                                      <tr>
+                                                          <th>#</th>
+                                                          <th>Codigo</th>
+                                                          <th>Nombre</th>
+                                                          <th>Precio</th>
+                                                          <th>Cantidad</th>
+                                                          <th>Precio Toal</th>
+                                                          <th>Fecha de vencimiento</th>
+                                                          <th>Modificar</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody v-for="(item, index) in  list">  
+                                                      <tr>
+                                                          <td>{{index+1}}</td>
+                                                          <td>{{item.item.codificacion}}</td>
+                                                          <td>{{item.item.nombre}}</td>
+                                                          <td>{{item.item.price}}</td>
+                                                          <td>{{item.qty}}</td>
+                                                          <td>{{item.price}}</td>
+                                                          <td><input type="date" v-model="item.fehca_vencimineto"></td>
+                                                          <td><a @click="reduceByOne(index)">Reduce</a></td>
+                                                      </tr>
+            
+                                                                                               
+                                                  </tbody>
+                                                  <tfoot>
+                                                        <tr>
+                                                            
+                                                           
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>Sub Total</th>
+                                                            <th colspan="2">{{subTotal}}</th>
+                                                            <th></th>
+                                              
+                                                        </tr>
+                                                        <tr>
+                                                           
+                                                           
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>Iva</th>
+                                                            <th colspan="2">{{subTotal * 0.13}}</th>
+                                                            <th></th>
+                                                
+                                                        </tr>
+                                                        <tr>
+                                                            
+                                                           
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>Total</th>
+                                                            <th colspan="2">{{subTotal + subTotal * 0.13}}</th>
+                                                            <th></th>
+                                                  
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                   
+                                            </div>
+                                        </section>
+                                    </div>
+                        </template>
+                        <template v-else>
+                                <div class="col-md-6"> 
+
+                                        <section class="panel default blue_title h2">
+                                            <div class="panel-heading">
+                                            <span class="semi-bold">Medicamentos</span> 
+                                            </div>
+                                            <div class="panel-body">
+                                            
+                                                <table class="table table-hover">
+                                                  <thead>
+                                                      <tr>
+                                                          <th>#</th>
+                                                          <th>Codigo</th>
+                                                          <th>Nombre</th>
+                                                          <th>Precio</th>
+                                                          <th>Cantidad</th>
+                                                          <th>Precio Toal</th>
+                                                          
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody v-for="(item, index) in  list">  
+                                                      <tr>
+                                                          <td>{{index+1}}</td>
+                                                          <td>{{item.item.codificacion}}</td>
+                                                          <td>{{item.item.nombre}}</td>
+                                                          <td>{{item.item.price}}</td>
+                                                          <td>{{item.qty}}</td>
+                                                          <td>{{item.price}}</td>
+                                                          
+                                                      </tr>
+            
+                                                                                               
+                                                  </tbody>
+                                                  <tfoot>
+                                                        <tr>
+                                                            
+                                                           
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>Sub Total</th>
+                                                            <th colspan="2">{{subTotal}}</th>
+                                                            <th></th>
+                                              
+                                                        </tr>
+                                                        <tr>
+                                                           
+                                                           
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>Iva</th>
+                                                            <th colspan="2">{{subTotal * 0.13}}</th>
+                                                            <th></th>
+                                                
+                                                        </tr>
+                                                        <tr>
+                                                            
+                                                           
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>Total</th>
+                                                            <th colspan="2">{{ 0.13 * subTotal + subTotal }}</th>
+                                                            <th></th>
+                                                  
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                   
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="col-md-6"> 
+                                            <section class="panel default blue_title h2">
+                                                <div class="panel-heading">
+                                                <span class="semi-bold">Medicamentos aceptados</span> 
+                                                </div>
+                                                <div class="panel-body">
+                                                
+                                                    <table class="table table-hover">
+                                                      <thead>
+                                                          <tr>
+                                                              <th>#</th>
+                                                              <th>Codigo</th>
+                                                              <th>Nombre</th>
+                                                              <th>Precio</th>
+                                                              <th>Cantidad</th>
+                                                              <th>Precio Toal</th>
+                                                              
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody v-for="(item, index) in  pedido.medicamentos">  
+                                                          <tr>
+                                                              <td>{{index+1}}</td>
+                                                              <td>{{item.item.codificacion}}</td>
+                                                              <td>{{item.item.nombre}}</td>
+                                                              <td>{{item.item.price}}</td>
+                                                              <td>{{item.qty}}</td>
+                                                              <td>{{item.price}}</td>
+                                                
+                                                          </tr>
+                
+                                                                                                   
+                                                      </tbody>
+                                                      <tfoot>
+                                                            <tr>
+                                                                
+                                                               
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Sub Total</th>
+                                                                <th colspan="2">{{pedido.subTotal}}</th>
+                                                                <th></th>
+                                                  
+                                                            </tr>
+                                                            <tr>
+                                                               
+                                                               
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Iva</th>
+                                                                <th colspan="2">{{pedido.iva}}</th>
+                                                                <th></th>
+                                                    
+                                                            </tr>
+                                                            <tr>
+                                                                
+                                                               
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Total</th>
+                                                                <th colspan="2">{{pedido.total}}</th>
+                                                                <th></th>
+                                                      
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                       
+                                                </div>
+                                            </section>
+                                        </div>
+
+                        </template>
+
+                        
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+           
+           
+    
+    </div>
+    <%- include("../partials/scripts") -%>
+    <script src="/js/vue/ver_pedido.js"></script>
+</body>
+</html>

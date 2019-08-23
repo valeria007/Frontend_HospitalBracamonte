@@ -264,6 +264,7 @@ const pedidos =  new Vue({
 
                   this.respuestaPost = data.msg
                   this.rep_post_false = ""
+                  this.reduce();
                 }
                 
               })
