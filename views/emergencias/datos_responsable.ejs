@@ -1,258 +1,338 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Datos Responsable</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>DATOS RESPONSABLE</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- SideBar Menu Hospital-->
-    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-		<li>
-			<a href="/emergencia/homeEmergencia/<%=DogEnf%>">
-			<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home</a>
-		</li>
-		<!-- Emergencias -->
-		<li>
-			<a href="#!" class="btn-sideBar-SubMenu">
-			<i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>		</a>
-			<ul class="list-unstyled full-box">
-				<li><a href="/emergencia/dataEmergencia/<%=DogEnf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
-			</ul>
-		</li>
-	</ul>
-	<%- include("partials/menuFooter") -%>
-	<!-- Content page-->
-<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-		<ul class="full-box list-unstyled text-right">
-			<li class="pull-left">
-		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-			</li>
-		</ul>
-	</nav>
-	<!-- Content page -->
-	<div class="container-fluid col-md-12" id="">
-		<div class="page-header  col-md-6">	
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Datos de Responsable<small></small></h1>  
-		</div><br><br>
-		<div class="btn-group  col-md-3">
-			<button type="button" class="btn btn-info btn-raised"
-				data-toggle="dropdown">
-			  Detalles del Paciente <span class="caret"></span>
-			</button>
-			
-			<ul class="dropdown-menu" role="menu">
-				<li class="menu__item">
-					<a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>" class="menu__link">Antecedentes</a>
-				</li>
-				<li class="menu__item">
-					<a href="/datos_genPaciente_emergencia/lista_alergias/<%=dataPaciente[0].id%>" class="menu__link">Alergias
-				  </li>
-				  <li class="menu__item">
-					  <a href="/datos_genPaciente_emergencia/list_exFisico/<%=dataPaciente[0].id%>" class="menu__link">Examen General</a>
-				  </li>
-				<li class="divider"></li>
-			  
-			</ul>
-		  </div> 
-	   
-		<div id="" class="col-md-2">
-	
-			<div class="">
-				<a href="/emergencia/volver" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
-			</div>
-		
-		</div>
-	</div>
-	<!-- Alergias-->
-	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade active in" id="new">
-		  <div class="container-fluid">
-			<div class="row">
-			
-				<% if(update_responsable == null) { %>
-					<form action="/datos_genPaciente_emergencia/reg_responsable/<%=dataPaciente[0].id%>" method="POST">
-					  
-					  <p>Datos del Paciente</p>
-					  <div class="grupo" id="cabeza">
-							  
-						  <div id="cuatro">
-							  <div class="entrada">Historial:<br>
-									<label><font color="black"><%=dataPaciente[0].numeroHistorial%></font></label>
-							  </div>
-							  <div class="entrada">Apellido Paterno:<br>
-									<label><font color="black"><%=dataPaciente[0].apellidop%></font></label>
-							  </div>
-							  <div class="entrada">Apellido Materno:<br>
-									<label for=""><font color="black"><%=dataPaciente[0].apellidom%></font></label>
-							  </div>
-							  <div class="entrada">Nombre(s):<br>
-								   <label for=""><font color="black"><%=dataPaciente[0].nombre%></font></label>
-							  </div>
-						  </div>
-							  
-					  </div>
-					  <br>
-					  <p>Datos de Responsable</p>
-					  <div class="grupo" id="cabeza">
-						<div id="tres2">
-						  <div class="entrada">Nombre:<br>
-							  <input type="text" name="nombre" value=""size="10"><br>
-						  </div>
-						  <div class="entrada">Apellido Paterno:<br>
-							<input type="text" name="apellido1" value="" size="20"><br>
-						  </div>
-						  <div class="entrada">Apellido Materno:<br>
-							<input type="text" name="apellido2" value=""size="10"><br>
-						  </div>
-						  
-						</div>
-							<div id="tres2">
-							  <div class="entrada">Dirección:<br>
-								  <input type="text" name="direccion" value=""size="10"><br>
-							  </div>
-							  <div class="entrada">CI:<br>
-								<input type="text" name="ci" value="" size="20"><br>
-							  </div>
-							  <div class="entrada">Teléfono:<br>
-								<input type="text" name="telefono" value=""size="10"><br>
-							  </div>
-							  
-						  </div>
-					   
-					  
-					  </div>
-					  <br>
-					  
-					  <br>
-					  
-						
-						<p class="text-center">
-							<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-							<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-						</p>
-					  </form>
-				  <% } else { %>
-					  <form action="/datos_genPaciente_emergencia/update_responsable/<%=update_responsable[0].id%>" method="POST">
-					  
-						  <p>Datos del Paciente</p>
-						  <div class="grupo" id="cabeza">
-								  
-							  <div id="cuatro">
-								  <div class="entrada">Historial:<br>
-										<label><font color="black"><%=dataPaciente[0].numeroHistorial%></font></label>
-								  </div>
-								  <div class="entrada">Apellido Paterno:<br>
-										<label><font color="black"><%=dataPaciente[0].apellidop%></font></label>
-								  </div>
-								  <div class="entrada">Apellido Materno:<br>
-										<label for=""><font color="black"><%=dataPaciente[0].apellidom%></font></label>
-								  </div>
-								  <div class="entrada">Nombre(s):<br>
-									   <label for=""><font color="black"><%=dataPaciente[0].nombre%></font></label>
-								  </div>
-							  </div>
-								  
-						  </div>
-						  <br>
-						  <p>Datos de Responsable</p>
-						  <a href="/datos_genPaciente_emergencia/volver">Volver</a>
-						  <div class="grupo" id="cabeza">
-							<div id="tres2">
-							  <div class="entrada">Nombre:<br>
-								  <input type="text" name="nombre" value="<%=update_responsable[0].nombre%>"size="10"><br>
-							  </div>
-							  <div class="entrada">Apellido Paterno:<br>
-								<input type="text" name="apellido1" value="<%=update_responsable[0].apellido1%>" size="20"><br>
-							  </div>
-							  <div class="entrada">Apellido Materno:<br>
-								<input type="text" name="apellido2" value="<%=update_responsable[0].apellido2%>" size="10"><br>
-							  </div>
-							  
-							</div>
-								<div id="tres2">
-								  <div class="entrada">Dirección:<br>
-									  <input type="text" name="direccion" value="<%=update_responsable[0].direccion%>" size="10"><br>
-								  </div>
-								  <div class="entrada">CI:<br>
-									<input type="text" name="ci" value="<%=update_responsable[0].ci%>" size="20"><br>
-								  </div>
-								  <div class="entrada">Teléfono:<br>
-									<input type="text" name="telefono" value="<%=update_responsable[0].telefono%>" size="10"><br>
-								  </div>
-								  
-							  </div>
-						   
-						  
-						  </div>
-						  <br>
-						  
-						  <br>
-						  
-							
-							<p class="text-center">
-								<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-								<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-							</p>
-						  </form>
-				  <% } %>
-
-
-				<div class="table-responsive">
-					<h3 class="text-center all-tittles">LISTA DE DATOS DE RESPONSABLE</h3>
-					<div class="table-wrapper">
-						<div id="correo">
-							<div class="entrada">
-								<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-							</div>
-							<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-								<input type="text" id="searchInput" placeholder="Buscar.."><br>
-							</div>
-						</div>
-						<table class="fl-table" id="myTable">
-							<thead>
-								<tr>
-								
-								<th>Nombre</th>
-								<th>Apellido Paterno</th>
-								<th>Apellido Materno</th>
-								<th>Dirección</th>
-								<th>CI</th>
-								<th>Teléfono</th>
-								<th>Dar de baja </th>
-								
-								</tr>
-							</thead>
-							<tbody>
-								<% for( var i = 0; i< list_responsables.length; i++) { %>
-									<tr>
-										<td><%=list_responsables[i].nombre%></td>
-										<td><%=list_responsables[i].apellido1%></td>
-										<td><%=list_responsables[i].apellido2%></td>
-										<td><%=list_responsables[i].direccion%></td>
-										<td><%=list_responsables[i].ci%></td>
-										<td><%=list_responsables[i].telefono%></td>
-										<td><a href="/datos_genPaciente_emergencia/one_responsable/<%=list_responsables[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
-									
-									</tr>
-								<% } %>
-							<tbody>
-						</table>
-					</div>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <div class="header_bar">
+    <div class="brand">
+    <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+    </div>
+    <div class="header_top_bar">
+    <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="inner">
+		<div class="left_nav">
+				<div class="left_nav_slidebar">
+					<ul>
+						<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+										<ul >
+											<li> <a href="/emergencia/homeEmergencia/<%=DogEnf%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio </b> </a> </li>
+										</ul>
+						</li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+										<ul class="opened" style="display:block">
+											<li> <a href="/emergencia/dataEmergencia/<%=DogEnf%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+										</ul>
+						</li>
+					</ul>
 				</div>
-				                                                                         
-			                          
-		  </div>
 		</div>
-	  </div>
-	</div>
-</section>
-	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+    <div class="contentpanel">
+    	<div class="container clear_both padding_fix">
+				<br>
+				<br>
+        <a href="/emergencia/volver" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a>
+        <br>
+        <br>
+         <div class="row">
+        <div class="col-md-12">
+          <div class="block-web">
+            <div class="header">
+              <div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
+              <h3 class="content-header ">Detalles del Paciente</h3>
+            </div>
+						<br>
+            <div class="btn-group ">
+              <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Detalles del Paciente<span class="caret"></span></button>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Antecedentes</a></li>
+                <li><a href="/datos_genPaciente_emergencia/lista_alergias/<%=dataPaciente[0].id%>">Alergias</a></li>
+                <li><a href="/datos_genPaciente_emergencia/list_exFisico/<%=dataPaciente[0].id%>">Examen General</a></li>
+                <li><a href="/emergencia/VerHistorialvis">Ver Historial</a></li>
+              </ul>
+            </div>
+            <br>
+            <div class="porlets-content">
+              <% if(update_responsable == null) { %>
+							<form class="form-horizontal group-border-dashed" action="/datos_genPaciente_emergencia/reg_responsable/<%=dataPaciente[0].id%>" method="POST" parsley-validate novalidate>
+								<h3 class="text-center">Datos del Paciente </h3>
+                <div class="form-group">
+									<div class="col-sm-3">
+										<label class="control-label">N° de Historial</label>
+										<input type="text" class="form-control"value="<%=dataPaciente[0].numeroHistorial%>" readonly>
+									</div>
+                	<div class="col-sm-3">
+                    <label class="control-label">Apellido Paterno:</label>
+                    <input type="text" class="form-control" value="<%=dataPaciente[0].apellidop%>" readonly>
+                  </div>
+                  <div class="col-sm-3">
+                    <label class="control-label">Apellido Materno:</label>
+                    <input type="text" class="form-control" value="<%=dataPaciente[0].apellidom%>" readonly>
+									</div>
+									<div class="col-sm-3">
+										<label class="control-label">Nombre(s):</label>
+										<input type="text" class="form-control" value="<%=dataPaciente[0].nombre%>" readonly>
+									</div>
+								</div>
+								<h3 class="text-center">Datos del Responsable</h3>
+                <div class="form-group">
+									<div class="col-sm-4">
+                    <label class="control-label">Nombre(s):</label>
+                    <input type="text" class="form-control" parsley-trigger="change" name="nombre" value=""size="10" />
+                  </div>
+									<div class="col-sm-4">
+                    <label class="control-label">Apellido Paterno:</label>
+                    <input type="text"  class="form-control" parsley-trigger="change" name="apellido1" value="" size="20" />
+                      </div>
+                  <div class="col-sm-4">
+                    <label class="control-label">Apellido Materno:</label>
+                    <input type="text" class="form-control" parsley-trigger="change" name="apellido2" value=""size="10" />
+                  </div>
+                </div>      
+								<div class="form-group">
+									<div class="col-sm-4">
+                    <label class="control-label">Direccion:</label>
+                    <input type="text" class="form-control" parsley-trigger="change" name="direccion" value=""size="10"/>
+                  </div>	
+                  <div class="col-sm-3">
+                        <label class="control-label">C.I.:</label>
+                      <input type="text"  class="form-control" parsley-trigger="change" name="ci" value="" size="20" />
+                    </div>
+                  <div class="col-sm-3">
+                    <label class="control-label">Telefono:</label>
+                    <input  type="text" class="form-control"  name="telefono" value=""size="10" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-4 col-sm-10">
+                    <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                    <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+              </form>
+              <% } else { %>
+							<form class="form-horizontal group-border-dashed" action="/datos_genPaciente_emergencia/reg_responsable/<%=dataPaciente[0].id%>" method="POST" parsley-validate novalidate>
+								<h3 class="text-center">Datos del Paciente </h3>
+								<div class="form-group">
+										<div class="col-sm-3">
+											<label class="control-label">N° de Historial</label>
+											<input type="text" class="form-control"value="<%=dataPaciente[0].numeroHistorial%>" readonly>
+										</div>
+										<div class="col-sm-3">
+											<label class="control-label">Apellido Paterno:</label>
+											<input type="text" class="form-control" value="<%=dataPaciente[0].apellidop%>" readonly>
+										</div>
+										<div class="col-sm-3">
+											<label class="control-label">Apellido Materno:</label>
+											<input type="text" class="form-control" value="<%=dataPaciente[0].apellidom%>" readonly>
+										</div>
+										<div class="col-sm-3">
+											<label class="control-label">Nombre(s):</label>
+											<input type="text" class="form-control" value="<%=dataPaciente[0].nombre%>" readonly>
+										</div>
+									</div>
+									<h3 class="text-center">Datos del Responsable</h3>
+									<div class="form-group">
+										<div class="col-sm-4">
+														<label class="control-label">Nombre(s):</label>
+													<input type="text" class="form-control" parsley-trigger="change" name="nombre" value="<%=update_responsable[0].nombre%>"size="10" />
+												</div>
+										<div class="col-sm-4">
+											<label class="control-label">Apellido Paterno:</label>
+											<input type="text"  class="form-control" parsley-trigger="change" name="apellido1" value="<%=update_responsable[0].apellido1%>" size="20" />
+												</div>
+										<div class="col-sm-4">
+											<label class="control-label">Apellido Materno:</label>
+											<input type="text" class="form-control" parsley-trigger="change" name="apellido2" value="<%=update_responsable[0].apellido2%>"size="10" />
+										</div>
+									</div>      
+									<div class="form-group">
+										<div class="col-sm-4">
+											<label class="control-label">Direccion:</label>
+											<input type="text" class="form-control" parsley-trigger="change" name="direccion" value="<%=update_responsable[0].direccion%>"size="10"/>
+										</div>	
+										<div class="col-sm-3">
+													<label class="control-label">C.I.:</label>
+												<input type="text"  class="form-control" parsley-trigger="change" name="ci" value="<%=update_responsable[0].ci%>" size="20" />
+											</div>
+										<div class="col-sm-3">
+											<label class="control-label">Telefono:</label>
+											<input  type="text" class="form-control"  name="telefono" value="<%=update_responsable[0].telefono%>"size="10" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-4 col-sm-10">
+											<a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/datos_genPaciente_emergencia/volver">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+											<button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+											<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+										</div>
+									</div>
+							</form>
+              <% } %>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <div class="row" >
+        <div class="col-md-12">
+          <div class="block-web">
+          <div class="header">
+							<h3 class="text-center">Datos del Responsable</h3>
+          </div>
+         	<div class="porlets-content">
+            <div class="table-responsive">
+                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                  <thead>
+                    <tr>
+												<th>Nombre</th>
+												<th>Apellido Paterno</th>
+												<th>Apellido Materno</th>
+												<th>Dirección</th>
+												<th>CI</th>
+												<th>Teléfono</th>
+												<th>Dar de baja </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+											<% for( var i = 0; i< list_responsables.length; i++) { %>
+												<tr>
+													<td><%=list_responsables[i].nombre%></td>
+													<td><%=list_responsables[i].apellido1%></td>
+													<td><%=list_responsables[i].apellido2%></td>
+													<td><%=list_responsables[i].direccion%></td>
+													<td><%=list_responsables[i].ci%></td>
+													<td><%=list_responsables[i].telefono%></td>
+													<td><a href="/datos_genPaciente_emergencia/one_responsable/<%=list_responsables[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+												
+												</tr>
+											<% } %>
+                  </tbody>
+                </table>
+              </div>
+        	</div>
+            
+            
+          </div>
+        </div>
+      </div>
+      </div>
+		</div>
+</div>
+</div>
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
 </body>
 </html>

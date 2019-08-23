@@ -1,383 +1,471 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Listas Emergencia</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <%- include("../partials/head") -%>
-    <link rel="stylesheet" href="/css/form1.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>CUADERNOS</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
 </head>
 <% if (idHistorial == null ) { %>
-    <body>
-        <h1> Algo salio mal por favor intente entrar desde una vista anterior </h1>
-    </body>
+  <body>
+      <h1> Algo salio mal por favor intente entrar desde una vista anterior </h1>
+  </body>
 <% }  else { %>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-    <!-- Content page-->
-    <!-- SideBar Menu Hospital-->
-    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-        <li>
-            <a href="/emergencia/homeEmergencia/<%=idHistorial.docOenf%>">
-                <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=idHistorial.docOenf%>
-            </a>
-        </li>
-        <!-- Emergencias -->
-        <li>
-            <a href="#!" class="btn-sideBar-SubMenu">
-                <i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
-            </a>
-            <ul class="list-unstyled full-box">
-                <li><a href="/emergencia/dataEmergencia/<%=idHistorial.docOenf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de citas</a></li>
-                            
-            </ul>
-        </li>
-    </ul>
-    <%- include("partials/menuFooter") -%>
-<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar ">
-		<ul class="full-box list-unstyled text-right ">
-			<li class="pull-left">
-				<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-      </li>
-    <nav id="main-nav" class="main-nav">
-        <ul class="menu">
-          <li class="menu__item">
-              <a href="/emergencia/datos_responsablevis" class="menu__link">Datos de responsable
-                
-              </a>
-          </li>
-          <li class="menu__item">
-              <a href="/emergencia/antecedentesvis" class="menu__link">Antecedentes
-                
-              </a>
-          </li>
-          <li class="menu__item">
-              <a href="/datos_genPaciente_emergencia/alergiasvis" class="menu__link">Alergias
-                
-              </a>
-          </li>
-          <li class="menu__item">
-              <a href="/emergencia/examenFisicovis" class="menu__link">Examen General
-                
-              </a>
-          </li>
-        </ul>
-       <div class="menu-barr">
-          <div class="uno"></div>
-          <div class="dos"></div>
-          <div class="tres"></div>
-      </div>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  <div class="header_bar">
+    <div class="brand">
+    <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       
-    </nav>
-     
-     
-    	</ul>
-	</nav>
-	<!-- Content page -->
-	<div class="container-fluid col-md-12" id="">
-		<div class="page-header  col-md-6">	
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Consulta de Emergencia <small></small></h1>  
-    </div><br><br>
-    <div class="btn-group  col-md-3">
-        <button type="button" class="btn btn-info btn-raised"
-            data-toggle="dropdown">
-          Detalles del Paciente <span class="caret"></span>
-        </button>
-        
-        <ul class="dropdown-menu" role="menu">
-            <li class="menu__item">
-                <a href="/datos_genPaciente_emergencia/list_responsables/<%=dataPaciente[0].id%>" class="menu__link">Datos de responsable</a>
-            </li>
-            <li class="menu__item">
-                <a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>" class="menu__link">Antecedentes</a>
-            </li>
-            <li class="menu__item">
-              <a href="/datos_genPaciente_emergencia/lista_alergias/<%=dataPaciente[0].id%>" class="menu__link">Alergias
-            </li>
-            <li class="menu__item">
-                <a href="/datos_genPaciente_emergencia/list_exFisico/<%=dataPaciente[0].id%>" class="menu__link">Examen General</a>
-            </li>
-            <li class="menu__item">
-              <a href="/emergencia/VerHistorialvis" class="menu__link">Ver Historial</a>
-          </li>
-            <li class="divider"></li>
-          
-        </ul>
-      </div> 
-   
-    <div id="" class="col-md-2">
-
-			<div class="">
-				<a href="/emergencia/volver" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
-			</div>
-    
+    </div>
+    <div class="header_top_bar">
+    <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div>
+       
+      </div>
     </div>
   </div>
-	<div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-          <li class="active"><a href="#new" data-toggle="tab">Registro de Emergencia</a></li>
-          <li><a href="#list" data-toggle="tab">Lista de Emergencias del Paciente</a></li>
-        </ul>
-        <!-- Registro de nueva consulta de Emergencia-->
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade active in" id="new">
-            <div class="container-fluid">
-              <div class="row">
-              <%if(updateConsultaEmg == "") { %>
-                <form action="/emergencia/consultaEmergencia/<%=idHistorial.id%>" method="POST">
-                  <div class="form-group label-floating">
-                    <label class="control-label">Doctor</label>
-                    <select class="form-control" name="idDoctor">
-                      <option value="doctor">Doctor</option>                                                            
-                    </select>
+  <div class="inner">
+    <div class="left_nav">
+    <div class="left_nav_slidebar">
+          <ul>
+							<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+								<ul >
+									<li> <a href="/emergencia/homeEmergencia/<%=idHistorial.docOenf%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio <%=idHistorial.docOenf%></b> </a> </li>
+								</ul>
+							</li>
+							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+								<ul class="opened" style="display:block">
+									<li> <a href="/emergencia/dataEmergencia/<%=idHistorial.docOenf%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+									
+								</ul>
+							</li>
+            
+          </ul>
+        </div>
+    </div>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel">
+      <!--\\\\\\\ contentpanel start\\\\\\-->
+
+        <!--\\\\\\\ container  start \\\\\\-->
+        <div class="container clear_both padding_fix">
+        <br>
+         <div class="row">
+        <div class="col-md-12">
+          <div class="block-web">
+            <div class="header">
+              <div class="info blue_symbols"><i class="fa fa-medkit icon"></i></div>
+              <h3 class="content-header ">Registro de Consulta</h3>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+              <div class="btn-group ">
+                    <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Detalles del Paciente<span class="caret"></span></button>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a href="/datos_genPaciente_emergencia/list_responsables/<%=dataPaciente[0].id%>">Datos de responsable</a></li>
+                      <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Antecedentes</a></li>
+                      <li><a href="/datos_genPaciente_emergencia/lista_alergias/<%=dataPaciente[0].id%>">Alergias</a></li>
+                      <li><a href="/datos_genPaciente_emergencia/list_exFisico/<%=dataPaciente[0].id%>">Examen General</a></li>
+                      <li><a href="/emergencia/VerHistorialvis">Ver Historial</a></li>
+                    </ul>
                   </div>
-                  <p>Datos del Paciente </p>
-                  <div class="grupo" id="cabeza">
-                    <div id="cuatro">
-                      <div class="entrada">Fecha de Consulta:<br>
-                        <input  type="date" name="fechaAtencion" require><br>
+            <div class="porlets-content">
+                
+                <%if(updateConsultaEmg == "") { %>
+                <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos" method="POST" parsley-validate novalidate>
+                  <div class="form-group">
+                      <div class="col-sm-4">
+                          <label class="control-label">Medico</label>
+                          <select class="form-control" id="source" name="idDoctor">
+                            <option value="doctor">Medico</option>                                                            
+                          </select>
+                        </div>
                       </div>
-                      <div class="entrada">N° de Historial<br>
-                        <input type="text" name="Nhistorial" value="<%=dataPaciente[0].numeroHistorial%>"><br>
-                      </div>
-                      <div class="entrada">C.I.:<br>
-                        <input type="text" name="ci" value="<%=dataPaciente[0].ci%>"><br>
-                      </div>
-                      <div class="entrada">Sexo:<br>
-                        <select  name="sexo">
-                          <option><%=dataPaciente[0].sexo%></option>
-                        </select><br>
-                      </div>
-                    </div>
-                    <div id="tres2">
-                      <div class="entrada">Apellido Paterno:<br>
-                        <input type="text" name="apellidop" value="<%=dataPaciente[0].apellidop%>"><br>
-                      </div>
-                      <div class="entrada">Apellido Materno:<br>
-                        <input type="text"  name="apellidom" value="<%=dataPaciente[0].apellidom%>"><br>
-                      </div>
-                      <div class="entrada">Nombre(s):<br>
-                        <input type="text" name="nombre" value="<%=dataPaciente[0].nombre%>"><br>
-                      </div>
-                    </div>
-                    <div id="correo">
-                      <div class="entrada">Fecha de Nacimiento:<br>
-                        <input type="text" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>"><br>
-                      </div>
-                    </div>
-                  </div>
-                  <br>
-                  <p>Datos del Doctor</p>
-                  <div class="grupo" id="cabeza">
-                    <div id="tres2">
-                      <div class="entrada">Apellido Paterno del Doctor:<br>
-                        <input type="text" name="apellidoD1" value=""><br>
-                      </div>
-                      <div class="entrada">Apellido Materno del Doctor:<br>
-                        <input type="text" name="apellidoD2" value=""><br>
-                      </div>
-                      <div class="entrada">Nombre(s) del Doctor:<br>
-                        <input type="text" name="nombreDoctor" value=""><br>
-                      </div>
-                    </div>
-                  </div>
-                  <br>
-                  <p>Estado del Paciente</p>
-                  <div class="grupo" id="cabeza">
-                    <div class="panel with-nav-tabs panel-default">
-                      <div class="panel-heading">
-                        <ul class="nav nav-tabs">
-                          <li class="active"><a href="#tab1default" data-toggle="tab">Motivo de Consulta</a></li>
-                          <li><a href="#tab2default" data-toggle="tab">Diagnostico</a></li>
-                          <li><a href="#tab3default" data-toggle="tab">Tratamiento</a></li>
-                          <li><a href="#tab4default" data-toggle="tab">Observaciones</a></li>
-                        </ul>
-                      </div>
-                      <div class="panel-body">
-                        <div class="tab-content">
-                          <div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="motivoConsulta"  cols="100" rows="10"></textarea></div>
-                          <div class="tab-pane fade" id="tab2default"><textarea class="large-compact" name="diagnostico" cols="100" rows="10"></textarea></div>
-                          <div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="100" rows="10"></textarea></div>
-                          <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="100" rows="10"></textarea></div>
+                      <h3 class="text-center">Datos del Paciente </h3>
+                      <div class="form-group">
+                          <div class="col-sm-3">
+                            <label class="control-label">Fecha de Consulta:</label>
+                            <input  type="date"  class="form-control" name="fechaAtencion" require />
                           </div>
+                          <div class="col-sm-3">
+                            <label class="control-label">N° de Historial</label>
+                            <input type="text" name="Nhistorial" class="form-control" value="<%=dataPaciente[0].numeroHistorial%>" readonly/>
+                          </div>
+                          <div class="col-sm-3">
+                            <label class="control-label">C.I.:</label>
+                            <input class="form-control" type="text" name="ci" value="<%=dataPaciente[0].ci%>" readonly/>
+                          </div>
+                          <div class="col-sm-3">
+                            <label class="control-label">Sexo:</label>
+                            <select class="form-control" id="source"  name="sexo">
+                                <option><%=dataPaciente[0].sexo%></option>
+                            </select>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-sm-3">
+                              <label class="control-label">Apellido Paterno:</label>
+                            <input type="text" class="form-control" name="apellidop" value="<%=dataPaciente[0].apellidop%>" readonly />
+                          </div>
+                          <div class="col-sm-3">
+                              <label class="control-label">Apellido Materno:</label>
+                            <input type="text"  class="form-control"name="apellidom" value="<%=dataPaciente[0].apellidom%>" readonly/>
+                          </div>
+                          <div class="col-sm-3">
+                              <label class="control-label">Nombre(s):</label>
+                            <input type="text" class="form-control" name="nombre" value="<%=dataPaciente[0].nombre%>" readonly />
+                          </div>
+                      
+                        <div class="col-sm-3">
+                            <label class="control-label">Fecha de Nacimiento:</label>
+                          <input type="text"class="form-control" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>" readonly/>
                         </div>
                       </div>
+                      <h3 class="text-center">Datos del Medico</h3>
+                      <div class="form-group">
+                          <div class="col-sm-3">
+                              <label class="control-label">Apellido Paterno del Medico:</label>
+                              <input type="text" class="form-control" name="apellidoD1" value=""><br>
+                          </div>
+                          <div class="col-sm-3">
+                              <label class="control-label">Apellido Materno del Medico:</label>
+                              <input type="text" class="form-control" name="apellidoD2" value=""><br>
+                          </div>
+                          <div class="col-sm-6">
+                              <label class="control-label">Nombre(s) del Medico:</label>
+                              <input type="text" class="form-control" name="nombreDoctor" value=""><br>
+                          </div>
+                      
+                      </div>
+                      <h3 class="text-center">Estado del Paciente</h3>
+                      <div class="form-group">
+                          
+                          <div class="col-sm-6">
+                              <label class="control-label">Motivo de Consulta:</label>
+                              <textarea class="form-control" name="motivoConsulta" ></textarea>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label">Diagnostico:</label>
+                                <textarea class="form-control" name="diagnostico" ></textarea>
+                              </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-sm-6">
+                              <label class="control-label">Tratamiento:</label>
+                              <textarea class="form-control" name="tratamiento"></textarea>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label">Observacione:</label>
+                                <textarea class="form-control" name="observaciones"></textarea>
+                              </div>
+                      </div>
+
+                  <div class="form-group">
+                      <div class="col-sm-offset-5 col-sm-12">
+                        <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
+                        <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                      </div>
                     </div>
-                    <!--aqui va el si es doctor quien le atendio o enfermera o en todo caso si le atendieron los dos-->
-                    <p class="text-center">
-                        <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                        <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                    </p>
-                  </form>
-                  <% } else {%>
-                <form action="/emergencia/updateConEmergencia/<%=updateConsultaEmg[0].id%>" method="POST">
-                  <% if(updateConsultaEmg[0].idDoctor == "doctor") { %>
-                  <h3>Doctor </h3>
-                  <% } else  if(updateConsultaEmg[0].idEnfermera == "enfermera") { %>
                   
-                  <% } else {%>
-                  <div class="form-group label-floating">
-                    <label class="control-label">Doctor</label>
-                    <select class="form-control" name="idDoctor">
-                      <option value="doctor">Doctor</option>                                                            
-                    </select>
-                  </div>                                                                         
-                  <% } if(updateConsultaEmg[0].idEnfermera == "enfermera") { %> 
-                  <h3>Enfermera</h3>
-                  <% } else if(updateConsultaEmg[0].idDoctor == "doctor"){ %>
-                                                                                              
-                  <% } else { %>
-                  <div class="form-group label-floating">
-                    <label class="control-label">Enfermera</label>
-                    <select class="form-control" name="idEnfermera">
-                      <option value="enfermera">Enfermera</option>                                                            
-                    </select>
-                  </div>                                                                              
-                  <% } %>
-                  <br>
-                  <h2> Formulario de Actualizacion</h2>
-                  <br>
-                  <p>Datos del Paciente </p>
-                  <div class="grupo" id="cabeza">
-                    <div id="cuatro">
-                      <div class="entrada">Fecha de Consulta:<br>
-                        <input type="date" name="fechaAtencion" value="<%=updateConsultaEmg[0].fechaAtencion%>" require><br>
+                </form>
+                <% } else { %>           
+                  <form class="form-horizontal group-border-dashed" action="/emergencia/updateConEmergencia/<%=updateConsultaEmg[0].id%>" method="POST" parsley-validate novalidate>
+                    <% if(updateConsultaEmg[0].idDoctor == "doctor") { %>
+                      <h3>Doctor </h3>
+                      <% } else  if(updateConsultaEmg[0].idEnfermera == "enfermera") { %>
+                      
+                      <% } else {%>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="control-label">Medico</label>
+                                <select class="form-control" id="source" name="idDoctor">
+                                  <option value="doctor">Medico</option>                                                            
+                                </select>
+                              </div>
+                            </div>
+                      <% } if(updateConsultaEmg[0].idEnfermera == "enfermera") { %> 
+                          <h3>Enfermera</h3>
+                      <% } else if(updateConsultaEmg[0].idDoctor == "doctor"){ %>
+                                                                                                          
+                      <% } else { %>  
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="control-label">Enfermera</label>
+                                <select class="form-control" id="source" name="idEnfermera">
+                                  <option value="enfermera">Enfermera</option>                                                            
+                                </select>
+                              </div>
+                            </div><!--/form-group--> 
+                      <% } %>
+                      <br>
+                      <h2 class="text-center"> Formulario de Actualizacion</h2>
+                      <br>
+                      <h3 class="text-center">Datos del Paciente </h3>
+                      <div class="form-group">
+                          <div class="col-sm-3">
+                              <label class="control-label">Fecha de Consulta:</label>
+                            <input  type="date"  class="form-control" name="fechaAtencion" require />
+                          </div>
+                          <div class="col-sm-3">
+                              <label class="control-label">N° de Historial</label>
+                                <input type="text" name="Nhistorial" class="form-control" value="<%=dataPaciente[0].numeroHistorial%>" readonly/>
+                              </div>
+                        
+                          
+                          <div class="col-sm-3">
+                              <label class="control-label">C.I.:</label>
+                                <input class="form-control" type="text" name="ci" value="<%=dataPaciente[0].ci%>" readonly/>
+                              </div>
+                          <div class="col-sm-3">
+                              <label class="control-label">Sexo:</label>
+                              <select  name="sexo">
+                                  <option><%=dataPaciente[0].sexo%></option>
+                                </select>
+                          </div>
                       </div>
-                      <div class="entrada">N° de Historial<br>
-                        <input type="text" name="Nhistorial" value="<%=dataPaciente[0].numeroHistorial%>"><br>
-                      </div>
-                      <div class="entrada">C.I.:<br>
-                        <input type="text" name="ci" value="<%=dataPaciente[0].ci%>"><br>
-                      </div>
-                      <div class="entrada">Sexo:<br>
-                        <input type="text" name="sexo" value="<%=dataPaciente[0].sexo%>"><br>
-                        <br>
-                      </div>                               
-                    </div>
-                    <div id="tres2">
-                      <div class="entrada">Apellido Paterno:<br>
-                        <input type="text" name="apellidop" value="<%=dataPaciente[0].apellidop%>"><br>
-                      </div>
-                      <div class="entrada">Apellido Materno:<br>
-                        <input type="text"  name="apellidom" value="<%=dataPaciente[0].apellidom%>"><br>
-                      </div>
-                      <div class="entrada">Nombre(s):<br>
-                        <input type="text" name="nombre" value="<%=dataPaciente[0].nombre%>"><br>
-                      </div>
-                    </div>
-                    <div id="correo">
-                      <div class="entrada">Fecha de Nacimiento:<br>
-                        <input type="text" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>"><br>
-                      </div>
-                    </div>
-                  </div>
-                  <br>
-                  <p>Datos del Doctor</p>
-                  <div class="grupo" id="cabeza">
-                    <div id="tres2">
-                      <div class="entrada">Apellido Paterno del Doctor:<br>
-                        <input  type="text" name="apellidoD1" value="<%=updateConsultaEmg[0].apellidoD1%>"><br>
-                      </div>
-                      <div class="entrada">Apellido Materno del Doctor:<br>
-                        <input type="text" name="apellidoD2" value="<%=updateConsultaEmg[0].apellidoD2%>"><br>
-                      </div>
-                      <div class="entrada">Nombre(s) del Doctor:<br>
-                        <input type="text" name="nombreDoctor" value="<%=updateConsultaEmg[0].nombreDoctor%>"><br>
-                      </div>
-                    </div>
-                  </div>
-                  <br>
-                  <p>Estado del Paciente</p>
-                  <div class="grupo" id="cabeza">
-                    <div class="panel with-nav-tabs panel-default">
-                      <div class="panel-heading">
-                        <ul class="nav nav-tabs">
-                          <li class="active"><a href="#tab1default" data-toggle="tab">Motivo de Consulta</a></li>
-                          <li><a href="#tab2default" data-toggle="tab">Diagnostico</a></li>
-                          <li><a href="#tab3default" data-toggle="tab">Tratamiento</a></li>
-                          <li><a href="#tab4default" data-toggle="tab">Observaciones</a></li>
-                        </ul>
-                      </div>                                  
-                      <div class="panel-body">
-                        <div class="tab-content">
-                          <div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="motivoConsulta" cols="100" rows="10"><%=updateConsultaEmg[0].motivoConsulta%></textarea></div>
-                          <div class="tab-pane fade" id="tab2default"><textarea class="large-compact" name="diagnostico" cols="100" rows="10"><%=updateConsultaEmg[0].diagnostico%></textarea></div>
-                          <div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento" cols="100" rows="10"><%=updateConsultaEmg[0].tratamiento%></textarea></div>
-                          <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="100" rows="10"><%=updateConsultaEmg[0].observaciones%></textarea></div>
+                      <div class="form-group">
+                          <div class="col-sm-3">
+                              <label class="control-label">Apellido Paterno:</label>
+                            <input type="text" class="form-control" name="apellidop" value="<%=dataPaciente[0].apellidop%>" readonly />
+                          </div>
+                          <div class="col-sm-3">
+                              <label class="control-label">Apellido Materno:</label>
+                            <input type="text"  class="form-control"name="apellidom" value="<%=dataPaciente[0].apellidom%>" readonly/>
+                          </div>
+                          <div class="col-sm-3">
+                              <label class="control-label">ANombre(s):</label>
+                            <input type="text" class="form-control" name="nombre" value="<%=dataPaciente[0].nombre%>" readonly />
+                          </div>
+                      
+                        <div class="col-sm-3">
+                            <label class="control-label">Fecha de Nacimiento:</label>
+                          <input type="text"class="form-control" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>" readonly/>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 formm">
-                    <!--aqui va el si es doctor quien le atendio o enfermera o en todo caso si le atendieron los dos-->
-                    <p class="text-center">
-                      <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                      <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                    </p>
-                  </div>
-                </form>
+                      <h3 class="text-center">Datos del Medico</h3>
+                      <div class="form-group">
+                          <div class="col-sm-3">
+                              <label class="control-label">Apellido Paterno del Medico:</label>
+                              <input type="text" class="form-control" name="apellidoD1" value="<%=updateConsultaEmg[0].apellidoD1%>"><br>
+                          </div>
+                          <div class="col-sm-3">
+                              <label class="control-label">Apellido Materno del Medico:</label>
+                              <input type="text" class="form-control" name="apellidoD2" value=" <%=updateConsultaEmg[0].apellidoD2%>"><br>
+                          </div>
+                          <div class="col-sm-6">
+                              <label class="control-label">Nombre(s) del Medico:</label>
+                              <input type="text" class="form-control" name="nombreDoctor" value="<%=updateConsultaEmg[0].nombreDoctor%>"><br>
+                          </div>
+                      
+                      </div>
+                      <h3 class="text-center">Estado del Paciente</h3>
+                      <div class="form-group">
+                          
+                          <div class="col-sm-6">
+                              <label class="control-label">Motivo de Consulta:</label>
+                              <textarea class="form-control" name="motivoConsulta" ><%=updateConsultaEmg[0].motivoConsulta%></textarea>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label">Diagnostico:</label>
+                                <textarea class="form-control" name="diagnostico" ><%=updateConsultaEmg[0].diagnostico%></textarea>
+                              </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-sm-6">
+                              <label class="control-label">Tratamiento:</label>
+                              <textarea class="form-control" name="tratamiento"><%=updateConsultaEmg[0].tratamiento%></textarea>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label">Observacione:</label>
+                                <textarea class="form-control" name="observaciones"><%=updateConsultaEmg[0].observaciones%></textarea>
+                              </div>
+                      </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                          
+                          <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                          <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                          
+                        </div>
+                      </div>
+                    
+                  </form>
                   <% } %>
               </div>
-            </div>
-          </div>
-          <!-- Listas de emergencia-->
-          <div class="tab-pane fade" id="list">
+          </div><!--/block-web--> 
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+      
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="block-web">
+          
+         <div class="porlets-content">
             <div class="table-responsive">
-              <div id="correo">
-								<div class="entrada">
-									<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success btn-raised btn-lg"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-								</div>
-								<div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
-									<input type="text" id="searchInput" placeholder="Buscar.."><br>
-			  				</div>
-							</div>
-							<table class="fl-table" id="myTable">
-                <thead>
-                  <tr>
-                  <th>#</th>
-                  <th>Fecha de Atencion</th>
-                  <th>Numero Historial</th>
-                  <th>Nombre</th>
-                  <th>Apellido Paterno</th>
-                  <th>Apellido Materno</th>
-                  <th>Diagnostico</th>
-                  <th>Dar Receta</th>
-                  <th>Papeleta Internacion</th>
-                  <th>Ver Consulta</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% for ( var i=0; i < consultasEmergencia.length; i++) {%>
-                  <tr>
-                  <td><%= i+1%></td>
-                  <td><%=consultasEmergencia[i].fechaAtencion%></td>
-                  <td><%=consultasEmergencia[i].Nhistorial%></td>
-                  <td><%=consultasEmergencia[i].Citas_Medica.Paciente.nombre%></td>
-                  <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidop%></td>
-                  <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidom%></td>
-                  <td><%=consultasEmergencia[i].diagnostico%></td> 
-                  <td><a href="/emergencia/emergenicaData/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>/<%=idHistorial.docOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-receipt "></i></a></td>
-                  <td><a href="/emergencia/ListPInter/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>" class="btn btn-info btn-raised btn-xs"><i class="zmdi zmdi-airline-seat-flat-angled zmdi-hc-lg"></i></a></td>
-                  <td><a href="/emergencia/ListPInter/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>" class="btn btn-primary btn-raised btn-xs"><i class="zmdi zmdi-library zmdi-hc-lg"></i></a></td>
-                  </tr>
-                <% } %>                                               
-                </tbody>                                                                       
-              </table>
-            </div>
-          </div>
+                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Fecha de Atencion</th>
+                          <th>Numero Historial</th>
+                          <th>Nombre</th>
+                          <th>Apellido Paterno</th>
+                          <th>Apellido Materno</th>
+                          <th>Diagnostico</th>
+                          <th>Opciones</th>
+                          
+                          </tr>
+                  </thead>
+                  <tbody>
+                      <% for ( var i=0; i < consultasEmergencia.length; i++) {%>
+                        <tr>
+                        <td><%= i+1%></td>
+                        <td><%=consultasEmergencia[i].fechaAtencion%></td>
+                        <td><%=consultasEmergencia[i].Nhistorial%></td>
+                        <td><%=consultasEmergencia[i].Citas_Medica.Paciente.nombre%></td>
+                        <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidop%></td>
+                        <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidom%></td>
+                        <td><%=consultasEmergencia[i].diagnostico%></td> 
+                        <td class="text-center">
+                            
+                          <a href="/emergencia/emergenicaData/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>/<%=idHistorial.docOenf%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Receta"><i class="fa fa-pencil-square-o" style="color:rgb(80, 145, 80)"></i></a>
+                          <a href="/emergencia/ListPInter/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Papeleta Internacion"><i class="fa fa-wheelchair" style="color:blue"></i></a>
+                          <a href="/emergencia/ListPInter/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Consulta"><i class="fa fa-eye" style="color:black"></i></a></td>
+                        </tr>
+                      <% } %>                                               
+                      </tbody> 
+                </table>
+              </div><!--/table-responsive-->
+            </div><!--/porlets-content-->
+            
+            
+          </div><!--/block-web--> 
+        </div><!--/col-md-12--> 
+      </div><!--/row-->
+      
         </div>
-      </div>
-    </div>
+      <!--\\\\\\\ container  end \\\\\\-->
+    
+    <!--\\\\\\\ content panel end \\\\\\-->
   </div>
-</section>
-<!--====== Scripts -->
-    <%- include("../partials/scripts") -%>
-    <script src="/js/get/consultaget.js"></script>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+<script src="/js/get/consultaget.js"></script>
 </body>
 <% } %>
 </html>
