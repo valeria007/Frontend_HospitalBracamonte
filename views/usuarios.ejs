@@ -56,14 +56,9 @@
        
       </div>
     </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
   </div>
-  <!--\\\\\\\ header end \\\\\\-->
   <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
     <div class="left_nav">
-      <!--\\\\\\\left_nav start \\\\\\-->
-      
       <div class="left_nav_slidebar">
           <ul>
             <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -126,39 +121,38 @@
             <br>
             <div class="porlets-content">
               <%if (onlyUSer == null) { %>
-                <form class="form-horizontal group-border-dashed" action="/usuarios/usuarios" method="POST" parsley-validate novalidate>
-                  <div class="form-group">
+              <form class="form-horizontal group-border-dashed" action="/usuarios/usuarios" method="POST" parsley-validate novalidate>
+                <div class="form-group">
+                  <div class="col-sm-4">
+                    <label class="control-label">Apellido Paterno:</label>
+                    <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" />
+                  </div>
                       
                       <div class="col-sm-4">
-                          <label class="control-labe">Apellido Paterno:</label>
-                        <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" />
-                      </div>
-                      
-                      <div class="col-sm-4">
-                          <label class="control-labe">Apellido Materno:</label>
+                          <label class="control-label">Apellido Materno:</label>
                         <input type="text" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" />
                       </div>
                       <div class="col-sm-4">
-                          <label class="control-labe">Nombre(s):</label>
+                          <label class="control-label">Nombre(s):</label>
                         <input type="text" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" />
                       </div>
-                  </div><!--/form-group--> 
+                </div>
                   
                  
                  
                   <div class="form-group">
                     
                     <div class="col-sm-3">
-                        <label class="control-labe">C.I.:</label>
+                        <label class="control-label">C.I.:</label>
                       <input type="text" name="ci"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I." />
                     </div>
                     
                     <div class="col-sm-4">
-                        <label class="control-labe">Direccion:</label>
+                        <label class="control-label">Direccion:</label>
                       <input type="text" class="form-control" name="direcion" parsley-trigger="change"   required placeholder="Introdusca C.I." />
                     </div>
                     <div class="col-sm-3">
-                        <label class="control-labe">Telefono:</label>
+                        <label class="control-label">Telefono:</label>
                       <input  type="text" class="form-control" name="telefono" required placeholder="(XXX) XXXX XXX" />
                     </div>
                     <div class="col-sm-2">
@@ -187,16 +181,16 @@
                   <div class="form-group">
                       
                       <div class="col-sm-4">
-                          <label class="control-labe">Apellido Paterno:</label>
+                          <label class="control-label">Apellido Paterno:</label>
                         <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" value="<%=onlyUSer.apellidop%>" required placeholder="Introdusca Apellido" />
                       </div>
                       
                       <div class="col-sm-4">
-                          <label class="control-labe">Apellido Materno:</label>
+                          <label class="control-label">Apellido Materno:</label>
                         <input type="text" class="form-control" parsley-trigger="change" name="apellidom" value="<%=onlyUSer.apellidom%>" required placeholder="Introdusca Apellido" />
                       </div>
                       <div class="col-sm-4">
-                          <label class="control-labe">Nombre(s):</label>
+                          <label class="control-label">Nombre(s):</label>
                         <input type="text" class="form-control" parsley-trigger="change"  name="nombre" value="<%=onlyUSer.nombre%>" required placeholder="Introdusca Nombre" />
                       </div>
                   </div><!--/form-group--> 
@@ -206,20 +200,20 @@
                   <div class="form-group">
                     
                     <div class="col-sm-3">
-                        <label class="control-labe">C.I.:</label>
+                        <label class="control-label">C.I.:</label>
                       <input type="text" name="ci" value="<%=onlyUSer.ci%>"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I." />
                     </div>
                     
                     <div class="col-sm-4">
-                        <label class="control-labe">Direccion:</label>
+                        <label class="control-label">Direccion:</label>
                       <input type="text" class="form-control" name="direcion" value="<%=onlyUSer.direcion%>" parsley-trigger="change"   required placeholder="Introdusca C.I." />
                     </div>
                     <div class="col-sm-3">
-                        <label class="control-labe">Telefono:</label>
+                        <label class="control-label">Telefono:</label>
                       <input  type="text" class="form-control" name="telefono" value="<%=onlyUSer.telefono%>" required placeholder="(XXX) XXXX XXX" />
                     </div>
                     <div class="col-sm-2">
-                        <label >Cargo:</label>
+                        <label class="control-label" >Cargo:</label>
                         <select class="form-control" id="source" name="cargo">
                             <option><%=onlyUSer.cargo%></option>
                             <option>-----------------------</option>
@@ -293,7 +287,7 @@
                     </tr>
                   <% } %>
                   <% } %>
-                  <tbody>
+                  </tbody>
                 </table>
               </div><!--/table-responsive-->
               <!--

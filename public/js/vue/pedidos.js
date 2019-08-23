@@ -66,8 +66,6 @@ const carMedicamentos = new Vue({
             cant:0
           }) 
         }
-        
-        console.log(this.ListMedicamentos, " esto son los medicamentos")
       })
     },
     ready() {   
@@ -173,9 +171,7 @@ const carMedicamentos = new Vue({
             axios
             .get('http://localhost:7000/pedidos/vuePedidos')
             .then(response => {
-              this.resources = response.data;
-              console.log(this.resources)
-              
+              this.resources = response.data              
             })
         },
         insertar: function (id, cantidad){
@@ -232,7 +228,6 @@ const carMedicamentos = new Vue({
             this.totalPrice -= this.listItems[id].item.price;
     
             if (this.listItems[id].qty <= 0) {
-                console.log(this.listItems[id])
                 delete this.listItems[id];
             }
         },
@@ -255,7 +250,6 @@ const carMedicamentos = new Vue({
             e.preventDefault();
             if( this.generateArray() == ""){
                 this.respuestaPost = "No se seleciono un producto"
-                console.log(this.respuestaPost)
             }else{
               var data  = {
                 codigoCompra:this.codigoCompra,
@@ -295,7 +289,6 @@ const carMedicamentos = new Vue({
                   this.totalQty = 0;
                   this.listItems = {};   
                 }
-                console.log(data)
               })             
             }        
         },
