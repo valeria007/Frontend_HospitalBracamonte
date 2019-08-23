@@ -84,7 +84,6 @@
 			<div class="left_nav">
 
 				<!--\\\\\\\left_nav start \\\\\\-->
-
 				<div class="left_nav_slidebar">
 					<ul>
 						<li ><a href="javascript:void(0);"><i
@@ -116,7 +115,7 @@
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
 					<br>
-					<br>
+					
 					<div class="row">
 
 						<div class="col-lg-12 ">
@@ -131,8 +130,6 @@
 				
 							<div id="main-content">
 								<div class="page-content">
-
-
 									<div class="row">
 										<div class="col-md-12">
 											<div class="block-web">
@@ -160,7 +157,7 @@
 															class="display table table-bordered" id="hidden-table-infoo">
 															<thead>
 																<tr>
-																	<th class="text-center">#</th>
+																	<th >#</th>
 																	<th>Historial Clinico</th>
 																	<th>Nombres</th>
 																	<th>Apellido</th>
@@ -175,7 +172,7 @@
 																
 																<% for(var i=0; i < resp.length; i++) { %>
 																<tr class="gradeA">
-																	<td><%= i + 1 %></td>
+																	<td class="text-center"><%= i + 1 %></td>
 																	<td><%=resp[i].numeroHistorial%></td>
 																	<td><%=resp[i].nombre %></td>
 																	<td><%=resp[i].apellidop %></td>
@@ -235,24 +232,24 @@
 														<input size="13" type='text' name='Historial' ><br>
 													</div>
 													<div class="col-md-4">Apellido Paterno:<br>
-														<input type='text' name='apellidop' class='upper' placeholder="Enter user name" required  parsley-trigger="change"><br>
+														<input type='text' name='apellidop' class='upper' placeholder="Apellido Paterno" required  parsley-trigger="change"><br>
 													</div>
 													<div class="col-md-4">Apellido Materno:<br>
-														<input type='text' name='apellidom' placeholder="Enter user name" required  parsley-trigger="change"><br>
+														<input type='text' name='apellidom' placeholder="Apellido Materno" required  parsley-trigger="change"><br>
 													</div>
 
 												</div>
 
 												<div class="col-md-13">
 													<div class="col-md-3">C.I.:<br>
-														<input size="13" type='text' name='ci' required placeholder=""><br>
+														<input size="13" type='text' name='ci'placeholder="N° de Carnet" required placeholder=""><br>
 													</div>
 													<div class="col-md-4">Nombre(s):<br>
-														<input type='text' name='nombre'placeholder="Enter user name" required  parsley-trigger="change"><br>
+														<input type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change"><br>
 													</div>
 													
 													<div class="col-md-4">Dirección:<br>
-														<input type='text' name='direccion'placeholder="Enter user name" required  parsley-trigger="change"><br>
+														<input type='text' name='direccion'placeholder="Dirección" required  parsley-trigger="change"><br>
 													</div>
 
 												</div>
@@ -269,7 +266,7 @@
 													</div>
 
 												</div>
-											</div>
+											
 												<div class="modal-footer">
 													<button type="button" class="btn btn-default"
 														data-dismiss="modal">Close</button>
