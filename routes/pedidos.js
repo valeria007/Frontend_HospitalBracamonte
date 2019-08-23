@@ -299,4 +299,93 @@ router.post('/pedidos', (req,res) => {
     }
 });
 
+//ruta para ver los pedi(dos
+router.get('/verPedido/:id', (req,res) => {
+    const { id } = req.params;
+    fetch('http://localhost:3500/api/OnlyPedido/'+id)   
+    .then(resp => resp.json())
+    .then(resp =>{        
+        res.render('Almacen/ver_pedido',{
+            resp
+        })
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })  
+    
+})
+
+router.get('/vue_verPedido/:id', (req,res) => {
+    const { id } = req.params
+    fetch('http://localhost:3500/api/OnlyPedido/'+id)   
+    .then(resp => resp.json())
+    .then(resp =>{        
+        res.status(200).json(resp)
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })  
+    
+})
+
+//ruta para poder actualizar pedios
+router.post('/vue_update_pedido/:id', (req,res) => {
+   const { id } = req.params
+   var data= req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3500/api/updatePedidod/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {  
+        console.log(data, " <<<<<<<<<<<< esto es el update")
+       res.status(200).json(data);
+    })   
+
+})
+
+router.post('/Vuecreate_pedido_medicamento/:id_medicamento',(req,res) => {
+    const { id_medicamento } = req.params
+    var data= req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3500/api/fehca_cantidad/'+id_medicamento,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {  
+       res.status(200).json(data);
+    })   
+})
+
+
+router.post('/Vue_add_unidades/:id', (req,res) => {
+    const { id } = req.params
+    var data= req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3500/api/add_Unidad_update/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {  
+       res.status(200).json(data);
+    })   
+})
+
 module.exports = router;

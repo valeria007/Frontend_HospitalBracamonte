@@ -110,6 +110,8 @@
 					  <% if (dataGRUPOa == null) {%>
 						  <h1>Ocurrio un problema con el servidor por favor intenta volver a entrar en esta pagina desde una pestaña anterior</h1>
 					  <% } else {%>	
+
+						<%if(OnlyMedicamento == null) { %>
 						  <form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
 							  <div class="col-md-4">
 								  <div class="form-group">
@@ -128,10 +130,7 @@
 									  <label>Presentacion:</label>
 									  <input type="text" name="presentacion" required class="form-control">
 								  </div>
-								  <div class="form-group">
-									  <label>Cantidad:</label>
-									  <input type="text" name="cantidad" required class="form-control">
-								  </div>
+								  
 							  </div>  
 							  <div class="col-md-4">
 								  <div class="form-group">
@@ -142,14 +141,12 @@
 									  <label>Unidad de Medida:</label>
 									  <input type="text" name="unidadMedida" required class="form-control">
 								  </div>
-								  <div class="form-group">
-									  <label>Fecha de Llegada:</label>
-									  <input type="date" name="fechaLLEgada" required class="form-control">
-								  </div>
-								  <div class="form-group">
-									  <label>Cantidad por Unidades:</label>
-									  <input type="text" name="unidades" required class="form-control">
-								  </div>
+								<div class="form-group">
+									<label>Cantidad inicial:</label>
+									<input type="text" name="unidades" required class="form-control">
+								</div>
+								  
+								  
 							  </div>
 							  <div class="col-md-4">
 								  <div class="form-group">
@@ -160,18 +157,75 @@
 									  <label>Concentracion:</label>
 									  <input type="text" name="concentracion" required class="form-control">
 								  </div>
-								  <div class="form-group">
-									  <label>Fecha de Vencimiento:</label>
-									  <input type="date" name="fechaVencimiento" required class="form-control">
-								  </div>
-								  <div class="form-group">
-									  <label>Precio:</label>
-									  <input type="text" name="precio" required class="form-control">
-								  </div>
+								<div class="form-group">
+									<label>Precio:</label>
+									<input type="text" name="precio" required class="form-control">
+								</div>								  
+								 
 							  </div>
 							  <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
 							  <button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
 						  </form>
+						<% } else { %>
+							<a href="/medicamento/volver">Volver</a>
+							<form  action="/medicamento/updateMedicamento/<%=OnlyMedicamento[0].id%>" method="POST" parsley-validate novalidate>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Grupo de Asignación:</label>
+										<select  name="grupoAsig">
+											<option><%=OnlyMedicamento[0].GrupoDesignado.descripcion%></option>
+											<option>--------------------------</option>
+											<% for(var i=0; i< dataGRUPOa.length; i++) {%>
+											<option><%=dataGRUPOa[i].descripcion%></option>
+											<% } %>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Generico:</label>
+										<input type="text" name="generico" required class="form-control" value="<%=OnlyMedicamento[0].generico%>">
+									</div>
+									<div class="form-group">
+										<label>Presentacion:</label>
+										<input type="text" name="presentacion" required class="form-control" value="<%=OnlyMedicamento[0].presentacion%>">
+									</div>
+									
+								</div>  
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Codificación:</label>
+										<input type="text" name="codificacion" required class="form-control" value="<%=OnlyMedicamento[0].codificacion%>">
+									</div>
+									<div class="form-group">
+										<label>Unidad de Medida:</label>
+										<input type="text" name="unidadMedida" required class="form-control" value="<%=OnlyMedicamento[0].unidadMedida%>">
+									</div>
+									<div class="form-group">
+										<label>Cantidad inicial:</label>
+										<input type="text" name="unidades" required class="form-control">
+									</div>
+									
+									
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Nombre:</label>
+										<input  type="text" name="nombre"  required class="form-control" value="<%=OnlyMedicamento[0].nombre%>">
+									</div>
+									<div class="form-group">
+										<label>Concentracion:</label>
+										<input type="text" name="concentracion" required class="form-control" value="<%=OnlyMedicamento[0].concentracion%>">
+									</div>
+									
+									<div class="form-group">
+										<label>Precio:</label>
+										<input type="text" name="precio" value="<%=OnlyMedicamento[0].precio%>" required class="form-control">
+									</div>
+								   
+								</div>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+								<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+							</form>
+						<% } %>	
 					  <% } %>
 					  </div>
 				  </div>
@@ -196,26 +250,22 @@
 				  <th>Grupo de Asignación</th>
 				  <th>Codificación</th>
 				  <th>Nombre</th>
-				  <th>Fecha de Llegada</th>
-				  <th>Fecha de Vencimiento</th>
-				  <th>Cantidad</th>
-				  <th>Cantidad Unid.</th>
 				  <th>Precio</th>
+				  <th>Cantidad</th>
 				  <th class="hidden-phone">Opciones</th>
+				  <th>ver cantidades</th>
 			  </thead>
 			  <tbody>
 				  <% for(var i=0; i < resp.length; i++) { %>
 				  <tr>
 				  <td><%= i+1%></td>
-				  <td><%=resp[i].grupoAsig%></td>
+				  <td><%=resp[i].GrupoDesignado.descripcion%></td>
 				  <td><%=resp[i].codificacion%></td>
-				  <td><%=resp[i].nombre%></td>
-				  <td><%=resp[i].fechaLLEgada%></td>
-				  <td><%=resp[i].fechaVencimiento%></td>
-				  <td><%=resp[i].cantidad%></td>
-				  <td><%=resp[i].unidades%></td>
-				  <td><%=resp[i].precio%></td>
+				  <td><%=resp[i].nombre%></td>		 
+				  <td><%=resp[i].precio%></td>	
+				  <td><%=resp[i].unidades%></td>	
 				  <td><a class="btn btn-success" href="/medicamento/OnlyMedicamento/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a></td>
+				  <td><a class="btn btn-success" href="/medicamento/medFecha_cantidad/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a></td>
 				  </tr>
 				 <% } %>
 			  </tbody>

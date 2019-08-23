@@ -1,82 +1,30 @@
-<section class="full-box cover dashboard-sideBar">
-    <div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
-    <div class="full-box dashboard-sideBar-ct">
-    <!--SideBar Title -->
-    <div class="full-box text-uppercase text-center text-titles dashboard-sideBar-title"> Hospital<i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i></div>
-    <!-- SideBar User info -->
-    <div class="full-box dashboard-sideBar-UserInfo dashboard-sideBar-imag cove">
-        <div class="full-box cover dashboard-sideBar-ctt ">
-        <figure class="full-box">
-            <img src="/assets/img/usuarioooo.png" alt="UserIcon">
-            <figcaption class="text-center text-titles">User Name</figcaption>
-        </figure>
-        <ul class="full-box list-unstyled text-center">
-            <li>
-                <a href="#!"><i class="zmdi zmdi-settings"></i></a>
-            </li>
-            <li>
-                <a href="#!" class="btn-exit-system"><i class="zmdi zmdi-power"></i></a>
-            </li>
-            </ul>
+
+<div class="header_bar">
+    <!--\\\\\\\ header Start \\\\\\-->
+    <div class="brand">
+      <!--\\\\\\\ brand Start \\\\\\-->
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</span></div>
+      <div class="small_logo" style="display:none"><img src="/images/s-logo.png" width="50" height="47" alt="s-logo" /> <img src="/images/r-logo.png" width="122" height="20" alt="r-logo" /></div>
+    </div>
+    <!--\\\\\\\ brand end \\\\\\-->
+    <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="#"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="#"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="#"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
         </div>
+
+        <a href="javascript:;" class="toggle-menu menu-right push-body jPushMenuBtn rightbar-switch"><i class="fa fa-comment chat"></i></a>
+        
+      </div>
     </div>
-    <!-- SideBar Menu Hospital-->
-    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-    <!-- Administracion del Sistema -->
-    <li>
-        <a href="#!" class="btn-sideBar-SubMenu">
-            <i class="zmdi zmdi-account zmdi-hc-fw"></i> Administracion del Sistema <i class="zmdi zmdi-caret-down pull-right"></i>
-        </a>
-        <ul class="list-unstyled full-box">
-            <li><a href="/usuarios/usuarios"><i class="zmdi zmdi zmdi-accounts zmdi-hc-fw"></i>Personal</a></li>
-
-            <li><a href="/servicios"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i>Servicios</a></li>
-            <li><a href="/usuarios/UsuraioCuenta"><i class="zmdi zmdi-accounts-add"></i>Cuentas</a></li> </ul>
-    </li>
-    <!-- Historiales Clinicos -->
-    <li>
-        <a href="#!" class="btn-sideBar-SubMenu">
-            <i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Dar Ficha Médica <i class="zmdi zmdi-caret-down pull-right"></i>
-        </a>
-        <ul class="list-unstyled full-box">
-
-            <li><a href="/paciente/citas"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Citas</a></li>
-            <li><a href="citasPrueba"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>CitasP</a></li>
-        </ul>
-    </li>
-
-    <!-- Hospitalizacion -->
-    <li>
-        <a href="#!" class="btn-sideBar-SubMenu">
-            <i class="zmdi zmdi-hotel zmdi-hc-fw"></i>Internacion<i class="zmdi zmdi-caret-down pull-right"></i>
-        </a>
-        <ul class="list-unstyled full-box">
-            <li><a href="/salas/salas"><i class="zmdi zmdi-home zmdi-hc-fw"></i> Salas</a></li>
-            <li><a href="/paciente_Inter"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i> Pacientes Internados</a></li>
-        </ul>
-    </li>
-    <!-- Emergencias -->
-    <!--
-        <li>
-        <a href="#!" class="btn-sideBar-SubMenu">
-            <i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
-        </a>
-        <ul class="list-unstyled full-box">
-            <li><a href="/ListaPacienteDoc"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Listas de Citas</a></li>
-        </ul>
-    </li>-->
-    <!-- Farmacia  -->
-    <!-- Reportes -->
-    <li>
-        <a href="#!" class="btn-sideBar-SubMenu">
-            <i class="zmdi  zmdi-chart zmdi-hc-fw"></i> Reportes <i class="zmdi zmdi-caret-down pull-right"></i>
-        </a>
-        <ul class="list-unstyled full-box">
-            <li><a href="/reportes_pacientes"><i class="zmdi zmdi-file zmdi-hc-fw"></i> Reportes de los pacientes</a></li>
-            <li><a href="/proveedores"><i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Reportes Globales </a></li>
-
-        </ul>
-    </li>
-    </ul>
-    </div>
-</section>
+    <!--\\\\\\\ header top bar end \\\\\\-->
+</div>
