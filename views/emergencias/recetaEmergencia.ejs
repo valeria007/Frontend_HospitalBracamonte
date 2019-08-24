@@ -1,266 +1,406 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Recetas Emergencia</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
-	<link rel="stylesheet" href="/css/form1.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>CUADERNOS</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-  <%- include("partials/menu") -%>
-	<!-- SideBar Menu Hospital-->
-	<%if(EmgIdHistorial == null) {%>
-		<% } else { %>
-      <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-				<li>
-        	<a href="/emergencia/homeEmergencia/<%=EmgIdHistorial.DogOenf%>">
-        	  <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=EmgIdHistorial.DogOenf%>
-          </a>
-        </li>
-				<!-- Emergencias -->
-        <li>
-        	<a href="#!" class="btn-sideBar-SubMenu">
-        	  <i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Emergencias <i class="zmdi zmdi-caret-down pull-right"></i>
-          </a>
-        	<ul class="list-unstyled full-box">
-        	  <li><a href="/emergencia/dataEmergencia/<%=EmgIdHistorial.DogOenf%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="/emergencia/RenderConsultaEmergencia">
-					<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Volver a la consulta
-				</li>
-			</ul>
-		<% } %>
-    <%- include("partials/menuFooter") -%>
-	<!-- Content page-->
-<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-		<ul class="full-box list-unstyled text-right">
-			<li class="pull-left">
-				<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-			</li>
-		</ul>
-	</nav>
-	<!-- Content page -->
-	<div class="container-fluid">
-		<div class="page-header">
-			<h1 class="text-titles"><i class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Receta <small></small></h1>
-		</div>
-	</div>
-	<% if(EmgIdHistorial == '' ) { %>
-		<h1>algo paso por favor intente entrar desde una pestaña anterior</h1>
-	<% } else { %>
-	<div class="container-fluid">
-		<div class="row contenedor">
-			<div class="col-xs-12">
-				<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-					<li class="active"><a href="#receta" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Receta</a></li>
-					<li><a href="#list" data-toggle="tab">Lita de Recetas del Paciente</a></li>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+<div class="header_bar">
+  <div class="brand">
+    <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+    </div>
+    <div class="header_top_bar">
+    <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  <div class="inner">
+  	<div class="left_nav">
+      <div class="left_nav_slidebar">
+        <ul>
+					<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+				<ul >
+					<li> <a href="/emergencia/homeEmergencia/<%=EmgIdHistorial.DogOenf%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio <%=EmgIdHistorial.DogOenf%></b> </a> </li>
 				</ul>
-				<div id="myTabContent" class="tab-content">
-					<div class="tab-pane fade active in" id="receta">
-						<div class="table-responsive" >
-							<% if(updateReceta == "")  { %>
-							<form action="/emergencia/receta/<%=EmgIdHistorial.id%>" method="POST">
-								<!-- datos de receta-->
-								<% if( message.message ) { %>
-									<span style="color:#FF0000";> <%=message%> </span>
-								<%}%>
-								<div class="grupo" id="cabeza">
-									<p>Datos del Paciente</p>
-									<div id="cuatro">
-										<div class="entrada">Historial Clinico:<br>
-											<input type="text"  value="<%=getPaciente[0].numeroHistorial%>" name="historiaClinica"><br>
+					</li>
+					<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+					<ul class="opened" style="display:block">
+					<li> <a href="/emergencia/dataEmergencia/<%=EmgIdHistorial.DogOenf%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+					</ul>
+					</li>
+          </ul>
+        </div>
+    </div>
+    <div class="contentpanel">
+      <div class="container clear_both padding_fix">
+				<br>
+				<div class="header">
+					<div class="info blue_symbols "> <i class="fa fa-edit icon "></i></div>
+						<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
+					</div>
+					<br>
+					<br>
+					<div class="page-content">
+						<div class="row">
+							<div class="col-lg-14">
+								<section class="panel default blue_title h2">
+									<div class="panel-body">
+										<ul class="nav nav-tabs" id="myTab">
+											<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-pencil-square-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Receta</a></li>
+											<li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-align-justify"></i><span>&nbsp;&nbsp;&nbsp;</span>Lita de Recetas del Paciente</a></li>
+										</ul>
+										<% if(EmgIdHistorial == '' ) { %>
+										<h1>algo paso por favor intente entrar desde una pestaña anterior</h1>
+										<% } else { %>
+										<div class="porlets-content">
+											<div class="tab-content" id="myTabContent">
+												<div id="Tab1" class="tab-pane fade in active">
+													<div class="row" >
+															<div class="col-md-12">
+																<div class="block-web">
+														 				<div class="porlets-content">
+																		<% if(updateReceta == "")  { %>
+															<form class="form-horizontal group-border-dashed" action="/emergencia/receta/<%=EmgIdHistorial.id%>" method="POST" parsley-validate novalidate>
+																<!-- datos de receta-->
+																	<% if( message.message ) { %>
+																			<span style="color:#FF0000";> <%=message%> </span>
+																	<%}%>
+																
+																		<h3 class="text-center">Datos del Paciente </h3>
+																		
+																		<div class="form-group">
+																				<div class="col-sm-3">
+																						<label class="control-label">Historial Clinico:</label>
+																						<input type="text"  class="form-control" value="<%=getPaciente[0].numeroHistorial%>" name="historiaClinica" readonly/>
+																				</div>
+																				<div class="col-sm-3">
+																						<label class="control-label">Apellido Paterno:</label>
+																					<input type="text" class="form-control"value="<%=getPaciente[0].apellidop%>"  readonly />
+																				</div>
+																				<div class="col-sm-3">
+																						<label class="control-label">Apellido Materno:</label>
+																					<input type="text"  class="form-control" value="<%=getPaciente[0].apellidom%>" readonly/>
+																				</div>
+																				<div class="col-sm-3">
+																						<label class="control-label">Nombre(s):</label>
+																					<input type="text" class="form-control" value="<%=getPaciente[0].nombre%>" readonly />
+																				</div>
+																		</div>
+																		<h3 class="text-center">Datos del Medico</h3>
+																		<div class="form-group">
+																				<div class="col-sm-6">
+																						<label class="control-label">Profecional Medico:</label>
+																						<input type="text" class="form-control" name="doctor" value="<%=Emgcon[0].nombreDoctor%>  <%=Emgcon[0].apellidoD1%>  <%=Emgcon[0].apellidoD2%> "><br>
+																				</div>
+																				<div class="col-sm-3">
+																						<label class="control-label">Fecha de Prescripción:</label>
+																					<input  type="date"  class="form-control" name="fecha" require />
+																				</div>
+																		
+																		</div>
+																		<h3 class="text-center">Datos de Medicamentos</h3>
+																		<div class="form-group">
+																				
+																			<div class="col-sm-4">
+																				<label class="control-label">Fármaco:</label>
+																				<select class="form-control" id="source" name="farmaco">	
+																					<option></option>
+																					<option>paracetamol</option>                                                      
+																					<option>algun otra medicina</option>
+																				</select>
+																				</div>
+																					<div class="col-sm-2">
+																							<label class="control-label">Unidades:</label>
+																							<input  type="text"  class="form-control" name="unidades" />
+																						</div>
+																						<div class="col-sm-3">
+																							<label class="control-label">Posologia:</label>
+																							<input  type="text"  class="form-control" name="posologia" />
+																						</div>
+																						<div class="col-sm-3">
+																							<label class="control-label">Duracion de Tratamiento:</label>
+																							<input  type="text"  class="form-control" name="indicaciones" />
+																						</div>
+																		</div>
+																		<div class="form-group">
+																			<div class="col-sm-4">
+																				<label class="control-label">Via de Administracion:</label>
+																				<input  type="text"  class="form-control" name="viaAdmincion" />
+																			</div>
+																			<div class="col-sm-4">
+																				<label class="control-label">Informacion adicinal al farmacutico en su caso:</label>
+																				<input  type="text"  class="form-control" name="informacionAd" />
+																			</div>
+																			<div class="col-sm-4">
+																				<label class="control-label">Instrucciones al Paciente:</label>
+																				<input  type="text"  class="form-control" name="viaAdmincion" />
+																			</div>
+																		</div>
+																<div class="form-group">
+																	<div class="col-sm-offset-4 col-sm-12">
+																		<button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
+																		<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button> <span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
+																		<button type="reset"class="btn btn-warning btn-icon"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+																	</div>
+																</div>
+															</form>
+															<% } else { %>
+																<form class="form-horizontal group-border-dashed" action="/emergencia/updateReceta/<%=updateReceta[0].id%>" method="POST" parsley-validate novalidate>
+																	<!-- datos de receta-->
+																	<% if( message.message ) { %>
+																		<span style="color:#FF0000";> <%=message%> </span>
+																	<%}%>
+																	<h3 class="text-center">Datos del Paciente </h3>
+																	<div class="form-group">
+																		<div class="col-sm-3">
+																		<div class="col-sm-3">
+																			<label class="control-label">Historial Clinico:</label>
+																			<input type="text"  class="form-control" value="<%=getPaciente[0].numeroHistorial%>" name="historiaClinica" readonly/>
+																		</div>
+																			<label class="control-label">Apellido Paterno:</label>
+																			<input type="text" class="form-control" value="<%=getPaciente[0].apellidop%>" readonly />
+																		</div>
+																		<div class="col-sm-3">
+																			<label class="control-label">Apellido Materno:</label>
+																			<input type="text"  class="form-control" value="<%=getPaciente[0].apellidom%>" readonly/>
+																		</div>
+																		<div class="col-sm-3">
+																			<label class="control-label">Nombre(s):</label>
+																			<input type="text" class="form-control" value="<%=getPaciente[0].nombre%>" readonly />
+																		</div>
+																	</div>
+																	<h3 class="text-center">Datos del Medico</h3>
+																	<div class="form-group">
+																		<div class="col-sm-3">
+																			<label class="control-label">Profecional Medico:</label>
+																			<input type="text" class="form-control" name="doctor" value="<%=Emgcon[0].nombreDoctor%>  <%=Emgcon[0].apellidoD1%>  <%=Emgcon[0].apellidoD2%> "><br>
+																		</div>
+																		<div class="col-sm-3">
+																			<label class="control-label">Fecha de Prescripción:</label>
+																			<input  type="text"  class="form-control" name="fecha" value="<%=updateReceta[0].fecha%>" require />
+																		</div>
+																	</div>
+																	<h3 class="text-center">Datos de Medicamentos</h3>
+																	<div class="form-group">
+																		<div class="col-sm-3">
+																			<label class="control-label">Fármaco:</label>
+																			<select class="form-control" id="source" name="farmaco">	
+																				<option><%=updateReceta[0].farmaco%></option>
+																				<option>paracetamol</option>                                                      
+																				<option>algun otra medicina</option>
+																			</select>
+																		</div>
+																		<div class="col-sm-6">
+																			<label class="control-label">Unidades:</label>
+																			<input  type="text"  class="form-control" name="unidades" value="<%=updateReceta[0].unidades%>"/>
+																		</div>
+																		<div class="col-sm-6">
+																			<label class="control-label">Posologia:</label>
+																			<input  type="text"  class="form-control" name="posologia" value="<%=updateReceta[0].posologia%>" />
+																		</div>
+																		<div class="col-sm-6">
+																			<label class="control-label">Duracion de Tratamiento:</label>
+																			<input  type="text"  class="form-control" name="indicaciones" value="<%=updateReceta[0].indicaciones%>"/>
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<div class="col-sm-6">
+																					<label class="control-label">Via de Administracion:</label>
+																					<input  type="text"  class="form-control" name="viaAdmincion"  value="<%=updateReceta[0].viaAdmincion%>"/>
+																		</div>
+																		<div class="col-sm-6">
+																					<label class="control-label">Informacion adicinal al farmacutico en su caso:</label>
+																					<input  type="text"  class="form-control" name="informacionAd"  value="<%=updateReceta[0].informacionAd%>" />
+																		</div>
+																		<div class="col-sm-6">
+																					<label class="control-label">Instrucciones al Paciente:</label> 
+																					<input class="text" class="form-control" value="<%=updateReceta[0].instruciones%>">
+																		</div>
+																	</div>
+																	<div class="form-group">
+																			<div class="col-sm-offset-5 col-sm-12">
+																				<button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
+																				<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+																				
+																			</div>
+																	</div>
+																</form>
+																<% } %>
+															</d	iv>
+															</div> 
+															</div> 
+															</div>
+													</div>
+													<div id="Tab2" class="tab-pane fade">
+														<div class="row">
+																<div class="col-md-12">
+																	<div class="block-web">
+																 	<div class="porlets-content">
+																		<div class="table-responsive">
+																				<table  class="display table table-bordered table-striped" id="dynamic-table">
+																					<thead>
+																						<tr>
+																							<th >#</th>
+																							<th >N° de historia </th>
+																							<th >Fecha</th>
+																							<th >Farmaco	</th>	
+																							<th >Doctor</th>
+																							<th >indicaciones</th>	
+																							<th >Modificar</th>
+																						</tr>
+																						</thead>
+																						<tbody>
+																							<% if(receta != null) { %>
+																								<% for(var i=0; i< receta.length; i++) { %>
+																								<tr>
+																									<td><%= i + 1 %></td>
+																									<td><%=receta[i].historiaClinica %></td>
+																									<td><%=receta[i].fecha %></td>
+																									<td><%=receta[i].farmaco %></td>
+																									<td><%=receta[i].doctor %></td>
+																									<td><%=receta[i].indicaciones %></td>
+																									<td class="text-center" ><a href="/emergencia/emergenicaData/<%=receta[i].id_emergencia%>/<%=receta[i].historiaClinica %>/<%=EmgIdHistorial.DogOenf%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+																										</td>
+																								</tr>
+																								<% } %>
+																							<% } else { %>
+																								<tr>
+																									<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
+																								</tr>
+																							<% } %>
+																						</tbody>
+																					
+																				</table>
+																			</div>
+																	</div>
+																	</div>
+																</div>
+														</div>
+													</div>
+											</div>
 										</div>
-										<div class="entrada">Apellido Paterno<br>
-											<input type="text" value="<%=getPaciente[0].apellidop%>" ><br>
+												<% } %>	
 										</div>
-										<div class="entrada">Apellido Materno:<br>
-											<input type="text" value="<%=getPaciente[0].apellidom%>"><br>
-										</div>
-										<div class="entrada">Nombre(s):<br>
-											<input type="text" value="<%=getPaciente[0].nombre%>"><br>
-										</div>
+										</section>
 									</div>
-									<div id="correo">
-										<div class="entrada">Profecional Medico:<br>
-											<input type="text" name="doctor" value="<%=Emgcon[0].nombreDoctor%>  <%=Emgcon[0].apellidoD1%>  <%=Emgcon[0].apellidoD2%> "><br>
-										</div>
-										<div class="entrada">Fecha de Prescripción:<br>
-											<input  type="date" name="fecha"><br>
-										</div>
-									</div>
-								</div>
-								<br>
-								<p>Datos de Medicamentos</p>
-								<div class="grupo" id="cabeza">
-										<div id="tres2">
-											<div class="entrada">Fármaco:<br>
-												<select name="farmaco">	
-													<option></option>
-													<option>paracetamol</option>                                                      
-													<option>algun otra medicina</option>
-												</select><br>
-											</div>
-											<div class="entrada">Unidades:<br>
-												<input type="text" name="unidades"><br>
-											</div>
-											<div class="entrada">Posologia:<br>
-												<input  type="text" name="posologia"><br>
-											</div>
-										</div>			
-										<div id="correo">
-											<div class="entrada">Duracion de Tratamiento:<br>
-												<input type="text" name="indicaciones"><br>
-											</div>
-											<div class="entrada">Via de Administracion:<br>
-												<input type="text" name="viaAdmincion"><br>
-											</div>
-										</div>
-										<div class="entrada">Informacion adicinal al farmacutico en su caso:<br>
-											<input class="text" name="informacionAd"><br>
-										</div>
-										<div class="entrada">Instrucciones al Paciente:<br>
-											<input class="text" name="instruciones"><br>
-										</div>
-								</div>
-								<br>
-								<a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
-									<table class="table table-hover text-center">
-										<thead>
-									</table>
-									<p class="text-center">
-										<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-										<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-										<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-									</p>
-							</form>
-							<% } else { %>
-								<h2>Formulario para Actualizar Receta</h2>
-								<form action="/emergencia/updateReceta/<%=updateReceta[0].id%>" method="POST">
-									<!-- datos de receta-->
-									<% if( message.message ) { %>
-										<span style="color:#FF0000";> <%=message%> </span>
-									<%}%>
-									<div class="grupo" id="cabeza">
-										<p>Datos del Paciente</p>
-										<div id="cuatro">
-											<div class="entrada">Historial Clinico:<br>
-												<input type="text"  value="<%=getPaciente[0].numeroHistorial%>" name="historiaClinica"><br>
-											</div>
-											<div class="entrada">Apellido Paterno<br>
-												<input type="text" value="<%=getPaciente[0].apellidop%>"><br>
-											</div>
-											<div class="entrada">Apellido Materno:<br>
-												<input type="text" value="<%=getPaciente[0].apellidom%>"><br>
-											</div>
-											<div class="entrada">Nombre(s):<br>
-												<input type="text" value="<%=getPaciente[0].nombre%>"><br>
-											</div>
-										</div>
-										<div id="correo">
-											<div class="entrada">Profecional Médico:<br>
-												<input type="text" name="doctor" value="<%=Emgcon[0].nombreDoctor%>  <%=Emgcon[0].apellidoD1%>  <%=Emgcon[0].apellidoD2%> "><br>
-											</div>
-											<div class="entrada">Fecha de Prescripción:<br>
-												<input type="text" name="fecha" value="<%=updateReceta[0].fecha%>"><br>
-											</div>
-										</div>
-									</div>
-									<br>
-									<p>Datos de Medicamentos</p>
-									<div class="grupo" id="cabeza">
-										<div id="tres2">
-											<div class="entrada">Fármaco:<br>
-												<select  name="farmaco" >	
-													<option><%=updateReceta[0].farmaco%></option>
-													<option>paracetamol</option>                                                      
-													<option>algun otra medicina</option>
-												</select><br>
-											</div>
-											<div class="entrada">Unidades:<br>
-												<input  type="text" name="unidades" value="<%=updateReceta[0].unidades%>"><br>
-											</div>
-											<div class="entrada">Posologia:<br>
-												<input type="text" name="posologia" value="<%=updateReceta[0].posologia%>"><br>
-											</div>
-										</div>			
-										<div id="correo">
-											<div class="entrada">Duracion de Tratamiento:<br>
-												<input type="text" name="indicaciones" value="<%=updateReceta[0].indicaciones%>"><br>
-											</div>
-											<div class="entrada">Via de Administracion:<br>
-												<input type="text" name="viaAdmincion" value="<%=updateReceta[0].viaAdmincion%>"><br>
-											</div>
-										</div>
-									<div class="entrada">Informacion adicinal al farmacutico en su caso:<br>
-										<input class="text" name="informacionAd" value="<%=updateReceta[0].informacionAd%>"><br>
-									</div>
-									<div class="entrada">Instrucciones al Paciente:<br>
-										<input class="text"  name="instruciones"  value="<%=updateReceta[0].instruciones%>"><br>
-									</div>
-								</div>
-								<br>
-								<a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
-								<table class="table table-hover text-center">
-									<thead>
-								</table>
-								<p class="text-center">
-									<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-									<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-									<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
-								</p>
-								</form>
-							<% } %>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="list">
-						<div class="table-responsive" >
-							<table class="fl-table">
-								<thead>
-									<tr>
-									<th class="text-center">#</th>
-									<th class="" WIDTH="15%">N° de historia </th>
-								  <th class="" WIDTH="20%">Fecha</th>
-								  <th class="" WIDTH="20%">Farmaco	</th>	
-								  <th class="" WIDTH="20%">Doctor</th>
-								  <th class="" WIDTH="20%">indicaciones</th>	
-								  <th class="text-center" WIDTH="20%">Modificar</th>
-									</tr>
-								</thead>
-							  <tbody>
-								<% if(receta != null) { %>
-									<% for(var i=0; i< receta.length; i++) { %>
-									<tr>
-										<td><%= i + 1 %></td>
-										<td><%=receta[i].historiaClinica %></td>
-										<td><%=receta[i].fecha %></td>
-										<td><%=receta[i].farmaco %></td>
-										<td><%=receta[i].doctor %></td>
-										<td><%=receta[i].indicaciones %></td>
-										<td class="text-center" ><a href="/emergencia/emergenicaData/<%=receta[i].id_emergencia%>/<%=receta[i].historiaClinica %>/<%=EmgIdHistorial.DogOenf%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
-									</tr>
-									<% } %>
-								<% } else { %>
-									<tr>
-										<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
-									</tr>
-								<% } %>
-								</tbody>
-							</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<% } %>	
-</section>
-	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+      
+        </div>
+ </div>
+</div>
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+<script src="/js/get/consultaget.js"></script>
 </body>
+
 </html>
