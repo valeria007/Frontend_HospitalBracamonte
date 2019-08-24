@@ -4,6 +4,11 @@ const fetch = require('node-fetch');
 
 var url = "http://localhost:3500/api";
 
+router.get('/volver', (req,res) => {
+    oneGrupoAsig = null
+    res.redirect('/medicamento/dataGrupoA'); 
+})
+
 var dataGRUPOa;
 router.get('/dataGrupoA',(req,res) =>{
     fetch('http://localhost:3500/api/asignacion')   

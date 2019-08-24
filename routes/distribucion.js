@@ -4,6 +4,9 @@ const fetch = require('node-fetch');
 
 var url = require('./url/export');
 
+router.get('/distribucion',(req, res) => {
+    res.render('Almacen/distribucion')
+});
 
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -118,7 +121,7 @@ router.get('/distribucion',(req,res) => {
         fetch(url.name.urlFarmacia+'/api/medicamento')
         .then(res => res.json())
         .then(resp => { 
-            res.render('Almacen/distribucion', {
+            res.render('Almacen/reg_distribucion', {
                 resp,
                 products : generateArray(),
                 listDist,

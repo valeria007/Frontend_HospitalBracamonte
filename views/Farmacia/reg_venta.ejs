@@ -44,8 +44,6 @@
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-				<a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal2"> <i class="fa fa-plus-square"></i> <span> Nuevo Cliente</span> </a>
-			
 				<div class="top_right_bar">
 					
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -84,10 +82,12 @@
 								<li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
 							</ul>
 						</li>
-						<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
 								<li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
+								<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
+								<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
 								<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
 								<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
 								<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
@@ -98,18 +98,18 @@
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel"><br>
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-    <div class="container clear_both padding_fix">
-		<!--\\\\\\\ container  start \\\\\\-->
-		<div class="row">
+      	<!--\\\\\\\ contentpanel start\\\\\\-->
+    	<div class="container clear_both padding_fix">
+			<!--\\\\\\\ container  start \\\\\\-->
+			<div class="row">
 				<div class="col-md-12">
-				  <div class="block-web">
-					<div class="header">
-					  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-						<h3 class="content-header">Registrar de Venta</h3>
-					</div>
-					<div class="porlets-content">
-					<form   action="/grupoAsig" method="POST" >
+				  	<div class="block-web">
+						<div class="header">
+					  		<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+							<h3 class="content-header"><i class="fa fa-shopping-cart icon"></i>   Registrar de Venta</h3>
+						</div>
+						<div class="porlets-content">
+							<form   action="/grupoAsig" method="POST" >
 								<div class="col-md-12">
 									<div class="col-md-4">
 										<div class="form-group">
@@ -124,11 +124,11 @@
 										</div>
 									</div>
 									<div class="col-md-4">
-											<div class="form-group">
-												<label>Empleado</label>
-												<input type="text" name="fechaLLEgada"class="form-control">
-											</div>
+										<div class="form-group">
+											<label>Empleado</label>
+											<input type="text" name="fechaLLEgada"class="form-control">
 										</div>
+									</div>
 								</div><br>
 								<div class="col-md-12">
 									<div class="col-md-3">
@@ -157,11 +157,10 @@
 									</div>
 								</div>
 								<p class="text-center">
-										<button type="submit" class="btn btn-info"><i class="fa fa-user-md"></i>Buscar Producto</button>
-										<button class="btn btn-warning"><i class="fa fa-trash-o"></i>Eliminar Producto</button>
+									<button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-success">Lista de Productos</button>
 								</p>
 								<div class="table-responsive">
-										<table  class="display table table-bordered table-striped " >
+									<table  class="display table table-bordered table-striped " >
 										<thead>
 											<tr>
 											<th>#</th>
@@ -171,6 +170,7 @@
 											<th>Generico</th>
 											<th>Precio de Venta</th>
 											<th>Existencia</th>
+											<th>Eliminar</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -182,105 +182,91 @@
 											<td>D</td>
 											<td>falta</td>
 											<td>falta</td>
+											<td class="center hidden-phone"><a class="btn btn-warning btn-sm" ><i class="fa fa-trash-o"></i> Eliminar</a>
 											</tr>                        
 										</tbody>
-										</table>
-										</div><!--/table-responsive-->
-										<div class="col-md-12">
-												<div class="col-md-4">
-													<div class="form-group">
-														<div class="col-sm-9">
-															<div class="input-group"> <span class="input-group-addon">S/ Sub Total</span>
-																<input type="text" class="form-control" placeholder=" Sub Total">
-															</div>
-														</div>
-													  </div>
+									</table>
+								</div><!--/table-responsive-->
+								<div class="col-md-12">
+									<div class="col-md-4">
+										<div class="form-group">
+											<div class="col-sm-9">
+												<div class="input-group"> <span class="input-group-addon">S/ Sub Total</span>
+													<input type="text" class="form-control" placeholder=" Sub Total">
 												</div>
-												<div class="col-md-4">
-													<div class="form-group">
-														<div class="col-sm-9">
-															<div class="input-group"> <span class="input-group-addon">S/ IGV 18.00%:</span>
-																<input type="text" class="form-control" placeholder="IGV">
-															</div>
-														</div>
-													  </div>
+											</div>
+									    </div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<div class="col-sm-9">
+												<div class="input-group"> <span class="input-group-addon">S/ IGV 18.00%:</span>
+													<input type="text" class="form-control" placeholder="IGV">
 												</div>
-												<div class="col-md-4">
-													<div class="form-group">
-														<div class="col-sm-9">
-															<div class="input-group"> <span class="input-group-addon">Total:</span>
-																<input type="text" class="form-control" placeholder="Total">
-															</div>
-														</div>
-													</div>
+											</div>
+									    </div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<div class="col-sm-9">
+												<div class="input-group"> <span class="input-group-addon">Total:</span>
+													<input type="text" class="form-control" placeholder="Total">
 												</div>
-											</div><br><br><br>
-											<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Registrar Venta</button>
-											<a class="btn btn-success" href="/farmacia/ventas"><i class="fa fa-times"></i> Cancelar</a>
-
-											
-					</form>
-					</div><!--/porlets-content--> 
-				  </div><!--/block-web--> 
+											</div>
+										</div>
+									</div>
+								</div><br><br><br>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Registrar Venta</button>
+								<a class="btn btn-danger" href="/farmacia/ventas"><i class="fa fa-times"></i> Cancelar</a>
+							</form>
+						</div><!--/porlets-content--> 
+				  	</div><!--/block-web--> 
 				</div><!--/col-md-12--> 
-			  </div>
-        
+			</div>
+        </div>
+    <!--\\\\\\\ container  end \\\\\\-->
     </div>
-      <!--\\\\\\\ container  end \\\\\\-->
-    </div>
-    <!--\\\\\\\ content panel end \\\\\\-->
-  </div>
-  <!--\\\\\\\ inner end\\\\\\-->
+<!--\\\\\\\ content panel end \\\\\\-->
+</div>
+<!--\\\\\\\ inner end\\\\\\-->
 </div>
 <!--\\\\\\\ wrapper end\\\\\\-->
+<!-- /sidebar chats -->  
 <!-- Modal -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			  <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Reportes de Salidas</h4>
-			</div>
-			<div class="modal-body"> 
-			  <form class="form-horizontal" role="form"  parsley-validate novalidate>
-				<div class="form-group">
-				  <label for="inputEmail3" required parsley-type="desde" class="col-sm-3 control-label">C.I.:</label>
-				  <div class="col-sm-7">
-					<input type="text" class="form-control" >
-				  </div>
-				</div><!--/form-group--> 
-				<div class="form-group">
-				  <label for="inputPassword3" required parsley-type="hasta" class="col-sm-3 control-label">Nombre(s):</label>
-				  <div class="col-sm-7">
-					<input type="text" class="form-control" >
-				  </div>
-				</div><!--/form-group-->  
-				<div class="form-group">
-					<label for="inputPassword3" required parsley-type="hasta" class="col-sm-3 control-label">Apellido Paterno:</label>
-					<div class="col-sm-7">
-					<input type="text" class="form-control" >
-					</div>
-				</div><!--/form-group-->
-				<div class="form-group">
-					<label for="inputPassword3" required parsley-type="hasta" class="col-sm-3 control-label">Apellid Materno:</label>
-					<div class="col-sm-7">
-					<input type="text" class="form-control" >
-					</div>
-				</div><!--/form-group-->
-				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary">Aceptar</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				  </div>
-				</div><!--/form-group--> 
-			  </form>
-			</div>
-		  </div>
-		</div>
-	  </div>
-<!-- /sidebar chats -->   
-
-
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Lista de Productos</h4>
+            </div>
+            <div class="modal-body"> 
+                <div class="table-responsive">
+                    <table  class="display table table-bordered table-striped" id="dynamic-table">
+                        <thead>
+                            <tr>
+                            <th>Opcion</th>
+                            <th>Cantidad</th>
+                            <th>Nombre</th>
+                            <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr >
+                            <td>Trident</td>
+                            <td>Internet</td>
+                            <td>Win 95+</td>
+                            <td class="center hidden-phone">4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!--/table-responsive-->
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div> 
 <!--Scripts-->
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
