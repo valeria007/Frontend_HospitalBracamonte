@@ -2,14 +2,78 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+const datas = require('./url/export');
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                ruta para poder renderizar home citas 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/citas',(req, res) => {
+  fetch('http://localhost:3000/api/pacientes/')
+  .then(resp => resp.json())
+  .then(resp =>{
+    res.render('Fichas/citas',{         //aqui esta la ruta
+      resp
+    });    
+  })
+  .catch(error => {
+    console.error('Error:', error)
+    res.send("no hay coneccion con el servidor");
+  }) 
+});
+
+router.get('/home/:id', (req,res) => {
+  const { id } = req.params
+    fetch('http://localhost:3600/api/user/'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+      console.log(resp, " <<<<<<<<<<<<<<<<<<<<<<<<<<<<<" )
+        if(datas.name.token[resp.id]){
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "fichaje"){
+                    status = "tiene permiso"
+                }
+            }  
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3600/api/personal/'+resp.perso_id)
+                .then(resp => resp.json())
+                .catch(error => console.error('Error',error))
+                .then(resp => {
+                    //res.send(resp)
+                    res.render('Fichas/home',{
+                        resp
+                    })
+                    status = null
+                })
+            }else{
+                res.send("no tienes permiso fuera de aqui")
+            }
+        }else{
+            res.send("fuera de aqui si no tienes cuenta")
+        }
+        
+    })
+});
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
 var url = require('./url/export');
 
 router.get('/reg_paciente',(req, res) => {
     res.render('reg_paciente')
   });
-  router.get('/home', (req,res) => {
-    res.render('Fichas/home');
-});
+ 
   
 router.post('/postPaciente', (req,res) => {
   var aleatorio = Math.floor(Math.random()*(9000-1000))+1000
@@ -156,19 +220,7 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
   });
  })
  
- router.get('/citas',(req, res) => {
-  fetch('http://localhost:3000/api/pacientes/')
-  .then(resp => resp.json())
-  .then(resp =>{
-    res.render('Fichas/citas',{         //aqui esta la ruta
-      resp
-    });    
-  })
-  .catch(error => {
-    console.error('Error:', error)
-    res.send("no hay coneccion con el servidor");
-  }) 
-});
+ 
 
 router.post('/updateCita/:id',(req,res) => {
   const { id } = req.params;

@@ -112,60 +112,65 @@
 					  <% } else {%>	
 
 						<%if(OnlyMedicamento == null) { %>
-						  <form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
-							  <div class="col-md-4">
-								  <div class="form-group">
-									  <label>Grupo de Asignación:</label>
-									  <select  name="grupoAsig">
-										  <% for(var i=0; i< dataGRUPOa.length; i++) {%>
-										  <option><%=dataGRUPOa[i].descripcion%></option>
-										  <% } %>
-									  </select>
-								  </div>
-								  <div class="form-group">
-									  <label>Generico:</label>
-									  <input type="text" name="generico" required class="form-control">
-								  </div>
-								  <div class="form-group">
-									  <label>Presentacion:</label>
-									  <input type="text" name="presentacion" required class="form-control">
-								  </div>
-								  
-							  </div>  
-							  <div class="col-md-4">
-								  <div class="form-group">
-									  <label>Codificación:</label>
-									  <input type="text" name="codificacion" required class="form-control">
-								  </div>
-								  <div class="form-group">
-									  <label>Unidad de Medida:</label>
-									  <input type="text" name="unidadMedida" required class="form-control">
-								  </div>
-								<div class="form-group">
-									<label>Cantidad inicial:</label>
-									<input type="text" name="unidades" required class="form-control">
-								</div>
-								  
-								  
-							  </div>
-							  <div class="col-md-4">
-								  <div class="form-group">
-									  <label>Nombre:</label>
-									  <input  type="text" name="nombre"  required class="form-control">
-								  </div>
-								  <div class="form-group">
-									  <label>Concentracion:</label>
-									  <input type="text" name="concentracion" required class="form-control">
-								  </div>
-								<div class="form-group">
-									<label>Precio:</label>
-									<input type="text" name="precio" required class="form-control">
-								</div>								  
-								 
-							  </div>
-							  <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-							  <button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-						  </form>
+							<% if(msg_post_false) { %>
+								<span style="color: red;"><%=msg_post_false%></span>
+							<% } else { %>
+								<span style="color: blue;"><%=msg_post_true%></span>
+							<% } %>
+						  	<form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
+							  	<div class="col-md-4">
+									<div class="form-group">
+										<label>Grupo de Asignación:</label>
+										<select  name="grupoAsig">
+											<% for(var i=0; i< dataGRUPOa.length; i++) {%>
+											<option><%=dataGRUPOa[i].descripcion%></option>
+											<% } %>
+										</select>
+									</div>
+									 <div class="form-group">
+									  	<label>Generico:</label>
+									  	<input type="text" name="generico" required class="form-control">
+									 </div>
+									<div class="form-group">
+									  	<label>Presentacion:</label>
+									  	<input type="text" name="presentacion" required class="form-control">
+									</div>
+
+							  	</div>  
+							  	<div class="col-md-4">
+									  <div class="form-group">
+										  <label>Codificación:</label>
+										  <input type="text" name="codificacion" required class="form-control">
+									  </div>
+									  <div class="form-group">
+										  <label>Unidad de Medida:</label>
+										  <input type="text" name="unidadMedida" required class="form-control">
+									  </div>
+									<div class="form-group">
+										<label>Cantidad inicial:</label>
+										<input type="text" name="unidades" required class="form-control">
+									</div>
+
+
+							  	</div>
+							  	<div class="col-md-4">
+									  <div class="form-group">
+										  <label>Nombre:</label>
+										  <input  type="text" name="nombre"  required class="form-control">
+									  </div>
+									  <div class="form-group">
+										  <label>Concentracion:</label>
+										  <input type="text" name="concentracion" required class="form-control">
+									  </div>
+									<div class="form-group">
+										<label>Precio:</label>
+										<input type="text" name="precio" required class="form-control">
+									</div>								  
+
+							  	</div>
+							  	<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+							  	<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+						  	</form>
 						<% } else { %>
 							<a href="/medicamento/volver">Volver</a>
 							<form  action="/medicamento/updateMedicamento/<%=OnlyMedicamento[0].id%>" method="POST" parsley-validate novalidate>

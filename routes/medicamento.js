@@ -32,14 +32,15 @@ router.get('/medicamentos',(req, res) => {
     fetch('http://localhost:3500/api/medicamento')   
         .then(resp => resp.json())
         .then(resp =>{
-            console.log(resp);
             if(dataGRUPOa == null){
                 res.render('Almacen/medicamentos',{dataGRUPOa,resp})
             }else{
                 res.render('Almacen/medicamentos',{
                     dataGRUPOa,
                     resp,
-                    OnlyMedicamento
+                    OnlyMedicamento,
+                    msg_post_false, 
+                    msg_post_true
                 })  
             }
     })
@@ -50,6 +51,7 @@ router.get('/medicamentos',(req, res) => {
   });
 
 //servcio para añadir a la tabla medicamentos
+var msg_post_false, msg_post_true;
 router.post('/medicamentos', (req,res) =>{
     var data = req.body
     var esto = {
@@ -62,8 +64,17 @@ router.post('/medicamentos', (req,res) =>{
   fetch('http://localhost:3500/api/medicamento',esto)
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
-  .then(data => { 
-    res.redirect('/medicamento/dataGrupoA');
+  .then(data => {
+      console.log(data, "  esto es el mesaje del post")
+    if(data.success == false){
+        msg_post_false = data.msg
+        res.redirect('/medicamento/dataGrupoA');
+    }else{
+        msg_post_true = data.msg
+        res.redirect('/medicamento/dataGrupoA');
+        msg_post_false = ""
+    }
+    
   })
 });
 

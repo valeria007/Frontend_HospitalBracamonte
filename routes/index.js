@@ -38,7 +38,6 @@ router.get('/home',(req, res) => {
 
 var msg1,msg2,msg3 ;
 router.post('/login', (req,res)  => {
-  console.log(req.body)
   const username = req.body.username;
   const password = req.body.password;  
  
@@ -65,6 +64,7 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
+    //console.log(resp)
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -77,7 +77,7 @@ router.post('/login', (req,res)  => {
       res.redirect('/')   
     }else{
       tok(resp,resp.user.id); //funcion para añadir token del usuario      
-      datas.name.token = listItems // esto es para añadir
+      datas.name.token = listItems // esto es para añadir tokens a datas
       fetch('http://localhost:3600/api/user/'+resp.user.id)
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
@@ -87,6 +87,9 @@ router.post('/login', (req,res)  => {
           if(resp.role[0].name == "Almacen"){
             //res.send(resp.role[0].name)
             res.redirect('/almacen/home/'+resp.id)
+          }else if(resp.role[0].name == "fichaje"){
+            res.redirect('/paciente/home/'+resp.id)
+            //res.send(resp.role)
           }else{
             res.send(resp.role)
           }
