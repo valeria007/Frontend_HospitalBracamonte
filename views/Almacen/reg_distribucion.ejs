@@ -50,9 +50,7 @@
 		<div id="pedidos">
 			<div class="contentpanel"> <br>
 				<div class="container clear_both padding_fix" >
-
-					<a href="javascript:void(0);" class="add_user" data-toggle="modal" @click="searchInTheListMed('')" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New Task</span> </a> <br> <br> <br>
-
+					<!--Modal-->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 						  <div class="modal-content">
@@ -145,13 +143,13 @@
 						  </div>
 						</div>
 					</div>
-
+					<!--Fin del Modal-->
 					<div class="row">
 						<div class="col-md-12">
 							<div class="block-web">
 								<div class="header">
 									<div class="actions"> <a class="minimize"><i class="fa fa-chevron-down"></i></a> <a class="close-down"><i class="fa fa-times"></i></a> </div>
-									<h3 class="content-header">Validation Types</h3>
+									<h3 class="content-header"> <i class="fa fa-clipboard icon"></i> Registro de Distribucion</h3>
 									<span style="color: blue;">{{respuestaPost}}</span>
 									<span style="color: red;">{{rep_post_false}}</span>
 								</div>
@@ -179,57 +177,57 @@
 										<div class="form-group">                   
 											<label class="control-label col-md-3">Fecha de Distribucion:</label>
 											<div class="col-md-6 col-xs-10">
-											  <input type="date" class="form-control form-control-inline input-medium" v-model="fechaLlegada">
-											  <span class="help-block">Select date</span> 
+											  <input type="date" class="form-control form-control-inline input-medium" required v-model="fechaLlegada">
 											</div>                      
-										</div><!--/form-group--> 
+										</div><!--/form-group-->
+										<p class="text-center"> <button data-target="#myModal" data-toggle="modal" class="btn btn-success">Lista Productos</button></p>
+										<div class="col-lg-12"> 
+												<section class="panel default black_title h">
+													<div class="panel-heading">
+													 Lista de<span class="semi-bold"> Pedidos</span> 
+													</div>
+													<div class="panel-body">
+													
+													  <table class="table table-hover">
+														<thead>
+															<tr>
+																<th>#</th>	
+																<th>Codigo</th>
+																<th>Descripcion</th>
+																<th>Unidad</th>
+																<th>Cantidad</th>
+																<th>Eliminar</th>
+																<th>Quitar</th>                                         
+															</tr>
+														</thead>
+														<tbody v-for="(car, index) in distribucionList">
+															<tr>
+																<td>{{index}}</td>
+																<td>{{car.item.codificacion}}</td>
+																<td>{{car.item.nombre}}</td>
+																<td>{{car.item.presentacion}}</td>
+																<td>{{car.qty}}</td>
+																<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
+																<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
+															</tr>
+														<tbody>
+													  </table>
+										   
+													</div>
+												</section>
+											</div> 
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">
-											  	<button type="submit" class="btn btn-primary">Submit</button>
-											  	<button class="btn btn-default">Cancel</button>
+												<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+												<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
 											</div>
 										</div><!--/form-group--> 
 									</form>
+									
 								</div>
 							</div>
 						</div>
 					</div> <!-- //row -->
-
-					<div class="col-lg-12"> 
-						<section class="panel default blue_title h2">
-							<div class="panel-heading">
-							 Lista de<span class="semi-bold"> Pedidos</span> 
-							</div>
-							<div class="panel-body">
-							
-					  		<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>#</th>	
-										<th>Codigo</th>
-										<th>Descripcion</th>
-										<th>Unidad</th>
-										<th>Cantidad</th>
-										<th>Eliminar</th>
-										<th>Quitar</th>                                         
-									</tr>
-								</thead>
-								<tbody v-for="(car, index) in distribucionList">
-									<tr>
-										<td>{{index}}</td>
-										<td>{{car.item.codificacion}}</td>
-										<td>{{car.item.nombre}}</td>
-										<td>{{car.item.presentacion}}</td>
-										<td>{{car.qty}}</td>
-										<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
-										<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
-									</tr>
-								<tbody>
-					  		</table>
-				   
-							</div>
-						</section>
-					</div>
 				</div>
 				
 			</div>

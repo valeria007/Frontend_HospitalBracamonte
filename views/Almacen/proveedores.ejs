@@ -52,7 +52,7 @@
                 <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
                 <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Proveedores</b> </a> </li>
                 <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-                <li> <a href="/almacen/distribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
                 <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Stock</b> </a> </li>
               </ul>
             </li>
@@ -168,57 +168,58 @@
 									  </form>
 									  <% } %>
 								</div>
+								<div id="main-content">
+										<div class="page-content">
+										<div class="row">
+											<div class="col-md-12">
+											  <div class="block-web">
+											   <div class="header">
+												  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
+												  <h3 class="content-header">Lista de Proveedores</h3>
+												</div>
+											 <div class="porlets-content">
+												<div class="table-responsive">
+													<table  class="display table table-bordered table-striped " id="dynamic-table">
+													<thead>
+														<th>#</th>
+														<th>Nombre Proveedor</th>
+														<th>Email</th>
+														<th>Direccion</th>
+														<th>Telefono</th>
+														<th>Responsable de atención</th>
+														<th>Modificar</th>
+													</thead>
+													<tbody>
+													  <% for (var i = 0; i< resp.length; i++) { %>
+															<tr>
+																<td><%= i+1%></td>
+																<td><%=resp[i].nombre%></td>
+																<td><%=resp[i].email%></td>
+																<td><%=resp[i].direccion%></td>
+																<td><%=resp[i].telefono%></td>
+																<td><%=resp[i].empresa%></td>
+																<td><a class="btn btn-success btn-sm" href="/proveedores/OnlyProveedor/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
+												  </td>
+															</tr>
+															<% } %>
+													</tbody>
+													</table>
+												  </div><!--/table-responsive-->
+												</div><!--/porlets-content-->
+												
+												
+											  </div><!--/block-web--> 
+											</div><!--/col-md-12--> 
+										  </div><!--/row-->
+										
+										  
+											</div><!--/page-content end--> 
+									  </div><!--/main-content end--> 
 							</div>
 						</div>
 					</div><!--/row-->
 			  
-			   <div id="main-content">
-			<div class="page-content">
-			<div class="row">
-				<div class="col-md-12">
-				  <div class="block-web">
-				   <div class="header">
-					  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
-					  <h3 class="content-header"> Tabla de Datos</h3>
-					</div>
-				 <div class="porlets-content">
-					<div class="table-responsive">
-						<table  class="display table table-bordered table-striped " id="dynamic-table">
-						<thead>
-							<th>#</th>
-							<th>Nombre Proveedor</th>
-							<th>Email</th>
-							<th>Direccion</th>
-							<th>Telefono</th>
-							<th>Responsable de atención</th>
-							<th>Modificar</th>
-						</thead>
-						<tbody>
-						  <% for (var i = 0; i< resp.length; i++) { %>
-								<tr>
-									<td><%= i+1%></td>
-									<td><%=resp[i].nombre%></td>
-									<td><%=resp[i].email%></td>
-									<td><%=resp[i].direccion%></td>
-									<td><%=resp[i].telefono%></td>
-									<td><%=resp[i].empresa%></td>
-									<td><a class="btn btn-success" href="/proveedores/OnlyProveedor/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
-					  </td>
-								</tr>
-								<% } %>
-						</tbody>
-						</table>
-					  </div><!--/table-responsive-->
-					</div><!--/porlets-content-->
-					
-					
-				  </div><!--/block-web--> 
-				</div><!--/col-md-12--> 
-			  </div><!--/row-->
-			
-			  
-				</div><!--/page-content end--> 
-		  </div><!--/main-content end--> 
+			   
 			  
 			  
 			  
