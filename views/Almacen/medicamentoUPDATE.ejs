@@ -87,7 +87,7 @@
               <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
               <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
               <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-              <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+              <li> <a href="/almacen/distribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
               <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
             </ul>
           </li>
@@ -113,7 +113,7 @@
 					<div class="col-md-12">
 						<div class="block-web">
 							<div class="header">
-								<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+								<div class="actions"> </div>
 								<h3 class="content-header"> <i class="fa fa-medkit icon"></i>  Registrar Medicamento</h3>
 							</div>
 							<div class="porlets-content">
@@ -124,7 +124,7 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<label>Grupo de Asignación:</label>
-											<select  name="grupoAsig">
+											<select  required class="form-control" name="grupoAsig">
 												<option ><%=resp[0].grupoAsig%></option>
 												<% for(var i=0; i< dataGRUPOa.length; i++) {%>
 												<option><%=dataGRUPOa[i].descripcion%></option>
@@ -133,33 +133,33 @@
 										</div>
 										<div class="form-group">
 											<label>Generico:</label>
-											<input type="text" name="generico" value="<%=resp[0].generico%>"class="form-control">
+											<input type="text" name="generico" value="<%=resp[0].generico%>" required class="form-control">
 										</div>
 										<div class="form-group">
 											<label>Presentacion:</label>
-											<input type="text" name="presentacion" value="<%=resp[0].presentacion%>" class="form-control">
+											<input type="text" name="presentacion" value="<%=resp[0].presentacion%>" required class="form-control">
 										</div>
 										<div class="form-group">
 											<label>Cantidad:</label>
-											<input type="text" name="cantidad" value="<%=resp[0].cantidad%>" class="form-control">
+											<input type="text" name="cantidad" value="<%=resp[0].cantidad%>" required class="form-control">
 										</div>
 									</div>  
 									<div class="col-md-4">
 										<div class="form-group">
 											<label>Codificación:</label>
-											<input type="text" value="<%=resp[0].codificacion%>" name="codificacion" class="form-control">
+											<input type="text" value="<%=resp[0].codificacion%>" name="codificacion" required class="form-control">
 										</div>
 										<div class="form-group">
 											<label>Unidad de Medida:</label>
-											<input type="text" name="unidadMedida" value="<%=resp[0].unidadMedida%>" class="form-control">
+											<input type="text" name="unidadMedida" value="<%=resp[0].unidadMedida%>" required class="form-control">
 										</div>
 										<div class="form-group">
 											<label>Fecha de Llegada:</label>
-											<input type="date" name="fechaLLEgada" value="<%=resp[0].fechaLLEgada%>" class="form-control">
+											<input type="date" name="fechaLLEgada" value="<%=resp[0].fechaLLEgada%>" required class="form-control">
 										</div>
 										<div class="form-group">
 											<label>Cantidad por Unidades:</label>
-											<input type="text" name="unidades" value="<%=resp[0].unidades%>" class="form-control">
+											<input type="text" name="unidades" value="<%=resp[0].unidades%>" required class="form-control">
 										</div>
 									</div>
 									<div class="col-md-4">
@@ -169,19 +169,19 @@
 										</div>
 										<div class="form-group">
 											<label>Concentracion:</label>
-											<input type="text" name="concentracion" value="<%=resp[0].concentracion%>" class="form-control">
+											<input type="text" name="concentracion" value="<%=resp[0].concentracion%>" required class="form-control">
 										</div>
 										<div class="form-group">
 											<label>Fecha de Vencimiento:</label>
-											<input type="date" name="fechaVencimiento" value="<%=resp[0].fechaVencimiento%>" class="form-control">
+											<input type="date" name="fechaVencimiento" value="<%=resp[0].fechaVencimiento%>" required class="form-control">
 										</div>
 										<div class="form-group">
 											<label>Precio:</label>
-											<input  type="text" name="precio" value="<%=resp[0].precio%>" class="form-control">
+											<input  type="text" name="precio" value="<%=resp[0].precio%>" required class="form-control">
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-									<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+									<a class="btn btn-danger" href="/medicamento/dataGrupoA"><i class="fa fa-times"></i> Cancelar</a>
 								</form>
 							<% } %>
 							</div>

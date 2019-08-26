@@ -1,81 +1,298 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-	<title>Hospitalizacion</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Home Hospitalización</title>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
-	<link rel="stylesheet" href="/css/HomeInt.css">
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<!--validaciones-->
+
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+	<style>
+		div.a {
+			text-align: center;
+		}
+
+		h1.letras {
+			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+		}
+	</style>
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
+
+<body class="light_theme  fixed_header left_nav_fixed">
 	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	  <!-- SideBar Menu Hospital-->
-	  <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-		<li>
-			<a href="/internaciones/hospitalizacion/<%=especialidad%>">
-				<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=especialidad%>
-			</a>
-		</li>
-				   
-		<!-- hospitalzacion-->
-		<li>
-			<a href="#!" class="btn-sideBar-SubMenu">
-				<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
-			</a>
-			<ul class="list-unstyled full-box">
-				<li><a href="/internaciones/ListaInternacionF/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
 
-				<li><a href="/hospitalizacion/alergiasvis"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>prueba</a></li>
-			</ul>
-
-		</li> 
-		</ul>
-	<%- include("partials/footer") -%>
 	<!-- Content page-->
+	<div class="wrapper">
+		<!--\\\\\\\ wrapper Start \\\\\\-->
+		<div class="header_bar">
+			<!--\\\\\\\ header Start \\\\\\-->
+			<div class="brand">
+				<!--\\\\\\\ brand Start \\\\\\-->
+				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+			</div>
+			<!--\\\\\\\ brand end \\\\\\-->
+			<div class="header_top_bar">
+				<!--\\\\\\\ header top bar start \\\\\\-->
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+
+				<div class="top_right_bar">
+
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+							<li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+							<li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+							<li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--\\\\\\\ header top bar end \\\\\\-->
+		</div>
+		<div class="inner">
+			<!--\\\\\\\ inner start \\\\\\-->
+			<div class="left_nav">
+
+				<!--\\\\\\\left_nav start \\\\\\-->
+				<div class="left_nav_slidebar">
+					<ul>
+						<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i
+									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
+									class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul class="opened" style="display:block">
+								<li> <a href="/internaciones/hospitalizacion/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b class="theme_color"><%=especialidad%></b>
+									</a> </li>
+							</ul>
+						</li>
+					
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span
+									class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/internaciones/ListaInternacionF/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+										<b >Ordenes de Internación</b>
+									</a> </li>
+								<li> <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+									<b >prueba</b>
+								</a> </li>
+								
+
+							</ul>
+						</li>
+				
+
+					</ul>
+				</div>
+			</div>
+			<!--\\\\\\\left_nav end \\\\\\-->
+			<div class="contentpanel">
+				<!--\\\\\\\ contentpanel start\\\\\\-->
+				<div class="container clear_both padding_fix col-lg-8">
+					<br>
+					<br>
+					
+					<div class="row">
+
+						<div class="col-lg-12 ">
+					
+				
+
+
+
+
+
 <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
 	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-		<ul class="full-box list-unstyled text-right">
-			<li class="pull-left">
-		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-			</li>
-			<li>
-				<a href="#!" class="btn-Notifications-area">
-					<i class="zmdi zmdi-notifications-none"></i>
-				</a>
-			</li>
-		</ul>
-	</nav>  
 
 		<div class="container-fluid">
-			<h1>Hospitalización</h1>
+			<div class="">
+				<h1 class="text-titles"><i class="fa fa-medkit fa-hc-fw"></i> Hospitalización</h1>
+			</div>
 		</div>
-	</div>
+		<div class="container clear_both padding_fix">
+				<section class="panel-default">
+				  <div class="panel">
+					<div class="row">
+					  <div class="col-lg-4 col-sm-6">
+						<div class="panel-heading border"><span class="theme_header blue_text">Pacientes para Internar</span> </div>
+						<div class="panel-body ">
+							<p class="text-center" class=""><a href="/internaciones/list_internadios "><i class="fa fa-hospital-o fa-5x "
+								style="color:rgb(102, 135, 226); width:100px; height:100px;"></i></a></p>
+						  <br>
+						  <a href="/internaciones/ListaInternacionF/<%=especialidad%>" class="btn btn-primary btn-lg"><i class=""></i>Lista Pacientes</a>
+						  
+						</div>
+					  </div>
+					  <div class="col-lg-4 col-sm-6">
+						<div class="panel-heading border"><span class="theme_header red_text">Pacientes Internados</span></div>
+						<div class="panel-body">
+							<p class="text-center" class=""><a href="/internaciones/list_internadios "><i class="fa fa-wheelchair fa-5x "
+								style="color:rgb(250, 102, 76); width:100px; height:100px;"></i></a></p>
+						  <br>
+						
+						  <a href="/internaciones/list_internadios" class="btn btn-primary btn-lg"><i class=""></i>Lista Pacientes</a>
+						</div>
+					  </div>
+					  
+					  <div class="col-lg-4 col-sm-6">
+						<div class="panel-heading border"><span class="theme_header green_text">Pacientes de Alta</span></div>
+						<br>
+						<div class="panel-body">
+								<p class="text-center" class=""><a href="/internaciones/list_internadios "><i class="fa fa-wheelchair fa-5x "
+									style="color:rgb(76, 250, 90); width:100px; height:100px;"></i></a></p>
+							  <br>
+						  <button type="button" class="btn btn-primary btn-lg">Apply Here</button>
+						</div>
+					  </div>
+					</div>
+				  </div>
+		
+				</section>
+			  </div>
 
-	<div class="full-box text-center" style="padding: 30px 10px;">
-			<article class="full-box tile">
-				<div class="report-content">
-					<h3 class="text-center all-tittles">Pacientes</h3>
-					<p class="full-box tile-icon text-center"></p><a href="/internaciones/list_internadios"><i class="zmdi zmdi-male-female zmdi-hc-4x"></i></a>
-				</div>
-		</article>			
-			<article class="full-box tile">	
-				<div class="report-content">
-					<h3 class="text-center all-tittles">Recetas</h3>
-					<p class="full-box tile-icon text-center"></p><a href=""><i class="zmdi zmdi-border-color zmdi-hc-4x"></i></a>
-				</div>
-			</article>
-		<article class="full-box tile">
-		  <div class="report-content">
-			<h3 class="text-center all-tittles">Paletas de Internacion</h3>
-			<p class="full-box tile-icon text-center"></p><a href=""><i class="zmdi zmdi-hotel zmdi-hc-4x"></i></a>
-		  </div>
-		</article>
-	  </div> 
+
 
 </section>
-	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+</div>
+
+</div>
+
+<!--\\\\\\\ container  end \\\\\\-->
+</div>
+<!--\\\\\\\ content panel end \\\\\\-->
+</div>
+<!--\\\\\\\ inner end\\\\\\-->
+</div>
+<!--\\\\\\\ wrapper end\\\\\\-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--====== Scripts -->
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+
+<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+jQuery(document).ready(function () {
+EditableTable.init();
+});
+</script>
+
+<script src="/js/jPushMenu.js"></script>
+<script src="/js/side-chats.js"></script>
+
+
+<!--validaciones-->
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+
+<script>
+
+
+/*==Porlets Actions==*/
+$('.minimize').click(function(e){
+var h = $(this).parents(".header");
+var c = h.next('.porlets-content');
+var p = h.parent();
+
+c.slideToggle();
+
+p.toggleClass('closed');
+
+e.preventDefault();
+});
+
+$('.refresh').click(function(e){
+var h = $(this).parents(".header");
+var p = h.parent();
+var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+
+loading.appendTo(p);
+loading.fadeIn();
+setTimeout(function() {
+loading.fadeOut();
+}, 1000);
+
+e.preventDefault();
+});
+
+$('.close-down').click(function(e){
+var h = $(this).parents(".header");
+var p = h.parent();
+
+p.fadeOut(function(){
+$(this).remove();
+});
+e.preventDefault();
+});
+
+</script>
+
 </body>
+
 </html>

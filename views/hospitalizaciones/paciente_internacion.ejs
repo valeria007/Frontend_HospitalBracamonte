@@ -1,10 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Pacientes Internados</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Paciente Internacion</title>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+
+
+    <style>
+        div.a {
+            text-align: center;
+        }
+
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+        }
+    </style>
+    <%- include("../partials/head") -%>
+</head>
+<body class=" light_theme  fixed_header left_nav_fixed" >
+	<!-- SideBar -->
+	
+
+
+	 <!-- Content page-->
+	 <div class="wrapper">
+        <!--\\\\\\\ wrapper Start \\\\\\-->
+        <div class="header_bar">
+            <!--\\\\\\\ header Start \\\\\\-->
+            <div class="brand">
+                <!--\\\\\\\ brand Start \\\\\\-->
+                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+            </div>
+            <!--\\\\\\\ brand end \\\\\\-->
+            <div class="header_top_bar">
+                <!--\\\\\\\ header top bar start \\\\\\-->
+                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+
+                <div class="top_right_bar">
+
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+                                src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+                                class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <div class="top_pointer"></div>
+                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--\\\\\\\ header top bar end \\\\\\-->
+        </div>
+        <div class="inner">
+            <!--\\\\\\\ inner start \\\\\\-->
+            <div class="left_nav">
+
+                <!--\\\\\\\left_nav start \\\\\\-->
+
+				<div class="left_nav_slidebar">
+					<ul>
+						<li ><a href="javascript:void(0);"><i
+							class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
+							class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul >
+								<li> <a href="/internaciones/hospitalizacion/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b ><%=especialidad%></b>
+								</a> </li>
+							</ul>
+						</li>
+						
+							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span
+										class="plus"><i class="fa fa-plus"></i></span></a>
+								<ul class="opened" style="display:block" >
+									<li> <a href="/internaciones/ListaInternacionF/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+											<b class="theme_color">Ordenes de Internación</b>
+										</a> </li>
+									<li> <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+										<b >prueba</b>
+									</a> </li>
+									
+	
+								</ul>
+							</li>
+					
+	
+						</ul>
+					</div>
+            </div>
+            <!--\\\\\\\left_nav end \\\\\\-->
+            <div class="contentpanel">
+                <!--\\\\\\\ contentpanel start\\\\\\-->
+                <div class="container clear_both padding_fix col-lg-8">
+                    <br>
+                    <div class="row">
+
+
+	<!-- Content page-->
+
+	<!-- NavBar -->
+	
+		<!-- Content page -->
     <%- include("../partials/head") -%>
     <script language="JavaScript">
         function edad(Fecha){
@@ -17,28 +143,6 @@
 </head>
 <body>
         
-
-    <!-- SideBar -->
-	<%- include("partials/menu") -%>
-    <!-- SideBar Menu Hospital-->
-    <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-           <li>
-               <a href="/internaciones/hospitalizacion/<%=especialidad%>">
-                   <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home <%=especialidad%>
-               </a>
-           </li>
-                      
-           <!-- Emergencias -->
-           <li>
-               <a href="#!" class="btn-sideBar-SubMenu">
-                   <i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
-               </a>
-               <ul class="list-unstyled full-box">
-                   <li><a href="/internaciones/ListaInternacionF/<%=especialidad%>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
-                             
-               </ul>
-           </li> 
-           </ul>
    <%- include("partials/footer") -%>
    <!-- Content page-->
    <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
@@ -154,13 +258,13 @@
                                             <div class="row">
                                                 <div class="tab-content">
                                                     <div class="tab-pane fade active in" id="Diagnostico">                                                    
-                                                        <textarea name="" id="" cols="10" rows="5" v-model="diasnostico_ingreso"></textarea>
+                                                        <textarea name="" id="" cols="88" rows="5" v-model="diasnostico_ingreso"></textarea>
                                                     </div>
                                                     <div class="tab-pane fade" id="ResumenExamenClinico">                                                    
-                                                        <textarea name="" id="" cols="10" rows="5" v-model="res_examen_clinico"></textarea>
+                                                        <textarea name="" id="" cols="88" rows="5" v-model="res_examen_clinico"></textarea>
                                                     </div>
                                                     <div class="tab-pane fade" id="Resumen">                                                    
-                                                        <textarea name="" id="" cols="10" rows="5" v-model="res_evolucion"></textarea>
+                                                        <textarea name="" id="" cols="88" rows="5" v-model="res_evolucion"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -182,24 +286,22 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="container-fluid">           
-                                                <div class="row">
+                                           
                                                     <div class="tab-content">
                                                         <div class="tab-pane fade active in" id="d1">                                                    
-                                                            <textarea name="" id="" cols="10" rows="5" v-model="meds_usados"></textarea>
+                                                            <textarea name="" id="" cols="80" rows="5" v-model="meds_usados"></textarea>
                                                         </div>
                                                         <div class="tab-pane fade" id="d2">                                                    
-                                                            <textarea name="" id="" cols="10" rows="5" v-model="diag_pos_operatorio"></textarea>
+                                                            <textarea name="" id="" cols="80" rows="5" v-model="diag_pos_operatorio"></textarea>
                                                         </div>
                                                         <div class="tab-pane fade" id="d3">                                                    
-                                                            <textarea name="" id="" cols="10" rows="5" v-model="cirugias"></textarea>
+                                                            <textarea name="" id="" cols="80" rows="5" v-model="cirugias"></textarea>
                                                         </div>
                                                         <div class="tab-pane fade" id="d4">                                                    
-                                                            <textarea name="" id="" cols="10" rows="5" v-model="res_anatomia_patologica"></textarea>
+                                                            <textarea name="" id="" cols="80" rows="5" v-model="res_anatomia_patologica"></textarea>
                                                         </div>
                                                     </div> 
-                                                </div>
-                                            </div>
+                                               
                                         </div>
                                     </div>
                                     <div class="grupo" id="cabeza">
@@ -218,16 +320,16 @@
                                         </div>
                                         <div class="tab-content">
                                             <div class="tab-pane fade active in" id="d5">                                                    
-                                                <textarea name="" id="" cols="10" rows="5" v-model="res_lab"></textarea>
+                                                <textarea name="" id="" cols="88" rows="5" v-model="res_lab"></textarea>
                                             </div>
                                             <div class="tab-pane fade" id="d6">                                                    
-                                                <textarea name="" id="" cols="10" rows="5" v-model="diagnostico_final"></textarea>
+                                                <textarea name="" id="" cols="88" rows="5" v-model="diagnostico_final"></textarea>
                                             </div>
                                             <div class="tab-pane fade" id="d7">                                                    
-                                                <textarea name="" id="" cols="10" rows="5" v-model="estado_paciente_alta"></textarea>
+                                                <textarea name="" id="" cols="88" rows="5" v-model="estado_paciente_alta"></textarea>
                                             </div>
                                             <div class="tab-pane fade" id="d8">                                                    
-                                                <textarea name="" id="" cols="10" rows="5" v-model="res_autopcia"></textarea>
+                                                <textarea name="" id="" cols="88" rows="5" v-model="res_autopcia"></textarea>
                                             </div>
                                         </div> 
                                     </div>
@@ -276,13 +378,13 @@
                                                     <div class="row">
                                                         <div class="tab-content">
                                                             <div class="tab-pane fade active in" id="Diagnostico">                                                    
-                                                                <textarea name="" id="" cols="10" rows="5" v-model="diasnostico_ingreso"></textarea>
+                                                                <textarea name="" id="" cols="88" rows="5" v-model="diasnostico_ingreso"></textarea>
                                                             </div>
                                                             <div class="tab-pane fade" id="ResumenExamenClinico">                                                    
-                                                                <textarea name="" id="" cols="10" rows="5" v-model="res_examen_clinico"></textarea>
+                                                                <textarea name="" id="" cols="88" rows="5" v-model="res_examen_clinico"></textarea>
                                                             </div>
                                                             <div class="tab-pane fade" id="Resumen">                                                    
-                                                                <textarea name="" id="" cols="10" rows="5" v-model="res_evolucion"></textarea>
+                                                                <textarea name="" id="" cols="88" rows="5" v-model="res_evolucion"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -308,16 +410,16 @@
                                                         <div class="row">
                                                             <div class="tab-content">
                                                                 <div class="tab-pane fade active in" id="d1">                                                    
-                                                                    <textarea name="" id="" cols="10" rows="5" v-model="meds_usados"></textarea>
+                                                                    <textarea name="" id="" cols="88" rows="5" v-model="meds_usados"></textarea>
                                                                 </div>
                                                                 <div class="tab-pane fade" id="d2">                                                    
-                                                                    <textarea name="" id="" cols="10" rows="5" v-model="diag_pos_operatorio"></textarea>
+                                                                    <textarea name="" id="" cols="88" rows="5" v-model="diag_pos_operatorio"></textarea>
                                                                 </div>
                                                                 <div class="tab-pane fade" id="d3">                                                    
-                                                                    <textarea name="" id="" cols="10" rows="5" v-model="cirugias"></textarea>
+                                                                    <textarea name="" id="" cols="88" rows="5" v-model="cirugias"></textarea>
                                                                 </div>
                                                                 <div class="tab-pane fade" id="d4">                                                    
-                                                                    <textarea name="" id="" cols="10" rows="5" v-model="res_anatomia_patologica"></textarea>
+                                                                    <textarea name="" id="" cols="88" rows="5" v-model="res_anatomia_patologica"></textarea>
                                                                 </div>
                                                             </div> 
                                                         </div>
@@ -340,16 +442,16 @@
                                                 </div>
                                                 <div class="tab-content">
                                                     <div class="tab-pane fade active in" id="d5">                                                    
-                                                        <textarea name="" id="" cols="10" rows="5" v-model="res_lab"></textarea>
+                                                        <textarea name="" id="" cols="88" rows="5" v-model="res_lab"></textarea>
                                                     </div>
                                                     <div class="tab-pane fade" id="d6">                                                    
-                                                        <textarea name="" id="" cols="10" rows="5" v-model="diagnostico_final"></textarea>
+                                                        <textarea name="" id="" cols="88" rows="5" v-model="diagnostico_final"></textarea>
                                                     </div>
                                                     <div class="tab-pane fade" id="d7">                                                    
-                                                        <textarea name="" id="" cols="10" rows="5" v-model="estado_paciente_alta"></textarea>
+                                                        <textarea name="" id="" cols="88" rows="5" v-model="estado_paciente_alta"></textarea>
                                                     </div>
                                                     <div class="tab-pane fade" id="d8">                                                    
-                                                        <textarea name="" id="" cols="10" rows="5" v-model="res_autopcia"></textarea>
+                                                        <textarea name="" id="" cols="88" rows="5" v-model="res_autopcia"></textarea>
                                                     </div>
                                                 </div> 
                                             </div>
