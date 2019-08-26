@@ -51,7 +51,7 @@
 			<div class="contentpanel"> <br>
 				<div class="container clear_both padding_fix" >
 
-					<a href="javascript:void(0);" class="add_user" data-toggle="modal" @click="searchInTheListMed('')" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New Task</span> </a> <br> <br> <br>
+					<a href="javascript:void(0);" class="add_user" data-toggle="modal" @click="add_lismed(),searchInTheListMed('')" data-target="#myModal"> <i class="fa fa-plus-square"></i> <span> New Task</span> </a> <br> <br> <br>
 
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -121,14 +121,25 @@
 										  </tr>
 										</thead>
 										<tbody v-for="(med, index) in paginatedMeds">
-										  <tr>
-											<td><a @click="insertar(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
-											<td><input type="number" v-model="med.cant"></td>									
-											<td>{{med.nombre}}</td>
-											<td>{{med.presentacion}}</td>
-											<td>{{med.unidades}}</td>
-											 
-										  </tr>
+											<template v-if="med.unidades <= 10">
+												<tr>
+													<td></td>		
+													<td>no se puede insertar</td>									
+													<td>{{med.nombre}}</td>
+													<td>{{med.presentacion}}</td>
+													<td>{{med.unidades}}</td>
+												</tr>
+											</template>
+											<template v-else>
+												<tr>
+													<td><a @click="insertar(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+													<td><input type="number" v-model="med.cant"></td>									
+													<td>{{med.nombre}}</td>
+													<td>{{med.presentacion}}</td>
+													<td>{{med.unidades}}</td>														 
+												</tr>
+											</template>
+										 
 										</tbody>
 									  </table>   
 								</div>
@@ -221,8 +232,8 @@
 										<td>{{car.item.nombre}}</td>
 										<td>{{car.item.presentacion}}</td>
 										<td>{{car.qty}}</td>
-										<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
-										<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
+										<td> <a  @click="reducir_cantidad(car.item.id)">Reducir</a>   </td>
+										<td><a  @click="eliminar_item(car.item.id)">Eliminar</a> </td>    
 									</tr>
 								<tbody>
 					  		</table>

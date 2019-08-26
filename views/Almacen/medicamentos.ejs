@@ -111,6 +111,11 @@
 							  <h1>Ocurrio un problema con el servidor por favor intenta volver a entrar en esta pagina desde una pestaña anterior</h1>
 						  <% } else {%>	
 							<%if(OnlyMedicamento == null) { %>
+								<% if(msg_post_false) { %>
+									<span style="color: red;"><%=msg_post_false%></span>
+								<% } else { %>
+									<span style="color: blue;"><%=msg_post_true%></span>
+								<% } %>
 							  <form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
 								  <div class="col-md-4">
 									  <div class="form-group">
