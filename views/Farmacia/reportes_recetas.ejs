@@ -58,8 +58,8 @@
 			  <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
 				<ul class="opened" style="display:block">
 				  	<li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-					  <li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
-					<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Ven.</b> </a> </li>
+					  <li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Rec.</b> </a> </li>
+					<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
 					<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
 				  	<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
 				  	<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
@@ -79,10 +79,10 @@
 			  	<div class="page-content">
 					<div class="row">
 						<div class="col-md-12">
-						 	<div class="block-web">
+				 			<div class="block-web">
 				  				<div class="header">
 									<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-									<h3 class="content-header"><i class="fa fa-bar-chart-o icon"></i>  Reporte de Ventas</h3>
+									<h3 class="content-header"><i class="fa fa-bar-chart-o icon"></i>  Reporte de Recetas</h3>
 				  				</div>
 				  				<div class="porlets-content">
 									<div class="panel-body">
@@ -93,14 +93,17 @@
 										<table  class="display table table-bordered table-striped " id="dynamic-table">
 					  						<thead>
 					  							<tr>
-					  							<th>Codigo Venta</th>
+					  							<th>Codigo Recibo</th>
 					  							<th>Fecha</th>
-					  							<th>C.I.</th>
-					  							<th>Cliente</th>
+					  							<th>H.I.</th>
+					  							<th>Paciente</th>
+					  							<th>T. Paciente</th>
+					  							<th>Doctor</th>
+					  							<th>Especialidad</th>
 					  							<th>Cantidad</th>
-					  							<th>Total Pago</th>
+					 	 						<th>Total Pago</th>
 					  							</tr>
-					 	 					</thead>
+					  						</thead>
 					  						<tbody>
 					  							<tr>
 					  							<td>1</td>
@@ -109,7 +112,10 @@
 					  							<td>a</td>
 					  							<td>a</td>
 					  							<td>a</td>
-					  							</tr>
+					  							<td>a</td>
+					  							<td>a</td>
+					  							<td>a</td>
+					  							</tr>	
 					  						<tbody>
 										</table>
 									</div><!--/table-responsive-->
@@ -132,7 +138,7 @@
 		  		<h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Reportes de Pedidos</h4>
 			</div>
 			<div class="modal-body"> 
-		  		<form class="form-horizontal" role="form"  parsley-validate novalidate>
+		 	 	<form class="form-horizontal" role="form"  parsley-validate novalidate>
 					<div class="form-group">
 			  			<label for="inputEmail3" required parsley-type="desde" class="col-sm-3 control-label">DESDE:</label>
 			  			<div class="col-sm-7">

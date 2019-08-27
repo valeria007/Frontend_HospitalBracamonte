@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <%- include("../partials/head") -%>	
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+  <div class="wrapper">
+    <!--\\\\\\\ wrapper Start \\\\\\-->
+    <div class="header_bar">
+      <!--\\\\\\\ header Start \\\\\\-->
+      <div class="brand">
+        <!--\\\\\\\ brand Start \\\\\\-->
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <!--\\\\\\\ brand end \\\\\\-->
+      <div class="header_top_bar">
+        <!--\\\\\\\ header top bar start \\\\\\-->
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+          </div> 
+        </div>
+      </div>
+      <!--\\\\\\\ header top bar end \\\\\\-->
+    </div>
+    <!--\\\\\\\ header end \\\\\\-->
+    <div class="inner">
+      <!--\\\\\\\ inner start \\\\\\-->
+      <div class="left_nav">
+        <!--\\\\\\\left_nav start \\\\\\-->
+        <div class="left_nav_slidebar">
+			<ul>
+			  <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+				<ul>
+				  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+				</ul>
+			  </li>
+			  <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
+				<ul class="opened" style="display:block">
+				  <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
+				  <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Movimientos</b> </a> </li>
+				  <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+				  <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
+				  <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+				</ul>
+			  </li>
+			  <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
+				<ul>
+				  <li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Sol.</b> </a> </li>
+				  <li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+				  <li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
+				  <li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+				  <li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
+				  <li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+				  <li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+				</ul>
+			  </li>
+			</ul>
+		  </div>
+      </div>
+     <!--Contenido-->
+     <div class="contentpanel"><br>
+		<!--\\\\\\\ contentpanel start\\\\\\-->
+		<!--Formulario-->
+		<div class="container clear_both padding_fix">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="block-web">
+						<div class="header">
+              <div class="actions"></div>
+					    <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>     Registro de Solicitud</h2>
+					  </div>
+						<div class="porlets-content">
+              <!--Formulario-->
+              <form  action="" method="POST" parsley-validate novalidate>
+                <div class="col-md-12">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>N° de Solicitud:</label>
+                      <input type="text" name="" required class="form-control">
+                    </div>
+                  </div>  
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Trimestre a Reportar:</label>
+                      <select required class="form-control"  name="estado">
+                        <option>Primer Trimestre</option>
+                        <option>Segundo Trimestre</option>
+                        <option>Tercer Trimestre</option>
+                        <option>Cuarto Trimestre</option>
+                        <option>Solicitud de Emergencia</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Fecha:</label>
+                      <input type="date" name="fechaLLEgada" required class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Responsable:</label>
+                      <input type="text" name="precio" required class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Destino:</label>
+                      <input type="text" name="precio" required class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <!-- Button trigger modal -->
+                <button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-success">Lista de Productos</button><br>
+                <br>
+                <div class="table-responsive">
+                  <table  class="display table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                      <th>#</th>
+                      <th>Cantidad</th>
+                      <th>Codigo</th>
+                      <th>Descripcion</th>
+                      <th>Precio Compra</th>
+                      <th>Precio Venta</th>
+                      <th>Eliminar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                      <td>1</td>
+                      <td>123</td>
+                      <td>a</td>
+                      <td>a</td>
+                      <td>a</td>
+                      <td>a</td>
+                      <td>a</td>
+                      </tr>
+                    <tbody>
+                  </table>
+                </div><!--/table-responsive-->
+                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+                <a class="btn btn-danger" href="/Farmacia/solicitudes"><i class="fa fa-times"></i> Cancelar</a>
+              </form>
+						</div>
+					</div>
+				</div>
+			</div><!--/row-->
+    </div>
+	<!--\\\\\\\ content panel end \\\\\\-->
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Lista de Productos</h4>
+      </div>
+      <div class="modal-body"> 
+        <div class="table-responsive">
+          <table  class="display table table-bordered table-striped" id="dynamic-table">
+            <thead>
+              <tr>
+              <th>Opcion</th>
+              <th>Cantidad</th>
+              <th>Nombre</th>
+              <th>Stock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+              <td>Trident</td>
+              <td>Internet</td>
+              <td>Win 95+</td>
+              <td class="center hidden-phone">4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div><!--/table-responsive-->
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include("../partials/scripts") -%>
+</body>
+</html>
+

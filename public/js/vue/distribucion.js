@@ -69,6 +69,27 @@ const pedidos =  new Vue({
     },
 
     methods:{
+      add_lismed(){
+        fetch('http://localhost:7000/distribucion/vueMedicamento')
+        .then(res => res.json())
+        .then(res => {
+          var arr = []
+          for(var i = 0; i < res.length; i++){
+            arr.push({
+              id : res[i].id,
+              nombre : res[i].nombre,
+              cantidad : res[i].cantidad,
+              codificacion: res[i].codificacion,
+              precio : res[i].precio,
+              presentacion : res[i].presentacion,
+              unidades : res[i].unidades,
+              cant:0
+            }) 
+          }
+          this.ListMedicamentos = arr
+        })
+      },
+
       /*
       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                   buscar medicamentos para el pedido
@@ -160,21 +181,31 @@ const pedidos =  new Vue({
             axios
             .get('http://localhost:7000/pedidos/carrito/'+id)
             .then(response => {
+              console.log(response.data, " esto es insertar ")
                 var car = {
                     id: response.data.id,
                     codificacion: response.data.codificacion,
                     nombre: response.data.nombre,
-                    cantidad: response.data.cantidad,
                     presentacion: response.data.presentacion,
                     price: response.data.price,
+                    cantidad: response.data.cantidad,
                    
                 } 
                 this.itemsCar = car 
-                this.pass = " Se insertaron  "+cantidad + " productos" + " de " + car.nombre
-                this.respFalse = ""
-                for(var i = 0; i< cantidad; i++){
-                  this.add(car,id);
-                }         
+               
+
+                var total = car.cantidad - cantidad
+                console.log(total, "   <<<<<<<<<<< esto es el total")
+                if(total <= 0){
+                  this.respFalse = "No puedes insertar esa cantidad ya que exede la cantidad del productto que hay ...."
+                }else{
+                  this.pass = " Se insertaron  "+cantidad + " productos" + " de " + car.nombre
+                  this.respFalse = ""
+                  for(var i = 0; i< cantidad; i++){
+                    this.add(car,id);
+                  }   
+                }
+                      
             })   
           }
                      
@@ -197,7 +228,7 @@ const pedidos =  new Vue({
             
         },
 
-        reduceByOne (id) {
+        reducir_cantidad (id) {
             this.distribucionList[id].qty--;
             this.distribucionList[id].price -= this.distribucionList[id].item.price;
             this.totalQty--;
@@ -208,7 +239,7 @@ const pedidos =  new Vue({
             }
         },
 
-        removeItem(id) {
+        eliminar_item(id) {
             this.totalQty -= this.distribucionList[id].qty;
             this.totalPrice -= this.distribucionList[id].price;
             delete this.distribucionList[id];
@@ -247,12 +278,15 @@ const pedidos =  new Vue({
               .catch(error => console.error('Error:', error))
               .then(data => { 
 
+                console.log(data, " esto es el form post <<<<<<<<<")
                 if(data.success == false){
                   this.rep_post_false = data.msg
                   this.respuestaPost = ""
+                  console.log( " false")
                  
                 }else{
-                 
+                 console.log("pass  ")
+                 this.reduce();
                   this.codigo = '';
                   this.responsable= '';
                   this.recibe = '';
@@ -260,11 +294,9 @@ const pedidos =  new Vue({
                   this.distribucionList = {};
                   this.totalQty = 0;
                   this.totalPrice = 0;
-                  this.respuestaPost = ""
 
                   this.respuestaPost = data.msg
                   this.rep_post_false = ""
-                  this.reduce();
                 }
                 
               })
@@ -286,16 +318,16 @@ const pedidos =  new Vue({
         },
         
         //para reducir al estock    
-        reduce: function (){
+        reduce(){
             var producto = this.generateArray();
             if (producto == ""){
-                this.respuestaPost = "No se selecciono Producto"
+                this.respuestaPost = "No se selecciono Producto <<<<<<<<<<<<<<"
             }else{
                 axios.post('http://localhost:7000/distribucion/vueReduceStock', {
                     producto: producto                
                 })
                 .then(function (response) {
-                    console.log(response, "  <<< esto es la respuesta")
+                    console.log(response, "  <<< esto es reduce")
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -309,7 +341,6 @@ const pedidos =  new Vue({
           .catch(error => console.error('Error:', error))
           .then(data => { 
             this.oneDistrbucion = data[0]
-            console.log(this.oneDistrbucion, " <<<<<<<<<<<<<<<<<")
           })
         }
     }

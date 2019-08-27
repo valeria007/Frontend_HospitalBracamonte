@@ -6,6 +6,10 @@ router.get('/pedidos',(req, res) => {
     res.render('Almacen/pedidos')
 });
 
+router.get('/volver', (req,res) => {
+    oneGrupoAsig = null
+    res.redirect('/Almacen/pedidos'); 
+})
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>><>
 VUE
@@ -34,7 +38,7 @@ router.get('/carrito/:id', (req,res)=>{
                 id: resp[0].id,
                 codificacion: resp[0].codificacion,
                 nombre: resp[0].nombre,
-                cantidad: resp[0].cantidad,
+                cantidad: resp[0].unidades,
                 presentacion: resp[0].presentacion,
                 price: resp[0].precio
             }

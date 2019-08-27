@@ -59,16 +59,16 @@
 				<ul class="opened" style="display:block">
 				  	<li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
 					  <li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
-					<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Ven.</b> </a> </li>
-					<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+					<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
+					<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reportes de Cajas</b> </a> </li>
 				  	<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
 				  	<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
 				  	<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
 				</ul>
 			  </li>
 			</ul>
-		  </div>
-      </div>
+		</div>
+    </div>
     <!--Contenido-->
     <div class="contentpanel"><br>
 		<!--\\\\\\\ contentpanel start\\\\\\-->
@@ -78,11 +78,11 @@
 			<div id="main-content">
 			  	<div class="page-content">
 					<div class="row">
-						<div class="col-md-12">
-						 	<div class="block-web">
+					 	<div class="col-md-12">
+							<div class="block-web">
 				  				<div class="header">
 									<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-									<h3 class="content-header"><i class="fa fa-bar-chart-o icon"></i>  Reporte de Ventas</h3>
+									<h3 class="content-header"><i class="fa fa-bar-chart-o icon"></i>  Reporte de Cajas</h3>
 				  				</div>
 				  				<div class="porlets-content">
 									<div class="panel-body">
@@ -93,18 +93,20 @@
 										<table  class="display table table-bordered table-striped " id="dynamic-table">
 					  						<thead>
 					  							<tr>
-					  							<th>Codigo Venta</th>
+            									<th>Empleado</th>
+            									<th>N° Codigo</th>
 					  							<th>Fecha</th>
-					  							<th>C.I.</th>
+					  							<th>Paciente</th>
 					  							<th>Cliente</th>
 					  							<th>Cantidad</th>
 					  							<th>Total Pago</th>
 					  							</tr>
-					 	 					</thead>
+					  						</thead>
 					  						<tbody>
 					  							<tr>
 					  							<td>1</td>
-					  							<td>123</td>
+            									<td>123</td>
+            									<td>a</td>
 					  							<td>a</td>
 					  							<td>a</td>
 					  							<td>a</td>
@@ -146,7 +148,7 @@
 			  			</div>
 					</div><!--/form-group-->  
 					<div class="form-group">
-			  			<label for="inputPassword3" class="col-sm-3 control-label">Pacientes  <i class="fa fa-users"> :</i></label>
+			  			<label for="inputPassword3" class="col-sm-3 control-label">Empleado  <i class="fa fa-users"> :</i></label>
 			  			<div class="col-sm-7">
 							<select class="selectpicker" data-show-subtext="true" data-live-search="true">
 				  				<option>Paco</option>
@@ -164,7 +166,7 @@
 					</div><!--/form-group--> 
 		  		</form>
 			</div>
-	  	</div>
+	 	</div>
 	</div>
 </div>
 <%- include("../partials/scripts") -%>

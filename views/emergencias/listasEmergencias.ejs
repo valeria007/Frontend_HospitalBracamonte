@@ -2,226 +2,150 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>USUARIOS</title>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+<title>Emergencias</title>
+<%- include("./partials/head") -%>
 
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  
-  <div class="header_bar">
-   
-    <div class="brand">
-     
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
-    </div>
-    <div class="header_top_bar">
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-          </ul>
-        </div>
-       
-      </div>
-    </div>
-  </div>
-  
+<!--Navegation-->
+<%- include("./partials/menu")-%>
   <div class="inner">
     <div class="left_nav">
-     
-      
       <div class="left_nav_slidebar">
           <ul>
-							<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-								<ul >
-									<li> <a href="/emergencia/homeEmergencia/<%=DogOenf%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
-								</ul>
-							</li>
-							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
-								<ul class="opened" style="display:block">
-									<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
-									
-								</ul>
-							</li>
-            
-          </ul>
+			<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+			<ul >
+				<li> <a href="/emergencia/homeEmergencia/<%=DogOenf%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+			</ul>
+			</li>
+			<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+			<ul class="opened" style="display:block">
+				<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+			</ul>
+			</li>
+            </ul>
         </div>
     </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-
-        <!--\\\\\\\ container  start \\\\\\-->
         <div class="container clear_both padding_fix">
-					<br>
-							<div class="header">
-									<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
-									<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
-								</div>
-								
-					
-					<br>
-					<br>
-					<div class="page-content">
-							
-						<div class="row">
-								
-									
-									
-								<div class="col-lg-14">
-										<section class="panel default blue_title h2">
-											
-											<div class="panel-body">
-												<ul class="nav nav-tabs" id="myTab">
-													<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-user "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes En Espera</a></li>
-													<li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-user "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Atendidos</a></li>
-													
-												</ul>
-												<div class="tab-content" id="myTabContent">
-													<div id="Tab1" class="tab-pane fade in active">
-													
-														<div class="row" >
-																<div class="col-md-12">
-																	<div class="block-web">
-																	 
-																 <div class="porlets-content">
-																		<div class="table-responsive">
-																				<table  class="display table table-bordered table-striped" id="dynamic-table">
-																						<thead>
-																								<tr>
-																								<th >#</th>
-																								<th >N° Historia </th>
-																								<th >Nombre Paciente</th>
-																								<th >Apellido Paterno</th>
-																								<th >Apellido Materno</th>	
-																								<th >Hora Atencion</th>	
-																								<th >Reg. Consulta</th>
-																								</tr>
-																							</thead>
-																							<tbody>
-																								<% if(resp != null) { %>
-																									<% for(var i=0; i< resp.length; i++) { %>
-																										<tr>
-																											<td><%= i + 1 %></td>
-																											<td><%=resp[i].codigo_p %></td>
-																											<td><%=resp[i].Paciente.nombre %></td>
-																											<td><%=resp[i].Paciente.apellidop %></td>
-																											<td><%=resp[i].Paciente.apellidom %></td>
-																											<td><%=resp[i].hora %></td>
-																											<td class="text-center"><a  href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
-																										</tr>
-																									<% } %>
-																								<% } else { %>
-																										<tr>
-																											<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
-																										</tr>
-																								<% } %>
-																							</tbody>
-																				</table>
-																		</div><!--/table-responsive-->
+			<br>
+			<div class="header">
+				<div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
+				<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
+			</div>
+			<br><br>
+			<div class="page-content">
+				<div class="row">
+					<div class="col-lg-14">
+						<section class="panel default blue_title h2">
+							<div class="panel-body">
+								<ul class="nav nav-tabs" id="myTab">
+									<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-list-alt "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes En Espera</a></li>
+									<li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Atendidos</a></li>
+								</ul>
+								<div class="tab-content" id="myTabContent">
+									<div id="Tab1" class="tab-pane fade in active">
+										<div class="row" >
+											<div class="col-md-12">
+												<div class="block-web">
+													<div class="porlets-content">
+														<div class="table-responsive">
+															<table  class="display table table-bordered table-striped" id="dynamic-table">
+																<thead>
+																	<tr>
+																		<th >#</th>
+																		<th >N° Historia </th>
+																		<th >Nombre Paciente</th>
+																		<th >Apellido Paterno</th>
+																		<th >Apellido Materno</th>	
+																		<th >Hora Atencion</th>	
+																		<th >Reg. Consulta</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<% if(resp != null) { %>
+																	<% for(var i=0; i< resp.length; i++) { %>
+																	<tr>
+																		<td><%= i + 1 %></td>
+																		<td><%=resp[i].codigo_p %></td>
+																		<td><%=resp[i].Paciente.nombre %></td>
+																		<td><%=resp[i].Paciente.apellidop %></td>
+																		<td><%=resp[i].Paciente.apellidom %></td>
+																		<td><%=resp[i].hora %></td>
+																		<td class="text-center"><a  href="/emergencia/GetEmergencia/<%=resp[i].codigo_p%>/<%=resp[i].id%>/<%=DogOenf%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+																	</tr>
+																	<% } %>
+																	<% } else { %>
+																	<tr>
+																		<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
+																	</tr>
+																	<% } %>
+																</tbody>
+															</table>
+														</div>
 																			
-																		</div><!--/porlets-content-->
-																		
-																		
-																	</div><!--/block-web--> 
-																</div><!--/col-md-12--> 
-															</div><!--/row-->
 													</div>
-													<div id="Tab2" class="tab-pane fade">
-														
-														<div class="row">
-																<div class="col-md-12">
-																<div class="block-web">
-																<div class="porlets-content">
-																		<div class="table-responsive">
-																				<table  class="display table table-bordered table-striped" id="dynamic-table2">
-																						<thead>
-																								<tr>
-																								<th >#</th>
-																								<th >N° Historia </th>
-																								<th >Nombre Paciente</th>
-																								<th >Apellido Paterno</th>
-																								<th >Apellido Materno</th>	
-																								<th >Hora Atencion</th>	
-																								<th >Optiones</th>
-																								</tr>
-																							</thead>
-																							<tbody>
-																								<% if(dataEmergencia != null) { %>
-																									<% for(var i=0; i< dataEmergencia.length; i++) { %>
-																										<tr>
-																											<td><%= i + 1 %></td>
-																											<td><%=dataEmergencia[i].codigo_p %></td>
-																											<td><%=dataEmergencia[i].Paciente.nombre %></td>
-																											<td><%=dataEmergencia[i].Paciente.apellidop %></td>
-																											<td><%=dataEmergencia[i].Paciente.apellidom %></td>
-																											<td><%=dataEmergencia[i].hora %></td>
-																											<td class="text-center" ><a href="/emergencia/GetEmergencia/<%=dataEmergencia[i].codigo_p%>/<%=dataEmergencia[i].id%>/<%=DogOenf%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:green"></i></a><span>&nbsp;</span></td>
-																										</tr>
-																									<% } %>
-																								<% } else { %>
-																									<tr>
-																										<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
-																									</tr>
-																								<% } %>
-																							</tbody>
-																					
-																				</table>
-																		</div><!--/table-responsive-->
-																</div>
-																</div> 
-																</div>
-														</div><!--/row-->
-													</div>
-													
 												</div>
 											</div>
-										</section>
+										</div>
 									</div>
-						</div>
+									<div id="Tab2" class="tab-pane fade">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="block-web">
+													<div class="porlets-content">
+														<div class="table-responsive">
+															<table  class="display table table-bordered table-striped" id="dynamic-table2">
+																<thead>
+																	<tr>
+																		<th >#</th>
+																		<th >N° Historia </th>
+																		<th >Nombre Paciente</th>
+																		<th >Apellido Paterno</th>
+																		<th >Apellido Materno</th>	
+																		<th >Hora Atencion</th>	
+																		<th >Optiones</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<% if(dataEmergencia != null) { %>
+																	<% for(var i=0; i< dataEmergencia.length; i++) { %>
+																	<tr>
+																		<td><%= i + 1 %></td>
+																		<td><%=dataEmergencia[i].codigo_p %></td>
+																		<td><%=dataEmergencia[i].Paciente.nombre %></td>
+																		<td><%=dataEmergencia[i].Paciente.apellidop %></td>
+																		<td><%=dataEmergencia[i].Paciente.apellidom %></td>
+																		<td><%=dataEmergencia[i].hora %></td>
+																		<td class="text-center" ><a href="/emergencia/GetEmergencia/<%=dataEmergencia[i].codigo_p%>/<%=dataEmergencia[i].id%>/<%=DogOenf%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:green"></i></a><span>&nbsp;</span></td>
+																	</tr>
+																	<% } %>
+																	<% } else { %>
+																	<tr>
+																		<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
+																	</tr>
+																	<% } %>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div> 
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
 					</div>
-      
-        </div>
-      <!--\\\\\\\ container  end \\\\\\-->
-    
-    <!--\\\\\\\ content panel end \\\\\\-->
+				</div>
+			</div>
+      	</div>
   </div>
-  <!--\\\\\\\ inner end\\\\\\-->
 </div>
 </div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-<!-- Modal -->
-
-
 
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>

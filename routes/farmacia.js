@@ -23,6 +23,15 @@ router.get('/volver', (req,res) => {
 router.get('/solicitudes',(req, res) => {
     res.render('Farmacia/solicitudes')
 });
+
+router.get('/reg_solicitud',(req, res) => {
+    res.render('Farmacia/reg_solicitud')
+});
+
+router.get('/volver3', (req,res) => {
+    oneGrupoAsig = null
+    res.redirect('/Farmacia/solicitudes'); 
+})
   
 router.get('/recetas_farm',(req, res) => {
     res.render('Farmacia/recetas_farm')
@@ -51,6 +60,13 @@ router.get('/ventas',(req, res) => {
   });
 router.get('/kardexValorizado', (req,res) => {
     res.render('Farmacia/kardexValorizado');
+});
+router.get('/reportes_cajas', (req,res) => {
+    res.render('Farmacia/reportes_cajas');
+});
+
+router.get('/reportes_recetas', (req,res) => {
+    res.render('Farmacia/reportes_recetas');
 });
 router.get('/med_ven', (req,res) => {
     res.render('Farmacia/med_ven');
