@@ -1,14 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const examen_fisico = sequelize.define('examen_fisico', {
-    estado_general: DataTypes.TEXT,
-    facies: DataTypes.STRING,
-    precion_arterial: DataTypes.STRING,
-    estado_nutricional: DataTypes.STRING,
     peso: DataTypes.STRING,
+    talla: DataTypes.STRING,
+    temperatura: DataTypes.STRING,
     frecuencia_cardiaca: DataTypes.STRING,
+    respiracion: DataTypes.STRING,
+    presion: DataTypes.STRING,
     saturacion_oxigeno: DataTypes.STRING,
     fecha_revision: DataTypes.STRING,
+    otros:DataTypes.TEXT,
     id_paciente: DataTypes.INTEGER
   }, {});
   examen_fisico.associate = function(models) {

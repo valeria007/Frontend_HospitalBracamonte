@@ -14,6 +14,27 @@ module.exports = {
       descripcion: {
         type: Sequelize.TEXT
       },
+      familiares: {
+        type: Sequelize.TEXT
+      },
+      personales_patologicos: {
+        type: Sequelize.TEXT
+      },
+      personales_no_patologicos: {
+        type: Sequelize.TEXT
+      },
+      gineco_obstetrico: {
+        type: Sequelize.TEXT
+      },
+      tipoHabito: {
+        type: Sequelize.STRING
+      },
+      descripcionHa: {
+        type: Sequelize.TEXT
+      },
+      descripcionInte: {
+        type: Sequelize.TEXT
+      },
       id_paciente: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
