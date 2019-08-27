@@ -67,8 +67,8 @@
           </ul>
         </div>
       </div>
-    <!--Contenido-->
-    <div class="contentpanel"><br>
+     <!--Contenido-->
+     <div class="contentpanel"><br>
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <!--Formulario-->
       <div class="container clear_both padding_fix">
@@ -145,45 +145,45 @@
                   <% } %>  
                 </div><!--/porlets-content-->
                 <div id="main-content">
-                    <div class="page-content">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="block-web">
-                            <div class="porlets-content">
-                              <div class="header">
-                                <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href=""><i class="fa fa-repeat"></i></a> </div>
-                                <h3 class="content-header">Lista de Grupos de Asignacion</h3>
-                              </div>
-                              <div class="table-responsive">
-                                <table  class="display table table-bordered table-striped" id="dynamic-table">
-                                  <thead>
-                                    <tr>
-                                    <th>#</th>
-                                    <th>Codigo</th>
-                                    <th>Descripcion</th>
-                                    <th class="hidden-phone">Modificar</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                  <% for(var i=0; i < resp.length; i++) { %>
-                                    <tr>
-                                    <td><%= i+1 %></td>
-                                    <td><%=resp[i].codigo%></td>
-                                    <td><%=resp[i].descripcion%></td>
-                                    <td class="center hidden-phone">
-                                      <a class="btn btn-success btn-sm" href="/almacen/GrupoAsigONLY/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
-                                    </td>
-                                    </tr>
-                                  <% } %>
-                                  </tbody>
-                                </table>
-                              </div><!--/table-responsive-->
-                            </div><!--/porlets-content-->
-                          </div><!--/block-web--> 
-                        </div><!--/col-md-12--> 
-                      </div><!--/row-->
+                  <div class="page-content">
+                  <div class="row">
+                  <div class="col-md-12">
+                    <div class="block-web">
+                     <div class="header">
+                      <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
+                      <h3 class="content-header">Lista de Medicamentos</h3>
                     </div>
-                  </div>
+                   <div class="porlets-content">
+                    <div class="table-responsive">
+                      <table  class="display table table-bordered table-striped " id="dynamic-table">
+                        <thead>
+                          <tr>
+                          <th>#</th>
+                          <th>Codigo</th>
+                          <th>Descripcion</th>
+                          <th >Modificar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <% for(var i=0; i < resp.length; i++) { %>
+                          <tr>
+                          <td><%= i+1 %></td>
+                          <td><%=resp[i].codigo%></td>
+                          <td><%=resp[i].descripcion%></td>
+                          <td class="center hidden-phone">
+                            <a class="btn btn-success btn-sm" href="/almacen/GrupoAsigONLY/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
+                          </td>
+                          </tr>
+                        <% } %>
+                        </tbody>
+                      </table>
+                      </div><!--/table-responsive-->
+                    </div><!--/porlets-content-->
+                    </div><!--/block-web--> 
+                  </div><!--/col-md-12--> 
+                </div><!--/row-->
+              </div><!--/page-content end--> 
+                  </div><!--/main-content end-->
             </div><!--/block-web--> 
           </div><!--/col-md-12--> 
         </div>
@@ -191,8 +191,7 @@
     <!--\\\\\\\ content panel end \\\\\\-->
     </div>
   </div>
-</div>
-<%- include("../partials/scripts") -%>
+  <%- include("../partials/scripts") -%>
 </body>
 </html>
 

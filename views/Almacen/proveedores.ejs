@@ -67,167 +67,155 @@
           </ul>
         </div>
       </div>
-     <!--Contenido-->
-     <div class="contentpanel"><br>
+    <0!--Contenido-->
+    <div class="contentpanel"><br>
 		<!--\\\\\\\ contentpanel start\\\\\\-->
 		<!--Formulario-->
 		<div class="container clear_both padding_fix">
-				<!--\\\\\\\ container  start \\\\\\-->
-			  
-			  <div class="row">
-						<div class="col-md-12">
-							<div class="block-web">
-								<div class="header">
-									<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/proveedores/volver"><i class="fa fa-repeat"></i></a></div>
-									<h3 class="content-header"><i class="fa fa-users icon"></i> Registrar Proveedor</h3>
+			<!--\\\\\\\ container  start \\\\\\-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="block-web">
+						<div class="header">
+							<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/proveedores/volver"><i class="fa fa-repeat"></i></a></div>
+							<h3 class="content-header"><i class="fa fa-users icon"></i> Registrar Proveedor</h3>
+						</div>
+						<div class="porlets-content">
+							<%if(one_proveedor == null) { %>
+							<form action="/proveedores/proveedores" method="POST" parsley-validate novalidate>
+								<div class="col-md-12">
+								  	<div class="col-md-4">
+										<div class="form-group">
+											<label>Nombre del Proveedor:</label>
+											<input type="text" name="nombre" required class="form-control">
+										</div>
+									</div>  
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Email:</label>
+											<input type="email" name="email" required class="form-control">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Direccion:</label>
+											<input  type="text"  name="direccion" required class="form-control">
+										</div>
+									</div>
 								</div>
-								<div class="porlets-content">
-								  <%if(one_proveedor == null) { %>
-									<form action="/proveedores/proveedores" method="POST" parsley-validate novalidate>
-									  <div class="col-md-12">
-									  <div class="col-md-4">
-											<div class="form-group">
-												<label>Nombre del Proveedor:</label>
-												<input type="text" name="nombre" required class="form-control">
-											</div>
-										</div>  
-										<div class="col-md-4">
-											<div class="form-group">
-												<label>Email:</label>
-												<input type="email" name="email" required class="form-control">
-											</div>
+								<div class="col-md-12">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Telefono:</label>
+											<input type="text"  name="telefono" required class="form-control">
 										</div>
-										<div class="col-md-4">
-											<div class="form-group">
-												<label>Direccion:</label>
-												<input  type="text"  name="direccion" required class="form-control">
-											</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Empresa o Institucion:</label>
+											<input type="text" name="empresa" required class="form-control">
 										</div>
-									  </div>
-									  <div class="col-md-12">
-										  <div class="col-md-6">
-											  <div class="form-group">
-												  <label>Telefono:</label>
-												  <input type="text"  name="telefono" required class="form-control">
-											  </div>
-										  </div>
-										  <div class="col-md-6">
-											  <div class="form-group">
-												  <label>Empresa o Institucion:</label>
-												  <input type="text" name="empresa" required class="form-control">
-											  </div>
-										  </div>
-									  </div>
-									  <p class="text-center">
-											<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-											<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-									  </p>
-									</form>
-									<% } else { %>	
-									  <h3>Formulario de Actualizacion</h3>
-									<form action="/proveedores/UpdateProveedor/<%=one_proveedor[0].id%>" method="POST" parsley-validate novalidate>
-										<div class="col-md-12">
-										<div class="col-md-4">
-											  <div class="form-group">
-												  <label>Nombre del Proveedor:</label>
-												  <input type="text" name="nombre" value="<%=one_proveedor[0].nombre%>" required class="form-control">
-											  </div>
-										  </div>  
-										  <div class="col-md-4">
-											  <div class="form-group">
-												  <label>Email:</label>
-												  <input type="email" name="email" value="<%=one_proveedor[0].email%>" required class="form-control">
-											  </div>
-										  </div>
-										  <div class="col-md-4">
-											  <div class="form-group">
-												  <label>Direccion:</label>
-												  <input  type="text"  name="direccion" value="<%=one_proveedor[0].direccion%>" required class="form-control">
-											  </div>
-										  </div>
-										</div>
-										<div class="col-md-12">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Telefono:</label>
-													<input type="text" name="telefono" value="<%=one_proveedor[0].telefono%>" required class="form-control">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Empresa o Institucion:</label>
-													<input type="text" name="empresa" value="<%=one_proveedor[0].empresa%>" required class="form-control">
-												</div>
-											</div>
-										</div>
-										<p class="text-center">
-												<a class="btn btn-danger" href="/proveedores/volver"><i class="fa fa-times"></i> Cancelar</a>
-												<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-												
-										  </p>
-									  </form>
-									  <% } %>
+									</div>
 								</div>
-								<div id="main-content">
-										<div class="page-content">
-										<div class="row">
-											<div class="col-md-12">
-											  <div class="block-web">
-											   <div class="header">
-												  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
-												  <h3 class="content-header">Lista de Proveedores</h3>
-												</div>
-											 <div class="porlets-content">
+								<p class="text-center">
+									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+									<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+								</p>
+							</form>
+							<% } else { %>	
+							<!--Formulario de Actuaizacion-->
+							<form action="/proveedores/UpdateProveedor/<%=one_proveedor[0].id%>" method="POST" parsley-validate novalidate>
+								<div class="col-md-12">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Nombre del Proveedor:</label>
+											<input type="text" name="nombre" value="<%=one_proveedor[0].nombre%>" required class="form-control">
+										</div>
+									</div>  
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Email:</label>
+											<input type="email" name="email" value="<%=one_proveedor[0].email%>" required class="form-control">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Direccion:</label>
+											<input  type="text"  name="direccion" value="<%=one_proveedor[0].direccion%>" required class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Telefono:</label>
+											<input type="text" name="telefono" value="<%=one_proveedor[0].telefono%>" required class="form-control">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Empresa o Institucion:</label>
+											<input type="text" name="empresa" value="<%=one_proveedor[0].empresa%>" required class="form-control">
+										</div>
+									</div>
+								</div>
+								<p class="text-center">
+									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+									<a class="btn btn-danger" href="/proveedores/volver"><i class="fa fa-times"></i> Cancelar</a>
+								</p>
+							</form>
+							<% } %>
+						</div>
+						<div id="main-content">
+							<div class="page-content">
+								<div class="row">
+									<div class="col-md-12">
+									  	<div class="block-web">
+											<div class="header">
+												<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
+												<h3 class="content-header">Lista de Proveedores</h3>
+											</div>
+											<div class="porlets-content">
 												<div class="table-responsive">
 													<table  class="display table table-bordered table-striped " id="dynamic-table">
-													<thead>
-														<th>#</th>
-														<th>Nombre Proveedor</th>
-														<th>Email</th>
-														<th>Direccion</th>
-														<th>Telefono</th>
-														<th>Responsable de atención</th>
-														<th>Modificar</th>
-													</thead>
-													<tbody>
-													  <% for (var i = 0; i< resp.length; i++) { %>
+														<thead>
+															<th>#</th>
+															<th>Nombre Proveedor</th>
+															<th>Email</th>
+															<th>Direccion</th>
+															<th>Telefono</th>
+															<th>Responsable de atención</th>
+															<th>Modificar</th>
+														</thead>
+														<tbody>
+													 	<% for (var i = 0; i< resp.length; i++) { %>
 															<tr>
-																<td><%= i+1%></td>
-																<td><%=resp[i].nombre%></td>
-																<td><%=resp[i].email%></td>
-																<td><%=resp[i].direccion%></td>
-																<td><%=resp[i].telefono%></td>
-																<td><%=resp[i].empresa%></td>
-																<td><a class="btn btn-success btn-sm" href="/proveedores/OnlyProveedor/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
-												  </td>
+															<td><%= i+1%></td>
+															<td><%=resp[i].nombre%></td>
+															<td><%=resp[i].email%></td>
+															<td><%=resp[i].direccion%></td>
+															<td><%=resp[i].telefono%></td>
+															<td><%=resp[i].empresa%></td>
+															<td><a class="btn btn-success btn-sm" href="/proveedores/OnlyProveedor/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a></td>
 															</tr>
-															<% } %>
-													</tbody>
+														<% } %>
+														</tbody>
 													</table>
-												  </div><!--/table-responsive-->
-												</div><!--/porlets-content-->
-												
-												
-											  </div><!--/block-web--> 
-											</div><!--/col-md-12--> 
-										  </div><!--/row-->
-										
-										  
-											</div><!--/page-content end--> 
-									  </div><!--/main-content end--> 
-							</div>
-						</div>
-					</div><!--/row-->
-			  
-			   
-			  
-			  
-			  
-			  </div>
-	  <!--\\\\\\\ content panel end \\\\\\-->
+												</div><!--/table-responsive-->
+											</div><!--/porlets-content-->
+										</div><!--/block-web--> 
+									</div><!--/col-md-12--> 
+								</div><!--/row-->
+							</div><!--/page-content end--> 
+						</div><!--/main-content end--> 
+					</div>
+				</div>
+			</div><!--/row-->
+		</div>
+	<!--\\\\\\\ content panel end \\\\\\-->
 	</div>
-  </div>
-  <%- include("../partials/scripts") -%>
+</div>
+<%- include("../partials/scripts") -%>
 </body>
 </html>
 

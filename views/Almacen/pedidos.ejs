@@ -89,21 +89,22 @@
                       
                     <div class="table-responsive">
                       <table  class="display table table-bordered table-striped" id="dynamic-table">
-                          <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Codigo</th>
-                                <th>Proveedor</th>
-                                <th>T. Comprovante</th>
-                                <th>Fecha</th>
-                                <th>Impuestos</th>
-                                <th>Total</th>
-                                <th>Estado</th>
-                                <th>Opciones</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            <%for(var i = 0; i< resp.length; i++) { %>
+                        <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Codigo</th>
+                              <th>Proveedor</th>
+                              <th>T. Comprovante</th>
+                              <th>Fecha</th>
+                              <th>Impuestos</th>
+                              <th>Total</th>
+                              <th>Estado</th>
+                              <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <%for(var i = 0; i< resp.length; i++) { %>
+                            <%if(resp[i].ProductosAceptados != null) { %>
                               <tr>
                                 <td><%=i+1%></td>
                                 <td><%=resp[i].codigoCompra%></td>
@@ -112,14 +113,25 @@
                                 <td><%=resp[i].fechaIngreso%></td>
                                 <td><%=resp[i].iva%></td>
                                 <td><%=resp[i].total%></td>
-                                <td><%=resp[i].Observaciones%></td>
-                                <td>
-                                    <a class="btn btn-success" href="/pedidos/onliPedido/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
-                                  </td>
+                                <td><span style="color: blue;">Aceptado</span></td>
+                                <td><a href="/pedidos/verPedido/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs">ver</a></td>
                               </tr>
+                            <% } else { %>
+                              <tr>
+                                  <td><%=i+1%></td>
+                                  <td><%=resp[i].codigoCompra%></td>
+                                  <td><%=resp[i].proveedor%></td>
+                                  <td><%=resp[i].boletaPago%></td>
+                                  <td><%=resp[i].fechaIngreso%></td>
+                                  <td><%=resp[i].iva%></td>
+                                  <td><%=resp[i].total%></td>
+                                  <td><span style="color: red;">No aceptado</span></td>
+                                  <td><a href="/pedidos/verPedido/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs">ver</a></td>
+                                </tr>
                             <% } %>
-                          </tbody>
-                      </table>
+                          <% } %>
+                        </tbody>
+                    </table>
                     </div><!--/table-responsive-->
                   </div><!--/porlets-content-->
                 </div><!--/block-web--> 
