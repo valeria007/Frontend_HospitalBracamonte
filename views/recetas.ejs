@@ -3,7 +3,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Recetas</title>
+	<title>Recetas de consulta</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 	<meta name="viewport"
@@ -141,9 +141,11 @@
 													<form action="/medico/receta/<%=id.id%>" method="POST">
 														<div class="block-web">
 															<div class="header">
-																<div class="actions"> 
-																	<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
-																	<a class="close-down" href="#"><i class="fa fa-times"></i></a>
+																<div class="actions">
+																	<a class="minimize" href="#"><i
+																			class="fa fa-chevron-down"></i></a>
+																	<a class="close-down" href="#"><i
+																			class="fa fa-times"></i></a>
 																</div>
 																<h3 class="content-header">Estado General</h3>
 															</div>
@@ -152,24 +154,35 @@
 																	<div class="col-md-12">
 																		<div class="col-md-4">
 																			<div class="entrada ">
-																				<h6 class=" blue_info">N° de Historia:</h6>
-																				<input  type="text" value="<%=dataPaciente[0].numeroHistorial%>" name="historiaClinica" class="form-control" readonly="" value="Read only text goes here">
+																				<h6 class=" blue_info">N° de Historia:
+																				</h6>
+																				<input type="text"
+																					value="<%=dataPaciente[0].numeroHistorial%>"
+																					name="historiaClinica"
+																					class="form-control" readonly=""
+																					value="Read only text goes here">
 																			</div>
 																		</div>
 																		<div class="col-sm-8 col-sm-9">
 																			<div class="form-group">
 																				<div class="entrada">
-																					<h6 class=" blue_info">Nombre Completo:</h6>
-																					<input type="text" name="nombre apellidop apellidom" value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>" class="form-control" readonly="" value="Read only text goes here">
+																					<h6 class=" blue_info">Nombre
+																						Completo:</h6>
+																					<input type="text"
+																						name="nombre apellidop apellidom"
+																						value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+																						class="form-control" readonly=""
+																						value="Read only text goes here">
 																				</div>
 																			</div>
 																		</div>
 																	</div>
 																	<div class="col-md-12">
-																		
+
 																		<div class="col-sm-6 col-sm-6">
 																			<div class="entrada">
-																				<h6 class="blue_info">Fecha de Nacimiento: </h6>
+																				<h6 class="blue_info">Fecha de
+																					Nacimiento: </h6>
 																				<input type="text"
 																					name="fechanacimiento"
 																					value="<%=dataPaciente[0].fechanacimiento%>"
@@ -193,9 +206,9 @@
 														<div class="block-web">
 															<div class="header">
 																<div class="actions"> <a class="minimize" href="#"><i
-																		class="fa fa-chevron-down"></i></a> <a
+																			class="fa fa-chevron-down"></i></a> <a
 																		class="close-down" href="#"><i
-																		class="fa fa-times"></i></a>
+																			class="fa fa-times"></i></a>
 																</div>
 																<h3 class="content-header">Estado General</h3>
 															</div>
@@ -204,15 +217,16 @@
 																	<div class="col-md-12"><br>
 																		<div class="col-sm-3 col-sm-6">
 																			<div class="entrada">
-																				<h6 class=" blue_info">Fecha Prescripción:</h6>
+																				<h6 class=" blue_info">Fecha
+																					Prescripción:</h6>
 																				<input class="form-control" type="date"
-																					name="fecha" require
-																					>
+																					name="fecha" require>
 																			</div>
 																		</div>
 																		<div class="col-sm-4 col-sm-6">
 																			<div class="entrada">
-																				<h6 class=" blue_info">Profecional Médico:</h6>
+																				<h6 class=" blue_info">Profecional
+																					Médico:</h6>
 																				<input type="text" name="doctor"
 																					value="<%=ConsultaOnly[0].Citas_Medica.medico%>"
 																					class="form-control" readonly=""
@@ -221,7 +235,8 @@
 																		</div>
 																		<div class="col-sm-4 col-sm-6">
 																			<div class="entrada">
-																				<h6 class=" blue_info">Especialidad: </h6>
+																				<h6 class=" blue_info">Especialidad:
+																				</h6>
 																				<input name="tipoConsulta"
 																					value="<%=ConsultaOnly[0].tipoConsulta%>"
 																					class="form-control" readonly=""
@@ -235,9 +250,11 @@
 														</div>
 														<div class="block-web">
 															<div class="header">
-																<div class="actions"> 
-																	<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
-																	<a class="close-down" href="#"><i class="fa fa-times"></i></a>
+																<div class="actions">
+																	<a class="minimize" href="#"><i
+																			class="fa fa-chevron-down"></i></a>
+																	<a class="close-down" href="#"><i
+																			class="fa fa-times"></i></a>
 																</div>
 																<h3 class="content-header">Receta</h3>
 															</div>
@@ -247,7 +264,7 @@
 																		<div class="col-sm-3 col-sm-6">
 																			<div class="entrada ">
 																				Fármaco: </label>
-																				<select class="" name="farmaco">
+																				<select  name="farmaco">
 																					<option></option>
 																					<option>paracetamol</option>
 																					<option>algun otra medicina</option>
@@ -259,7 +276,7 @@
 																		<div class="col-sm-4 col-sm-6">
 																			<div class="entrada">
 																				Unidades:<br>
-																				<input class="" type="text"
+																				<input  type="text"
 																					name="unidades"
 																					class="form-control">
 																			</div>
@@ -267,7 +284,7 @@
 																		<div class="col-sm-4 col-sm-6">
 																			<div class="entrada">
 																				Posologia:<br>
-																				<input class="" type="text"
+																				<input  type="text"
 																					name="posologia"
 																					class="form-control">
 																			</div>
@@ -275,19 +292,19 @@
 
 																	</div>
 																	<div class="col-md-12">
-																		<div class="col-sm-4 col-sm-6">
+																		<div class="col-sm-6 col-sm-6">
 																			<div class="entrada ">
-																				Duracion Tratamiento:
-																				<input class="" type="text"
+																				Duracion Tratamiento:<br>
+																				<input  type="text"
 																					name="indicaciones"
 																					class="form-control">
 																			</div>
 																		</div>
-																		<div class="col-sm-4 col-sm-6">
+																		<div class="col-sm-6 col-sm-6">
 																			<div class="entrada">
 
-																				Via de Administración:
-																				<input class="" type="text"
+																				Via de Administración:<br>
+																				<input  type="text"
 																					name="viaAdmincion"
 																					class="form-control">
 																			</div>
@@ -297,67 +314,10 @@
 															</div>
 														</div>
 														<a href="#ListPaciente" data-toggle="tab"><i
-																class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
-																<div class="block-web">
-																		<div class="header">
-																			<div class="actions"> 
-																				<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
-																				<a class="close-down" href="#"><i class="fa fa-times"></i></a>
-																			</div>
-																			<h3 class="content-header">Datos de Medicamento</h3>
-																		</div>
-																		<div class="form-group">
-																			<div class="row">
-																				<div class="col-md-12"><br>
-																					<div class="col-sm-6 col-sm-6">
-																						<div class="entrada">Prescripcion:<br>
-																							<input type="text" v-model="prescripcion" class="form-control">
-																						</div>
-												
-																					</div>
-																					<div class="col-sm-6 col-sm-6">
-																							<div class="entrada">Intruciones:<br>
-																								<input type="text" v-model="instruciones" class="form-control">
-																							</div>
-																					</div>
-																				</div>
-																				<div class="col-md-12">
-																					<div class="col-sm-6 col-sm-6">
-																							<div class="entrada">Duracion de Tratamiento:<br>
-																								<input type="text" v-model="duracion_tratamiento" class="form-control">
-																							</div>
-																					</div>
-																					<div class="col-sm-6 col-sm-6">
-																							<div class="entrada">Observaciones:<br>
-																								<input type="text" v-model="observaciones" class="form-control">
-																							</div> 
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<a @click="insertar" class="btn btn-info btn-raised">Insertar</a>
-																	<div>
-																		<table class="display table table-bordered table-striped" >
-																				 <tr>
-																					 <th>#</th>
-																					 <th>Prescripcion</th>
-																					 <th>Intruciones</th>
-																					 <th>Duracion de Tratamiento</th>
-																					 <th>Observaciones</th>
-																				 </tr>
-																				<tr v-for="(list, index) in lista">
-																					
-																					<td>{{index + 1}}</td>
-																					<td>{{list.prescripcion}}</td>
-																					<td>{{list.instruciones}}</td>
-																					<td>{{list.duracion_tratamiento}}</td>
-																					<td>{{list.observaciones}}</td>
-																				</tr>     
-																		</table>
-																	</div>             
-																	
-																
+																class="zmdi zmdi-plus-circle"></i> Insertar</a>
+														
+
+
 
 
 
@@ -365,7 +325,8 @@
 
 
 														<p class="text-center">
-															<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i
+															<button type="reset" class="btn btn-info"
+																style="margin-right: 20px;"><i
 																	class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
 																Limpiar</button>
 															<button type="submit" class="btn btn-danger"><i
@@ -396,7 +357,8 @@
 																			<div class="entrada ">
 																				<h6 class=" blue_info">N° de Historia:
 																				</h6>
-																				<input type="text" name="historiaClinica"
+																				<input type="text"
+																					name="historiaClinica"
 																					value="<%=dataPaciente[0].numeroHistorial%>"
 																					class="form-control" readonly=""
 																					value="Read only text goes here">
@@ -405,8 +367,10 @@
 																		<div class="col-sm-8 col-sm-9">
 																			<div class="form-group">
 																				<div class="entrada">
-																					<h6 class=" blue_info">Nombre Completo:</h6>
-																					<input type="text" name="nombre apellidop apellidom" 
+																					<h6 class=" blue_info">Nombre
+																						Completo:</h6>
+																					<input type="text"
+																						name="nombre apellidop apellidom"
 																						value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
 																						class="form-control" readonly=""
 																						value="Read only text goes here">
@@ -415,10 +379,11 @@
 																		</div>
 																	</div>
 																	<div class="col-md-12">
-																	
+
 																		<div class="col-sm-6 col-sm-6">
 																			<div class="entrada">
-																				<h6 class="blue_info">Fecha de Nacimiento: </h6>
+																				<h6 class="blue_info">Fecha de
+																					Nacimiento: </h6>
 																				<input
 																					value="<%=dataPaciente[0].fechanacimiento%>"
 																					class="form-control" readonly=""
@@ -453,15 +418,18 @@
 
 																		<div class="col-sm-3 col-sm-6">
 																			<div class="entrada">
-																				<h6 class=" blue_info">Fecha Prescripción:</h6>
-																				<input class="form-control" name="fecha" require value="<%=resp[0].fecha%>">
+																				<h6 class=" blue_info">Fecha
+																					Prescripción:</h6>
+																				<input class="form-control" name="fecha"
+																					require value="<%=resp[0].fecha%>">
 																			</div>
-							  
+
 
 																		</div>
 																		<div class="col-sm-4 col-sm-6">
 																			<div class="entrada">
-																				<h6 class=" blue_info">Profecional Médico:
+																				<h6 class=" blue_info">Profecional
+																					Médico:
 																				</h6>
 																				<input
 																					value="<%=resp[0].Consulta.Citas_Medica.medico%>"
@@ -501,7 +469,8 @@
 																			<div class="entrada ">
 																				Fármaco: </label>
 																				<select class="" name="farmaco">
-																					<option><%=resp[0].farmaco%></option>
+																					<option><%=resp[0].farmaco%>
+																					</option>
 																					<option>paracetamol</option>
 																					<option>algun otra medicina</option>
 
@@ -666,9 +635,9 @@
 		<script src="/js/jPushMenu.js"></script>
 		<script src="/js/side-chats.js"></script>
 
+		<%- include("partials/scripts") -%>
 
-	
-		<script src="/js/vue/recetaInternacion.js"></script>
+		<script src="js/vue/recetaInternacion.js"></script>
 </body>
 
 </html>
