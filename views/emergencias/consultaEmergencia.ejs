@@ -29,7 +29,7 @@
     </div>
     <br><br><br>
     <div class="btn-group ">
-      <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <i class="fa fa-clipboard"></i><span class="caret"></span></button>
+      <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <span>&nbsp;&nbsp;</span><i class="fa fa-clipboard"></i><span class="caret"></span></button>
       <ul role="menu" class="dropdown-menu">
         <li><a href="/datos_genPaciente_emergencia/list_responsables/<%=dataPaciente[0].id%>">Datos de responsable</a></li>
         <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informes</a></li>
@@ -52,8 +52,8 @@
 									<div class="row" >
 											<div class="block-web">
                         <div class="porlets-content">
-                              <%if(updateConsultaEmg == "") { %>
-                              <form class="form-horizontal group-border-dashed" action="/emergencia/consultaEmergencia/<%=idHistorial.id%>"method="POST" parsley-validate novalidate>
+                          <%if(updateConsultaEmg == "") { %>
+                          <form class="form-horizontal group-border-dashed" action="/emergencia/consultaEmergencia/<%=idHistorial.id%>"method="POST" parsley-validate novalidate>
                                 <div class="form-group">
                                   <div class="col-sm-4">
                                     <label class="control-label">Medico</label>
@@ -143,9 +143,9 @@
                                     <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
                                   </div>
                                 </div>
-                              </form>
-                                <% } else { %>           
-                              <form class="form-horizontal group-border-dashed" action="/emergencia/updateConEmergencia/<%=updateConsultaEmg[0].id%>" method="POST" parsley-validate novalidate>
+                          </form>
+                          <% } else { %>           
+                          <form class="form-horizontal group-border-dashed" action="/emergencia/updateConEmergencia/<%=updateConsultaEmg[0].id%>" method="POST" parsley-validate novalidate>
                                   <% if(updateConsultaEmg[0].idDoctor == "doctor") { %>
                                   <h3>Doctor </h3>
                                   <% } else  if(updateConsultaEmg[0].idEnfermera == "enfermera") { %>
@@ -255,12 +255,11 @@
                                         <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
                                        </div>
                                     </div>
-                              </form>
-                                  <% } %>
+                          </form>
+                          <% } %>
                         </div>
 											</div> 
-										
-									</div>
+										</div>
 								</div>
 								<div id="Tab2" class="tab-pane fade">
 									<div class="row">
@@ -307,7 +306,7 @@
 				</div>
 			</div>
 		</div>
-      </div>
+  </div>
 	</div>
 </div>
 </div>
