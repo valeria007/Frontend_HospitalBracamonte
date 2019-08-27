@@ -2516,15 +2516,16 @@ select, input[type="file"] { height: 34px !important;line-height: 30px;}
 }
 .list-group-item, a.list-group-item {	margin-bottom: 2px;}
 
+
 .green-bg-color {
-	background: #2daba4;
+	background: #23a392;
 	color: #fff;
 }
 .green-bg-color i {
-	color: #fff;
+	color: rgb(255, 255, 255);
 }
 .green-bg-color h3 {
-	color: #fff;
+	color: rgb(255, 255, 255);
 }
 .green-bg-color .list-group-item {
 	background: rgba(255,255,255,0.25)!important;
@@ -2539,10 +2540,10 @@ select, input[type="file"] { height: 34px !important;line-height: 30px;}
 	color: #fff;
 }
 .task-del{ color:#999999;}
-.green-bg-color{ background:#1BBC9A;}
+.green-bg-color{ background:rgb(108, 181, 250);}
 .green-bg-color .list-group-item {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.25) !important;
-    color: #FFFFFF;
+    color: rgb(100, 99, 124);
 	border:none;
 }
 /* task end*/

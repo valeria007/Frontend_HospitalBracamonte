@@ -297,11 +297,75 @@
 															</div>
 														</div>
 														<a href="#ListPaciente" data-toggle="tab"><i
-																class="zmdi zmdi-plus-circle"></i> Añadir mas
-															Medicamento</a>
+																class="zmdi zmdi-plus-circle"></i> Añadir mas Medicamento</a>
+																<div class="block-web">
+																		<div class="header">
+																			<div class="actions"> 
+																				<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
+																				<a class="close-down" href="#"><i class="fa fa-times"></i></a>
+																			</div>
+																			<h3 class="content-header">Datos de Medicamento</h3>
+																		</div>
+																		<div class="form-group">
+																			<div class="row">
+																				<div class="col-md-12"><br>
+																					<div class="col-sm-6 col-sm-6">
+																						<div class="entrada">Prescripcion:<br>
+																							<input type="text" v-model="prescripcion" class="form-control">
+																						</div>
+												
+																					</div>
+																					<div class="col-sm-6 col-sm-6">
+																							<div class="entrada">Intruciones:<br>
+																								<input type="text" v-model="instruciones" class="form-control">
+																							</div>
+																					</div>
+																				</div>
+																				<div class="col-md-12">
+																					<div class="col-sm-6 col-sm-6">
+																							<div class="entrada">Duracion de Tratamiento:<br>
+																								<input type="text" v-model="duracion_tratamiento" class="form-control">
+																							</div>
+																					</div>
+																					<div class="col-sm-6 col-sm-6">
+																							<div class="entrada">Observaciones:<br>
+																								<input type="text" v-model="observaciones" class="form-control">
+																							</div> 
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<a @click="insertar" class="btn btn-info btn-raised">Insertar</a>
+																	<div>
+																		<table class="display table table-bordered table-striped" >
+																				 <tr>
+																					 <th>#</th>
+																					 <th>Prescripcion</th>
+																					 <th>Intruciones</th>
+																					 <th>Duracion de Tratamiento</th>
+																					 <th>Observaciones</th>
+																				 </tr>
+																				<tr v-for="(list, index) in lista">
+																					
+																					<td>{{index + 1}}</td>
+																					<td>{{list.prescripcion}}</td>
+																					<td>{{list.instruciones}}</td>
+																					<td>{{list.duracion_tratamiento}}</td>
+																					<td>{{list.observaciones}}</td>
+																				</tr>     
+																		</table>
+																	</div>             
+																	
+																
+
+
+
+
+
+
 														<p class="text-center">
-															<button type="reset" class="btn btn-info"
-																style="margin-right: 20px;"><i
+															<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i
 																	class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
 																Limpiar</button>
 															<button type="submit" class="btn btn-danger"><i
@@ -601,6 +665,10 @@
 
 		<script src="/js/jPushMenu.js"></script>
 		<script src="/js/side-chats.js"></script>
+
+
+	
+		<script src="/js/vue/recetaInternacion.js"></script>
 </body>
 
 </html>
