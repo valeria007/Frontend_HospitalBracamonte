@@ -8,13 +8,13 @@
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
 
-	<link href="../css/font-awesome.css" rel="stylesheet" type="text/css" />
-	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="../css/animate.css" rel="stylesheet" type="text/css" />
-	<link href="../css/admin.css" rel="stylesheet" type="text/css" />
-	<link href="../plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-	<link href="../plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-	<link href="../plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
 <!--validaciones-->
 
 <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
@@ -90,7 +90,7 @@
 									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
 									class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
-								<li> <a href="/paciente/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b>
+								<li> <a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b>
 									</a> </li>
 							</ul>
 						</li>
@@ -98,7 +98,7 @@
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span
 									class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 										<b class="theme_color">Citas Medicas</b>
 									</a> </li>
 
@@ -178,15 +178,15 @@
 																	<td><%=resp[i].apellidop %></td>
 																	<td><%=resp[i].ci %></td>
 																	<td class="text-center"><a
-																			href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
-																			class="btn btn-success btn-raised btn-xs "><i
-																				class="fa fa-list-ol"></i></a>
+																		href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial%>/<%=data_token.token_p%>"
+																		class="btn btn-success btn-raised btn-xs "><i
+																			class="fa fa-list-ol"></i></a>
 																	</td>
 																	
 																	<td class="text-center"><a
-																			href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
-																			class="btn btn-danger btn-raised btn-xs"><i
-																				class="fa fa-eye"></i></a>
+																		href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
+																		class="btn btn-danger btn-raised btn-xs"><i
+																			class="fa fa-eye"></i></a>
 																	</td>
 																</tr>
 																<% } %>
@@ -315,24 +315,24 @@
 		<!--====== Scripts -->
 		
 
-		<script src="../js/jquery-2.1.0.js"></script>
-		<script src="../js/bootstrap.min.js"></script>
-		<script src="../js/common-script.js"></script>
-		<script src="../js/jquery.slimscroll.min.js"></script>
-		<script src="../plugins/data-tables/jquery.dataTables.js"></script>
-		<script src="../plugins/data-tables/DT_bootstrap.js"></script>
-		<script src="../plugins/data-tables/dynamic_table_init.js"></script>
+		<script src="/js/jquery-2.1.0.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/common-script.js"></script>
+		<script src="/js/jquery.slimscroll.min.js"></script>
+		<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+		<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+		<script src="/plugins/data-tables/dynamic_table_init.js"></script>
 
 		<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
-		<script src="../plugins/edit-table/edit-table.js"></script>
+		<script src="/plugins/edit-table/edit-table.js"></script>
 		<script>
 			jQuery(document).ready(function () {
 				EditableTable.init();
 			});
 		</script>
 
-		<script src="../js/jPushMenu.js"></script>
-		<script src="../js/side-chats.js"></script>
+		<script src="/js/jPushMenu.js"></script>
+		<script src="/js/side-chats.js"></script>
 
 
 <!--validaciones-->

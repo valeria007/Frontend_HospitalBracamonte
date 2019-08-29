@@ -4,6 +4,31 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+var data_token = {
+  token_id: '',
+  token_p: ''
+}
+
+var citas_dia = {}
+function add(token,id){
+  let storedItem = citas_dia[id];
+    if (!storedItem) {
+      storedItem = citas_dia[id] = {
+        data: token,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in citas_dia) {
+      arr.push(citas_dia[id]);
+  }
+  return arr;
+}
+
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -11,29 +36,16 @@ const datas = require('./url/export');
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
-
-router.get('/citas',(req, res) => {
-  fetch('http://localhost:3000/api/pacientes/')
-  .then(resp => resp.json())
-  .then(resp =>{
-    res.render('Fichas/citas',{         //aqui esta la ruta
-      resp
-    });    
-  })
-  .catch(error => {
-    console.error('Error:', error)
-    res.send("no hay coneccion con el servidor");
-  }) 
-});
-
-router.get('/home/:id', (req,res) => {
-  const { id } = req.params
+var msg_false;
+router.get('/home/:id/:token_part', (req,res) => {
+  const { id,token_part } = req.params
     fetch('http://localhost:3600/api/user/'+id)
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
-      console.log(resp, " <<<<<<<<<<<<<<<<<<<<<<<<<<<<<" )
-        if(datas.name.token[resp.id]){
+      data_token.token_id = resp.id     // esto manda el el id para el token
+      
+        if(datas.name.token[resp.id] && datas.name.token[resp.id].data.token.split(" ")[1].split(".")[2] == token_part ){
             var status
             for(var i = 0; i < resp.role.length; i++ ){
                 if(resp.role[i].name == "fichaje"){
@@ -41,25 +53,51 @@ router.get('/home/:id', (req,res) => {
                 }
             }  
             if(status == "tiene permiso"){
+              data_token.token_p = token_part
                 fetch('http://localhost:3600/api/personal/'+resp.perso_id)
                 .then(resp => resp.json())
                 .catch(error => console.error('Error',error))
                 .then(resp => {
                     //res.send(resp)
                     res.render('Fichas/home',{
-                        resp
+                        resp,
+                        data_token
                     })
                     status = null
                 })
             }else{
-                res.send("no tienes permiso fuera de aqui")
+              res.redirect('/')
             }
         }else{
-            res.send("fuera de aqui si no tienes cuenta")
+          res.redirect('/')
         }
         
     })
 });
+
+router.get('/citas/:id/:token_part',(req, res) => {
+  const { id, token_part } = req.params
+  if(datas.name.token[id] && datas.name.token[id].data.token.split(" ")[1].split(".")[2] == token_part){
+      fetch('http://localhost:3000/api/pacientes/')
+      .then(resp => resp.json())
+      .then(resp =>{
+        res.render('Fichas/citas',{         //aqui esta la ruta
+          resp,
+          data_token
+        });    
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+      }) 
+   
+  }else{
+    res.redirect('/')
+  }
+ 
+});
+
+
 
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -84,7 +122,6 @@ router.post('/postPaciente', (req,res) => {
     apellidom: req.body.apellidom,
     ci: req.body.ci,
     fechanacimiento: req.body.fechanacimiento,
-    edad: req.body.edad,
     sexo: req.body.sexo,
     estadocivil: req.body.estadocivil,
     direccion: req.body.direccion,
@@ -96,14 +133,7 @@ router.post('/postPaciente', (req,res) => {
     departameto: req.body.departameto,
     provincia: req.body.provincia,
     municipio: req.body.municipio,
-    npadre: req.body.npadre,
-    apspadre: req.body.apspadre,
-    nmadre: req.body.nmadre,
-    apsmadre: req.body.apsmadre,
-    nomrespon: req.body.nomrespon,
-    aperespon: req.body.aperespon,
-    telefres: req.body.telefres,
-    direcres: req.body.direcres    
+    id_user:data_token.token_id
   };
   //console.log(paciente);
   var esto = {
@@ -117,14 +147,27 @@ fetch('http://localhost:3000/api/pacientes',esto)
 .then(res => res.json())
 .catch(error => console.error('Error:', error))
 .then(data => {
-  res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial);
+  res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial + '/' + data_token.token_p);
 })
 });
 
 //cita medica o ficha que se le va a dar al paciente
+
+function sacar(id){
+  console.log(id, "<z<zzzzzzzzzzzzzzzzzzzzzzzzzzz")
+  fetch('http://localhost:3000/api/OneCita/'+id)
+  .then(resp => resp.json())
+  .then(resp =>{
+
+    add(resp,resp[0].id)
+    console.log(citas_dia, '>>>>>>>>>>>>>>>>>>>>>>>)')
+  });
+}
+
+var datos;
 router.post('/cita_medica/:id', (req,res) => {
   var id = req.params;
-  var datos = req.body;
+  datos = req.body;
   var esto = {
     method: 'POST',
     body: JSON.stringify(datos),
@@ -136,35 +179,38 @@ router.post('/cita_medica/:id', (req,res) => {
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(resp => {
+    if(resp.success == true){
 
-    cambiarEstadoHOra(datos.hora.split("/")[1]);
+      sacar(resp.cita_pData.id) //esto saca el id para poder mandar a la funcion id
 
-    function cambiarEstadoHOra(id){
-      var estado = {
-        estado: "reservado"
-      }
-      var esto = {
-        method: 'POST',
-        body: JSON.stringify(estado),
-        headers:{
-          'Content-type' : "application/json"
+      cambiarEstadoHOra(datos.hora.split("/")[1]);
+
+      function cambiarEstadoHOra(id){
+        var estado = {
+          estado: "reservado"
         }
-      };
-      fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
-      .then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then(resp => {
-        console.log(resp, "  <<<<")
-        res.redirect('/paciente/citas');
-      })
-    }
-    
+        var esto = {
+          method: 'POST',
+          body: JSON.stringify(estado),
+          headers:{
+            'Content-type' : "application/json"
+          }
+        };
+        fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(resp => {
+          console.log(resp, "  <<<<")
+          res.redirect('/paciente/citas/'+data_token.token_id + '/' + data_token.token_p);
+          msg_false = null
+        })
+      }
+    }else{
+      msg_false = resp.msg
+      res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial + '/'+ data_token.token_p);      
+    }    
   })
 });
-
-
-
-
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -175,36 +221,41 @@ router.post('/cita_medica/:id', (req,res) => {
 
 router.get('/clean', (req,res) => {
   citaUpdate = null;
-  res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial);
+  res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial + '/'+ data_token.token_p);
 })
 
-router.get('/EnviarCita/:id/:historial', (req,res) => {
+router.get('/EnviarCita/:id/:historial/:token_part', (req,res) => {
   var id = req.params; 
-  fetch('http://localhost:3000/api/OnlyCita/'+id.id)
-  .then(resp => resp.json())
-  .then(resp =>{
-    res.render('Fichas/citas_fichas',{          //aqui esta la ruta
-      historial: id.historial,
-      id,
-      pacienteCita, // esto contiene las citas de un paciente
-      citaUpdate
+  if(datas.name.token[data_token.token_id] && datas.name.token[data_token.token_id].data.token.split(" ")[1].split(".")[2] == id.token_part){
+    fetch('http://localhost:3000/api/OnlyCita/'+id.id)
+    .then(resp => resp.json())
+    .then(resp =>{
+      res.render('Fichas/citas_fichas',{          //aqui esta la ruta
+        historial: id.historial,
+        id,
+        pacienteCita, // esto contiene las citas de un paciente
+        citaUpdate,
+        data_token,
+        msg_false,
+        citas_dia
+      });
     });
-  });
- });
+  }else{
+    res.redirect('/');
+  }
+});
 
 
  //ruta para sacar todas las citas de un paciente
  let pacienteCita, idH;
- router.get('/citaPAciente/:id/:historial',(req,res) => {
+ router.get('/citaPAciente/:id/:historial/:token_part',(req,res) => {
   var id = req.params;
   idH = id;
   fetch('http://localhost:3000/api/citasPaciente/'+id.id)
   .then(resp => resp.json())
   .then(resp =>{
-    pacienteCita = resp;
-    console.log(pacienteCita, "  esto es lo que quiero")                   //aqui
-
-    res.redirect('/paciente/EnviarCita/'+id.id + "/" + id.historial);
+    pacienteCita = resp;//aqui
+    res.redirect('/paciente/EnviarCita/'+id.id + "/" + id.historial + '/' + id.token_part);
   });
  })
 
@@ -212,12 +263,17 @@ router.get('/EnviarCita/:id/:historial', (req,res) => {
  let citaUpdate;
  router.get('/onliCita/:id', (req,res) => {
    const { id } = req.params;
-   fetch('http://localhost:3000/api/OneCita/'+id)
-  .then(resp => resp.json())
-  .then(resp =>{
-    citaUpdate = resp;
-    res.redirect('/paciente/citaPAciente/'+citaUpdate[0].id_Paciente + "/" + citaUpdate[0].codigo_p);
-  });
+   if(datas.name.token[data_token.token_id] && datas.name.token[data_token.token_id].data.token.split(" ")[1].split(".")[2] == data_token.token_p){
+    fetch('http://localhost:3000/api/OneCita/'+id)
+    .then(resp => resp.json())
+    .then(resp =>{
+      citaUpdate = resp;
+      res.redirect('/paciente/citaPAciente/'+citaUpdate[0].id_Paciente + "/" + citaUpdate[0].codigo_p + '/'+ data_token.token_p);
+    });
+   }else{
+    res.redirect('/');
+   }
+  
  })
  
  
@@ -230,8 +286,8 @@ router.post('/updateCita/:id',(req,res) => {
     console.log("por favor selecione medico")
     
   }else{
+    
     var update = req.body;
-    console.log(update, " <<<<<<<<<<<<< esto es")
     var esto = {
       method: 'POST',
       body: JSON.stringify(update),
