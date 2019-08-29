@@ -8,7 +8,24 @@ router.get('/oneVista', (req, res) => {
     res.render('emergencias/viewDocEnf');
 });
 
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        ruta para poder volver una vista atras 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+router.get('/volver3', (req,res) => {
+    res.redirect ('/emergencia/dataEmergencia/doctor')
+})
 
+router.get('/volver4',(req,res) => {
+    res.redirect('/emergencia/GetEmergencia/'+idHistorial.historial+'/'+idHistorial.id+'/'+idHistorial.docOenf)
+})
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
 
 //esta vista muesta la vista principal de emergencia segun doctor o enfermera 
 router.get('/homeEmergencia/:id', (req, res) => {
@@ -121,6 +138,12 @@ router.get('/dataConsultaEmesgencia/:historial', (req, res) => {
     })   
 })
 
+////////////////////////////only//////////
+
+
+
+
+
 var idHistorial; //esta variable es para madar el id de la ficha y el historial del paciente
 var updateConsultaEmg;
 router.get('/GetEmergencia/:historial/:id/:docOenf', (req,res) => {
@@ -128,15 +151,15 @@ router.get('/GetEmergencia/:historial/:id/:docOenf', (req,res) => {
     idHistorial = idHistorial1  
     Static.static_data.dogEnf = req.params.docOenf;  
     fetch('http://localhost:3000/api/citaEmergencia/'+idHistorial1.id)
-        .then(resp => resp.json())
-        .then(resp =>{
-            updateConsultaEmg = resp;      
-            res.redirect('/emergencia/dataConsultaEmesgencia/'+idHistorial1.historial) ;            
-        })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-        })
+    .then(resp => resp.json())
+    .then(resp =>{
+        updateConsultaEmg = resp;      
+        res.redirect('/emergencia/dataConsultaEmesgencia/'+idHistorial1.historial) ;            
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    })
 });
 
 // esta ruta es para cambiar ele estado  de citas medicas
