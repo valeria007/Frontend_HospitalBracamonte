@@ -81,9 +81,17 @@
               </div>
               <div class="porlets-content">
                 <% if(msg != null) { %>
-                <h4 style="color:red;"><%=msg%></h4>
-                <% } else { %>
-                <h4 style="color:blue;"><%=pass%></h4>
+                  <div class="bs-example">
+                    <div class="alert alert-danger fade in">
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                      <h6 class="text-center" style="color:rgb(99, 4, 4);"><%=msg%></h6></div>
+                  </div>
+                <% } else if(pass != null) { %>
+                  <div class="bs-example">
+                    <div class="alert alert-info fade in">
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                      <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=pass%></h6></div>
+                  </div>
                 <% } %>
                 <%if (oneGrupoAsig == null) { %>
                   <form  class="form-horizontal group-border-dashed" action="/almacen/grupoAsig" method="POST" parsley-validate novalidate>

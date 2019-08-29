@@ -4,7 +4,9 @@ const fetch = require('node-fetch');
 
 var url = require('./url/export');
 
-
+router.get('/volver', (req,res) => {
+    res.redirect('/distribucion/listDistribucion'); 
+})
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

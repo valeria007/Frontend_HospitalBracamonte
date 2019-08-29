@@ -31,7 +31,7 @@ router.get('/dataGrupoA',(req,res) =>{
 });
 
 //serv para renderisar la vista medicamento con datos de la tabla grupo asignacion
-router.get('/volver', (req,res) => {
+router.get('/volver15', (req,res) => {
     OnlyMedicamento = null;
     res.redirect('/medicamento/medicamentos');
 })
