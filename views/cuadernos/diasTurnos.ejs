@@ -29,18 +29,11 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
   <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
     <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
       <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
     </div>
-    <!--\\\\\\\ brand end \\\\\\-->
     <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      
       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
       <div class="top_right_bar">
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -55,14 +48,9 @@
        
       </div>
     </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
+    </div>
   <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
     <div class="left_nav">
-      <!--\\\\\\\left_nav start \\\\\\-->
-      
       <div class="left_nav_slidebar">
           <ul>
             <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -107,12 +95,8 @@
           </ul>
         </div>
     </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="container clear_both padding_fix">
+      <div class="container clear_both padding_fix">
         <br>
         <a href="/cuaderno/volverFechas" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a></td>
         <br>
@@ -122,39 +106,35 @@
           <div class="block-web">
             <div class="header">
               <div class="info blue_symbols"><i class="fa fa-user-md icon"></i></div>
-              <h3 class="content-header ">Asignación Medico/Turnos</h3>
+              <h3 class="content-header ">Asignación Medico<span class="semi-bold">/Turnos</span></h3>
             </div>
             <br>
             <br>
             
             <div class="porlets-content">
 					<form class="form-horizontal group-border-dashed" action="/cuaderno/turnos" method="POST" parsley-validate novalidate>
-					<div class="form-group col-sm-12">
-						
-						<div class="col-sm-6">
-							<label class="control-labe">Dia de atencion:</label>
-                            <select  class="form-control" id="source" name="diasAten" >
-                                    <option>Lunes</option>
-                                    <option>Martes</option>
-                                    <option>Miercoles</option>
-                                    <option>Jueves</option>
-                                    <option>Viernes</option>
-                                    <option>Sabado</option>
-                                    <option>Domingo</option>
-                                </select>
+					  <div class="form-group">
+						  <div class="col-sm-6">
+							  <label class="control-labe">Dia de atencion:</label>
+                <select  class="form-control" id="source" name="diasAten" >
+                  <option>Lunes</option>
+                  <option>Martes</option>
+                  <option>Miercoles</option>
+                  <option>Jueves</option>
+                  <option>Viernes</option>
+                  <option>Sabado</option>
+                  <option>Domingo</option>
+                </select>
 						</div>
-						
 						<div class="col-sm-6">
 							<label class="control-labe">Turno:</label>
-                            <select class="form-control" id="source" name="turno" >                               
-                                    <option>Mañanas</option>
-                                    <option>Tardes</option>
-                                    <option>Noches</option>
-                                </select>
+              <select class="form-control" id="source" name="turno" >                               
+                <option>Mañanas</option>
+                <option>Tardes</option>
+                <option>Noches</option>
+              </select>
 						</div>
-						
-					</div><!--/form-group-->  
-					
+					</div> 
 					<div class="form-group">
 						<div class="col-sm-offset-4 col-sm-10">
 						  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>

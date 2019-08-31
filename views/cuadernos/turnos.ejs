@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>USUARIOS</title>
+<title>Cuadernos</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -30,18 +30,11 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
   <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
     <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
       <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
     </div>
-    <!--\\\\\\\ brand end \\\\\\-->
     <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      
       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
       <div class="top_right_bar">
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -56,14 +49,9 @@
        
       </div>
     </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
+    </div>
   <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
     <div class="left_nav">
-      <!--\\\\\\\left_nav start \\\\\\-->
-      
       <div class="left_nav_slidebar">
           <ul>
             <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -108,12 +96,8 @@
           </ul>
         </div>
     </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="container clear_both padding_fix">
+      <div class="container clear_both padding_fix">
         <br>
          <div class="row">
         <div class="col-md-12">
@@ -128,16 +112,14 @@
                <!---<%if (modifDoct == null) { %>--> 
                 <form class="form-horizontal group-border-dashed" action="/cuaderno/docCuaderno" method="POST" parsley-validate novalidate>
                   <div class="form-group">
-                      
-                      <div class="col-sm-6">
-                          <label class="control-labe">Medico:</label>
-                          <select  class="form-control" id="source" name="nombre" >
-                              <%for (var i=0; i < resp.length; i++) { %>
-                                  <option><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
-                              <% } %>                            
-                          </select>
+                     <div class="col-sm-6">
+                        <label class="control-labe">Medico:</label>
+                        <select  class="form-control" id="source" name="nombre" >
+                          <%for (var i=0; i < resp.length; i++) { %>
+                          <option><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
+                          <% } %>                            
+                        </select>
                       </div>
-                      
                       <div class="col-sm-6">
                           <label class="control-labe">Especialidad:</label>
                           <select  class="form-control" id="source" name="especialidad" >
@@ -146,35 +128,26 @@
                               <% } %>     
                           </select>
                       </div>
-                      
-                  </div><!--/form-group--> 
-                  
-                 
-                 
-                  <div class="form-group">
-                    
-                    <div class="col-sm-6">
-                        <label class="control-labe">C.I.:</label>
-                        <select class="form-control" id="source" name="TDoctor" >
-                            <option>Medico Titular</option>
-                            <option>Medico Suplente</option>
-                        </select>
                     </div>
-                    
+                  <div class="form-group">
                     <div class="col-sm-6">
-                        <label class="control-labe">Enfermera:</label>
+                      <label class="control-labe">Tipo de Medico:</label>
+                      <select class="form-control" id="source" name="TDoctor" >
+                        <option>Medico Titular</option>
+                        <option>Medico Suplente</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="control-labe">Enfermera:</label>
                       <input type="text" class="form-control" name="enfermera" parsley-trigger="change"   required placeholder="Nombre Enfermera " />
                     </div>
-                    
-                  </div><!--/form-group--> 
-                  
+                  </div>
                   <div class="form-group">
-                      <div class="col-sm-offset-4 col-sm-10">
-                        <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                        <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                      </div>
-                    </div><!--/form-group--> 
-                  
+                    <div class="col-sm-offset-4 col-sm-10">
+                      <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                      <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                    </div>
+                  </div>
                 </form>
             <!-- <% } else { %>
                 
@@ -237,11 +210,9 @@
                 <% } %>--> 
                 
               </div>
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
-      
-      
+          </div>
+        </div>
+      </div>
       <div class="row" id="roles">
         <div class="col-md-12">
           <div class="block-web">
@@ -249,60 +220,45 @@
              
               <h3 class="content-header">Lista Medicos</h3>
             </div>
-         <div class="porlets-content">
-            <div class="table-responsive">
-                <table  class="display table table-bordered table-striped" id="dynamic-table">
-                  <thead>
-                      <tr>
-                          <th>#</th>
-                        <th>Doctor</th>
-                        <th>Especialidad</th>
-                        <th>Tipo de Doctor</th>                        
-                        <th>Enfermera</th>
-                        <th>Opciones</th>
-                        
-              </tr>
-                  </thead>
-                  <tbody>
-                      <% for(var i=0; i< listDoc.length; i++) { %>
-                      <tr>
-                          <td><%=i+1%></td>
-                          <td><%=listDoc[i].nombre%></td>
-                          <td><%=listDoc[i].Consulta_especilaida.nombre%></td>
-                          <td><%=listDoc[i].TDoctor%></td>
-                          <td><%=listDoc[i].enfermera%></td>				     
-                          <td>
-                          
-                          <a href="/cuaderno/midificarDoct/<%=listDoc[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a>
-                          <a href="/cuaderno/FechaDoc/<%=listDoc[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Estadia_Doctor"><i class="fa fa-user-md text-muted"></i></a>
-                          <a href="/cuaderno/alldataDoctor/<%=listDoc[i].id%>/<%=listDoc[i].idCuaderno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye text-muted"></i></a>
-                        </td>
-                          
-                      </tr>
-                      <% } %>
-                    </tbody>
-                </table>
-              </div><!--/table-responsive-->
-             
-            </div><!--/porlets-content-->
-            
-            
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
-      
+        <div class="porlets-content">
+          <div class="table-responsive">
+            <table  class="display table table-bordered table-striped" id="dynamic-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Doctor</th>
+                  <th>Especialidad</th>
+                  <th>Tipo de Doctor</th>                        
+                  <th>Enfermera</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% for(var i=0; i< listDoc.length; i++) { %>
+                <tr>
+                  <td><%=i+1%></td>
+                  <td><%=listDoc[i].nombre%></td>
+                  <td><%=listDoc[i].Consulta_especilaida.nombre%></td>
+                  <td><%=listDoc[i].TDoctor%></td>
+                  <td><%=listDoc[i].enfermera%></td>				     
+                  <td>
+                    <a href="/cuaderno/midificarDoct/<%=listDoc[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil" style="color:rgb(80, 145, 80)"></i></a>
+                    <a href="/cuaderno/FechaDoc/<%=listDoc[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Estadia_Doctor"><i class="fa fa-user-md "></i></a>
+                    <a href="/cuaderno/alldataDoctor/<%=listDoc[i].id%>/<%=listDoc[i].idCuaderno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>
+                  </td>
+                </tr>
+              <% } %>
+              </tbody>
+            </table>
+          </div>
         </div>
-      <!--\\\\\\\ container  end \\\\\\-->
-    
-    <!--\\\\\\\ content panel end \\\\\\-->
-  </div>
-  <!--\\\\\\\ inner end\\\\\\-->
+      </div>
+      </div>
+      </div>
+     </div>
+   </div>
 </div>
 </div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-<!-- Modal -->
-
-
 
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>

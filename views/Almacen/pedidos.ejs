@@ -49,10 +49,10 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block">
                 <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
+                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
                 <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-                <li> <a href="/almacen/distribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pedidos</b> </a> </li>
+                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
                 <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Stock</b> </a> </li>
               </ul>
             </li>
@@ -114,7 +114,7 @@
                                 <td><%=resp[i].iva%></td>
                                 <td><%=resp[i].total%></td>
                                 <td><span style="color: blue;">Aceptado</span></td>
-                                <td><a href="/pedidos/verPedido/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs">ver</a></td>
+                                <td><a href="/pedidos/verPedido/<%=resp[i].id%>" class="btn btn-success btn-raised btn-sm">Ver Pedido</a></td>
                               </tr>
                             <% } else { %>
                               <tr>
@@ -126,7 +126,7 @@
                                   <td><%=resp[i].iva%></td>
                                   <td><%=resp[i].total%></td>
                                   <td><span style="color: red;">No aceptado</span></td>
-                                  <td><a href="/pedidos/verPedido/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs">ver</a></td>
+                                  <td><a href="/pedidos/verPedido/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs">Ver Pedido</a></td>
                                 </tr>
                             <% } %>
                           <% } %>

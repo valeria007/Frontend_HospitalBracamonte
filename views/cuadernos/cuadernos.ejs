@@ -30,18 +30,11 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
   <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
     <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
+     <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
     </div>
-    <!--\\\\\\\ brand end \\\\\\-->
     <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      
       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
       <div class="top_right_bar">
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -56,14 +49,9 @@
        
       </div>
     </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
+     </div>
   <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
     <div class="left_nav">
-      <!--\\\\\\\left_nav start \\\\\\-->
-      
       <div class="left_nav_slidebar">
           <ul>
             <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -108,12 +96,8 @@
           </ul>
         </div>
     </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="container clear_both padding_fix">
+      <div class="container clear_both padding_fix">
         <br>
          <div class="row">
         <div class="col-md-12">
@@ -125,69 +109,58 @@
             <br>
             <br>
             <div class="porlets-content">
-                <% if (OnlyC == null) { %>
-                <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos" method="POST" parsley-validate novalidate>
-                  <div class="form-group">
-                      
-                      <div class="col-sm-4">
-                          <label class="control-labe">Codigo:</label>
-                        <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" />
-                      </div>
-                      
-                      <div class="col-sm-4">
-                          <label class="control-labe">Grupo de Asignacion:</label>
-                        <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" />
-                      </div>
-                      <div class="col-sm-4">
-                          <label class="control-labe">Titulo de Cuaderno:</label>
-                        <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" />
-                      </div>
-                  </div><!--/form-group--> 
-                  
-                  <div class="form-group">
-                      <div class="col-sm-offset-4 col-sm-10">
-                        <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                        <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                      </div>
-                    </div><!--/form-group--> 
-                  
-                </form>
-                <% } else { %>           
-                  <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST" parsley-validate novalidate>
-                    <div class="form-group">
-                        
-                        <div class="col-sm-4">
-                            <label class="control-labe">Codigo:</label>
-                          <input type="text" value="<%=OnlyC[0].id%>" class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" />
-                        </div>
-                        
-                        <div class="col-sm-4">
-                            <label class="control-labe">Grupo de Asignacion:</label>
-                          <input type="text"  name="grupo" value="<%=OnlyC[0].grupo%>" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" />
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="control-labe">Titulo de Cuaderno:</label>
-                          <input type="text" name="titulo" value="<%=OnlyC[0].titulo%>" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" />
-                        </div>
-                    </div><!--/form-group--> 
-                    
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-10">
-                          <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiarC">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-                          <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                          <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                          
-                        </div>
-                      </div><!--/form-group--> 
-                    
-                  </form>
-                  <% } %>
+              <% if (OnlyC == null) { %>
+              <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos" method="POST" parsley-validate novalidate>
+                <div class="form-group">
+                  <div class="col-sm-4">
+                    <label class="control-labe">Codigo:</label>
+                    <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Codigo" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="control-labe">Grupo de Asignacion:</label>
+                    <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Asignacion" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="control-labe">Titulo de Cuaderno:</label>
+                    <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-4 col-sm-10">
+                    <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                    <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+              </form>
+              <% } else { %>           
+              <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST" parsley-validate novalidate>
+                <div class="form-group">
+                  <div class="col-sm-4">
+                    <label class="control-labe">Codigo:</label>
+                    <input type="text" value="<%=OnlyC[0].id%>" class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="control-labe">Grupo de Asignacion:</label>
+                    <input type="text"  name="grupo" value="<%=OnlyC[0].grupo%>" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="control-labe">Titulo de Cuaderno:</label>
+                    <input type="text" name="titulo" value="<%=OnlyC[0].titulo%>" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-4 col-sm-10">
+                    <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiarC">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                    <button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                    <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+              </form>
+              <% } %>
               </div>
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
-      
-      
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="block-web">
@@ -195,7 +168,7 @@
              
               <h3 class="content-header">Lista Cuadernos</h3>
             </div>
-         <div class="porlets-content">
+          <div class="porlets-content">
             <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
@@ -205,48 +178,32 @@
                       <th>Titulo de Cuaderno</th>
                       <th>Fecha de Creación</th>
                       <th>Opciones</th>
-                      
                       </tr>
                   </thead>
                   <tbody>
-            
                   <% for(var i=0; i< resp.length; i++) { %>
                     <tr>
                       <td><%=resp[i].id%></td>
                       <td><%=resp[i].grupo%></td>
 						          <td><%=resp[i].titulo%></td>
 						          <td><%=resp[i].createdAt.split("T")[0]%></td>								
-                    <td>
-                      <a href="/cuaderno/getEsp/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Medico"><i class="fa fa fa-user-md text-muted"></i></a><span>&nbsp;</span>
-                      <a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
-                      <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
-                      
-                    
+                      <td class="text-center">
+                      <a href="/cuaderno/getEsp/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Medico"><i class="fa fa fa-user-md "></i></a><span>&nbsp;</span>
+                      <a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                      <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
                     </td>
-                    
                     </tr>
                   <% } %>
-                  
                   </tbody>
                 </table>
-              </div><!--/table-responsive-->
-            </div><!--/porlets-content-->
-            
-            
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
-      
+              </div>
+          </div>
         </div>
-      <!--\\\\\\\ container  end \\\\\\-->
-    
-    <!--\\\\\\\ content panel end \\\\\\-->
+        </div>
+      </div>
+    </div>
   </div>
-  <!--\\\\\\\ inner end\\\\\\-->
-</div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-
-
+ </div>
 
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
