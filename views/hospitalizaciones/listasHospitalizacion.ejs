@@ -104,7 +104,7 @@
 										class="plus"><i class="fa fa-plus"></i></span></a>
 								<ul class="opened" style="display:block" >
 									<li> <a href="/internaciones/ListaInternacionF/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-											<b class="theme_color">Ordenes de Internación</b>
+											<b class="theme_color">Listas de Internación</b>
 										</a> </li>
 									<li> <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 										<b >prueba</b>
@@ -193,7 +193,11 @@
 											<td><%=resp[i].fechaIngreso %></td>
 											<td><%=resp[i].diagnostico %></td>
 											<td><%=resp[i].tipoConsulta %></td>
-											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>" class="btn btn-success "><i class="fa fa-refresh"></i></a></td>
+											<td class="text-center" >
+												<a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar Internación"><i class="fa fa-eye text-muted"></i></a><span>&nbsp;</span>
+																			
+												<a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>" class="btn btn-success "><i class="fa fa-refresh"></i></a>
+											</td>
 											
 										</tr>
 										<% } %>

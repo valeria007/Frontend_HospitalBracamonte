@@ -162,9 +162,9 @@
 																	<th>Nombres</th>
 																	<th>Apellido</th>
 																	<th>CI.</th>
-																	<th class="hidden-phone">Fichaje</th>
+																	<th >Opciones</th>
+																	
 															
-																	<th class="hidden-phone">Ver Fichas</th>
 																</tr>
 															</thead>
 															<tbody>
@@ -173,21 +173,17 @@
 																<% for(var i=0; i < resp.length; i++) { %>
 																<tr class="gradeA">
 																	<td class="text-center"><%= i + 1 %></td>
-																	<td><%=resp[i].numeroHistorial%></td>
+																	<td ><%=resp[i].numeroHistorial%></td>
 																	<td><%=resp[i].nombre %></td>
-																	<td><%=resp[i].apellidop %></td>
+																	<td><%=resp[i].apellidop %> <%=resp[i].apellidom %></td>
 																	<td><%=resp[i].ci %></td>
-																	<td class="text-center"><a
-																			href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
-																			class="btn btn-success btn-raised btn-xs "><i
-																				class="fa fa-list-ol"></i></a>
+																	<td> 
+																		<a href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Ficha"><i class="fa fa-list-ol "></i></a><span>&nbsp;</span>
+																		
+																		<a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_Ficha"><i class="fa fa-eye text-muted"></i></a><span>&nbsp;</span>
+																			
 																	</td>
 																	
-																	<td class="text-center"><a
-																			href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"
-																			class="btn btn-danger btn-raised btn-xs"><i
-																				class="fa fa-eye"></i></a>
-																	</td>
 																</tr>
 																<% } %>
 
