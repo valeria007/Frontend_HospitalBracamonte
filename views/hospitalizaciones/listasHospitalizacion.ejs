@@ -193,7 +193,7 @@
 											<td><%=resp[i].fechaIngreso %></td>
 											<td><%=resp[i].diagnostico %></td>
 											<td><%=resp[i].tipoConsulta %></td>
-											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>" class="btn btn-success "><i class="fa fa-refresh"></i></a></td>
+											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
 											
 										</tr>
 										<% } %>

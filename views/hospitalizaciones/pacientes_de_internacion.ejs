@@ -47,23 +47,12 @@
     <%- include("../partials/head") -%>
 </head>
 <body class=" light_theme  fixed_header left_nav_fixed" >
-	<!-- SideBar -->
-	
-
-
-	 <!-- Content page-->
-	 <div class="wrapper">
-        <!--\\\\\\\ wrapper Start \\\\\\-->
+	<div class="wrapper">
         <div class="header_bar">
-            <!--\\\\\\\ header Start \\\\\\-->
             <div class="brand">
-                <!--\\\\\\\ brand Start \\\\\\-->
                 <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
             </div>
-            <!--\\\\\\\ brand end \\\\\\-->
             <div class="header_top_bar">
-                <!--\\\\\\\ header top bar start \\\\\\-->
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
 
                 <div class="top_right_bar">
@@ -81,15 +70,10 @@
                     </div>
                 </div>
             </div>
-            <!--\\\\\\\ header top bar end \\\\\\-->
         </div>
         <div class="inner">
-            <!--\\\\\\\ inner start \\\\\\-->
             <div class="left_nav">
-
-                <!--\\\\\\\left_nav start \\\\\\-->
-
-				<div class="left_nav_slidebar">
+                <div class="left_nav_slidebar">
 					<ul>
 						<li ><a href="javascript:void(0);"><i
 							class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
@@ -113,15 +97,11 @@
 	
 								</ul>
 							</li>
-					
-	
-						</ul>
-					</div>
+					</ul>
+				</div>
             </div>
-            <!--\\\\\\\left_nav end \\\\\\-->
             <div class="contentpanel">
-                <!--\\\\\\\ contentpanel start\\\\\\-->
-                <div class="container clear_both padding_fix col-lg-8">
+             <div class="container clear_both padding_fix col-lg-8">
                     <br>
                     <div class="row">
 
@@ -161,7 +141,7 @@
 											<td><%=list_internacion[i].Paciente.apellidop%></td>
 											<td><%=list_internacion[i].Paciente.apellidom%></td>
 											<td><%=list_internacion[i].fechaIngreso%></td>
-											<td class="text-center" ><a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td class="text-center" ><a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
 											
 										</tr>
 									<% } %>
@@ -171,9 +151,13 @@
 						</div>
 					</div>
 	  			
-						</div>
-					</div>
-
+		</div>
+	</div>
+</div>
+            </div>
+            </div>
+        </div>
+    </div>
 	<!--====== Scripts -->
 	
 	<script src="/js/get/consultaget.js"></script>	

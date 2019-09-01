@@ -748,11 +748,11 @@ h5{padding:10px;}
     margin-bottom: 40px;
 }
 .accordion .panel-heading {
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #0000;
     padding: 0;
 }
 .accordion .panel-heading a {
-    color: #E74949;
+   color: #174485;/*////////////////////////////////////////////aqui es color de acordion*/
     display: block;
     font-size: 15px;
     padding: 17px 16px;
