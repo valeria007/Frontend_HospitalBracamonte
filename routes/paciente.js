@@ -362,5 +362,19 @@ router.get('/vueDoctores/:esp/:dia/:turno', (req,res) => {
   });
 })
 
+//laboratorio
+router.get('/laboratorio', (req,res) => {
+  res.render('laboratorio/homeLab')
+});
+router.get('/buscaPaciente', (req,res) => {
+  res.render('laboratorio/buscaPaciente')
+});
+router.get('/IntroducirLab', (req,res) => {
+  res.render('laboratorio/IntroducirLab')
+});
+//cuenta
+router.get('/miCuenta', (req,res) => {
+  res.render('consultaExterna/miCuenta')
+});
 
 module.exports = router;
