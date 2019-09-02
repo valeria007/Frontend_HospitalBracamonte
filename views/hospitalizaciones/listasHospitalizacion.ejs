@@ -147,10 +147,9 @@
 		</ul>
 	</nav>
 		<!-- Content page -->
-		<div class="container-fluid">
-			<div class="">
-				<h1 class="text-titles"><i class="fa fa-medkit fa-hc-fw"></i> Ordenes de Internación</h1>
-			</div>
+		<div class="header">
+			<div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
+			<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Ordenes de Internación</h3>
 		</div>	 
 		
 	
@@ -194,7 +193,7 @@
 											<td><%=resp[i].fechaIngreso %></td>
 											<td><%=resp[i].diagnostico %></td>
 											<td><%=resp[i].tipoConsulta %></td>
-											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>" class="btn btn-success "><i class="fa fa-refresh"></i></a></td>
+											<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
 											
 										</tr>
 										<% } %>

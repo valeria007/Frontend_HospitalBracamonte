@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+
 router.get('/pedidos',(req, res) => {
     res.render('Almacen/pedidos')
 });
 
-router.get('/volver', (req,res) => {
-    oneGrupoAsig = null
-    res.redirect('/Almacen/pedidos'); 
-})
+
+
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>><>
 VUE

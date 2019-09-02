@@ -1,368 +1,202 @@
-<!DOCTYPE >
-<html >
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HOSPITAL</title>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-	<link rel="/stylesheet" href="/css/selectBuscar.css">
-	
-	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-	<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-	<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-	
-<style>
-		div.a {
-				text-align: center;
-		}
-		h1.letras {
-  font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-  
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <%- include("../partials/head") -%>	
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
-  <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
-    <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
+  <div class="wrapper">
+    <!--\\\\\\\ wrapper Start \\\\\\-->
+    <div class="header_bar">
+      <!--\\\\\\\ header Start \\\\\\-->
+      <div class="brand">
+        <!--\\\\\\\ brand Start \\\\\\-->
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <!--\\\\\\\ brand end \\\\\\-->
+      <div class="header_top_bar">
+        <!--\\\\\\\ header top bar start \\\\\\-->
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+          </div> 
+        </div>
+      </div>
+      <!--\\\\\\\ header top bar end \\\\\\-->
     </div>
-    <!--\\\\\\\ brand end \\\\\\-->
-    <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-    
-      <div class="top_right_bar">
-        
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+    <!--\\\\\\\ header end \\\\\\-->
+    <div class="inner">
+      <!--\\\\\\\ inner start \\\\\\-->
+      <div class="left_nav">
+        <!--\\\\\\\left_nav start \\\\\\-->
+        <div class="left_nav_slidebar">
+          <ul>
+            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Grupos de Asignacion</b> </a> </li>
+                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
+                <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
+                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+              </ul>
+            </li>
           </ul>
-        </div> 
-				</div>
-        </div> 
+        </div>
       </div>
-    </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
-  <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
-    <div class="left_nav">
-
-      <!--\\\\\\\left_nav start \\\\\\-->
-    
-      <div class="left_nav_slidebar">
-        <ul>
-          <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul >
-              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul class="opened" style="display:block">
-              <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-              <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
-              <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-              <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-              <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Distribucion</b> </a> </li>
-              <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-              <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-              <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-              <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
+    <!--Contenido-->
     <div class="contentpanel" id="pedidos"><br>
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <!--Formulario-->
       <div class="container clear_both padding_fix">
-            <div id="main-content">
-              <div class="page-content">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="block-web">
-                        <div class="header">
-                            <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                            <h3 class="content-header"> <i class="fa fa-shopping-cart icon"></i> Distribucion </h3>
-                          </div>
-                      <div class="porlets-content">
-                          <div class="panel-body">
-                              <!-- Button trigger modal -->
-                              <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/distribucion/nueva_distribucion" >Nueva Distribucion</button>
-                            </div>
-                          
-                        <div class="table-responsive">
-                          <table  class="display table table-bordered table-striped" id="dynamic-table">
-                            <thead>
-															<tr>
-																	<th>#</th>
-																	<th>Cadigo</th>
-																	<th>Responsable</th>
-																	<th>Recibe</th>
-																	<th>Fecha Llegada</th>
-																	<th>Ver</th>
-																	
-																	</tr>
-													</thead>
-													<tbody>
-                            <% for (var i = 0; i < resp.length; i++) { %>
-															<tr>
-																	<td><%=i+1%></td>
-																	<td><%=resp[i].codigo%></td>
-																	<td><%=resp[i].responsable%></td>
-																	<td><%=resp[i].recibe%></td>
-																	<td><%=resp[i].fechaLlegada%></td>
-																	
-																	<td class="center">
-					                          <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal" @click="onlyDistrubucion(<%=resp[i].id%>)"> <i class="fa fa-plus-square"></i> <span> New Task</span> </a> 
-                                  </td>
-                              </tr>
-                            <% } %>
-													</tbody>
-                          </table>
-                        </div><!--/table-responsive-->
-                      </div><!--/porlets-content-->
-                    </div><!--/block-web--> 
-                  </div><!--/col-md-12--> 
-                </div><!--/row-->
-              </div>
-            </div> 
-          </div>
-
-
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Compose New Task</h4>
+        <div id="main-content">
+          <div class="page-content">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="block-web">
+                  <div class="header">
+                    <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+                    <h3 class="content-header"> <i class="fa fa-clipboard icon"></i> Distribucion </h3>
                   </div>
-                  
-                  <div class="row">
-                      <div class="col-md-12">
-                        <div class="block-web">          
-                          <div class="porlets-content">
-                            <form  method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
-                              
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Codigo:</label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" v-model="oneDistrbucion.codigo" disabled="">
-                                </div>
-                              </div><!--/form-group--> 
-                            
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">Recibe:</label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" v-model="oneDistrbucion.recibe" disabled="">
-                                </div>
-                              </div><!--/form-group--> 
-                              
-                              <div class="form-group">
-                                  <label class="col-sm-3 control-label">Nombre de Responsable:</label>
-                                  <div class="col-sm-6">
-                                    <input type="text" class="form-control" v-model="oneDistrbucion.responsable" disabled="">
-                                  </div>
-                              </div><!--/form-group--> 
-                              
-                              <div class="form-group">
-                                  <label class="col-sm-3 control-label">Fecha de Distribucion:</label>
-                                  <div class="col-sm-6">
-                                    <input type="text" class="form-control" v-model="oneDistrbucion.fechaLlegada" disabled="">
-                                  </div>
-                              </div><!--/form-group--> 
-                    
-                            </form>
-                          </div>
+                  <div class="porlets-content">
+                    <div class="panel-body">
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/distribucion/nueva_distribucion" >Nueva Distribucion</button>
+                    </div>
+                    <div class="table-responsive">
+                      <table  class="display table table-bordered table-striped" id="dynamic-table">
+                        <thead>
+													<tr>
+													<th>#</th>
+													<th>Cadigo</th>
+													<th>Responsable</th>
+													<th>Recibe</th>
+													<th>Fecha Llegada</th>
+													<th>Ver</th>
+													</tr>
+												</thead>
+												<tbody>
+                          <% for (var i = 0; i < resp.length; i++) { %>
+													<tr>
+													<td><%=i+1%></td>
+													<td><%=resp[i].codigo%></td>
+													<td><%=resp[i].responsable%></td>
+													<td><%=resp[i].recibe%></td>
+													<td><%=resp[i].fechaLlegada%></td>
+													<td class="center"><button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success btn-sm" @click="onlyDistrubucion(<%=resp[i].id%>)">Ver Distribucion</button></td>
+                          </tr>
+                          <% } %>
+												</tbody>
+                      </table>
+                    </div><!--/table-responsive-->
+                  </div><!--/porlets-content-->
+                </div><!--/block-web--> 
+              </div><!--/col-md-12--> 
+            </div><!--/row-->
+          </div>
+        </div> 
+      </div>
+      <!--Modal-->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel"> <i class="fa fa-clipboard icon"></i>Distribucion</h4>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="block-web">          
+                  <div class="porlets-content">
+                    <form  method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">Codigo:</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" v-model="oneDistrbucion.codigo" disabled="">
                         </div>
-                      </div>
-                    </div> <!-- //row -->
-
-                    <div class="col-lg-12"> 
-                        <section class="panel default blue_title h2">
-          
-                          <div class="panel-body">
-                          
-                            <table class="table table-hover">
-                              <thead>
-                                <tr>
-                                  <th>#</th>	
-                                  <th>Nombre</th>
-											            <th>Precentacion</th>
-											            <th>Precio</th>
-											            <th>Cantidad Distribuido</th>                                      
-                                </tr>
-                              </thead>
-                              <tbody v-for="(item, index) in oneDistrbucion.productos">
-                                <tr>
-                                  <td>{{index+1}}</td>
-                                  <td>{{item.item.nombre}}</td>
-                                  <td>{{item.item.presentacion}}</td>
-                                  <td>{{item.item.price}}</td>
-                                  <td>{{item.qty}}</td>
-                                </tr>                              
-                              </tbody>
-                            </table>                       
-                          </div>
-                        </section>
-                      </div>
-
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                      </div><!--/form-group--> 
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">Recibe:</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" v-model="oneDistrbucion.recibe" disabled="">
+                        </div>
+                      </div><!--/form-group--> 
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">Nombre de Responsable:</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" v-model="oneDistrbucion.responsable" disabled="">
+                        </div>
+                      </div><!--/form-group--> 
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">Fecha de Distribucion:</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" v-model="oneDistrbucion.fechaLlegada" disabled="">
+                        </div>
+                      </div><!--/form-group--> 
+                    </form>
+                    <div class="panel-body">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                          <th>#</th>	
+                          <th>Nombre</th>
+									        <th>Precentacion</th>
+							            <th>Precio</th>
+											    <th>Cantidad Distribuido</th>                                      
+                          </tr>
+                        </thead>
+                        <tbody v-for="(item, index) in oneDistrbucion.productos">
+                          <tr>
+                          <td>{{index+1}}</td>
+                          <td>{{item.item.nombre}}</td>
+                          <td>{{item.item.presentacion}}</td>
+                          <td>{{item.item.price}}</td>
+                          <td>{{item.qty}}</td>
+                          </tr>                              
+                        </tbody>
+                      </table>                       
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
     <!--\\\\\\\ content panel end \\\\\\-->
+    </div>
   </div>
-  <!--\\\\\\\ inner end\\\\\\-->
 </div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="/js/jquery-2.1.0.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/common-script.js"></script>
-<script src="/js/jquery.slimscroll.min.js"></script>
-<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-<script src="/plugins/data-tables/dynamic_table_init.js"></script>
-<script src="/plugins/edit-table/edit-table.js"></script>
-
-<script src="/js/selectBuscar.js"></script>
-
-<!--Validaciones-->
-<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
-<script src="/plugins/checkbox/zepto.js"></script>
-<script src="/plugins/checkbox/icheck.js"></script>
-<script src="/js/icheck-init.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
-<script type="text/javascript" src="/js/form-components.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
-<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
-<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
-<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
-
-									<!-- 
-										>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-										esta parte  es para la pagiantions
-										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-									 -->
-
-
-<script src="/plugins/validation/parsley.min.js"></script>
-
-<script>
-/*==Porlets Actions==*/
-    $('.minimize').click(function(e){
-      var h = $(this).parents(".header");
-      var c = h.next('.porlets-content');
-      var p = h.parent();
-      
-      c.slideToggle();
-      
-      p.toggleClass('closed');
-      
-      e.preventDefault();
-    });
-    
-    $('.refresh').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
-      
-      loading.appendTo(p);
-      loading.fadeIn();
-      setTimeout(function() {
-        loading.fadeOut();
-      }, 1000);
-      
-      e.preventDefault();
-    });
-    
-    $('.close-down').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      
-      p.fadeOut(function(){
-        $(this).remove();
-      });
-      e.preventDefault();
-    });
-</script>
-<script>
-    jQuery(document).ready(function() {
-			EditableTable.init()
-		});
- </script>
- 
- <script src="/js/jPushMenu.js"></script> 
-<script src="/js/side-chats.js"></script>
-
-
-
-<script>
-	$('#bs').materialSelect({
-		BSsearchIn: true
-	});
-</script>
- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-<script src="/axios/dist/axios.min.js"></script>
+<%- include("../partials/scripts") -%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/distribucion.js"></script>
-
 </body>
 </html>
+

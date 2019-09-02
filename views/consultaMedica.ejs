@@ -117,7 +117,7 @@
             
                 <!--\\\\\\\ contentpanel start\\\\\\-->
             <div class="container clear_both padding_fix col-lg-8">
-                <br>
+                
                 <div class="row"> 
                     <!-- Content page -->
                     <% if (idCIta == null) {%>
@@ -125,7 +125,11 @@
                     <% } else {%>
                     <div class="container-fluid col-md-12" id="">
                             <div class="page-header  col-md-6">
-                                <h1><i class="fa fa-user-md"></i> Consulta Externa<small></small></h1>
+                                    <div class="header">
+                                            <div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div>
+                                            <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa</h3>
+                                        </div>
+                               
                             </div><br><br>
                             <div class="btn-group  col-md-3">
                                <button type="button" class="btn btn-info btn-raised" data-toggle="dropdown"> Detalles del Paciente <span class="caret"></span>
@@ -277,8 +281,6 @@
                                                         </div>
                                                     </div>
                                                 </div>                                                              
-                                                
-                                                
                                                 
                                                 <!--diagnostico del paciente o estado del paciente-->
                                                 <p>Estado del paciente</p>

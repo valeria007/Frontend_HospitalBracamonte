@@ -9,6 +9,9 @@ router.get('/volver', (req,res) => {
     res.redirect('/medicamento/dataGrupoA'); 
 })
 
+router.get('/volver2', (req,res) => {
+    res.redirect('/medicamento/dataGrupoA'); 
+})
 var dataGRUPOa;
 router.get('/dataGrupoA',(req,res) =>{
     fetch('http://localhost:3500/api/asignacion')   
@@ -28,7 +31,7 @@ router.get('/dataGrupoA',(req,res) =>{
 });
 
 //serv para renderisar la vista medicamento con datos de la tabla grupo asignacion
-router.get('/volver', (req,res) => {
+router.get('/volver15', (req,res) => {
     OnlyMedicamento = null;
     res.redirect('/medicamento/medicamentos');
 })

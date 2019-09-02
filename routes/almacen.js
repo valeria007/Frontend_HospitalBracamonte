@@ -9,6 +9,10 @@ router.post('/loginAlmacen',(req,res) => {
     res.status(200).json(data)
 })
 
+router.get('/volver', (req,res) => {
+    res.redirect('/almacen/pedidos'); 
+})
+
 router.get('/pedidos',(req, res) => {
     fetch('http://localhost:3500/api/pedido')   
         .then(resp => resp.json())
