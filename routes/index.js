@@ -96,6 +96,9 @@ router.post('/login', (req,res)  => {
           }else if(resp.role[0].name == "fichaje"){
             res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
             //res.send(resp.role)
+          }else if(resp.role[0].name == "medico"){
+            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+            console.log(resp, " entro y mostro esto")
           }else{
             res.send(resp.role)
           }
@@ -123,6 +126,9 @@ router.post('/login', (req,res)  => {
           }else if(resp.role[0].name == "fichaje"){
             res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
             //res.send(resp.role)
+          }else if(resp.role[0].name == "medico"){
+            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+            console.log(resp, " entro y mostro esto")
           }else{
             res.send(resp.role)
           }

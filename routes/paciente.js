@@ -167,7 +167,17 @@ function sacar(id){
 var datos;
 router.post('/cita_medica/:id', (req,res) => {
   var id = req.params;
-  datos = req.body;
+  datos = {
+    id_user:req.body.id_user,
+    codigo_p:req.body.codigo_p,
+    saldo_total:req.body.saldo_total,
+    especialidad:req.body.especialidad,
+    turno:req.body.turno,
+    medico:req.body.medico.split("/")[0],
+    hora:req.body.hora,
+    id_medico:req.body.medico.split("/")[1]
+  };
+  
   var esto = {
     method: 'POST',
     body: JSON.stringify(datos),
@@ -209,7 +219,7 @@ router.post('/cita_medica/:id', (req,res) => {
       msg_false = resp.msg
       res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial + '/'+ data_token.token_p);      
     }    
-  })
+  }) 
 });
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -287,7 +297,16 @@ router.post('/updateCita/:id',(req,res) => {
     
   }else{
     
-    var update = req.body;
+    var update = {
+      id_user:req.body.id_user,
+      codigo_p:req.body.codigo_p,
+      saldo_total:req.body.saldo_total,
+      especialidad:req.body.especialidad,
+      turno:req.body.turno,
+      medico:req.body.medico.split("/")[0],
+      hora:req.body.hora,
+      id_medico:req.body.medico.split("/")[1]
+    };
     var esto = {
       method: 'POST',
       body: JSON.stringify(update),

@@ -133,7 +133,7 @@
                           <label class="control-labe">Medico:</label>
                           <select  class="form-control" id="source" name="nombre" >
                               <%for (var i=0; i < resp.length; i++) { %>
-                                  <option><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
+                                  <option value="<%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%>/<%=resp[i].id%>"><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
                               <% } %>                            
                           </select>
                       </div>

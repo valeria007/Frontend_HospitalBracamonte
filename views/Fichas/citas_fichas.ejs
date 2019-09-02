@@ -209,9 +209,10 @@
 																				<option disabled="disabled" value>
 																					Seleccione
 																				</option>
-																				<option
-																					v-for="(doctor, index) of doctores">
-																					{{doctor.nombre}}</option>
+																				<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
+																					{{doctor.nombre.split("/")[0]}}
+																					
+																				</option>
 																			</select><br>
 																		</div>
 																		<div class="form-group"><br>
@@ -389,11 +390,14 @@
 																		@click="saca_horas">
 																		<option disabled="disabled" value>Seleccione
 																		</option>
-																		<option v-for="(doctor, index) of doctores">
-																			{{doctor.nombre}}
+																		<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
+																			{{doctor.nombre.split("/")[0]}}
+																			
 																		</option>
 																	</select>
 																</div>
+																
+																
 																<div class="entrada">Tipo de Paciente:<br>
 																	<div class="col-md-10">
 																		<label class="radio-inline"><input

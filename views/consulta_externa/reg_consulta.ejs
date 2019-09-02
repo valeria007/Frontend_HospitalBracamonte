@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Consulta</title>
+    <meta charset="UTF-8">
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+
+
+    <style>
+        div.a {
+            text-align: center;
+        }
+
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+        }
+    </style>
+
+</head>
+
+<body class=" light_theme  fixed_header left_nav_fixed">
+    <!-- SideBar -->
+
+
+    <!-- Content page-->
+<div class="wrapper">
+    <!--\\\\\\\ wrapper Start \\\\\\-->
+    <div class="header_bar">
+        <!--\\\\\\\ header Start \\\\\\-->
+        <div class="brand">
+           <!--\\\\\\\ brand Start \\\\\\-->
+           <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+        </div>
+            <!--\\\\\\\ brand end \\\\\\-->
+        <div class="header_top_bar">
+            <!--\\\\\\\ header top bar start \\\\\\-->
+            <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+            <div class="top_right_bar">
+                <div class=" dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+                    src="/images/user.png" /><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%><span class="user_adminname">
+                    <FONT SIZE=1></FONT>
+                    </span> <b class="caret"></b> </a>
+                    <ul class="dropdown-menu">
+                        <div class="top_pointer"></div>
+                        <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+                        <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Ayuda</a> </li>
+                        <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+                        <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--\\\\\\\ header top bar end \\\\\\-->
+    </div>
+    <div class="inner">
+        <!--\\\\\\\ inner start \\\\\\-->
+        <div class="left_nav">
+            <!--\\\\\\\left_nav start \\\\\\-->
+            <div class="left_nav_slidebar">
+                <ul>
+                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
+                                    class="left_nav_pointer"></span> <span class="plus"><i
+                                        class="fa fa-plus"></i></span> </a>
+                        <ul>
+                            <li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
+                                            class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+                        </ul>
+                    </li>
+                    <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
+                                    class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
+                                        class="fa fa-plus"></i></span></a>
+                        <ul class="opened" style="display:block">
+                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
+                                            class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>
+                                    </a> </li>
+                        </ul>
+                    </li>
+                    <%- include("../partials/footerDocotr") -%>
+                </ul>
+            </div>
+        </div>
+        <!--\\\\\\\left_nav end \\\\\\-->
+        <div class="contentpanel">
+                <!--\\\\\\\ contentpanel start\\\\\\-->
+            <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#alergias"> <i class="fa fa-plus-square"></i> <span> Alergias</span> </a>
+            <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#antecedestes"> <i class="fa fa-plus-square"></i> <span> Antecedesntes</span> </a>
+            
+                <!--\\\\\\\ contentpanel start\\\\\\-->
+            <div class="container clear_both padding_fix col-lg-8">
+                <br>
+                <div class="row"> 
+                    <!-- Content page -->
+                    <div class="container-fluid col-md-12" id="">
+                            <div class="page-header  col-md-6">
+                                <h1><i class="fa fa-user-md"></i> Consulta Externa<small></small></h1>
+                            </div><br><br>
+                            <div class="btn-group  col-md-3">
+                               <button type="button" class="btn btn-info btn-raised" data-toggle="dropdown"> Detalles del Paciente <span class="caret"></span>
+                                </button>
+                                <p>pendiente</p>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="menu__item">
+                                        <a href="/consulta_externa/data_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"
+                                            class="menu__link">Datos de responsable </a>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>"
+                                            class="menu__link">Antecedentes</a>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"
+                                                class="menu__link">Alergia</a>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"
+                                            class="menu__link">Examen General</a>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a href="/VerHistorial" class="menu__link">Ver Historial </a>
+                                    </li>
+
+                                    <li class="divider"></li>
+                                </ul>
+                            </div>
+
+                            <div id="" class="col-md-2">
+
+                                <div class="">
+                                    <a href="/medico/volver" class="btn btn-success btn-raised "><i class=""></i>Atras no da</a>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                    <li class="active"><a href="#new" data-toggle="tab">Registro de consulta medica</a></li>
+                                    <li><a href="#list" data-toggle="tab">Listado de consultas del paciente</a></li>
+                                </ul>
+                                <!-- Rconten page-->
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane fade active in" id="new"> 
+                                        <% if(updateCita == "") { %>
+                                            <form action="/consulta_externa/regConsulta/<%=cita[0].id%>/<%=cita[0].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">   
+                                                <div class="block-web">
+                                                    <div class="header">
+                                                        <div class="actions"> 
+                                                            <a href="#" class="minimize"> <i class="fa fa-chevron-down"></i></a>
+                                                            <a href="#" class="refresh"> <i class="fa fa-repeat"></i></a>
+                                                            <a href="#" class="close-down"> <i class="fa fa-times"></i></a>
+                                                        </div>
+                                                        <h3>Datos Personales</h3>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-4">
+                                                                    <div class="entrada ">
+                                                                        <h6 class=" blue_info">N° de Historia:</h6>
+                                                                        <input type="text" name="numeroHistorial" 
+                                                                            value="<%=dataPaciente[0].numeroHistorial%>"
+                                                                            class="form-control" readonly=""
+                                                                            value="Read only text goes here">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-8 col-sm-9">
+                                                                    <div class="form-group">
+                                                                        <div class="entrada">
+                                                                            <h6 class=" blue_info">Nombre Completo:
+                                                                            </h6>
+                                                                            <input type="text" name="nombre apellidop apellidom" 
+                                                                                value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+                                                                                    class="form-control" readonly=""
+                                                                                    value="Read only text goes here">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>   
+                                                                    
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-4">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info">CI.:</h6>
+                                                                        <input type="text" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 col-sm-6">
+                                                                    <div class="entrada">
+                                                                        <h6 class="blue_info">Fecha de Nacimiento:
+                                                                        </h6>
+                                                                        <input  type="text" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 col-sm-6">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info"> Sexo: </h6>
+                                                                        <input name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- datos del doctor-->
+                                                <div class="block-web">
+                                                    <div class="header">
+                                                        <div class="actions"> 
+                                                            <a href="#" class="minimize"> <i class="fa fa-chevron-down"></i></a> 
+                                                            <a href="#" class="refresh"> <i class="fa fa-repeat"></i></a>
+                                                            <a href="#" class="close-down"> <i class="fa fa-times"></i></a>
+                                                        </div>
+                                                        <h3>Datos de la cita</h3>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-sm-1 col-sm-2">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info">Hora:</h6>
+                                                                            <p><%=cita[0].hora.split("/")[0]%></p>
+                                                                            <input type="hidden" name="hora" value="<%=cita[0].hora%>">        
+                                                                    </div>
+                                                                                                   
+                                                                </div>
+                                                                <div class="col-sm-3 col-sm-6">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info">Fecha de Consulta:</h6>
+                                                                            <input type="date" name="fechaConsulta" require class="form-control">
+                                                                    </div>                        
+                                                                </div>
+                                                                <div class="col-sm-4 col-sm-6">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info">Nombre del Médico:</h6>
+                                                                            <input  value="<%=cita[0].medico%>" class="form-control" readonly="" value="Read only text goes here" >
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 col-sm-6">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info">Especialidad:</h6>
+                                                                            <input name="tipoConsulta" value="<%=cita[0].especialidad%>"class="form-control" readonly="" value="Read only text goes here">                                                                
+                                                                    </div>
+                                                                </div>       
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                              
+                                                
+                                                
+                                                
+                                                <!--diagnostico del paciente o estado del paciente-->
+                                                <p>Estado del paciente</p>
+                                                <div class="grupo" id="cabeza">
+                                                    <div class="panel with-nav-tabs panel-default">
+                                                        <div class="panel-heading">
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active"><a href="#tab1default" data-toggle="tab">Motivo de Consulta</a></li>
+                                                                <li><a href="#tab2default" data-toggle="tab">Diagnostico</a></li>
+                                                                <li><a href="#tab3default" data-toggle="tab">Tratamiento</a></li>
+                                                                <li><a href="#tab4default" data-toggle="tab">Observaciones</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="anamnesis"  cols="100" rows="10"></textarea></div>
+                                                                <div class="tab-pane fade" id="tab2default"><textarea class="large-compact" name="diagnostico" cols="100" rows="10"></textarea></div>
+                                                                <div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="100" rows="10"></textarea></div>
+                                                                <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="100" rows="10"></textarea></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                <p class="text-center">
+                                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                                </p>
+                                            </form>                           
+                                       
+                                        <% } else { %>
+                                            <form action="/consulta_externa/updateConsulta/<%=updateCita[0].id%>/<%=cita[0].id%>/<%=cita[0].codigo_p%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
+                                                <h3 class="center">Formulario de Actualización</h3>
+                                                <div class="block-web">
+                                                    <div class="header">
+                                                        <div class="actions"> 
+                                                            <a href="#" class="minimize"> <i class="fa fa-chevron-down"></i></a>
+                                                            <a href="#" class="refresh"> <i class="fa fa-repeat"></i></a>
+                                                            <a href="#" class="close-down"> <i class="fa fa-times"></i></a>
+                                                        </div>
+                                                        <h3>Datos Personales</h3>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-4">
+                                                                    <div class="entrada ">
+                                                                        <h6 class=" blue_info">N° de Historia:</h6>
+                                                                        <input type="text" name="numeroHistorial" 
+                                                                            value="<%=dataPaciente[0].numeroHistorial%>"
+                                                                            class="form-control" readonly=""
+                                                                            value="Read only text goes here">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-8 col-sm-9">
+                                                                    <div class="form-group">
+                                                                        <div class="entrada">
+                                                                            <h6 class=" blue_info">Nombre Completo:</h6>
+                                                                                <input type="text" name="nombre apellidop apellidom" 
+                                                                                value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+                                                                                class="form-control" readonly=""
+                                                                                value="Read only text goes here">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>   
+                                                                    
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-4">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info">CI.:</h6>
+                                                                        <input type="text" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 col-sm-6">
+                                                                    <div class="entrada">
+                                                                        <h6 class="blue_info">Fecha de Nacimiento:
+                                                                        </h6>
+                                                                        <input  type="text" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 col-sm-6">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info"> Sexo: </h6>
+                                                                        <input name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- datos del doctor-->
+                                                <div class="block-web">
+                                                    <div class="header">
+                                                        <div class="actions"> 
+                                                            <a href="#" class="minimize"> <i class="fa fa-chevron-down"></i></a> 
+                                                            <a href="#" class="refresh"> <i class="fa fa-repeat"></i></a>
+                                                            <a href="#" class="close-down"> <i class="fa fa-times"></i></a>
+                                                        </div>
+                                                        <h3>Datos de la cita</h3>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-sm-1 col-sm-2">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info">Hora:</h6>
+                                                                            <p><%=cita[0].hora.split("/")[0]%></p>
+                                                                            <input type="hidden" name="hora" value="<%=cita[0].hora%>">        
+                                                                    </div>
+                                                                                                       
+                                                                </div>
+                                                                <div class="col-sm-3 col-sm-6">
+                                                                    <div class="entrada">
+                                                                        <h6 class=" blue_info">Fecha de Consulta:</h6>
+                                                                            <input class="form-control"  type="date" name="fechaConsulta"require value="<%=updateCita[0].fechaConsulta%>">
+                                                                    </div>                        
+                                                                </div>
+                                                                    <div class="col-sm-4 col-sm-6">
+                                                                        <div class="entrada">
+                                                                            <h6 class=" blue_info">Nombre del Médico:</h6>
+                                                                                <input  value="<%=cita[0].medico%>" class="form-control" readonly="" value="Read only text goes here" >
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-sm-6">
+                                                                        <div class="entrada">
+                                                                            <h6 class=" blue_info">Especialidad:</h6>
+                                                                                <input name="tipoConsulta" value="<%=cita[0].especialidad%>"class="form-control" readonly="" value="Read only text goes here">                                                                
+                                                                        </div>
+                                                                    </div>       
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div> 
+                                            
+                                                <!--diagnostico del paciente o estado del paciente-->
+                                               
+                                                <div class="col-md-12">
+                                                    <h4 class="">Estado del paciente</h4>
+                                                    <div class="grupo" id="cabeza">
+                                                            
+                                                        <div class="panel with-nav-tabs panel-default">
+                                                            <div class="panel-heading">
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#tab1default" data-toggle="tab">Motivo de Consulta</a></li>
+                                                                    <li><a href="#tab2default" data-toggle="tab">Diagnostico</a></li>
+                                                                    <li><a href="#tab3default" data-toggle="tab">Tratamiento</a></li>
+                                                                    <li><a href="#tab4default" data-toggle="tab">Observaciones</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <div class="tab-content">
+                                                                    <div class="tab-pane fade in active" id="tab1default">
+                                                                        <textarea class="large-compact" name="anamnesis" cols="100" rows="10"><%=updateCita[0].anamnesis%></textarea>
+                                                                    </div>
+                                                                    <div class="tab-pane fade" id="tab2default">
+                                                                        <textarea class="large-compact" name="diagnostico" cols="100" rows="10"><%=updateCita[0].diagnostico%></textarea>
+                                                                    </div>
+                                                                    <div class="tab-pane fade" id="tab3default">
+                                                                        <textarea class="large-compact" name="tratamiento" cols="100" rows="10"><%=updateCita[0].tratamiento%></textarea>
+                                                                    </div>
+                                                                    <div class="tab-pane fade" id="tab4default">
+                                                                        <textarea class="large-compact" name="observaciones" cols="100" rows="10"><%=updateCita[0].observaciones%></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 formm">
+                                                            <p class="text-center">
+                                                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="fa fa-roller"></i> &nbsp;&nbsp;
+                                                                    Limpiar</button>
+                                                                <button type="submit" class="btn btn-danger"><i class="fa fa-floppy"></i> &nbsp;&nbsp;
+                                                                    Guardar</button>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-primary btn-sm">Receta</a>&nbsp;<a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-primary btn-sm">Papeleta de Internacion</a>
+                                            <hr>
+                                           <!--  <div class="col-md-6">
+                                                <section class="panel default blue_title h2">
+                                                  <div class="panel-heading">
+                                                    
+                                            
+                                                  </div>
+                                                  
+                                                  <div class="panel-body">
+                                                    
+                                                    <p> Small button for elegance <code> .btn .btn-sm </code> </p>
+                                                    <a href="#" class="btn btn-primary btn-sm">Small button</a>&nbsp;<a href="#" class="btn btn-default btn-sm">Small button</a>
+                                                    <hr>
+                                                
+                                                 
+                                                </section>
+                                            </div> -->
+                                        <% } %>
+                                    </div>
+                                    <!-- Listas de Proveedores-->
+                                    <div class="tab-pane fade" id="list">
+                                        <div class="table-responsive">
+                                            <p class="text-center">
+                                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir </button>
+                                            </p>
+                                            <div class="table-responsive">
+                                                <div class="table-wrapper">
+                                                    <table class="fl-table display table table-bordered table-striped"
+                                                    id="dynamic-tablee">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Numero Historial</th>
+                                                            <th>Nombre</th>
+                                                            <th>Apellido Paterno</th>
+                                                            <th>Apellido Materno</th>
+                                                            <th>Diagnostico</th>
+                                                            <th>Fecha de Consulta</th>
+                                                            <th>Tipo de Consulta</th>
+                                                            <th>Dar Receta</th>
+                                                            <th>Papeleta Internacion</th>
+                                                            <th>Ver</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <%if(resp != null) { %>
+                                                            <% for ( var i=0; i < resp.length; i++) {%>
+                                                                <tr>
+                                                                    <td><%= i+1%></td>
+                                                                    <td><%=resp[i].numeroHistorial%></td>
+                                                                    <td><%=resp[i].Citas_Medica.Paciente.nombre%></td>
+                                                                    <td><%=resp[i].Citas_Medica.Paciente.apellidop%></td>
+                                                                    <td><%=resp[i].Citas_Medica.Paciente.apellidom%></td>
+                                                                    <td><%=resp[i].diagnostico%></td> 
+                                                                    <td><%=resp[i].fechaConsulta%></td>
+                                                                    <td><%=resp[i].tipoConsulta%></td>                                                    
+                                                                    <td class="center"><a href="/medico/TraerConsulta/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>" class="btn btn-success btn-raised "><i class="fa fa-file-text"></i></a></td>
+                                                                    <td class="center"><a href="/medico/PapeletaINT/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>/<%=resp[i].tipoConsulta%>" class="btn btn-success btn-raised "><i class="fa fa-wheelchair"></i></a></td>
+                                                                    <td class="center"><a href="/medico/VerConsulta/<%=resp[i].numeroHistorial%>/<%=resp[i].id_cita%>" class="btn btn-success btn-raised "><i class="fa fa-paste"></i></a></td>
+                                                                </tr>
+                                                            <% } %>
+                                                            <% } else { %>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            <% } %>
+                                                        </tbody>                                                                       
+                                                    </table>                           
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>           
+</div>
+
+        
+<!-- Modal alergias -->
+<div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Alergias</h4>
+      </div>
+
+        <div>
+            <div class="">
+                    <div id="main-content">
+                            <div class="">			
+                                    <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                        <li class="active"><a href="#neww" data-toggle="tab">Citas</a>
+                                        </li>
+                                        <li><a href="#listt" data-toggle="tab">Listado de Citas del Paciente</a></li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div class="tab-pane fade active in " id="neww">
+                                                <div class="col-md-12">
+                                                        <div class="col-sm-4 col-sm-4">
+                                                            <div class="entrada ">
+                                                                <h6 class=" blue_info">N° de Historia:</h6>
+                                                                <input
+                                                                    value="<%=dataPaciente[0].numeroHistorial%>"
+                                                                    class="form-control" readonly=""
+                                                                    value="Read only text goes here">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-8 col-sm-9">
+                                                            <div class="form-group">
+                                                                <div class="entrada">
+                                                                    <h6 class=" blue_info">Nombre Completo:
+                                                                    </h6>
+                                                                    <input
+                                                                        value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+                                                                        class="form-control" readonly=""
+                                                                        value="Read only text goes here">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                        
+                                                        <div class="col-sm-4 col-sm-4">
+                                                            <div class="entrada">Fecha:<br>
+                                                                <input  type="date" name="fecha" require><br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-8 col-sm-9">
+                                                            <div class="entrada">Tipo de Alergia<br>
+                                                                <input type="text" name="tipoAlergia" value="" size="20"class="form-control"><br>
+                                                            </div>
+                                                        </div>
+                                                </div>                  
+                                                <div class="col-md-12">
+                                                            <div class="entrada">Descripción:<br>
+                                                                
+                                                              </div>
+                                                              <textarea class="large-compact" name="descripcion" cols="62" rows="5"></textarea>
+                                                              
+                                                </div> 
+                                                
+				
+
+
+                                        </div>
+                                        <div class="tab-pane fade " id="listt">
+                                            <table class="display table table-bordered table-striped"
+                                                id="dynamic-tablee">
+                                                <thead>
+                                                    <tr>
+                                                            <th>Fecha</th>
+                                                            <th>Tipo de Alergia</th>
+                                                            <th>Descripción</th>
+                                                            <th>Ver</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                   
+                                                    <tr class="gradeX">
+                                                            <td> falta en la BD</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><a href="" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                                                        
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                            <th>Fecha</th>
+                                                            <th>Tipo de Alergia</th>
+                                                            <th>Descripción</th>
+                                                            <th>Ver</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+
+                                        
+                                        </div>
+                                    </div>
+                                    <!--/porlets-content-->
+                            </div>
+                        </div>
+            </div>
+
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal antecedentes -->
+<div class="modal fade" id="antecedestes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Compose New Task</h4>
+        </div>
+      
+        <div class="modal-body"> antecedestes </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+      
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+        <!--====== Scripts -->
+
+        <script src="/js/get/consultaget.js"></script>
+
+
+        <script src="/js/jquery-2.1.0.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/common-script.js"></script>
+        <script src="/js/jquery.slimscroll.min.js"></script>
+       
+
+        <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+        <script src="/plugins/data-tables/jquery.dataTables.js"></script>
+        <script src="/plugins/data-tables/DT_bootstrap.js"></script>
+        <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+        <script src="/plugins/edit-table/edit-table.js"></script>
+        <script>
+            jQuery(document).ready(function () {
+                EditableTable.init();
+            });
+        </script>
+
+        <script src="/js/jPushMenu.js"></script>
+        <script src="/js/side-chats.js"></script>
+        <script src="/js/get/getECP.js"></script>
+    </body>
+
+</html>
