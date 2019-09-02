@@ -29,7 +29,7 @@ class Receta {
           data
         })
        }else {
-        const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones } = req.body;
+        const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones,medicamentos,id_medico } = req.body;
         const { id_consulta } = req.params;
         const { id_emergencia } = req.params;
         return Recetas
@@ -46,13 +46,21 @@ class Receta {
             indicaciones,
             unidades,
             informacionAd,
-            instruciones 
+            instruciones,
+
+            medicamentos,
+            id_medico 
           })
            .then(consultaData => res.status(201).send({
               success: true,
-              message: 'consulta guardada',
+              message: 'Se guardaron los datos',
               consultaData
           }))
+          .catch(error => res.status(400).send({
+            success: false,
+            msg:"No se pudo guardar los datos", 
+            error
+          }));
          }
         
      });   
@@ -80,7 +88,7 @@ class Receta {
             data
           })
          }else {
-          const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones  } = req.body;
+          const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones,medicamentos,id_medico  } = req.body;
           const { id_consulta } = req.params;
           const { id_emergencia } = req.params;
           return Recetas
@@ -97,13 +105,21 @@ class Receta {
               indicaciones,
               unidades,
               informacionAd,
-              instruciones 
+              instruciones,
+              
+              medicamentos,
+              id_medico
             })
              .then(consultaData => res.status(201).send({
                 success: true,
-                message: 'consulta guardada',
+                message: 'Se guardaron los datos',
                 consultaData
             }))
+            .catch(error => res.status(400).send({
+              success: false,
+              msg:"No se pudo guardar los datos", 
+              error
+            }));
            }
           
        });   
@@ -147,11 +163,12 @@ class Receta {
     }
     static updateReceta(req, res) {
       console.log(req.params.id, "   esto<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-      const { historiaClinica, fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones  } = req.body
+      const { estado,historiaClinica, fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones,medicamentos  } = req.body
       return Recetas
         .findByPk(req.params.id)
         .then((data) => {
           data.update({
+            estado:estado || data.estado,
             historiaClinica: historiaClinica || data.historiaClinica,
             fecha: fecha || data.fecha,  
             posologia: posologia || data.posologia,  
@@ -161,14 +178,17 @@ class Receta {
             indicaciones: indicaciones || data.indicaciones,  
             unidades: unidades || data.unidades,
             informacionAd:informacionAd || data.informacionAd,
-            instruciones: instruciones|| data.instruciones
+            instruciones: instruciones|| data.instruciones,
+
+            medicamentos: medicamentos || data.medicamentos
 
           })
           .then(update => {
             res.status(200).send({
-              message: 'recetac se a actualizado',
+              success:true,
+              msg: 'Receta se a actualizo',
               data: {
-                
+                estado:estado || update.estado,
                 historiaClinica: historiaClinica || update.historiaClinica,
                 fecha: fecha || update.fecha,  
                 posologia: posologia || update.posologia,  
@@ -178,7 +198,10 @@ class Receta {
                 indicaciones: indicaciones || update.indicaciones,  
                 unidades: unidades || update.unidades,
                 informacionAd:informacionAd || update.informacionAd,
-                instruciones: instruciones|| update.instruciones   
+                instruciones: instruciones|| update.instruciones,
+                
+                medicamentos: medicamentos || update.medicamentos
+                
               }
             })
           })

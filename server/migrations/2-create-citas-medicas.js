@@ -9,6 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       numero_ficha: {
+        allowNull: false,
+        autoIncrement: true,
         type: Sequelize.INTEGER,
       },
       estado: {
@@ -46,6 +48,12 @@ module.exports = {
           as: 'id_Paciente',
         }
       },
+      id_user: {
+        type: Sequelize.INTEGER
+      },  
+      id_medico: {
+        type: Sequelize.INTEGER
+      },      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

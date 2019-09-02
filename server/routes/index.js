@@ -74,6 +74,9 @@ app.get('/api/PacienteCitaFalse/:id', Citas_medica.TwoTablesFalse);
 app.get('/api/citasPaciente/:id', Citas_medica.CitasPaciente); //ruta para poder sacar que citas tiene un paciente
 app.post('/api/updateCita/:id', Citas_medica.updateCita); //ruta para poder actualizar una cita
 
+app.get('/api/lista_pacaiente/:id_medico', Citas_medica.lista_pacienteDoctor)
+app.get('/api/lista_pacienteDoctor_false/:id_medico', Citas_medica.lista_pacienteDoctor_false)
+
 
 
 ///consultas

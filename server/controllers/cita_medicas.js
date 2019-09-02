@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 import model from '../models';
 
 const { Citas_Medicas } = model;
@@ -5,27 +7,73 @@ const { Pacientes } = model;
 class Citas_medica {
     
     static reg_cita(req, res) {
-        const { numero_ficha,estado,codigo_p,turno,medico,especialidad,hora,saldo_total,id_especialidad } = req.body
-        const { id_Paciente } = req.params;
-        return Citas_Medicas
-          .create({
-            numero_ficha,
-            estado,            
-            codigo_p,
-            turno,
-            medico,
-            especialidad,
-            hora,
-            saldo_total,
-            id_especialidad,
-            id_Paciente
-          })
-           .then(cita_pData => res.status(201).send({
-              success: true,
-              message: 'cita  creado',
-              cita_pData
-          }))
-       }
+     
+      if(req.body.especialidad == null){
+        res.status(400).json({
+          success:false,
+          msg : "Por favor selecione consultorio"
+        })
+      }else if(req.body.medico == null){
+        res.status(400).json({
+          success:false,
+          msg : "Selecione medico por favor"
+        })
+      }else if(req.body.turno == null){
+        res.status(400).json({
+          success:false,
+          msg : "Selecione turno por favor"
+        })
+      }else if(req.body.saldo_total == null || isNaN(req.body.saldo_total)){
+        res.status(400).json({
+          success:false,
+          msg : "Saldo solo puede contener numeros"
+        })
+      }else if(req.body.hora == null){
+        res.status(400).json({
+          success:false,
+          msg : "Por Favor inserte hora"
+        })
+      }      
+      else{
+        fetch('http://localhost:4600/api/nombreConsulta_especilidad/'+req.body.especialidad)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+          if(resp != ""){
+            const { numero_ficha,estado,codigo_p,turno,medico,especialidad,hora,saldo_total,id_user,id_medico } = req.body
+            const { id_Paciente } = req.params;
+            var id_especialidad = resp[0].id
+            return Citas_Medicas
+              .create({
+                numero_ficha,
+                estado,            
+                codigo_p,
+                turno,
+                medico,
+                especialidad,
+                hora,
+                saldo_total,
+                id_especialidad,
+                id_Paciente,
+                id_user,
+                id_medico
+              })
+               .then(cita_pData => res.status(201).send({
+                  success: true,
+                  message: 'cita  creado',
+                  cita_pData
+              }))
+            }else{
+              res.status(400).json({
+                success:false,
+                msg : "Esa consulta no esta registrada en la base de datos"
+              })
+            }
+          
+        })
+      }
+        
+    }
     static getCitas(req, res) {
       return Citas_Medicas
       .findAll()
@@ -134,7 +182,7 @@ class Citas_medica {
        }
 
        static updateCita(req, res) {
-        const { estado,codigo_p,turno,medico,especialidad,hora,saldo_total } = req.body
+        const { estado,codigo_p,turno,medico,especialidad,hora,saldo_total,id_medico } = req.body
         return Citas_Medicas
           .findByPk(req.params.id)
           .then((data) => {
@@ -145,7 +193,8 @@ class Citas_medica {
               medico: medico || data.medico,  
               especialidad: especialidad || data.especialidad,  
               hora: hora || data.hora,  
-              saldo_total: saldo_total || data.saldo_total,  
+              saldo_total: saldo_total || data.saldo_total,
+              id_medico:id_medico || data.id_medico  
             })
             .then(update => {
               res.status(200).send({
@@ -159,6 +208,8 @@ class Citas_medica {
                   especialidad: especialidad || update.especialidad,  
                   hora: hora || update.hora,  
                   saldo_total: saldo_total || update.saldo_total,  
+                  id_medico:id_medico || update.id_medico  
+
                 }
               })
             })
@@ -176,6 +227,31 @@ class Citas_medica {
             res.status(200).json(Citas);
           });     
        }*/
+  static lista_pacienteDoctor(req,res){
+    const { id_medico } = req.params
+    Citas_Medicas.findAll({
+      where : { id_medico : id_medico, estado: "true" }, // el url es para identificar si es emergencia o consulta medica
+      //attributes: ['id','estado','codigo_p','hora','especialidad'],
+      include: [
+        {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }
+      ]
+    }).then(users => {
+      res.status(200).send(users)
+    })
+  }
+
+  static lista_pacienteDoctor_false(req,res){
+    const { id_medico } = req.params
+    Citas_Medicas.findAll({
+      where : { id_medico : id_medico, estado: "false" }, // el url es para identificar si es emergencia o consulta medica
+      //attributes: ['id','estado','codigo_p','hora','especialidad'],
+      include: [
+        {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }
+      ]
+    }).then(users => {
+      res.status(200).send(users)
+    })
+  }
       
 }
 export default Citas_medica;

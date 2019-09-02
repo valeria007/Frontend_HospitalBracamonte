@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Recetas = sequelize.define('Recetas', {
     id_consulta: DataTypes.INTEGER,
     id_emergencia: DataTypes.INTEGER,
+    estado:DataTypes.BOOLEAN,
     tipoConsulta: DataTypes.STRING,
     historiaClinica: DataTypes.INTEGER,
     fecha: DataTypes.DATE,
@@ -13,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     indicaciones: DataTypes.TEXT,    
     unidades: DataTypes.INTEGER,
     informacionAd: DataTypes.TEXT,
-    instruciones: DataTypes.TEXT
+    instruciones: DataTypes.TEXT,
+    medicamentos: DataTypes.JSON,
+    id_medico:DataTypes.INTEGER
   }, {});
   Recetas.associate = function(models) {
     // associations can be defined here

@@ -6,7 +6,7 @@ const { Pacientes } = model;
     static registroPaciente(req, res) {
       const {   numeroHistorial,nombre,apellidop,apellidom, ci, fechanacimiento, 
         sexo, estadocivil, direccion, zona, telef, ocupacion, idiomas, lugranacimiento, 
-        departameto, provincia, municipio,} = req.body
+        departameto, provincia, municipio,id_user} = req.body
         return Pacientes
           .create({
             numeroHistorial,
@@ -26,6 +26,7 @@ const { Pacientes } = model;
             departameto,
             provincia,
             municipio,
+            id_user
            })
            .then(pacienteData => res.status(201).send({
               success: true,

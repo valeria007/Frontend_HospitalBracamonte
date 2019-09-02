@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     hora: DataTypes.TEXT,
     saldo_total:DataTypes.DOUBLE,
     id_especialidad: DataTypes.INTEGER,
-    id_Paciente: DataTypes.INTEGER
+    id_Paciente: DataTypes.INTEGER,
+    id_user: DataTypes.INTEGER,
+    id_medico: DataTypes.INTEGER
   }, {});
   Citas_Medicas.associate = function(models) {
     // associations can be defined here

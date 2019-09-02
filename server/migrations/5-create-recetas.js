@@ -26,6 +26,11 @@ module.exports = {
           as: 'id_emergencia',
         }
       },
+      estado: {
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: false
+      },
       tipoConsulta: {
         type: Sequelize.STRING
       },
@@ -58,6 +63,12 @@ module.exports = {
       },
       instruciones: {
         type: Sequelize.TEXT
+      },
+      medicamentos: {
+        type: Sequelize.JSON
+      },
+      id_medico: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

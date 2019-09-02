@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     departameto: DataTypes.STRING,
     provincia: DataTypes.STRING,
     municipio: DataTypes.STRING,
+    id_user:DataTypes.STRING
   }, {});
   Pacientes.associate = function(models) {
     // associations can be defined here
