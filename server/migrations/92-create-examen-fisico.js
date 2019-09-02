@@ -8,22 +8,22 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      estado_general: {
-        type: Sequelize.TEXT
-      },
-      facies: {
-        type: Sequelize.STRING
-      },
-      precion_arterial: {
-        type: Sequelize.STRING
-      },
-      estado_nutricional: {
-        type: Sequelize.STRING
-      },
       peso: {
         type: Sequelize.STRING
       },
+      talla: {
+        type: Sequelize.STRING
+      },
+      temperatura: {
+        type: Sequelize.STRING
+      },
       frecuencia_cardiaca: {
+        type: Sequelize.STRING
+      },
+      respiracion: {
+        type: Sequelize.STRING
+      },
+      presion: {
         type: Sequelize.STRING
       },
       saturacion_oxigeno: {
@@ -31,6 +31,9 @@ module.exports = {
       },
       fecha_revision: {
         type: Sequelize.STRING
+      },
+      otros:{
+        type: Sequelize.TEXT
       },
       id_paciente: {
         type: Sequelize.INTEGER,

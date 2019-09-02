@@ -4,18 +4,19 @@ const { examen_fisico } = model;
 
 class Examen_Fisico{
     static reg_examen_fisico(req,res){
-        const { estado_general,facies,precion_arterial,estado_nutricional,peso,frecuencia_cardiaca,saturacion_oxigeno,fecha_revision } = req.body;
+        const { peso,talla,temperatura,frecuencia_cardiaca,respiracion,presion,saturacion_oxigeno,fecha_revision,otros } = req.body;
         const { id_paciente } = req.params; 
         return examen_fisico
         .create({
-            estado_general,
-            facies,
-            precion_arterial,
-            estado_nutricional,
             peso,
+            talla,
+            temperatura,
             frecuencia_cardiaca,
+            respiracion,
+            presion,
             saturacion_oxigeno,
             fecha_revision,
+            otros,
             id_paciente 
         })
         .then(data => res.status(201).json({
@@ -53,20 +54,21 @@ class Examen_Fisico{
     }
     //ruta para poder actulizar una los examenes fisicos
     static update_exFisico(req, res) {
-        const { estado_general,facies,precion_arterial,estado_nutricional,peso,frecuencia_cardiaca,saturacion_oxigeno,fecha_revision } = req.body
+        const { peso,talla,temperatura,frecuencia_cardiaca,respiracion,presion,saturacion_oxigeno,fecha_revision,otros } = req.body
         return examen_fisico
           .findByPk(req.params.id)
           .then((data) => {
             data.update({
 
-                estado_general: estado_general || data.estado_general,
-                facies: facies || data.facies,
-                precion_arterial: precion_arterial || data.precion_arterial,
-                estado_nutricional: estado_nutricional|| data.estado_nutricional,
                 peso: peso || data.peso,
-                frecuencia_cardiaca: frecuencia_cardiaca || data.frecuencia_cardiaca,
+                talla: talla || data.talla,
+                temperatura: temperatura || data.temperatura,
+                frecuencia_cardiaca: frecuencia_cardiaca|| data.frecuencia_cardiaca,
+                respiracion: respiracion || data.respiracion,
+                presion: presion || data.presion,
                 saturacion_oxigeno: saturacion_oxigeno || data.saturacion_oxigeno,
-                fecha_revision: fecha_revision || data.fecha_revision
+                fecha_revision: fecha_revision || data.fecha_revision,
+                otros: otros|| data.otros
                                   
             })
             .then(update => {
@@ -74,14 +76,15 @@ class Examen_Fisico{
                 message: 'Se nodifico con exito..',
                 data: {
                    
-                    estado_general: estado_general || update.estado_general,
-                    facies: facies || update.facies,
-                    precion_arterial: precion_arterial || update.precion_arterial,
-                    estado_nutricional: estado_nutricional|| update.estado_nutricional,
                     peso: peso || update.peso,
-                    frecuencia_cardiaca: frecuencia_cardiaca || update.frecuencia_cardiaca,
+                    talla: talla || update.talla,
+                    temperatura: temperatura || update.temperatura,
+                    frecuencia_cardiaca: frecuencia_cardiaca|| update.frecuencia_cardiaca,
+                    respiracion: respiracion || update.respiracion,
+                    presion: presion || update.presion,
                     saturacion_oxigeno: saturacion_oxigeno || update.saturacion_oxigeno,
-                    fecha_revision: fecha_revision || update.fecha_revision
+                    fecha_revision: fecha_revision || update.fecha_revision,
+                    otros: otros || update.otros
                 }
               })
             })
