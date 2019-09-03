@@ -76,7 +76,7 @@ router.get('/reportes_salidas', (req,res) => {
 });
 
 
-router.get('/volver', (req,res) => {
+router.get('/volver1', (req,res) => {
     oneGrupoAsig = null
     pass = null
     res.redirect('/almacen/grupoAsig'); 
