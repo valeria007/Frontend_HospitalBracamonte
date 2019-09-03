@@ -76,7 +76,7 @@
           <div class="col-md-12">
             <div class="block-web">
               <div class="header">
-                <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/almacen/volver"><i class="fa fa-repeat"></i></a> </div>
+                <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/almacen/volver1"><i class="fa fa-repeat"></i></a> </div>
                 <h3 class="content-header"> <i class="fa fa-list icon"></i> Registrar Grupo de Asignacion</h3>
               </div>
               <div class="porlets-content">
@@ -84,8 +84,8 @@
                   <div class="bs-example">
                     <div class="alert alert-danger fade in">
                       <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                      <h6 class="text-center" style="color:rgb(99, 4, 4);"><%=msg%></h6></div>
-                  </div>
+                      <h6 class="text-center" style="color:rgb(95, 4, 4);"><%=msg%></h6></div>
+                  </div> 
                 <% } else if(pass != null) { %>
                   <div class="bs-example">
                     <div class="alert alert-info fade in">
@@ -99,33 +99,33 @@
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Codigo</label>
                       <div class="col-sm-6">                   
-                        <input type="text" class="form-control" required parsley-minlength="3"  name="codigo" value="<%=err.codigo%>" />
+                        <input type="text" class="form-control" required parsley-minlength="3"  name="codigo" value="<%=err.codigo%>" style="text-transform:uppercase;"/>
                       </div>
                     </div><!--/form-group--> 
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Descripcion</label>
                       <div class="col-sm-6">                   
-                        <input type="text" class="form-control" required parsley-minlength="6" name="descripcion" value="<%=err.descripcion%>" />
+                        <input type="text" class="form-control" required parsley-minlength="6" name="descripcion" value="<%=err.descripcion%>" style="text-transform:uppercase;"/>
                       </div>
                     </div><!--/form-group--> 
                     <% } else { %>
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Codigo</label>
                       <div class="col-sm-6">                       
-                        <input type="text" class="form-control" required parsley-minlength="3"  name="codigo" />
+                        <input type="text" class="form-control" required parsley-minlength="3"  name="codigo"  style="text-transform:uppercase;"/>
                       </div>
                     </div><!--/form-group--> 
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Descripcion</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" required parsley-minlength="6"  name="descripcion" />
+                        <input type="text" class="form-control" required parsley-minlength="6"  name="descripcion" style="text-transform:uppercase;"/>
                       </div>
                     </div><!--/form-group--> 
                     <% } %>
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+                        <button  type="submit" class="btn btn-primary" ><i class="fa fa-floppy-o"></i>  Guardar</button>
+                        <button type="reset" value="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
                       </div>
                     </div><!--/form-group--> 
                   </form>
@@ -134,19 +134,19 @@
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Codigo:</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" value="<%=oneGrupoAsig[0].codigo%>" required parsley-minlength="3" name="codigo" />
+                        <input type="text" class="form-control" value="<%=oneGrupoAsig[0].codigo%>" required parsley-minlength="3" name="codigo" style="text-transform:uppercase;" />
                       </div>
                     </div><!--/form-group--> 
                     <div class="form-group">
                       <label class="col-sm-3 control-label">Descripcion:</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" value="<%=oneGrupoAsig[0].descripcion%>"  required parsley-minlength="6" name="descripcion" />
+                        <input type="text" class="form-control" value="<%=oneGrupoAsig[0].descripcion%>"  required parsley-minlength="6" name="descripcion" style="text-transform:uppercase;" />
                       </div>
                     </div><!--/form-group--> 
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-                        <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
+                        <a type="reset" class="btn btn-danger" href="/almacen/volver1"><i class="fa fa-times"></i> Cancelar</a>
                       </div>
                     </div>
                   </form>

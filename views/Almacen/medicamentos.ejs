@@ -81,15 +81,23 @@
 						  	<h3 class="content-header"> <i class="fa fa-medkit icon"></i> Registrar Medicamento</h3>
 						</div>
 						<div class="porlets-content">
-						<% if (dataGRUPOa == null) {%>
-						  	<h1>Ocurrio un problema con el servidor por favor intenta volver a entrar en esta pagina desde una pestaña anterior</h1>
-						<% } else {%>	
-							<%if(OnlyMedicamento == null) { %>
-								<% if(msg_post_false) { %>
-								<span style="color: red;"><%=msg_post_false%></span>
-								<% } else { %>
-								<span style="color: blue;"><%=msg_post_true%></span>
+						
+								<% if(msg_post_false != null) { %>
+								<div class="bs-example">
+									<div class="alert alert-danger fade in">
+									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+										<h4 class="text-center" style="color:rgb(99, 4, 4);"><%=msg_post_false%></h4>
+									</div>
+								</div>
+								<% } else if(msg_post_true != null) { %>
+								<div class="bs-example">
+									<div class="alert alert-info fade in">
+									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+										<h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg_post_true%></h6>
+									</div>
+								</div>
 								<% } %>
+								<%if(OnlyMedicamento == null) { %>
 							  	<form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
 								  	<div class="col-md-4">
 									  	<div class="form-group">
@@ -194,7 +202,6 @@
 									<a class="btn btn-danger" href="/medicamento/volver15"><i class="fa fa-times"></i> Cancelar</a>
 								</form>
 							<% } %>	
-						<% } %>
 					  	</div>
 					  	<div id="main-content">
 							<div class="page-content">
