@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>USUARIOS</title>
+<title>Registro Personal</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -26,31 +26,36 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
+<style>
 
+hr.message-inner-separator
+{
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 13px;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+
+</style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
   <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
     <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
       <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
     </div>
-    <!--\\\\\\\ brand end \\\\\\-->
     <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      
       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
       <div class="top_right_bar">
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            <li> <a href="index"><i class="fa fa-power-off"></i>Salir</a> </li>
           </ul>
         </div>
        
@@ -104,13 +109,28 @@
         </div>
     </div>
     <div class="contentpanel">
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="container clear_both padding_fix">
+      <div class="container clear_both padding_fix">
         <br>
-         <div class="row">
+        <div class="row">
         <div class="col-md-12">
+            <%if (msm1 != null) {%>
+              <div class="bs-example mover">
+                <div class="alert alert-danger fade in">
+                  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                  <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
+                  <hr class="message-inner-separator">
+                  <strong><%=msm1 %></strong></div>
+              </div>
+            <%} else if(sms2 != null) { %>
+              <div class="bs-example mover">
+                <div class="alert alert-success fade in">
+                  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                  <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
+                  <hr class="message-inner-separator">  
+                  <strong><%=sms2 %></strong>
+                </div>
+              </div>
+            <% } %>
           <div class="block-web">
             <div class="header">
               <div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
@@ -124,142 +144,118 @@
                 <div class="form-group">
                   <div class="col-sm-4">
                     <label class="control-label">Apellido Paterno:</label>
-                    <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" />
+                    <input type="text"  class="form-control " parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" onkeyup="mayus(this)"  />
                   </div>
-                      
-                      <div class="col-sm-4">
-                          <label class="control-label">Apellido Materno:</label>
-                        <input type="text" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" />
-                      </div>
-                      <div class="col-sm-4">
-                          <label class="control-label">Nombre(s):</label>
-                        <input type="text" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" />
-                      </div>
+                  <div class="col-sm-4">
+                    <label class="control-label">Apellido Materno:</label>
+                    <input type="text" class="form-control ma" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" onkeyup="mayus(this);" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="control-label">Nombre(s):</label>
+                    <input type="text" class="form-control ma" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" onkeyup="mayus(this);" />
+                  </div>
                 </div>
-                  
-                 
-                 
-                  <div class="form-group">
-                    
-                    <div class="col-sm-3">
-                        <label class="control-label">C.I.:</label>
-                      <input type="text" name="ci"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I." />
-                    </div>
-                    
-                    <div class="col-sm-4">
-                        <label class="control-label">Direccion:</label>
-                      <input type="text" class="form-control" name="direcion" parsley-trigger="change"   required placeholder="Introdusca C.I." />
-                    </div>
-                    <div class="col-sm-3">
-                        <label class="control-label">Telefono:</label>
-                      <input  type="text" class="form-control" name="telefono" required placeholder="(XXX) XXXX XXX" />
-                    </div>
-                    <div class="col-sm-2">
-                        <label >Cargo:</label>
-                        <select class="form-control" id="source" name="cargo">
-                            <option value="medico">Medico</option>
-                            <option value="enfermera">Enfermera</option>
-                            <option value="personal">Personal</option>
-                            <option value="farmaseutico">Farmaseutico</option>
-                        </select>
-                          
-                    </div>
-                  </div><!--/form-group--> 
-                  
-                  <div class="form-group">
-                      <div class="col-sm-offset-4 col-sm-10">
-                        <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                        <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                      </div>
-                    </div><!--/form-group--> 
-                  
-                </form>
+                <div class="form-group">
+                  <div class="col-sm-3">
+                    <label class="control-label">C.I.:</label>
+                    <input type="text" name="ci"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I."maxlength="10" />
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="control-label">Dirección:</label>
+                    <input type="text" class="form-control ma" name="direcion" parsley-trigger="change"   required placeholder="Introdusca Direccion" onkeyup="mayus(this);"  />
+                  </div>
+                  <div class="col-sm-3">
+                    <label class="control-label">Telefono:</label>
+                    <input  parsley-type="number" type="text" class="form-control" name="telefono" required placeholder="XX-XXXXXX" maxlength="8" />
+                  </div>
+                  <div class="col-sm-2">
+                    <label >Cargo:</label>
+                    <select class="form-control" id="source" name="cargo">
+                      <option value="medico">Medico</option>
+                      <option value="enfermera">Enfermera</option>
+                      <option value="personal">Personal</option>
+                      <option value="farmaseutico">Farmaseutico</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-4 col-sm-10">
+                    <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                    <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+              </form>
               <% } else { %>
-                
                 <form class="form-horizontal group-border-dashed" action="/usuarios/updatePersonal/<%=onlyUSer.id%>" method="POST" parsley-validate novalidate>
                   <div class="form-group">
-                      
-                      <div class="col-sm-4">
-                          <label class="control-label">Apellido Paterno:</label>
-                        <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" value="<%=onlyUSer.apellidop%>" required placeholder="Introdusca Apellido" />
-                      </div>
-                      
-                      <div class="col-sm-4">
-                          <label class="control-label">Apellido Materno:</label>
-                        <input type="text" class="form-control" parsley-trigger="change" name="apellidom" value="<%=onlyUSer.apellidom%>" required placeholder="Introdusca Apellido" />
-                      </div>
-                      <div class="col-sm-4">
-                          <label class="control-label">Nombre(s):</label>
-                        <input type="text" class="form-control" parsley-trigger="change"  name="nombre" value="<%=onlyUSer.nombre%>" required placeholder="Introdusca Nombre" />
-                      </div>
-                  </div><!--/form-group--> 
-                  
-                 
-                 
+                    <div class="col-sm-4">
+                      <label class="control-label">Apellido Paterno:</label>
+                      <input type="text"  class="form-control ma" parsley-trigger="change"  name="apellidop" value="<%=onlyUSer.apellidop%>" required placeholder="Introdusca Apellido" onkeyup="mayus(this);" />
+                    </div>
+                    <div class="col-sm-4">
+                      <label class="control-label">Apellido Materno:</label>
+                      <input type="text" class="form-control ma" parsley-trigger="change" name="apellidom" value="<%=onlyUSer.apellidom%>" required placeholder="Introdusca Apellido"  onkeyup="mayus(this);"/>
+                    </div>
+                    <div class="col-sm-4">
+                      <label class="control-label">Nombre(s):</label>
+                      <input type="text" class="form-control ma" parsley-trigger="change"  name="nombre" value="<%=onlyUSer.nombre%>" required placeholder="Introdusca Nombre"  onkeyup="mayus(this);"/>
+                    </div>
+                  </div>
                   <div class="form-group">
-                    
                     <div class="col-sm-3">
-                        <label class="control-label">C.I.:</label>
+                      <label class="control-label">C.I.:</label>
                       <input type="text" name="ci" value="<%=onlyUSer.ci%>"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I." />
                     </div>
-                    
                     <div class="col-sm-4">
-                        <label class="control-label">Direccion:</label>
-                      <input type="text" class="form-control" name="direcion" value="<%=onlyUSer.direcion%>" parsley-trigger="change"   required placeholder="Introdusca C.I." />
+                      <label class="control-label">Dirección:</label>
+                      <input type="text" class="form-control ma" name="direcion" value="<%=onlyUSer.direcion%>" parsley-trigger="change"   required placeholder="Introdusca Dirección"  onkeyup="mayus(this);"/>
                     </div>
                     <div class="col-sm-3">
-                        <label class="control-label">Telefono:</label>
-                      <input  type="text" class="form-control" name="telefono" value="<%=onlyUSer.telefono%>" required placeholder="(XXX) XXXX XXX" />
+                      <label class="control-label">Telefono:</label>
+                      <input parsley-type="number" type="text" class="form-control" name="telefono" value="<%=onlyUSer.telefono%>" required placeholder="XX-XXXXXX" />
                     </div>
                     <div class="col-sm-2">
-                        <label class="control-label" >Cargo:</label>
-                        <select class="form-control" id="source" name="cargo">
-                            <option><%=onlyUSer.cargo%></option>
-                            <option>-----------------------</option>
-                            <option value="medico">Medico</option>
-                            <option value="enfermera">Enfermera</option>
-                            <option value="personal">Personal</option>
-                            <option value="farmaseutico">Farmaseutico</option>
-                        </select>
-                          
+                      <label class="control-label" >Cargo:</label>
+                      <select class="form-control" id="source" name="cargo">
+                        <option><%=onlyUSer.cargo%></option>
+                        <option>-----------------------</option>
+                        <option value="medico">Medico</option>
+                        <option value="enfermera">Enfermera</option>
+                        <option value="personal">Personal</option>
+                        <option value="farmaseutico">Farmaseutico</option>
+                      </select>
                     </div>
-                  </div><!--/form-group--> 
-                  
+                  </div>
                   <div class="form-group">
-                      <div class="col-sm-offset-4 col-sm-10">
-                          <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/usuarios/quitar">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-                        <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                        <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                      </div>
-                    </div><!--/form-group--> 
-                  
+                    <div class="col-sm-offset-4 col-sm-10">
+                      <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/usuarios/quitar">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                      <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                      <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                    </div>
+                  </div> 
                 </form>
               <% } %>
-                
-              </div>
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
-      
-      
-      <div class="row" id="roles">
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="row" id="roles">  
         <div class="col-md-12">
           <div class="block-web">
-           <div class="header">
-             
+            <div class="header">
               <h3 class="content-header">Lista Personal</h3>
             </div>
-         <div class="porlets-content">
-            <div class="table-responsive">
+            <div class="porlets-content">
+              <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
                     <tr>
-                    <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>C.I.</th>
-                    <th>Cargo</th>
-                    <th>Opciones</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Apellido Paterno</th>
+                    <th class="text-center">Apellido Materno</th>
+                    <th class="text-center">C.I.</th>
+                    <th class="text-center">Cargo</th>
+                    <th class="text-center">Opciones</th>
                     
                     </tr>
                   </thead>
@@ -269,12 +265,12 @@
                   <% } else { %>
                   <% for(var i=0; i< resp.length; i++) { %>
                     <tr>
-                      <td><%=resp[i].nombre %></td>
-                      <td><%=resp[i].apellidop %></td>
-                      <td><%=resp[i].apellidom %></td>
-                      <td><%=resp[i].ci %></td>
-                      <td><%=resp[i].cargo %></td>										
-                      <td>
+                      <td class="text-center"><%=resp[i].nombre %></td>
+                      <td class="text-center"><%=resp[i].apellidop %></td>
+                      <td class="text-center"><%=resp[i].apellidom %></td>
+                      <td class="text-center"><%=resp[i].ci %></td>
+                      <td class="text-center"><%=resp[i].cargo %></td>										
+                      <td class="text-center">
 
                         <a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user text-muted"></i></a><span>&nbsp;</span>
                         <a href="#!"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
@@ -288,122 +284,121 @@
                   <% } %>
                   </tbody>
                 </table>
-              </div><!--/table-responsive-->
-              <!--
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!--
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                           modal par mostrar datos
                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
               -->
               <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <div class="info blue_symbols"><i class="fa fa-users icon" ></i></div>
-                        <h4 class="modal-title" id="myModalLabel">Cuenta</h4>
-                      </div>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <div class="porlets-content ">
-                                <form class="form-horizontal group-border-dashed">
-                                  <div class="form-group col-sm-12">
-                                      <div class="col-sm-6">
-                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">nombre:</label>
-                                          <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.nombre}}</label>  
-                                            </div>
-                                  </div>
-                                    
-                                  <div class="form-group col-sm-12">
-                                      <div class="col-sm-6">
-                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">Apellido Paterno:</label><span>&nbsp;</span>
-                                          <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.apellidop}}</label>                                        
-                                      </div>
-                                      
-                                      <div class="col-sm-6">
-                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">Apellido Materno:</label>
-                                          <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{{roles.apellidom}}</label>  
-                                      </div>
-                                      
-                                      
-                                      
-                                      
-                                  </div><!--/form-group--> 
-                                  
-                                  <div class="form-group col-sm-12">
-                                      <div class="col-sm-6">
-                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">direccion</label>
-                                          <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.direcion}}</label>  
-                                          </div>
-                                    
-                                  </div> 
-                                  
-                                    <div class="form-group col-sm-12">  
-                                        <div class="col-sm-6">
-                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">telefono:</label>
-                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.telefono}}</label>
-                                            </div>
-                                    
-                                        <div class="col-sm-6">
-                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">cargo:</label>
-                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.cargo}}</label>
-                                            </div>
-                                     </div>
-                                     <div class="form-group col-sm-12">     
-                                        <div class="col-sm-6">
-                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">cuenta {{email}}</label>
-                                            <select v-model="email" v-on:click="mostrar_roles">
-                                              <template v-for="rol in roles.roles" >
-                                              <option>{{rol.email}}</option>
-                                            </template>
-                                            </select>
-                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span></label>
-                                          </div>
-                                        <div class="col-sm-6">
-                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">rol</label>
-                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.rolUser}}</label>
-                                          </div>
-                                  </div><!--/form-group--> 
-                                  
-                                  <div class="form-group">
-                                      <div class="col-sm-offset-5 col-sm-10">
-                                  
-                                        <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                                      </div>
-                                    </div><!--/form-group--> 
-                                  
-                                </form>
-                              </div>
-                      
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <div class="info blue_symbols"><i class="fa fa-users icon" ></i></div>
+                      <h4 class="modal-title" id="myModalLabel">Cuenta</h4>
                     </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="porlets-content ">
+                              <form class="form-horizontal group-border-dashed">
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-6">
+                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">nombre:</label>
+                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.nombre}}</label>  
+                                          </div>
+                                </div>
+                                  
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-6">
+                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">Apellido Paterno:</label><span>&nbsp;</span>
+                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.apellidop}}</label>                                        
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">Apellido Materno:</label>
+                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{{roles.apellidom}}</label>  
+                                    </div>
+                                   
+                                </div>
+                                
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-6">
+                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">direccion</label>
+                                        <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.direcion}}</label>  
+                                        </div>
+                                  
+                                </div> 
+                                
+                                  <div class="form-group col-sm-12">  
+                                      <div class="col-sm-6">
+                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">telefono:</label>
+                                      <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.telefono}}</label>
+                                          </div>
+                                  
+                                      <div class="col-sm-6">
+                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">cargo:</label>
+                                      <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.cargo}}</label>
+                                          </div>
+                                   </div>
+                                   <div class="form-group col-sm-12">     
+                                      <div class="col-sm-6">
+                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">cuenta {{email}}</label>
+                                          <select v-model="email" v-on:click="mostrar_roles">
+                                            <template v-for="rol in roles.roles" >
+                                            <option>{{rol.email}}</option>
+                                          </template>
+                                          </select>
+                                      <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span></label>
+                                        </div>
+                                      <div class="col-sm-6">
+                                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="control-labe">rol</label>
+                                      <label class="control-labe"><span>&nbsp;&nbsp;&nbsp;</span>{{roles.rolUser}}</label>
+                                        </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-offset-5 col-sm-10">
+                                
+                                      <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                                    </div>
+                                  </div>
+                                
+                              </form>
+                            </div>
+                    
                   </div>
                 </div>
-                <!--
-                  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                -->
-            </div><!--/porlets-content-->
-            
-            
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
-      
-        </div>
-      <!--\\\\\\\ container  end \\\\\\-->
-    
-    <!--\\\\\\\ content panel end \\\\\\-->
-  </div>
-  <!--\\\\\\\ inner end\\\\\\-->
-</div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-<!-- Modal -->
+              </div>
+              <!--
+                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+              -->
 
-
-
+<script>
+ window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 2000);
+</script>
+<script>
+		function mayus(e) {
+    e.value = e.value.toUpperCase();
+}
+	</script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

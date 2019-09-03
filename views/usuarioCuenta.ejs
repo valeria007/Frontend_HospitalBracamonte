@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HOSPITAL</title>
+<title>Registro Cuentas</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -29,18 +29,11 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
   <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
     <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
       <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
     </div>
-    <!--\\\\\\\ brand end \\\\\\-->
     <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      
       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
       <div class="top_right_bar">
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -55,14 +48,9 @@
        
       </div>
     </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
+   </div>
   <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
     <div class="left_nav">
-      <!--\\\\\\\left_nav start \\\\\\-->
-      
       <div class="left_nav_slidebar">
           <ul>
             <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -107,12 +95,8 @@
           </ul>
         </div>
     </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="container clear_both padding_fix">
+      <div class="container clear_both padding_fix">
         <br>
         <a href="/usuarios/usuarios" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a>
         <br>
@@ -126,36 +110,27 @@
             </div>
             <br>
             <br>
-            
             <div class="porlets-content">
-					<form class="form-horizontal group-border-dashed" action="/usuarios/crearCuenta/<%=id.id%>" method="POST" parsley-validate novalidate>
-					<div class="form-group col-sm-12">
-						
-						<div class="col-sm-6">
-							<label class="control-labe">Cuenta:</label>
-						  <input type="text"  class="form-control" parsley-trigger="change"  name="username" required placeholder="Introdusca Cuenta" />
-						</div>
-						
-						<div class="col-sm-6">
-							<label class="control-labe">Email:</label>
-						  <input type="text" class="form-control" parsley-trigger="change" name="email" required placeholder="Introdusca Correo" />
-						</div>
-						
-					</div><!--/form-group--> 
-					
-				   
-				   
-					<div class="form-group col-sm-12">
-					  
-					  <div class="col-sm-6">
-						  <label class="control-labe">Contraseña:</label>
-						<input type="text" name="password"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca Contraseña" />
-					  </div>
-					  
-					  <div class="col-sm-6">
-						  <label class="control-labe">Repita Contraseña:</label>
-						<input type="text" class="form-control" name="direcion" parsley-trigger="change"   required placeholder="Repita Contraseña" />
-					  </div>
+				    	<form class="form-horizontal group-border-dashed" action="/usuarios/crearCuenta/<%=id.id%>" method="POST" parsley-validate novalidate>
+					      <div class="form-group col-sm-12">
+                  <div class="col-sm-6">
+							      <label class="control-labe">Cuenta:</label>
+						       <input type="text"  class="form-control" parsley-trigger="change"  name="username" required placeholder="Introdusca Cuenta" />
+						      </div>
+                  <div class="col-sm-6">
+							      <label class="control-labe">Email:</label>
+						        <input type="text"  class="form-control" parsley-trigger="change" name="email" required placeholder="Introdusca Correo" />
+						      </div>
+					      </div>
+					      <div class="form-group col-sm-12">
+                  <div class="col-sm-6">
+						        <label class="control-labe">Contraseña:</label>
+						        <input type="password" id="pass1" name="password"  class="form-control" placeholder="Password"  parsley-trigger="change" required placeholder="Introdusca Contraseña" />
+					        </div>
+					        <div class="col-sm-6">
+						        <label class="control-labe">Repita Contraseña:</label>
+						        <input type="password" parsley-equalto="#pass1" class="form-control" name="" parsley-trigger="change"   required placeholder="Repita Contraseña" />
+					        </div>
 					  <!--<div class="col-sm-4">
 						  <label >Rol:</label>
 						  <select class="form-control" id="source">
@@ -166,20 +141,18 @@
 						  </select>
 							
 					  </div>-->
-					</div><!--/form-group--> 
-					
-					<div class="form-group">
+					</div><div class="form-group">
 						<div class="col-sm-offset-4 col-sm-10">
 						  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
 						  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
 						</div>
-					  </div><!--/form-group--> 
+					  </div>
                   
-                </form>
+              </form>
               </div>
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
+          </div>
+        </div>
+      </div>
       
       
       <div class="row">
@@ -189,7 +162,7 @@
              
               <h3 class="content-header">Lista Cuentas</h3>
             </div>
-         <div class="porlets-content">
+            <div class="porlets-content">
             <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                     <thead>
@@ -197,7 +170,6 @@
                         <th>Correo</th>
                         <th>Email</th>
                         <th>Opciones</th>
-                        
                         </tr>
                       </thead>
                       <tbody>
@@ -211,22 +183,15 @@
                         <% } %>
                       </tbody>
                 </table>
-              </div><!--/table-responsive-->
-            </div><!--/porlets-content-->
-            
-            
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
-      
+              </div>
+            </div>
+          </div>
         </div>
-      <!--\\\\\\\ container  end \\\\\\-->
-    
-    <!--\\\\\\\ content panel end \\\\\\-->
+      </div>
+     </div>
+
   </div>
-  <!--\\\\\\\ inner end\\\\\\-->
 </div>
-<!--\\\\\\\ wrapper end\\\\\\-->
 <!--Modahhjmm-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -237,36 +202,28 @@
           <h3 class="content-header ">Rol Cuenta</h3>
         </div>
         <div class="modal-body"> 
-            <div class="porlets-content">
-                <form class="form-horizontal group-border-dashed" action="/cuaderno/insertarHorarios" method="POST" parsley-validate novalidate>
+          <div class="porlets-content">
+             <form class="form-horizontal group-border-dashed" action="/cuaderno/insertarHorarios" method="POST" parsley-validate novalidate>
                 <div class="form-group col-sm-12">
-                  
                   <div class="col-sm-6">
                     <label class="control-labe">Asignacion de Rol:</label>
-                                  <select class="form-control" id="source" name="" >
-      
-                                          <option>Administrador</option>
-                                          <option>Medico</option>
-                                          <option>Personal</option>
-                                          <option>Enfermera</option>
-                                          <option>Farmaceutico</option>
-                                          <option>Proveedor</option>
-                                                                               
-                      
-                                      </select>
-                                      <label class="control-labe" style="color:red;">*Un cuenta solo tiene un rol*</label>
+                    <select class="form-control" id="source" name="" >
+                      <option>Administrador</option>
+                      <option>Medico</option>
+                      <option>Personal</option>
+                      <option>Enfermera</option>
+                      <option>Farmaceutico</option>
+                      <option>Proveedor</option>
+                    </select>
+                    <label class="control-labe" style="color:red;">*Un cuenta solo tiene un rol*</label>
                   </div>
-                  
-                  
-                </div><!--/form-group-->  
-                
-                  <div class="modal-footer">
-                    
-                    <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                    <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                    </div>
-                      </form>
-                    </div>
+                </div> 
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                </div>
+            </form>
+          </div>
         </div>
         
       </div>

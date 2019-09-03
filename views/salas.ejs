@@ -32,18 +32,11 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
   <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
     <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
       <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
     </div>
-    <!--\\\\\\\ brand end \\\\\\-->
     <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      
       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
       <div class="top_right_bar">
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -58,14 +51,9 @@
        
       </div>
     </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
+    </div>
   <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
     <div class="left_nav">
-      <!--\\\\\\\left_nav start \\\\\\-->
-      
       <div class="left_nav_slidebar">
           <ul>
             <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -110,12 +98,8 @@
           </ul>
         </div>
     </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="container clear_both padding_fix">
+      <div class="container clear_both padding_fix">
         <br>
          <div class="row">
         <div class="col-md-12">
@@ -159,14 +143,14 @@
                             </select>
 						</div>
 						<div class="col-sm-3">
-                            <label class="control-labe">Piso:</label>
-                            <input class="form-control" type="text" name="piso" value="<%=OnlySala[0].piso%>" />
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="control-labe">Camas:</label>
-                            <input class="form-control" type="text"   ></input>
-                        </div>
-					</div><!--/form-group--> 
+              <label class="control-label">Piso:</label>
+              <input class="form-control" type="text" name="piso" value="<%=OnlySala[0].piso%>" />
+            </div>
+            <div class="col-sm-3">
+              <label class="control-label">Camas:</label>
+              <input class="form-control" type="text"   ></input>
+            </div>
+					</div>
 					
 					<div class="form-group">
 						<div class="col-sm-offset-4 col-sm-10">
@@ -229,9 +213,9 @@
                     <% } %>
                     
               </div>
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
+          </div>
+        </div>
+      </div>
       
       
       <div class="row">
@@ -259,39 +243,29 @@
                       <tbody>
                         <% for (var i=0; i< resp.length; i++) { %>
                         <tr>
-                            <td><%=i+1%></td>
-                            <td><%=resp[i].nombre%></td>
-                            <td><%=resp[i].descripcionSala%></td>
-                            <td><%=resp[i].piso%></td>
-                            <td>poner cantidad maxima de camas en la tabla salas</td>
+                          <td><%=i+1%></td>
+                          <td><%=resp[i].nombre%></td>
+                          <td><%=resp[i].descripcionSala%></td>
+                          <td><%=resp[i].piso%></td>
+                          <td>poner cantidad maxima de camas en la tabla salas</td>
                         <td>
-                                <a href="/salas/renderCamas/<%=resp[i].id%> " data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-eye text-muted"></i></a><span>&nbsp;</span>
-                                <a href="/salas/updateSalas/<%=resp[i].id%>""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
+                            <a href="/salas/renderCamas/<%=resp[i].id%> " data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Camas"><i class="fa fa-plus text-muted"></i></a><span>&nbsp;</span>
+                            <a href="/salas/updateSalas/<%=resp[i].id%>""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
                                 
                         </td>							
                         </tr>
                         <% } %>
-                      <tbody>
+                      </tbody>
                 </table>
-              </div><!--/table-responsive-->
-            </div><!--/porlets-content-->
-            
-            
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div><!--/row-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
         </div>
-      <!--\\\\\\\ container  end \\\\\\-->
-    
-    <!--\\\\\\\ content panel end \\\\\\-->
-  </div>
-  <!--\\\\\\\ inner end\\\\\\-->
+ </div>
 </div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-
-
-
 
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>

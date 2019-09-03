@@ -42,7 +42,7 @@ router.get('/usuarios',(req, res) => {
         .then(resp => resp.json())
         .then(resp =>{
           ///console.log(resp, "esto es el mensaje")
-        res.render('usuarios',{resp, msg, onlyUSer});
+        res.render('usuarios',{resp, msg, msm1,sms2,onlyUSer});
      })
      .catch(error => {       
       console.error('Error:', error)
@@ -50,12 +50,13 @@ router.get('/usuarios',(req, res) => {
   })
 });
   var msg
-  var msg
+  var msm1,sms2
   router.post('/usuarios', (req,res) => {
+      const ci= req.body.ci
       var telefono = req.body.telefono;
       if(telefono == ""){
         msg = "introdusca telefono";
-        res.redirect('/usuario');
+        res.redirect('/');
       }
       else{
         var data = req.body;
@@ -73,9 +74,11 @@ router.get('/usuarios',(req, res) => {
       .then(data => {
          console.log(data, "  <<<<<<<<<<<<<<< esto es post")
           if (data.success == false){
-              res.send(data)
+              msm1= "El Nunmero de Carnet ya se encuentra Registrado "
+              res.redirect('/usuarios/usuarios') 
           }else{
-               msg = ""
+              sms2="Todoa los datos fueron introducidos correctamente.!"
+               
               res.redirect('/usuarios/usuarios');
   
           }

@@ -1,94 +1,199 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE >
+<html >
 <head>
-	<title>Inicio</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("partials/head") -%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ESPECILAIDADES</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+<style>
+        .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+      .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+      </style>
+
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	<!-- Content page-->
-	<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-		<!-- NavBar -->
-		<nav class="full-box dashboard-Navbar">
-			<ul class="full-box list-unstyled text-right">
-				<li class="pull-left">
-					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<!-- Content page -->
-		<div class="container-fluid">
-            <div class="page-header">
-                <h1 class="text-titles"><i class="zmdi zmdi-home zmdi-hc-fw"></i>Camas <%=salas[0].nombre%></h1>
-            </div>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+    <div class="header_bar">
+    <div class="brand">
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+    </div>
+    <div class="header_top_bar">
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
         </div>
-        <!-- Nueva Sala-->
-		<div class="container-fluid">
+       
+      </div>
+    </div>
+    </div>
+    <div class="inner">
+        <div class="left_nav">
+            <div class="left_nav_slidebar">
+                <ul>
+                    <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                        <ul >
+                            <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+                        </ul>
+                    </li>
+                    <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+                        <ul >
+                            <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Personal</b> </a> </li>
+                            <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Servicios</b> </a> </li>
+                            <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle "></i> Especialidad</b> </a> </li>
+                        </ul>
+                    </li>
+                    <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+                        <ul>
+                            <li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
+                        </ul>
+                    </li>
+                    <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                        <ul class="opened" style="display:block">
+                            <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Salas</b> </a> </li>
+                            <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
+                        </ul>
+                    </li>
+                    <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                        <ul>
+                            <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
+                            <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+                            <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+                            <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+                            <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
+                        </ul>
+                    </li>
+                    <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                        <ul>
+                            <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
+                            <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                            <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+    </div>
+    <div class="contentpanel">
+        <div class="container clear_both padding_fix">
+            <br>
             <div class="row">
-                <div class="col-xs-12 col-md-10 col-md-offset-1"> 
-                <form action="/salas/camas/<%=salas[0].id%>" method="POST">
-                    <div class="form-group label-floating">
-                        <label class="control-label">Descripcion</label>
-                        <select class="form-control" name="descripcion">
-                            <option><%=salas[0].descripcionSala%></option>
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <div class="input-group">
-                            <label class="label1">Número de Cama</label>
-                            <input class="input--style-4" type="text" name="numeroCama">
+                <div class="col-sm-12">
+                    <div class="block-web">
+                        <div class="header">
+                            <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
+                            <h3 class="content-header ">Creacion Camas <%=salas[0].nombre%></h3>
                         </div>
-                    </div>          
-                    <p class="text-center">
-                        <button type="reset" class="btn btn-primary" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                        <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                        <button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
-					</p>
-                </form>
-                <!-- Lista de Salas-->
-                <div class="table-responsive">
-					<div class="table-responsive">
-                        <div class="table-wrapper">
-							<p class="text-center">
-								<button type="submit" class="btn btn-info btn-lg" style="margin-right: 20px;"><i class="zmdi zmdi-file"></i> &nbsp;&nbsp; Nueva Cama </button>
-							</p>
-                            <table class="fl-table">
+                        <br><br>
+                        <div class="porlets-content">
+                            <%if (onlyCamas == null) { %>
+                            <form class="form-horizontal group-border-dashed" action="/salas/camas/<%=salas[0].id%>" method="POST" parsley-validate novalidate>
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-6">
+                                        <label class="control-label">Descripcion</label>
+                                        <select class="form-control" id="source"  name="descripcion">
+                                            <option><%=salas[0].descripcionSala%></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label">Número de Cama</label>
+                                        <input class="form-control" type="text" name="numeroCama">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-10">
+                                        <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                        <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <% } else { %>
+                            <form class="form-horizontal group-border-dashed" action="/salas/updateCama/<%=resp[0].id%>" method="POST" parsley-validate novalidate>
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-6">
+                                        <label class="control-label">Descripcion</label>
+                                        <select class="form-control" id="source"  name="descripcion">
+                                            <option><%=resp[0].descripcion%></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label">Número de Cama</label>
+                                        <input class="form-control" type="text" name="numeroCama" value="<%=resp[0].numeroCama%>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-10">
+                                        <button type="submit" class="btn btn-success btn-icon" >Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                        <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block-web">
+                        <div class="header">
+                            <h3 class="content-header">Lista Camas</h3>
+                        </div>
+                     <div class="porlets-content">
+                        <div class="table-responsive">
+                            <table  class="display table table-bordered table-striped" id="dynamic-table">
                                 <thead>
                                     <tr>
-                                        <th>Cama</th>
-                                        <th>Descripcion</th>
-                                        <th>Estado</th>
-                                        <th>select</th>
-                                        <th>Ver Cama</th>
+                                        <th class="text-center">Cama</th>
+                                        <th class="text-center">Descripcion</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% for(var i=0; i< resp.length; i++) { %>
                                     <tr>
-                                        <td><%=resp[i].numeroCama%></td>
-                                        <td><%=resp[i].descripcion%></td>
-                                        <td><%=resp[i].estado%></td>
-                                        <td><a href="/salas/updateCama/<%=resp[i].id%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-home"></i></a></td>
-                                        <td><a href="/historial" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-home"></i></a></td>
+                                        <td class="text-center"><%=resp[i].numeroCama%></td>
+                                        <td class="text-center"><%=resp[i].descripcion%></td>
+                                        <td class="text-center"><%=resp[i].estado%></td>
+                                        <td class="text-center"><a href="/salas/updateCama/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a>
+                                            <a href="/historial"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Cama"><i class="fa fa-eye text-muted"></i></a></td>
                                     </tr>
                                     <% } %>
-                                <tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
-            </div>
         </div>
-	</section>
+    </div>
+</div>
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
 </body>
