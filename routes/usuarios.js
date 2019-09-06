@@ -52,7 +52,6 @@ router.get('/usuarios',(req, res) => {
   var msg
   var msm1,sms2
   router.post('/usuarios', (req,res) => {
-      const ci= req.body.ci
       var telefono = req.body.telefono;
       if(telefono == ""){
         msg = "introdusca telefono";
@@ -142,16 +141,19 @@ router.get('/UsuraioCuenta/:id', (req,res) => {
           }else{
             res.render('usuarioCuenta',{
               id,
-              resp
+              resp,
+              mg1,
+              mg2,
+              data
             });
           }
      });
 });
-
+var mg1,mg2,data
 router.post('/crearCuenta/:id', (req,res) => {
   var id = req.params
   //console.log(id, "    este es el id >>>>>>>>>>>>>>>>>>>>>>>>><" )
-  var data = req.body
+  data = req.body
   //console.log(data, "  esto quiero");
   var enviar = {
     method: 'POST',
@@ -164,8 +166,18 @@ router.post('/crearCuenta/:id', (req,res) => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-   // console.log(resp)
-    res.redirect('/usuarios/UsuraioCuenta/'+id.id)
+    if (resp.success == false){
+      mg1= resp.msg
+      res.redirect('/usuarios/UsuraioCuenta/'+id.id)
+    
+  }else{
+      mg2="Todoa los datos fueron introducidos correctamente.!"
+      data=null 
+      console.log(resp)
+      res.redirect('/usuarios/UsuraioCuenta/'+id.id)
+  }
+
+  
   })
 });
 

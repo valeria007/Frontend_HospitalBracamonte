@@ -2,105 +2,66 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ESPECILAIDADES</title>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
+<title>Especialidad</title>
+<%- include("../partials/head") -%>	
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <div class="header_bar">
-    <div class="brand">
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-    </div>
-    <div class="header_top_bar">
-       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-          </ul>
-        </div>
-       
-      </div>
-    </div>
-  </div>
+  <%- include("../partials/menusali") -%>	
  <div class="inner">
-    <div class="left_nav">
-      <div class="left_nav_slidebar">
-          <ul>
-            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
-              </ul>
-            </li>
-            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul class="opened" style="display:block">
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Personal</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Servicios</b> </a> </li>
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Especialidad</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
-                <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
-                <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-                <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-                <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
-                <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-    </div>
+  <div class="left_nav">
+    <div class="left_nav_slidebar">
+        <ul>
+          <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul >
+              <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+            </ul>
+          </li>
+          <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul >
+              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Personal</b> </a> </li>
+              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Crear Roles</b> </a> </li>
+            </ul>
+          </li>
+
+          <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul class="opened" style="display:block">
+              
+              <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Especialidades</b> </a> </li>
+              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-male"></i> Pacientes<span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
+              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-plus-square"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Medicamentos</a> </li>
+              <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vendidos</b> </a> </li>
+              
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
+              <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+  </div>
     <div class="contentpanel">
     <div class="container clear_both padding_fix">
-        <br>
-        <a href="/cuaderno/especialidad" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a></td>
-        <br>
-        <br>
         
          <div class="row">
         <div class="col-md-12">
@@ -109,6 +70,9 @@
               <div class="info blue_symbols"><i class="fa fa-th-list icon"></i></div>
               <h3 class="content-header ">Especialidad<span class="semi-bold">/Creación Consultorio</span></h3>
             </div>
+            <br>
+            <br>
+            <a href="/cuaderno/especialidad" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a></td>
             <br>
             <br>
             <div class="porlets-content">
@@ -128,7 +92,8 @@
               <label class="control-labe">Descripcion:</label>
               <input class="form-control" name="descripcion" parsley-trigger="change" required placeholder="Breve Descripcion"></input>
             </div>
-					</div>	<div class="form-group">
+          </div>	
+          <div class="form-group">
 						<div class="col-sm-offset-4 col-sm-10">
 						  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
 						  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
@@ -160,10 +125,10 @@
           </div>
         </form>
         <% } %>
-      </div>
+            </div>
     </div>
   </div>
-</div>
+      </div>
      <div class="row">
         <div class="col-md-12">
           <div class="block-web">

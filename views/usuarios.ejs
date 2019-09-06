@@ -4,28 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 <title>Registro Personal</title>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
+<%- include("partials/head") -%>	
 <style>
 
 hr.message-inner-separator
@@ -45,93 +24,68 @@ hr.message-inner-separator
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <div class="header_bar">
-    <div class="brand">
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-    </div>
-    <div class="header_top_bar">
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="index"><i class="fa fa-power-off"></i>Salir</a> </li>
-          </ul>
-        </div>
-       
-      </div>
-    </div>
-  </div>
+  <%- include("partials/menusali") -%>	
   <div class="inner">
     <div class="left_nav">
       <div class="left_nav_slidebar">
-          <ul>
-            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
-              </ul>
-            </li>
-            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul class="opened" style="display:block">
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Personal</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
-                <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
-                <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-                <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-                <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
-                <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+        <ul>
+          <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul >
+              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+            </ul>
+          </li>
+          <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul class="opened" style="display:block" >
+              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Registros</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
+              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
+              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Farmacia</a> </li>
+              <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="contentpanel">
       <div class="container clear_both padding_fix">
         <br>
         <div class="row">
         <div class="col-md-12">
-            <%if (msm1 != null) {%>
-              <div class="bs-example mover">
-                <div class="alert alert-danger fade in">
-                  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                  <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
-                  <hr class="message-inner-separator">
-                  <strong><%=msm1 %></strong></div>
-              </div>
-            <%} else if(sms2 != null) { %>
-              <div class="bs-example mover">
-                <div class="alert alert-success fade in">
-                  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                  <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
-                  <hr class="message-inner-separator">  
-                  <strong><%=sms2 %></strong>
-                </div>
-              </div>
-            <% } %>
+            
           <div class="block-web">
+              <%if (msm1 != null) {%>
+                <div class="bs-example mover">
+                  <div class="alert alert-danger fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
+                    <hr class="message-inner-separator">
+                    <strong><%=msm1 %></strong></div>
+                </div>
+              <%} else if(sms2 != null) { %>
+                <div class="bs-example mover">
+                  <div class="alert alert-success fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
+                    <hr class="message-inner-separator">  
+                    <strong><%=sms2 %></strong>
+                  </div>
+                </div>
+              <% } %>
             <div class="header">
               <div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
               <h3 class="content-header ">Registro de Personal</h3>
@@ -139,47 +93,52 @@ hr.message-inner-separator
             <br>
             <br>
             <div class="porlets-content">
+              
               <%if (onlyUSer == null) { %>
               <form class="form-horizontal group-border-dashed" action="/usuarios/usuarios" method="POST" parsley-validate novalidate>
                 <div class="form-group">
-                  <div class="col-sm-4">
-                    <label class="control-label">Apellido Paterno:</label>
+                  <div class="col-md-4">
+                    <label >Apellido Paterno:</label>
                     <input type="text"  class="form-control " parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Apellido" onkeyup="mayus(this)"  />
                   </div>
-                  <div class="col-sm-4">
-                    <label class="control-label">Apellido Materno:</label>
+                  <div class="col-md-4">
+                    <label>Apellido Materno:</label>
                     <input type="text" class="form-control ma" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Apellido" onkeyup="mayus(this);" />
                   </div>
-                  <div class="col-sm-4">
-                    <label class="control-label">Nombre(s):</label>
+                  <div class="col-md-4">
+                    <label >Nombre(s):</label>
                     <input type="text" class="form-control ma" parsley-trigger="change"  name="nombre" required placeholder="Introdusca Nombre" onkeyup="mayus(this);" />
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-sm-3">
-                    <label class="control-label">C.I.:</label>
+                  <div class="col-md-4">
+                    <label >C.I.:</label>
                     <input type="text" name="ci"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I."maxlength="10" />
                   </div>
-                  <div class="col-sm-4">
-                    <label class="control-label">Dirección:</label>
-                    <input type="text" class="form-control ma" name="direcion" parsley-trigger="change"   required placeholder="Introdusca Direccion" onkeyup="mayus(this);"  />
+                  <div class="col-md-4">
+                    <label >Dirección:</label>
+                    <input type="text" class="form-control " name="direcion" parsley-trigger="change"   required placeholder="Introdusca Direccion" onkeyup="mayus(this);"  />
                   </div>
-                  <div class="col-sm-3">
-                    <label class="control-label">Telefono:</label>
+                  <div class="col-md-4">
+                    <label >Telefono:</label>
                     <input  parsley-type="number" type="text" class="form-control" name="telefono" required placeholder="XX-XXXXXX" maxlength="8" />
                   </div>
-                  <div class="col-sm-2">
-                    <label >Cargo:</label>
-                    <select class="form-control" id="source" name="cargo">
-                      <option value="medico">Medico</option>
-                      <option value="enfermera">Enfermera</option>
-                      <option value="personal">Personal</option>
-                      <option value="farmaseutico">Farmaseutico</option>
-                    </select>
-                  </div>
+                  
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label >Cargo:</label>
+                        <select class="form-control" id="source" name="cargo">
+                          <option value="medico">Medico</option>
+                          <option value="enfermera">Enfermera</option>
+                          <option value="personal">Personal</option>
+                          <option value="farmaseutico">Farmaseutico</option>
+                        </select>
+                    </div>
+                    
                 </div>
                 <div class="form-group">
-                  <div class="col-sm-offset-4 col-sm-10">
+                  <div class="col-md-offset-4 col-md-10">
                     <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
                     <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
                   </div>
@@ -188,46 +147,48 @@ hr.message-inner-separator
               <% } else { %>
                 <form class="form-horizontal group-border-dashed" action="/usuarios/updatePersonal/<%=onlyUSer.id%>" method="POST" parsley-validate novalidate>
                   <div class="form-group">
-                    <div class="col-sm-4">
-                      <label class="control-label">Apellido Paterno:</label>
+                    <div class="col-md-4">
+                      <label >Apellido Paterno:</label>
                       <input type="text"  class="form-control ma" parsley-trigger="change"  name="apellidop" value="<%=onlyUSer.apellidop%>" required placeholder="Introdusca Apellido" onkeyup="mayus(this);" />
                     </div>
-                    <div class="col-sm-4">
-                      <label class="control-label">Apellido Materno:</label>
+                    <div class="col-md-4">
+                      <label >Apellido Materno:</label>
                       <input type="text" class="form-control ma" parsley-trigger="change" name="apellidom" value="<%=onlyUSer.apellidom%>" required placeholder="Introdusca Apellido"  onkeyup="mayus(this);"/>
                     </div>
-                    <div class="col-sm-4">
-                      <label class="control-label">Nombre(s):</label>
+                    <div class="col-md-4">
+                      <label >Nombre(s):</label>
                       <input type="text" class="form-control ma" parsley-trigger="change"  name="nombre" value="<%=onlyUSer.nombre%>" required placeholder="Introdusca Nombre"  onkeyup="mayus(this);"/>
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-3">
-                      <label class="control-label">C.I.:</label>
+                    <div class="col-md-4">
+                      <label >C.I.:</label>
                       <input type="text" name="ci" value="<%=onlyUSer.ci%>"  class="form-control" parsley-trigger="change"   required placeholder="Introdusca C.I." />
                     </div>
-                    <div class="col-sm-4">
-                      <label class="control-label">Dirección:</label>
+                    <div class="col-md-4">
+                      <label>Dirección:</label>
                       <input type="text" class="form-control ma" name="direcion" value="<%=onlyUSer.direcion%>" parsley-trigger="change"   required placeholder="Introdusca Dirección"  onkeyup="mayus(this);"/>
                     </div>
-                    <div class="col-sm-3">
-                      <label class="control-label">Telefono:</label>
+                    <div class="col-md-4">
+                      <label >Telefono:</label>
                       <input parsley-type="number" type="text" class="form-control" name="telefono" value="<%=onlyUSer.telefono%>" required placeholder="XX-XXXXXX" />
                     </div>
-                    <div class="col-sm-2">
-                      <label class="control-label" >Cargo:</label>
-                      <select class="form-control" id="source" name="cargo">
-                        <option><%=onlyUSer.cargo%></option>
-                        <option>-----------------------</option>
-                        <option value="medico">Medico</option>
-                        <option value="enfermera">Enfermera</option>
-                        <option value="personal">Personal</option>
-                        <option value="farmaseutico">Farmaseutico</option>
-                      </select>
-                    </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label  >Cargo:</label>
+                          <select class="form-control" id="source" name="cargo">
+                            <option><%=onlyUSer.cargo%></option>
+                            <option>-----------------------</option>
+                            <option value="medico">Medico</option>
+                            <option value="enfermera">Enfermera</option>
+                            <option value="personal">Personal</option>
+                            <option value="farmaseutico">Farmaseutico</option>
+                          </select>
+                      </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-10">
+                    <div class="col-md-offset-4 col-md-10">
                       <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/usuarios/quitar">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
                       <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
                       <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
@@ -272,10 +233,10 @@ hr.message-inner-separator
                       <td class="text-center"><%=resp[i].cargo %></td>										
                       <td class="text-center">
 
-                        <a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user text-muted"></i></a><span>&nbsp;</span>
-                        <a href="#!"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o text-muted"></i></a><span>&nbsp;</span>
-                        <a href="/usuarios/usuarios/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a><span>&nbsp;</span>
-                        <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver cuentas"><i class="fa fa-eye text-muted"></i></a>
+                        <a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user "></i></a><span>&nbsp;</span>
+                        <a href="#!"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                        <a href="/usuarios/usuarios/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
+                        <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver cuentas"><i class="fa fa-eye " style="color:black"></i></a>
                       
                       </td>
                     
@@ -398,7 +359,8 @@ hr.message-inner-separator
 		function mayus(e) {
     e.value = e.value.toUpperCase();
 }
-	</script>
+  </script>
+
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>
