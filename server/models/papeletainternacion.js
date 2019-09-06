@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     diagnostico: DataTypes.TEXT,
     especialidad: DataTypes.STRING,
     idConsultaMedica: DataTypes.INTEGER,
-    idEmergencia: DataTypes.INTEGER
+    idEmergencia: DataTypes.INTEGER,
+    id_medico: DataTypes.INTEGER
   }, {});
   PapeletaInternacion.associate = function(models) {
     // associations can be defined here

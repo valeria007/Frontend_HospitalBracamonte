@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     saturacion_oxigeno: DataTypes.STRING,
     fecha_revision: DataTypes.STRING,
     otros:DataTypes.TEXT,
-    id_paciente: DataTypes.INTEGER
+    id_paciente: DataTypes.INTEGER,
+    id_user: DataTypes.INTEGER
   }, {});
   examen_fisico.associate = function(models) {
     // associations can be defined here

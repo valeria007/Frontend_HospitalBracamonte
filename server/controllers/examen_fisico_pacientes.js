@@ -4,27 +4,53 @@ const { examen_fisico } = model;
 
 class Examen_Fisico{
     static reg_examen_fisico(req,res){
-        const { peso,talla,temperatura,frecuencia_cardiaca,respiracion,presion,saturacion_oxigeno,fecha_revision,otros } = req.body;
+      if(req.body.peso == "" || req.body.talla == "" || req.body.temperatura == "" || req.body.fecha_revision == ""){
+        if(req.body.peso == ""){
+          res.status(400).json({
+            success :  false ,
+            msg : "Por favor inserte peso"
+          })
+        }else if(req.body.talla == ""){
+          res.status(400).json({
+            success :  false ,
+            msg : "Por favor talla"
+          })
+        }else if (req.body.temperatura == ""){
+          res.status(400).json({
+            success :  false ,
+            msg : "Por favor inserte temperatura"
+          })
+        }else if (req.body.fecha_revision == ""){
+          res.status(400).json({
+            success :  false ,
+            msg : "Por favor inserte fecha"
+          })
+        }
+      }else{
+        const { peso,talla,temperatura,frecuencia_cardiaca,respiracion,presion,saturacion_oxigeno,fecha_revision,otros,id_user } = req.body;
         const { id_paciente } = req.params; 
         return examen_fisico
         .create({
-            peso,
-            talla,
-            temperatura,
-            frecuencia_cardiaca,
-            respiracion,
-            presion,
-            saturacion_oxigeno,
-            fecha_revision,
-            otros,
-            id_paciente 
+          peso,
+          talla,
+          temperatura,
+          frecuencia_cardiaca,
+          respiracion,
+          presion,
+          saturacion_oxigeno,
+          fecha_revision,
+          otros,
+          id_paciente,
+          id_user 
         })
         .then(data => res.status(201).json({
             success: true,
-            message: " Registrado ",
+            msg: " Registrado ",
             data
         }))
         .catch(error => res.status(400).send(error));
+      }
+        
     }
     static list_tesponsable(req,res){
         return examen_fisico
@@ -73,7 +99,8 @@ class Examen_Fisico{
             })
             .then(update => {
               res.status(200).send({
-                message: 'Se nodifico con exito..',
+                success: true,
+                msg: 'Se modifico con exito..',
                 data: {
                    
                     peso: peso || update.peso,
@@ -88,9 +115,17 @@ class Examen_Fisico{
                 }
               })
             })
-            .catch(error => res.status(400).send(error));
+            .catch(error => res.status(400).send({
+              success:false,
+              msg: "No se pudo actualziar los datos",
+              error
+            }));
           })
-          .catch(error => res.status(400).send(error));
+          .catch(error => res.status(400).send({
+            success:false,
+            msg: "No se pudo actualziar los datos",
+            error
+          }));
     }
 }
 export default Examen_Fisico

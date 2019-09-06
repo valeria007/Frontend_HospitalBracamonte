@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     direccion: DataTypes.TEXT,
     ci:DataTypes.INTEGER,
     telefono:DataTypes.INTEGER,
-    id_paciente: DataTypes.INTEGER
+    id_paciente: DataTypes.INTEGER,
+    id_register: DataTypes.INTEGER
   }, {});
   responsables.associate = function(models) {
     // associations can be defined here

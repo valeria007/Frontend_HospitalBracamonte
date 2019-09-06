@@ -25,9 +25,10 @@ class Emergencias {
         })
         .then(data => res.status(200).send({
             success: true,
-            message: "se introdujo una cama",
+            msg: "Se insertaron los datos correctamente",
             data
-        }))        
+        }))
+        .catch(error => res.status(400).send(error));       
     }
     // Servicio para para mostrar emergencias
     static getEmergencia(req, res) {
@@ -64,40 +65,35 @@ class Emergencias {
         });     
     }
     static updateEmergencia(req, res) {
-        const { fechaAtencion, Nhistorial,nombreDoctor,apellidoD1,apellidoD2,motivoConsulta,diagnostico,tratamiento,observaciones,idDoctor,idEnfermera } = req.body
+        const { fechaAtencion, Nhistorial,nombreDoctor,apellidoD1,apellidoD2,motivoConsulta,diagnostico,tratamiento,observaciones } = req.body
         return emergencia
           .findByPk(req.params.id)
           .then((data) => {
             data.update({
-                fechaAtencion: fechaAtencion || data.fechaAtencion,
-                Nhistorial: Nhistorial || data.Nhistorial,  
-                nombreDoctor: nombreDoctor || data.nombreDoctor,  
-                apellidoD1: apellidoD1 || data.apellidoD1,  
-                apellidoD2: apellidoD2 || data.apellidoD2,  
-                motivoConsulta: motivoConsulta || data.motivoConsulta,  
-                diagnostico: diagnostico || data.diagnostico,  
-                tratamiento: tratamiento || data.tratamiento, 
-                observaciones: observaciones || data.observaciones,                    
-                idDoctor: idDoctor || data.idDoctor,                    
-                idEnfermera: idEnfermera || data.idEnfermera                  
-
+               
+              nombreDoctor: nombreDoctor || data.nombreDoctor,  
+              apellidoD1: apellidoD1 || data.apellidoD1,  
+              apellidoD2: apellidoD2 || data.apellidoD2,  
+              motivoConsulta: motivoConsulta || data.motivoConsulta,  
+              diagnostico: diagnostico || data.diagnostico,  
+              tratamiento: tratamiento || data.tratamiento, 
+              observaciones: observaciones || data.observaciones,                    
             })
             .then(update => {
               res.status(200).send({
-                message: 'Sala actualizado',
+                success: true,
+                msg: 'Se actualizo los datos en la consulta de emergencia',
                 data: {
                   
-                    fechaAtencion: fechaAtencion || update.fechaAtencion,
-                    Nhistorial: Nhistorial || update.Nhistorial,  
-                    nombreDoctor: nombreDoctor || update.nombreDoctor,  
-                    apellidoD1: apellidoD1 || update.apellidoD1,  
-                    apellidoD2: apellidoD2 || update.apellidoD2,  
-                    motivoConsulta: motivoConsulta || update.motivoConsulta,  
-                    diagnostico: diagnostico || update.diagnostico,  
-                    tratamiento: tratamiento || update.tratamiento, 
-                    observaciones: observaciones || update.observaciones,                    
-                    idDoctor: idDoctor || update.idDoctor,                    
-                    idEnfermera: idEnfermera || update.idEnfermera
+                   
+                  nombreDoctor: nombreDoctor || update.nombreDoctor,  
+                  apellidoD1: apellidoD1 || update.apellidoD1,  
+                  apellidoD2: apellidoD2 || update.apellidoD2,  
+                  motivoConsulta: motivoConsulta || update.motivoConsulta,  
+                  diagnostico: diagnostico || update.diagnostico,  
+                  tratamiento: tratamiento || update.tratamiento, 
+                  observaciones: observaciones || update.observaciones,                    
+           
                 }
               })
             })
@@ -120,7 +116,7 @@ class Emergencias {
       var id = req.params.id;  
       emergencia.findAll({
          where: { id : id },
-         attributes: ['id', 'fechaAtencion','Nhistorial','nombreDoctor','apellidoD1','apellidoD2','diagnostico' ],
+         
          include:[
              {model: Citas_Medicas,attributes: ['id'], 
              include:[{

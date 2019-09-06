@@ -4,7 +4,8 @@ const { alergias } = model;
 
 class Alergias{
    static reg_alergias(req,res) {
-       const { tipoAlergia,descripcion,familiares,personales_patologicos,personales_no_patologicos,gineco_obstetrico,tipoHabito,descripcionHa,descripcionInte} = req.body;
+
+       const { tipoAlergia,descripcion,familiares,personales_patologicos,personales_no_patologicos,gineco_obstetrico,tipoHabito,descripcionHa,descripcionInte,id_user } = req.body;
        const { id_paciente } = req.params;
        return alergias
        .create({
@@ -17,12 +18,21 @@ class Alergias{
         tipoHabito,
         descripcionHa,
         descripcionInte,
-        id_paciente
+        id_paciente,
+        id_user
        })
        .then(data => res.status(201).send({
-        success: true,        
+        success: true,  
+        msg: "Se inserto una alergia",      
         data
       }))
+      .catch(error => res.status(400).send({
+        success: false,
+        msg:"No se pudo insertar los datos, por un error en la base de datos",
+        error
+       
+
+      }));
    }
    static list_alergias(req,res){
         return alergias
@@ -72,7 +82,8 @@ class Alergias{
             })
             .then(update => {
               res.status(200).send({
-                message: 'Se nodifico con exito..',
+                success:true,
+                msg: 'Se modifico con exito..',
                 data: {
                    
                     tipoAlergia: tipoAlergia || update.tipoAlergia,
@@ -87,9 +98,17 @@ class Alergias{
                 }
               })
             })
-            .catch(error => res.status(400).send(error));
+            .catch(error => res.status(400).json({
+              success:false,
+              error,
+              msg:"No se pudo actualizar los datos"
+            }));
           })
-          .catch(error => res.status(400).send(error));
+          .catch(error => res.status(400).json({
+            success:false,
+            error,
+            msg:"No se pudo actualizar los datos"
+          }));
     }
 }
 

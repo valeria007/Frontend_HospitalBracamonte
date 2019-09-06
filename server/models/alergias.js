@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     tipoHabito: DataTypes.STRING,
     descripcionHa: DataTypes.TEXT,
     descripcionInte: DataTypes.TEXT,
-    id_paciente: DataTypes.INTEGER
+    id_paciente: DataTypes.INTEGER,
+    id_user:DataTypes.INTEGER
 
   }, {});
   alergias.associate = function(models) {

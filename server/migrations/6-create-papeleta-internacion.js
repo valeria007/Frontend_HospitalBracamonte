@@ -55,6 +55,9 @@ module.exports = {
           as: 'idEmergencia',
         }
       },
+      id_medico: {                      // este id es de otro servicio
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

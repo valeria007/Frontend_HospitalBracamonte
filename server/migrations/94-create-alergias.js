@@ -44,6 +44,9 @@ module.exports = {
           as: 'id_paciente',
         }
       },
+      id_user:{
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -7,29 +7,48 @@ const { Citas_Medicas } = model;
 const { Pacientes } = model;
 class papeletaInt{
     static enviarPapeletaINT(req, res){
-          const { estado,tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico,especialidad } = req.body
-          const { idConsultaMedica } = req.params
-          const { idEmergencia } = req.params
-          return PapeletaInternacion
-          .create({
-            estado,
-            tipoConsulta,
-            fechaIngreso, 
-            Historial, 
-            nombreDoctor,
-            apellidoD1,
-            apellidoD2,
-            diagnostico,
-            especialidad,
-            idConsultaMedica,
-            idEmergencia
-          })
-          .then(data => res.status(200).send({
-              success: true,
-              message: 'se inserto con exito',
-              data
-          }))
-          .catch(error => res.status(400).send(error));    
+      if(req.body.fechaIngreso == ""){
+        res.status(400).json({
+          success:false,
+          msg: "Fecha es obligatorio"
+        })
+      }else if(req.body.diagnostico == ""){
+        res.status(400).json({
+          success:false,
+          msg: "Diagnostico no puede estar vacío"
+        })
+      }else if(req.body.especialidad != ""){
+        const { estado,tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico,especialidad,id_medico } = req.body
+        const { idConsultaMedica } = req.params
+        const { idEmergencia } = req.params
+        return PapeletaInternacion
+        .create({
+          estado,
+          tipoConsulta,
+          fechaIngreso, 
+          Historial, 
+          nombreDoctor,
+          apellidoD1,
+          apellidoD2,
+          diagnostico,
+          especialidad,
+          idConsultaMedica,
+          idEmergencia,
+          id_medico
+        })
+        .then(data => res.status(200).send({
+            success: true,
+            msg: 'Se inserto con exito',
+            data
+        }))
+        .catch(error => res.status(400).send(error));    
+      }else{
+        res.status(400).json({
+          success:false,
+          msg: "Por favor selecione Area de internacion"
+        })
+      }
+          
     }
     //sev para mostrar las papeletas de internacion
     static verPapeletaINT(req,res){
@@ -100,31 +119,29 @@ class papeletaInt{
     }
     static upinternacion(req, res) {
       console.log(req.body, " <<<<<<<<<<<<<<<<<<<<<")
-      const { tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico,especialidad } = req.body
+      const { estado, tipoConsulta, Historial,diagnostico,especialidad } = req.body
       return PapeletaInternacion
         .findByPk(req.params.id)
         .then((data) => { 
           data.update({
+            estado:estado || data.estado,
             tipoConsulta: tipoConsulta || data.tipoConsulta,
-            fechaIngreso: fechaIngreso || data.fechaIngreso,  
+            
             Historial: Historial || data.Historial,  
-            nombreDoctor: nombreDoctor || data.nombreDoctor,                    
-            apellidoD1: apellidoD1 || data.apellidoD1,                    
-            apellidoD2: apellidoD2 || data.apellidoD2,
+            
             diagnostico: diagnostico || data.diagnostico, 
             especialidad: especialidad || data.especialidad   
           })
           .then(update => {
             res.status(200).send({
-              
-              message: 'Actualizado',
+              success:true,
+              msg: 'Actualizado',
               data: {
+                estado:estado || update.estado,
                 tipoConsulta: tipoConsulta || update.tipoConsulta,
-                fechaIngreso: fechaIngreso || update.fechaIngreso,  
+               
                 Historial: Historial || update.Historial,  
-                nombreDoctor: nombreDoctor || update.nombreDoctor,                    
-                apellidoD1: apellidoD1 || update.apellidoD1,                    
-                apellidoD2: apellidoD2 || update.apellidoD2,
+                
                 diagnostico: diagnostico || update.diagnostico,
                 especialidad:especialidad || update.especialidad    
               }
