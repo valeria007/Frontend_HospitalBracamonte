@@ -81,117 +81,119 @@
               </div>
               <div class="porlets-content">
                 <% if(msg != null) { %>
-                  <div class="bs-example">
-                    <div class="alert alert-danger fade in">
-                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                      <h6 class="text-center" style="color:rgb(95, 4, 4);"><%=msg%></h6></div>
-                  </div> 
-                <% } else if(pass != null) { %>
-                  <div class="bs-example">
-                    <div class="alert alert-info fade in">
-                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                      <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=pass%></h6></div>
+                <div class="bs-example mover">
+                  <div class="alert alert-danger fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(95, 4, 4);"><%=msg%></h6></strong>
                   </div>
+                </div> 
+                <% } else if(pass != null) { %>
+                <div class="bs-example mover">
+                  <div class="alert alert-info fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=pass%></h6></strong>
+                  </div>
+                </div>
                 <% } %>
                 <%if (oneGrupoAsig == null) { %>
-                  <form  class="form-horizontal group-border-dashed" action="/almacen/grupoAsig" method="POST" parsley-validate novalidate>
-                    <%if(err != null) { %>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label">Codigo</label>
-                      <div class="col-sm-6">                   
-                        <input type="text" class="form-control" required parsley-minlength="3"  name="codigo" value="<%=err.codigo%>" style="text-transform:uppercase;"/>
-                      </div>
-                    </div><!--/form-group--> 
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label">Descripcion</label>
-                      <div class="col-sm-6">                   
-                        <input type="text" class="form-control" required parsley-minlength="6" name="descripcion" value="<%=err.descripcion%>" style="text-transform:uppercase;"/>
-                      </div>
-                    </div><!--/form-group--> 
-                    <% } else { %>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label">Codigo</label>
-                      <div class="col-sm-6">                       
-                        <input type="text" class="form-control" required parsley-minlength="3"  name="codigo"  style="text-transform:uppercase;"/>
-                      </div>
-                    </div><!--/form-group--> 
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label">Descripcion</label>
-                      <div class="col-sm-6">
-                        <input type="text" class="form-control" required parsley-minlength="6"  name="descripcion" style="text-transform:uppercase;"/>
-                      </div>
-                    </div><!--/form-group--> 
-                    <% } %>
-                    <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <button  type="submit" class="btn btn-primary" ><i class="fa fa-floppy-o"></i>  Guardar</button>
-                        <button type="reset" value="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-                      </div>
-                    </div><!--/form-group--> 
-                  </form>
+                <form  class="form-horizontal group-border-dashed" action="/almacen/grupoAsig" method="POST" parsley-validate novalidate onkeyup="mayus(this);">
+                  <%if(err != null) { %>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Codigo</label>
+                    <div class="col-sm-6">                   
+                      <input type="number" class="form-control" required parsley-minlength="3"  name="codigo" value="<%=err.codigo%>" onkeyup="mayus(this);"/>
+                    </div>
+                  </div><!--/form-group--> 
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Descripcion</label>
+                    <div class="col-sm-6">                   
+                      <input type="text" class="form-control" required parsley-minlength="6" name="descripcion" value="<%=err.descripcion%>" onkeyup="mayus(this);"/>
+                    </div>
+                  </div><!--/form-group--> 
                   <% } else { %>
-                  <form class="form-horizontal group-border-dashed" action="/almacen/updateGPA/<%=oneGrupoAsig[0].id%>" method="POST" parsley-validate novalidate>
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label">Codigo:</label>
-                      <div class="col-sm-6">
-                        <input type="text" class="form-control" value="<%=oneGrupoAsig[0].codigo%>" required parsley-minlength="3" name="codigo" style="text-transform:uppercase;" />
-                      </div>
-                    </div><!--/form-group--> 
-                    <div class="form-group">
-                      <label class="col-sm-3 control-label">Descripcion:</label>
-                      <div class="col-sm-6">
-                        <input type="text" class="form-control" value="<%=oneGrupoAsig[0].descripcion%>"  required parsley-minlength="6" name="descripcion" style="text-transform:uppercase;" />
-                      </div>
-                    </div><!--/form-group--> 
-                    <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-                        <a type="reset" class="btn btn-danger" href="/almacen/volver1"><i class="fa fa-times"></i> Cancelar</a>
-                      </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Codigo</label>
+                    <div class="col-sm-6">                       
+                      <input type="number" class="form-control" required parsley-minlength="3"  name="codigo" onkeyup="mayus(this);"/>
                     </div>
-                  </form>
-                  <% } %>  
-                </div><!--/porlets-content-->
-                <div id="main-content">
-                  <div class="page-content">
+                  </div><!--/form-group--> 
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Descripcion</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" required parsley-minlength="6"  name="descripcion" onkeyup="mayus(this);"/>
+                    </div>
+                  </div><!--/form-group--> 
+                  <% } %>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button  type="submit" class="btn btn-primary" ><i class="fa fa-floppy-o"></i>  Guardar</button>
+                      <button type="reset" value="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+                    </div>
+                  </div><!--/form-group--> 
+                </form>
+                <% } else { %>
+                <form class="form-horizontal group-border-dashed" action="/almacen/updateGPA/<%=oneGrupoAsig[0].id%>" method="POST" parsley-validate novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Codigo:</label>
+                    <div class="col-sm-6">
+                      <input type="number" class="form-control" value="<%=oneGrupoAsig[0].codigo%>" required parsley-minlength="3" name="codigo" onkeyup="mayus(this);"/>
+                    </div>
+                  </div><!--/form-group--> 
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Descripcion:</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" value="<%=oneGrupoAsig[0].descripcion%>"  required parsley-minlength="6" name="descripcion" onkeyup="mayus(this);"/>
+                    </div>
+                  </div><!--/form-group--> 
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+                      <a type="reset" class="btn btn-danger" href="/almacen/volver1"><i class="fa fa-times"></i> Cancelar</a>
+                    </div>
+                  </div>
+                </form>
+                <% } %>  
+              </div><!--/porlets-content-->
+              <div id="main-content">
+                <div class="page-content">
                   <div class="row">
-                  <div class="col-md-12">
-                    <div class="block-web">
-                     <div class="header">
-                      <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
-                      <h3 class="content-header">Lista de Medicamentos</h3>
-                    </div>
-                   <div class="porlets-content">
-                    <div class="table-responsive">
-                      <table  class="display table table-bordered table-striped " id="dynamic-table">
-                        <thead>
-                          <tr>
-                          <th>#</th>
-                          <th>Codigo</th>
-                          <th>Descripcion</th>
-                          <th >Modificar</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <% for(var i=0; i < resp.length; i++) { %>
-                          <tr>
-                          <td><%= i+1 %></td>
-                          <td><%=resp[i].codigo%></td>
-                          <td><%=resp[i].descripcion%></td>
-                          <td class="center hidden-phone">
-                            <a class="btn btn-success btn-sm" href="/almacen/GrupoAsigONLY/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
-                          </td>
-                          </tr>
-                        <% } %>
-                        </tbody>
-                      </table>
-                      </div><!--/table-responsive-->
-                    </div><!--/porlets-content-->
-                    </div><!--/block-web--> 
-                  </div><!--/col-md-12--> 
-                </div><!--/row-->
-              </div><!--/page-content end--> 
-                  </div><!--/main-content end-->
+                    <div class="col-md-12">
+                      <div class="block-web">
+                        <div class="header">
+                          <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
+                          <h3 class="content-header">Lista de Medicamentos</h3>
+                        </div>
+                        <div class="porlets-content">
+                          <div class="table-responsive">
+                          <table  class="display table table-bordered table-striped " id="dynamic-table">
+                            <thead>
+                              <tr>
+                              <th>#</th>
+                              <th>Codigo</th>
+                              <th>Descripcion</th>
+                              <th >Modificar</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <% for(var i=0; i < resp.length; i++) { %>
+                              <tr>
+                              <td><%= i+1 %></td>
+                              <td><%=resp[i].codigo%></td>
+                              <td><%=resp[i].descripcion%></td>
+                              <td class="center hidden-phone">
+                              <a class="btn btn-success btn-sm" href="/almacen/GrupoAsigONLY/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
+                              </td>
+                              </tr>
+                            <% } %>
+                            </tbody>
+                          </table>
+                          </div><!--/table-responsive-->
+                        </div><!--/porlets-content-->
+                      </div><!--/block-web--> 
+                    </div><!--/col-md-12--> 
+                  </div><!--/row-->
+                </div><!--/page-content end--> 
+              </div><!--/main-content end-->
             </div><!--/block-web--> 
           </div><!--/col-md-12--> 
         </div>
@@ -199,6 +201,8 @@
     <!--\\\\\\\ content panel end \\\\\\-->
     </div>
   </div>
+</div>
+
   <%- include("../partials/scripts") -%>
 </body>
 </html>

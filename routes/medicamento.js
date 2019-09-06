@@ -58,6 +58,13 @@ router.get('/medicamentos',(req, res) => {
     })
   });
 
+router.get('/msg', (req,res) => {
+    res.send({
+        msg_post_false,
+        msg_post_true
+    })
+})
+
 //servcio para añadir a la tabla medicamentos
 var msg_post_false, msg_post_true;
 router.post('/medicamentos', (req,res) =>{
@@ -73,14 +80,16 @@ router.post('/medicamentos', (req,res) =>{
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => {
-      console.log(data, "  esto es el mesaje del post")
+     
     if(data.success == false){
         msg_post_false = data.msg
         res.redirect('/medicamento/dataGrupoA');
+        msg_post_true = null
     }else{
-        msg_post_true = data.msg
+        msg_post_true = data.message
         res.redirect('/medicamento/dataGrupoA');
-        msg_post_false = ""
+        msg_post_false = null
+        console.log(msg_post_true, "  esto es el mesaje del post")
     }
     
   })
