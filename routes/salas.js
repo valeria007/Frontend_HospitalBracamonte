@@ -110,7 +110,8 @@ router.get('/dataCam/:id', (req,res) => {
   .then(resp =>{
      res.render('camas',{
       resp,
-      salas, /// datos recividos del serv renderCamas
+      salas,
+      onlyCamas /// datos recividos del serv renderCamas
      });
   })
   .catch(error => {
@@ -154,13 +155,14 @@ router.post('/camas/:id', (req,res) => {
     res.redirect('/salas/dataCam/'+id);     
   })
 });
-
+var onlyCamas;
 router.get('/updateCama/:id' , (req,res) => {
   var id = req.params.id;
   fetch('http://localhost:3000/api/OnlyCama/'+id)   
   .then(resp => resp.json())
   .then(resp =>{
-    res.render('camasUPDATE',{
+    onlyCamas=resp
+    res.render('/salas/updateCama/',{
       resp
     });
   })

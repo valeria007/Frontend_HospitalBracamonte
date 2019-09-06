@@ -81,20 +81,27 @@
 						  	<h3 class="content-header"> <i class="fa fa-medkit icon"></i> Registrar Medicamento</h3>
 						</div>
 						<div class="porlets-content">
-						<% if (dataGRUPOa == null) {%>
-						  	<h1>Ocurrio un problema con el servidor por favor intenta volver a entrar en esta pagina desde una pestaña anterior</h1>
-						<% } else {%>	
-							<%if(OnlyMedicamento == null) { %>
-								<% if(msg_post_false) { %>
-								<span style="color: red;"><%=msg_post_false%></span>
-								<% } else { %>
-								<span style="color: blue;"><%=msg_post_true%></span>
+							<% if(msg_post_false != null) { %>
+								<div class="bs-example mover">
+									<div class="alert alert-danger fade in">
+									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+										<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h4 class="text-center" style="color:rgb(99, 4, 4);"><%=msg_post_false%></h4></strong>
+									</div>
+								</div>
+								<% } else if(msg_post_true != null) { %>
+								<div class="bs-example mover">
+									<div class="alert alert-info fade in">
+									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+										<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg_post_true%></h6></strong>
+									</div>
+								</div>
 								<% } %>
+								<%if(OnlyMedicamento == null) { %>
 							  	<form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
 								  	<div class="col-md-4">
 									  	<div class="form-group">
 										  	<label>Grupo de Asignación:</label>
-										  	<select  name="grupoAsig">
+										  	<select  name="grupoAsig" onkeyup="mayus(this);">
 											  	<% for(var i=0; i< dataGRUPOa.length; i++) {%>
 											  	<option><%=dataGRUPOa[i].descripcion%></option>
 												<% } %>
@@ -102,50 +109,50 @@
 									  	</div>
 									  	<div class="form-group">
 										  	<label>Generico:</label>
-										  	<input type="text" name="generico" required class="form-control">
+										  	<input type="text" name="generico" required class="form-control" onkeyup="mayus(this);">
 									  	</div>
 									  	<div class="form-group">
 										 	<label>Presentacion:</label>
-										  	<input type="text" name="presentacion" required class="form-control">
+										  	<input type="text" name="presentacion" required class="form-control" onkeyup="mayus(this);">
 									  	</div>
 									</div>  
 								  	<div class="col-md-4">
 									  	<div class="form-group">
 										  	<label>Codificación:</label>
-										  	<input type="text" name="codificacion" required class="form-control">
+										  	<input type="text" name="codificacion" required class="form-control" onkeyup="mayus(this);">
 									  	</div>
 									  	<div class="form-group">
 										  	<label>Unidad de Medida:</label>
-										  	<input type="text" name="unidadMedida" required class="form-control">
+										  	<input type="text" name="unidadMedida" required class="form-control" onkeyup="mayus(this);">
 									  	</div>
 										<div class="form-group">
 											<label>Cantidad inicial:</label>
-											<input type="text" name="unidades" required class="form-control">
+											<input type="text" name="unidades" required class="form-control" onkeyup="mayus(this);">
 										</div>
 									</div>
 								 	<div class="col-md-4">
 									  	<div class="form-group">
 										  	<label>Nombre:</label>
-										  	<input  type="text" name="nombre"  required class="form-control">
+										  	<input  type="text" name="nombre"  required class="form-control" onkeyup="mayus(this);">
 									  	</div>
 									  	<div class="form-group">
 										  	<label>Concentracion:</label>
-										  	<input type="text" name="concentracion" required class="form-control">
+										  	<input type="text" name="concentracion" required class="form-control" onkeyup="mayus(this);">
 									  	</div>
 										<div class="form-group">
 											<label>Precio:</label>
-											<input type="text" name="precio" required class="form-control">
+											<input type="text" name="precio" required class="form-control" onkeyup="mayus(this);">
 										</div>								  
 									</div>
 								  	<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-								  	<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+								  	<button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
 							  	</form>
 							<% } else { %>
 								<form  action="/medicamento/updateMedicamento/<%=OnlyMedicamento[0].id%>" method="POST" parsley-validate novalidate>
 									<div class="col-md-4">
 										<div class="form-group">
 											<label>Grupo de Asignación:</label>
-											<select  name="grupoAsig">
+											<select  name="grupoAsig" onkeyup="mayus(this);">
 												<option><%=OnlyMedicamento[0].GrupoDesignado.descripcion%></option>
 												<option>--------------------------</option>
 												<% for(var i=0; i< dataGRUPOa.length; i++) {%>
@@ -155,11 +162,11 @@
 										</div>
 										<div class="form-group">
 											<label>Generico:</label>
-											<input type="text" name="generico" required class="form-control" value="<%=OnlyMedicamento[0].generico%>">
+											<input type="text" name="generico" required class="form-control" value="<%=OnlyMedicamento[0].generico%>" onkeyup="mayus(this);">
 										</div>
 										<div class="form-group">
 											<label>Presentacion:</label>
-											<input type="text" name="presentacion" required class="form-control" value="<%=OnlyMedicamento[0].presentacion%>">
+											<input type="text" name="presentacion" required class="form-control" value="<%=OnlyMedicamento[0].presentacion%>" onkeyup="mayus(this);">
 										</div>
 									</div>  
 									<div class="col-md-4">
@@ -179,22 +186,21 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<label>Nombre:</label>
-											<input  type="text" name="nombre"  required class="form-control" value="<%=OnlyMedicamento[0].nombre%>">
+											<input  type="text" name="nombre"  required class="form-control" value="<%=OnlyMedicamento[0].nombre%>" onkeyup="mayus(this);">
 										</div>
 										<div class="form-group">
 											<label>Concentracion:</label>
-											<input type="text" name="concentracion" required class="form-control" value="<%=OnlyMedicamento[0].concentracion%>">
+											<input type="text" name="concentracion" required class="form-control" value="<%=OnlyMedicamento[0].concentracion%>" onkeyup="mayus(this);">
 										</div>
 										<div class="form-group">
 											<label>Precio:</label>
-											<input type="text" name="precio" value="<%=OnlyMedicamento[0].precio%>" required class="form-control">
+											<input type="text" name="precio" value="<%=OnlyMedicamento[0].precio%>" required class="form-control" onkeyup="mayus(this);">
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
 									<a class="btn btn-danger" href="/medicamento/volver15"><i class="fa fa-times"></i> Cancelar</a>
 								</form>
 							<% } %>	
-						<% } %>
 					  	</div>
 					  	<div id="main-content">
 							<div class="page-content">

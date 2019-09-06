@@ -4,97 +4,65 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 <title>Cuadernos</title>
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/css/animate.css" rel="stylesheet" type="text/css" />
-<link href="/css/admin.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+<%- include("../partials/head") -%>	
 
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <div class="header_bar">
-    <div class="brand">
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-    </div>
-    <div class="header_top_bar">
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-          </ul>
+    <div class="header_bar">
+        <div class="brand">
+          <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
         </div>
-       
+        <div class="header_top_bar">
+          <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a> <span>&nbsp;</span>
+          <a href="/cuaderno/cuadernos" class="btn btn-info btn-icon"><i class="fa fa-arrow-left">Volver</i></a>
+          <div class="top_right_bar">
+            <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>John Doe</span> <b class="caret"></b> </a>
+              <ul class="dropdown-menu">
+                <div class="top_pointer"></div>
+                <li> <a href=""><i class="fa fa-power-off"></i>Salir</a> </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
   <div class="inner">
-    <div class="left_nav">
+   <div class="left_nav">
       <div class="left_nav_slidebar">
-          <ul>
-            <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
-              </ul>
-            </li>
-            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul class="opened" style="display:block">
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Personal</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Cuadernos</b> </a> </li>
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="/paciente/citas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Citas Medicas</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
-                <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
-                <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-                <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-                <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
-                <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+        <ul>
+          <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul >
+              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+            </ul>
+          </li>
+          <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul  >
+              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+            </ul>
+          </li>
+          <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul class="opened" style="display:block">
+              <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Cuadernos</b> </a> </li>
+              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
+              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Farmacia</a> </li>
+              <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="contentpanel">
       <div class="container clear_both padding_fix">
@@ -107,6 +75,8 @@
               <h3 class="content-header ">Asignación Medico</h3>
             </div>
             <br>
+            <br>
+            
             <br>
             <div class="porlets-content">
                <!---<%if (modifDoct == null) { %>--> 
@@ -226,23 +196,23 @@
             <table  class="display table table-bordered table-striped" id="dynamic-table">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Doctor</th>
-                  <th>Especialidad</th>
-                  <th>Tipo de Doctor</th>                        
-                  <th>Enfermera</th>
-                  <th>Opciones</th>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Doctor</th>
+                  <th class="text-center">Especialidad</th>
+                  <th class="text-center">Tipo de Doctor</th>                        
+                  <th class="text-center">Enfermera</th>
+                  <th class="text-center">Opciones</th>
                 </tr>
               </thead>
               <tbody>
               <% for(var i=0; i< listDoc.length; i++) { %>
                 <tr>
-                  <td><%=i+1%></td>
-                  <td><%=listDoc[i].nombre%></td>
-                  <td><%=listDoc[i].Consulta_especilaida.nombre%></td>
-                  <td><%=listDoc[i].TDoctor%></td>
-                  <td><%=listDoc[i].enfermera%></td>				     
-                  <td>
+                  <td class="text-center"><%=i+1%></td>
+                  <td class="text-center"><%=listDoc[i].nombre%></td>
+                  <td class="text-center"><%=listDoc[i].Consulta_especilaida.nombre%></td>
+                  <td class="text-center"><%=listDoc[i].TDoctor%></td>
+                  <td class="text-center"><%=listDoc[i].enfermera%></td>				     
+                  <td class="text-center">
                     <a href="/cuaderno/midificarDoct/<%=listDoc[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil" style="color:rgb(80, 145, 80)"></i></a>
                     <a href="/cuaderno/FechaDoc/<%=listDoc[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Estadia_Doctor"><i class="fa fa-user-md "></i></a>
                     <a href="/cuaderno/alldataDoctor/<%=listDoc[i].id%>/<%=listDoc[i].idCuaderno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_doctor"><i class="fa fa-eye " style="color:black"></i></a>
@@ -261,83 +231,7 @@
 </div>
 </div>
 
-<script src="/js/jquery-2.1.0.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/common-script.js"></script>
-<script src="/js/jquery.slimscroll.min.js"></script>
-<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
-<script src="/plugins/checkbox/zepto.js"></script>
-<script src="/plugins/checkbox/icheck.js"></script>
-<script src="/js/icheck-init.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
-<script type="text/javascript" src="/js/form-components.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
-<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
-<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
-<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
-
-
-
-<script src="/plugins/validation/parsley.min.js"></script>
-<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-<script src="/plugins/data-tables/dynamic_table_init.js"></script>
-<script src="/plugins/edit-table/edit-table.js"></script>
-<script>
-          jQuery(document).ready(function() {
-              EditableTable.init();
-          });
- </script>
-<script>
-
-
-/*==Porlets Actions==*/
-    $('.minimize').click(function(e){
-      var h = $(this).parents(".header");
-      var c = h.next('.porlets-content');
-      var p = h.parent();
-      
-      c.slideToggle();
-      
-      p.toggleClass('closed');
-      
-      e.preventDefault();
-    });
-    
-    $('.refresh').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
-      
-      loading.appendTo(p);
-      loading.fadeIn();
-      setTimeout(function() {
-        loading.fadeOut();
-      }, 1000);
-      
-      e.preventDefault();
-    });
-    
-    $('.close-down').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      
-      p.fadeOut(function(){
-        $(this).remove();
-      });
-      e.preventDefault();
-    });
-
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="/js/jPushMenu.js"></script> 
-<script src="/js/side-chats.js"></script>
-<script src="/js/vue/roles.js"></script>
+<%- include("../partials/scripts") -%>
 
 </body>
 </html>

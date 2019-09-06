@@ -76,9 +76,9 @@
               </li>
               <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                 <ul class="opened" style="display:block">
-                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pacientes</b> </a> </li>
-                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Farmacia</b></a> </li>
-                  <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
+                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes</b> </a> </li>
+                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Farmacia</b></a> </li>
+                  <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Administración</b> </a> </li>
                 </ul>
               </li>
               <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -100,7 +100,7 @@
                      
                     <div class="header">
                       <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                      <h3 class="content-header ">Reportes Pacientes</h3>
+                      <h3 class="content-header ">Reportes Administración</h3>
                     </div>
                     <br>
                     <br>
@@ -122,45 +122,32 @@
                               <label  class="col-sm-4 control-label">Tipo:</label>
                               <div class="col-sm-4">
                               <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                                <option>General</option>
-                                <option>Internados</option>
-                                <option>Emergencias</option>
+                                <option>Personal</option>
+                                <option>Cuadernos</option>
+                                <option>Especialidades</option>
+                                <option>Salas</option>
+                              </select>
+                              </div>
+                            </div><!--/form-group-->
+                            <div class="form-group">
+                              <label  class="col-sm-4 control-label">Tipo:</label>
+                              <div class="col-sm-4">
+                              <select class="selectpicker" data-show-subtext="true" data-live-search="true">
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
                               </select>
                               </div>
                             </div><!--/form-group-->
                             <div class="form-group">
                               <div class="col-sm-offset-4 col-sm-10">
-                                  <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
                               </div>
                             </div><!--/form-group--> 
                             </form>
 
                     </div>
-                    <div class="table-responsive">
-                        <table  class="display table table-bordered table-striped " id="dynamic-table">
-                          <thead>
-                          <tr>                          
-                          <th>N° Historial</th>
-                          <th>Nombre</th>
-                          <th>Apellido Paterno</th>
-                          <th>Apellido Materno</th>
-                          <th>Edad</th>
-                          <th>Estdo</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                          <td>12458</td>
-                          <td>GUATAVO</td>
-                          <td>GUZMAN</td>
-                          <td>TORETO</td>
-                          <td>36</td>
-                          <td>HABILITADO</td>
-                          
-                          </tr>
-                          <tbody>
-                        </table>
-                        </div>
                   </div>
                   
          </div>
