@@ -68,7 +68,6 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -80,7 +79,7 @@ router.post('/login', (req,res)  => {
       msg3 = " Contraceña Incorrecta "
       res.redirect('/')   
     }else if ( datas.name.token[resp.user.id] == null ){
-    
+      token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
       tok(resp,resp.user.id); //funcion para añadir token del usuario  
       
       datas.name.token = listItems // esto es para añadir tokens a datas
@@ -98,7 +97,8 @@ router.post('/login', (req,res)  => {
             //res.send(resp.role)
           }else if(resp.role[0].name == "medico"){
             res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
-            console.log(resp, " entro y mostro esto")
+          }else if(resp.role[0].name == "emergencia"){
+            res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
           }else{
             res.send(resp.role)
           }
@@ -109,6 +109,7 @@ router.post('/login', (req,res)  => {
         //res.redirect('/almacen/home/'+resp.user.id)
       }) 
     }else {
+      token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
       remove_Token(resp.user.id)
       
       tok(resp,resp.user.id); //funcion para añadir token del usuario  
@@ -129,6 +130,8 @@ router.post('/login', (req,res)  => {
           }else if(resp.role[0].name == "medico"){
             res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
             console.log(resp, " entro y mostro esto")
+          }else if(resp.role[0].name == "emergencia"){
+            res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
           }else{
             res.send(resp.role)
           }

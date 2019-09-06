@@ -41,6 +41,8 @@ app.use('/stock', require('./routes/stock'));
 app.use('/datos_generales_paciente', require('./routes/datos_generales_paciente')); 
 app.use('/datos_genPaciente_emergencia', require('./routes/datos_generales_P_emergencia')); 
 app.use('/consulta_externa', require('./routes/consulta_externa'));
+app.use('/emergencia2.0', require('./routes/emergencia2.0'));
+
 
 
 

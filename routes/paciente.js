@@ -59,7 +59,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                 .catch(error => console.error('Error',error))
                 .then(resp => {
                     //res.send(resp)
-                    res.render('Fichas/home',{
+                    res.render('Fichas/homec',{
                         resp,
                         data_token
                     })

@@ -1,0 +1,394 @@
+<!DOCTYPE >
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Emergencias</title>
+<%- include("./partials/head") -%>
+
+
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+<!--Navegation-->
+<div class="header_bar">
+    <div class="brand">
+    <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      
+    </div>
+    <div class="header_top_bar">
+    <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+<div class="inner">
+   <!--Menu-->
+   <div class="left_nav">
+    <div class="left_nav_slidebar">
+        <ul>
+			<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+			<ul >
+			<li> <a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio </b> </a> </li>
+			</ul>
+			</li>
+			<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+			<ul class="opened" style="display:block">
+			<li> <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+			</ul>
+			</li>
+        </ul>
+    </div>
+</div>
+    <div class="contentpanel">
+      <div class="container clear_both padding_fix">
+		<br>
+		<div class="header">
+        <div class="info blue_symbols"><i class="fa fa-medkit icon"></i></div>
+        <h3 class="content-header ">Registro de Consulta<span class="semi-bold">/Emergencias</span></h3>
+    </div>
+    <br><br><br>
+    <div class="btn-group ">
+      <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <span>&nbsp;&nbsp;</span><i class="fa fa-clipboard"></i><span class="caret"></span></button>
+      <ul role="menu" class="dropdown-menu">
+        <li><a href="/emergencia2.0/datos_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Datos de responsable</a></li>
+        <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Datos de Interes</a></li>
+        <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Examen Físico General</a></li>
+      </ul>
+    </div>
+    <a href="/emergencia/volver3">volver</a>
+		<div class="page-content">
+			<div class="row" id="consulta_emergencia">
+
+        <!-- 
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                              modal data
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                    
+         -->
+        
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               
+                <label class="control-label">Doctor: {{one_consulta.nombreDoctor}} {{one_consulta.apellidoD1}} {{one_consulta.apellidoD2}}</label> <br>
+                <p class="modal-title" >Paciente: {{one_consulta.nombre}} {{one_consulta.apellidop}} {{one_consulta.apellidom}}</p>
+                <p class="modal-title">Historial del Paciente: {{one_consulta.Nhistorial}}</p>
+                
+              </div>
+
+              <div class="row">
+                    <div class="col-xs-12 "> 
+                        <h4 class="text-center">Estado del Paciente</h4>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                              <label class="control-label">Motivo de Consulta:</label>
+                              <textarea class="form-control" cols="100" rows="10">{{one_consulta.motivoConsulta}}</textarea>
+                            </div>
+                            <div class="col-sm-6">
+                              <label class="control-label">Diagnostico:</label>
+                              <textarea class="form-control" cols="100" rows="10" >{{one_consulta.diagnostico}}</textarea>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <label class="control-label">Tratamiento:</label>
+                              <textarea class="form-control" cols="100" rows="10">{{one_consulta.tratamiento}}</textarea>
+                            </div>
+                            <div class="col-sm-6">
+                              <label class="control-label">Observacione:</label>
+                              <textarea class="form-control" cols="100" rows="10">{{one_consulta.observaciones}}</textarea>
+                            </div>
+                          </div>
+                    </div>
+
+               
+               
+              </div>
+              
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                    
+         -->
+
+				<div class="col-lg-14">
+					<section class="panel default blue_title h2">
+						<div class="panel-body">
+							<ul class="nav nav-tabs" id="myTab">
+								<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-pencil-square-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Registro de Consulta</a></li>
+								<li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-list-ol "></i><span>&nbsp;&nbsp;&nbsp;</span>Lista de Consultas</a></li>
+							</ul>
+							<div class="tab-content" id="myTabContent">
+								<div id="Tab1" class="tab-pane fade in active">
+									<div class="row" >
+                      <% if(msg != null) { %>
+                        <% if(msg.data.success == true) { %>
+                          <span style="color: blue"> <%=msg.data.data%></span>
+                        <% } else { %>
+                          <span style="color: red"> <%=msg.data.data%></span>
+                        <% } %>  
+                      <% } %>
+											<div class="block-web">
+                        <div class="porlets-content">
+                            <h3 class="text-center">Datos del Paciente </h3>
+                            <div class="form-group">
+                               
+                              
+                              <div class="col-sm-6">
+                                <label class="control-label">Sexo:</label>
+                                <select class="form-control" id="source"  name="sexo" readonly="">
+                                  <option ><%=dataPaciente[0].sexo%></option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="col-sm-3">
+                                <label class="control-label">Apellido Paterno:</label>
+                                <input type="text" class="form-control" name="apellidop" value="<%=dataPaciente[0].apellidop%>" readonly />
+                              </div>
+                              <div class="col-sm-3">
+                                <label class="control-label">Apellido Materno:</label>
+                                <input type="text"  class="form-control"name="apellidom" value="<%=dataPaciente[0].apellidom%>" readonly/>
+                              </div>
+                              <div class="col-sm-3">
+                                <label class="control-label">Nombre(s):</label>
+                                <input type="text" class="form-control" name="nombre" value="<%=dataPaciente[0].nombre%>" readonly />
+                              </div>
+                              <div class="col-sm-3">
+                                <label class="control-label">Edad:</label>
+                                <input type="text"class="form-control" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>" readonly/>
+                              </div>
+                            </div>
+                            
+                          <% if( updateConsultaEmg == "") { %>
+                           
+                          <form class="form-horizontal group-border-dashed" action="/emergencia2.0/consultaEmergencia/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"method="POST" parsley-validate novalidate>
+                                <div class="form-group">
+                                  <div class="col-sm-4">
+                                    <label class="control-label">N° de Historial</label>
+                                    <input type="text" name="Nhistorial" class="form-control" value="<%=dataPaciente[0].numeroHistorial%>" readonly/>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <label class="control-label">Medico</label>
+                                    <select class="form-control" id="source" >
+                                      <option>Medico</option>                                                            
+                                    </select>
+                                    <input type="hidden" name="idDoctor" value="<%=data_doc.data.medico.id%>">
+                                    <input type="hidden" name="hora" value="<%=cita[0].hora%>">
+                                  </div>
+                                  <div class="col-sm-4">
+                                      <label class="control-label">Fecha de Consulta:</label>
+                                      <input  type="date"  class="form-control" name="fechaAtencion" require />
+                                    </div>
+                                </div>
+                                
+                                <p>Datos del Medico</p>
+                                <div class="form-group">
+                                  <div class="col-sm-3">
+                                    <label class="control-label">Apellido Paterno del Medico:</label>
+                                    <input type="text" class="form-control" name="apellidoD1" value="<%=data_doc.data.medico.apellidop%>"><br>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <label class="control-label">Apellido Materno del Medico:</label>
+                                    <input type="text" class="form-control" name="apellidoD2" value="<%=data_doc.data.medico.apellidom%>"><br>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <label class="control-label">Nombre(s) del Medico:</label>
+                                    <input type="text" class="form-control" name="nombreDoctor" value="<%=data_doc.data.medico.nombre%>"><br>
+                                  </div>
+                                </div>
+                                <h3 class="text-center">Estado del Paciente</h3>
+                                <div class="form-group">
+                                  <div class="col-sm-6">
+                                    <label class="control-label">Motivo de Consulta:</label>
+                                    <textarea class="form-control" name="motivoConsulta" cols="100" rows="10"></textarea>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <label class="control-label">Diagnostico:</label>
+                                    <textarea class="form-control" name="diagnostico" cols="100" rows="10" ></textarea>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="col-sm-6">
+                                    <label class="control-label">Tratamiento:</label>
+                                    <textarea class="form-control" name="tratamiento" cols="100" rows="10"></textarea>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <label class="control-label">Observacione:</label>
+                                    <textarea class="form-control" name="observaciones"cols="100" rows="10"></textarea>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="col-sm-offset-5 col-sm-12">
+                                    <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
+                                    <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                                  </div>
+                                </div>
+                          </form>
+                          <% } else { %>           
+                          <form class="form-horizontal group-border-dashed" action="/emergencia2.0/update_consulta/<%=updateConsultaEmg[0].id%>/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+                            <br>
+                            <br>
+                                                            
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label class="control-label">N° de Historial</label>
+                                            <input type="text"  class="form-control" value="<%=dataPaciente[0].numeroHistorial%>" readonly/>
+                                          </div>
+                                      <div class="col-sm-3">
+                                        <label class="control-label">Fecha de Consulta:</label>
+                                        <input  type="date"  class="form-control"  value="<%=updateConsultaEmg[0].fechaAtencion%>" require />
+                                      </div>
+                                      
+                                    </div>
+                                    <h2 class="text-center"> Formulario de Actualizacion   <%=updateConsultaEmg[0].id%></h2>   
+                                    
+                                    <p>Datos del Medico</p>
+                                    <div class="form-group">
+                                      <div class="col-sm-3">
+                                        <label class="control-label">Apellido Paterno del Medico:</label>
+                                        <input readonly type="text" class="form-control" name="apellidoD1" value="<%=updateConsultaEmg[0].apellidoD1%>"><br>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <label class="control-label">Apellido Materno del Medico:</label>
+                                        <input readonly type="text" class="form-control" name="apellidoD2" value=" <%=updateConsultaEmg[0].apellidoD2%>"><br>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <label class="control-label">Nombre(s) del Medico:</label>
+                                        <input readonly type="text" class="form-control" name="nombreDoctor" value="<%=updateConsultaEmg[0].nombreDoctor%>"><br>
+                                      </div>
+                                    </div>
+                                    <h3 class="text-center">Estado del Paciente</h3>
+                                    <div class="form-group">
+                                      <div class="col-sm-6">
+                                        <label class="control-label">Motivo de Consulta:</label>
+                                        <textarea class="form-control" name="motivoConsulta" cols="100" rows="10"><%=updateConsultaEmg[0].motivoConsulta%></textarea>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <label class="control-label">Diagnostico:</label>
+                                        <textarea class="form-control" name="diagnostico" cols="100" rows="10" ><%=updateConsultaEmg[0].diagnostico%></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="col-sm-6">
+                                              <label class="control-label">Tratamiento:</label>
+                                              <textarea class="form-control" name="tratamiento" cols="100" rows="10"><%=updateConsultaEmg[0].tratamiento%></textarea>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <label class="control-label">Observacione:</label>
+                                        <textarea class="form-control" name="observaciones" cols="100" rows="10"><%=updateConsultaEmg[0].observaciones%></textarea>
+                                      </div>
+                                    </div>
+                            <div class="form-group">
+                              <div class="col-sm-offset-4 col-sm-10">
+                                <button type="submit" class="btn btn-success btn-icon">Actualizar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                                <button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+                               </div>
+                            </div>
+                          </form>
+                          <br><br>
+                           <div class="form-group">
+                            <div class="col-sm-4">
+                              <a href="/emergencia2.0/receta/<%=updateConsultaEmg[0].id%>/<%=updateConsultaEmg[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-primary btn-default btn-block bs">Receta<span>&nbsp;</span><i class="fa fa-pencil-square-o "></i></a>
+                            </div>
+                            <div class="col-sm-4">
+                              <a href="/emergencia2.0/papeleta_internacion/<%=updateConsultaEmg[0].id%>/<%=updateConsultaEmg[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="btn btn-primary btn-default btn-block bs" >Orden de Internacion<span>&nbsp;</span><i class="fa fa-wheelchair" ></i></a>
+                            </div>
+                            <div class="col-sm-4">
+                              <a href="/emergencia/ListPInter/<%=updateConsultaEmg[0].id%>/<%=updateConsultaEmg[0].Nhistorial%>"  class="btn btn-primary btn-default btn-block bs" >Exmamnes Complementarios<span>&nbsp;</span><i class="fa fa-eye" ></i></a></td>
+                            </div>
+                          </div>
+                          <% } %>
+                         </div>
+											</div> 
+										</div>
+                </div>
+                
+
+								<div id="Tab2" class="tab-pane fade">
+									<div class="row">
+											<div class="block-web">
+												<div class="porlets-content">
+                            <div class="table-responsive">
+                                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Fecha de Atencion</th>
+                                      <th>Nombre</th>
+                                      <th>Apellido Paterno</th>
+                                      <th>Apellido Materno</th>
+                                      <th>Diagnostico</th>
+                                      <th>Opciones</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                     <% for ( var i=0; i < consultasEmergencia.length; i++) {%>
+                                     <tr>
+                                      <td><%= i+1%></td>
+                                      <td><%=consultasEmergencia[i].fechaAtencion%></td>
+                                      <td><%=consultasEmergencia[i].Citas_Medica.Paciente.nombre%></td>
+                                      <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidop%></td>
+                                      <td><%=consultasEmergencia[i].Citas_Medica.Paciente.apellidom%></td>
+                                      <td><%=consultasEmergencia[i].diagnostico%></td> 
+                                      <td class="text-center"> 
+                                        <a href="/emergencia/emergenicaData/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>/" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Receta"><i class="fa fa-pencil-square-o" style="color:rgb(80, 145, 80)"></i></a>
+                                        <a href="/emergencia/ListPInter/<%=consultasEmergencia[i].id%>/<%=consultasEmergencia[i].Nhistorial%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Papeleta Internacion"><i class="fa fa-wheelchair" style="color:blue"></i></a>
+                                        <a href="javascript:void(0);" @click="One_consulta(<%=consultasEmergencia[i].id%>)" class="btn  tooltips" data-toggle="modal" data-target="#myModal" data-original-title="Ver Consulta"> <i class="fa fa-eye" style="color:black"></i>  </a>
+                                      </td>
+
+                                      
+                                    </tr>
+                                      <% } %>                                               
+                                  </tbody> 
+                                </table>
+                            </div>
+												</div>
+                      </div> 
+                     
+    
+                  </div>              
+                </div>
+                
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+  </div>
+  </div>
+  
+  
+
+</div>
+</div>
+
+<!--====== Scripts -->
+<%- include("../partials/scripts") -%>
+<script src="/js/vue/consulta_emergencia.js"></script>
+</body>
+</html>

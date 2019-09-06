@@ -530,7 +530,7 @@ router.get('/Data_responsable/:id_paciente/:token_id/:token_p', (req,res) => {
             dataPaciente,
             data_doc: data_user[token_id],
             list_responsables,
-            update_r:update_responsable[id_paciente]
+            update_r:update_responsable[token_id]
           })  
         })
       }
@@ -553,12 +553,12 @@ router.get('/one_responsable/:id/:id_paciente/:token_id/:token_p', (req,res) => 
   fetch('http://localhost:3000/api/update_responsable/'+id)
       .then(resp => resp.json())
       .then(resp =>{
-        if(update_responsable[id_paciente] == null){
-          responsable(resp, id_paciente)
+        if(update_responsable[token_id] == null){
+          responsable(resp, token_id)
           res.redirect('/consulta_externa/Data_responsable/'+id_paciente+'/'+token_id+'/'+token_p)      
         }else{
-          remove_responsable_data(id_paciente)
-          responsable(resp, id_paciente)
+          remove_responsable_data(token_id)
+          responsable(resp, token_id)
           res.redirect('/consulta_externa/Data_responsable/'+id_paciente+'/'+token_id+'/'+token_p) 
         }
             
