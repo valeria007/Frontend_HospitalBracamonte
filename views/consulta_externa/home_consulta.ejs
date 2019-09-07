@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<title>Consulta Externa</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta charset="UTF-8">
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+	<style>
+		div.a {
+			text-align: center;
+		}
+
+		h1.letras {
+			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+		}
+	</style>
+	<%- include("../partials/head") -%>
+</head>
+
+<body class="light_theme  fixed_header left_nav_fixed">
+	<!-- Content page-->
+	<div class="wrapper">
+		<!--\\\\\\\ wrapper Start \\\\\\-->
+		<div class="header_bar">
+			<!--\\\\\\\ header Start \\\\\\-->
+			<div class="brand">
+				<!--\\\\\\\ brand Start \\\\\\-->
+				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+			</div>
+			<!--\\\\\\\ brand end \\\\\\-->
+			<div class="header_top_bar">
+				<!--\\\\\\\ header top bar start \\\\\\-->
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+
+				<div class="top_right_bar">
+
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+								src="/images/user.png" /><span class="user_adminname"><%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b
+								class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+							<li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+							<li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+							<li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--\\\\\\\ header top bar end \\\\\\-->
+		</div>
+		<div class="inner">
+			<!--\\\\\\\ inner start \\\\\\-->
+			<div class="left_nav">
+
+				<!--\\\\\\\left_nav start \\\\\\-->
+
+				<div class="left_nav_slidebar">
+					<ul>
+						<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i
+									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
+									class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul class="opened" style="display:block">
+								<li> <a href="#"> <span>&nbsp;</span> <i
+											class="fa fa-circle "></i> <b class="theme_color">Inicio</b> </a> </li>
+							</ul>
+						</li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span
+									class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/consulta_externa/lista_pacientes/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i
+											class="fa fa-circle"></i> <b>Listas de Citas</b>
+									</a> </li>
+							</ul>
+						</li>
+						
+
+					</ul>
+				</div>
+			</div>
+			<!--\\\\\\\left_nav end \\\\\\-->
+			<div class="contentpanel">
+				<!--\\\\\\\ contentpanel start\\\\\\-->
+				<div class="container clear_both padding_fix col-lg-8">
+					<br>
+					<br>
+					<br>
+					<div class="row">
+
+						<div class="col-lg-12 ">
+								<div class="container-fluid">
+										<div class="row">
+											<div class="col-xs-12">
+								
+													<div class="col-md-6 ">
+														<h1 class="text-titles"><i
+																class="zmdi zmdi-file-plus zmdi-hc-fw"></i>Consulta
+															Externa</h1>
+													</div>
+												
+
+											</div>
+										</div>
+									</div>
+
+      <!--\\\\\\\ contentpanel start\\\\\\-->
+      <div class="container clear_both padding_fix col-lg-8">
+			<br>
+			<br>
+			<br>
+			<div class="row">
+	  
+				<div class="col-lg-12 ">
+					<div class="a" style="display:block ">
+						<h1 class="letras">GOBIERNO AUTONOMO DE POTOSI</h1>
+						</div>
+						<br>
+						<br>
+					<div >
+						  <img class="centrado"src="/images/VIII.gif" width="300" height="200"  />
+					</div>
+					<br>
+					<br>
+					
+				</div>
+			   
+			  </div>
+			
+			<!--\\\\\\\ container  end \\\\\\-->
+		  </div>
+
+							<!-- Content page-->
+							<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+								<!-- NavBar -->
+								<nav class="full-box dashboard-Navbar dashboard-sideBar-imaggg cover ">
+									<ul class="full-box list-unstyled text-right dashboard-sideBar-ctttt">
+										<li class="pull-left">
+											<a href="#!" class="btn-menu-dashboard"><i
+													class="zmdi zmdi-more-vert"></i></a>
+										</li>
+										<li>
+											<a href="#!" class="btn-Notifications-area">
+												<i class="zmdi zmdi-notifications-none"></i>
+											</a>
+										</li>
+									</ul>
+								</nav>
+								<!-- Content page -->
+								<div class=" full-box ">
+									<div class="container-fluid">
+
+									</div>
+
+
+								</div>
+							</section>
+
+						</div>
+
+					</div>
+
+					<!--\\\\\\\ container  end \\\\\\-->
+				</div>
+				<!--\\\\\\\ content panel end \\\\\\-->
+			</div>
+			<!--\\\\\\\ inner end\\\\\\-->
+		</div>
+		<!--\\\\\\\ wrapper end\\\\\\-->
+
+
+
+
+
+
+
+		<!--====== Scripts -->
+		
+		<script src="/js/jquery-2.1.0.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/common-script.js"></script>
+		<script src="/js/jquery.slimscroll.min.js"></script>
+		<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+		<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+		<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+		<script src="/plugins/edit-table/edit-table.js"></script>
+		<script>
+			jQuery(document).ready(function () {
+				EditableTable.init();
+			});
+		</script>
+
+		<script src="/js/jPushMenu.js"></script>
+		<script src="/js/side-chats.js"></script>
+
+</body>
+
+</html>
