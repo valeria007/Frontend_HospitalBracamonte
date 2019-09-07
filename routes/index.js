@@ -209,7 +209,19 @@ router.get('/Papeleta_Inter',(req, res) => {
 router.get('/salas',(req, res) => {
   res.render('salas')
 });
+// role
+router.get('/roles',(req, res) => {
+  res.render('roles')
+});
+// role
+router.get('/backup',(req, res) => {
+  res.render('backup')
+});
 
+///paciente admin
+router.get('/pacientead',(req, res) => {
+  res.render('pacientead')
+});
 // Internacion salas 
 
 

@@ -451,5 +451,8 @@ router.get('/IntroducirLab', (req,res) => {
 router.get('/miCuenta', (req,res) => {
   res.render('consultaExterna/miCuenta')
 });
+router.get('/vacunas', (req,res) => {
+  res.render('consulta_externa/vacunas')
+});
 
 module.exports = router;

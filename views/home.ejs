@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>HOSPITAL</title>
+<title>Hospital</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
@@ -26,41 +26,9 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
-  <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
-    <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
-    </div>
-    <!--\\\\\\\ brand end \\\\\\-->
-    <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-    
-      <div class="top_right_bar">
-        
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-          </ul>
-        </div> 
-      </div>
-    </div>
-    <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
+  <%- include("partials/menusali") -%>	
   <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
     <div class="left_nav">
-
-      <!--\\\\\\\left_nav start \\\\\\-->
-    
       <div class="left_nav_slidebar">
         <ul>
           <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -69,41 +37,36 @@
             </ul>
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul >
+              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul>
-              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Personal</b> </a> </li>
-              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
+              
               <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
+              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
             </ul>
           </li>
           
-          <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i> Internacion <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes Internacion</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-envelope"></i> Farmacia <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Almacen </a> </li>
-              <li> <a href="/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
-              <li> <a href="/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-              <li> <a href="/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-              <li> <a href="/inventariosFar"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inventarios</b> </a> </li>
-            </ul>
-          </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
-              <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
-              <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-              <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
+              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
+              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Farmacia</a> </li>
+              <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">
-      <!--\\\\\\\ contentpanel start\\\\\\-->
       <div class="container clear_both padding_fix col-lg-8">
       <br>
       <br>
@@ -122,45 +85,11 @@
 			  <br>
 			  <br>
 			  
-          </div>
-         
         </div>
-      
-      <!--\\\\\\\ container  end \\\\\\-->
+        </div>
     </div>
-    <!--\\\\\\\ content panel end \\\\\\-->
-  </div>
-  <!--\\\\\\\ inner end\\\\\\-->
 </div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 <script src="js/jquery-2.1.0.js"></script>
 <script src="js/bootstrap.min.js"></script>

@@ -58,7 +58,6 @@
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-
 			</div>
 			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
@@ -88,26 +87,18 @@
 				<!--\\\\\\\left_nav start \\\\\\-->
 				<div class="left_nav_slidebar">
 					<ul>
-						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
-									class="left_nav_pointer"></span> <span class="plus"><i
-										class="fa fa-plus"></i></span> </a>
+						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
-								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">
-										<span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
 							</ul>
 						</li>
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-									class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
-										class="fa fa-plus"></i></span></a>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">
-										<span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas
-											de Citas</b> </a> </li>
+								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b> </a> </li>
 							</ul>
 						</li>
 						<%- include("../partials/footerDocotr") -%>
 					</ul>
-
 				</div>
 			</div>
 			<!--\\\\\\\left_nav end \\\\\\-->
@@ -115,47 +106,49 @@
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
-					<div class="row">
-						<div class="col-lg-12 ">
-							<!-- Content page -->
-							<div class="container-fluid">
-								<div class="page-header">
-									<h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i> Receta
-										<small></small></h1>
-								</div>
-							</div>
-
-							<div class="container-fluid" id="recetas">
-                                
-								<div class="row contenedor">
-									<div class="col-xs-12">
-										<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-											<li class="active"><a href="#new" data-toggle="tab"><i
-														class="zmdi zmdi-assignment"></i> Receta</a></li>
-											<li><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i>
-													Lita de Recetas del Paciente</a></li>
-										</ul>
-										<div id="myTabContent" class="tab-content">
-											<div class="tab-pane fade active in" id="new">
-												<div class="table-responsive">
+					<div class="row ">
+				<div class="col-xs-12">
+						<div class="  row ">
+					<!-- Content page -->
+					<div class="container-fluid row " id="">
+						<div class="info blue_symbols "> <i class="fa fa-file-text icon "></i></div><br>
+						<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Receta</h3>
+						<div id="" class="col-md-2">	
+							<div class="">
+								<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+							</div>				
+						</div>
+					</div><br>
+					
+					<div class="" id="recetas"> 
+								
+						<section class="panel default blue_title h2">
+							<div class="page-content">
+								<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+									<li class=" col-lg-6 active active  text-center"><a href="#new" data-toggle="tab"><i class="fa fa-medkit"></i> Receta</a></li>
+									<li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt "></i> Lita de Recetas del Paciente</a></li>
+								</ul>
+								<div id="myTabContent" class="tab-content">
+									<div class="tab-pane fade active in" id="new">
+										<div class="col-md-12">
 													
-													<template v-if="One_receta == ''">
+											<template v-if="One_receta == ''">
 													
-                                                    <form @submit="post_recetas" method="POST">
-														<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
-														<input type="hidden" :value="data_receta.id_medico = '<%=data_doc.data.medico.id%>'">
-														<div class="block-web">
-															<div class="header">
-																<div class="actions"> 
-																	<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
-																	<a class="close-down" href="#"><i class="fa fa-times"></i></a>
-																</div>
-                                                                <h3 class="content-header">Estado General >>>  id_consulta {{id_consulta}}</h3>
+                                                <form @submit="post_recetas" method="POST">
+													<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
+													<input type="hidden" :value="data_receta.id_medico = '<%=data_doc.data.medico.id%>'">
+													<div class="block-web">
+														<div class="header">
+															<div class="actions"> 
+																<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
+																<a class="close-down" href="#"><i class="fa fa-times"></i></a>
+															</div>
+                                        	                    <h3 class="content-header">Estado General {{id_consulta}}</h3>
                                                                 <span style="color: red;">{{data_msg.msg_false}}</span>
                                                                 <span style="color: blue;">{{data_msg.msg_true}}</span>
-															</div>
-															<div class="form-group">
-																<div class="row">
+														</div>
+															<div class="row">
+																<div class="">
 																	<div class="col-md-12">
 																		<div class="col-md-4">
 																			<div class="entrada ">
@@ -199,10 +192,9 @@
 														</div>
 														<div class="block-web">
 															<div class="header">
-																<div class="actions"> <a class="minimize" href="#"><i
-																		class="fa fa-chevron-down"></i></a> <a
-																		class="close-down" href="#"><i
-																		class="fa fa-times"></i></a>
+																<div class="actions"> 
+																	<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
+																	<a class="close-down" href="#"><i class="fa fa-times"></i></a>
 																</div>
 																<h3 class="content-header">Datos del Médico</h3>
 															</div>
@@ -239,14 +231,8 @@
 																</div>
 															</div>
 														</div>
-														<div class="block-web">
-															<div class="header">
-																<div class="actions"> 
-																	<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
-																	<a class="close-down" href="#"><i class="fa fa-times"></i></a>
-                                                                </div>                                                            
-															<h3 class="content-header">Lista de Medicamentos  </h3>
-                                                            </div>
+														<div class="">
+															
                                                             
                                                              <!--  
                                                                 <<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>»
@@ -258,11 +244,15 @@
                                                             -->
 															<div class="form-group">
 																<div class="row" >
-																	<div class="form-group">
-                                                                        <div class="row">
-                                                                            <a @click="insertar()">insertar</a>
-                                                                            <div class="col-md-12"><br>
-                                                                                
+																	<div class="col-md-12">
+                                                                        <div class="block-web">
+																			<div class="header">
+																				<div class="actions"> 
+																					<a @click="insertar()" class="list-group-item  blue_bg text-center "><i class="fa fa-folder-open"></i> Insertar</a>
+																				</div><br>                                                          
+																				<h3 class="content-header">Lista de Medicamentos  </h3>
+																			</div>
+																			<div class="col-md-12"><br>  
                                                                                 <div class="col-sm-3 col-sm-6">
                                                                                     <div class="entrada">
                                                                                         <h6 class=" blue_info">Medicamento:</h6>
@@ -292,10 +282,10 @@
                                                                                 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                                                                                 lista de medicamentos
                                                                                 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-                                                                                <div class="col-lg-12"> 
+                                                                                <div class=""> 
                                                                                     <section class="panel default blue_title h2">
                                                                                 
-                                                                                    <div class="panel-body">
+                                                                                    <div class="">
                                                                                     
                                                                               <table class="table table-hover">
                                                                                 <thead>
@@ -331,20 +321,11 @@
                                                                 
 															</div>
 														</div>
-														<a href="#ListPaciente" data-toggle="tab"><i
-																class="zmdi zmdi-plus-circle"></i> Añadir mas
-															Medicamento</a>
+														
 														<p class="text-center">
-															<button type="reset" class="btn btn-info"
-																style="margin-right: 20px;"><i
-																	class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-																Limpiar</button>
-															<button type="submit" class="btn btn-danger"><i
-																	class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-																Guardar</button>
-															<button type="submit" class="btn btn-outline-danger"><i
-																	class="zmdi zmdi-download"></i> &nbsp;&nbsp;
-																Imprimir</button>
+															<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+															<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+															<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
 														</p>
 
 													</form>
@@ -352,7 +333,7 @@
 
 													<template v-else>												
 													
-													<h6 class="center">Formulario de actualización</h6>
+													
 													<span style="color: red;">{{data_msg.msg_false}}</span>
                                                     <span style="color: blue;">{{data_msg.msg_true}}</span>
 													<form @submit="update_recedta" method="POST">
@@ -363,7 +344,7 @@
 																		class="close-down" href="#"><i
 																			class="fa fa-times"></i></a>
 																</div>
-																<h3 class="content-header">Datos del Paciente</h3>
+																<h3 class="content-header">Datos del Paciente  <span class="semi-bold">   Formulario de actualización</span>  </h3>
 															</div>
 															<div class="form-group">
 																<div class="row">
@@ -432,8 +413,6 @@
 																				<h6 class=" blue_info">Fecha Prescripción:</h6>
 																				<input class="form-control" name="fecha" require :value="One_receta.fecha.split('T')[0]" readonly="">
 																			</div>
-							  
-
 																		</div>
 																		<div class="col-sm-4 col-sm-6">
 																			<div class="entrada">
@@ -449,11 +428,7 @@
 																			<div class="entrada">
 																				<h6 class=" blue_info">Esspecialidad:
 																				</h6>
-																				<input
-																					:value="One_receta.tipoConsulta"
-																					class="form-control" readonly=""
-																				>
-
+																				<input :value="One_receta.tipoConsulta" class="form-control" readonly="" >
 																			</div>
 																		</div>
 
@@ -463,16 +438,17 @@
 														</div>
 														<div class="block-web">
 															<div class="header">
-																<div class="actions"> <a class="minimize" href="#"><i
-																			class="fa fa-chevron-down"></i></a> <a
-																		class="close-down" href="#"><i
-																			class="fa fa-times"></i></a>
-																</div>
+																<div class="actions"> 
+																	<a @click="insertar_update" class="list-group-item  blue_bg text-center "><i class="fa fa-folder-open"></i> Insertar</a>
+																</div><br>
 																<h3 class="content-header">Receta</h3>
-															</div>
-															<div class="form-group">
-																	<a @click="insertar_update">insertar</a>
-																<div class="row">
+															</div>&nbsp;&nbsp;
+														
+															
+														</div>
+														<div class="col-md-12">
+																	
+																<div class="">
 																	
 																		<div class="col-sm-3 col-sm-6">
 																				<div class="entrada">
@@ -527,7 +503,8 @@
 																				<td>{{list.frecuencia}}</td>
 																				<td>{{list.duracion}}</td>
 																				<td><a @click="eliminar_update(index)">eliminar</a></td>
-																			  </tr>                                                                                 
+																			  </tr> 
+																			                                                                                  
 																			</tbody>
 																		  </table>
 																	   
@@ -537,20 +514,11 @@
 																	
 																</div>
 															</div>
-														</div>
-
 														<template v-if="One_receta.estado == false">														
 															<p class="text-center">
-																<button type="reset" class="btn btn-info"
-																	style="margin-right: 20px;"><i
-																		class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-																	Limpiar</button>
-																<button type="submit" class="btn btn-danger"><i
-																		class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-																	Actualizar</button>
-																<button type="submit" class="btn btn-outline-danger"><i
-																		class="zmdi zmdi-download"></i> &nbsp;&nbsp;
-																	Imprimir</button>
+																<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+																<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
+																<button type="submit" class="btn btn-outline-danger"><i class="zmdi zmdi-download"></i> &nbsp;&nbsp; Imprimir</button>
 															</p>
 														</template>
 
@@ -560,11 +528,10 @@
 													</template>
 													
 												</div>
-											</div>
-											<div class="tab-pane fade" id="list">
-												<div class="table-responsive">
-													<table class="display table table-bordered table-striped"
-														id="dynamic-tablee">
+											</div><br>
+											<div class="tab-pane fade" id="list"><br>
+												<div class="table-responsive"><br>
+													<table class="display table table-bordered table-striped"id="dynamic-tablee">
 														<thead>
 															<tr>
 																<th>#</th>
@@ -578,6 +545,15 @@
 												   <th class="text-center" WIDTH="20%">Darde Baja</th>
 												-->
 															</tr>
+															<tr>
+																	<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
+																	<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias" >a</td>
+																	<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
+																	<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
+																	<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
+																	<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
+																	<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><a >eliminar</a></td>
+															</tr> 
 														</thead>
 														<tbody>
 															
@@ -596,21 +572,68 @@
 											</div>
 
 										</div>
-									</div>
-								</div>
-
-
 							</div>
-
-
-
-
-
-						</div>
+						</section>
+						
 					</div>
+						</div>
+				</div>	
+			</div>
 				</div>
 			</div>
 		</div>
+	</div>
+
+<!-- Modal alergias -->
+<div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	    <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			  <h4 class="modal-title" id="myModalLabel">Detalles de la Receta</h4>
+		</div>
+		<div>
+		    <div class="">
+			    <div id="main-content">
+				    <div class="">			
+						
+						<div id="myTabContent" class="tab-content">
+						  	<div class="tab-pane fade active in " id="neww">
+								<div class="col-md-12">
+									<div class="">
+										<div class=" ">
+											<p></p>
+											N° de Historial: <h9><%=paciente_Data[0].numeroHistorial%></h9> <br>
+											Nombre Completo: <%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%><br>
+											Fecha de la Receta: <br><br>
+											Nombre del Médico: <h9><%=ConsultaOnly[0].Citas_Medica.medico%></h9><br>
+											Especialidad: <%=ConsultaOnly[0].tipoConsulta%><br>
+											Medicamento: <br>
+											Dosis: <br>
+											
+											Duración:<br>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							
+						</div>
+										  <!--/porlets-content-->
+								  </div>
+							  </div>
+				  </div>
+	  
+			  </div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			 
+			</div>
+	  
+		</div>
+	</div>
+</div>
+	  
         <!--====== Scripts -->
         
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   <!-- vue cdn -->

@@ -52,10 +52,12 @@
                                 <div class="header">
                                     <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar"><i class="fa fa-chevron-down"></i></a> </div>
                                     <h3 class="content-header"> <i class="fa fa-shopping-cart icon"></i> Pedido</h3>   
-                                    <span style="color: red;">{{error}}</span>
-                                    <span style="color: blue;">{{msg}}</span>
+                                    
                                 </div>
                                 <div class="porlets-content">
+                                        <span style="color: red;">{{error}}</span>
+                                        <span style="color: blue;">{{msg}}</span><br><br>
+
                                     <form @submit="update" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Codigo de Compra:</label>
@@ -90,7 +92,7 @@
                                         <template v-if="pedido == ''">
                                             <div class="col-md-11"> 
                                                 <a class="btn btn-info" @click="ver(<%=resp[0].id%>)"><i class="fa fa-edit"></i> Ver Lista de Productos</a>
-                                                <section class="panel default blue_title h4">
+                                                <section class="panel default black_title h4">
                                                     <div class="panel-heading">Observaciones de la llegada del Pedido </div>
                                                     <div class="panel-body">
                                                         <table class="table table-hover">
@@ -101,7 +103,7 @@
                                                                 <th>Nombre</th>
                                                                 <th>Precio</th>
                                                                 <th>Cantidad</th>
-                                                                <th>Precio Toal</th>
+                                                                <th>Precio Total</th>
                                                                 <th>Fecha de vencimiento</th>
                                                                 <th>Modificar</th>
                                                                 </tr>
@@ -166,7 +168,7 @@
                                                                         <th>Nombre</th>
                                                                         <th>Precio</th>
                                                                         <th>Cantidad</th>
-                                                                        <th>Precio Toal</th>
+                                                                        <th>Precio Total</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody v-for="(item, index) in  list">  
@@ -221,7 +223,7 @@
                                                                         <th>Nombre</th>
                                                                         <th>Precio</th>
                                                                         <th>Cantidad</th>
-                                                                        <th>Precio Toal</th>
+                                                                        <th>Precio Total</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody v-for="(item, index) in  pedido.medicamentos">  

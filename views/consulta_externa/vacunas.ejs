@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>datos de responsable</title>
+    <meta charset="UTF-8">
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+
+
+    <style>
+        div.a {
+            text-align: center;
+        }
+
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+        }
+    </style>
+    <%- include("../partials/head") -%>
+</head>
+
+<body class=" light_theme  fixed_header left_nav_fixed" >
+	<!-- SideBar -->
+
+    <!-- Content page-->
+    <div class="wrapper">
+		<!--\\\\\\\ wrapper Start \\\\\\-->
+		<div class="header_bar">
+			<!--\\\\\\\ header Start \\\\\\-->
+			<div class="brand">
+				<!--\\\\\\\ brand Start \\\\\\-->
+				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+			</div>
+				<!--\\\\\\\ brand end \\\\\\-->
+			<div class="header_top_bar">
+				<!--\\\\\\\ header top bar start \\\\\\-->
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+				<div class="top_right_bar">
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+						src="/images/user.png" /><span class="user_adminname">  </span> <b
+						class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+							<li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+							<li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+							<li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		<!--\\\\\\\ header top bar end \\\\\\-->
+		</div>
+		<div class="inner">
+			<!--\\\\\\\ inner start \\\\\\-->
+			<div class="left_nav">
+				<!--\\\\\\\left_nav start \\\\\\-->
+				<div class="left_nav_slidebar">
+					<ul>
+						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+							</ul>
+						</li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b> </a> </li>
+							</ul>
+						</li>
+						<%- include("../partials/footerDocotr") -%>
+					</ul>
+				</div>
+			</div>
+			<!--\\\\\\\left_nav end \\\\\\-->
+			<div class="contentpanel">
+				<!--\\\\\\\ contentpanel start\\\\\\-->
+				<div class="container clear_both padding_fix col-lg-8">
+				<br>
+						
+		<!-- Content page -->
+	<div class="container-fluid col-md-12" id="">
+		<div class="header">
+			<div class="info blue_symbols"><i class="fa fa-group icon"></i></div><br>
+				<h3 class="content-header "> Registro de vacunas</h3>
+		</div>
+		<h1 class="text-titles"><i class="fa fa-hospital "></i> <small></small></h1>  
+	</div> 
+	<!-- Datos de responsable de consultas-->
+	<div class="container-fluid">
+	    <div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade active in" id="new">
+				<div class="row">
+					<div class="">
+					
+			  		<form action="" method="POST">
+				
+					<div class="">
+						<div class="col-md-12 ">
+							<div class="block-web">	
+								<div class="header">
+									<div class="actions">
+										<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
+									</div>
+									<h3 class="content-header">Registro de Vcunas</h3>&nbsp;&nbsp;
+								</div>
+								<div class="col-md-9">
+									<div class="col-sm-4 col-sm-4">
+										<div class="entrada ">
+											<h6 class=" blue_info">N° de Historia:</h6>
+											<input type="text" name="numeroHistorial" 
+												value=""
+												class="form-control" readonly=""
+												value="Read only text goes here">
+										</div>
+									</div>
+									<div class="col-sm-8 col-sm-9">
+										<div class="form-group">
+											<div class="entrada">
+												<h6 class=" blue_info">Nombre Completo:
+												</h6>
+												<input type="text" name="nombre apellidop apellidom" 
+													value=""
+													class="form-control" readonly=""
+													value="Read only text goes here">
+											</div>
+										</div>
+									</div>
+									<div class="">
+											<p>Datos de Responsable</p>
+										<div class="col-md-4">
+											<div class="entrada">Nombre:<br>
+												<input type="text" name="nombre" value=""size="10" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="entrada">Apellido Paterno:<br>
+												<input type="text" name="apellido1" value="" size="20"class="form-control"><br>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="entrada">Apellido Materno:<br>
+												<input type="text" name="apellido2" value=""size="10"class="form-control"><br>
+											</div>
+										</div>
+									</div>
+									<div class="">
+										<div class="col-md-4">
+											<div class="entrada">Dirección:<br>
+												<input type="text" name="direccion" value=""size="10" class="form-control"><br>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="entrada">CI.:<br>
+												<input type="text" name="ci" value="" size="20" class="form-control"><br>
+											 </div>
+										</div>
+										
+										<div class="col-md-4">
+											<div class="entrada">Teléfono:<br>
+												<input type="text" name="telefono" value=""size="10" class="form-control"><br>
+											</div>
+										</div>
+									</div>
+								</div>	
+								<div class="col-md-3">
+									<div class="file_sidebar">                   
+										<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
+										<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
+											<ul>
+												<li><a href=""><i class="fa fa-users"></i>Datos de responsable</a></li>
+												<li><a href="" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+												<li><a href=""><i class="fa fa-user"></i>Alergias</a></li>
+												<li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
+												<li><a href=""><i class="fa fa-users"></i>Examen General</a></li>
+												<li><a><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+											</ul>
+								   		</div>
+									 </div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				<br>
+				<br>
+				<br>
+				<p class="text-center">
+				    <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+					<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+				  </p>
+					</form>
+            
+                <form action="" method="POST">
+					<div class="row">
+						<div class="col-md-12 ">
+							<div class="block-web">
+								<div class="header">
+									<div class="actions">
+										<a href="" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> volver a registros</a>		
+									</div>
+										<h3 class="content-header">Actualizar Datos de Responsable</h3>&nbsp;&nbsp;
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-9">
+										<div class="col-sm-4 col-sm-4">
+											<div class="entrada ">
+												<h6 class=" blue_info">N° de Historia:</h6>
+												<input
+													value=""
+													class="form-control" readonly=""
+													value="Read only text goes here">
+											</div>
+										</div>
+										<div class="col-sm-8 col-sm-9">
+											<div class="form-group">
+												<div class="entrada">
+													<h6 class=" blue_info">Nombre Completo:
+													</h6>
+													<input
+														value=""
+														class="form-control" readonly=""
+														value="Read only text goes here">
+												</div>
+											</div>
+										</div>
+										
+										<div class="">
+											<div class="col-md-4">
+												<div class="entrada">Nombre:<br>
+													<input type="text" name="nombre" value=""size="10" class="form-control"><br>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="entrada">Apellido Paterno:<br>
+													<input type="text" name="apellido1" value="" size="20" class="form-control"><br>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="entrada">Apellido Materno:<br>
+													<input type="text" name="apellido2" value="" size="10" class="form-control"><br>
+												</div>
+											</div>
+										</div>
+										<div class="">
+												<div class="col-md-4">
+														<div class="entrada">Dirección:<br>
+															<input type="text" name="direccion" value="" size="10" class="form-control"><br>
+														</div>
+													</div>	
+											<div class="col-md-4">
+												<div class="entrada">CI.:<br>
+													<input type="text" name="ci" value="" size="20" class="form-control"><br>
+												 </div>
+											</div>
+											
+											<div class="col-md-4">
+												<div class="entrada">Teléfono:<br>
+													<input class="form-control" type="text" name="telefono" value="" size="10" ><br>
+												</div>
+											</div>
+										</div>
+									</div>	
+									
+									
+									<div class="col-md-3">
+											<div class="file_sidebar">                   
+													<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
+													<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
+													<ul>
+													   <li><a href=""><i class="fa fa-users"></i>Datos de responsable</a></li>
+													   <li><a href="" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+													   <li><a href=""><i class="fa fa-user"></i>Alergias</a></li>
+													   <li><a href="" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
+													   <li><a href=""><i class="fa fa-users"></i>Examen General</a></li>
+													   <li><a><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+													</ul>
+												   </div>
+											 </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+					<br>
+					
+					<br>
+					
+					  
+					  <p class="text-center">
+						  <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+						  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
+					  </p>
+				</form>
+		
+			<div class="container-fluid">
+				<div class="table-responsive"><br>
+					<div class="block-web">
+						<div class="header">
+							<h3 class="text-center" >LISTA DE DATOS DE RESPONSABLE</h3></div>
+					</div>
+					
+					<div class="table-wrapper">
+						
+						<table class="display table table-bordered table-striped" id="dynamic-tablee">
+							<thead>
+								<tr>
+								
+								<th>Nombre</th>
+								<th>Apellido Paterno</th>
+								<th>Apellido Materno</th>
+								<th>Dirección</th>
+								<th>CI</th>
+								<th>Teléfono</th>
+								<th>Dar de baja </th>
+								
+								</tr>
+							</thead>
+							<tbody>
+								
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td class="center">
+											<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
+											<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar de baja"><i class="fa fa-trash-o red"></i></a>
+										
+										</td>
+									
+									</tr>
+								
+							<tbody>
+						</table>
+					</div>
+				</div>
+			</div>	                                                                         
+				</div>                       
+		    	</div>
+	  		</div>
+		</div>
+	</div>
+					</div>
+				</div>
+			</div>
+    </div>
+	<!--====== Scripts -->
+	
+	<script src="/js/get/consultaget.js"></script>
+
+
+    <script src="/js/jquery-2.1.0.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common-script.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+
+    <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+    <script src="/plugins/data-tables/jquery.dataTables.js"></script>
+    <script src="/plugins/data-tables/DT_bootstrap.js"></script>
+    <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+    <script src="/plugins/edit-table/edit-table.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>
+
+    <script src="/js/jPushMenu.js"></script>
+    <script src="/js/side-chats.js"></script>
+</body>
+</html>
