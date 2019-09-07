@@ -5,6 +5,30 @@ const fetch = require('node-fetch');
 var url = require('./url/export');
 const datas = require('./url/export');
 
+
+//rutas con vue
+
+router.post('/vue_regConsultorio/:id_especialidad',(req,res) => {
+    const { id_especialidad } = req.params
+    var data = req.body
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch(url.name.cuadernos+'/api/reg_consEsp/' + id_especialidad,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        console.log(data)
+        res.status(200).json(data)
+    }) 
+})
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 router.get('/cuaderno',(req,res) => {
     res.render('cuadernos/homeCuaderno');
 });
