@@ -21,7 +21,7 @@
         <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
               <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
@@ -43,12 +43,12 @@
 			<ul>
 			  <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 				<ul>
-				  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+				  <li> <a href="/farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
 				</ul>
 			  </li>
 			  <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
 				<ul class="opened" style="display:block">
-				  <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  class="theme_color">Almacenamiento</b> </a> </li>
+				  <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  class="theme_color">Almacenamiento</b> </a> </li>
 				  <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
 				  <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
 				  <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
@@ -81,23 +81,29 @@
 							<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
 							<h3 class="content-header"> <i class="fa fa-medkit icon"></i> Registro de Medicamento</h3>
 						</div>
+						<%if(msg) { %>
+							<%if(msg.data.success == false) { %>
+								<h3 style="color: red"><%=msg.data.data_med%></h3>
+							<% } else {%>
+								<h3 style="color: blue"><%=msg.data.data_med%></h3>
+							<% } %>
+						<% } %>
 						<div class="porlets-content">
 							<div class="panel-body">
 								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-info btn-lg mb10" onclick=location="/Farmacia/grupoAsig_Far" >Grupo de Asignacion</button>
+								<button type="button" class="btn btn-info btn-lg mb10" onclick=location="/Farmacia/grupoAsig_Far/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" >Grupo de Asignacion</button>
 							</div>
-							<form  action="" method="POST" parsley-validate novalidate>
+							<form  action="/farmacia/registrar_medicamento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
 								<div class="col-md-12">
 									<div class="col-md-4">
 										<div class="form-group">
 											<label >Grupo de Asignación:</label>
 											<select  required class="form-control" id="source" onkeyup="mayus(this);" >
 												<optgroup label="Estatus de la compra">
-												<option>FACTURA</option>
-												<option>BOLETA DE VENTA</option>
-												<option>NOTA DE CREDITO</option>
-												<option>NOTA DE DEBITO</option>
-												<option>CONTROL INTERNO </option>
+													<%for(data of list_grupoAsig_Far) { %>
+														<option><%= data.descripcion%></option>
+													<% } %>
+													
 												</optgroup>                       
 											</select>
 										</div>
@@ -107,7 +113,7 @@
 										</div>
 										<div class="form-group">
 											<label>Forma Farmaceutica:</label>
-											<input type="text" name="presentacion" required class="form-control" onkeyup="mayus(this);">
+											<input type="text" name="forma_f" required class="form-control" onkeyup="mayus(this);">
 										</div>
 									</div>  
 									<div class="col-md-4">
@@ -117,7 +123,7 @@
 										</div>
 										<div class="form-group">
 											<label>Unidad de Medida:</label>
-											<input type="text" name="unidadMedida" required class="form-control" onkeyup="mayus(this);">
+											<input type="text" name="unida_medida" required class="form-control" onkeyup="mayus(this);">
 										</div>
 										<div class="form-group">
 											<label>Presentacion:</label>
@@ -135,7 +141,7 @@
 										</div>
 										<div class="form-group">
 											<label>Cantidad por Unidades:</label>
-											<input type="text" name="unidades" required class="form-control" onkeyup="mayus(this);">
+											<input type="text" name="cantidad_unidad" required class="form-control" onkeyup="mayus(this);">
 										</div>
 									</div>
 								</div>
@@ -143,17 +149,17 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Fecha de Llegada:</label>
-											<input type="date" name="fechaLLEgada" required class="form-control" onkeyup="mayus(this);">
+											<input type="date" name="" required class="form-control" onkeyup="mayus(this);">
 										</div>
 										<div class="form-group">
 											<label>Precio de Compra:</label>
-											<input type="text" name="precio" required class="form-control" onkeyup="mayus(this);">
+											<input type="text" name="precio_compra" required class="form-control" onkeyup="mayus(this);">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Fecha de Vencimiento:</label>
-											<input type="date" name="fechaVencimiento" required class="form-control" onkeyup="mayus(this);">
+											<input type="date" name="" required class="form-control" onkeyup="mayus(this);">
 										</div>
 										<div class="form-group">
 											<label>Precio de Venta:</label>
@@ -184,29 +190,29 @@
                     				<table  class="display table table-bordered table-striped " id="dynamic-table">
 										<thead>
 											<tr>
-											<th>Codigo</th>
-											<th>Nombre</th>
-											<th>Unidad de Medida</th>
-											<th>Forma Farmaceutica</th>
-											<th>Cantidad en Unidad</th>
-											<th>Fecha Llegada</th>
-											<th>Fecha Vencimiento</th>
-											<th>Precio Venta</th>
-											<th>Opciones</th>
+												<th>#</th>
+												<th>Codigo</th>
+												<th>Nombre</th>
+												<th>Unidad de Medida</th>
+												<th>Forma Farmaceutica</th>
+												<th>Cantidad en Unidad</th>												
+												<th>Precio Venta</th>
+												<th>Opciones</th>
 											</tr>
 										</thead>
 										<tbody>
+											<%for(var i = 0; i< list_medicamentos.length; i++) { %>
 											<tr>
-											<td>1</td>
-											<td>123</td>
-											<td>a</td>
-											<td>a</td>
-											<td>a</td>
-											<td>a</td>
-											<td>a</td>
-											<td>a</td>
-											<td><a class="btn btn-success" href=""><i class="fa fa-refresh"></i> </a></td>
+												<td><%=i+1%></td>
+												<td><%=list_medicamentos[i].codificacion%></td>
+												<td><%=list_medicamentos[i].nombre%></td>
+												<td><%=list_medicamentos[i].unida_medida%></td>
+												<td><%=list_medicamentos[i].forma_f%></td>
+												<td><%=list_medicamentos[i].cantidad_unidad%></td>
+												<td><%=list_medicamentos[i].precio%></td>
+												<td><a class="btn btn-success" href=""><i class="fa fa-refresh"></i> </a></td>
 											</tr>
+											<% } %>
 										<tbody>
                     				</table>
                   				</div><!--/table-responsive-->

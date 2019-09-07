@@ -40,7 +40,7 @@
     
       <div class="top_right_bar">
         
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">  <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%></span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
             <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
@@ -64,12 +64,12 @@
         <ul>
           <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul class="opened" style="display:block">
-              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b  class="theme_color">Inicio</b> </a> </li>
+              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b  class="theme_color">Inicio</b> </a> </li>
             </ul>
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul>
-              <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
+              <li> <a href="/Farmacia/almacenamiento/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
               <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
               <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
               <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>

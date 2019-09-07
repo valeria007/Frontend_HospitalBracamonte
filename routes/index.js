@@ -99,6 +99,8 @@ router.post('/login', (req,res)  => {
             res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
           }else if(resp.role[0].name == "emergencia"){
             res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
+          }else if(resp.role[0].name == "farmacia"){
+            res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
           }else{
             res.send(resp.role)
           }
@@ -132,8 +134,10 @@ router.post('/login', (req,res)  => {
             console.log(resp, " entro y mostro esto")
           }else if(resp.role[0].name == "emergencia"){
             res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
+          }else if(resp.role[0].name == "farmacia"){
+            res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
           }else{
-            res.send(resp.role)
+            res.send(resp)
           }
         }else{
           res.redirect('/home')
