@@ -24,6 +24,10 @@ function array () {
   return arr;
 }
 
+function remove_Token(id) {
+  delete datas.name.token[id];
+}
+
 router.get('/',(req, res) => {
   res.render('index', { msg1, msg2, msg3 })
 });
@@ -36,7 +40,7 @@ router.get('/home',(req, res) => {
   res.render('home')
 });
 
-var msg1,msg2,msg3 ;
+var msg1,msg2,msg3, token_part;
 router.post('/login', (req,res)  => {
   const username = req.body.username;
   const password = req.body.password;  
@@ -64,7 +68,7 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    //console.log(resp)
+    token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -75,8 +79,10 @@ router.post('/login', (req,res)  => {
       msg2=null;
       msg3 = " Contraceña Incorrecta "
       res.redirect('/')   
-    }else{
-      tok(resp,resp.user.id); //funcion para añadir token del usuario      
+    }else if ( datas.name.token[resp.user.id] == null ){
+    
+      tok(resp,resp.user.id); //funcion para añadir token del usuario  
+      
       datas.name.token = listItems // esto es para añadir tokens a datas
       fetch('http://localhost:3600/api/user/'+resp.user.id)
       .then(resp => resp.json())
@@ -88,8 +94,11 @@ router.post('/login', (req,res)  => {
             //res.send(resp.role[0].name)
             res.redirect('/almacen/home/'+resp.id)
           }else if(resp.role[0].name == "fichaje"){
-            res.redirect('/paciente/home/'+resp.id)
+            res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
             //res.send(resp.role)
+          }else if(resp.role[0].name == "medico"){
+            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+            console.log(resp, " entro y mostro esto")
           }else{
             res.send(resp.role)
           }
@@ -99,6 +108,37 @@ router.post('/login', (req,res)  => {
         
         //res.redirect('/almacen/home/'+resp.user.id)
       }) 
+    }else {
+      remove_Token(resp.user.id)
+      
+      tok(resp,resp.user.id); //funcion para añadir token del usuario  
+      
+      datas.name.token = listItems // esto es para añadir tokens a datas
+      fetch('http://localhost:3600/api/user/'+resp.user.id)
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(resp => {
+
+        if(resp.role.length <=1){
+          if(resp.role[0].name == "Almacen"){
+            //res.send(resp.role[0].name)
+            res.redirect('/almacen/home/'+resp.id)
+          }else if(resp.role[0].name == "fichaje"){
+            res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
+            //res.send(resp.role)
+          }else if(resp.role[0].name == "medico"){
+            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+            console.log(resp, " entro y mostro esto")
+          }else{
+            res.send(resp.role)
+          }
+        }else{
+          res.redirect('/home')
+        }
+        
+        //res.redirect('/almacen/home/'+resp.user.id)
+      }) 
+      
     }
     
   })

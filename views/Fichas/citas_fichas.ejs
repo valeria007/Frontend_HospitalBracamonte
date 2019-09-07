@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Recerva de ficha médica</title>
 	<meta charset="UTF-8">
@@ -91,7 +92,7 @@
 									class="left_nav_pointer"></span> <span class="plus"><i
 										class="fa fa-plus"></i></span> </a>
 							<ul>
-								<li> <a href="/paciente/home"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b>
+								<li> <a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b>
 									</a> </li>
 							</ul>
 						</li>
@@ -100,7 +101,7 @@
 									class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i
 										class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/paciente/citas"> <span>&nbsp;</span> <i
+								<li> <a href="/paciente/citas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i
 											class="fa fa-circle theme_color"></i>
 										<b class="theme_color">Citas Medicas</b>
 									</a> </li>
@@ -131,7 +132,8 @@
 							<div class="porlets-content">
 								<div id="citas">
 									<%if(citaUpdate == null) { %>
-									<form action="/paciente/cita_medica/<%=id.id %>" method="POST" class=" group-border-dashed">
+									<form action="/paciente/cita_medica/<%=id.id%>" method="POST" class=" group-border-dashed">
+										<input type="hidden" name="id_user" value="<%=data_token.token_id%>">
 										<div class="row">
 											<div class="col-md-12 ">
 												<div class="block-web">
@@ -142,6 +144,13 @@
 																	class="fa fa-times"></i></a> </div>
 														<h3 class="content-header">Recerva de Ficha</h3>
 													</div>
+													<% if(msg_false != null) { %>
+														<div class="bs-example">
+															<div class="alert alert-danger fade in">
+															  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+															  <strong><%=msg_false%></strong></div>
+														  </div>
+													<% } %>
 													<div class="porlets-content">
 														<div class="entrada"> Seleccione Dia:<br>
 															<select v-model="dia" @click="especilida">
@@ -200,9 +209,10 @@
 																				<option disabled="disabled" value>
 																					Seleccione
 																				</option>
-																				<option
-																					v-for="(doctor, index) of doctores">
-																					{{doctor.nombre}}</option>
+																				<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
+																					{{doctor.nombre.split("/")[0]}}
+																					
+																				</option>
 																			</select><br>
 																		</div>
 																		<div class="form-group"><br>
@@ -380,11 +390,14 @@
 																		@click="saca_horas">
 																		<option disabled="disabled" value>Seleccione
 																		</option>
-																		<option v-for="(doctor, index) of doctores">
-																			{{doctor.nombre}}
+																		<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
+																			{{doctor.nombre.split("/")[0]}}
+																			
 																		</option>
 																	</select>
 																</div>
+																
+																
 																<div class="entrada">Tipo de Paciente:<br>
 																	<div class="col-md-10">
 																		<label class="radio-inline"><input
@@ -469,25 +482,21 @@
 																<th>Historial Clinico</th>
 																<th>Doctor</th>
 																<th>Especialidad</th>
-																<th>Fecha </th>
 																<th>Saldo</th>
-																<th>Modificar</th>
+																<th>Opciones</th>
 															</tr>
 														</thead>
-														<tbody>
+														<tbody>														
+															
 															<tr class="gradeX">
-																<td>1</td>
-																<td>123</td>
-																<td>Dr. Pepito</td>
-																<td>Emergencia</td>
-																<td>12/02/2019</td>
-																<td>20</td>
-																<td class="center"><a href="/edit_cuadernos"
-																		class="btn btn-info btn-raised btn-xs "><i
-																			class="fa fa-edit"></i></a>
-																</td>
-															</tr>
-
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																<td>a</td>
+																
+															</tr>													
 
 														</tbody>
 														<tfoot>
@@ -496,13 +505,12 @@
 																<th>Historial Clinico</th>
 																<th>Doctor</th>
 																<th>Especialidad</th>
-																<th>Fecha </th>
 																<th>Saldo</th>
-																<th>Modificar</th>
+																<th>Opciones</th>
 															</tr>
 														</tfoot>
 													</table>
-
+													
 												</div>
 												<div class="tab-pane fade " id="listt">
 													<table class="display table table-bordered table-striped"
@@ -515,7 +523,7 @@
 																<th>Especialidad</th>
 																<th>Fecha </th>
 																<th>Saldo</th>
-																<th>Modificar</th>
+																<th>Opciones</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -528,9 +536,9 @@
 																<td><%=pacienteCita[i].especialidad%></td>
 																<td><%=pacienteCita[i].createdAt.split("T")[0]%></td>
 																<td><%=pacienteCita[i].saldo_total%></td>
-																<td class="center"><a href="/paciente/onliCita/<%=pacienteCita[i].id%>"
-																		class="btn btn-info  btn-xs "><i
-																			class="fa fa-edit"></i></a>
+																<td class="center">
+																	<a href="/paciente/onliCita/<%=pacienteCita[i].id%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+																	
 																</td>
 															</tr>
 															<% } %>
@@ -550,7 +558,7 @@
 																<th>Tipo de Consulta De</th>
 																<th>Fecha </th>
 																<th>Saldo</th>
-																<th>Modificar</th>
+																<th>Opciones</th>
 															</tr>
 														</tfoot>
 													</table>
@@ -614,7 +622,9 @@
 		});
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<!-- etiqueta sin internet-->
+	<script src="/axios/dist/axios.min.js"></script>
+
 	<script src="/js/jPushMenu.js"></script>
 	<script src="/js/side-chats.js"></script>
 
