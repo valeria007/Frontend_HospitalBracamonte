@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Recerva de ficha médica</title>
 	<meta charset="UTF-8">
@@ -482,7 +483,7 @@
 																<th>Doctor</th>
 																<th>Especialidad</th>
 																<th>Saldo</th>
-																<th>Modificar</th>
+																<th>Opciones</th>
 															</tr>
 														</thead>
 														<tbody>														
@@ -505,7 +506,7 @@
 																<th>Doctor</th>
 																<th>Especialidad</th>
 																<th>Saldo</th>
-																<th>Modificar</th>
+																<th>Opciones</th>
 															</tr>
 														</tfoot>
 													</table>
@@ -522,7 +523,7 @@
 																<th>Especialidad</th>
 																<th>Fecha </th>
 																<th>Saldo</th>
-																<th>Modificar</th>
+																<th>Opciones</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -535,9 +536,9 @@
 																<td><%=pacienteCita[i].especialidad%></td>
 																<td><%=pacienteCita[i].createdAt.split("T")[0]%></td>
 																<td><%=pacienteCita[i].saldo_total%></td>
-																<td class="center"><a href="/paciente/onliCita/<%=pacienteCita[i].id%>"
-																		class="btn btn-info  btn-xs "><i
-																			class="fa fa-edit"></i></a>
+																<td class="center">
+																	<a href="/paciente/onliCita/<%=pacienteCita[i].id%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+																	
 																</td>
 															</tr>
 															<% } %>
@@ -557,7 +558,7 @@
 																<th>Tipo de Consulta De</th>
 																<th>Fecha </th>
 																<th>Saldo</th>
-																<th>Modificar</th>
+																<th>Opciones</th>
 															</tr>
 														</tfoot>
 													</table>
@@ -621,7 +622,9 @@
 		});
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- etiqueta sin internet-->
 	<script src="/axios/dist/axios.min.js"></script>
+
 	<script src="/js/jPushMenu.js"></script>
 	<script src="/js/side-chats.js"></script>
 

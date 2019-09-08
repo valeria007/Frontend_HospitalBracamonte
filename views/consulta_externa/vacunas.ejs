@@ -65,7 +65,7 @@
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
 				<div class="top_right_bar">
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-						src="/images/user.png" /><span class="user_adminname">  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
+						src="/images/user.png" /><span class="user_adminname">  </span> <b
 						class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -87,12 +87,12 @@
 					<ul>
 						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
-								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
 							</ul>
 						</li>
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b> </a> </li>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b> </a> </li>
 							</ul>
 						</li>
 						<%- include("../partials/footerDocotr") -%>
@@ -109,7 +109,7 @@
 	<div class="container-fluid col-md-12" id="">
 		<div class="header">
 			<div class="info blue_symbols"><i class="fa fa-group icon"></i></div><br>
-				<h3 class="content-header "> Datos de Responsables</h3>
+				<h3 class="content-header "> Registro de vacunas</h3>
 		</div>
 		<h1 class="text-titles"><i class="fa fa-hospital "></i> <small></small></h1>  
 	</div> 
@@ -119,8 +119,8 @@
 			<div class="tab-pane fade active in" id="new">
 				<div class="row">
 					<div class="">
-					<% if(update_r == null) { %>
-			  		<form action="/consulta_externa/reg_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
+					
+			  		<form action="" method="POST">
 				
 					<div class="">
 						<div class="col-md-12 ">
@@ -129,14 +129,14 @@
 									<div class="actions">
 										<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
 									</div>
-									<h3 class="content-header">Registro de Responsable</h3>&nbsp;&nbsp;
+									<h3 class="content-header">Registro de Vcunas</h3>&nbsp;&nbsp;
 								</div>
 								<div class="col-md-9">
 									<div class="col-sm-4 col-sm-4">
 										<div class="entrada ">
 											<h6 class=" blue_info">N° de Historia:</h6>
 											<input type="text" name="numeroHistorial" 
-												value="<%=dataPaciente[0].numeroHistorial%>"
+												value=""
 												class="form-control" readonly=""
 												value="Read only text goes here">
 										</div>
@@ -147,47 +147,47 @@
 												<h6 class=" blue_info">Nombre Completo:
 												</h6>
 												<input type="text" name="nombre apellidop apellidom" 
-													value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+													value=""
 													class="form-control" readonly=""
 													value="Read only text goes here">
 											</div>
 										</div>
 									</div>
 									<div class="">
-											<p>Datos de Responsable</p>
+											<p>Vacunas</p>
 										<div class="col-md-4">
-											<div class="entrada">Nombre:<br>
+											<div class="entrada">Nombre de la vacuna:<br>
 												<input type="text" name="nombre" value=""size="10" class="form-control">
 											</div>
 										</div>
 										<div class="col-md-4">
-											<div class="entrada">Apellido Paterno:<br>
+											<div class="entrada">Fecha de la vacuna:<br>
 												<input type="text" name="apellido1" value="" size="20"class="form-control"><br>
 											</div>
 										</div>
 										<div class="col-md-4">
-											<div class="entrada">Apellido Materno:<br>
+											<div class="entrada">Dosis y cantidad:<br>
 												<input type="text" name="apellido2" value=""size="10"class="form-control"><br>
 											</div>
 										</div>
 									</div>
 									<div class="">
 										<div class="col-md-4">
-											<div class="entrada">Dirección:<br>
+											<div class="entrada">Via:<br>
 												<input type="text" name="direccion" value=""size="10" class="form-control"><br>
 											</div>
 										</div>
 										<div class="col-md-4">
-											<div class="entrada">CI.:<br>
-												<input type="text" name="ci" value="" size="20" class="form-control"><br>
-											 </div>
-										</div>
-										
-										<div class="col-md-4">
-											<div class="entrada">Teléfono:<br>
-												<input type="text" name="telefono" value=""size="10" class="form-control"><br>
+											<div class="entrada">Edad de  Aplicación:<br>
+												<input type="text" name="direccion" value=""size="10" class="form-control"><br>
 											</div>
 										</div>
+										<div class="col-md-4">
+											<div class="entrada">Enfermedad que previene:<br>
+												<input type="text" name="direccion" value=""size="10" class="form-control"><br>
+											</div>
+										</div>
+										
 									</div>
 								</div>	
 								<div class="col-md-3">
@@ -195,11 +195,11 @@
 										<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
 										<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
 											<ul>
-												<li><a href="/consulta_externa/data_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
-												<li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-												<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
+												<li><a href=""><i class="fa fa-users"></i>Datos de responsable</a></li>
+												<li><a href="" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+												<li><a href=""><i class="fa fa-user"></i>Alergias</a></li>
 												<li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
-												<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
+												<li><a href=""><i class="fa fa-users"></i>Examen General</a></li>
 												<li><a><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
 											</ul>
 								   		</div>
@@ -216,16 +216,16 @@
 					<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
 				  </p>
 					</form>
-            <% } else { %>
-                <form action="/consulta_externa/update_responsable/<%=update_r.data[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
+            
+                <form action="" method="POST">
 					<div class="row">
 						<div class="col-md-12 ">
 							<div class="block-web">
 								<div class="header">
 									<div class="actions">
-										<a href="/consulta_externa/delete/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> volver a registros</a>		
+										<a href="" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> volver a registros</a>		
 									</div>
-										<h3 class="content-header">Actualizar Datos de Responsable</h3>&nbsp;&nbsp;
+										<h3 class="content-header">Actualizar Vacuna</h3>&nbsp;&nbsp;
 								</div>
 								<div class="col-md-12">
 									<div class="col-md-9">
@@ -233,7 +233,7 @@
 											<div class="entrada ">
 												<h6 class=" blue_info">N° de Historia:</h6>
 												<input
-													value="<%=dataPaciente[0].numeroHistorial%>"
+													value=""
 													class="form-control" readonly=""
 													value="Read only text goes here">
 											</div>
@@ -244,7 +244,7 @@
 													<h6 class=" blue_info">Nombre Completo:
 													</h6>
 													<input
-														value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+														value=""
 														class="form-control" readonly=""
 														value="Read only text goes here">
 												</div>
@@ -253,38 +253,38 @@
 										
 										<div class="">
 											<div class="col-md-4">
-												<div class="entrada">Nombre:<br>
-													<input type="text" name="nombre" value="<%=update_r.data[0].nombre%>"size="10" class="form-control"><br>
+												<div class="entrada">Nombre de la vacuna:<br>
+													<input type="text" name="nombre" value=""size="10" class="form-control"><br>
 												</div>
 											</div>
 											<div class="col-md-4">
-												<div class="entrada">Apellido Paterno:<br>
-													<input type="text" name="apellido1" value="<%=update_r.data[0].apellido1%>" size="20" class="form-control"><br>
+												<div class="entrada">Fecha de la vacuna:<br>
+													<input type="text" name="apellido1" value="" size="20" class="form-control"><br>
 												</div>
 											</div>
 											<div class="col-md-4">
-												<div class="entrada">Apellido Materno:<br>
-													<input type="text" name="apellido2" value="<%=update_r.data[0].apellido2%>" size="10" class="form-control"><br>
+												<div class="entrada">Dosis y cantidad:<br>
+													<input type="text" name="apellido2" value="" size="10" class="form-control"><br>
 												</div>
 											</div>
 										</div>
 										<div class="">
-												<div class="col-md-4">
-														<div class="entrada">Dirección:<br>
-															<input type="text" name="direccion" value="<%=update_r.data[0].direccion%>" size="10" class="form-control"><br>
-														</div>
-													</div>	
 											<div class="col-md-4">
-												<div class="entrada">CI.:<br>
-													<input type="text" name="ci" value="<%=update_r.data[0].ci%>" size="20" class="form-control"><br>
-												 </div>
-											</div>
-											
-											<div class="col-md-4">
-												<div class="entrada">Teléfono:<br>
-													<input class="form-control" type="text" name="telefono" value="<%=update_r.data[0].telefono%>" size="10" ><br>
+												<div class="entrada">via<br>
+													<input type="text" name="direccion" value="" size="10" class="form-control"><br>
 												</div>
-											</div>
+											</div>	
+											<div class="col-md-4">
+												<div class="entrada">Edad de Aplicación<br>
+													<input type="text" name="direccion" value="" size="10" class="form-control"><br>
+												</div>
+											</div>	
+											<div class="col-md-4">
+												<div class="entrada">Enfermedad que previene<br>
+													<input type="text" name="direccion" value="" size="10" class="form-control"><br>
+												</div>
+											</div>	
+											
 										</div>
 									</div>	
 									
@@ -294,11 +294,11 @@
 													<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
 													<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
 													<ul>
-													   <li><a href="/consulta_externa/data_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
-													   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-													   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-													   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
-													   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
+													   <li><a href=""><i class="fa fa-users"></i>Datos de responsable</a></li>
+													   <li><a href="" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+													   <li><a href=""><i class="fa fa-user"></i>Alergias</a></li>
+													   <li><a href="" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
+													   <li><a href=""><i class="fa fa-users"></i>Examen General</a></li>
 													   <li><a><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
 													</ul>
 												   </div>
@@ -319,12 +319,12 @@
 						  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
 					  </p>
 				</form>
-			<% } %>
+		
 			<div class="container-fluid">
 				<div class="table-responsive"><br>
 					<div class="block-web">
 						<div class="header">
-							<h3 class="text-center" >LISTA DE DATOS DE RESPONSABLE</h3></div>
+							<h3 class="text-center" >LISTA DE VACUNAS</h3></div>
 					</div>
 					
 					<div class="table-wrapper">
@@ -333,33 +333,34 @@
 							<thead>
 								<tr>
 								
-								<th>Nombre</th>
-								<th>Apellido Paterno</th>
-								<th>Apellido Materno</th>
-								<th>Dirección</th>
-								<th>CI</th>
-								<th>Teléfono</th>
-								<th>Dar de baja </th>
-								
+								<th>N° Historial</th>
+								<th>Nombre Compelto</th>
+								<th>Vacuna</th>
+								<th>Fecha</th>
+								<th>Dosis</th>
+								<th>Edad</th>
+								<th>Enfermedad que previene</th>
+								<th>Opciones</th>
 								</tr>
 							</thead>
 							<tbody>
-								<% for( var i = 0; i< list_responsables.length; i++) { %>
+								
 									<tr>
-										<td><%=list_responsables[i].nombre%></td>
-										<td><%=list_responsables[i].apellido1%></td>
-										<td><%=list_responsables[i].apellido2%></td>
-										<td><%=list_responsables[i].direccion%></td>
-										<td><%=list_responsables[i].ci%></td>
-										<td><%=list_responsables[i].telefono%></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
 										<td class="center">
-											<a href="/consulta_externa/one_responsable/<%=list_responsables[i].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
+											<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
 											<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar de baja"><i class="fa fa-trash-o red"></i></a>
 										
 										</td>
 									
 									</tr>
-								<% } %>
+								
 							<tbody>
 						</table>
 					</div>

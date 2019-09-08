@@ -47,7 +47,7 @@
 
 </head>
 
-<body class=" light_theme  fixed_header left_nav_fixed">
+<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
     <!-- SideBar -->
 
 
@@ -112,60 +112,32 @@
         <!--\\\\\\\left_nav end \\\\\\-->
         <div class="contentpanel">
                 <!--\\\\\\\ contentpanel start\\\\\\-->
-            <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#alergias"> <i class="fa fa-plus-square"></i> <span> Alergias</span> </a>
-            <a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#antecedestes"> <i class="fa fa-plus-square"></i> <span> Antecedesntes</span> </a>
-            
-                <!--\\\\\\\ contentpanel start\\\\\\-->
             <div class="container clear_both padding_fix col-lg-8">
                 <br>
                 <div class="row"> 
                     <!-- Content page -->
                     <div class="container-fluid col-md-12" id="">
-                            <div class="page-header  col-md-6">
-                                <h1><i class="fa fa-user-md"></i> Consulta Externa<small></small></h1>
-                            </div><br><br>
-                            <div class="btn-group  col-md-3">
-                               <button type="button" class="btn btn-info btn-raised" data-toggle="dropdown"> Detalles del Paciente <span class="caret"></span>
-                                </button>
-                                <p>pendiente</p>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="menu__item">
-                                        <a href="/consulta_externa/data_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"
-                                            class="menu__link">Datos de responsable </a>
-                                    </li>
-                                    <li class="menu__item">
-                                        <a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>"
-                                            class="menu__link">Antecedentes</a>
-                                    </li>
-                                    <li class="menu__item">
-                                        <a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"
-                                                class="menu__link">Alergia</a>
-                                    </li>
-                                    <li class="menu__item">
-                                        <a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"
-                                            class="menu__link">Examen General</a>
-                                    </li>
-                                    <li class="menu__item">
-                                        <a href="/VerHistorial" class="menu__link">Ver Historial </a>
-                                    </li>
-
-                                    <li class="divider"></li>
-                                </ul>
+                        <div class="page-header  ">
+                            <div class="header">
+                                <div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div><br>
+                                    <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa</h3>
+                                </div>       
                             </div>
-
-                            <div id="" class="col-md-2">
-
+                            <div id="" class="col-md-2">	
                                 <div class="">
-                                    <a href="/medico/volver" class="btn btn-success btn-raised "><i class=""></i>Atras no da</a>
-                                </div>
+                                    <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+                                </div>				
                             </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                                    <li class="active"><a href="#new" data-toggle="tab">Registro de consulta medica</a></li>
-                                    <li><a href="#list" data-toggle="tab">Listado de consultas del paciente</a></li>
+                    </div><br>
+                </div> 
+                    <div class="main-content">
+                            
+                        <div class="main-content">
+                                <section class="panel default blue_title h2">
+                            <div class="page-content">
+                                <ul class="nav nav-tabs" id="myTab">
+                                    <li class=" col-lg-6 active active  text-center"><a href="#new" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Registro de consulta medica</a></li>
+                                    <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt "></i><span>&nbsp;&nbsp;&nbsp;</span>Listado de consultas del paciente</a></li>
                                 </ul>
                                 <!-- Rconten page-->
                                 <div id="myTabContent" class="tab-content">
@@ -179,11 +151,12 @@
                                                             <a href="#" class="refresh"> <i class="fa fa-repeat"></i></a>
                                                             <a href="#" class="close-down"> <i class="fa fa-times"></i></a>
                                                         </div>
-                                                        <h3>Datos Personales</h3>
+                                                        <h3 >Datos Personales</h3>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="row">
-                                                            <div class="col-md-12">
+                                                            
+                                                            <div class="col-md-9"><br>
                                                                 <div class="col-md-4">
                                                                     <div class="entrada ">
                                                                         <h6 class=" blue_info">N° de Historia:</h6>
@@ -204,27 +177,43 @@
                                                                                     value="Read only text goes here">
                                                                         </div>
                                                                     </div>
-                                                                </div>   
-                                                                    
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="col-md-4">
-                                                                    <div class="entrada">
-                                                                        <h6 class=" blue_info">CI.:</h6>
-                                                                        <input type="text" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                </div>  
+                                                                <div class="">
+                                                                    <div class="col-md-4">
+                                                                        <div class="entrada">
+                                                                            <h6 class=" blue_info">CI.:</h6>
+                                                                            <input type="text" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-sm-4 col-sm-6">
-                                                                    <div class="entrada">
-                                                                        <h6 class="blue_info">Fecha de Nacimiento:
-                                                                        </h6>
-                                                                        <input  type="text" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                    <div class="col-sm-4 col-sm-6">
+                                                                        <div class="entrada">
+                                                                            <h6 class="blue_info">Fecha de Nacimiento:
+                                                                            </h6>
+                                                                            <input  type="text" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-sm-4 col-sm-6">
-                                                                    <div class="entrada">
-                                                                        <h6 class=" blue_info"> Sexo: </h6>
-                                                                        <input name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                    <div class="col-sm-4 col-sm-6">
+                                                                        <div class="entrada">
+                                                                            <h6 class=" blue_info"> Sexo: </h6>
+                                                                            <input name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>       
+                                                            </div>  
+                                                            <div class="col-md-3">
+                                                                <div class="file_sidebar">   
+                                                                     <li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
+                                                                    <div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
+                                                                        <ul>
+                                                                            <li><a href="/consulta_externa/data_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
+                                                                            <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
+                                                                            <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
+                                                                            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
+                                                                            <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
+                                                                           
+                                                                            <li><a><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+                                                                                
+                                                                        </ul>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -255,7 +244,9 @@
                                                                 <div class="col-sm-3 col-sm-6">
                                                                     <div class="entrada">
                                                                         <h6 class=" blue_info">Fecha de Consulta:</h6>
-                                                                            <input type="date" name="fechaConsulta" require class="form-control">
+                                                              
+                                                                        <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj2" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
+                                                                        
                                                                     </div>                        
                                                                 </div>
                                                                 <div class="col-sm-4 col-sm-6">
@@ -278,25 +269,31 @@
                                                 
                                                 
                                                 <!--diagnostico del paciente o estado del paciente-->
-                                                <p>Estado del paciente</p>
+                                                <div class="block-web">
+                                                        <div class="header">
+                                                                <h3 class="text-center "  >Estado del paciente</h3>
+                                                            </div>
+                                                </div>
                                                 <div class="grupo" id="cabeza">
                                                     <div class="panel with-nav-tabs panel-default">
-                                                        <div class="panel-heading">
-                                                            <ul class="nav nav-tabs">
-                                                                <li class="active"><a href="#tab1default" data-toggle="tab">Motivo de Consulta</a></li>
-                                                                <li><a href="#tab2default" data-toggle="tab">Diagnostico</a></li>
-                                                                <li><a href="#tab3default" data-toggle="tab">Tratamiento</a></li>
-                                                                <li><a href="#tab4default" data-toggle="tab">Observaciones</a></li>
+                                                            <section class="panel default blue_title h2">
+                                                        <div class="">
+                                                            <ul class="nav nav-tabs" id="myTab">
+                                                                <li class="col-lg-3 text-center active"><a href="#tab1default" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Motivo de Consulta</a></li>
+                                                                <li class="col-lg-3 text-center"><a href="#tab2default" data-toggle="tab"><i class="fa fa-file-text "></i><span>&nbsp;&nbsp;&nbsp;</span>Diagnostico</a></li>
+                                                                <li class="col-lg-3 text-center"><a href="#tab3default" data-toggle="tab"><i class="fa fa-stethoscope "></i><span>&nbsp;&nbsp;&nbsp;</span>Tratamiento</a></li>
+                                                                <li class="col-lg-3 text-center"><a href="#tab4default" data-toggle="tab"><i class="fa fa-file-text-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Observaciones</a></li>
                                                             </ul>
                                                         </div>
-                                                        <div class="panel-body">
+                                                        <div class="">
                                                             <div class="tab-content">
-                                                                <div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="anamnesis"  cols="100" rows="10"></textarea></div>
-                                                                <div class="tab-pane fade" id="tab2default"><textarea class="large-compact" name="diagnostico" cols="100" rows="10"></textarea></div>
-                                                                <div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="100" rows="10"></textarea></div>
-                                                                <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="100" rows="10"></textarea></div>
+                                                                <div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="anamnesis"  cols="112" rows="10"></textarea></div>
+                                                                <div class="tab-pane fade" id="tab2default"><textarea class="large-compact" name="diagnostico" cols="112" rows="10"></textarea></div>
+                                                                <div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="112" rows="10"></textarea></div>
+                                                                <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="112" rows="10"></textarea></div>
                                                             </div>
                                                         </div>
+                                                        </section>
                                                     </div>
                                                 </div> 
                                                 <p class="text-center">
@@ -319,7 +316,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="row">
-                                                            <div class="col-md-12">
+                                                            <div class="col-md-9"><br>
                                                                 <div class="col-md-4">
                                                                     <div class="entrada ">
                                                                         <h6 class=" blue_info">N° de Historia:</h6>
@@ -340,29 +337,57 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>   
+                                                                <div class="">
+                                                                    <div class="col-md-4">
+                                                                        <div class="entrada">
+                                                                            <h6 class=" blue_info">CI.:</h6>
+                                                                            <input type="text" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-sm-6">
+                                                                        <div class="entrada">
+                                                                            <h6 class="blue_info">Fecha de Nacimiento:
+                                                                            </h6>
+                                                                            <input  type="text" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-sm-6">
+                                                                        <div class="entrada">
+                                                                            <h6 class=" blue_info"> Sexo: </h6>
+                                                                            <input name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>    
+                                                            </div>
+                                                            
+
+                                                            <div class="col-md-3">
+                                                                <div class="file_sidebar">
                                                                     
+                                                                     
+                                                                     <li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>
+
+                                                                           
+                                                                        <div class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
+                                                                          <ul>
+                                                                            <li><a href="/consulta_externa/data_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
+                                                                            <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
+                                                                            
+                                                                            <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
+                                                                            
+                                                                            
+                                                                            <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li>
+                                                                            <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
+                                                                           
+                                                                            <li><a><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+                                                                                
+                                                                          </ul>
+                                                                        </div>
+                                                                      </div>
+                                                      
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                <div class="col-md-4">
-                                                                    <div class="entrada">
-                                                                        <h6 class=" blue_info">CI.:</h6>
-                                                                        <input type="text" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4 col-sm-6">
-                                                                    <div class="entrada">
-                                                                        <h6 class="blue_info">Fecha de Nacimiento:
-                                                                        </h6>
-                                                                        <input  type="text" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4 col-sm-6">
-                                                                    <div class="entrada">
-                                                                        <h6 class=" blue_info"> Sexo: </h6>
-                                                                        <input name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -374,7 +399,7 @@
                                                             <a href="#" class="refresh"> <i class="fa fa-repeat"></i></a>
                                                             <a href="#" class="close-down"> <i class="fa fa-times"></i></a>
                                                         </div>
-                                                        <h3>Datos de la cita</h3>
+                                                        <h3 >Datos de la cita</h3>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="row">
@@ -390,7 +415,7 @@
                                                                 <div class="col-sm-3 col-sm-6">
                                                                     <div class="entrada">
                                                                         <h6 class=" blue_info">Fecha de Consulta:</h6>
-                                                                            <input class="form-control"  type="date" name="fechaConsulta"require value="<%=updateCita[0].fechaConsulta%>">
+                                                                            <input class="form-control"  type="text" name="fechaConsulta"require value="<%=updateCita[0].fechaConsulta%>" readonly="">
                                                                     </div>                        
                                                                 </div>
                                                                     <div class="col-sm-4 col-sm-6">
@@ -411,38 +436,35 @@
                                                 </div> 
                                             
                                                 <!--diagnostico del paciente o estado del paciente-->
-                                               
-                                                <div class="col-md-12">
-                                                    <h4 class="">Estado del paciente</h4>
+                                                <div class="block-web">
+                                                        <div class="header text-center">
+                                                                <h3 class="" >Estado del paciente</h3>
+                                                            </div>
+                                                </div>
+                                                <div class="col-md-9">  
                                                     <div class="grupo" id="cabeza">
                                                             
                                                         <div class="panel with-nav-tabs panel-default">
-                                                            <div class="panel-heading">
-                                                                <ul class="nav nav-tabs">
-                                                                    <li class="active"><a href="#tab1default" data-toggle="tab">Motivo de Consulta</a></li>
-                                                                    <li><a href="#tab2default" data-toggle="tab">Diagnostico</a></li>
-                                                                    <li><a href="#tab3default" data-toggle="tab">Tratamiento</a></li>
-                                                                    <li><a href="#tab4default" data-toggle="tab">Observaciones</a></li>
+                                                            <section class="panel default blue_title h2">
+                                                            <div class="">
+                                                                <ul class="nav nav-tabs"id="myTab">
+                                                                    <li class="col-lg-3 active"><a href="#tab1default" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Motivo de Consulta</a></li>
+                                                                    <li class="col-lg-3 text-center"><a href="#tab2default" data-toggle="tab"><i class="fa fa-file-text "></i><span>&nbsp;&nbsp;&nbsp;</span>Diagnostico</a></li>
+                                                                    <li class="col-lg-3 text-center"><a href="#tab3default" data-toggle="tab"><i class="fa fa-stethoscope "></i><span>&nbsp;&nbsp;&nbsp;</span>Tratamiento</a></li>
+                                                                    <li class="col-lg-3 text-center"><a href="#tab4default" data-toggle="tab"><i class="fa fa-file-text-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Observaciones</a></li>
                                                                 </ul>
                                                             </div>
-                                                            <div class="panel-body">
+                                                            <div class="">
                                                                 <div class="tab-content">
-                                                                    <div class="tab-pane fade in active" id="tab1default">
-                                                                        <textarea class="large-compact" name="anamnesis" cols="100" rows="10"><%=updateCita[0].anamnesis%></textarea>
-                                                                    </div>
-                                                                    <div class="tab-pane fade" id="tab2default">
-                                                                        <textarea class="large-compact" name="diagnostico" cols="100" rows="10"><%=updateCita[0].diagnostico%></textarea>
-                                                                    </div>
-                                                                    <div class="tab-pane fade" id="tab3default">
-                                                                        <textarea class="large-compact" name="tratamiento" cols="100" rows="10"><%=updateCita[0].tratamiento%></textarea>
-                                                                    </div>
-                                                                    <div class="tab-pane fade" id="tab4default">
-                                                                        <textarea class="large-compact" name="observaciones" cols="100" rows="10"><%=updateCita[0].observaciones%></textarea>
-                                                                    </div>
+                                                                    <div class="tab-pane fade in active" id="tab1default"> <textarea class="large-compact" name="anamnesis" cols="80" rows="10"><%=updateCita[0].anamnesis%></textarea></div>
+                                                                    <div class="tab-pane fade" id="tab2default"> <textarea class="large-compact" name="diagnostico" cols="80" rows="10"><%=updateCita[0].diagnostico%></textarea></div>
+                                                                    <div class="tab-pane fade" id="tab3default"> <textarea class="large-compact" name="tratamiento" cols="80" rows="10"><%=updateCita[0].tratamiento%></textarea></div>
+                                                                    <div class="tab-pane fade" id="tab4default"> <textarea class="large-compact" name="observaciones" cols="80" rows="10"><%=updateCita[0].observaciones%></textarea></div>
                                                                 </div>
                                                             </div>
+                                                            </section>
                                                         </div>
-                                                        <div class="col-md-12 formm">
+                                                        <div class="col-md-12 ">
                                                             <p class="text-center">
                                                                 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="fa fa-roller"></i> &nbsp;&nbsp;
                                                                     Limpiar</button>
@@ -452,8 +474,29 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-3">    
+                                                    <div class="file_sidebar">  
+                                                        <li href="#collapse4" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Herramientas</li>
+                                                           
+                                                        <div class="file_sidebar_list panel-collapse collapse in"   id="collapse4" style="height: auto;">
+                                                            <ul>
+                                                                <li><a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <i class="fa fa-building-o"></i>Receta</a></li>  
+                                                                <li><a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
+                                                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-clipboard"></i>Orden de Laboratorio</a></li>
+                                                                <li> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-caret-down"></i>Examenes Complementarios </a> </li>
+                                                                <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+                                                                    <div class="panel-body"> 
+                                                                        <ul >
+                                                                            <li><a><i class="fa fa-file-text-o"></i>Orden de Ecografía</a></li>
+                                                                            <li><a><i class="fa fa-file-text"></i>Orden de radiografia</a></li>
+                                                                        </ul> 
+                                                                    </div>
+                                                                </div>            
+                                                            </ul>  
+                                                        </div>
+                                                    </div>                                                 
+                                                </div>
                                             </form>
-                                            <a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-primary btn-sm">Receta</a>&nbsp;<a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-primary btn-sm">Papeleta de Internacion</a>
                                             <hr>
                                            <!--  <div class="col-md-6">
                                                 <section class="panel default blue_title h2">
@@ -486,16 +529,14 @@
                                                         <thead>
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>Numero Historial</th>
-                                                            <th>Nombre</th>
-                                                            <th>Apellido Paterno</th>
-                                                            <th>Apellido Materno</th>
+                                                            <th>N° Historial</th>
+                                                            <th>Nombre Completo</th>
+                                                          
                                                             <th>Diagnostico</th>
                                                             <th>Fecha de Consulta</th>
                                                             <th>Tipo de Consulta</th>
-                                                            <th>Dar Receta</th>
-                                                            <th>Papeleta Internacion</th>
-                                                            <th>Ver</th>
+                                                            <th class="center">Opciones</th>
+                                                            
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -504,15 +545,19 @@
                                                                 <tr>
                                                                     <td><%= i+1%></td>
                                                                     <td><%=resp[i].numeroHistorial%></td>
-                                                                    <td><%=resp[i].Citas_Medica.Paciente.nombre%></td>
-                                                                    <td><%=resp[i].Citas_Medica.Paciente.apellidop%></td>
-                                                                    <td><%=resp[i].Citas_Medica.Paciente.apellidom%></td>
+                                                                    <td><%=resp[i].Citas_Medica.Paciente.nombre%> <%=resp[i].Citas_Medica.Paciente.apellidop%> <%=resp[i].Citas_Medica.Paciente.apellidom%></td>
+
                                                                     <td><%=resp[i].diagnostico%></td> 
                                                                     <td><%=resp[i].fechaConsulta%></td>
                                                                     <td><%=resp[i].tipoConsulta%></td>                                                    
-                                                                    <td class="center"><a href="/medico/TraerConsulta/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>" class="btn btn-success btn-raised "><i class="fa fa-file-text"></i></a></td>
-                                                                    <td class="center"><a href="/medico/PapeletaINT/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>/<%=resp[i].tipoConsulta%>" class="btn btn-success btn-raised "><i class="fa fa-wheelchair"></i></a></td>
-                                                                    <td class="center"><a href="/medico/VerConsulta/<%=resp[i].numeroHistorial%>/<%=resp[i].id_cita%>" class="btn btn-success btn-raised "><i class="fa fa-paste"></i></a></td>
+                                                                    
+                                                                    <td>
+                                                                        <a href="/medico/TraerConsulta/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Receta"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
+                                                                        <a href="/medico/PapeletaINT/<%=resp[i].id%>/<%=resp[i].numeroHistorial%>/<%=resp[i].tipoConsulta%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Internación"><i class="fa fa-wheelchair text-muted"></i></a><span>&nbsp;</span>
+                                                                        <a href="/medico/VerConsulta/<%=resp[i].numeroHistorial%>/<%=resp[i].id_cita%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_Consulta"><i class="fa fa-paste text-muted"></i></a><span>&nbsp;</span>
+                                                                             
+                                                                       
+                                                                    </td>
                                                                 </tr>
                                                             <% } %>
                                                             <% } else { %>
@@ -524,10 +569,7 @@
                                                                     <td></td>
                                                                     <td></td>
                                                                     <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                                    
                                                                 </tr>
                                                             <% } %>
                                                         </tbody>                                                                       
@@ -538,9 +580,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </section>
                         </div>
+                   
                     </div>
-                </div>
+                
+               
             </div>
         </div>
     </div>           
@@ -696,7 +741,7 @@
 
 
         <!--====== Scripts -->
-
+       
         <script src="/js/get/consultaget.js"></script>
 
 
@@ -704,7 +749,7 @@
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/common-script.js"></script>
         <script src="/js/jquery.slimscroll.min.js"></script>
-       
+        
 
         <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
         <script src="/plugins/data-tables/jquery.dataTables.js"></script>
@@ -720,6 +765,7 @@
         <script src="/js/jPushMenu.js"></script>
         <script src="/js/side-chats.js"></script>
         <script src="/js/get/getECP.js"></script>
+        <script src="/js/fecha.js"></script>
     </body>
 
 </html>

@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Consulta</title>
+    <title>Papeleta de Internacion</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="viewport"
@@ -117,23 +117,30 @@
                 <div class="container clear_both padding_fix col-lg-8">
                     <br>
                     <div class="row">
-                        <section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
+                       
                             <!-- NavBar -->
                             <!-- Content page -->
-                            <div class="container-fluid">
-                                <div class="page-header">
-
-                                    <h1 class="text-titles"><i class="zmdi zmdi-account-calendar zmdi-hc-fw"></i>
-                                        Papeleta Internacion</h1>
-                                </div>
+                        <div class="container-fluid">
+                            <div class="">
+                                        
+                                <div class="info blue_symbols "> <i class="fa fa-file-text icon "></i></div><br>
+                                        <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Papeleta Internación</h3>
+                                    <div id="" class="col-md-2">	
+                                        <div class=""><br>
+                                            <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+                                        </div>				
+                                    </div>
+                                    
                             </div>
+                        </div><br>
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-xs-12">
+                                <div class="row ">
+                                    <section class="panel default blue_title h2">
+                                        <div class="page-content ">
+                                    <div class=" col-md-12">
                                         <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                                            <li class="active"><a href="#PapeletaInternacion" data-toggle="tab">Papeleta
-                                                    de Internacion</a></li>
-                                            <li><a href="#list" data-toggle="tab">Lista de Emergencias del Paciente</a>
+                                            <li class=" col-lg-6 active active  text-center"><a href="#PapeletaInternacion" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span> Papeleta de Internación</a></li>
+                                            <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt  "></i><span>&nbsp;&nbsp;&nbsp;</span> Lista de Internación del Paciente</a>
                                             </li>
                                         </ul>
                                         <div id="myTabContent" class="tab-content">
@@ -567,12 +574,7 @@
                                             </div>
                                             <div class="tab-pane fade" id="list">
                                                 <div id="correo">
-                                                    <div class="entrada">
-                                                        <button type="button" value="Imprimir" onclick="window.print()"
-                                                            class="btn btn-success btn-raised btn-lg"><i
-                                                                class="zmdi zmdi-print"></i> &nbsp;&nbsp;
-                                                            Imprimir</button>
-                                                    </div>
+                                                    
                                                     <div class="entrada">Buscar <i class="zmdi zmdi-search"></i><br>
                                                         <input type="text" id="searchInput" placeholder="Buscar.."><br>
                                                     </div>
@@ -594,6 +596,16 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                <tr>
+                                                                    <td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">#</td>
+                                                                    <td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">Nombre</td>
+                                                                    <td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">Apellido</td>
+                                                                    <td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">Historial</td>
+                                                                    <td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">Nombre del doctor</td>
+                                                                    <td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">Area de Internacion</td>
+                                                                    <td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">De:</td>
+                                                                    <td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">Ver</td>
+                                                                </tr>
                                                                
                                                             </tbody>
                                                         </table>
@@ -603,11 +615,61 @@
                                         </div>
 
                                     </div>
-                        </section>
+                                </div>
+                                    </section>
+                                </div>
+                       
                         <!--====== Scripts -->
 
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal alergias -->
+<div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">Detalles de la Receta</h4>
+            </div>
+            <div>
+                <div class="">
+                    <div id="main-content">
+                        <div class="">			
+                            
+                            <div id="myTabContent" class="tab-content">
+                                  <div class="tab-pane fade active in " id="neww">
+                                    <div class="col-md-12">
+                                        <div class="">
+                                            <div class=" ">
+                                                <p></p>
+                                                N° de Historial:  <br>
+                                                Nombre Completo: <br>
+                                                Fecha de la Orden: <br><br>
+                                                Nombre del Médico: <br>
+                                                Area de Internación:<br>
+                                                Diagnostico: <br>
+                                               
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                                              <!--/porlets-content-->
+                                      </div>
+                                  </div>
+                      </div>
+          
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                 
+                </div>
+          
             </div>
         </div>
     </div>
