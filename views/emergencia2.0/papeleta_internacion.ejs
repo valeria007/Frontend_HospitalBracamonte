@@ -1,0 +1,426 @@
+<!DOCTYPE >
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>PALETA INTERNACION</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+<div class="wrapper">
+  
+  <div class="header_bar">
+    
+    <div class="brand">
+      
+      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+    </div>
+    
+    <div class="header_top_bar">
+      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+      <div class="top_right_bar">
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+          <ul class="dropdown-menu">
+            <div class="top_pointer"></div>
+            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+          </ul>
+        </div> 
+      </div>
+    </div>
+  </div>
+  <div class="inner">
+    <div class="left_nav"> 
+    <div class="left_nav_slidebar">
+        <ul>
+		<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+		<ul >
+		<li> <a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio </b> </a> </li>
+		</ul>
+		</li>
+		<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+		<ul class="opened" style="display:block">
+		<li> <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+		</ul>
+        </li> 
+          
+        </ul>
+    </div>
+    </div>
+    <div class="contentpanel">
+     <!--\\\\\\\ container  start \\\\\\-->
+	<div class="container clear_both padding_fix">
+    <br>
+    <a href="/emergencia/RenderConsultaEmergencia" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a>
+    <br>
+    <br>
+	<br>
+	<div class="header">
+		<div class="info blue_symbols "> <i class="fa fa-edit icon "></i></div>
+			<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
+	</div>
+		<br>
+        <br>
+	<div class="page-content">
+		<div class="row">
+			<div class="col-lg-14">
+			    <section class="panel default blue_title h2">
+					<div class="panel-body">
+						<ul class="nav nav-tabs" id="myTab">
+							<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-pencil-square-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Receta</a></li>
+							<li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-align-justify"></i><span>&nbsp;&nbsp;&nbsp;</span>Lita de Recetas del Paciente</a></li>
+							</ul>
+							<div class="porlets-content">
+								<div class="tab-content" id="myTabContent">
+									<div id="Tab1" class="tab-pane fade in active">
+										<div class="row" >
+											<div class="col-md-12">
+												<div class="block-web">
+                                                    <%if(msg) { %>
+                                                        <%if(msg.data.success == false) { %>
+                                                            <h3 style="color: red"><%=msg.data.data_p%></h3>
+                                                        <% } else {%>
+                                                            <h3 style="color: blue"><%=msg.data.data_p%></h3>
+                                                        <% } %>
+                                                    <% } %>
+													<div class="porlets-content">
+                                                        <%if(updateInternacion == "") { %>
+														<form class="form-horizontal group-border-dashed" action="/emergencia2.0/Pinternacion/<%=resp[0].id%>/<%=resp[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+													        <h3 class="text-center">Datos Personales </h3>
+															<div class="form-group">
+																<div class="col-sm-3">
+																	<label class="control-label">Tipo de Consulta:</label>
+																	<select  class="form-control" id="source" name="tipoConsulta">
+                                                                        <option value="emeregencia">Emergencia</option>                                            
+                                                                    </select>
+																</div>
+																<div class="col-sm-3">
+																    <label class="control-label">Area de Internacion:</label>
+																	<select class="form-control" id="source" name="especialidad">
+                                                                       
+                                                                        <option value="">Selecione Area</option>
+                                                                        <option  disabled>Area de Internacion</option>
+                                                                        <option  disabled></option>
+                                                                        <% for(var i=0; i< especialidad.length; i++) {%>
+                                                                        <option><%=especialidad[i].nombre%></option>
+                                                                        <% } %>
+                                                                    </select>
+																</div>
+																<div class="col-sm-3">
+                                                                    <label class="control-label">Fecha de Ingreso:</label>
+                                                                    <input  type="date"  class="form-control" name="fechaIngreso" require />
+                                                                </div>
+															</div>
+															<div class="form-group">
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Historial Clinico:</label>
+                                                                    <input type="text"  class="form-control" value="<%=resp[0].Nhistorial%>" name="Historial" readonly/>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Nombre(s):</label>
+                                                                    <input type="text" class="form-control" value="<%=resp[0].Citas_Medica.Paciente.nombre%>" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Apellido Paterno:</label>
+                                                                    <input type="text" class="form-control" value="<%=resp[0].Citas_Medica.Paciente.apellidop%>" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Apellido Materno:</label>
+                                                                    <input type="text"  class="form-control" value="<%=resp[0].Citas_Medica.Paciente.apellidom%>" readonly/>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Sexo:</label>
+                                                                    <select class="form-control" id="source" >
+                                                                        <option><%=resp[0].Citas_Medica.Paciente.sexo%></option>
+                                                                    </select>
+                                                                </div>
+																<div class="col-sm-3">
+                                                                    <label class="control-label">Fecha de Nacimiento:</label>
+                                                                    <input type="text"class="form-control" value="<%=resp[0].Citas_Medica.Paciente.fechanacimiento%>" readonly/>
+                                                                </div>
+															</div>
+															<h3 class="text-center">Datos de Medico</h3>
+															<div class="form-group">
+															    <div class="col-sm-4">
+																    <label class="control-label">Nombre Del Doctor:</label>
+                                                                    <input readonly  type="text"  class="form-control" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>"/>
+                                                                    <input type="hidden" name="nombreDoctor" value="<%=data_doc.data.medico.nombre%>">
+                                                                    <input type="hidden" name="apellidoD1" value="<%=data_doc.data.medico.apellidop%>">
+                                                                    <input type="hidden" name="apellidoD2" value="<%=data_doc.data.medico.apellidom%>">
+                                                                    <input type="hidden" name="id_medico" value="<%=data_doc.data.medico.id%>">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <h3 class="text-center">Estado del Paciente</h3>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-6">
+                                                                    <label class="control-label">Diagnostico:</label>
+                                                                    <textarea class="form-control" name="diagnostico" ></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <br><br>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-5 col-sm-12">
+                                                                    <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
+                                                                    <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                                                                </div>
+                                                            </div>
+			                                            </form>
+                                                        <% } else { %>
+                                                        <h3 class="text-center">Formulario de Actualizacion</h3>
+                                                        <form class="form-horizontal group-border-dashed" action="/emergencia2.0/updatePinter/<%=updateInternacion[0].id%>/<%=resp[0].id%>/<%=resp[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+                                                            <input type="hidden" name="estado" value='false'>
+													        <div class="form-group">
+																<div class="col-sm-3">
+																    <label class="control-label">Area de Internacion:</label>
+																	<select class="form-control" id="source" name="especialidad">
+                                                                        <option><%=updateInternacion[0].especialidad%></option>
+                                                                        <option>----------------------------</option>
+                                                                        <% for(var i=0; i< especialidad.length; i++) {%>
+                                                                            <option><%=especialidad[i].nombre%></option>
+                                                                        <% } %>
+                                                                    </select>
+																</div>
+                                                            </div>
+                                                            <h3 class="text-center">Datos Personales </h3>
+															<div class="form-group">
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Historial Clinico:</label>
+                                                                    <input type="text"  class="form-control" value="<%=resp[0].Nhistorial%>" name="Historial" readonly/>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Nombre(s):</label>
+                                                                    <input type="text" class="form-control" value="<%=resp[0].Citas_Medica.Paciente.nombre%>" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Apellido Paterno:</label>
+                                                                    <input type="text" class="form-control" value="<%=resp[0].Citas_Medica.Paciente.apellidop%>" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Apellido Materno:</label>
+                                                                    <input type="text"  class="form-control" value="<%=resp[0].Citas_Medica.Paciente.apellidom%>" readonly/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                               
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Sexo:</label>
+                                                                    <select class="form-control" id="source" >
+                                                                        <option><%=resp[0].Citas_Medica.Paciente.sexo%></option>
+                                                                    </select>
+                                                                </div>
+																<div class="col-sm-3">
+                                                                    <label class="control-label">Fecha de Nacimiento:</label>
+                                                                    <input type="text"class="form-control" value="<%=resp[0].Citas_Medica.Paciente.fechanacimiento%>" readonly/>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Tipo de Consulta:</label>
+                                                                    <select  class="form-control" id="source" name="tipoConsulta">
+                                                                        <option value="emeregencia">Emergencia</option>                                            
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                        <label class="control-label">Fecha de Ingreso:</label>
+                                                                        <input  type="date"  class="form-control" name="fechaIngreso" value="<%=updateInternacion[0].fechaIngreso%>" require />
+                                                                    </div>
+                                                            </div>
+                                                            <h3 class="text-center">Datos de Medico</h3>
+															<div class="form-group">
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Apellido Paterno del Medico:</label>
+                                                                    <input type="text" class="form-control" value="<%=resp[0].apellidoD1%>" name="apellidoD1">
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Apellido Materno del Medico:</label>
+                                                                    <input type="text" class="form-control" value="<%=resp[0].apellidoD2%>" name="apellidoD2">
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label class="control-label">Nombre(s) del Medico:</label>
+                                                                    <input type="text" class="form-control" value="<%=resp[0].nombreDoctor%>" name="nombreDoctor">
+                                                                </div>
+                                                            </div>
+                                                            <h3 class="text-center">Estado del Paciente</h3>
+                                                            <div class="form-group">
+																<div class="col-sm-6">
+																	<label class="control-label">Diagnostico del Paciente:</label>
+																	<textarea class="form-control" name="diagnostico" ><%=updateInternacion[0].diagnostico%></textarea>
+																</div>
+                                                            </div>
+                                                            <br><br>
+                                                            <%if(updateInternacion[0].estado != false) { %>
+									                        <div class="form-group">
+																<div class="col-sm-offset-4 col-sm-12">
+																	<button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
+																	<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button> <span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
+																</div>
+                                                            </div>
+                                                            <% } %>
+			                                            </form>
+														<% } %>
+													</div>
+                                                </div>
+											</div>
+										</div>
+									</div>
+									<div id="Tab2" class="tab-pane fade">
+										<div class="">
+												<div class="block-web">
+													<div class="porlets-content">
+														<div class="table-responsive">
+															<table  class="display table table-bordered table-striped" id="dynamic-table">
+																<thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Nombre</th>
+                                                                        <th>Apellido Paterno</th>
+                                                                        <th>Apellido Materno</th>
+                                                                        <th>Nombre del doctor</th>  
+                                                                        <th>Diagnostico</th>
+                                                                        <th>Fecha </th>
+                                                                        <th>Modificar</th>                                           
+                                                                    </tr>  
+																</thead>
+																<tbody>
+                                                                    <% for(var i=0; i< listPinter.length; i++) { %>
+                                                                        <tr>
+                                                                        <td><%= i + 1 %></td>
+                                                                        <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.nombre %></td>                                        
+                                                                        <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidop %></td>
+                                                                        <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidom %></td>
+                                                                        <td><%=listPinter[i].nombreDoctor %> <%=listPinter[i].apellidoD1 %> <%=listPinter[i].apellidoD2 %></td>
+                                                                        <td><%=listPinter[i].diagnostico %></td>
+                                                                        <td><%=listPinter[i].createdAt %></td>
+                                                                        <td class="text-center" ><a href="/emergencia/ListPInter/<%=listPinter[i].idEmergencia %>/<%=listPinter[i].Historial %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil" style="color:rgb(80, 145, 80)"></i></a></td>
+                                                                        </tr>
+                                                                    <% } %>
+                                                                </tbody>
+															</table>
+											            </div>
+													</div>
+												</div>
+											</div>
+										</div>
+								</div>
+							</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+      
+    </div>
+        
+      <!--\\\\\\\ container  end \\\\\\-->
+    
+    <!--\\\\\\\ content panel end \\\\\\-->
+    </div>
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+</div>
+
+
+
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+<script src="/plugins/checkbox/zepto.js"></script>
+<script src="/plugins/checkbox/icheck.js"></script>
+<script src="/js/icheck-init.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
+<script type="text/javascript" src="/js/form-components.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
+<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
+<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
+<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
+<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="/plugins/edit-table/edit-table.js"></script>
+<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+ </script>
+<script>
+
+
+/*==Porlets Actions==*/
+    $('.minimize').click(function(e){
+      var h = $(this).parents(".header");
+      var c = h.next('.porlets-content');
+      var p = h.parent();
+      
+      c.slideToggle();
+      
+      p.toggleClass('closed');
+      
+      e.preventDefault();
+    });
+    
+    $('.refresh').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+      
+      loading.appendTo(p);
+      loading.fadeIn();
+      setTimeout(function() {
+        loading.fadeOut();
+      }, 1000);
+      
+      e.preventDefault();
+    });
+    
+    $('.close-down').click(function(e){
+      var h = $(this).parents(".header");
+      var p = h.parent();
+      
+      p.fadeOut(function(){
+        $(this).remove();
+      });
+      e.preventDefault();
+    });
+
+</script>
+
+<script src="/js/jPushMenu.js"></script> 
+<script src="/js/side-chats.js"></script>
+
+</body>
+
+</html>

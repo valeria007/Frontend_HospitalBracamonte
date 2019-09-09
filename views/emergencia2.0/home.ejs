@@ -2,7 +2,8 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HOSPITAL</title>
+<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+<title>Emergencia</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
@@ -13,15 +14,7 @@
 <link href="/plugins/kalendar/kalendar.css" rel="stylesheet">
 <link rel="stylesheet" href="/plugins/scroll/nanoscroller.css">
 <link href="/plugins/morris/morris.css" rel="stylesheet" />
-<style>
-		div.a {
-				text-align: center;
-		}
-		h1.letras {
-  font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-  
-}
-</style>
+
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -64,29 +57,16 @@
         <ul>
           <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul class="opened" style="display:block">
-              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b  class="theme_color">Inicio</b> </a> </li>
+              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Inicio</b> </a> </li>
             </ul>
           </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul>
-              <li> <a href="/Farmacia/almacenamiento/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
-              <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
-              <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-              <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
-              <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+              <li> <a href="/emergencia2.0/lista_pacientes/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Cita</b> </a> </li>
+              
             </ul>
           </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-							<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
-							<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
-							<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-              <li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
-              <li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-              <li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
-            </ul>
-          </li>
+          
         </ul>
       </div>
     </div>
@@ -98,23 +78,65 @@
       <br>
       <br>
       <div class="row">
-
-          <div class="col-lg-12 ">
-              <div class="a" style="display:block ">
-                  <h1 class="letras">GOBIERNO AUTONOMO DE POTOSI</h1>
-                  </div>
-                  <br>
-                  <br>
-			  <div >
-					<img class="centrado"src="/images/VIII.gif" width="300" height="200"  />
-			  </div>
-			  <br>
-			  <br>
-			  
-          </div>
-         
+        <div class="col-md-12">
+        <div class="header">
+          <div class="info blue_symbols "> <i class="fa fa-ambulance icon "></i></div>
+          <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Bienvenido a Emergencias</h3>
         </div>
-      
+        <br>
+        <br>
+        
+        <div class="col-sm-3">
+            <div class="ticket_open">
+                
+                <a href="/emergencia/pacientes_emer" class="open_ticket_comment text-center ">
+                    <h4>Paciente</h4>
+                    
+                    <div class="btn-group">
+                    <i class="fa fa-wheelchair"></i>
+                    </div>
+                    
+                    
+                  
+                    </a>
+                    
+            </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="ticket_open">
+                  
+                  <a href="#" class="open_ticket_comment text-center ">
+                      <h4>Recetas</h4>
+                      
+                      <div class="btn-group">
+                      <i class="fa fa-pencil-square-o"></i>
+                      </div>
+                      
+                      
+                    
+                      </a>
+                      
+              </div>
+            </div>
+          <div class="col-sm-3">
+              <div class="ticket_open">
+                  
+                  <a href="#" class="open_ticket_comment text-center ">
+                      <h4>Internacion</h4>
+                      
+                      <div class="btn-group">
+                      <i class="fa fa-hospital-o"></i>
+                      </div>
+                      
+                      
+                    
+                      </a>
+                      
+              </div>
+            </div>
+        
+        </div>
+      </div>
       <!--\\\\\\\ container  end \\\\\\-->
     </div>
     <!--\\\\\\\ content panel end \\\\\\-->

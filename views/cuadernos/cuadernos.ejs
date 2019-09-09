@@ -55,42 +55,6 @@
             <div class="block-web">
               <div class="header">
               <div class="info blue_symbols"><i class="fa fa-medkit icon"></i></div>
-<<<<<<< HEAD
-              <h3 class="content-header ">Creación Cuadernos</h3>
-            </div>
-            <br>
-            <br>
-            <div class="porlets-content">
-              <% if (OnlyC == null) { %>
-              <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos" method="POST" parsley-validate novalidate>
-                <div class="form-group">
-                  <div class="col-sm-4">
-                    <label class="control-labe">Codigo:</label>
-                    <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Codigo" />
-                  </div>
-                  <div class="col-sm-4">
-                    <label class="control-labe">Grupo de Asignacion:</label>
-                    <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Asignacion" />
-                  </div>
-                  <div class="col-sm-4">
-                    <label class="control-labe">Titulo de Cuaderno:</label>
-                    <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-4 col-sm-10">
-                    <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                    <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                  </div>
-                </div>
-              </form>
-              <% } else { %>           
-              <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST" parsley-validate novalidate>
-                <div class="form-group">
-                  <div class="col-sm-4">
-                    <label class="control-labe">Codigo:</label>
-                    <input type="text" value="<%=OnlyC[0].id%>" class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="" />
-=======
               <h3 class="content-header ">Creacion Cuadernos</h3>
               </div>
               <br>
@@ -111,7 +75,6 @@
                       <label class="control-labe">Titulo de Cuaderno:</label>
                       <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo" />
                     </div>
->>>>>>> 768a9049a6da9b77f9a133c5df0409a9061461b9
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-10">
@@ -160,19 +123,11 @@
                   <table  class="display table table-bordered table-striped" id="dynamic-table">
                     <thead>
                       <tr>
-<<<<<<< HEAD
-                      <th>Codigo</th>
-                      <th>Grupo de Asignacion</th>
-                      <th>Titulo de Cuaderno</th>
-                      <th>Fecha de Creación</th>
-                      <th>Opciones</th>
-=======
                       <th class="text-center">Codigo</th>
                       <th class="text-center">Grupo de Asignacion</th>
                       <th class="text-center">Titulo de Cuaderno</th>
                       <th class="text-center">Fecha de Creacion</th>
                       <th class="text-center">Opciones</th>
->>>>>>> 768a9049a6da9b77f9a133c5df0409a9061461b9
                       </tr>
                     </thead>
                     <tbody>
