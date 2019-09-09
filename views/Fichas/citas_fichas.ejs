@@ -122,9 +122,9 @@
 
 					<div class="row">
 
-						<div class="col-lg-12 ">
+						<div class="col-lg-12  ">
 							<!-- Content page -->
-							
+							<div id="main-content" class=" block-web">
 							<div class="header">
 								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
 								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Recerva de Ficha Médica </h3>
@@ -137,13 +137,7 @@
 										<div class="row">
 											<div class="col-md-12 ">
 												<div class="block-web">
-													<div class="header">
-														<div class="actions"> <a class="minimize" href="#"><i
-																	class="fa fa-chevron-down"></i></a> <a
-																class="close-down" href="#"><i
-																	class="fa fa-times"></i></a> </div>
-														<h3 class="content-header">Recerva de Ficha</h3>
-													</div>
+													
 													<% if(msg_false != null) { %>
 														<div class="bs-example">
 															<div class="alert alert-danger fade in">
@@ -165,7 +159,7 @@
 														</div>
 														<div class="form-group">
 															<div class="row">
-																<h3 class="text-center"> Datos Personales</h3>
+																<h3 class="text-center"> Cita Médica</h3>
 																<br>
 																<div class="col-md-12">
 																	<div class="col-md-4">
@@ -181,21 +175,16 @@
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group">Consultorio De:<br>
-																			<select name="especialidad"
-																				@click="especilida" v-model="selectEsp">
-																				<option disabled="disabled" value>
-																					Seleccione
-																				</option>
-																				<template
-																					v-for="(especialidad, index) in especialidades">
+																			<select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
+																				<option disabled="disabled" value>Seleccione</option>
+																				<template v-for="(especialidad, index) in especialidades">
 																					<option>{{especialidad.nombre}}
 																					</option>
 																				</template>
-																			</select><br>
+																			</select>
 																		</div>
 																		<div class="form-group">Turno:<br>
-																			<select name="turno" v-model="turno"
-																				@click="especilida">
+																			<select class="form-control" name="turno" v-model="turno" @click="especilida">
 																				<option>Mañanas</option>
 																				<option>Tardes</option>
 																				<option>Noches</option>
@@ -204,20 +193,16 @@
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group"> Doctor:<br>
-																			<select name="medico" v-model="selectDoctor"
-																				@click="saca_horas(),saca_horas_reservadas(),saca_horas_atendidas()">
-																				<option disabled="disabled" value>
-																					Seleccione
-																				</option>
+																			<select class="form-control" name="medico" v-model="selectDoctor" @click="saca_horas(),saca_horas_reservadas(),saca_horas_atendidas()">
+																				<option disabled="disabled" value> Seleccione </option>
 																				<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
 																					{{doctor.nombre.split("/")[0]}}
 																					
 																				</option>
-																			</select><br>
+																			</select>
 																		</div>
-																		<div class="form-group"><br>
-																			<label class="radio-inline"><input
-																					checked="checked" data-val="true"
+																		<div class="form-group "><br>
+																			<label class="radio-inline "><input checked="checked" data-val="true"
 																					data-val-required="The IsSmallBusiness field is required."
 																					id="IsSmallBusiness"
 																					name="IsSmallBusiness" type="radio"
@@ -319,10 +304,10 @@
 													class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
 												Guardar</button>
 										</p>
-								</div>
+								
 
 								</form>
-
+							</div>
 
 								<% } else { %>
 
@@ -441,9 +426,7 @@
 														<div class="block-web blue-bg-color">
 															<h3 class="content-header ">Cambiar hora </h3>
 															<label for="">></label>
-															<input type="radio" name="hora"
-																value="<%= citaUpdate[0].hora%>"
-																checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
+															<input type="radio" name="hora" value="<%= citaUpdate[0].hora%>" checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
 															<template v-for="(horas, index, key) in horas_Turno">
 																<label for="">{{index+1}}</label>
 																<input type="radio" name="hora"
@@ -580,6 +563,7 @@
 									</div>
 								</div>
 							</div>
+						</div>
 						</div>
 						<!--/block-web-->
 					</div>

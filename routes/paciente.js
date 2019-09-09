@@ -455,4 +455,14 @@ router.get('/vacunas', (req,res) => {
   res.render('consulta_externa/vacunas')
 });
 
+router.get('/O_ecografia', (req,res) => {
+  res.render('consulta_externa/O_ecografia')
+});
+router.get('/O_Laboratorio', (req,res) => {
+  res.render('consulta_externa/O_Laboratorio')
+});
+router.get('/O_Radiografia', (req,res) => {
+  res.render('consulta_externa/O_Radiografia')
+});
+
 module.exports = router;

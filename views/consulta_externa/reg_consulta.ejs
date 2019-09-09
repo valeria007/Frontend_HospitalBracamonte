@@ -105,6 +105,15 @@
                                     </a> </li>
                         </ul>
                     </li>
+                    <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
+                        class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
+                            class="fa fa-plus"></i></span></a>
+            <ul class="opened" style="display:block">
+                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
+                                class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>
+                        </a> </li>
+            </ul>
+        </li>
                     <%- include("../partials/footerDocotr") -%>
                 </ul>
             </div>
@@ -482,13 +491,13 @@
                                                             <ul>
                                                                 <li><a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <i class="fa fa-building-o"></i>Receta</a></li>  
                                                                 <li><a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
-                                                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-clipboard"></i>Orden de Laboratorio</a></li>
+                                                                <li><a href="/paciente/O_Laboratorio"><i class="fa fa-clipboard"></i>Orden de Laboratorio</a></li>
                                                                 <li> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-caret-down"></i>Examenes Complementarios </a> </li>
                                                                 <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
                                                                     <div class="panel-body"> 
                                                                         <ul >
-                                                                            <li><a><i class="fa fa-file-text-o"></i>Orden de Ecografía</a></li>
-                                                                            <li><a><i class="fa fa-file-text"></i>Orden de radiografia</a></li>
+                                                                            <li><a href="/paciente/O_ecografia"><i class="fa fa-file-text-o"></i>Orden de Ecografía</a></li>
+                                                                            <li><a href="/paciente/O_Radiografia"><i class="fa fa-file-text"></i>Orden de radiografia</a></li>
                                                                         </ul> 
                                                                     </div>
                                                                 </div>            

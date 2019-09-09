@@ -123,31 +123,24 @@
 
 
 							<!-- Content page -->
-							
-							<div class="header">
-								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
-								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Citas</h3>
-							</div>
-				
-							<div id="main-content">
+						
+							<div id="main-content" class=" block-web">
+									<div class="header">
+											<div class="actions"> </div>
+											<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
+											<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Citas</h3>
+										</div>
 								<div class="page-content">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="block-web">
 												<div class="header">
 													<div class="actions"> 
-														<a class="minimize" href="#"><i
-																class="fa fa-chevron-down"></i></a> <a class="refresh"
-															href="#"><i class="fa fa-repeat"></i></a> <a
-															class="close-down" href="#"><i class="fa fa-times"></i></a>
+														<a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> 
+														<a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a>
 													</div>
 													
-													<a href="javascript:void(0);" class="btn btn-primary btn-raised btn-lg" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-plus-square"></i> <span> Nuevo Paciente</span> </a>
-							
-													
-														
-												
+													<a href="javascript:void(0);" class="btn btn-primary btn-raised btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i> <span> Nuevo Paciente</span> </a>
 												</div>
 												<div class="porlets-content">
 
@@ -162,13 +155,10 @@
 																	<th>Apellido</th>
 																	<th>CI.</th>
 																	<th >Opciones</th>
-																	
 															
 																</tr>
 															</thead>
 															<tbody>
-
-																
 																<% for(var i=0; i < resp.length; i++) { %>
 																<tr class="gradeA">
 																	<td class="text-center"><%= i + 1 %></td>
@@ -211,22 +201,20 @@
 
 
 							<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-								aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-
+											<button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
 											<h4 >Datos del Paciente</h4>
-										
 										</div>
-										<div class="container-fluid">
-											<form action='/paciente/postPaciente' method='post'><br>		
+										
+										<form action='/paciente/postPaciente' method='post'><br>
+										<div class="container-fluid ">
+													
 												<div class="col-md-13">
-													<div class="col-md-3">Historial Clinico:<br>
-														<input size="13" type='text' name='Historial' ><br>
+													<div class="col-md-4">Nombre(s):<br>
+														<input type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change"><br>
 													</div>
 													<div class="col-md-4">Apellido Paterno:<br>
 														<input type='text' name='apellidop' class='upper' placeholder="Apellido Paterno" required  parsley-trigger="change"><br>
@@ -234,25 +222,20 @@
 													<div class="col-md-4">Apellido Materno:<br>
 														<input type='text' name='apellidom' placeholder="Apellido Materno" required  parsley-trigger="change"><br>
 													</div>
+												</div><br>
 
-												</div>
-
-												<div class="col-md-13">
+												<div class="col-md-13"><br>
 													<div class="col-md-3">C.I.:<br>
 														<input size="13" type='text' name='ci'placeholder="N° de Carnet" required placeholder=""><br>
-													</div>
-													<div class="col-md-4">Nombre(s):<br>
-														<input type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change"><br>
-													</div>
-													
+													</div>	
 													<div class="col-md-4">Dirección:<br>
 														<input type='text' name='direccion'placeholder="Dirección" required  parsley-trigger="change"><br>
 													</div>
-
 												</div>
+
 												<div class="col-md-13">
 														
-													<div class="col-md-5">Sexo:<br>
+													<div class="col-md-5" class="form-control">Sexo:<br>
 														<select name='sexo'>
 															<option>Hombre</option>
 															<option>Mujer</option>
@@ -263,20 +246,17 @@
 													</div>
 
 												</div>
-											
-												<div class="modal-footer">
-													<button type="button" class="btn btn-default"
-														data-dismiss="modal">Close</button>
-													<button type='reset' class='btn btn-info'
-														style='margin-right: 20px;'><i class='zmdi zmdi-roller'></i>
-														&nbsp;&nbsp; Limpiar</button>
-													<button type='submit' class='btn btn-danger'><i
-															class='fa fa-floppy'></i> &nbsp;&nbsp;
-														Guardar</button>
 												
 											
-											</form>
 										</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal"> <i class='fa fa-mail-reply'></i>&nbsp;&nbsp;Close</button>
+												<button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
+												<button type='submit' class='btn btn-danger'><i class='fa fa-check-square-o'></i> &nbsp;&nbsp; Guardar</button>
+												
+											</div>
+										</form>
+										
 									</div>
 								</div>
 							</div>
@@ -294,21 +274,7 @@
 			<!--\\\\\\\ inner end\\\\\\-->
 		</div>
 		<!--\\\\\\\ wrapper end\\\\\\-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
 		<!--====== Scripts -->
 		
 
