@@ -4,6 +4,13 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+router.get('/datas_array', (req,res) => {
+  res.send({ 
+    data_post_body, 
+    one_medicamento 
+  })
+})
+
 var data_user = {}
 function user(data,id){
   let storedItem = data_user[id];
@@ -113,6 +120,12 @@ router.get('/home/:id/:token_part', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
 
+router.get('/voler123/:token_id/:token_partial', (req,res) => {
+  const {  token_id,token_partial } = req.params
+  remove_medicamento_data(token_id)
+  res.redirect('/farmacia/almacenamiento/' + token_id + '/' + token_partial)  
+})
+
 router.get('/almacenamiento/:token_id/:token_partial',(req, res) => {
     const { token_id,token_partial } = req.params
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
@@ -133,6 +146,7 @@ router.get('/almacenamiento/:token_id/:token_partial',(req, res) => {
               list_grupoAsig_Far,
               one_medicamento:one_medicamento[token_id],
               msg:msg_Consulta_emergencia[token_id],
+              data_body_post: data_post_body[token_id]
             })
           })
          
@@ -171,6 +185,8 @@ function remove_medicamento_data(id) {
 
 //ruta para poder sacar un medicamento
 
+
+
 router.get('/one_medicamento/:id_medicamento/:token_id/:token_partial', (req,res) => {
     const { id_medicamento, token_id,token_partial } = req.params
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
@@ -193,6 +209,32 @@ router.get('/one_medicamento/:id_medicamento/:token_id/:token_partial', (req,res
     }
 
 })
+
+
+
+var data_post_body = {}
+function body_post(data,id){
+  let storedItem = data_post_body[id];
+    if (!storedItem) {
+      storedItem = data_post_body[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_body_post () {
+  let arr = [];
+  for (const id in data_post_body) {
+      arr.push(data_post_body[id]);
+  }
+  return arr;
+}
+
+function remove_data_body(id) {
+  delete data_post_body[id];
+}
 
 router.post('/registrar_medicamento/:token_id/:token_partial', (req,res) => {
   const { token_id, token_partial } = req.params
@@ -224,6 +266,7 @@ router.post('/registrar_medicamento/:token_id/:token_partial', (req,res) => {
               remove(token_id)
               msg_data(msg_p,token_id)
           } 
+          remove_data_body(token_id)
           res.redirect('/farmacia/almacenamiento/' + token_id + '/' + token_partial) 
       }else{
           if(msg_Consulta_emergencia[token_id] == null){
@@ -240,8 +283,70 @@ router.post('/registrar_medicamento/:token_id/:token_partial', (req,res) => {
               remove(token_id)
               msg_data(msg_p,token_id)
           }
+          if(data_post_body[token_id] == null){
+            body_post(datos, token_id);
+          }else{
+            remove_data_body(token_id)
+            body_post(datos, token_id);
+          }
           res.redirect('/farmacia/almacenamiento/' + token_id + '/' + token_partial) 
       }   
+  })
+})
+
+// ruta para poder actulizar medicamentos
+router.post('/update_medicamento/:id_medicamento/:token_id/:token_partial', (req,res) => {
+  const { id_medicamento, token_id, token_partial } = req.params
+  var data = req.body;
+  var msg_p;
+  var esto = {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/update_medicamento/'+id_medicamento,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    console.log(data)
+    if(data.success == true){
+      if(msg_Consulta_emergencia[token_id] == null){
+        msg_p = {
+          success:true,
+          data_med:data.msg
+        }
+        msg_data(msg_p,token_id)
+      }else{
+        msg_p = {
+          success:true,
+          data_med:data.msg
+        }
+        remove(token_id)
+        msg_data(msg_p,token_id)
+         
+      } 
+      res.redirect('/farmacia/one_medicamento/'+id_medicamento+'/'+token_id+'/'+token_partial)
+    }else{
+      if(msg_Consulta_emergencia[token_id] == null){
+        msg_p = {
+          success:false,
+          data_med:data.msg
+        }
+        msg_data(msg_p,token_id)
+      }else{
+        msg_p = {
+          success:false,
+          data_med:data.msg
+        }
+        remove(token_id)
+        msg_data(msg_p,token_id)
+        
+      } 
+      res.redirect('/farmacia/one_medicamento/'+id_medicamento+'/'+token_id+'/'+token_partial) 
+    }
+   
   })
 })
 
