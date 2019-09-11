@@ -26,9 +26,25 @@ router.get('/roles/:id', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
 router.get('/quitar', (req,res) => {
+  sms2 = null;
   onlyUSer = null;
   res.redirect('/usuarios/usuarios');
 })
+router.get('/quitar2', (req,res) => {
+  sms2 = null;
+  res.redirect('/usuarios/usuarios');
+})
+router.get('/quitar3', (req,res) => {
+  sms2 = null;
+  res.redirect('/usuarios/usuarios');
+})
+router.get('/quitar4/:id', (req,res) => {
+  const { id } = req.params
+  mg1 = null;
+  mg2 = null;
+  res.redirect('/usuarios/UsuraioCuenta/'+id);
+})
+
 
 router.get('/usuarios',(req, res) => {
   var esto = {
@@ -73,10 +89,10 @@ router.get('/usuarios',(req, res) => {
       .then(data => {
          console.log(data, "  <<<<<<<<<<<<<<< esto es post")
           if (data.success == false){
-              msm1= "El Nunmero de Carnet ya se encuentra Registrado "
+              msm1=  data.message
               res.redirect('/usuarios/usuarios') 
           }else{
-              sms2="Todoa los datos fueron introducidos correctamente.!"
+              sms2=data.message
                
               res.redirect('/usuarios/usuarios');
   
@@ -123,7 +139,13 @@ router.post('/updatePersonal/:id',(req,res) => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    res.redirect('/usuarios/usuarios/'+id.id)
+    if(resp.success==false){
+      
+      res.redirect('/usuarios/usuarios/'+id.id)
+    }else{
+      sms2= resp.message
+      res.redirect('/usuarios/usuarios/'+id.id)
+    }
   })
 });
 
@@ -166,12 +188,14 @@ router.post('/crearCuenta/:id', (req,res) => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
+    console.log(resp, "    <<<<<<<<<<<<<<<<<<<<  esto es la respuesta")
     if (resp.success == false){
       mg1= resp.msg
       res.redirect('/usuarios/UsuraioCuenta/'+id.id)
-    
+      mg2 = null
   }else{
-      mg2="Todoa los datos fueron introducidos correctamente.!"
+      mg2= resp.message
+      mg1 = null
       data=null 
       console.log(resp)
       res.redirect('/usuarios/UsuraioCuenta/'+id.id)
