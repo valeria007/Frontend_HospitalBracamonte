@@ -49,7 +49,7 @@
 			  <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
 				<ul class="opened" style="display:block">
 				  <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  class="theme_color">Almacenamiento</b> </a> </li>
-				  <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
+				  <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
 				  <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
 				  <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
 				  <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
@@ -384,6 +384,7 @@
 												<th>Cantidad en Unidad</th>												
 												<th>Precio Venta</th>
 												<th>Opciones</th>
+												<th>Ver cantidades</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -397,6 +398,7 @@
 												<td><%=list_medicamentos[i].cantidad_unidad%></td>
 												<td><%=list_medicamentos[i].precio%></td>
 												<td><a class="btn btn-success" href="/farmacia/one_medicamento/<%=list_medicamentos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-refresh"></i> </a></td>
+												<td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/farmacia/medicametos_cantidad/<%=list_medicamentos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-folder-open"></i> </a></td>
 											</tr>
 											<% } %>
 										<tbody>

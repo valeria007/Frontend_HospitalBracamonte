@@ -235,8 +235,24 @@ router.get('/pacientead',(req, res) => {
 //Se movio a routas salas
 
 router.get('/paciente_Inter',(req, res) => {
-  res.render('paciente_Inter')
+  fetch('http://localhost:3000/api/pacientes')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('paciente_Inter', {
+      data
+    })
+  })
+ 
 });
+
+router.get('/mostrar/:id_paciente', (req,res) => {
+  const { id_paciente } = req.params
+  fetch('http://localhost:3000/api/paciente_alergias/'+id_paciente  )        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.send(data)
+  })
+})
 
 // Farmacia
 router.get('/almacen',(req, res) => {

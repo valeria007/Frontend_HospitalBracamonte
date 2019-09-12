@@ -607,4 +607,21 @@ router.post('/update_responsable/:id/:id_paciente/:token_id/:token_p', (req,res)
   })
 })
 
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                            ruta para mostrar medicamentos de farmacia
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/medicamentos', (req,res) => {
+  fetch('http://localhost:3200/api/mostrar_medicamentos')
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+  })
+})
+
 module.exports = router;

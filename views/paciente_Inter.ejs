@@ -145,19 +145,21 @@
                           <th>Apellido Paterno</th>
                           <th>Apellido Materno</th>
                           <th>Edad</th>
-                          <th>Estdo</th>
+                          <th>alergia</th>
+                          
                           </tr>
                           </thead>
                           <tbody>
-                          <tr>
-                          <td>12458</td>
-                          <td>GUATAVO</td>
-                          <td>GUZMAN</td>
-                          <td>TORETO</td>
-                          <td>36</td>
-                          <td>HABILITADO</td>
-                          
-                          </tr>
+                            <%for (var i = 0; i< data.length; i++) { %>
+                              <tr>
+                                <td><%=data[i].numeroHistorial%></td>
+                                <td><%=data[i].nombre%></td>
+                                <td><%=data[i].apellidop%></td>
+                                <td><%=data[i].apellidom%></td>
+                                <td><%=data[i].fechanacimiento%></td>
+                                <td><a href="/mostrar/<%=data[i].id%>">ver</a></td>
+                              </tr>
+                            <% } %>
                           <tbody>
                         </table>
                         </div>

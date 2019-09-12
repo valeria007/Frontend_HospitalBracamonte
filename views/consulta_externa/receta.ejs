@@ -131,7 +131,7 @@
 								<div id="myTabContent" class="tab-content">
 									<div class="tab-pane fade active in" id="new">
 										<div class="col-md-12">
-													
+											
 											<template v-if="One_receta == ''">
 													
                                                 <form @submit="post_recetas" method="POST">
@@ -254,13 +254,17 @@
 																			</div>
 																			<div class="col-md-12"><br>  
                                                                                 <div class="col-sm-3 col-sm-6">
-                                                                                    <div class="entrada">
-                                                                                        <h6 class=" blue_info">Medicamento:</h6>
-                                                                                        <input class="form-control" type="text" v-model="lista.medicamento" >
-                                                                                            
-                                                                                           
-                                                                                    </div>
-                                                                                </div>
+																						<div class="entrada">
+																							<h6 class=" blue_info">Medicamento:</h6>
+																							<select v-model="lista.medicamento">
+																								<template v-for="(list, index) in data_receta">
+																									<option>{{list.nombre}}</option>
+																								</template>	
+																							</select>
+																								
+																							   
+																						</div>
+																					</div>
                                                                                 <div class="col-sm-3 col-sm-6">
                                                                                     <div class="entrada">
                                                                                         <h6 class=" blue_info">Dosis:</h6>
@@ -458,6 +462,7 @@
 																					   
 																				</div>
 																			</div>
+																			
 																			<div class="col-sm-3 col-sm-6">
 																				<div class="entrada">
 																					<h6 class=" blue_info">Dosis:</h6>

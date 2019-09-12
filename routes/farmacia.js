@@ -350,6 +350,32 @@ router.post('/update_medicamento/:id_medicamento/:token_id/:token_partial', (req
   })
 })
 
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                      ruta para cantidad de medicamentos
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ */
+
+router.get('/medicametos_cantidad/:id_medicamento/:token_id/:token_partial', (req,res) => {
+  const { id_medicamento, token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3200/api/one_fecha_medicamento/'+id_medicamento)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+      res.render('Farmacia/cantidad_fecha', {
+        resp,
+        data_doc : data_user[token_id]
+      })
+    })
+  }else{
+    res.redirect('/')
+  }
+  
+})
+
 
 
 /* 
@@ -418,25 +444,25 @@ function remove_grupo_data(id) {
 //ruta para poder sacar un grupo designacion
 
 router.get('/one_grupo/:id_grupo/:token_id/:token_partial', (req,res) => {
-    const { id_grupo, token_id,token_partial } = req.params
-    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
-        fetch('http://localhost:3200/api/one_grupo/'+id_grupo)
-        .then(resp => resp.json())
-        .catch(error => console.error('Error',error))
-        .then(resp => {
-            if(one_grupo_designacion[token_id] == null){
-                grupo_designacion(resp, token_id)
-                res.redirect('/farmacia/grupoAsig_Far/' + token_id + '/' + token_partial)      
-              }else{
-                remove_grupo_data(token_id)
-                grupo_designacion(resp, token_id)
-                res.redirect('/farmacia/grupoAsig_Far/' + token_id + '/' + token_partial)
-              }
-            
-        })
-    }else{
-        res.redirect('/')
-    }
+  const { id_grupo, token_id,token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+      fetch('http://localhost:3200/api/one_grupo/'+id_grupo)
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(resp => {
+          if(one_grupo_designacion[token_id] == null){
+              grupo_designacion(resp, token_id)
+              res.redirect('/farmacia/grupoAsig_Far/' + token_id + '/' + token_partial)      
+            }else{
+              remove_grupo_data(token_id)
+              grupo_designacion(resp, token_id)
+              res.redirect('/farmacia/grupoAsig_Far/' + token_id + '/' + token_partial)
+            }
+          
+      })
+  }else{
+      res.redirect('/')
+  }
 
 })
 
@@ -549,13 +575,100 @@ router.get('/volver', (req,res) => {
     res.redirect('/farmacia/almacenamiento'); 
 })
   
-router.get('/solicitudes',(req, res) => {
-    res.render('Farmacia/solicitudes')
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                   Ruta para mostrar pedidos o movimientos
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+
+// esta ruta es para mostrar la lista de pedidos
+router.get('/solicitudes/:token_id/:token_partial',(req, res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3200/api/list_pedidos')
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(resp => {
+        res.render('Farmacia/solicitudes',{
+          resp, // esto es la lista de los pedidos
+          data_doc : data_user[token_id]
+        })
+      })
+    
+  }else{
+    res.redirect('/')
+  }
 });
 
-router.get('/reg_solicitud',(req, res) => {
-    res.render('Farmacia/reg_solicitud')
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                   Ruta para registrar pedidos o movimientos
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+//ruta para poder renderizar reg pedidos
+router.get('/reg_solicitud/:token_id/:token_partial',(req, res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    res.render('Farmacia/reg_solicitud',{
+      data_doc : data_user[token_id]
+    })
+  }else{
+    res.redirect('/')
+  }
+    
 });
+
+/* 
+    rutas para vue
+*/
+//ruta para poder mostrar la lista de medicamentos
+router.get('/Vue_medicamentos_farmacia', (req,res) => {
+
+  fetch('http://localhost:3200/api/mostrar_medicamentos')
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    res.status(200).json(resp)
+  })
+
+})
+
+// ruta para sacar un solo medicamentos
+router.get('/vue_medicamento/:id_medicamento', (req,res) => {
+  const { id_medicamento } = req.params
+  fetch('http://localhost:3200/api/one_medicamento/'+id_medicamento)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    res.status(200).json(resp)
+  })
+})
+
+//ruta para poder inser pedidos
+router.post('/vue_post_pedidos', (req,res) => {  
+  var datos = req.body
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/reg_pedido',esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
 
 router.get('/volver3', (req,res) => {
     oneGrupoAsig = null

@@ -25,23 +25,40 @@ const recetas = new Vue({
             
         },
 
-        One_receta:''
+        One_receta:'',
+
+
+        //datos para receta
+        data_receta: ''
     }),
     mounted(){
+
         fetch('http://localhost:7000/consulta_externa/vueReceta/'+this.id_consulta)        
         .then(resp => resp.json())
-        .then(data =>{            
-            this.One_receta = {
-                id:data[0].id,
-                estado:data[0].estado,
-                tipoConsulta: data[0].tipoConsulta,
-                historiaClinica:data[0].historiaClinica,
-                fecha:data[0].fecha,
-                medicamentos:data[0].medicamentos,
-                fecha:data[0].fecha,
-                medico:data[0].Consulta.Citas_Medica.medico,
-                tipoConsulta:data[0].tipoConsulta
-            }
+        .then(data =>{   
+            console.log(data, "  esto es lo otro" )    
+            if(data != ""){
+                this.One_receta = {
+                    id:data[0].id,
+                    estado:data[0].estado,
+                    tipoConsulta: data[0].tipoConsulta,
+                    historiaClinica:data[0].historiaClinica,
+                    fecha:data[0].fecha,
+                    medicamentos:data[0].medicamentos,
+                    fecha:data[0].fecha,
+                    medico:data[0].Consulta.Citas_Medica.medico,
+                    tipoConsulta:data[0].tipoConsulta
+                }
+            }     
+            
+        })
+
+        fetch('http://localhost:7000/consulta_externa/medicamentos')
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+            console.log(data, "  zxxxxxx esto es la lista de recetas")
+            this.data_receta = data
         })
     },
     methods:{
@@ -167,6 +184,10 @@ const recetas = new Vue({
                     }
                 }) 
             }  
+        },
+
+        receta_data(){
+            
         }
     }
 })
