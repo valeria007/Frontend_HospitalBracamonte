@@ -34,6 +34,8 @@ router.get('/cuaderno',(req,res) => {
 });
 
 router.get('/limpiar', (req,res) => {
+    mg1= null;
+    mg2=null;
     espONE = null;
     res.redirect('/cuaderno/especialidad');
 })
@@ -45,7 +47,9 @@ router.get('/especialidad', (req,res) => {
         .then(resp => { 
             res.render('cuadernos/especialidad',{
                 resp,
-                espONE
+                espONE,
+                mg1,
+                mg2
             });
         })
         .catch(error => {
@@ -69,7 +73,7 @@ router.get('/oneEsp/:id', (req,res) => {
             res.send("no hay coneccion con el servidor");
         }) 
 })
-
+var mg1,mg2
 //serv para poder insertar en cuadernos
 router.post('/especialidad', (req,res) => {
     var data = req.body
@@ -84,7 +88,13 @@ router.post('/especialidad', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-       res.redirect('/cuaderno/especialidad')
+        if(data.success == false){
+            mg1=data.message
+            res.redirect('/cuaderno/especialidad')
+        }else{
+            mg2=data.message
+            res.redirect('/cuaderno/especialidad')
+        }
     })  
 })
 
@@ -103,7 +113,11 @@ router.post('/updateEsp/:id', (req,res)=> {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-       res.redirect('/cuaderno/oneEsp/'+id)
+        if(data.success == false){
+            res.redirect('/cuaderno/oneEsp/'+id)
+        }
+        mg2=data.message
+        res.redirect('/cuaderno/oneEsp/'+id)
     })  
 })
 

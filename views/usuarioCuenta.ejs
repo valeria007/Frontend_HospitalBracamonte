@@ -71,6 +71,7 @@
           
           <div class="block-web">
             <div class="header">
+                <div class="actions"><a class="refresh"  role="button" href="/usuarios/quitar4/<%=id.id%>">Refresh  <span>&nbsp;</span><i class="fa fa-repeat"></i></a> </div>
               <div class="info blue_symbols"><i class="fa fa-users icon"></i></div>
               <h3 class="content-header ">Registro de Cuentas</h3>
             </div>
@@ -112,9 +113,9 @@
 					  </div>-->
 					</div><div class="form-group">
 						<div class="col-md-offset-4 col-md-10">
-              <a href="" class="btn btn-info btn-icon">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+              <a href="/usuarios/quitar3" class="btn btn-info btn-icon">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
 						  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-						  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+						  
 						</div>
 					  </div>
                   
@@ -122,23 +123,23 @@
               <% } else { %>
                 <form class="form-horizontal group-border-dashed" action="/usuarios/crearCuenta/<%=id.id%>" method="POST" parsley-validate novalidate>
                   <div class="form-group">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label >Cuenta:</label>
-                     <input type="text"  class="form-control" parsley-trigger="change" value="<%=data.username%>" name="username" required placeholder="Introdusca Cuenta" />
+                     <input type="text"  class="form-control" parsley-trigger="change" value="<%=data.username%>" name="username" required placeholder/>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label >Email:</label>
-                      <input type="text"  class="form-control" parsley-trigger="change" name="email" value="<%=data.email%>"required placeholder="Introdusca Correo" />
+                      <input type="text"  class="form-control" parsley-trigger="change" name="email" value="<%=data.email%>"required placeholder />
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label >Contraseña:</label>
-                      <input type="password" id="pass1" name="password"  class="form-control" placeholder="Password"  parsley-trigger="change" required placeholder="Introdusca Contraseña" />
+                      <input type="password" id="pass1" name="password"  class="form-control" placeholder="Password"  parsley-trigger="change" required placeholder />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label >Repita Contraseña:</label>
-                      <input type="password" parsley-equalto="#pass1" class="form-control" name="" parsley-trigger="change"   required placeholder="Repita Contraseña" />
+                      <input type="password" parsley-equalto="#pass1" class="form-control" name="" parsley-trigger="change"   required placeholder/>
                     </div>
               <!--<div class="col-sm-4">
                 <label >Rol:</label>
@@ -153,8 +154,8 @@
             </div>
             <div class="form-group">
               <div class="col-md-offset-4 col-md-10">
-                <button type="submit" class="btnbtn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                <button type="submit" class="btn btn-success btn-icon" >Guardar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="/usuarios/quitar3" class="btn btn-info btn-icon">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
               </div>
               </div>
                     
