@@ -60,6 +60,8 @@ app.get('/api/pacientes', Paciente.getPaciente);
 app.get('/api/onlyPaciente/:id', Paciente.OnlyPaciente); // mostrar pacientes segun historial
 app.get('/api/paciente_id/:id', Paciente.paciente_id);
 
+app.get('/api/paciente_alergias/:id_paciente', Paciente.paciente_alergias)
+
 ////citas
 app.post('/api/reg_cita/:id_Paciente', Citas_medica.reg_cita);
 app.get('/api/reg_citas', Citas_medica.getCitas);
