@@ -36,7 +36,6 @@ const recetas = new Vue({
         fetch('http://localhost:7000/consulta_externa/vueReceta/'+this.id_consulta)        
         .then(resp => resp.json())
         .then(data =>{   
-            console.log(data, "  esto es lo otro" )    
             if(data != ""){
                 this.One_receta = {
                     id:data[0].id,
@@ -57,7 +56,6 @@ const recetas = new Vue({
         .then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(data => { 
-            console.log(data, "  zxxxxxx esto es la lista de recetas")
             this.data_receta = data
         })
     },
@@ -79,7 +77,12 @@ const recetas = new Vue({
                 }
             })
         },
-        insertar(){
+        insertar(nombre){
+            fetch('http://localhost:7000/consulta_externa/vue_one_medicamentos/'+nombre)        
+            .then(resp => resp.json())
+            .then(data =>{  
+
+             })
             this.medicamentos.push({
                 medicamento:this.lista.medicamento,
                 dosis:this.lista.dosis,
@@ -184,10 +187,6 @@ const recetas = new Vue({
                     }
                 }) 
             }  
-        },
-
-        receta_data(){
-            
         }
     }
 })
