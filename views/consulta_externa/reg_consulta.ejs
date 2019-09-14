@@ -309,28 +309,19 @@
                                                                                 </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                   
+                                                                                   <%for(var i = 0; i< fileAsArray.length; i++) { %>
                                                                                         <tr>
                                                                                             <td><%= i+1%></td>
-                                                                                            <td></td>
-                                                                                            <td></td>
-                        
-                                                                                                                                            
-                                                                                            
+                                                                                            <td><%=fileAsArray[i].c%></td>
+                                                                                            <td><%=fileAsArray[i].d%></td>
                                                                                             <td>
                                                                                                 <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
                                                                                                
                                                                                             </td>
                                                                                         </tr>
+                                                                                    <% } %>
                                                                                   
-                                                                                        <tr>
-                                                                                            <td>1</td>
-                                                                                            <td></td>
-                                                                                            <td></td>
-                                                                                            <td></td>
-                                                                                            
-                                                                                            
-                                                                                        </tr>
+                                                                            
                                                                                 
                                                                                 </tbody>                                                                       
                                                                             </table> 
