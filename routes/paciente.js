@@ -464,5 +464,25 @@ router.get('/O_Laboratorio', (req,res) => {
 router.get('/O_Radiografia', (req,res) => {
   res.render('consulta_externa/O_Radiografia')
 });
+ 
+//para citas
+
+
+router.get('/listasdeCitas', (req,res) => {
+  res.render('Fichas/listasdeCitas')
+});
+//IMPRIMIR CITAS
+router.get('/imprimirNuevaConsulta', (req,res) => {
+  res.render('Fichas/imprimirNuevaConsulta')
+});
+router.get('/imprimirNuevaConsulta', (req,res) => {
+  res.render('Fichas/imprimirNuevaConsulta')
+});
+
+router.get('/citas_reconsulta', (req,res) => {
+  res.render('Fichas/citas_reconsulta')
+});
+
+
 
 module.exports = router;

@@ -119,28 +119,28 @@
             </div>
         </div>
         <!--\\\\\\\left_nav end \\\\\\-->
-        <div class="contentpanel">
+        <div class="contentpanel ">
                 <!--\\\\\\\ contentpanel start\\\\\\-->
             <div class="container clear_both padding_fix col-lg-8">
                 <br>
-                <div class="row"> 
-                    <!-- Content page -->
-                    <div class="container-fluid col-md-12" id="">
-                        <div class="page-header  ">
-                            <div class="header">
-                                <div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div><br>
-                                    <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa</h3>
-                                </div>       
-                            </div>
-                            <div id="" class="col-md-2">	
-                                <div class="">
-                                    <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-                                </div>				
-                            </div>
-                    </div><br>
-                </div> 
+                
                     <div class="main-content">
-                            
+                            <div class="col-lg-12 block-web"> 
+                                    <!-- Content page -->
+                                    <div class=" container-fluid col-md-12" id="">
+                                        <div class=" ">
+                                            <div class="">
+                                                <div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div><br>
+                                                    <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa</h3>
+                                                </div>       
+                                            </div>
+                                            <div id="" class="col-md-2">	
+                                                <div class="">
+                                                    <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+                                                </div>				
+                                            </div>
+                                    </div><br>
+                                </div>     
                         <div class="main-content">
                                 <section class="panel default blue_title h2">
                             <div class="page-content">
@@ -163,7 +163,7 @@
                                                         <h3 >Datos Personales</h3>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="row">
+                                                        <div class="row ">
                                                             
                                                             <div class="col-md-9"><br>
                                                                 <div class="col-md-4">
@@ -254,7 +254,7 @@
                                                                     <div class="entrada">
                                                                         <h6 class=" blue_info">Fecha de Consulta:</h6>
                                                               
-                                                                        <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj2" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
+                                                                        <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
                                                                         
                                                                     </div>                        
                                                                 </div>
@@ -297,7 +297,46 @@
                                                         <div class="">
                                                             <div class="tab-content">
                                                                 <div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="anamnesis"  cols="112" rows="10"></textarea></div>
-                                                                <div class="tab-pane fade" id="tab2default"><textarea class="large-compact" name="diagnostico" cols="112" rows="10"></textarea></div>
+                                                                <div class="tab-pane fade" id="tab2default">
+                                                                        <table class="fl-table display table table-bordered table-striped" id="dynamic-table">
+                                                                                <thead>
+                                                                                <tr>
+                                                                                    <th>#</th>
+                                                                                    <th>Código</th>
+                                                                                    <th>Descripción</th>
+                                                                                    <th class="center">Opciones</th>
+                                                                                    
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                   
+                                                                                        <tr>
+                                                                                            <td><%= i+1%></td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                        
+                                                                                                                                            
+                                                                                            
+                                                                                            <td>
+                                                                                                <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
+                                                                                               
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                  
+                                                                                        <tr>
+                                                                                            <td>1</td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            <td></td>
+                                                                                            
+                                                                                            
+                                                                                        </tr>
+                                                                                
+                                                                                </tbody>                                                                       
+                                                                            </table> 
+                                                                    <textarea class="large-compact" name="diagnostico" cols="112" rows="10"></textarea>
+                                                                
+                                                                </div>
                                                                 <div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="112" rows="10"></textarea></div>
                                                                 <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="112" rows="10"></textarea></div>
                                                             </div>
@@ -533,8 +572,7 @@
                                             </p>
                                             <div class="table-responsive">
                                                 <div class="table-wrapper">
-                                                    <table class="fl-table display table table-bordered table-striped"
-                                                    id="dynamic-tablee">
+                                                    <table class="fl-table display table table-bordered table-striped" id="dynamic-tablee">
                                                         <thead>
                                                         <tr>
                                                             <th>#</th>

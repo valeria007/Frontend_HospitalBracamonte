@@ -82,34 +82,7 @@
 		</div>
 		<div class="inner">
 			<!--\\\\\\\ inner start \\\\\\-->
-			<div class="left_nav">
-
-				<!--\\\\\\\left_nav start \\\\\\-->
-				<div class="left_nav_slidebar">
-					<ul>
-						<li ><a href="javascript:void(0);"><i
-									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
-									class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul>
-								<li> <a href="/paciente/home/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b>
-									</a> </li>
-							</ul>
-						</li>
-					
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span
-									class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul class="opened" style="display:block">
-								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-										<b class="theme_color">Citas Medicas</b>
-									</a> </li>
-
-							</ul>
-						</li>
-				
-
-					</ul>
-				</div>
-			</div>
+			<%- include("partials/menu") -%>	
 			<!--\\\\\\\left_nav end \\\\\\-->
 			<div class="contentpanel">
 				<!--\\\\\\\ contentpanel start\\\\\\-->
@@ -167,9 +140,12 @@
 																	<td><%=resp[i].apellidop %> <%=resp[i].apellidom %></td>
 																	<td><%=resp[i].ci %></td>
 																	<td class="text-center">
-					
-																		<a href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial%>/<%=data_token.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Ficha_Médica" ><i
+																		<a href="/paciente/citaPAciente/<%= resp[i].id %>/<%= resp[i].numeroHistorial%>/<%=data_token.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ficha nueva" ><i
 																			class="fa fa-list-ol"></i></a>
+																		<a href="/paciente/citas_reconsulta" data-toggle="tooltip" class="btn  tooltips" data-original-title="Reconsulta" ><i
+																			class="fa fa-dedent"style="color:rgb(80, 145, 80)"></i></a>
+
+																		
 																		<a href="/paciente/EnviarCita/<%= resp[i].id %>/<%= resp[i].numeroHistorial %>"data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver_Ficha_Médica"
 																			><i class="fa fa-eye red"></i></a>
 																	</td>
@@ -250,7 +226,7 @@
 											
 										</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal"> <i class='fa fa-mail-reply'></i>&nbsp;&nbsp;Close</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal"> <i class='fa fa-mail-reply'></i>&nbsp;&nbsp;Cancelar</button>
 												<button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
 												<button type='submit' class='btn btn-danger'><i class='fa fa-check-square-o'></i> &nbsp;&nbsp; Guardar</button>
 												
