@@ -7,6 +7,10 @@ router.get('/pedidos',(req, res) => {
     res.render('Almacen/pedidos')
 });
 
+router.get('/volver', (req,res) => {
+    res.redirect('/almacen/pedidos'); 
+})
+ 
 
 
 /*

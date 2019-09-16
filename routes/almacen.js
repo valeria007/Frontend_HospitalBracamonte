@@ -4,6 +4,49 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+router.get('/imprimir/:id_pedido', (req,res) => {
+    const { id_pedido } = req.params
+    fetch('http://localhost:3500/api/OnlyPedido/'+id_pedido)   
+    .then(resp => resp.json())
+    .then(resp =>{        
+        res.render('Almacen/imprimir',{
+            resp
+        });
+    })
+    .catch(error => {
+        res.render('Almacen/404error',{
+            msg:"No hay cneccion con el sevidor de almacen"
+        })
+        
+    }) 
+    
+});
+
+router.get('/distri_imprimir/:id_distribucion', (req,res) => {
+    const { id_distribucion } = req.params
+    fetch('http://localhost:3500/api/onlyDist/'+id_distribucion)
+    .then(res => res.json())
+    .then(data => { 
+        res.render('Almacen/distri_imprimir',{
+            data
+        });
+    })
+    .catch(error => {
+        res.render('Almacen/404error',{
+            msg:"No hay cneccion con el sevidor de almacen"
+        })
+        
+    }) 
+    
+});
+router.get('/volver12/:id', (req,res) => {
+    const { id } = req.params
+    res.redirect('/almacen/imprimir/'+id); 
+})
+router.get('/volver13/:id_dis', (req,res) => {
+    const { id_dis } = req.params
+    res.redirect('/almacen/distri_imprimir/'+id_dis); 
+})
 router.post('/loginAlmacen',(req,res) => {
     var data = req.body
     res.status(200).json(data)
@@ -62,6 +105,7 @@ router.get('/home/:id', (req,res) => {
         
     })
 });
+
 router.get('/kardexValorizado', (req,res) => {
     res.render('Almacen/kardexValorizado');
 });

@@ -59,7 +59,7 @@
 							  <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit"> Lista de Productos </i></h4>
 							</div>
 							<div class="row">
-								<span style="color: red;">{{alert}}</span>
+		
 								<span style="color: blue;">{{pass}}</span>
 							  <!--/////////////table-->
 							  <div class="col-xs-10 col-md-offset-1">
@@ -186,8 +186,8 @@
 																<td>{{car.item.nombre}}</td>
 																<td>{{car.item.presentacion}}</td>
 																<td>{{car.qty}}</td>
-																<td> <a  @click="reduceByOne(car.item.id)">Reducir</a>   </td>
-																<td><a  @click="removeItem(car.item.id)">Eliminar</a> </td>    
+																<td> <a  @click="reducir_cantidad(car.item.id)">Reducir</a>   </td>
+																<td><a  @click="eliminar_item(car.item.id)">Eliminar</a> </td>    
 															</tr>
 														<tbody>
 													  </table>
@@ -199,10 +199,11 @@
 											<div class="col-sm-offset-2 col-sm-10 ">
 												<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
 												<a class="btn btn-danger" href="/distribucion/volver"><i class="fa fa-times"></i> Cancelar</a>
+												<button type="button" class="btn btn-warning" onclick=location="/almacen/distri_imprimir"><i class="fa fa-print"></i> Imprimir</button>
 											</div>
 										</div><!--/form-group--> 
 									</form>
-									
+									<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
 								</div>
 							</div>
 						</div>

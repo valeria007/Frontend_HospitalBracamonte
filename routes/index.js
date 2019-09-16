@@ -87,7 +87,7 @@ router.post('/login', (req,res)  => {
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(resp => {
-
+        console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
         if(resp.role.length <=1){
           if(resp.role[0].name == "Almacen"){
             //res.send(resp.role[0].name)

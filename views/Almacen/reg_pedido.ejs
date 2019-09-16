@@ -7,8 +7,9 @@
   <title>Document</title>
   <%- include("../partials/head") -%>	
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-  <link href="/css/alert-vue.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+ 
+  
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -57,21 +58,9 @@
               <div class="header">
                 <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar" ><i class="fa fa-chevron-down"></i></a> </div>
                 <h5 class="content-header"><i class="fa fa-shopping-cart icon"></i> Registro de Pedido</h5>
-                
               </div>
-              
-              <div class="porlets-content" v-if="mostrar">
-              
                 <span style="color: red;">{{respuestaPost}}</span>
-                <template>
-                  <section>
-                    <alert v-for="(item, index) in alerts" :duration="duration" :key="item.key" @dismissed="alerts.splice(index, 1)">
-                      This alert <b>will dismiss after {{duration}}ms</b>.
-                    </alert>
-                    <hr/>
-                    <button type="button" @click="addAutoDismissAlert()">Add Auto Dismiss Alert</button>
-                  </section>
-                </template>
+              
                 <form @submit="formSubmit" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Codigo de Compra:</label>
@@ -191,7 +180,8 @@
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10"> 
                       <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-                      <button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+                      <a type="reset" class="btn btn-danger" href="/pedidos/volver"><i class="fa fa-times"></i> Cancelar</a>
+                      <button type="button" class="btn btn-warning" onclick=location="/almacen/imprimir"><i class="fa fa-print"></i> Imprimir</button>
                     </div>
                   </div><!--/form-group--> 
                 </form>
@@ -283,20 +273,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/pedidos.js"></script>
-<script>
-  export default {
-    data () {
-      return {
-        alerts: [],
-        duration: 2000
-      }
-    },
-    methods: {
-      addAutoDismissAlert () {
-        this.alerts.push({key: new Date().getTime()})
-      }
-    }
-  }
-</script>
+<script src="/js/pdf.js"></script>
 </body>
 </html>
