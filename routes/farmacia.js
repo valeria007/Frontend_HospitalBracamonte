@@ -7,7 +7,8 @@ const datas = require('./url/export');
 router.get('/datas_array', (req,res) => {
   res.send({ 
     data_post_body, 
-    one_medicamento 
+    one_medicamento ,
+    msg_Consulta_emergencia
   })
 })
 
@@ -148,8 +149,17 @@ router.get('/almacenamiento/:token_id/:token_partial',(req, res) => {
               msg:msg_Consulta_emergencia[token_id],
               data_body_post: data_post_body[token_id]
             })
+            remove_msg()
           })
-         
+         function remove_msg(){
+           if(data_post_body[token_id] != ""){
+            remove_data_body(token_id),{expiresIn: 10* 50}
+            remove(token_id),{expiresIn: 10* 30}
+           }
+           if(msg_Consulta_emergencia[token_id].data.success == true){
+            remove(token_id),{expiresIn: 10* 30}
+           }
+         }
       })
         
     }else{
@@ -670,28 +680,275 @@ router.post('/vue_post_pedidos', (req,res) => {
 })
 
 
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                   ruta para recetas de pacientes
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
 router.get('/volver3', (req,res) => {
     oneGrupoAsig = null
     res.redirect('/Farmacia/solicitudes'); 
 })
   
-router.get('/recetas_farm',(req, res) => {
-    res.render('Farmacia/recetas_farm')
+
+
+router.get('/recetas_farm/:token_id/:token_partial',(req, res) => {
+  const { token_id, token_partial } = req.params;
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+
+    fetch('http://localhost:3000/api/reg_Receta')
+    .then(resp => resp.json())
+    .then(resp => {
+      res.render('Farmacia/recetas_farm',{
+        resp,
+        data_doc : data_user[token_id]
+      })
+    })
+    .catch(error => {
+      res.render('Farmacia/404error',{
+        msg404 : "No hay coneccion con la base de datos docker postgres",
+        data_doc : data_user[token_id]
+      })
+    })
+  }else{
+    res.redirect('/')
+  }
+    
 });
-router.get('/reg_receta',(req, res) => {
-    res.render('Farmacia/reg_receta')
-  });
+
+//ruta para renderizar reg receta
+
+router.get('/reg_receta/:id_receta/:token_id/:token_partial',(req, res) => {
+  const { id_receta, token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3000/api/one_receta/'+id_receta)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(data_receta => {
+      
+      fetch('http://localhost:3000/api/onlyPaciente/'+data_receta[0].historiaClinica)
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(one_paciente => {
+        res.render('Farmacia/reg_receta',{
+          data_receta,
+          data_doc : data_user[token_id],
+          one_paciente
+        })
+      })
+
+    })
+    
+  }else{
+    res.redirect('/')
+  }
+    
+});
+
+router.get('/vue_one_receta/:id_receta', (req,res) => {
+  const { id_receta } = req.params
+  fetch('http://localhost:3000/api/one_receta/'+id_receta)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(data => {
+      res.status(200).json(data)
+    })
+})
+
+router.post('/vue_reg_receta_paciente', (req,res) => {
+  var datos = req.body
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/reg_receta_paciente',esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
+//ruta para actualizar cantidad de producto
+router.post('/vue_update_cantidad/:id_medicamento', (req,res) => {
+  const { id_medicamento } = req.params
+  var datos = req.body
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/update_cantidad/'+id_medicamento,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
+
+
+
   router.get('/volver2', (req,res) => {
     oneGrupoAsig = null
     res.redirect('/farmacia/recetas_farm'); 
 })
-router.get('/ventas',(req, res) => {
-    res.render('Farmacia/ventas')
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        Rutas para ventas
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+router.get('/ventas/:token_id/:token_partial',(req, res) => {
+  const { token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3200/api/list_clients')
+    .then(res => res.json())
+    .then(clientes => {
+      res.render('Farmacia/ventas',{
+        data_doc : data_user[token_id],
+        clientes,
+        msg:msg_Consulta_emergencia[token_id],
+      })
+    })
+    .catch(error => {
+      res.render('Farmacia/404error',{
+        msg404 : "No hay coneccion con la base de datos docker postgres",
+        data_doc : data_user[token_id]
+      })
+    })
+  }else{
+    res.redirect('/')
+  }
 });
+
+router.post('/reg_cliente/:token_id/:token_partial', (req,res) => {
+  const { token_id, token_partial } = req.params
+  var datos = req.body
+  /* res.send(datos) */
+  var msg_p;
+   var esto = {
+    method: 'post',
+    body: JSON.stringify(datos),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:3200/api/create_cliente',esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    if(data.success == true){
+      res.redirect('/farmacia/reg_venta/'+data.data.id+'/'+token_id+'/'+token_partial)
+      console.log(data, " <<<<<<csxcs<< esto es la respuesta que quiero ver <<<<<<<<<<<<<<< ")
+    }else{
+      if(msg_Consulta_emergencia[token_id] == null){
+        msg_p = {
+          success:false,
+          data_cliente:data.msg
+        }
+        msg_data(msg_p,token_id)
+    }else{
+        msg_p = {
+          success:false,
+          data_cliente:data.msg
+        }
+        remove(token_id)
+        msg_data(msg_p,token_id)
+    }
+    res.redirect('/farmacia/ventas/'+token_id+'/'+token_partial) 
+      
+    }
+   
+  })
+})
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// rutas para registrar venta de clientes 
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+router.get('/reg_venta/:id_cliente/:token_id/:token_partial',(req, res) => {
+  const { id_cliente, token_id, token_partial } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3200/api/one_client/'+id_cliente)
+    .then(res => res.json())
+    .then(one_cliente => {
+      res.render('Farmacia/reg_venta',{
+        one_cliente,
+        data_doc : data_user[token_id],
+      })
+    })
+    .catch(error => {
+      res.render('Farmacia/404error',{
+        msg404 : "No hay coneccion con la base de datos docker postgres",
+        data_doc : data_user[token_id]
+      })
+    })
+  }else{
+    res.redirect('/')
+  }
   
-  router.get('/reg_venta',(req, res) => {
-    res.render('Farmacia/reg_venta')
-  });
+});
+
+
+//ruta vue para registrar ventas
+router.post('/register_venta_cliente/:id_cliente',(req,res) => {
+  const { id_cliente } = req.params
+  var datos = req.body
+   var esto = {
+    method: 'post',
+    body: JSON.stringify(datos),
+    headers:{
+      'Content-type' : "application/json"
+    }
+  };
+  fetch('http://localhost:3200/api/create_receta_cliente/'+id_cliente,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//ruta para stock farmacia
+
+router.get('/Stock_far/:token_id/:token_partial', (req,res) => {
+  const {token_id, token_partial} = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3200/api/list_med')
+    .then(resp => resp.json())
+    .then(list_medicamentos => {
+      res.render('Farmacia/Stock_far',{
+        list_medicamentos,
+        data_doc : data_user[token_id]
+      });
+    })
+    .catch(error => {
+      res.render('Farmacia/404error',{
+        msg404 : "No hay coneccion con la base de datos docker postgres",
+        data_doc : data_user[token_id]
+      })
+    })
+  }else{
+    res.redirect('/')
+  }
+});
+
   router.get('/volver1', (req,res) => {
     oneGrupoAsig = null
     res.redirect('/farmacia/ventas'); 
@@ -719,9 +976,8 @@ router.get('/reportes_solicitudes', (req,res) => {
 router.get('/reportes_ventas', (req,res) => {
     res.render('Farmacia/reportes_ventas');
 });
-router.get('/Stock_far', (req,res) => {
-    res.render('Farmacia/Stock_far');
-});
+
+
 
 
 

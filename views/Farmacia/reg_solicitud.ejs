@@ -52,9 +52,9 @@
 				<ul class="opened" style="display:block">
 				  <li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
 				  <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Movimientos</b> </a> </li>
-				  <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-				  <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
-				  <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+				  <li> <a href="/Farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+				  <li> <a href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
+				  <li> <a href="/Farmacia/Stock_far/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
 				</ul>
 			  </li>
 			  <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -90,7 +90,7 @@
                   <span style="color: red;">{{alert}}</span>
                   <span style="color: blue;">{{pass}}</span>
                
-                <div class="col-xs-10 col-md-offset-1">
+                <div class="col-xs-12">
                   <br>
                   <label><i class="fa fa-search"> buscar </i></label>
                   <div class="control is-grouped">
@@ -101,7 +101,7 @@
                     </p>
                   </div>
                 </div> 
-                <div class="col-xs-10 col-md-offset-1">
+                <div class="col-xs-12">
                   <nav class="pagination m-pagination">
                     <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Anterior</a>
                     <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Siguiente</a>
@@ -120,7 +120,7 @@
                     </ul>
                   </nav>
                 </div>
-                <div class="col-xs-10 col-md-offset-1">
+                <div class="col-xs-12">
                   <table class="table is-bordered is-striped is-narrow">
                     <thead>
                       <tr>
@@ -172,10 +172,10 @@
               <form  @submit="reg_pedido" method="POST" parsley-validate novalidate>
                 <div class="col-md-12">
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label>N° de Solicitud:</label>
-                      <input type="text" v-model="num_solicitud" required class="form-control" onkeyup="mayus(this);">
-                    </div>
+                    <!-- <div class="form-group">
+                      <label>N° de Solicitud:  esto se introduce automaticamente</label>
+                      <input type="text" required class="form-control" onkeyup="mayus(this);">
+                    </div> -->
                   </div>  
                   <div class="col-md-6">
                     <div class="form-group">
