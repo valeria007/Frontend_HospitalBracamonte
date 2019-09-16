@@ -12,7 +12,6 @@ const pedido_medicametos = new Vue({
       respuestaPost_true:'',
       respuestaPost_false:'',
 
-      num_solicitud:'',
       trimestre:'',
       responsable:'',
       destino:'',
@@ -140,8 +139,10 @@ const pedido_medicametos = new Vue({
         //this.msg = "Inserte una cantidad del producto"
         if(cantidad == 0 || cantidad == ""){
           this.alert = "Inserte una cantidad del producto"
+          this.pass = ""
         }else if(cantidad <= 0){
           this.alert = "Las cantidades no pueden ser negativas"
+          this.pass = ""
         }
 
       }  else {
@@ -213,7 +214,6 @@ const pedido_medicametos = new Vue({
         this.respuestaPost_false = "No se seleciono un producto"
       }else{
         var data  = {
-          num_solicitud : this.num_solicitud,
           trimestre : this.trimestre,
           responsable : this.responsable,
           destino : this.destino,
@@ -235,10 +235,8 @@ const pedido_medicametos = new Vue({
         .then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(data => { 
-          console.log(data, "  <<<< esto es la respuesta que quiero ver")
           if(data.success  == true){
             this.respuestaPost_true = data.msg;
-            this.num_solicitud = ""
             this.trimestre = ""
             this.responsable = ""
             this.destino = ""
