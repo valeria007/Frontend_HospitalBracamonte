@@ -8,7 +8,7 @@ router.get('/salas',(req, res) => {
   .then(resp => resp.json())
   .then(resp =>{
      dataSala = resp;
-      res.redirect('/salas/renderSalas');
+      res.redirect('/salas/renderSalas', );
   })
 .catch(error => {
   console.error('Error:', error)
@@ -36,7 +36,7 @@ router.get('/renderSalas', (req,res) => {
   })
   }  
 });
-
+var mess,mecof
 router.post('/salas', (req,res) => {
   var data = req.body;
   var esto = {
@@ -50,6 +50,10 @@ router.post('/salas', (req,res) => {
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => { 
+    if(data.success == false){
+      mess= data.mess
+      res.redirect('/salas/salas'); 
+    }
       
     console.log(data)
     res.redirect('/salas/salas'); 
