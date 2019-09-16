@@ -215,4 +215,39 @@ router.post('/updateGPA/:id', (req,res) =>{
 
 });
 
+//ruta para pedidos  de farmacia
+router.get('/farmacia_pedidos', (req,res) => {
+    fetch('http://localhost:3200/api/list_pedidos')
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+        res.render('Almacen/farmacia_pedidos', {
+            resp
+        })
+    })
+})
+
+// ruta para ver el pedido de farmacia
+router.get('/farmacia_ver_pedidos/:id_pedido', (req,res) => {
+    const { id_pedido } = req.params
+    fetch('http://localhost:3200/api/one_pedido/'+id_pedido)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+        res.render('Almacen/farmcia_ver_pedidos', {
+            resp
+        })
+    })
+})
+// ruta para poder sacar un pedido segun id de pedido
+router.get('/Vue_one_pedido_farmacia/:id_pedido', (req,res) => {  
+    const { id_pedido } = req.params
+    fetch('http://localhost:3200/api/one_pedido/'+id_pedido)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+        res.status(200).json(resp)
+    })
+})
+
 module.exports = router;

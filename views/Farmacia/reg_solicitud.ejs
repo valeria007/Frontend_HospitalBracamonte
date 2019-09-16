@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   <%- include("../partials/head") -%>	
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
@@ -21,7 +23,7 @@
         <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
               <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
@@ -43,16 +45,16 @@
 			<ul>
 			  <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 				<ul>
-				  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+				  <li> <a href="/farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
 				</ul>
 			  </li>
 			  <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
 				<ul class="opened" style="display:block">
-				  <li> <a href="/Farmacia/almacenamiento"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
-				  <li> <a href="/Farmacia/solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Movimientos</b> </a> </li>
-				  <li> <a href="/Farmacia/recetas_farm"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-				  <li> <a href="/Farmacia/ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
-				  <li> <a href="/Farmacia/Stock_far"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+				  <li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Almacenamiento</b> </a> </li>
+				  <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Movimientos</b> </a> </li>
+				  <li> <a href="/Farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+				  <li> <a href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
+				  <li> <a href="/Farmacia/Stock_far/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
 				</ul>
 			  </li>
 			  <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -69,8 +71,90 @@
 			</ul>
 		  </div>
       </div>
+
      <!--Contenido-->
-     <div class="contentpanel"><br>
+  <div class="contentpanel" id="pedido_medicametos"><br>
+      <!-- Modal -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Lista de Productos</h4>
+          </div>
+          <!-- 
+            lista de medicamentos
+           -->
+          <div class="modal-body"> 
+              <div class="row">
+                  <span style="color: red;">{{alert}}</span>
+                  <span style="color: blue;">{{pass}}</span>
+               
+                <div class="col-xs-12">
+                  <br>
+                  <label><i class="fa fa-search"> buscar </i></label>
+                  <div class="control is-grouped">
+                    <p class="control is-expanded">
+                      <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el Nombre y la Presentacion">
+                      <a class="button is-primary" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">Limpiar</a><br>
+                      <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
+                    </p>
+                  </div>
+                </div> 
+                <div class="col-xs-12">
+                  <nav class="pagination m-pagination">
+                    <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Anterior</a>
+                    <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Siguiente</a>
+                    <ul>
+                      <li>
+                        <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}"><<</a>
+                      </li>
+                      <li class="is-space"></li>
+                      <li v-for="item in paginationMeds.filteredMeds">
+                        <a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
+                      </li>
+                      <li class="is-space"></li>
+                      <li>
+                        <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">>></a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                <div class="col-xs-12">
+                  <table class="table is-bordered is-striped is-narrow">
+                    <thead>
+                      <tr>
+                      <th>Option</th>
+                      <th>Cantidad</th>												
+                      <th>Nombre</th>
+                      <th>Precentacion</th>
+                      <th>Cantidad</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody v-for="(med, index) in paginatedMeds">
+                      <tr>
+                      <td><a @click="insert(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+                      <td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
+                      <td>{{med.nombre}}</td>
+                      <td>{{med.presentacion}}</td>
+                      <td>{{med.cantidad}}</td>
+                      
+                      </tr>
+                    </tbody>
+                  </table>   
+                </div>
+               
+              </div>
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          </div>
+          <!-- 
+            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+           -->
+        </div>
+      </div>
+    </div>
 		<!--\\\\\\\ contentpanel start\\\\\\-->
 		<!--Formulario-->
 		<div class="container clear_both padding_fix">
@@ -79,22 +163,24 @@
 					<div class="block-web">
 						<div class="header">
               <div class="actions"></div>
-					    <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div>     Registro de Solicitud</h2>
-					  </div>
+					    <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div> Registro de Solicitud {{msg}}</h2>
+            </div>
+            <span style="color: red;">{{respuestaPost_false}}</span>
+            <span style="color: blue;">{{respuestaPost_true}}</span>
 						<div class="porlets-content">
               <!--Formulario-->
-              <form  action="" method="POST" parsley-validate novalidate>
+              <form  @submit="reg_pedido" method="POST" parsley-validate novalidate>
                 <div class="col-md-12">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>N° de Solicitud:</label>
-                      <input type="text" name="" required class="form-control" onkeyup="mayus(this);">
-                    </div>
+                  <div class="col-md-6">
+                    <!-- <div class="form-group">
+                      <label>N° de Solicitud:  esto se introduce automaticamente</label>
+                      <input type="text" required class="form-control" onkeyup="mayus(this);">
+                    </div> -->
                   </div>  
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label>Trimestre a Reportar:</label>
-                      <select required class="form-control" name="estado" onkeyup="mayus(this);">
+                      <select required class="form-control" v-model="trimestre" onkeyup="mayus(this);">
                         <option>Primer Trimestre</option>
                         <option>Segundo Trimestre</option>
                         <option>Tercer Trimestre</option>
@@ -103,103 +189,73 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Fecha:</label>
-                      <input type="date" name="fechaLLEgada" required class="form-control" onkeyup="mayus(this);">
-                    </div>
-                  </div>
+                  
                 </div>
                 <div class="col-md-12">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Responsable:</label>
-                      <input type="text" name="precio" required class="form-control" onkeyup="mayus(this);">
+                      <input type="text" required class="form-control" :value=" responsable = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'" readonly onkeyup="mayus(this);">
+                      <input type="hidden" :value="id_user = <%=data_doc.data.medico.id%> ">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Destino:</label>
-                      <input type="text" name="precio" required class="form-control" onkeyup="mayus(this);">
+                      <input type="text" v-model="destino" required class="form-control" onkeyup="mayus(this);">
                     </div>
                   </div>
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-success">Lista de Productos</button><br>
+                <button type="button" data-target="#myModal2" data-toggle="modal" class="btn btn-success" @click="searchInTheListMed('')">Lista de Productos</button><br>
                 <br>
                 <div class="table-responsive">
                   <table  class="display table table-bordered table-striped">
                     <thead>
                       <tr>
                       <th>#</th>
-                      <th>Cantidad</th>
+                      <th>Cantidad del Producto</th>
                       <th>Codigo</th>
                       <th>Descripcion</th>
-                      <th>Precio Compra</th>
-                      <th>Precio Venta</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                      <th>Precio Toal</th>
                       <th>Eliminar</th>
+                      <th>Eliminar todo</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody v-for="(car, index) in listItems">                                                    
                       <tr>
-                      <td>1</td>
-                      <td>123</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      <td>a</td>
-                      </tr>
-                    <tbody>
+                      <td>{{index}}</td>
+                      <td>{{car.qty}}</td>
+                      <td>{{car.item.codificacion}}</td>
+                      <td>{{car.item.nombre}}</td>
+                      <td>{{car.item.cantidad}}</td>
+                      <td>{{car.item.price}}</td>
+                      <td>{{car.price}}</td>
+                      <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
+                      <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
+                      </tr>                                                   
+                    </tbody>
                   </table>
                 </div><!--/table-responsive-->
                 <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
                 <a class="btn btn-danger" href="/Farmacia/solicitudes"><i class="fa fa-times"></i> Cancelar</a>
               </form>
 						</div>
-					</div>
+          </div>
 				</div>
 			</div><!--/row-->
     </div>
 	<!--\\\\\\\ content panel end \\\\\\-->
 	</div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Lista de Productos</h4>
-      </div>
-      <div class="modal-body"> 
-        <div class="table-responsive">
-          <table  class="display table table-bordered table-striped" id="dynamic-table">
-            <thead>
-              <tr>
-              <th>Opcion</th>
-              <th>Cantidad</th>
-              <th>Nombre</th>
-              <th>Stock</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr >
-              <td>Trident</td>
-              <td>Internet</td>
-              <td>Win 95+</td>
-              <td class="center hidden-phone">4</td>
-              </tr>
-            </tbody>
-          </table>
-        </div><!--/table-responsive-->
-        <button type="submit" class="btn btn-primary">Aceptar</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-      </div>
-    </div>
   </div>
 </div>
+
 <%- include("../partials/scripts") -%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+<script src="/js/vue/pedidos_farmacia.js"></script>
 </body>
 </html>
 
