@@ -18,7 +18,7 @@
         </div>
         <div class="header_top_bar">
           <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-          <a href="/cuaderno/volverFechas" href="javascript:void(0);" class="add_user" ><i class="fa fa-arrow-left"></i><span>Volver</span></a>
+         
           <div class="top_right_bar">
             <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>John Doe</span> <b class="caret"></b> </a>
               <ul class="dropdown-menu">
@@ -109,7 +109,16 @@
               <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-10"> 
                   <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                  <button type="reset" class="btn btn-danger btn-icon" >Cancelar <span>&nbsp;</span><i class="fa fa-times"></i> </button>               
+                  <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Volver <span class="caret"></span></button>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a href="/cuaderno/cuadernos1">Cuadernos </a></li>
+                      <li><a href="/cuaderno/docCuaderno ">Asignación Medico</a></li>
+                      <li><a href="/cuaderno/volverFechas">Fechas</a></li>
+                      <li><a href="/home">Home</a></li>
+                      
+                    </ul>
+                  </div>               
                 </div>
               </div><!--/form-group--> 
               </form>

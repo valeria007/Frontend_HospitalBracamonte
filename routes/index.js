@@ -220,6 +220,15 @@ router.get('/salas',(req, res) => {
 router.get('/roles',(req, res) => {
   res.render('roles')
 });
+router.get('/creroles',(req, res) => {
+  fetch('http://localhost:3600/api/roleall')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('CreRoles', {
+      data
+    })
+  })
+});
 // role
 router.get('/backup',(req, res) => {
   res.render('backup')

@@ -16,7 +16,6 @@
         </div>
         <div class="header_top_bar">
           <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a> <span>&nbsp;</span>
-          <a href="/cuaderno/cuadernos" class="btn btn-info btn-icon"><i class="fa fa-arrow-left">Volver</i></a>
           <div class="top_right_bar">
             <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>John Doe</span> <b class="caret"></b> </a>
               <ul class="dropdown-menu">
@@ -79,7 +78,7 @@
             
             <br>
             <div class="porlets-content">
-               <!---<%if (modifDoct == null) { %>--> 
+               <%if (modifDoct == null) { %>
                 <form class="form-horizontal group-border-dashed" action="/cuaderno/docCuaderno" method="POST" parsley-validate novalidate>
                   <div class="form-group">
                       
@@ -116,11 +115,11 @@
                   <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-10">
                       <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                      <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                      <a class="btn btn-primary active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/cuadernos1">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
                     </div>
                   </div>
                 </form>
-            <!-- <% } else { %>
+            <% } else { %>
                 
                 <form class="form-horizontal group-border-dashed" action="/cuaderno/updateDoctCuaderno/<%=modifDoct[0].id%>" method="POST" parsley-validate novalidate>
                   <div class="form-group">
@@ -139,14 +138,14 @@
                       <div class="col-sm-4">
                           <label class="control-labe">Especialidad:</label>
                           <select class="form-control" id="source" name="especialidad" >
-                              <option><%=modifDoct[0].Especialidade.nombre%></option>
+                              <option><%=modifDoct[0].Consulta_especilaida.nombre%></option>
                               <option>---------------</option>
                               <%for (var i=0; i < esp.length; i++) { %>
                                   <option><%=esp[i].nombre%></option>
                               <% } %>     
                           </select>
                       </div>
-                  </div>/form-group
+                  </div>
                   
                  
                  
@@ -167,7 +166,7 @@
                         <input type="text" class="form-control" name="enfermera" value="<%=modifDoct[0].enfermera%>" parsley-trigger="change"    />
                       </div>
                       
-                    </div>/form-group
+                    </div>
                     
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-10">
@@ -178,7 +177,7 @@
                       </div>/form-group
                     
                   </form>
-                <% } %>--> 
+                <% } %>
                 
               </div>
           </div>

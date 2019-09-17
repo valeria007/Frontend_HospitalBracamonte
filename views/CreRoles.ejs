@@ -74,16 +74,17 @@
                   <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
                 </ul>
               </li>
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul class="opened" style="display:block">
-                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pacientes</b> </a> </li>
-                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Farmacia</b></a> </li>
-                  <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
+              <li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes</span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                <ul >
+                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes</b> </a> </li>
+                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Farmacia</b></a> </li>
+                  <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Administración</b> </a> </li>
                 </ul>
               </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul>
-                  <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+                <ul class="opened" style="display:block">
+                  <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Backup</b> </a> </li>
+                  <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Regs. Roles</b> </a> </li>
                 </ul>
               </li>
             </ul>
@@ -97,71 +98,81 @@
                 <div class="col-md-12">
                     
                   <div class="block-web">
-                     
+                    <%if (msg != null) {%>
+                      <div class="bs-example mover">
+                        <div class="alert alert-danger fade in">
+                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                          <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
+                          <hr class="message-inner-separator">
+                          <strong><%=msg %></strong></div>
+                      </div>
+                    <%} else if(mg2 != null) { %>
+                      <div class="bs-example mover">
+                        <div class="alert alert-success fade in">
+                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                          <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
+                          <hr class="message-inner-separator">  
+                          <strong><%=mg2 %></strong>
+                        </div>
+                      </div>
+                    <% } %>
                     <div class="header">
                       <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                      <h3 class="content-header ">Reportes Pacientes</h3>
+                      <h3 class="content-header ">Reportes Administración</h3>
                     </div>
                     <br>
                     <br>
                     <div class="porlets-content">
-                        <form class="form-horizontal"  parsley-validate novalidate>
+                        <form class="form-horizontal" action="/role/role" method="POST" parsley-validate novalidate>
+                            
                             <div class="form-group">
-                              <label class="col-sm-4 control-label">Desde:</label>
+                              <label  class="col-sm-4 control-label">Tipo de Rol:</label>
                               <div class="col-sm-4">
-                              <input type="date" class="form-control" >
-                              </div>
-                            </div><!--/form-group--> 
-                            <div class="form-group">
-                              <label  class="col-sm-4 control-label">Hasta:</label>
-                              <div class="col-sm-4">
-                              <input type="date" class="form-control" >
-                              </div>
-                            </div><!--/form-group-->  
-                            <div class="form-group">
-                              <label  class="col-sm-4 control-label">Tipo:</label>
-                              <div class="col-sm-4">
-                              <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                                <option>General</option>
-                                <option>Internados</option>
-                                <option>Emergencias</option>
+                              <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="name">
+                                <option value="administrcion">Administración</option>
+                                <option value="usuario">Usuario</option>
+                                <option value="medico">Medico</option>
+                                <option value="fichaje">Fichaje</option>
+                                <option value="Almacen">Almacen</option>
+                                <option value="emergencia">Emergencia</option>
+                                <option value="farmacia">Farmacia</option>
                               </select>
                               </div>
-                            </div><!--/form-group-->
+                            </div>
+                            
                             <div class="form-group">
                               <div class="col-sm-offset-4 col-sm-10">
-                                  <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;</span>
                               </div>
                             </div><!--/form-group--> 
-                            </form>
+                        </form>
+                        <div class="table-responsive ">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Roles</th>
+                                  <th>Fecha de Ceación</th>
+                                  <th>Opciones</th>
+                                  
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% for (var i=0; i< resp.length; i++) { %>
+                                  <tr>
+                                    <td class="text-center"><%=i+1%></td>
+                                    <td class="text-center "><%=resp[i].name%></td>
+                                    <td class="text-center"><%=resp[i].createdAt.split("T")[0]%></td>
+                                    <td class="text-center">
+                                      
+                                      <a href="/role/delrol/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                    </td>
+                                  </tr>
+                                  <% } %>
+                              </tbody>
+                            </table>
+                          </div>
 
-                    </div>
-                    <div class="table-responsive">
-                        <table  class="display table table-bordered table-striped " id="dynamic-table">
-                          <thead>
-                          <tr>                          
-                          <th>N° Historial</th>
-                          <th>Nombre</th>
-                          <th>Apellido Paterno</th>
-                          <th>Apellido Materno</th>
-                          <th>Edad</th>
-                          <th>alergia</th>
-                          
-                          </tr>
-                          </thead>
-                          <tbody>
-                            <%for (var i = 0; i< data.length; i++) { %>
-                              <tr>
-                                <td><%=data[i].numeroHistorial%></td>
-                                <td><%=data[i].nombre%></td>
-                                <td><%=data[i].apellidop%></td>
-                                <td><%=data[i].apellidom%></td>
-                                <td><%=data[i].fechanacimiento%></td>
-                                <td><a href="/mostrar/<%=data[i].id%>">ver</a></td>
-                              </tr>
-                            <% } %>
-                          <tbody>
-                        </table>
                     </div>
                   </div>
                   
