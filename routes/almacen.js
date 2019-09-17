@@ -113,10 +113,24 @@ router.get('/med_ven', (req,res) => {
     res.render('Almacen/med_ven');
 });
 router.get('/reportes_pedidos', (req,res) => {
-    res.render('Almacen/reportes_pedidos');
+    fetch('http://localhost:3500/api/pedido')   
+    .then(resp => resp.json())
+    .then(resp =>{ 
+        console.log(resp)       
+        res.render('Almacen/reportes_pedidos',{
+            resp
+        });
+    })
 });
 router.get('/reportes_salidas', (req,res) => {
-    res.render('Almacen/reportes_salidas');
+    fetch('http://localhost:3500/api/distribucion')   
+    .then(data => data.json())
+    .then(data =>{ 
+        console.log(data)       
+        res.render('Almacen/reportes_salidas',{
+            data
+        });
+    })
 });
 
 

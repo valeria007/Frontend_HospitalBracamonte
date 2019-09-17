@@ -67,7 +67,13 @@
                     <div class="col-sm-6">
                       <input type="text" class="form-control" required placeholder="" v-model="codigoCompra" onkeyup="mayus(this);" />
                     </div>
-                  </div><!--/form-group--> 
+                  </div><!--/form-group-->
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Responsable:</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" required v-model="responsable" onkeyup="mayus(this);" />
+                    </div>
+                  </div><!--/form-group-->  
                   <div class="form-group">                  
                     <label class="col-sm-3 control-label">Especifique el estatus de la compra:</label>
                     <div class="col-sm-6">
@@ -148,6 +154,15 @@
                       </div>
                     </section>
                     <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="col-sm-9">
+                          <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
+                            <input type="text" class="form-control"  disabled="" v-model="totalPrice">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
                       <div class="col-md-4">
                         <div class="form-group">
                           <div class="col-sm-9">
@@ -181,7 +196,6 @@
                     <div class="col-sm-offset-2 col-sm-10"> 
                       <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
                       <a type="reset" class="btn btn-danger" href="/pedidos/volver"><i class="fa fa-times"></i> Cancelar</a>
-                      <button type="button" class="btn btn-warning" onclick=location="/almacen/imprimir"><i class="fa fa-print"></i> Imprimir</button>
                     </div>
                   </div><!--/form-group--> 
                 </form>
