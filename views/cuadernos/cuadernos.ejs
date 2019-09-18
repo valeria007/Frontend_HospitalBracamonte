@@ -53,7 +53,26 @@
         <div class="row">
           <div class="col-md-12">
             <div class="block-web">
+              <%if (mess != null) {%>
+                <div class="bs-example mover">
+                  <div class="alert alert-danger fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
+                    <hr class="message-inner-separator">
+                    <strong><%=mess %></strong></div>
+                </div>
+              <%} else if(mgconf != null) { %>
+                <div class="bs-example mover">
+                  <div class="alert alert-success fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
+                    <hr class="message-inner-separator">  
+                    <strong><%=mgconf %></strong>
+                  </div>
+                </div>
+              <% } %>
               <div class="header">
+                  <div class="actions"><a class="refresh"  role="button" href="/cuaderno/limpiar2">Refresh  <span>&nbsp;</span><i class="fa fa-repeat"></i></a> </div>
               <div class="info blue_symbols"><i class="fa fa-medkit icon"></i></div>
               <h3 class="content-header ">Creacion Cuadernos</h3>
               </div>
@@ -63,47 +82,49 @@
                 <% if (OnlyC == null) { %>
                 <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos" method="POST" parsley-validate novalidate>
                   <div class="form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                       <label class="control-labe">Codigo:</label>
-                      <input type="text"  class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="Introdusca Codigo" />
+                      <input type="text"  class="form-control"  readonly />
+                    </div>
+                    
+                    <div class="col-sm-4">
+                      <label class="control-labe">Titulo de Cuaderno:</label>
+                      <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo"  onkeyup="mayus(this)"/>
                     </div>
                     <div class="col-sm-4">
                       <label class="control-labe">Grupo de Asignacion:</label>
-                      <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Asignacion" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label class="control-labe">Titulo de Cuaderno:</label>
-                      <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo" />
+                      <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Asignacion" onkeyup="mayus(this)"/>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-10">
                       <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                      <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                      <a class="btn btn-danger active btn-icon" aria-pressed="true" role="button"  href="/home">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
                     </div>
                   </div>
                 </form>
                 <% } else { %>           
                 <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST" parsley-validate novalidate>
                   <div class="form-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                       <label class="control-labe">Codigo:</label>
-                      <input type="text" value="<%=OnlyC[0].id%>" class="form-control" parsley-trigger="change"  name="apellidop" required placeholder="" />
+                      <input type="text" value="<%=OnlyC[0].id%>" class="form-control" readonly />
+                    </div>
+                    
+                    <div class="col-sm-4">
+                      <label class="control-labe">Titulo de Cuaderno:</label>
+                      <input type="text" name="titulo" value="<%=OnlyC[0].titulo%>" class="form-control" parsley-trigger="change"  name="nombre" required placeholder onkeyup="mayus(this)" />
                     </div>
                     <div class="col-sm-4">
                       <label class="control-labe">Grupo de Asignacion:</label>
-                      <input type="text"  name="grupo" value="<%=OnlyC[0].grupo%>" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label class="control-labe">Titulo de Cuaderno:</label>
-                      <input type="text" name="titulo" value="<%=OnlyC[0].titulo%>" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="" />
+                      <input type="text"  name="grupo" value="<%=OnlyC[0].grupo%>" class="form-control" parsley-trigger="change" name="apellidom" required placeholder onkeyup="mayus(this)" />
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-10">
-                      <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiarC">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                      <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiarC">Limpiar<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
                       <button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                      <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                      
                     </div>
                   </div>
                 </form>

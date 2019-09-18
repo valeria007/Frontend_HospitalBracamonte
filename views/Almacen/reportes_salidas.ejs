@@ -86,34 +86,35 @@
 					  <div class="panel-body">
 					  <!-- Button trigger modal -->
 						<button data-target="#myModal2" data-toggle="modal" class="btn btn-success btn-lg mb10"> Seleccione Aqui </button>
-					  </div>  
-					  <div class="table-responsive">
-						<table  class="display table table-bordered table-striped " id="dynamic-table">
+						<button onclick="generateExcel()">Export to Excel</button>
+  <button onclick="generatePDF()">Export to PDF</button>
+  <br />
+  <br />
+					</div>  
+					  <div class="table-responsive"  >
+						<table  class="display table table-bordered table-striped " id="table_with_data">
 							<thead>
 							  <tr>
-							  <th>Fecha</th>
-							  <th>Codigo de Distribucion</th>
-							  <th>Responsable</th>
-							  <th>Distribuido</th>
-							  <th>Medicamento</th>
-							  <th>Codigo de Medicamento</th>
-							  <th>Precio de Compra</th>
-							  <th>Precio de Venta</th>
-							  <th>Stock Total</th>
+								<th>#</th>
+							  	<th>Fecha</th>
+							  	<th>Codigo de Distribucion</th>
+							  	<th>Responsable</th>
+							  	<th>Distribuido</th>
+							  	<th>Cantidad Total</th>
 							  </tr>
 							</thead>
 							<tbody>
+							<% for(var i = 0; i < data.length; i++) { %>
 							  <tr>
-							  <td>1</td>
-							  <td>123</td>
-							  <td>a</td>
-							  <td>a</td>
-							  <td>a</td>
-							  <td>a</td>
-							  <td>a</td>
-							  <td>a</td>
-							  <td>a</td>
+									<td><%=i+1%></td>
+									<td><%=data[i].fechaLlegada%></td>
+									<td><%=data[i].codigo%></td>
+									<td><%=data[i].responsable%></td>
+									<td><%=data[i].recibe%></td>
+									<td>falta</td>
+		  
 							  </tr>
+							<% } %>
 							<tbody>
 						</table>
 					  </div><!--/table-responsive-->
@@ -175,6 +176,15 @@
 	</div>
 </div>
 <%- include("../partials/scripts") -%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.37/jspdf.plugin.autotable.js">
+</script>
+<script src="/js/rep_imprimir.js"></script>
 </body>
 </html>
 

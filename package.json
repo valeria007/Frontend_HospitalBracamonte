@@ -20,6 +20,7 @@
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.1",
+    "scanner.js": "^2.10.3",
     "vue": "^2.6.10"
   },
   "deDependencies": {

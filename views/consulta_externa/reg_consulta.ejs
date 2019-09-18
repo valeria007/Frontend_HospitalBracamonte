@@ -102,7 +102,7 @@
                         <ul >
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nacido vivo</b>  </a> </li>
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Defunción Neonatal</b>  </a> </li>
-                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Defunción General</b>  </a> </li>
+                            <li> <a href="/paciente/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Defunción General</b>  </a> </li>
                         </ul>
                     </li>
                     <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -322,7 +322,7 @@
                                                                             
                                                                                 
                                                                                 </tbody>                                                                       
-                                                                            </table> 
+                                                                        </table> 
                                                                     <textarea class="large-compact" name="diagnostico" cols="112" rows="10"></textarea>
                                                                 
                                                                 </div>
@@ -493,7 +493,36 @@
                                                             <div class="">
                                                                 <div class="tab-content">
                                                                     <div class="tab-pane fade in active" id="tab1default"> <textarea class="large-compact" name="anamnesis" cols="80" rows="10"><%=updateCita[0].anamnesis%></textarea></div>
-                                                                    <div class="tab-pane fade" id="tab2default"> <textarea class="large-compact" name="diagnostico" cols="80" rows="10"><%=updateCita[0].diagnostico%></textarea></div>
+                                                                    <div class="tab-pane fade" id="tab2default">
+                                                                            <table class="fl-table display table table-bordered table-striped" id="dynamic-table">
+                                                                                    <thead>
+                                                                                    <tr>
+                                                                                        <th>#</th>
+                                                                                        <th>Código</th>
+                                                                                        <th>Descripción</th>
+                                                                                        <th class="center">Opciones</th>
+                                                                                        
+                                                                                    </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                       <%for(var i = 0; i< fileAsArray.length; i++) { %>
+                                                                                            <tr>
+                                                                                                <td><%= i+1%></td>
+                                                                                                <td><%=fileAsArray[i].c%></td>
+                                                                                                <td><%=fileAsArray[i].d%></td>
+                                                                                                <td>
+                                                                                                    <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
+                                                                                                   
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        <% } %>
+                                                                                      
+                                                                                
+                                                                                    
+                                                                                    </tbody>                                                                       
+                                                                            </table>     
+                                                                    
+                                                                        <textarea class="large-compact" name="diagnostico" cols="80" rows="10"><%=updateCita[0].diagnostico%></textarea></div>
                                                                     <div class="tab-pane fade" id="tab3default"> <textarea class="large-compact" name="tratamiento" cols="80" rows="10"><%=updateCita[0].tratamiento%></textarea></div>
                                                                     <div class="tab-pane fade" id="tab4default"> <textarea class="large-compact" name="observaciones" cols="80" rows="10"><%=updateCita[0].observaciones%></textarea></div>
                                                                 </div>

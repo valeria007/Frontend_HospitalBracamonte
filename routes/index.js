@@ -87,7 +87,7 @@ router.post('/login', (req,res)  => {
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(resp => {
-
+        console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
         if(resp.role.length <=1){
           if(resp.role[0].name == "Almacen"){
             //res.send(resp.role[0].name)
@@ -220,6 +220,15 @@ router.get('/salas',(req, res) => {
 router.get('/roles',(req, res) => {
   res.render('roles')
 });
+router.get('/creroles',(req, res) => {
+  fetch('http://localhost:3600/api/roleall')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('CreRoles', {
+      data
+    })
+  })
+});
 // role
 router.get('/backup',(req, res) => {
   res.render('backup')
@@ -235,8 +244,24 @@ router.get('/pacientead',(req, res) => {
 //Se movio a routas salas
 
 router.get('/paciente_Inter',(req, res) => {
-  res.render('paciente_Inter')
+  fetch('http://localhost:3000/api/pacientes')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('paciente_Inter', {
+      data
+    })
+  })
+ 
 });
+
+router.get('/mostrar/:id_paciente', (req,res) => {
+  const { id_paciente } = req.params
+  fetch('http://localhost:3000/api/paciente_alergias/'+id_paciente  )        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.send(data)
+  })
+})
 
 // Farmacia
 router.get('/almacen',(req, res) => {

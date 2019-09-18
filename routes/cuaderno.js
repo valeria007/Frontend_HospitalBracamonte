@@ -34,6 +34,8 @@ router.get('/cuaderno',(req,res) => {
 });
 
 router.get('/limpiar', (req,res) => {
+    mg1= null;
+    mg2=null;
     espONE = null;
     res.redirect('/cuaderno/especialidad');
 })
@@ -45,7 +47,9 @@ router.get('/especialidad', (req,res) => {
         .then(resp => { 
             res.render('cuadernos/especialidad',{
                 resp,
-                espONE
+                espONE,
+                mg1,
+                mg2
             });
         })
         .catch(error => {
@@ -69,7 +73,7 @@ router.get('/oneEsp/:id', (req,res) => {
             res.send("no hay coneccion con el servidor");
         }) 
 })
-
+var mg1,mg2
 //serv para poder insertar en cuadernos
 router.post('/especialidad', (req,res) => {
     var data = req.body
@@ -84,7 +88,13 @@ router.post('/especialidad', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-       res.redirect('/cuaderno/especialidad')
+        if(data.success == false){
+            mg1=data.message
+            res.redirect('/cuaderno/especialidad')
+        }else{
+            mg2=data.message
+            res.redirect('/cuaderno/especialidad')
+        }
     })  
 })
 
@@ -103,7 +113,11 @@ router.post('/updateEsp/:id', (req,res)=> {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-       res.redirect('/cuaderno/oneEsp/'+id)
+        if(data.success == false){
+            res.redirect('/cuaderno/oneEsp/'+id)
+        }
+        mg2=data.message
+        res.redirect('/cuaderno/oneEsp/'+id)
     })  
 })
 
@@ -120,15 +134,23 @@ router.get('/limpiarC', (req,res) => {
     OnlyC = null;
     res.redirect('/cuaderno/Cuadernos')
 })
-
+router.get('/limpiar2', (req,res) => {
+    mgconf = null;
+    res.redirect('/cuaderno/Cuadernos')
+})
+router.get('/cuadernos1', (req,res) => {
+    mgconf = null;
+    res.redirect('/cuaderno/Cuadernos')
+})
 router.get('/Cuadernos', (req,res) => {
     fetch(url.name.cuadernos+'/api/liscuaderno')
         .then(res => res.json())
         .then(resp => { 
             res.render('cuadernos/cuadernos',{
                 resp,
-                message,
-                OnlyC
+                mess,
+                OnlyC,
+                mgconf
             })
         })
         .catch(error => {
@@ -153,7 +175,7 @@ router.get('/onlyCuadernos/:id', (req,res) => {
 })
 
 //ruta para insertar en cuadernos
-let message;
+var mess, mgconf;
 router.post('/cuadernos',(req,res) => {
     var data = req.body;
     var esto = {
@@ -168,10 +190,13 @@ router.post('/cuadernos',(req,res) => {
     .catch(error => console.error('Error:', error))
     .then(data => { 
         if (data.success == false){
-            message = data.message;
+            console.log('esto esssssssssssssss',data)
+            mess = data.message;
            res.redirect('/cuaderno/Cuadernos')
         }else{
-            message = null;
+            mess=null
+            console.log('esto esssssssssssssss',data)
+            mgconf= data.message;
             res.redirect('/cuaderno/Cuadernos')
         }
        
@@ -397,7 +422,7 @@ router.get('/onlyfecha/:id', (req,res) => {
         res.send("no hay coneccion con el servidor");
     }) 
 })
-
+var msge1, msge2;
 let idFechas
 router.post('/fechas', (req,res) => {
     var data = req.body;
@@ -411,10 +436,15 @@ router.post('/fechas', (req,res) => {
     fetch(url.name.cuadernos+'/api/fechas/'+id_docCuaderno,esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(data => {     
-        idFechas = data.data.id
+    .then(data => {  
+        console.log("aquiiiiiiiiiiiii",data) 
+        idFechas = data.data.id  
         
-        res.redirect('/cuaderno/turnos')
+            res.redirect('/cuaderno/turnos')
+        
+        
+        
+        
        
     })  
 })
@@ -491,8 +521,16 @@ router.post('/turnos', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {   
+        if(data.success == false){
+            console.log("aquiiiiiiiiiiiii",data)
+            msge2=null
+            msge1= data.message
         res.redirect('/cuaderno/turnos')
-       
+    }else{
+        msge1=null
+        msge2= data.message
+        res.redirect('/cuaderno/turnos')
+    }
     })  
 })
 router.get('/delturno/:id', (req, res) => {

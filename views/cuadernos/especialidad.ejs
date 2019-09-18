@@ -55,63 +55,81 @@
          <div class="row">
         <div class="col-md-12">
           <div class="block-web">
+              <%if (mg1 != null) {%>
+                <div class="bs-example mover">
+                  <div class="alert alert-danger fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
+                    <hr class="message-inner-separator">
+                    <strong><%=mg1 %></strong></div>
+                </div>
+              <%} else if(mg2 != null) { %>
+                <div class="bs-example mover">
+                  <div class="alert alert-success fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
+                    <hr class="message-inner-separator">  
+                    <strong><%=mg2 %></strong>
+                  </div>
+                </div>
+              <% } %>
             <div class="header">
+              <div class="actions"><a class="refresh"  role="button" href="/cuaderno/limpiar">Refresh  <span>&nbsp;</span><i class="fa fa-repeat"></i></a> </div>
               <div class="info2 blue_symbols"><i class="fa fa-plus-square icon"></i></div>
               <h3 class="content-header ">Creacion Especialidad </h3>
             </div>
             <br>
             <br>
             <div class="porlets-content">
-              <%if (espONE == null) { %>
-				      <form class="form-horizontal group-border-dashed" action="/cuaderno/especialidad" method="POST" parsley-validate novalidate>
-					  <div class="form-group col-sm-12">
-						<div class="col-sm-4">
-							<label class="control-labe">Especialidad:</label>
-						  <input type="text" name="sigla" class="form-control" parsley-trigger="change"   required placeholder="Introdusca Sigla" />
-						</div>
-						
-						<div class="col-sm-4">
-							<label class="control-labe">Breve Descripcion:</label>
-						  <input type="text" name="nombre" class="form-control" parsley-trigger="change" required placeholder="Introdusca Nombre" />
-						</div>
-						<div class="col-sm-4">
-              <label class="control-labe">Area:</label>
-              <input class="form-control" name="descripcion" parsley-trigger="change" required placeholder="Breve Descripcion"></input>
+                <%if (espONE == null) { %>
+                <form class="form-horizontal group-border-dashed" action="/cuaderno/especialidad" method="POST" parsley-validate novalidate>
+              <div class="form-group col-sm-12">
+              <div class="col-sm-4">
+                <label class="control-labe">Especialidad:</label>
+                <input type="text" name="nombre" class="form-control" parsley-trigger="change"   required placeholder="Introdusca Nombre" onkeyup="mayus(this)"/>
+              </div>
+              
+              <div class="col-sm-4">
+                <label class="control-labe">Sigla:</label>
+                <input type="text" name="sigla" class="form-control" parsley-trigger="change" required placeholder="Introdusca Sigla" onkeyup="mayus(this)" />
+              </div>
+              <div class="col-sm-4">
+                <label class="control-labe">Area:</label>
+                <input class="form-control" name="descripcion" parsley-trigger="change" required placeholder="Introdusca Area" onkeyup="mayus(this)" />
+              </div>
             </div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-offset-4 col-sm-10">
-						  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-						  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-						</div>
-					  </div>
-              </form>
-                <% } else { %>
-                <form class="form-horizontal group-border-dashed" action="/cuaderno/updateEsp/<%=espONE[0].id%>" method="POST" parsley-validate novalidate>
-                  <div class="form-group ">
-                    <div class="col-sm-4">
-                      <label class="control-labe">Especialidad:</label>
-                      <input type="text" name="sigla" class="form-control"  value="<%=espONE[0].sigla%>" parsley-trigger="change"   required placeholder="Introdusca Sigla" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label class="control-labe">Breve Descripcion:</label>
-                      <input type="text" name="nombre" class="form-control"  value="<%=espONE[0].nombre%>" parsley-trigger="change" required placeholder="Introdusca Nombre" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label class="control-labe">Area:</label>
-                      <input class="form-control" name="descripcion" value="<%=espONE[0].descripcion%>" parsley-trigger="change" required placeholder="Breve Descripcion"></input>
-                    </div>
-                  </div> 
-                  <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-10">
-                      <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiar">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-                      <button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                      <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                    </div>
-                  </div>
+            
+            <div class="form-group">
+              <div class="col-sm-offset-4 col-sm-10">
+                <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                <a class="btn btn-danger active btn-icon" aria-pressed="true" role="button"  href="/home">Cancelar<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+              </div>
+              </div>
                 </form>
-                <% } %>
+                  <% } else { %>
+                  <form class="form-horizontal group-border-dashed" action="/cuaderno/updateEsp/<%=espONE[0].id%>" method="POST" parsley-validate novalidate >
+                    <div class="form-group ">
+                      <div class="col-sm-4">
+                        <label class="control-labe">Especialidad:</label>
+                        <input type="text" name="nombre" class="form-control"  value="<%=espONE[0].nombre%>" parsley-trigger="change"   required placeholder  onkeyup="mayus(this)"/>
+                      </div>
+                      <div class="col-sm-4">
+                        <label class="control-labe">Sigla:</label>
+                        <input type="text" name="sigla" class="form-control" value="<%=espONE[0].sigla%>" parsley-trigger="change" required placeholder  onkeyup="mayus(this)"/>
+                      </div>
+                      <div class="col-sm-4">
+                        <label class="control-labe">Area:</label>
+                        <input class="form-control" name="descripcion" value="<%=espONE[0].descripcion%>" parsley-trigger="change" required placeholder onkeyup="mayus(this)"/>
+                      </div>
+                    </div> 
+                    <div class="form-group">
+                      <div class="col-sm-offset-4 col-sm-10">
+                        <button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                        <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiar">Limpiar<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                      </div>
+                    </div>
+                  </form>
+                  <% } %>
               </div>
           </div>
         </div>
@@ -146,7 +164,7 @@
                       <td class="text-center">
                         <a @click="data(<%=resp[i].id%>)" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
                         <a href=""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a>
-                        <a href=""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a>
+                        <a href="/cuaderno/oneEsp/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a>
                       </td>							
                     </tr>
                     <% } %>
@@ -165,11 +183,45 @@
     <div class="modal-dialog">
       <div class="modal-content">
       <div class="modal-header">
+         
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Consultorios </h4>
         <span style="color: blue">{{msg}}</span>
       </div>
       <div class="modal-body"> 
+          <section class="panel default blue_title h2">
+              <div class="panel-group accordion accordion-semi" id="accordion3">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-2"> <i class="fa fa-angle-right"></i>Lista de Consultorios</a> </h4>
+                    </div>
+                    <div id="ac3-2" class="panel-collapse collapse" style="height: 0px;" >
+                      <div class="panel-body"> 
+                          <div class="col-md-12">
+                              <div class="table-responsive" >
+                                  <table class="fl-table">
+                                      <thead>
+                                        <tr>
+                                          <th class="text-center">#</th>
+                                          <th class="text-center">Sigla</th>
+                                          <th class="text-center">Nombre</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody >
+                                        <tr>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
         <form class="form-horizontal" @submit="reg_consultorio" parsley-validate novalidate>
         <div class="form-group">
           <label  class="col-sm-2 control-label">Sigla:</label>

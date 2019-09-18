@@ -486,7 +486,31 @@ router.get('/imprimirNuevaConsulta', (req,res) => {
 router.get('/citas_reconsulta', (req,res) => {
   res.render('Fichas/citas_reconsulta')
 });
+//ecografia y radio
+router.get('/radiografia', (req,res) => {
+  res.render('Radiografia/homeRa')
+});
+router.get('/listaPR', (req,res) => {
+  res.render('Radiografia/listaPR')
+});
+router.get('/IntroducePR', (req,res) => {
+  res.render('Radiografia/IntroducirPR')
+});
 
+router.get('/ecografia', (req,res) => {
+res.render('Ecografia/homeec')
+});
+router.get('/listaEC', (req,res) => {
+  res.render('Ecografia/listaEC')
+});
+router.get('/IntroduceEC', (req,res) => {
+  res.render('Ecografia/IntroducirEC')
+});
+
+//defuncion
+router.get('/defuncionGeneral', (req,res) => {
+  res.render('consulta_externa/defuncionGeneral')
+});
 
 
 module.exports = router;

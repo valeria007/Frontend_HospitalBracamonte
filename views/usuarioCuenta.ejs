@@ -7,7 +7,7 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
+<div class="wrapper cuentarole"  >
   <%- include("partials/menusali") -%>	
   <div class="inner">
       <div class="left_nav">
@@ -15,7 +15,7 @@
             <ul>
               <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
                 <ul >
-                  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                  <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
                 </ul>
               </li>
               <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -71,6 +71,7 @@
           
           <div class="block-web">
             <div class="header">
+                <div class="actions"><a class="refresh"  role="button" href="/usuarios/quitar4/<%=id.id%>">Refresh  <span>&nbsp;</span><i class="fa fa-repeat"></i></a> </div>
               <div class="info blue_symbols"><i class="fa fa-users icon"></i></div>
               <h3 class="content-header ">Registro de Cuentas</h3>
             </div>
@@ -112,9 +113,9 @@
 					  </div>-->
 					</div><div class="form-group">
 						<div class="col-md-offset-4 col-md-10">
-              <a href="" class="btn btn-info btn-icon">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+              <a href="/usuarios/quitar3" class="btn btn-info btn-icon">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
 						  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-						  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+						  
 						</div>
 					  </div>
                   
@@ -122,23 +123,23 @@
               <% } else { %>
                 <form class="form-horizontal group-border-dashed" action="/usuarios/crearCuenta/<%=id.id%>" method="POST" parsley-validate novalidate>
                   <div class="form-group">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label >Cuenta:</label>
-                     <input type="text"  class="form-control" parsley-trigger="change" value="<%=data.username%>" name="username" required placeholder="Introdusca Cuenta" />
+                     <input type="text"  class="form-control" parsley-trigger="change" value="<%=data.username%>" name="username" required placeholder/>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label >Email:</label>
-                      <input type="text"  class="form-control" parsley-trigger="change" name="email" value="<%=data.email%>"required placeholder="Introdusca Correo" />
+                      <input type="text"  class="form-control" parsley-trigger="change" name="email" value="<%=data.email%>"required placeholder />
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label >Contraseña:</label>
-                      <input type="password" id="pass1" name="password"  class="form-control" placeholder="Password"  parsley-trigger="change" required placeholder="Introdusca Contraseña" />
+                      <input type="password" id="pass1" name="password"  class="form-control" placeholder="Password"  parsley-trigger="change" required placeholder />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label >Repita Contraseña:</label>
-                      <input type="password" parsley-equalto="#pass1" class="form-control" name="" parsley-trigger="change"   required placeholder="Repita Contraseña" />
+                      <input type="password" parsley-equalto="#pass1" class="form-control" name="" parsley-trigger="change"   required placeholder/>
                     </div>
               <!--<div class="col-sm-4">
                 <label >Rol:</label>
@@ -153,8 +154,8 @@
             </div>
             <div class="form-group">
               <div class="col-md-offset-4 col-md-10">
-                <button type="submit" class="btnbtn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                <button type="submit" class="btn btn-success btn-icon" >Guardar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="/usuarios/quitar3" class="btn btn-info btn-icon">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
               </div>
               </div>
                     
@@ -185,12 +186,12 @@
                     </thead>
                     <tbody>
                        <% for (var i=0; i< resp.length; i++) { %>
-                      <tr>
-                        <td class="text-center"><%=resp[i].username %></td>
-                        <td class="text-center"><%=resp[i].email %></td>
-                        <td class="text-center">
-                            <a href="#" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Rol"><i  class="fa fa-chain " style="color:black"></i></i></a><span>&nbsp;</span>
-                      </tr>
+                        <tr>
+                          <td class="text-center"><%=resp[i].username %></td>
+                          <td class="text-center"><%=resp[i].email %></td>
+                          <td class="text-center">
+                          <a @click="id_data(<%=resp[i].id%>)" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Rol"><i  class="fa fa-chain " style="color:black"></i></i></a><span>&nbsp;</span>
+                        </tr>
                         <% } %>
                       </tbody>
                 </table>
@@ -204,44 +205,47 @@
   </div>
 </div>
 
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel">Roles</h4>
+      <span style="color: blue">{{msg}}</span>
+    </div>
+    <div class="modal-body"> 
+      <form @submit="crear_rol" class="form-horizontal"   parsley-validate novalidate>
+      <div class="form-group">
+        <label for="inputEmail3" required parsley-type="desde" class="col-sm-2 control-label">Asignacion de Rol:{{nomrol}}</label>
+        <div class="col-sm-4">
+            <select class="form-control" id="source" v-model="nomrol" >
+                <option value="administrcion">Administrador</option>
+                <option value="usuario">Usuario</option>
+                <option value="medico">Medico</option>
+                <option value="fichaje">Fichaje</option>
+                <option value="Almacen">Almacen</option>
+                <option value="emergencia">Emergencia</option>
+                <option value="farmacia">Farmacia</option>
+              </select>
+        </div>
+      </div>
+      
+      
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+            <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
 
 </div>
 <!--Modahhjmm-->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Roles</h4>
-        </div>
-        <div class="modal-body"> 
-          <form class="form-horizontal"   parsley-validate novalidate>
-          <div class="form-group">
-            <label for="inputEmail3" required parsley-type="desde" class="col-sm-2 control-label">Asignacion de Rol:</label>
-            <div class="col-sm-4">
-                <select class="form-control" id="source" name="" >
-                    <option>Administrador</option>
-                    <option>Medico</option>
-                    <option>Personal</option>
-                    <option>Enfermera</option>
-                    <option>Farmaceutico</option>
-                    <option>Proveedor</option>
-                  </select>
-            </div>
-          </div>
-          
-          
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-            </div>
-          </div><!--/form-group--> 
-          </form>
-        </div>
-        </div>
-      </div>
-</div>
+
 
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/alert.js"></script>
@@ -319,6 +323,9 @@
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="/axios/dist/axios.min.js"></script>
+<script src="/js/vue/cuentarole.js"></script>
 
 </body>
 </html>
