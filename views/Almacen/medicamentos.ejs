@@ -101,7 +101,8 @@
 								  	<div class="col-md-4">
 									  	<div class="form-group">
 										  	<label>Grupo de Asignación:</label>
-										  	<select  name="grupoAsig" onkeyup="mayus(this);">
+											  <select  name="grupoAsig" onkeyup="mayus(this);" required class="form-control">
+												<option selected>SELECCIONE AQUI...</option>
 											  	<% for(var i=0; i< dataGRUPOa.length; i++) {%>
 											  	<option><%=dataGRUPOa[i].descripcion%></option>
 												<% } %>

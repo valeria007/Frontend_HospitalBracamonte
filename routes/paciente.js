@@ -447,6 +447,10 @@ router.get('/buscaPaciente', (req,res) => {
 router.get('/IntroducirLab', (req,res) => {
   res.render('laboratorio/IntroducirLab')
 });
+//para incertar lab
+router.get('/examenes', (req,res) => {
+  res.render('laboratorio/examenes')
+});
 //cuenta
 router.get('/miCuenta', (req,res) => {
   res.render('consultaExterna/miCuenta')
@@ -454,5 +458,59 @@ router.get('/miCuenta', (req,res) => {
 router.get('/vacunas', (req,res) => {
   res.render('consulta_externa/vacunas')
 });
+
+router.get('/O_ecografia', (req,res) => {
+  res.render('consulta_externa/O_ecografia')
+});
+router.get('/O_Laboratorio', (req,res) => {
+  res.render('consulta_externa/O_Laboratorio')
+});
+router.get('/O_Radiografia', (req,res) => {
+  res.render('consulta_externa/O_Radiografia')
+});
+ 
+//para citas
+
+
+router.get('/listasdeCitas', (req,res) => {
+  res.render('Fichas/listasdeCitas')
+});
+//IMPRIMIR CITAS
+router.get('/imprimirNuevaConsulta', (req,res) => {
+  res.render('Fichas/imprimirNuevaConsulta')
+});
+router.get('/imprimirNuevaConsulta', (req,res) => {
+  res.render('Fichas/imprimirNuevaConsulta')
+});
+
+router.get('/citas_reconsulta', (req,res) => {
+  res.render('Fichas/citas_reconsulta')
+});
+//ecografia y radio
+router.get('/radiografia', (req,res) => {
+  res.render('Radiografia/homeRa')
+});
+router.get('/listaPR', (req,res) => {
+  res.render('Radiografia/listaPR')
+});
+router.get('/IntroducePR', (req,res) => {
+  res.render('Radiografia/IntroducirPR')
+});
+
+router.get('/ecografia', (req,res) => {
+res.render('Ecografia/homeec')
+});
+router.get('/listaEC', (req,res) => {
+  res.render('Ecografia/listaEC')
+});
+router.get('/IntroduceEC', (req,res) => {
+  res.render('Ecografia/IntroducirEC')
+});
+
+//defuncion
+router.get('/defuncionGeneral', (req,res) => {
+  res.render('consulta_externa/defuncionGeneral')
+});
+
 
 module.exports = router;

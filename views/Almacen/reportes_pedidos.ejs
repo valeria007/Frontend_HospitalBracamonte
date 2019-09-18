@@ -91,31 +91,33 @@
 						<table  class="display table table-bordered table-striped " id="dynamic-table">
 						  <thead>
 							<tr>
+							<th>#</th>
 							<th>Fecha</th>
 							<th>Codigo</th>
 							<th>Responsable</th>
 							<th>Proveedor</th>
 							<th>Status de Compra</th>
-							<th>Stock de Ingresos</th>
-							<th>Stock Total</th>
-							<th>stock de Salidas</th>
-							<th>Precio de Compra</th>
-							<th>Precio de Venta</th>
+							<th>Cantidad</th>
+							<th>Sub Total</th>
+							<th>IVA</th>
+							<th>Total</th>
 							</tr>
 						  </thead>
 						  <tbody>
+							<% for(var i = 0; i < resp.length; i++) { %>
 							<tr>
-							<td>1</td>
-							<td>123</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
+							<td><%=i+1%></td>
+							<td><%=resp[i].fechaIngreso%></td>
+							<td><%=resp[i].codigoCompra%></td>
+							<td>falta</td>
+							<td><%=resp[i].proveedor%></td>
+							<td><%=resp[i].boletaPago%></td>
+							<td>Falta</td>
+							<td><%=resp[i].subTotal%></td> 
+                            <td><%=resp[i].iva%></td>
+                            <td><%=resp[i].total%></td>
 							</tr>
+							<% } %>
 						  <tbody>
 						</table>
 					  </div><!--/table-responsive-->

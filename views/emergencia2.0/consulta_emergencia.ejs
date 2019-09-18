@@ -100,6 +100,7 @@
                             </div>
                             <div class="col-sm-6">
                               <label class="control-label">Diagnostico:</label>
+                              
                               <textarea class="form-control" cols="100" rows="10" >{{one_consulta.diagnostico}}</textarea>
                             </div>
                           </div>
@@ -224,9 +225,33 @@
                                     <label class="control-label">Motivo de Consulta:</label>
                                     <textarea class="form-control" name="motivoConsulta" cols="100" rows="10"></textarea>
                                   </div>
-                                  <div class="col-sm-6">
-                                    <label class="control-label">Diagnostico:</label>
-                                    <textarea class="form-control" name="diagnostico" cols="100" rows="10" ></textarea>
+                                  <div class="col-sm-12">
+                                    <label class="control-label">Diagnóstico:</label>
+                                    <table class="fl-table display table table-bordered table-striped" id="dynamic-table">
+                                        <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>Código</th>
+                                          <th>Descripción</th>
+                                          <th class="center">Opciones</th>
+                                          
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                           
+                                            <tr>
+                                              <td></td>
+                                              <td>A00</td>
+                                              <td>Cólera</td>
+                                              <td class="center">
+                                                <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
+                                                 
+                                              </td>
+                                            </tr>
+                                        </tbody>                                                                       
+                                    </table> 
+                                    <textarea class="form-control" name="diagnostico" cols="50" rows="5" ></textarea>
+                                    
                                   </div>
                                 </div>
                                 <div class="form-group">

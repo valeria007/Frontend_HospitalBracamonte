@@ -507,6 +507,7 @@ router.post('/updatePinter/:id/:id_consulta/:historial/:token_id/:token_partial'
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => {  
+    console.log(data)
     if(data.success == true){
       if(msg_Consulta_emergencia[token_id] == null){
         msg_p = {

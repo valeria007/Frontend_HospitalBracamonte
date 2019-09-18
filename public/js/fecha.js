@@ -35,14 +35,14 @@ var Mes = new
 Array("01","02","03","04","05","06","07","08","09","10","11","12"); 
 var Hoy = new Date(); 
 var Anio = Hoy.getFullYear(); 
-var Fecha = "AQUI PUEDES PONER TU CIUDAD SI QUIERES O SI NO, LO PUEDES DEJAR EN BLANCO" + Dia[Hoy.getDay()] + ", " + Hoy.getDate() + " de " + Mes[Hoy.getMonth()] + " de " + Anio + ". Hora local: "; 
+var Fecha = "Potosí" + Dia[Hoy.getDay()] + ", " + Hoy.getDate() + " de " + Mes[Hoy.getMonth()] + " de " + Anio + ". Hora local: "; 
 var Fecha2 = Hoy.getDate() + "/" + Mes[Hoy.getMonth()] + "/" + Anio ; 
     /* TERMINA EL SCRIPT DE LA FECHA */ 
-    
-    var Script2, Total2
+   /* var Script2, Total2
     Script2 = Fecha2
     Total2 = Script2 
-    document.getElementById('Fecha_Reloj2').innerHTML = Total2
+    document.getElementById('Fecha_Reloj2').innerHTML = Total2*/
+    
 	/* CREAMOS 4 VARIABLES PARA DARLE FORMATO A NUESTRO SCRIPT */ 
 var Inicio, Script,  Script2, Final, Total
 
@@ -50,7 +50,7 @@ var Inicio, Script,  Script2, Final, Total
 Inicio = " " 
 
 	/* EN RELOJ LE INDICAMOS LA HORA, LOS MINUTOS Y LOS SEGUNDOS */ 
-Script = Fecha + Hora + ":" + Minutos + ":" + Segundos 
+Script = " Potosí " + Fecha2+ "  " + Hora + ":" + Minutos + ":" + Segundos 
 
 
 	/* EN FINAL CERRAMOS EL TAG DE LA FUENTE */ 

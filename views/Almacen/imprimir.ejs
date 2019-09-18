@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <%- include("../partials/head") -%>
+  <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+  <div class="wrapper">
+    <!--\\\\\\\ wrapper Start \\\\\\-->
+    <div class="header_bar">
+      <!--\\\\\\\ header Start \\\\\\-->
+      <div class="brand">
+        <!--\\\\\\\ brand Start \\\\\\-->
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <!--\\\\\\\ brand end \\\\\\-->
+      <div class="header_top_bar oculto-impresion">
+        <!--\\\\\\\ header top bar start \\\\\\-->
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+        <div class="btn-group"> <a class="btn btn-warning" href="/almacen/volver12/<%=resp[0].id%>" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
+        <div class="btn-group"> <a class="btn btn-success" href="/pedidos/volver"> <i class="fa fa-reply"></i> Salir</a> </div>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+          </div> 
+        </div>
+      </div>
+      <!--\\\\\\\ header top bar end \\\\\\-->
+    </div>
+    <!--\\\\\\\ header end \\\\\\-->
+    <div class="inner">
+      <!--\\\\\\\ inner start \\\\\\-->
+      <div class="left_nav">
+        <!--\\\\\\\left_nav start \\\\\\-->
+        <div class="left_nav_slidebar oculto-impresion">
+          <ul>
+            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Grupos de Asignacion</b> </a> </li>
+                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
+                <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pedidos</b> </a> </li>
+                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--Contenido-->
+      <div class="contentpanel"><br>
+        <!--\\\\\\\ contentpanel start\\\\\\-->
+        <div class="container clear_both padding_fix">
+        <!--\\\\\\\ container  start \\\\\\-->
+          <div class="invoice ">
+            <div class="invoice_body" data-print-content>
+              <div  class="pull-left">
+                <address>
+                  <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
+                  Av. Italia Final S/N<br>
+                  Telfs. 26246064-26244960<br>
+                  POTOSI-BOLIVIA
+                </address>
+              </div>
+            <div class="pull-right">
+                <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
+            </div>
+            <div class="clearfix"></div>
+            <br/>
+            <h2 class="text-center">RECIBO DE COMPRA</h2>
+            <div class="row">
+              <div class="col-sm-9">
+                  <div> <strong>CODIGO DE COMPRA :</strong>  <%=resp[0].codigoCompra%> </div>
+                  <div> <strong>FECHA :</strong>   <%=resp[0].fechaIngreso%>  </div>
+                  <div> <strong>PROVEEDOR :</strong>   <%=resp[0].proveedor%>  </div>
+                    <div> <strong>ESTATUS DE COMPRA:</strong>   <%=resp[0].boletaPago%>  </div>
+                  <div> <strong>REPONSABLE :</strong> 16/4/2014<br/>
+                    
+                  </div>
+                  <br/>
+              </div>
+            </div>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th>CATIDAD</th>
+                  <th>CODIGO</th>
+                  <th>PRODUCTO</th>
+                  <th>PRECIO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i = 0; i < resp[0].productosDelPedido.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><strong><%=i+1%></strong></td>
+                    <td><%=resp[0].productosDelPedido[i].item.cantidad%></td>
+                    <td><%=resp[0].productosDelPedido[i].item.codificacion%></td>
+                    <td><%=resp[0].productosDelPedido[i].item.nombre%></td>
+                    <td><%=resp[0].productosDelPedido[i].item.price%></td>
+                  </tr>
+                <% } %>
+                <tr>
+                    <td colspan="4">Sub Total</td>
+                    <td><strong><%=resp[0].subTotal%></strong></td>
+                  </tr>
+                  <tr>
+                      <td colspan="4">IVA</td>
+                      <td><strong><%=resp[0].iva%></strong></td>
+                    </tr>
+                <tr>
+                  <td colspan="4">Total</td>
+                  <td><strong><%=resp[0].total%></strong></td>
+                </tr>
+                
+              </tbody>
+            </table>
+            
+            <div class="invoice_footer">
+            <div class="row">
+              <div class="col-sm-7">
+                <div class="payment-methods"></div>
+              </div>
+              <div class="col-sm-5">
+                <div class="invoice_total pull-right">
+                  <h3><strong>Total: <span class="well_text">$1,596.00</span></strong></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+           
+            
+          </div>
+          </div>
+      </div>
+    <!--\\\\\\\ content panel end \\\\\\-->
+    </div>
+  </div>
+</div>
+
+  <%- include("../partials/scripts") -%>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="https://www.jqueryscript.net/demo/Print-Specified-Area-Of-A-Page-PrintArea/demo/jquery.PrintArea.js"></script>
+  <script src="/js/imprimir.js"></script>
+</body>
+</html>
+
