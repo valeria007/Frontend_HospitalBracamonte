@@ -3,7 +3,7 @@
 
 <head>
     <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-	<title>busca paciente</title>
+	<title>Busca paciente</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<meta charset="UTF-8">
@@ -65,10 +65,10 @@
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Laboratorio<span
 									class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href=""> <span>&nbsp;</span> <i
-											class="fa fa-circle"></i> <b class="theme_color">Lista de Laboratorios</b>
-									</a> </li>
-							</ul>
+                                <li> <a href="/paciente/examenes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Examenes</b> </a> </li>
+								<li> <a href="/paciente/buscaPaciente"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas Pacinete</b> </a> </li>
+							
+                            </ul>
 						</li>
 						
 
@@ -82,22 +82,27 @@
 					<br>
 					<br>
 					<br>
-					<div class="row">
+					<div class="row ">
 
 						<div class="col-lg-12 ">
 							
-
+<div class="main-content">
       <!--\\\\\\\ contentpanel start\\\\\\-->
-      <div class="header">
-            <div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i></div>
-            <h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Lista de Laboratorios </h3>
+      <div class="col-lg-12 block-web">
+        <div class=" container-fluid col-md-12" id="">
+            <div class="header ">
+                    <div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i></div>
+                    <h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Lista de Laboratorios </h3>
+            </div>
+      
         </div>
+      </div>
      
-          <div class="page-content">
+          <div class=" main-content">
                 <div class="row">
-                    <div class="col-lg-14">
+                    <div class="col-lg-14 ">
                         <section class="panel default blue_title h2">
-                            <div class="panel-body">
+                            <div class="panel-body page-content">
                                 <ul class="nav nav-tabs" id="myTab">
                                     <li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-list-alt "></i><span>&nbsp;&nbsp;&nbsp;</span>Laboratorios en Espera</a></li>
                                     <li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Laboratorios Entregadas </a></li>
@@ -130,8 +135,13 @@
                                                                         <td></td>
                                                                         <td></td>
                                                                         <td></td>
-                                                                        <td class="text-center"><a  href="/paciente/IntroducirLab" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
-                                                                    </tr>
+                                                                        <td class="text-center">
+                                                                            <a  href="/paciente/IntroducirLab" data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar_Consulta"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+                                                                            <a  href="/paciente/IntroducirLab" data-toggle="tooltip" class="btn  tooltips" data-original-title="Escanear"><i class="fa fa-pencil-square-o" style="color:green"></i></a><span>&nbsp;</span>
+                                                                            
+                                                                        </td>
+                                                                    
+                                                                        </tr>
                                                                   
                                                                     
                                                                    
@@ -190,7 +200,7 @@
                 </div>
             </div>
 
-						
+        </div>					
 
 						</div>
 

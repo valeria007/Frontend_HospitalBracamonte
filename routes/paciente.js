@@ -447,6 +447,10 @@ router.get('/buscaPaciente', (req,res) => {
 router.get('/IntroducirLab', (req,res) => {
   res.render('laboratorio/IntroducirLab')
 });
+//para incertar lab
+router.get('/examenes', (req,res) => {
+  res.render('laboratorio/examenes')
+});
 //cuenta
 router.get('/miCuenta', (req,res) => {
   res.render('consultaExterna/miCuenta')
