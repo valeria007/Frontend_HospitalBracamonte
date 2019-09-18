@@ -204,6 +204,29 @@ router.post('/crearCuenta/:id', (req,res) => {
   
   })
 });
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                             Reportes personal
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+router.get('/roles',(req, res) => {
+  fetch('http://localhost:3600/api/personal')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('roles', {
+      data
+    })
+  })
+});
+router.get('/cuentas/:id', (req,res) => {
+  var id = req.params
+  fetch('http://127.0.0.1:3600/api/mostrarCuenta/'+id.id)
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.send(data)
+  })
+})
 
 
 module.exports = router;

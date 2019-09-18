@@ -857,5 +857,28 @@ router.get('/VueDoctores/:id_cuaderno', (req,res) => {
         res.send("no hay coneccion con el servidor");
     }) 
 })
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                             Reportes 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+router.get('/recuadernos',(req, res) => {
+    fetch('http://localhost:4600/api/liscuaderno')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reprtescuader', {
+        data
+      })
+    })
+  });
+router.get('/repespecialidad',(req, res) => {
+    fetch('http://localhost:4600/api/especialidad')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporteespe', {
+        data
+      })
+    })
+});
 
 module.exports = router;

@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Pacientes</title>
+<title>Reportes</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -74,17 +74,19 @@
                   <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
                 </ul>
               </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes</span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul >
-                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pacientes</b> </a> </li>
-                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Farmacia</b></a> </li>
-                  <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Administración</b> </a> </li>
+              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                <ul class="opened" style="display:block">
+                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                  <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                  <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Cuadr.</b> </a> </li>
+                  <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
                 </ul>
               </li>
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul class="opened" style="display:block">
-                  <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Backup</b> </a> </li>
-                  <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Regs. Roles</b> </a> </li>
+              <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+                <ul>
+                  <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                  <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
                 </ul>
               </li>
             </ul>
@@ -92,96 +94,64 @@
       </div>
     </div>
     <div class="contentpanel">
-        <br>
-        <div class="container clear_both padding_fix">
-          <div class="row">
-                <div class="col-md-12">
-                    
-                  <div class="block-web">
-                    <%if (msg != null) {%>
-                      <div class="bs-example mover">
-                        <div class="alert alert-danger fade in">
-                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                          <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
-                          <hr class="message-inner-separator">
-                          <strong><%=msg %></strong></div>
-                      </div>
-                    <%} else if(mg2 != null) { %>
-                      <div class="bs-example mover">
-                        <div class="alert alert-success fade in">
-                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                          <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
-                          <hr class="message-inner-separator">  
-                          <strong><%=mg2 %></strong>
-                        </div>
-                      </div>
-                    <% } %>
-                    <div class="header">
-                      <div class="info blue_symbols"><i class="fa fa-list-ol icon"></i></div>
-                      <h3 class="content-header ">Creación de Roles</h3>
+      <br>
+      <div class="container clear_both padding_fix">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="block-web">
+              <div class="header">
+                    <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
+                    <h3 class="content-header ">Reportes Cuadernos</h3>
+              </div>
+              <br>
+              <br>
+              <div class="porlets-content">
+                <form class="form-horizontal"  >
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Desde:</label>
+                    <div class="col-sm-4">
+                      <input type="date" class="form-control" >
                     </div>
-                    <br>
-                    <br>
-                    <div class="porlets-content">
-                        <form class="form-horizontal" action="/role/role" method="POST" parsley-validate novalidate>
-                            
-                            <div class="form-group">
-                              <label  class="col-sm-4 control-label">Tipo de Rol:</label>
-                              <div class="col-sm-4">
-                              <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="name">
-                                <option value="administrcion">Administración</option>
-                                <option value="usuario">Usuario</option>
-                                <option value="medico">Medico</option>
-                                <option value="fichaje">Fichaje</option>
-                                <option value="Almacen">Almacen</option>
-                                <option value="emergencia">Emergencia</option>
-                                <option value="farmacia">Farmacia</option>
-                              </select>
-                              </div>
-                            </div>
-                            
-                            <div class="form-group">
-                              <div class="col-sm-offset-4 col-sm-10">
-                                <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;</span>
-                              </div>
-                            </div><!--/form-group--> 
-                        </form>
-                        <div class="table-responsive ">
-                            <table class="table table-bordered">
-                              <thead>
-                                <tr>
-                                  <th class="text-center">#</th>
-                                  <th class="text-center">Roles</th>
-                                  <th class="text-center">Fecha de Ceación</th>
-                                  <th class="text-center">Opciones</th>
-                                  
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <% for (var i=0; i< resp.length; i++) { %>
-                                  <tr>
-                                    <td class="text-center"><%=i+1%></td>
-                                    <td class="text-center "><%=resp[i].name%></td>
-                                    <td class="text-center"><%=resp[i].createdAt.split("T")[0]%></td>
-                                    <td class="text-center">
-                                      
-                                      <a href="/role/delrol/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                                    </td>
-                                  </tr>
-                                  <% } %>
-                              </tbody>
-                            </table>
-                          </div>
-
+                  </div><!--/form-group--> 
+                  <div class="form-group">
+                    <label  class="col-sm-4 control-label">Hasta:</label>
+                    <div class="col-sm-4">
+                      <input type="date" class="form-control" >
                     </div>
-                  </div>
+                  </div><!--/form-group-->  
                   
-         </div>
-         
+                </form>
+              </div>
+              <div class="table-responsive">
+                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                  <thead>
+                    <tr>
+                          <th class="text-center">Titulo</th>
+                          <th class="text-center">Grupo Asignacion</th>	
+                          <th class="text-center">Fecha Creación</th>	
+                          <th class="text-center">Optiones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%for (var i = 0; i< data.length; i++) { %>
+                      <tr>
+                        <td class="text-center"><%=data[i].titulo%></td>
+                        <td class="text-center"><%=data[i].grupo%></td>
+                        <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                        <td>
+                          <a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
+                        </td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
-</div>
-</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="/js/jquery-2.1.0.js"></script>
