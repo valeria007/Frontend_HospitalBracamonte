@@ -87,13 +87,48 @@
 
 <script src="/plugins/validation/parsley.min.js"></script>
 <script>
-  const validator = new Vue({
+ /*  locartion() */
+  ver()
+ /*  function locartion(){
+    window.location.replace('/home')
+
+  } */
+   function ver (){
+    var data =localStorage.getItem('data') 
+    var url = localStorage.getItem('url')
+    if(data != null){
+      var data_token =JSON.parse( localStorage.getItem('data') )
+      var data  = {
+        data_token: data_token,
+        url:url
+      }
+        var enviar = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-type' : "application/json"
+        }
+      }
+      fetch('/enviar',enviar)
+      .then(res => res.json())
+      .then(data => {
+       if(data.success == true){
+          window.location.replace(url+data_token.user.id)
+         //console.log(url+data_token.user.id)
+        }else{
+          console.log("false")
+        }
+        console.log(data.success)
+      })
+    }
+  } 
+  /* const validator = new Vue({
     el:'#validator',
     data: () => ({
       cuenta:"",
       contraceña:""
     }),
-  })
+  }) */
 </script>
 
 

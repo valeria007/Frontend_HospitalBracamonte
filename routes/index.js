@@ -4,6 +4,22 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+router.post('/enviar', (req,res) => {
+  var data = req.body
+  if (data != "" ){
+    tok(data.data_token,data.data_token.user.id)
+    datas.name.token = listItems
+    res.status(200).json({
+      success:true
+    })
+    
+  }else{
+    res.status(400).json({
+      success:false,
+    })
+  }
+})
+
 var listItems = {}
 function tok(token,id){
   let storedItem = listItems[id];
@@ -27,6 +43,9 @@ function array () {
 function remove_Token(id) {
   delete datas.name.token[id];
 }
+
+
+
 
 router.get('/',(req, res) => {
   res.render('index', { msg1, msg2, msg3 })
@@ -68,6 +87,7 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
+    
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -101,8 +121,10 @@ router.post('/login', (req,res)  => {
             res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
           }else if(resp.role[0].name == "farmacia"){
             res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
+          }else if(resp.role[0].name == "hospitalizacion"){
+            res.redirect('/Internaciones/home/'+resp.id)
           }else{
-            res.send(resp.role)
+            res.send(resp)
           }
         }else{
           res.redirect('/home')
@@ -136,6 +158,8 @@ router.post('/login', (req,res)  => {
             res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
           }else if(resp.role[0].name == "farmacia"){
             res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
+          }else if(resp.role[0].name == "hospitalizacion"){
+            res.redirect('/Internaciones/home/'+resp.id)
           }else{
             res.send(resp)
           }
@@ -153,6 +177,66 @@ router.post('/login', (req,res)  => {
       console.error('Error:', error)
         res.send("No hay coneccion con el servidor")
     }) 
+  }
+})
+
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        login 2.0
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/login2', (req,res) => {
+  res.render('login2');
+})
+
+router.post('/login2', (req,res) => {
+  const username = req.body.username;
+  const password = req.body.password;  
+ 
+  if(username =="" ){
+    msg3 = null
+    msg1='Introdusca por favor la cuenta.';
+    res.redirect('/')
+    
+  }else if( password == "" ){
+    msg3 = null
+    msg2 = 'Introdusca password.'
+    res.redirect('/')   
+
+  }else {
+    var data = req.body;
+    var enviar = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type' : "application/json"
+      }
+    }
+    fetch('http://localhost:3600/api/login',enviar)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(data_login => {
+      if(data_login.success == true){
+        if ( datas.name.token[data_login.user.id] == null ){
+          tok(data_login,data_login.user.id);
+
+          fetch('Internaciones/prueba',{id:45,nombre:"alejandro"})
+          
+        }else{
+          remove_Token(resp.user.id)
+          tok(data_login,data_login.user.id);
+          res.redirect('/Internaciones/prueba',{id:45,nombre:alejandro})
+        }
+        
+      }else{
+        res.redirect('/')
+      }
+
+    })
   }
 })
 

@@ -4,6 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Home Hospitalización</title>
+
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
@@ -48,13 +49,13 @@
 	<!-- SideBar -->
 
 	<!-- Content page-->
-	<div class="wrapper">
+	<div class="wrapper" id="home">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
-		<div class="header_bar">
+		<div class="header_bar ">
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
-				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+				<div class="logo" style="display:block"><span class="theme_color">Hospital {{msg}}</div>
 
 			</div>
 			<!--\\\\\\\ brand end \\\\\\-->
@@ -201,6 +202,7 @@
 <!--\\\\\\\ inner end\\\\\\-->
 </div>
 <!--\\\\\\\ wrapper end\\\\\\-->
+</div>
 
 
 
@@ -300,6 +302,66 @@ e.preventDefault();
 });
 
 </script>
+ <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+ <script src="/axios/dist/axios.min.js"></script>
+
+ 
+ <script type="text/javascript">
+
+	`<%if(token == "") {%>`
+		console.log("no hay token")
+	`<% } else { %>`
+		console.log("si hay datos")
+		var data = localStorage.getItem('data')
+		console.log(data)
+		if (data == null){
+			window.location.replace('/')
+		}else{
+			var esto  = `<%- JSON.stringify(token) %>`
+			var url = "/Internaciones/home/"
+			localStorage.setItem('data', esto ) 
+			localStorage.setItem('url', url) 
+		}
+	`<% } %>`
+	/* var esto  = `<%- JSON.stringify(token) %>`
+	var url = "/Internaciones/home/"
+	localStorage.setItem('data', esto ) 
+	localStorage.setItem('url', url) */
+	/* function obtener (){
+		var data_token = JSON.parse( localStorage.getItem("token") )
+		console.log(data_token)	
+	} */
+	var home = new Vue({
+		el : "#home",
+		data: () =>({
+			msg : 'Alejandro'
+		}),
+		mounted(){
+			
+			ver()
+			function ver (){
+				var data_token =JSON.parse( localStorage.getItem('data') )
+
+				if (data_token == null){
+					console.log("esto")
+				}else{
+					console.log("esta en el local storage")
+					
+					console.log( data_token)
+				}
+			}
+			
+		}
+		
+	})
+
+	
+	/* let token = {
+		data: JSON.stringify(`<%=data_token%>`),
+		token: JSON.stringify(`<%=token%>`)
+	}
+	localStorage.setItem('token2', JSON.stringify( token )) */
+	</script>
 
 </body>
 

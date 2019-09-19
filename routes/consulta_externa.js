@@ -30,6 +30,31 @@ function remove_user(id) {
   delete data_user[id];
 }
 
+// esta funcion manda los mensajes del post segun el usuario
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+var msg_Consulta_Externa = {}
+function msg_data(data,id){
+  let msg_data = msg_Consulta_Externa[id];
+    if (!msg_data) {
+        msg_data = msg_Consulta_Externa[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    msg_data.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in msg_Consulta_Externa) {
+      arr.push(msg_Consulta_Externa[id]);
+  }
+  return arr;
+}
+function remove(id) {
+    delete msg_Consulta_Externa[id];
+}
+
 //ruta de prueba
 
 router.get('/esto',(req,res) => {
@@ -123,28 +148,9 @@ router.get('/lista_pacientes/:token_id/:token_partial', (req,res) => {
 
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                    funciones
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  */
-function update_cita(idCIta){
-  fetch('http://localhost:3000/api/updateConsulta/'+idCIta)
-    .then(resp => resp.json())
-    .then(resp =>{
-        updateCita = resp;                    
-  })
-  .catch(error => {
-      console.error('Error:', error)
-      res.send("Ocurrio algo con el servidor");
-  }) 
-}
 
-
-
-/* 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
- */
-var updateCita
 router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
   const { idCIta,historial,token_id,token_p } = req.params
   var esp; // esto es la especialidad 
@@ -153,6 +159,19 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
     .then(resp => resp.json())
     .then(resp =>{
       update_cita(resp[0].id) // esta funcion trae una consulta para poder ser actualizado
+      var updateCita
+      function update_cita(idCIta){
+        fetch('http://localhost:3000/api/updateConsulta/'+idCIta)
+          .then(resp => resp.json())
+          .then(resp =>{
+              updateCita = resp;                    
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("Ocurrio algo con el servidor");
+        }) 
+      }
+
       data_paciente(historial,resp) // esta fucion mustra los datos de un paciente
       esp = resp[0].especialidad
       function data_paciente(hst,cita){
@@ -171,7 +190,8 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
                   dataPaciente,
                   cita,
                   updateCita,                  
-                  resp  // esto es una lista de los pacientes 
+                  resp,  // esto es una lista de los pacientes 
+                  msg:msg_Consulta_Externa[token_id]
                 }) 
               })
               .catch(error => {
@@ -195,6 +215,7 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
 })
 
 
+
 router.get('/estado/:citaID/:historial/:token_id/:token_p', (req,res) =>{
   const { citaID, historial, token_id, token_p} = req.params
   fetch('http://localhost:3000/api/estado/'+citaID)
@@ -211,6 +232,7 @@ router.get('/estado/:citaID/:historial/:token_id/:token_p', (req,res) =>{
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 router.post('/regConsulta/:citaID/:historial/:token_id/:token_p', (req, res) => {
  const { citaID, historial, token_id, token_p } = req.params
+ var msg_p;
  // console.log(citaID," es esto<<<<<<<<<<<<<<<<<<<")
   var datos = req.body;
   //console.log(datos.hora.split("/")[1], "   <<<<<<<<<<<<<<  eso post")
@@ -225,27 +247,60 @@ router.post('/regConsulta/:citaID/:historial/:token_id/:token_p', (req, res) => 
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => { 
-    atendido(datos.hora.split("/")[1])
-    function atendido(id){
-      var estado = {
-          estado: "atendido"
+    if (data.success == true){
+       
+      if(msg_Consulta_Externa[token_id] == null){
+        msg_p = {
+          success:true,
+          data_p:data.msg
+        }
+        msg_data(msg_p,token_id)
+      }else{
+        msg_p = {
+          success:true,
+          data_p:data.msg
+        }
+        remove(token_id)
+        msg_data(msg_p,token_id)
       }
-      var esto = {
-          method: 'POST',
-          body: JSON.stringify(estado),
-          headers:{
-            'Content-type' : "application/json"
-          }
-      };
-      fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
-      .then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then(resp => {
-         
+      atendido(datos.hora.split("/")[1])
+      function atendido(id){
+        var estado = {
+            estado: "atendido"
+        }
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(estado),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(resp => {
+          console.log(resp, " esto es la respuesta que quiero ver ")
           res.redirect('/consulta_externa/estado/'+citaID+'/'+historial+'/'+token_id+'/'+token_p);
-      })
-    }
-    
+        })
+      }
+       
+      }else{
+        if(msg_Consulta_Externa[token_id] == null){
+          msg_p = {
+            success:false,
+            data_p:data.msg
+          }
+          msg_data(msg_p,token_id)
+        }else{
+          msg_p = {
+            success:false,
+            data_p:data.msg
+          }
+          remove(token_id)
+          msg_data(msg_p,token_id)
+        }
+        res.redirect('/consulta_externa/estado/'+citaID+'/'+historial+'/'+token_id+'/'+token_p);
+      }      
   })
 });
 

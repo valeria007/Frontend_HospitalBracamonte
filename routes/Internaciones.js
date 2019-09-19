@@ -4,6 +4,33 @@ const fetch = require('node-fetch');
 
 var url = require('./url/export');
 
+const datas = require('./url/export');
+
+
+var data_user = {}
+function user(data,id){
+  let storedItem = data_user[id];
+    if (!storedItem) {
+      storedItem = data_user[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in data_user) {
+      arr.push(data_user[id]);
+  }
+  return arr;
+}
+
+function remove_user(id) {
+  delete data_user[id];
+}
+
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -58,14 +85,103 @@ router.get('/viewTemporal', (req,res) => {
 });
 
 //serv para mostrar home hospitalizacion o internacion
-router.get('/hospitalizacion/:especialidad',(req, res) => {
-    const { especialidad } = req.params
-    especialidad1 = req.params.especialidad;
-    res.render('hospitalizaciones/homeHospitalizacion',{
-        especialidad //esto manda la especialdad
-    })       
-});
+router.get('/home/:id_user',(req, res) => {
+    const { id_user } = req.params
+   
+    var data_token = {
+        token_id: {},
+        medico:{},
+        area_esp:{}
+      }
+    fetch('http://localhost:3600/api/user/'+id_user)  // esto es para sacar el token del usuario
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+        
+        if(datas.name.token[resp.id]){
+            data_token.token_id = resp.id 
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "hospitalizacion"){
+                    status = "tiene permiso"
+                }
+            } 
+            
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3600/api/personal/'+resp.perso_id)
+                .then(resp => resp.json())
+                .catch(error => console.error('Error',error))
+                .then(personal => {
+                    data_token.medico = personal 
+                    fetch('http://localhost:4600/api/doctor_area/'+resp.perso_id)
+                    .then(resp => resp.json())
+                    .catch(error => console.error('Error',error))
+                    .then(doctor_area => {
+                        data_token.area_esp = doctor_area[0].Especialidade;
+                        console.log({
+                            token: {
+                                success: datas.name.token[resp.id].data.success,
+                                token:"",
+                                user:{
+                                    id: datas.name.token[resp.id].data.user.id,
+                                    perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                    username: datas.name.token[resp.id].data.user.username,
+                                    email:  datas.name.token[resp.id].data.user.email,
+                                } 
+                            },
+                            msg: " <<<<<< esto es get <<<<<<<<<<<<<<<<<<<<<<<<<<"
+                        })
+                        
+                        if(data_user[data_token.token_id] == null){
+                            user(data_token, data_token.token_id)
+                            res.render('hospitalizaciones/homeHospitalizacion',{
+                                data_token,
+                                token:{
+                                    success: datas.name.token[resp.id].data.success,
+                                    token:datas.name.token[resp.id].data.token,
+                                    user:{
+                                        id: datas.name.token[resp.id].data.user.id,
+                                        perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                        username: datas.name.token[resp.id].data.user.username,
+                                        email:  datas.name.token[resp.id].data.user.email,
+                                    } 
+                                },
+                                especialidad:doctor_area[0].Especialidade.nombre   
 
+                            })
+                            status = null
+                        }else{
+                            remove_user( data_token.token_id)
+                            user(data_token, data_token.token_id)
+                            res.render('hospitalizaciones/homeHospitalizacion',{
+                                data_token,
+                                token:{
+                                    success: datas.name.token[resp.id].data.success,
+                                    token:datas.name.token[resp.id].data.token,
+                                    user:{
+                                        id: datas.name.token[resp.id].data.user.id,
+                                        perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                        username: datas.name.token[resp.id].data.user.username,
+                                        email:  datas.name.token[resp.id].data.user.email,
+                                    } 
+                                },
+                                especialidad:doctor_area[0].Especialidade.nombre  
+                            })
+                            status = null
+                        }
+                    })
+                })
+            }else{
+                res.redirect('/')
+            }
+        }else{
+            res.redirect('/')
+        }
+    })
+   /*  res.render('hospitalizaciones/homeHospitalizacion',{
+        especialidad //esto manda la especialdad
+    }) */       
+});
 
 //ser para renderizar lista hospitalizacion mostrando 
 //la lista de ordenes de internacion que se mandan desde consulta o emergencia
