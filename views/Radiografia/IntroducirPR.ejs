@@ -3,7 +3,7 @@
 
 <head>
     <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-	<title>busca paciente</title>
+	<title>Introdusir</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<meta charset="UTF-8">
@@ -127,7 +127,7 @@
               <div class="block-web">
                     <div class="header">
                             <div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i></div>
-                            <h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Laboratorio </h3>
+                            <h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Radiografia </h3>
                         </div>
                 <br>
                 <br>
@@ -153,18 +153,33 @@
                       <div class="col-md-6">
                             <div class="block-web">
                               <div class="header">
-                                <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                                <h3 class="content-header">Dropzone Multi-File Upload</h3>
+                               <h3 class="content-header">Subir la Radiografia</h3>
                               </div>
                               <div class="porlets-content">
-                                <p>This is just a demo. Uploaded files are <strong>not</strong> stored. This does not handle your file uploads on the server. You have to implement the code to receive and store the file yourself.</p>
-                                <br>
+                                
+								<br>
                                 <form class="dropzone dz-clickable" action="http://riaxe.com/file/post">
                                   
-                                <div class="dz-default dz-message"><span>Drop files here to upload</span></div></form>
-                              </div><!--/porlets-content--> 
+                               
+							</div><!--/porlets-content--> 
                             </div><!--/block-web--> 
-                          </div><!--/col-md-6-->
+						  </div><!--/col-md-6-->
+						  
+						  <div class="col-md-6">
+								<div class="block-web">
+								  <div class="header">
+								   <h3 class="content-header">Detalles</h3>
+								  </div>
+								  <div class="porlets-content">
+									
+										<div class="col-sm-4">
+												<label class="control-labe">Descripción:</label>
+												<textarea class="large-compact" name="diagnostico" cols="50" rows="10"></textarea>
+												<input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="" required placeholder="Introdusca CI." />
+											  </div>
+								</div><!--/porlets-content--> 
+								</div><!--/block-web--> 
+							  </div><!--/col-md-6-->
 
 
                     </div>

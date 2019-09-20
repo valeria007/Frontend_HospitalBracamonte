@@ -31,7 +31,7 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
-
+<link rel="stylesheet" type="text/css" href="/css/imprimir.css" media="print" />
 	<style>
 		div.a {
 			text-align: center;
@@ -45,7 +45,7 @@
 
 </head>
 
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
 	<!-- SideBar -->
 
 	<!-- Content page-->
@@ -98,12 +98,12 @@
 						</li>
 
 						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-									class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i
+									class="fa fa-tasks"></i> Fichas Médicas <span class="plus"><i
 										class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
 								<li> <a href="/paciente/citas/<%=data_token.token_id%>/<%=data_token.token_p%>"> <span>&nbsp;</span> <i
 											class="fa fa-circle theme_color"></i>
-										<b class="theme_color">Citas Medicas</b>
+										<b class="theme_color">Citas Médicas</b>
 									</a> </li>
 
 							</ul>
@@ -122,9 +122,10 @@
 
 					<div class="row">
 
-						<div class="col-lg-12 ">
+						<div class="col-lg-12  ">
 							<!-- Content page -->
-							
+
+							<div id="main-content" class=" block-web">
 							<div class="header">
 								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
 								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Recerva de Ficha Médica </h3>
@@ -137,13 +138,7 @@
 										<div class="row">
 											<div class="col-md-12 ">
 												<div class="block-web">
-													<div class="header">
-														<div class="actions"> <a class="minimize" href="#"><i
-																	class="fa fa-chevron-down"></i></a> <a
-																class="close-down" href="#"><i
-																	class="fa fa-times"></i></a> </div>
-														<h3 class="content-header">Recerva de Ficha</h3>
-													</div>
+													
 													<% if(msg_false != null) { %>
 														<div class="bs-example">
 															<div class="alert alert-danger fade in">
@@ -165,7 +160,7 @@
 														</div>
 														<div class="form-group">
 															<div class="row">
-																<h3 class="text-center"> Datos Personales</h3>
+																<h3 class="text-center"> Nueva Cita</h3>
 																<br>
 																<div class="col-md-12">
 																	<div class="col-md-4">
@@ -181,21 +176,16 @@
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group">Consultorio De:<br>
-																			<select name="especialidad"
-																				@click="especilida" v-model="selectEsp">
-																				<option disabled="disabled" value>
-																					Seleccione
-																				</option>
-																				<template
-																					v-for="(especialidad, index) in especialidades">
+																			<select class="form-control" name="especialidad" @click="especilida" v-model="selectEsp">
+																				<option disabled="disabled" value>Seleccione</option>
+																				<template v-for="(especialidad, index) in especialidades">
 																					<option>{{especialidad.nombre}}
 																					</option>
 																				</template>
-																			</select><br>
+																			</select>
 																		</div>
 																		<div class="form-group">Turno:<br>
-																			<select name="turno" v-model="turno"
-																				@click="especilida">
+																			<select class="form-control" name="turno" v-model="turno" @click="especilida">
 																				<option>Mañanas</option>
 																				<option>Tardes</option>
 																				<option>Noches</option>
@@ -204,34 +194,39 @@
 																	</div>
 																	<div class="col-md-4">
 																		<div class="form-group"> Doctor:<br>
-																			<select name="medico" v-model="selectDoctor"
-																				@click="saca_horas(),saca_horas_reservadas(),saca_horas_atendidas()">
-																				<option disabled="disabled" value>
-																					Seleccione
-																				</option>
+																			<select class="form-control" name="medico" v-model="selectDoctor" @click="saca_horas(),saca_horas_reservadas(),saca_horas_atendidas()">
+																				<option disabled="disabled" value> Seleccione </option>
 																				<option v-for="(doctor, index) of doctores" :value="doctor.nombre">
 																					{{doctor.nombre.split("/")[0]}}
 																					
 																				</option>
-																			</select><br>
+																			</select>
 																		</div>
-																		<div class="form-group"><br>
-																			<label class="radio-inline"><input
-																					checked="checked" data-val="true"
-																					data-val-required="The IsSmallBusiness field is required."
-																					id="IsSmallBusiness"
-																					name="IsSmallBusiness" type="radio"
-																					value="False">Asegurado</label>
-																			<label class="radio-inline"><input
-																					id="IsSmallBusiness"
-																					name="IsSmallBusiness" type="radio"
-																					value="True">No
-																				Asegurado</label>
-																			<span
-																				class="field-validation-valid help-block"
-																				data-valmsg-for="PhoneNumber"
-																				data-valmsg-replace="true"></span>
-																		</div><br>
+																		
+																		<div class="form-group">Tipo de Paciente:<br>
+																			<select class="form-control" name="tipoPaciente">
+																				<option>Institucional</option>
+																				<option>SUS</option>
+																				<option>SPS</option>
+																				<option>SSPAM</option>
+																				<option>CAJA NACIONAL DE SALUD</option>
+																				<option>CAJA PETROLERA DE SALUD</option>
+																				<option>CAJA DE SALUD DE LA BANCA PRIVADA</option>
+																				<option>CAJA BANCARIA ESTATAL DE SALUD</option>
+																				<option>CAJA DE SALUD DE CAMINOS</option>
+																				<option>CAJA DE SALUD DE CORDES</option>
+																				<option>SEGUROS SOCIALES UNIVERSITARIOS</option>
+																				<option>CORPORACIÓN DEL SEGURO SOCIAL MILITAR</option>
+																				<option>SEGUROS REGIONALES</option>
+																			
+																			</select>
+																		</div>
+																		<div class="entrada">
+																			<h6 class=" blue_info">Fecha:</h6>
+																  
+																			<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
+																			
+																		</div>
 																	</div>
 																</div>
 																<br>
@@ -312,17 +307,14 @@
 											</div>
 										</div>
 										<p class="text-center">
-											<button type="reset" class="btn btn-info btn-raised"
-												style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i>
-												&nbsp;&nbsp; Limpiar</button>
-											<button type="submit" class="btn btn-danger btn-raised"><i
-													class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-												Guardar</button>
+											<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+											<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i>&nbsp;&nbsp; Guardar/Imprimir</button>
+											<button type="submit" class="btn btn-default btn-raised" style="margin-right: 20px;"><i class='fa fa-mail-reply'></i>&nbsp;&nbsp; Cancelar</button>
 										</p>
-								</div>
+								
 
 								</form>
-
+							</div>
 
 								<% } else { %>
 
@@ -338,7 +330,7 @@
 														<a class="minimize" href="#"><i	class="fa fa-chevron-down"></i></a> 
 														<a	class="close-down" href="#"><i class="fa fa-times"></i></a>
 													</div>
-													
+													<a href="/paciente/imprimirNuevaConsulta">imprimir!</a> 
 													<h3 class="content-header">  <a  href="/paciente/clean" class="btn btn-primary" >
 														<i class="fa fa-arrow-left"></i> <span> Volver a Fichas</span> </a>
 														<button type="button" value="Imprimir" onclick="window.print()"
@@ -364,7 +356,7 @@
 																</div>
 															</div>
 															<div class="col-md-4">
-																<div class="entrada">Especialidad:
+																<div class="entrada">Cuaderno:
 																	<%=citaUpdate[0].especialidad%><br>
 																	<select  class="form-control"name="especialidad" @click="especilida"
 																		v-model="selectEsp">
@@ -398,23 +390,23 @@
 																</div>
 																
 																
-																<div class="entrada">Tipo de Paciente:<br>
-																	<div class="col-md-10">
-																		<label class="radio-inline"><input
-																				checked="checked" data-val="true"
-																				data-val-required="The IsSmallBusiness field is required."
-																				id="IsSmallBusiness"
-																				name="IsSmallBusiness" type="radio"
-																				value="False">Asegurado</label>
-																		<label class="radio-inline"><input
-																				id="IsSmallBusiness"
-																				name="IsSmallBusiness" type="radio"
-																				value="True">No
-																			Asegurado</label>
-																		<span class="field-validation-valid help-block"
-																			data-valmsg-for="PhoneNumber"
-																			data-valmsg-replace="true"></span>
-																	</div><br>
+																<div class="form-group">Tipo de Paciente:<br>
+																	<select class="form-control" name="tipoPaciente">
+																		<option>Institucional</option>
+																		<option>SUS</option>
+																		<option>SPS</option>
+																		<option>SSPAM</option>
+																		<option>CAJA NACIONAL DE SALUD</option>
+																		<option>CAJA PETROLERA DE SALUD</option>
+																		<option>CAJA DE SALUD DE LA BANCA PRIVADA</option>
+																		<option>CAJA BANCARIA ESTATAL DE SALUD</option>
+																		<option>CAJA DE SALUD DE CAMINOS</option>
+																		<option>CAJA DE SALUD DE CORDES</option>
+																		<option>SEGUROS SOCIALES UNIVERSITARIOS</option>
+																		<option>CORPORACIÓN DEL SEGURO SOCIAL MILITAR</option>
+																		<option>SEGUROS REGIONALES</option>
+																	
+																	</select>
 																</div>
 															</div>
 														</div>
@@ -441,9 +433,7 @@
 														<div class="block-web blue-bg-color">
 															<h3 class="content-header ">Cambiar hora </h3>
 															<label for="">></label>
-															<input type="radio" name="hora"
-																value="<%= citaUpdate[0].hora%>"
-																checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
+															<input type="radio" name="hora" value="<%= citaUpdate[0].hora%>" checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
 															<template v-for="(horas, index, key) in horas_Turno">
 																<label for="">{{index+1}}</label>
 																<input type="radio" name="hora"
@@ -456,129 +446,96 @@
 											</div>
 										</div><!-- row de hora-->
 										<p class="text-center">
-											<button type="reset" class="btn btn-info btn-raised"
-												style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i>
-												&nbsp;&nbsp; Limpiar</button>
-											<button type="submit" class="btn btn-danger btn-raised"><i
-													class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-												Guardar</button>
+											<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+											<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i> &nbsp;&nbsp; Guardar/Imprimir</button>
+											<button type="submit" class="btn btn-default btn-raised" style="margin-right: 20px;"><i class='fa fa-mail-reply'></i>&nbsp;&nbsp; Cancelar</button>
 										</p>
 									</div>
 								</form>
 								<% } %>
 
-								<div id="main-content">
-									<div class="page-content">			
-											<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-												<li class="active"><a href="#neww" data-toggle="tab">Citas</a></li>
-												<li><a href="#listt" data-toggle="tab">Listado de Citas del Paciente</a></li>
-											</ul>
-											<div id="myTabContent" class="tab-content">
-												<div class="tab-pane fade active in " id="neww">
-													<table class="display table table-bordered table-striped" id="dynamic-table">
-														<thead>
-															<tr>
-																<th>#</th>
-																<th>Historial Clinico</th>
-																<th>Doctor</th>
-																<th>Especialidad</th>
-																<th>Saldo</th>
-																<th>Opciones</th>
-															</tr>
-														</thead>
-														<tbody>														
-															
-															<tr class="gradeX">
-																<td>a</td>
-																<td>a</td>
-																<td>a</td>
-																<td>a</td>
-																<td>a</td>
-																<td>a</td>
-																
-															</tr>													
+								
+							</div>
+							</div>
 
-														</tbody>
-														<tfoot>
-															<tr>
-																<th>#</th>
-																<th>Historial Clinico</th>
-																<th>Doctor</th>
-																<th>Especialidad</th>
-																<th>Saldo</th>
-																<th>Opciones</th>
-															</tr>
-														</tfoot>
-													</table>
-													
-												</div>
-												<div class="tab-pane fade " id="listt">
-													<table class="display table table-bordered table-striped"
-														id="dynamic-table2">
-														<thead>
-															<tr>
-																<th>#</th>
-																<th>Historial Clinico</th>
-																<th>Doctor</th>
-																<th>Especialidad</th>
-																<th>Fecha </th>
-																<th>Saldo</th>
-																<th>Opciones</th>
-															</tr>
-														</thead>
-														<tbody>
-															<%if(pacienteCita != null) { %>
-															<% for ( var i = 0; i < pacienteCita.length; i++ ) { %>
-															<tr class="gradeX">
-																<td><%=i+1%></td>
-																<td><%=pacienteCita[i].codigo_p%></td>
-																<td><%=pacienteCita[i].medico%></td>
-																<td><%=pacienteCita[i].especialidad%></td>
-																<td><%=pacienteCita[i].createdAt.split("T")[0]%></td>
-																<td><%=pacienteCita[i].saldo_total%></td>
-																<td class="center">
-																	<a href="/paciente/onliCita/<%=pacienteCita[i].id%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-																	
-																</td>
-															</tr>
-															<% } %>
-															<% } else { %>
-															<tr>
-																<td colspan="7"> Este paciente no
-																	tiene
-																	citas medicas</td>
-															</tr>
-															<% } %>
-														</tbody>
-														<tfoot>
-															<tr>
-																<th>#</th>
-																<th>Historial Clinico</th>
-																<th>Doctor</th>
-																<th>Tipo de Consulta De</th>
-																<th>Fecha </th>
-																<th>Saldo</th>
-																<th>Opciones</th>
-															</tr>
-														</tfoot>
-													</table>
-													<div class="table-responsive">
-														<div class="table-wrapper">
-															<div id="correo">
-																<div class="entrada">
-																	<button type="reset" class="btn btn-info  "
-																		style="margin-right: 20px;"><i
-																			class="zmdi zmdi-roller"></i>
-																		&nbsp;&nbsp; Limpiar Fichajes</button>
+							<div id="main-content">
+								
+									<section class="panel default blue_title h2">
+								<div class="page-content">			
+										<ul class="nav nav-tabs" id="myTab">
+											<li class=" col-lg-6 active active  text-center"><a href="#neww" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Listado de Citas del Paciente</a></li>
+										</ul>
+										<div id="myTabContent" class="tab-content">
+											<div class="tab-pane fade active in " id="neww">
+													<table class="display table table-bordered table-striped" id="dynamic-table2">
+															<thead>
+																<tr>
+																	<th>#</th>
+																	<th>Historial Clinico</th>
+																	<th>Doctor</th>
+																	<th>Especialidad</th>
+																	<th>Fecha </th>
+																	<th>Saldo</th>
+																	<th>Opciones</th>
+																</tr>
+															</thead>
+															<tbody>
+																<%if(pacienteCita != null) { %>
+																<% for ( var i = 0; i < pacienteCita.length; i++ ) { %>
+																<tr class="gradeX">
+																	<td><%=i+1%></td>
+																	<td><%=pacienteCita[i].codigo_p%></td>
+																	<td><%=pacienteCita[i].medico%></td>
+																	<td><%=pacienteCita[i].especialidad%></td>
+																	<td><%=pacienteCita[i].createdAt.split("T")[0]%></td>
+																	<td><%=pacienteCita[i].saldo_total%></td>
+																	<td class="center">
+																		<a href="/paciente/onliCita/<%=pacienteCita[i].id%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+																		
+																	</td>
+																</tr>
+																<% } %>
+																<% } else { %>
+																<tr>
+																	<td colspan="7"> Este paciente no
+																		tiene
+																		citas medicas</td>
+																</tr>
+																<% } %>
+															</tbody>
+															<tfoot>
+																<tr>
+																	<th>#</th>
+																	<th>Historial Clinico</th>
+																	<th>Doctor</th>
+																	<th>Tipo de Consulta De</th>
+																	<th>Fecha </th>
+																	<th>Saldo</th>
+																	<th>Opciones</th>
+																</tr>
+															</tfoot>
+														</table>
+														<div class="table-responsive">
+															<div class="table-wrapper">
+																<div id="correo">
+																	<div class="entrada">
+																		<button type="reset" class="btn btn-info  "
+																			style="margin-right: 20px;"><i
+																				class="zmdi zmdi-roller"></i>
+																			&nbsp;&nbsp; Limpiar Fichajes</button>
+																	</div>
 																</div>
 															</div>
 														</div>
-													</div>
-												</div>
+												
 											</div>
-											<!--/porlets-content-->
-									</div>
+											<div class="tab-pane fade " id="listt">
+												
+											</div>
+										</div>
+										<!--/porlets-content-->
 								</div>
+							</section>
 							</div>
 						</div>
 						<!--/block-web-->
@@ -605,6 +562,8 @@
 
 
 	<!--====== Scripts -->
+	<script src="/js/fecha.js"></script>
+
 	<script src="/js/jquery-2.1.0.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/common-script.js"></script>

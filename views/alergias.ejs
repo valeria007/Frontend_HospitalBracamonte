@@ -200,10 +200,9 @@
 																		<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>				  
 																		<div class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
 																		<ul>
-																		   <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
 																		   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
 																		   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-																		   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
+																		   <li><a href="/paciente/vacunas" data-toggle="modal" ><i class="fa fa-user"></i>Vacunas</a></li>
 																		   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
 																		   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
 																		</ul>

@@ -107,7 +107,7 @@ router.post('/login', (req,res)  => {
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(resp => {
-
+        console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
         if(resp.role.length <=1){
           if(resp.role[0].name == "Almacen"){
             //res.send(resp.role[0].name)
@@ -303,6 +303,15 @@ router.get('/salas',(req, res) => {
 // role
 router.get('/roles',(req, res) => {
   res.render('roles')
+});
+router.get('/creroles',(req, res) => {
+  fetch('http://localhost:3600/api/roleall')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('CreRoles', {
+      data
+    })
+  })
 });
 // role
 router.get('/backup',(req, res) => {

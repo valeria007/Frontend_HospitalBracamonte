@@ -4,6 +4,9 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+var cie10 = require('cie10');
+var fileAsArray = cie10('array');
+var fileAsObject = cie10('obj');
 
 
 var data_user = {}
@@ -191,7 +194,9 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
                   cita,
                   updateCita,                  
                   resp,  // esto es una lista de los pacientes 
-                  msg:msg_Consulta_Externa[token_id]
+                  msg:msg_Consulta_Externa[token_id],
+                  fileAsArray 
+
                 }) 
               })
               .catch(error => {
