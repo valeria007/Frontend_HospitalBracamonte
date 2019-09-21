@@ -155,6 +155,7 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
     fetch('http://localhost:3000/api/OneCita/'+idCIta)
     .then(resp => resp.json())
     .then(resp =>{
+
       update_cita(resp[0].id) // esta funcion trae una consulta para poder ser actualizado
       data_paciente(historial,resp) // esta fucion mustra los datos de un paciente
       esp = resp[0].especialidad
@@ -175,7 +176,8 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
                   cita,
                   updateCita,                  
                   resp,  // esto es una lista de los pacientes
-                  fileAsArray 
+                  fileAsArray ,
+                  idCIta
                 }) 
               })
               .catch(error => {

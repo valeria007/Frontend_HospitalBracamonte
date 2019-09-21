@@ -105,21 +105,22 @@
                     <br>
                     <div class="row">
 
-	<!-- Content page -->
-    <div class="container-fluid">
-        <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
-        <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Internados</h3>
-    </div>
+	
 	<!--Listas de Emergencias-->
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 block-web">
+                <!-- Content page -->
+    <div class="header">
+            <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
+            <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Pacientes Internados</h3>
+        </div>
 				<!-- PAcientes no Atendidos-->
 				<p class="text-center">
 						<button type="button" value="Imprimir" onclick="window.print()" class="btn btn-success"><i class="zmdi zmdi-print"></i> &nbsp;&nbsp; Imprimir</button>
 					</p>
 						<div class="table-responsive" >
-							<table class="fl-table">
+							<table class="fl-table display table table-bordered table-striped" id="dynamic-tablee">
 								<thead>
 									  <tr>
 										<th class="text-center">#</th>
