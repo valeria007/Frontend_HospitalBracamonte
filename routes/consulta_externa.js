@@ -198,6 +198,15 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
                   fileAsArray 
 
                 }) 
+                remove_msg()
+                function remove_msg(){
+                  if(msg_Consulta_Externa[token_id] != null){
+                    if(msg_Consulta_Externa[token_id].data.success == true){
+                      remove(token_id),{expiresIn: 10* 30}
+                     }
+                  }
+                 
+                }
               })
               .catch(error => {
                   console.error('Error:', error)
@@ -462,13 +471,24 @@ router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) =>
                 fetch('http://localhost:4600/api/especialidad')
                 .then(resp => resp.json())
                 .then(especialidad =>{
+                  console.log(especialidad, "  <<<<<<<<<<<<<<<< esto es la especialidad xzxzx<<<<<<<<<<<")
                   res.render('consulta_externa/papeleta_internacion',{          
                     dataPaciente,
                     one_consulta,
                     data_doc: data_user[token_id],
                     resp,
-                    especialidad
+                    especialidad,
+                    msg:msg_Consulta_Externa[token_id],
                   })
+                  remove_msg()
+                  function remove_msg(){
+                    if(msg_Consulta_Externa[token_id] != null){
+                      if(msg_Consulta_Externa[token_id].data.success == true){
+                        remove(token_id),{expiresIn: 10* 30}
+                       }
+                    }
+                  
+                  }
                 })
               }
               
@@ -491,8 +511,9 @@ router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) =>
 
 
 router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
-  const {id_consulta, token_id, token_p } = req.params
-  var datos = req.body
+  const {id_consulta, token_id, token_p } = req.params;
+  var datos = req.body;
+  var msg_p;
   var esto = {
       method: 'POST',
       body: JSON.stringify(datos),
@@ -503,8 +524,42 @@ router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
   fetch('http://localhost:3000/api/papeletaIntConsulta/'+ id_consulta, esto)
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
-      .then(data => {      
-        res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+      .then(data => {  
+        if (data.success == true){
+       
+          if(msg_Consulta_Externa[token_id] == null){
+            msg_p = {
+              success:true,
+              msg:data.msg
+            }
+            msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:true,
+              msg:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+          }else{
+            if(msg_Consulta_Externa[token_id] == null){
+              msg_p = {
+                success:false,
+                msg:data.msg
+              }
+              msg_data(msg_p,token_id)
+            }else{
+              msg_p = {
+                success:false,
+                msg:data.msg
+              }
+              remove(token_id)
+              msg_data(msg_p,token_id)
+            }
+            res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+          }          
+        
       })
 });
 
@@ -512,6 +567,7 @@ router.post('/Pinternacion/:id_consulta/:token_id/:token_p',(req,res) => {
 router.post('/updateInternacion/:id/:id_consulta/:token_id/:token_p', (req,res) => {
   const { id, id_consulta, token_id, token_p } = req.params;
   var data = req.body;
+  var msg_p
   var esto = {
       method: 'POST',
       body: JSON.stringify(data),
@@ -522,8 +578,42 @@ router.post('/updateInternacion/:id/:id_consulta/:token_id/:token_p', (req,res) 
   fetch('http://localhost:3000/api/updatePinternacion/'+id,esto)
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
-      .then(data => {      
-        res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+      .then(data => {   
+        if (data.success == true){
+       
+          if(msg_Consulta_Externa[token_id] == null){
+            msg_p = {
+              success:true,
+              msg:data.msg
+            }
+            msg_data(msg_p,token_id)
+          }else{
+            msg_p = {
+              success:true,
+              msg:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
+          }
+          res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+          }else{
+            if(msg_Consulta_Externa[token_id] == null){
+              msg_p = {
+                success:false,
+                msg:data.msg
+              }
+              msg_data(msg_p,token_id)
+            }else{
+              msg_p = {
+                success:false,
+                msg:data.msg
+              }
+              remove(token_id)
+              msg_data(msg_p,token_id)
+            }
+            res.redirect('/consulta_externa/papeleta_internacion/'+id_consulta+"/"+token_id+"/"+token_p);
+          }          
+        
       })
 })
 

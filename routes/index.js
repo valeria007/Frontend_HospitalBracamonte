@@ -20,6 +20,7 @@ router.post('/enviar', (req,res) => {
   }
 })
 
+// esta funcion es para poder mandar el usuario gegistrado de cada usuario
 var listItems = {}
 function tok(token,id){
   let storedItem = listItems[id];
@@ -44,6 +45,31 @@ function remove_Token(id) {
   delete datas.name.token[id];
 }
 
+
+//funcion para saver si se estaentrando por login 
+var login = {}
+function sessions(token,id){
+  let storedItem = login[id];
+    if (!storedItem) {
+      storedItem = login[id] = {
+        data: token,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_session () {
+  let arr = [];
+  for (const id in login) {
+      arr.push(login[id]);
+  }
+  return arr;
+}
+
+function remove_session(id) {
+  delete datas.name.session[id];
+}
 
 
 
@@ -101,7 +127,13 @@ router.post('/login', (req,res)  => {
     }else if ( datas.name.token[resp.user.id] == null ){
       token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
       tok(resp,resp.user.id); //funcion para añadir token del usuario  
-      
+
+      var session = {
+        login:true
+      }
+      sessions(session,resp.user.id)
+      datas.name.session = login // esto es para ver si el usuario inicio session desde login
+
       datas.name.token = listItems // esto es para añadir tokens a datas
       fetch('http://localhost:3600/api/user/'+resp.user.id)
       .then(resp => resp.json())
@@ -133,6 +165,15 @@ router.post('/login', (req,res)  => {
         //res.redirect('/almacen/home/'+resp.user.id)
       }) 
     }else {
+
+      var session = {
+        login:true
+      }
+      remove_session(resp.user.id)
+      sessions(session,resp.user.id)
+      datas.name.session = login // esto es para ver si el usuario inicio session desde login
+
+
       token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
       remove_Token(resp.user.id)
       
@@ -242,7 +283,10 @@ router.post('/login2', (req,res) => {
 
 //ver token
 router.get('/token', (req,res) => {
-  res.send(datas.name.token)
+  res.send({
+    token:datas.name.token,
+    session: datas.name.session
+  })
 })
 
 router.get('/forrm',(req, res) => {

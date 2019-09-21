@@ -6,6 +6,9 @@ var url = require('./url/export');
 
 const datas = require('./url/export');
 
+router.get('/data_user', (req,res) => {
+    res.send(data_user);
+})
 
 var data_user = {}
 function user(data,id){
@@ -29,6 +32,32 @@ function array () {
 
 function remove_user(id) {
   delete data_user[id];
+}
+
+
+// esta funcion manda los mensajes del post segun el usuario
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+var msg_Consulta_hospitalizacion = {}
+function msg_data(data,id){
+  let msg_data = msg_Consulta_hospitalizacion[id];
+    if (!msg_data) {
+        msg_data = msg_Consulta_hospitalizacion[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    msg_data.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in msg_Consulta_hospitalizacion) {
+      arr.push(msg_Consulta_hospitalizacion[id]);
+  }
+  return arr;
+}
+function remove(id) {
+    delete msg_Consulta_hospitalizacion[id];
 }
 
 /*
@@ -83,8 +112,14 @@ router.get('/viewTemporal', (req,res) => {
         res.send("no hay coneccion con el servidor");
     })    
 });
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-//serv para mostrar home hospitalizacion o internacion
+                    //serv para mostrar home hospitalizacion o internacion
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 router.get('/home/:id_user',(req, res) => {
     const { id_user } = req.params
    
@@ -118,19 +153,6 @@ router.get('/home/:id_user',(req, res) => {
                     .catch(error => console.error('Error',error))
                     .then(doctor_area => {
                         data_token.area_esp = doctor_area[0].Especialidade;
-                        console.log({
-                            token: {
-                                success: datas.name.token[resp.id].data.success,
-                                token:"",
-                                user:{
-                                    id: datas.name.token[resp.id].data.user.id,
-                                    perso_id: datas.name.token[resp.id].data.user.perso_id,
-                                    username: datas.name.token[resp.id].data.user.username,
-                                    email:  datas.name.token[resp.id].data.user.email,
-                                } 
-                            },
-                            msg: " <<<<<< esto es get <<<<<<<<<<<<<<<<<<<<<<<<<<"
-                        })
                         
                         if(data_user[data_token.token_id] == null){
                             user(data_token, data_token.token_id)
@@ -146,7 +168,8 @@ router.get('/home/:id_user',(req, res) => {
                                         email:  datas.name.token[resp.id].data.user.email,
                                     } 
                                 },
-                                especialidad:doctor_area[0].Especialidade.nombre   
+                                especialidad:doctor_area[0].Especialidade,
+                                login:datas.name.session[resp.id]
 
                             })
                             status = null
@@ -165,10 +188,15 @@ router.get('/home/:id_user',(req, res) => {
                                         email:  datas.name.token[resp.id].data.user.email,
                                     } 
                                 },
-                                especialidad:doctor_area[0].Especialidade.nombre  
+                                especialidad:doctor_area[0].Especialidade,
+                                login:datas.name.session[resp.id]  
                             })
                             status = null
                         }
+                        remove_session(resp.id),{expiresIn: 10* 30}
+                        function remove_session(id) {
+                            delete datas.name.session[id]
+                          }
                     })
                 })
             }else{
@@ -182,51 +210,46 @@ router.get('/home/:id_user',(req, res) => {
         especialidad //esto manda la especialdad
     }) */       
 });
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-//ser para renderizar lista hospitalizacion mostrando 
-//la lista de ordenes de internacion que se mandan desde consulta o emergencia
-router.get('/ListInternacion/:especialidad', (req,res) => {
-    const { especialidad } = req.params;
-    fetch(url.name.url+'/api/PinterTrue/'+especialidad) // esta ruta solo trae los datos de tipo true
-    .then(resp => resp.json())
-    .then(resp =>{
-        //console.log(especialidad, " esto es la especialidad  <>>>>>>>>>>>>>")
-        /*var data = resp.map(function(item){
-            return { nombre2:item.nombre}
-        })
-        console.log(data)
-        resp.forEach(function(item){
-            console.log(item.estado, " >>>>>>>>>>>>>>>>>>>")
-        })*/
-       // console.log(listFalse)
-       
-        res.render('hospitalizaciones/listasHospitalizacion',{
-            resp,
-            listFalse,// lleva la lista de tipo false
-            especialidad
-        })
-    })        
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
-});
+                    //ser para renderizar lista hospitalizacion mostrando 
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 // esta ruta es para traer la lista de internacion de tipo false
-var listFalse , especialidad1;
-router.get('/ListaInternacionF/:especialidad', (req,res) => {
-    const { especialidad } = req.params;
-    especialidad1 = especialidad;
-    fetch(url.name.url+'/api/PinterFalse/'+especialidad) // esta ruta solo trae los datos de tipo true
-    .then(resp => resp.json())
-    .then(resp =>{
-        listFalse = resp;
-        res.redirect('/internaciones/ListInternacion/'+especialidad);
-    })        
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
+router.get('/ListaInternacionF/:id_especialidad/:token_id', (req,res) => {
+    const { id_especialidad, token_id } = req.params;
+    if( datas.name.token[token_id] ){
+        fetch(url.name.url+'/api/PinterFalse/'+id_especialidad) // esta ruta solo trae los datos de tipo true
+        .then(resp => resp.json())
+        .then(listFalse =>{
+
+            fetch(url.name.url+'/api/PinterTrue/'+id_especialidad) // esta ruta solo trae los datos de tipo true
+            .then(resp => resp.json())
+            .then(resp =>{
+
+                res.render('hospitalizaciones/listasHospitalizacion',{
+                    resp,
+                    listFalse,// lleva la lista de tipo false
+                    data_doc: data_user[token_id],
+                })
+            })
+        })        
+        .catch(error => {
+           res.render('hospitalizaciones/404error',{
+            data_doc: data_user[token_id],
+            msg:"Algo paso con el servidor 3000",
+            error
+           })
+        }) 
+    }else{
+        res.redirect('/')
+
+    }
+    
+    
 });
 
 
@@ -240,12 +263,11 @@ router.get('/ListaInternacionF/:especialidad', (req,res) => {
 >>>>>>><<<<<<<<<<>>>>>>>>>><<<<>>><>>><<>>><<>>><
 <<<<<<<>><<<<><<<>><<<><<<>><<>>><<>>><<>>>><<<>>
 */
-
+/* 
 //ruta para renderizar el form de internacion
 router.get('/renderInternacion', (req,res) => {
     res.render('hospitalizaciones/reg_internacion',{
         Pint,
-        especialidad : especialidad1,
         formUpdate_internacion,
         paciente_internacion
     });
@@ -280,82 +302,251 @@ router.get('/One_form_Internacion/:id_Pinternacion', (req,res) => {
         console.error('Error:', error)
         res.send("no hay coneccion con el servidor");
     }) 
-})
+}) */
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 //esta ruta es para poder traer una papeleta de internacion
-var Pint, idTipoConsulta;
-router.get('/only_pInternacion/:id/:tipoCons/:historial', (req,res) => {
-    const { id, tipoCons } = req.params;
-    idTipoConsulta = req.params;
-    fetch(url.name.url+'/api/one_Pinternacion/'+id+"/"+tipoCons) 
-    .then(resp => resp.json())
-    .then(resp =>{
-        //console.log(resp, "  <<<<<<<<<<<<<<<<<<<<  esto es la respuesta que quiero")
-        Pint = resp;
-        res.redirect('/internaciones/One_form_Internacion/'+id);
-    })        
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
+
+router.get('/only_pInternacion/:id/:tipoCons/:historial/:token_id', (req,res) => {
+    const { id, tipoCons, historial, token_id } = req.params;
+    
+    if( datas.name.token[token_id] ){
+        fetch(url.name.url+'/api/one_Pinternacion/'+id+"/"+tipoCons) 
+        .then(resp => resp.json())
+        .then(Pint =>{
+            
+            fetch(url.name.url+'/api/one_Form_internacion/'+id) 
+            .then(resp => resp.json())
+            .then(formUpdate_internacion =>{
+               
+
+                fetch(url.name.url+'/api/list_internacion_paciente/'+id+"/"+historial) 
+                .then(resp => resp.json())
+                .then(paciente_internacion =>{
+
+                   
+                    console.log(data_post[token_id])
+                    res.render('hospitalizaciones/reg_internacion',{
+                        Pint,
+                        formUpdate_internacion,
+                        paciente_internacion,
+                        data_doc: data_user[token_id],
+                        msg:msg_Consulta_hospitalizacion[token_id],
+                        data_post:data_post[token_id]
+                    });
+                    remove_msg()
+                    function remove_msg(){
+                      if(msg_Consulta_hospitalizacion[token_id] != null){
+                        if(msg_Consulta_hospitalizacion[token_id].data.success == true){
+                          remove(token_id),{expiresIn: 10* 30}
+                         }
+                      }
+                     
+                    }
+                })
+                .catch(error => {
+                    res.render('hospitalizaciones/404error',{
+                        data_doc: data_user[token_id],
+                        msg:"Algo paso con el servidor 3000",
+                        error
+                    })
+                }) 
+
+            })
+            .catch(error => {
+                res.render('hospitalizaciones/404error',{
+                    data_doc: data_user[token_id],
+                    msg:"Algo paso con el servidor 3000",
+                    error
+                })
+            }) 
+        })        
+        .catch(error => {
+            res.render('hospitalizaciones/404error',{
+                data_doc: data_user[token_id],
+                msg:"Algo paso con el servidor 3000",
+                error
+            })
+        }) 
+    }else{
+        res.redirect('/')
+    }
 
 });
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-//esta ruta es paca cambiar el estado de la papeleta de internacion
-router.get('/estado_pInternacion', (req,res) => {
 
-    fetch(url.name.url+'/api/estado_p_internacion/'+idPint) 
-    .then(resp => resp.json())
-    .then(resp =>{
-       // console.log(resp, " esto es p internacion <<<<<<<<<<<")
-        res.redirect('/internaciones/only_pInternacion/'+idTipoConsulta.id+"/"+idTipoConsulta.tipoCons+"/"+idTipoConsulta.historial);
-    })        
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
-})
+var data_post = {}
+function data_p(data,id){
+  let storedItem = data_post[id];
+    if (!storedItem) {
+      storedItem = data_post[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
 
-//esta ruta cambia el estado de la cama a false que es ocupado y ademas que añade al paciente
-router.get('/estadoCama/:idCama/:historial', (req,res) => {
-    var data = req.params;
-    console.log(data , " <<<<<<<<<<<<<<<<<>>><<<>>><<<>>>>><<<<><<<>>><<<<>>><<<>>><<<>>><<<>>><<<<<<<<<")
-    fetch(url.name.url+'/api/updateEstadoCama/'+data.idCama+"/"+data.historial) 
-    .then(resp => resp.json())
-    .then(resp =>{
-        //console.log(resp, " <<<<<<<<<<<< esto es cama")
-        res.redirect('/internaciones/estado_pInternacion');
-    })        
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
-})
+function array_post () {
+  let arr = [];
+  for (const id in data_post) {
+      arr.push(data_post[id]);
+  }
+  return arr;
+}
 
+function remove_post(id) {
+  delete data_post[id];
+}
 
 //ROUTA PARA INSERTAR
-var idPint;
-router.post('/internacion/:idPinternacion', (req,res) => {
-    const { idPinternacion } = req.params;
-    idPint = idPinternacion;
+
+router.post('/internacion/:idPinternacion/:token_id', (req,res) => {
+    const { idPinternacion, token_id } = req.params;
+    
+    var msg_p
     var data_body = req.body
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data_body),
-        headers:{
-          'Content-type' : "application/json"
+    if(data_body.cama == "" || data_body.cama == null){
+        if(msg_Consulta_hospitalizacion[token_id] == null){
+            msg_p = {
+              success:false,
+              data_p:"Selecione cama por favor"
+            }
+            msg_data(msg_p,token_id)
+        }else{
+            msg_p = {
+              success:false,
+              data_p:data.msg
+            }
+            remove(token_id)
+            msg_data(msg_p,token_id)
         }
-    };
-    fetch('http://localhost:3000/api/internaciones/'+idPinternacion+"/"+data_body.cama,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => { 
-        //console.log(data , " >>>>>>>>>>>>>>>>>>>>>esto es la respuesta del post<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-        res.redirect('/internaciones/estadoCama/'+data_body.cama+"/"+data_body.historial)         
-    }) 
+        if(data_post[token_id] == null){
+            data_p(data_body,token_id)
+        }else{
+            remove_post(token_id)
+            data_p(data_body,token_id)
+        }
+        res.redirect( '/internaciones/only_pInternacion/'+idPinternacion+"/"+data_body.provieneDE+"/"+data_body.historial+"/"+token_id );
+    }else {
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data_body),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch('http://localhost:3000/api/internaciones/'+idPinternacion+"/"+data_body.cama,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+            
+            if(data.success == true){
+    
+                if(msg_Consulta_hospitalizacion[token_id] == null){
+                    msg_p = {
+                      success:true,
+                      data_p:data.msg
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:true,
+                      data_p:data.msg
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+    
+                fetch(url.name.url+'/api/updateEstadoCama/'+data_body.cama+"/"+data_body.historial) 
+                .then(resp => resp.json())
+                .then(resp =>{
+    
+                    if(resp.success == true){
+    
+                        fetch(url.name.url+'/api/estado_p_internacion/'+idPinternacion) 
+                        .then(resp => resp.json())
+                        .then(resp =>{
+    
+                            if(resp.success == true){
+                                remove_post(token_id)
+                                res.redirect( '/internaciones/only_pInternacion/'+idPinternacion+"/"+data_body.provieneDE+"/"+data_body.historial+"/"+token_id );   
+                            }else{
+                                if(msg_Consulta_hospitalizacion[token_id] == null){
+                                    msg_p = {
+                                      success:false,
+                                      data_p:"error, no se actualizo el estado de este formulario"
+                                    }
+                                    msg_data(msg_p,token_id)
+                                }else{
+                                    msg_p = {
+                                      success:false,
+                                      data_p:"error, no se actualizo el estado de este formulario"
+                                    }
+                                    remove(token_id)
+                                    msg_data(msg_p,token_id)
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            res.render('hospitalizaciones/500error',{
+                                data_doc: data_user[token_id],
+                                
+                                error
+                            })
+                        }) 
+                    }else{
+                        if(msg_Consulta_hospitalizacion[token_id] == null){
+                            msg_p = {
+                              success:false,
+                              data_p:"No se pude registrar al paciente en esa cama"
+                            }
+                            msg_data(msg_p,token_id)
+                        }else{
+                            msg_p = {
+                              success:false,
+                              data_p:"No se pude registrar al paciente en esa cama"
+                            }
+                            remove(token_id)
+                            msg_data(msg_p,token_id)
+                        }
+                        res.redirect( '/internaciones/only_pInternacion/'+idPinternacion+"/"+data_body.provieneDE+"/"+data_body.historial+"/"+token_id );
+                    }
+    
+                })
+                .catch(error => {
+                    res.render('hospitalizaciones/500error',{
+                        data_doc: data_user[token_id],
+                        
+                        error
+                    })
+                }) 
+            }else{
+                if(msg_Consulta_hospitalizacion[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.msg
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.msg
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                if(data_post[token_id] == null){
+                    data_p(data_body,token_id)
+                }else{
+                    remove_post(token_id)
+                    data_p(data_body,token_id)
+                }
+                res.redirect( '/internaciones/only_pInternacion/'+idPinternacion+"/"+data_body.provieneDE+"/"+data_body.historial+"/"+token_id );    
+            }
+            
+        }) 
+    }    
 });
 
 /*

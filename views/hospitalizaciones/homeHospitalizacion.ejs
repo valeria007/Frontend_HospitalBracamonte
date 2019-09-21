@@ -46,16 +46,39 @@
 </head>
 
 <body class="light_theme  fixed_header left_nav_fixed">
+	<script>
+		/* <%if(login != null){%> */
+			var esto  = `<%- JSON.stringify(token) %>`
+			var url = "/Internaciones/home/"
+			localStorage.setItem('data', esto ) 
+			localStorage.setItem('url', url) 
+		/* <% } else { %> */
+			/* 	<%if(token == "") {%> */
+				console.log("no hay token")
+			/* 	<% } else { %> */
+					var data = localStorage.getItem('data')
+					if (data == null){     // esto no esta funcionando como deberia de fucnionar 
+						window.location.replace('/')
+					}else{
+						var esto  = `<%- JSON.stringify(token) %>`
+						var url = "/Internaciones/home/"
+						localStorage.setItem('data', esto ) 
+						localStorage.setItem('url', url) 
+					}
+			/* 	<% } %> */
+		/* <% } %> */
+	
+	</script>
 	<!-- SideBar -->
 
 	<!-- Content page-->
-	<div class="wrapper" id="home">
+	<div class="wrapper">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
 		<div class="header_bar ">
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
-				<div class="logo" style="display:block"><span class="theme_color">Hospital {{msg}}</div>
+				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
 
 			</div>
 			<!--\\\\\\\ brand end \\\\\\-->
@@ -66,7 +89,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								src="/images/user.png" /><span class="user_adminname">   <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%> </span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -91,7 +114,7 @@
 									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
 									class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/internaciones/hospitalizacion/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b class="theme_color"><%=especialidad%></b>
+								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b class="theme_color"><%=especialidad.nombre%></b>
 									</a> </li>
 							</ul>
 						</li>
@@ -99,7 +122,7 @@
 						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Listas de Pacientes <span
 									class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/internaciones/ListaInternacionF/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+								<li> <a href="/internaciones/ListaInternacionF/<%=especialidad.id%>/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 										<b >Listas de Internación</b>
 									</a> </li>
 								<li> <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
@@ -306,62 +329,7 @@ e.preventDefault();
  <script src="/axios/dist/axios.min.js"></script>
 
  
- <script type="text/javascript">
 
-	`<%if(token == "") {%>`
-		console.log("no hay token")
-	`<% } else { %>`
-		console.log("si hay datos")
-		var data = localStorage.getItem('data')
-		console.log(data)
-		if (data == null){
-			window.location.replace('/')
-		}else{
-			var esto  = `<%- JSON.stringify(token) %>`
-			var url = "/Internaciones/home/"
-			localStorage.setItem('data', esto ) 
-			localStorage.setItem('url', url) 
-		}
-	`<% } %>`
-	/* var esto  = `<%- JSON.stringify(token) %>`
-	var url = "/Internaciones/home/"
-	localStorage.setItem('data', esto ) 
-	localStorage.setItem('url', url) */
-	/* function obtener (){
-		var data_token = JSON.parse( localStorage.getItem("token") )
-		console.log(data_token)	
-	} */
-	var home = new Vue({
-		el : "#home",
-		data: () =>({
-			msg : 'Alejandro'
-		}),
-		mounted(){
-			
-			ver()
-			function ver (){
-				var data_token =JSON.parse( localStorage.getItem('data') )
-
-				if (data_token == null){
-					console.log("esto")
-				}else{
-					console.log("esta en el local storage")
-					
-					console.log( data_token)
-				}
-			}
-			
-		}
-		
-	})
-
-	
-	/* let token = {
-		data: JSON.stringify(`<%=data_token%>`),
-		token: JSON.stringify(`<%=token%>`)
-	}
-	localStorage.setItem('token2', JSON.stringify( token )) */
-	</script>
 
 </body>
 
