@@ -107,10 +107,24 @@ router.get('/home/:id', (req,res) => {
 });
 
 router.get('/kardexValorizado', (req,res) => {
-    res.render('Almacen/kardexValorizado');
+    fetch('http://localhost:3500/api/medicamento')   
+    .then(resp => resp.json())
+    .then(resp =>{ 
+        console.log(resp)       
+        res.render('Almacen/kardexValorizado',{
+            resp
+        });
+    })
 });
 router.get('/med_ven', (req,res) => {
-    res.render('Almacen/med_ven');
+    fetch('http://localhost:3500/api/medicamento')   
+    .then(resp => resp.json())
+    .then(resp =>{ 
+        console.log(resp)       
+        res.render('Almacen/med_ven',{
+            resp
+        });
+    })
 });
 router.get('/reportes_pedidos', (req,res) => {
     fetch('http://localhost:3500/api/pedido')   
