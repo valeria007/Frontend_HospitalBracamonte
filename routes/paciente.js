@@ -507,10 +507,6 @@ router.get('/IntroduceEC', (req,res) => {
   res.render('Ecografia/IntroducirEC')
 });
 
-//defuncion
-router.get('/defuncionGeneral', (req,res) => {
-  res.render('consulta_externa/defuncionGeneral')
-});
 
 
 module.exports = router;
