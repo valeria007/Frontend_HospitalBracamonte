@@ -151,7 +151,7 @@
                                                                
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Fecha Nacimiento</label>
-                                                                    <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.fechanacimiento%>">    
+                                                                    <input class="form-control" type="text" readonlyvalue="<%=Pint[0].emergencium.Citas_Medica.Paciente.fechanacimiento%>">    
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">Fecha de Ingreso a Sala</label>
@@ -161,19 +161,19 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Nombres y Apellidos</label>
-                                                                    <input class="form-control" type="text" value="<%=Pint[0].emergencium.Citas_Medica.Paciente.nombre%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidop%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidom%>">
+                                                                    <input class="form-control" type="text" readonly value="<%=Pint[0].emergencium.Citas_Medica.Paciente.nombre%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidop%> <%=Pint[0].emergencium.Citas_Medica.Paciente.apellidom%>">
                                                                 </div>
                                                                 <% }  else {%> 
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Fecha Nacimiento</label>
-                                                                        <input class="form-control" type="text" value="<%=Pint[0].Consulta.Citas_Medica.Paciente.fechanacimiento%>">    
+                                                                        <input class="form-control" type="text" readonly value="<%=Pint[0].Consulta.Citas_Medica.Paciente.fechanacimiento%>">    
                                                                     </div>
                                                                    
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Nombres y Apellidos</label>
-                                                                        <input class="form-control" type="text" value="<%=Pint[0].Consulta.Citas_Medica.Paciente.nombre%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidop%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidom%>">
+                                                                        <input class="form-control" type="text" readonly value="<%=Pint[0].Consulta.Citas_Medica.Paciente.nombre%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidop%> <%=Pint[0].Consulta.Citas_Medica.Paciente.apellidom%>">
                                                                     </div>
                                                                 <% } %>    
             
@@ -496,11 +496,13 @@
                                                                                 </div>
                                                                               </div>
                                                                             </section>
-                                                                          </div>           
-                                                                    <p class="text-center">
-                                                                        <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                                        <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-                                                                    </p>
+                                                                          </div>      
+                                                                          <%if (formUpdate_internacion[0].estado_update == true) {%>     
+                                                                            <p class="text-center">
+                                                                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                                                            </p>
+                                                                        <% } %>
                                                                 </form>
                                                             <% } %>
                                                 </div>

@@ -319,7 +319,6 @@ router.get('/only_pInternacion/:id/:tipoCons/:historial/:token_id', (req,res) =>
             .then(resp => resp.json())
             .then(formUpdate_internacion =>{
                
-                console.log(formUpdate_internacion, "   <<<<<<<<<<<<<<<<< esto es lo que quiero")
                 fetch(url.name.url+'/api/list_internacion_paciente/'+id+"/"+historial) 
                 .then(resp => resp.json())
                 .then(paciente_internacion =>{

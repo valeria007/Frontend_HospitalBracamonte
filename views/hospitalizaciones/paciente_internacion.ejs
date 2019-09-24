@@ -95,9 +95,7 @@
 								<li> 
                                     <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Listas de Internación</b> </a> 
                                 </li>
-									<li> 
-                                        <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >prueba</b> </a> 
-                                    </li>
+								
 							</ul>
                         </li>
                         <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -120,13 +118,18 @@
                         <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
                                 <li> 
-                                    <a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Egreso voluntario</b> </a> 
-                                </li>
-                                <li> 
-                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Orden de Alta</b> </a> 
+                                    <a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Egreso o Alta Médica</b> </a> 
                                 </li>
 								<li> 
-                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Defunción General</b> </a> 
+                                    <a href="/hospitalizacion/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Defunción General</b> </a> 
+                                </li>
+								
+							</ul>
+                        </li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href="/hospitalizacion/reporteP"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
                                 </li>
 								
 							</ul>
@@ -1136,7 +1139,7 @@
                             </div>
                         </div>
                             
-                    </div>
+        </div>
                     <div id="Tab4" class="tab-pane fade ">
                         <div class="row">
                             <div class="col-sm-12">
@@ -1278,7 +1281,7 @@
                                             <form @submit="formSubmit">
                                                 <div class="form-group"> 
                                                     <div class="col-sm-6">  
-                                                        <label class="control-label">Fecha de Internacion:</label>
+                                                        <label class="control-label">Fecha de Internación:</label>
                                                         <input type="date" class="form-control"name="" v-model="fecha_internacion" >
                                                     </div>   
                                                     <div class="col-sm-6">   

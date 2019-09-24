@@ -113,7 +113,15 @@ router.get('/datos_responsablevis', (req,res) => {
   router.get('/OrdenInterCirugiavis', (req,res) => {
     res.render('hospitalizaciones/OrdenInterCirugia')
   });
-
+//defuncion
+router.get('/defuncionGeneral', (req,res) => {
+    res.render('hospitalizaciones/defuncionGeneral')
+  });
+  
+  router.get('/reporteP', (req,res) => {
+    res.render('hospitalizaciones/reporteP')
+  });
+  
 
 
 module.exports = router;

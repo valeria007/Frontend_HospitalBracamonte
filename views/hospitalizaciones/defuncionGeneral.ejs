@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Defunción</title>
+    <title>Defunción General</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="viewport"
@@ -44,15 +44,11 @@
 
         }
     </style>
-
+    <%- include("../partials/head") -%>
 </head>
-
-<body class=" light_theme  fixed_header left_nav_fixed">
-    <!-- SideBar -->
-
-
-    <!-- Content page-->
-    <div class="wrapper">
+<body class=" light_theme  fixed_header left_nav_fixed" >
+	 <!-- Content page-->
+	<div class="wrapper">
         <!--\\\\\\\ wrapper Start \\\\\\-->
         <div class="header_bar">
             <!--\\\\\\\ header Start \\\\\\-->
@@ -65,15 +61,14 @@
             <div class="header_top_bar">
                 <!--\\\\\\\ header top bar start \\\\\\-->
                 <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-                <div class="top_right_bar">
-                    <div class=" dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                                src="/images/user.png" />   <span class="user_adminname">
 
-                            </span> <b class="caret"></b> </a>
+                <div class="top_right_bar">
+
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
                             <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Ayuda</a> </li>
+                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
                             <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
                             <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
                         </ul>
@@ -85,554 +80,311 @@
         <div class="inner">
             <!--\\\\\\\ inner start \\\\\\-->
             <div class="left_nav">
+
                 <!--\\\\\\\left_nav start \\\\\\-->
-                <div class="left_nav_slidebar">
-                    <ul>
-                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
-                                    class="left_nav_pointer"></span> <span class="plus"><i
-                                        class="fa fa-plus"></i></span> </a>
-                            <ul>
-                                <li> <a href="/">
-                                        <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
-                            </ul>
+
+				<div class="left_nav_slidebar">
+					<ul>
+						<li ><a href="javascript:void(0);"><i
+							class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
+							class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul >
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b ></b>
+								</a> </li>
+							</ul>
+						</li>
+						
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Internación</b> </a> </li>
+									
+							</ul>
+						</li>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> 
+                                </li>
+								<li> 
+                                    <a href="/hospitalizacion/antecedentesvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> 
+                                </li>
+                                <li> 
+                                    <a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a> 
+                                </li>
+                                
+                                <li> 
+                                    <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a> 
+                                </li>
+							</ul>
                         </li>
-                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-                                    class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
-                                        class="fa fa-plus"></i></span></a>
-                            <ul class="opened" style="display:block">
-                                <li> <a href="">
-                                        <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas
-                                            de Citas</b>
-                                    </a> </li>
-                            </ul>
+                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+                                <li> 
+                                    <a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b  >Egreso del Paciente</b> </a> 
+                                </li>
+                            
+								<li> 
+                                    <a href="/hospitalizacion/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Defunción General</b> </a> 
+                                </li>
+								
+							</ul>
                         </li>
-                        <%- include("../partials/footerDocotr") -%>
-                    </ul>
-                </div>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
+                                </li>
+								
+							</ul>
+                        </li>
+	
+						</ul>
+					</div>
             </div>
             <!--\\\\\\\left_nav end \\\\\\-->
             <div class="contentpanel">
                 <!--\\\\\\\ contentpanel start\\\\\\-->
-                <!--\\\\\\\ contentpanel start\\\\\\-->
                 <div class="container clear_both padding_fix col-lg-8">
                     <br>
-                    <div class="row">
-                       
-                            <!-- NavBar -->
-                            <!-- Content page -->
-                        <div class="container-fluid">
-                            <div class="">
-                                        
-                                <div class="info blue_symbols "> <i class="fa fa-file-text icon "></i></div><br>
-                                        <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Defunción General</h3>
-                                    <div id="" class="col-md-2">	
-                                        <div class=""><br>
-                                            <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-                                        </div>				
-                                    </div>
-                                    
-                            </div>
-                        </div><br>
-                            <div class="container-fluid">
-                                <div class="row ">
-                                    
-                                        <div class="page-content ">
-                                    <div class=" col-md-12">
-                                       
-                                        <div id="myTabContent" class="tab-content">
-                                            <div class="tab-pane fade active in" id="PapeletaInternacion">
-                                                <div class="container-fluid">
-                                                    <div class="row">
+                    <div class="">
+<div class="main-content">
+	<!-- Content page -->
+	<div class="col-lg-12 block-web"> 
+		<!-- Content page -->
+		<div class=" container-fluid col-md-12 " id="">
+			<div class="header ">
+				<div class="">
+					<div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div><br>
+						<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Defunción General</h3>
+					</div>       
+				</div>
+				<div id="" class="col-md-2">	
+					<div class="">
+						<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+					</div>				
+				</div>
+		</div><br>
+			<!-- Epicrisis-->
+	
+		<div class="tab-pane fade active in" id="new">
+		  <div class="container-fluid">
+			<div class="row">
+			  <div class="col-xs-12 ">
+			  <form action="" method="POST">
+				<div class="panel-body ">
+					<div class="panel-group accordion accordion-semi " id="accordion3">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del/ la Difunto(a)</a> </h4>
+							</div>
+							<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+								<div class="panel-body"> 
+									<form>		
+										<div class="form-group">
+											<div class="col-sm-3">Historial N°: <br>
+												<label><font color="black"></font></label>
+												<input type="hidden" v-model="historial" :value=''> 
+											</div>
+											<div class="col-sm-3">Nombre Completo:  <br>
+												<label><font color="black"></font></label>
+											</div>
+											<div class="col-sm-3">Fecha Nacimiento: <br>
+												<label><font color="black"> </font></label>
+											</div>
+											<div class="col-sm-3">Proviene de: <br>
+												<label><font color="black"> </font></label> 
+											</div>
+												
+										</div>
+										<br> <br>
+										<div class="form-group">
+												<div class="col-sm-3">Edad: <br>
+													<label><font color="black"></font></label>
+													<input type="hidden" v-model="historial" :value=''> 
+												</div>
+												<div class="col-sm-3">Estado Civil:  <br>
+													<label><font color="black"></font></label>
+												</div>
+											
+											</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div >
+				<div class="col-md-12">
+				<!--se recupera de la primera -->	
+				
+				<h6 class="panel-title">Datos de la Defunción:</h6><br>
+						
+				  	<div class="col-md-4"> 
+						<label class="">Fecha de la defunción:</label>
+						<input class="form-control" type="text" name="" value=""size="10" ><br>	
+					</div>
 
-                                                        <!-- datos personales-->
+					<div class="col-md-4"> 
+						<label class="">Hora de la defunción:</label>
+						<input class="form-control" type="text" name="" value=""size="10" ><br>	
+					</div>
+					<div class="col-md-4"> 
+						<label class="">Lugar de la defunción:</label>
+						<input class="form-control" type="text" name="" value=""size="10" ><br>	
+					</div>
+					
+					
+				<div class="col-md-12">
+					<label class="">Tuvo Atención Médica durante la enfermedad o Lesión que condujo su muerte:</label>
+					
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Si</option>
+						<option>No</option>
+				
+					</select>
+				</div>
 
+					
+				</div>
+			
+				<br><br>
+				
+				<div class="col-md-12"><br>
+					<h6 class="panel-title">Causas basicas de la defunción </h6><br>
+					<table class="fl-table display table table-bordered table-striped" id="dynamic-table3">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Código</th>
+								<th>Examene</th>
+								<th>Fecha</th>
+								<th class="center">Opciones</th>
+							</tr>
+						</thead>
+						<tbody>	   
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="center">
+									<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>								   
+								</td>
+							</tr>		
+						</tbody>                                                                       
+					</table> 
+				</div>
+			
+				<div class="col-md-6">
+						<br>
+				<h6 class="panel-title">Si la defuncion fue accidental o violenta especifique:</h6>
+					<label for="">Fue un presunto</label>
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Accidente</option>
+						<option>Suicidio</option>
+						<option>Homicidio</option>
+					</select>
 
-                          
-                                                        <form action="" method="POST">
+				
+				</div>
+				<div class="col-md-6"><br><br>
+					<label for="">Probable Mecanismos que produjo la muerte</label>
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Accidente de trancito</option>
+						<option>Desastre Natural</option>
+						<option>Gople</option>
+						<option>Asficcia</option>
+						<option>Otro</option>
+					</select>
 
-                                                            <div class="block-web">
-                                                                <div class="header">
-                                                                    <div class="actions"> <a class="minimize"
-                                                                            href="#"><i
-                                                                                class="fa fa-chevron-down"></i></a> <a
-                                                                            class="close-down" href="#"><i
-                                                                                class="fa fa-times"></i></a> </div>
-                                                                    <h3 class="content-header">Datos del Paciente</h3>
-                                                                </div>
-                                                                <div class="">
-                                                                    <div class="form-group">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
+				</div>
+				<div class="col-md-12"> 
+					<label for="">Descripción Breve del Suceso</label>
+					<input class="form-control" type="text" name="" value=""size="10" ><br>	
+				</div>
+				<div class="col-md-6">
+					<label for="">Lugar que ocurrio la Lesion</label>
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Domicilio</option>
+						<option>Via Publica</option>
+						<option>Trabajo</option>
+						<option>Escuela U</option>
+						<option>Oficina</option>
+					</select>
+	
+				</div><br>
+				<div class="col-md-12"><br>
+					<label class="panel-title">La Defuncion corresponde a a Mujeren en edad Fertil(10 a 59 años)Especifique</label>
+						<br>	
+				<div class="col-md-12">
+						
+					<label for="">La Defuncion Ocurrio Durante</label>
+					
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Embarazo</option>
+						<option>Parto</option>
+						<option>Post Aborto</option>
+					</select>
+	
+				</div>
+				
+			</div>
+				<div class="col-md-12"><br>
+						<label class="panel-title">Persona que certifica la defuncion</label>
+					
+						<br>
+					<div class="col-md-6">
+					<label for="">Quien lo verifica</label>
+						
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Medico</option>
+						<option>Forence</option>
+						
+					</select>
+				</div>
+				<div class="col-md-6"> 
+						<label for="">Nombre</label>
+						<input class="form-control" type="text" name="" value=""size="10" ><br>	
+					</div>
+					<div class="col-md-6"> 
+							<label for="">Marticula Profecional</label>
+							<input class="form-control" type="text" name="" value=""size="10" ><br>	
+						</div>
+		
+				</div>
+				
+	
+			</div>
+				</div>
+			<br>		</div>	  
+				  <p class="text-center">
+					  <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+					  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+					  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
+				  </p>
+				
+				</form>
 
-                                                                                <div class="col-sm-3 col-sm-4">
-                                                                                    <div class="entrada ">
-                                                                                        <h6 class=" blue_info">N° de
-                                                                                            Historia:</h6>
-                                                                                        <input name="Historial"
-                                                                                            type="text"
-                                                                                            value=""
-                                                                                            class="form-control"
-                                                                                            readonly=""
-                                                                                            value="Read only text goes here">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-4 col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">
-                                                                                                Nombre Completo:</h6>
-                                                                                            <input type="text"
-                                                                                                name="nombre apellidop apellidom"
-                                                                                                value=""
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-2 col-sm-3">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">Sexo:
-                                                                                            </h6>
-                                                                                            <input name="sexo"
-                                                                                                value=""
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-3 col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">Fecha
-                                                                                                de Nacimiento:</h6>
-                                                                                            <input name="edad"
-                                                                                                type="text"
-                                                                                                value=""
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+				                                                                         
+			  </div>                          
+		  </div>
+		</div>
+	  </div>
+	
+	 
 
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- datos del doctor-->
-                                                            <div class="block-web">
-                                                                <div class="header">
-                                                                    <div class="actions">
-                                                                        <a href="#" class="minimize"> <i
-                                                                                class="fa fa-chevron-down"></i></a>
-                                                                        <a href="#" class="refresh"> <i
-                                                                                class="fa fa-repeat"></i></a>
-                                                                        <a href="#" class="close-down"> <i
-                                                                                class="fa fa-times"></i></a>
-                                                                    </div>
-                                                                    <h3>Datos de la cita</h3>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
+</div>
 
-
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">
-                                                                                    <h6 class=" blue_info">Nombre del
-                                                                                        Médico:</h6>
-                                                                                    <input type="text"
-                                                                                        name="nombreDoctor"
-                                                                                        value=""
-                                                                                        class="form-control" readonly=""
-                                                                                        value="Read only text goes here">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">
-                                                                                    <h6 class=" blue_info">Especialidad:
-                                                                                    </h6>
-                                                                                    <input
-                                                                                        value=""
-                                                                                        name="tipoConsulta"
-                                                                                        class="form-control" readonly=""
-                                                                                        value="Read only text goes here">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-                                                            <div class="block-web">
-                                                                <div class="header">
-                                                                    <div class="actions"> <a class="minimize"
-                                                                            href="#"><i
-                                                                                class="fa fa-chevron-down"></i></a> <a
-                                                                            class="close-down" href="#"><i
-                                                                                class="fa fa-times"></i></a>
-                                                                    </div>
-                                                                    <h3 class="content-header">Estado del Paciente</h3>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">Area de
-                                                                                    Internacion:<br>
-                                                                                    <select name="especialidad">
-                                                                                        
-                                                                                        <option>
-                                                                                            
-                                                                                        </option>
-                                                                                       
-                                                                                    </select><br>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada ">
-                                                                                    <div class="entrada">Fecha de
-                                                                                        Ingreso
-                                                                                        <input class="form-control"
-                                                                                            type="date"
-                                                                                            name="fechaIngreso"
-                                                                                            value=""><br>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <h5>Estado del paciente</h5>
-                                                                            <div class="col-sm-4 col-sm-4">
-
-                                                                                <div class="entrada"> Diagnostico<br>
-                                                                                    <textarea name="diagnostico"
-                                                                                        cols="100"
-                                                                                        rows="10"></textarea><br>
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--   lado derecho-->
-
-
-                                                            <p class="text-center">
-                                                                <button type="reset" class="btn btn-info"
-                                                                    style="margin-right: 20px;"><i
-                                                                        class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-                                                                    Limpiar</button>
-                                                                <button type="submit" class="btn btn-danger"><i
-                                                                        class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-                                                                    Guardar</button>
-                                                                <button type="submit" class="btn btn-outline-danger"><i
-                                                                        class="zmdi zmdi-download"></i> &nbsp;&nbsp;
-                                                                    Imprimir</button>
-                                                            </p>
-                                                        </form>
-                                                      
-                                                        <form action=""
-                                                            method="POST">
-                                                            <h4 class="text-center">Formulario de actualización</h4>
-
-                                                            <div class="block-web">
-                                                                <div class="header">
-                                                                    <div class="actions"> <a class="minimize"
-                                                                            href="#"><i
-                                                                                class="fa fa-chevron-down"></i></a> <a
-                                                                            class="close-down" href="#"><i
-                                                                                class="fa fa-times"></i></a> </div>
-                                                                    <h3 class="content-header">Datos del Paciente</h3>
-                                                                </div>
-                                                                <div class="">
-                                                                    <div class="form-group">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-
-                                                                                <div class="col-sm-3 col-sm-4">
-                                                                                    <div class="entrada ">
-                                                                                        <h6 class=" blue_info">N° de
-                                                                                            Historia:</h6>
-                                                                                        <input name="Historial"
-                                                                                            type="text"
-                                                                                            value=""
-                                                                                            class="form-control"
-                                                                                            readonly=""
-                                                                                            value="Read only text goes here">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-4 col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">
-                                                                                                Nombre Completo:</h6>
-                                                                                            <input type="text"
-                                                                                                name="nombre apellidop apellidom"
-                                                                                                value=""
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-2 col-sm-3">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">Sexo:
-                                                                                            </h6>
-                                                                                            <input name="sexo"
-                                                                                                value=""
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-3 col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">Fecha
-                                                                                                de Nacimiento:</h6>
-                                                                                            <input type="text"
-                                                                                                value=""
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- datos del doctor-->
-                                                            <div class="block-web">
-                                                                <div class="header">
-                                                                    <div class="actions">
-                                                                        <a href="#" class="minimize"> <i
-                                                                                class="fa fa-chevron-down"></i></a>
-                                                                        <a href="#" class="refresh"> <i
-                                                                                class="fa fa-repeat"></i></a>
-                                                                        <a href="#" class="close-down"> <i
-                                                                                class="fa fa-times"></i></a>
-                                                                    </div>
-                                                                    <h3>Datos de la cita</h3>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-
-
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">
-                                                                                    <h6 class=" blue_info">Nombre del
-                                                                                        Médico:</h6>
-                                                                                    <input type="text"
-                                                                                        name="nombreDoctor"
-                                                                                        value=""
-                                                                                        class="form-control" readonly=""
-                                                                                        value="Read only text goes here">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">
-                                                                                    <h6 class=" blue_info">Especialidad:
-                                                                                    </h6>
-                                                                                    <input
-                                                                                        value=""
-                                                                                        name="tipoConsulta"
-                                                                                        class="form-control" readonly=""
-                                                                                        value="Read only text goes here">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-                                                            <div class="block-web">
-                                                                <div class="header">
-                                                                    <div class="actions"> <a class="minimize"
-                                                                            href="#"><i
-                                                                                class="fa fa-chevron-down"></i></a> <a
-                                                                            class="close-down" href="#"><i
-                                                                                class="fa fa-times"></i></a>
-                                                                    </div>
-                                                                    <h3 class="content-header">Estado del Paciente</h3>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada "> Area de
-                                                                                    Internacion
-                                                                                    <select class="form-control"
-                                                                                        name="especialidad">
-                                                                                        <option>
-                                                                                           
-                                                                                        </option>
-                                                                                        <option>------------------------
-                                                                                        </option>
-                                                                                       
-                                                                                        <option>
-                                                                                      
-                                                                                        </option>
-                                                                                        
-                                                                                    </select>
-
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada ">
-                                                                                    <div class="entrada">Fecha de
-                                                                                        Ingreso
-                                                                                        <input class="form-control"
-                                                                                            type="date"
-                                                                                            name="fechaIngreso"
-                                                                                            value=""><br>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <h5>Estado del paciente</h5>
-                                                                            <div class="col-sm-4 col-sm-4">
-
-                                                                                <div class="entrada"> Diagnostico<br>
-                                                                                    <textarea name="diagnostico"
-                                                                                        cols="100"
-                                                                                        rows="10"></textarea><br>
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <p class="text-center">
-                                                                <button type="reset" class="btn btn-info"
-                                                                    style="margin-right: 20px;"><i
-                                                                        class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-                                                                    Limpiar</button>
-                                                                <button type="submit" class="btn btn-danger"><i
-                                                                        class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-                                                                    Guardar</button>
-                                                                <button type="submit" class="btn btn-outline-danger"><i
-                                                                        class="zmdi zmdi-download"></i> &nbsp;&nbsp;
-                                                                    Imprimir</button>
-                                                            </p>
-                                                        </form>
-                                                        
-                                                        <div class="container-fluid">
-                                                            <div class="row">
-                                                                <div class="col-xs-12">
-                                                                    <ul class="nav nav-tabs"
-                                                                        style="margin-bottom: 15px;">
-
-                                                                        <li class="active"><a href="#ListPaciente"
-                                                                                data-toggle="tab"><i
-                                                                                    class="zmdi zmdi-assignment"></i>
-                                                                                Datos generales</a></li>
-                                                                        <li class="active"><a href="#ListPaciente"
-                                                                                data-toggle="tab"><i
-                                                                                    class="zmdi zmdi-assignment"></i>
-                                                                                Antecendentes Personales</a></li>
-                                                                        <li class="active"><a href="#ListPaciente"
-                                                                                data-toggle="tab"><i
-                                                                                    class="zmdi zmdi-assignment"></i>
-                                                                                Antecentes Famliares</a></li>
-
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            
-                                        </div>
-
-                                    </div>
-                                </div>
-                                 
-                                </div>
-                       
-                        <!--====== Scripts -->
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- Modal alergias -->
-<div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel">Detalles de la Receta</h4>
-            </div>
-            <div>
-                <div class="">
-                    <div id="main-content">
-                        <div class="">			
-                            
-                            <div id="myTabContent" class="tab-content">
-                                  <div class="tab-pane fade active in " id="neww">
-                                    <div class="col-md-12">
-                                        <div class="">
-                                            <div class=" ">
-                                                <p></p>
-                                                N° de Historial:  <br>
-                                                Nombre Completo: <br>
-                                                Fecha de la Orden: <br><br>
-                                                Nombre del Médico: <br>
-                                                Area de Internación:<br>
-                                                Diagnostico: <br>
-                                               
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                                              <!--/porlets-content-->
-                                      </div>
-                                  </div>
-                      </div>
-          
-                  </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                 
-                </div>
-          
-            </div>
-        </div>
-    </div>
-
-    <!--====== Scripts -->
-
-    <script src="/js/get/consultaget.js"></script>
+	<!--====== Scripts -->
+	
+	<script src="/js/get/consultaget.js"></script>	
+	
+	<script src="/js/get/consultaget.js"></script>
 
 
     <script src="/js/jquery-2.1.0.js"></script>
@@ -640,11 +392,10 @@
     <script src="/js/common-script.js"></script>
     <script src="/js/jquery.slimscroll.min.js"></script>
 
-
-    <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
     <script src="/plugins/data-tables/jquery.dataTables.js"></script>
     <script src="/plugins/data-tables/DT_bootstrap.js"></script>
-    <script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
     <script src="/plugins/edit-table/edit-table.js"></script>
     <script>
         jQuery(document).ready(function () {
@@ -654,7 +405,5 @@
 
     <script src="/js/jPushMenu.js"></script>
     <script src="/js/side-chats.js"></script>
-    <script src="/js/get/getECP.js"></script>
 </body>
-
 </html>

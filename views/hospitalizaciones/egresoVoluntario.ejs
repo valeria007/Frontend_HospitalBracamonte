@@ -1,149 +1,307 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-	<title>Hospitalizacion</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<%- include("../partials/head") -%>
-	<link rel="stylesheet" href="/css/HomeInt.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Egreso</title>
+    <meta charset="UTF-8">
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+
+
+    <style>
+        div.a {
+            text-align: center;
+        }
+
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+        }
+    </style>
+    <%- include("../partials/head") -%>
 </head>
-<body class="dashboard-sideBar-imagg cover">
-	<!-- SideBar -->
-	<%- include("partials/menu") -%>
-	  <!-- SideBar Menu Hospital-->
-	  <ul class="list-unstyled full-box dashboard-sideBar-Menu">
-		<li>
-			<a href="/internaciones/hospitalizacion">
-				<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
-			</a>
-		</li>
-				   
-		<!-- Emergencias -->
-		<li>
-			<a href="#!" class="btn-sideBar-SubMenu">
-				<i class="zmdi zmdi-hospital-alt zmdi-hc-fw"></i> Hospitalizacion <i class="zmdi zmdi-caret-down pull-right"></i>
-			</a>
-			<ul class="list-unstyled full-box">
-				<li><a href="/internaciones/ListaInternacionF"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Liatas de citas</a></li>
-						  
-			</ul>
-		</li> 
-		</ul>
-	<%- include("partials/footer") -%>
-	<!-- Content page-->
-<section class="full-box dashboard-contentPage dashboard-sideBar-cttt">
-	<!-- NavBar -->
-	<nav class="full-box dashboard-Navbar">
-		<ul class="full-box list-unstyled text-right">
-			<li class="pull-left">
-		    	<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-			</li>
-		</ul>
-	</nav>
-	<!-- Content page -->
-	<div class="container-fluid col-md-12" id="">
-		<div class="page-header  col-md-6">	
-			<h1 class="text-titles"><i class="zmdi zmdi-hospital zmdi-hc-fw"></i> Egreso Voluntario<small></small></h1>  
-		</div><br><br>
-		<div class="btn-group  col-md-3">
-			<button type="button" class="btn btn-info btn-raised"
-				data-toggle="dropdown">
-			  Detalles del Paciente <span class="caret"></span>
-			</button>
-			
-			<ul class="dropdown-menu" role="menu">
-				<li class="menu__item">
-					<a href="/hospitalizacion/datos_responsablevis" class="menu__link">Datos de responsable</a>
-				</li>
-				<li class="menu__item">
-					<a href="/hospitalizacion/antecedentesvis" class="menu__link">Antecedentes</a>
-				</li>
-				<li class="menu__item">
-					<a href="/hospitalizacion/alergiasvis" class="menu__link">Alergia</a>
-				</li>
-				<li class="menu__item">
-					<a href="/hospitalizacion/epicrisisvis" class="menu__link">epicrisis</a>
-				</li>
-				<li class="menu__item">
-					<a href="/hospitalizacion/VerHistorialvis" class="menu__link">Ver Historial</a>
-				</li>
-				<li class="menu__item">
-					<a href="/hospitalizacion/egresoVoluntariovis" class="menu__link">Egreso voluntario</a>
-				</li>
-				<li class="menu__item">
-					<a href="/hospitalizacion/OrdenInterCirugiavis" class="menu__link">Orden </a>
-				</li>
-				<li class="divider"></li>
-			  
-			</ul>
-		  </div> 
-	   
-		<div id="" class="col-md-2">
+<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
+	 <!-- Content page-->
+	<div class="wrapper">
+        <!--\\\\\\\ wrapper Start \\\\\\-->
+        <div class="header_bar">
+            <!--\\\\\\\ header Start \\\\\\-->
+            <div class="brand">
+                <!--\\\\\\\ brand Start \\\\\\-->
+                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+            </div>
+            <!--\\\\\\\ brand end \\\\\\-->
+            <div class="header_top_bar">
+                <!--\\\\\\\ header top bar start \\\\\\-->
+                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+
+                <div class="top_right_bar">
+
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <div class="top_pointer"></div>
+                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--\\\\\\\ header top bar end \\\\\\-->
+        </div>
+        <div class="inner">
+            <!--\\\\\\\ inner start \\\\\\-->
+            <div class="left_nav">
+
+                <!--\\\\\\\left_nav start \\\\\\-->
+
+				<div class="left_nav_slidebar">
+					<ul>
+						<li ><a href="javascript:void(0);"><i
+							class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
+							class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul >
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b ></b>
+								</a> </li>
+							</ul>
+						</li>
+						
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Internación</b> </a> </li>
+									
+							</ul>
+						</li>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> 
+                                </li>
+								<li> 
+                                    <a href="/hospitalizacion/antecedentesvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> 
+                                </li>
+                                <li> 
+                                    <a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a> 
+                                </li>
+                                
+                                <li> 
+                                    <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a> 
+                                </li>
+							</ul>
+                        </li>
+                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+                                <li> 
+                                    <a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color" >Egreso del Paciente</b> </a> 
+                                </li>
+                            
+								<li> 
+                                    <a href="/hospitalizacion/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Defunción General</b> </a> 
+                                </li>
+								
+							</ul>
+                        </li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
+                                </li>
+								
+							</ul>
+                        </li>
 	
-			<div class="">
-				<a href="" class="btn btn-success btn-raised btn-lg"><i class=""></i>Atras</a>	
-			</div>
-		
-		</div>
-	</div>
-	<!-- Epicrisis-->
-	<div id="myTabContent" class="tab-content">
+						</ul>
+					</div>
+            </div>
+            <!--\\\\\\\left_nav end \\\\\\-->
+            <div class="contentpanel">
+                <!--\\\\\\\ contentpanel start\\\\\\-->
+                <div class="container clear_both padding_fix col-lg-8">
+                    <br>
+                    <div class="">
+<div class="main-content">
+	<!-- Content page -->
+	<div class="col-lg-12 block-web"> 
+		<!-- Content page -->
+		<div class=" container-fluid col-md-12 " id="">
+			<div class="header ">
+				<div class="">
+					<div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div><br>
+						<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Egreso o Alta Médica</h3>
+					</div>       
+				</div>
+				<div id="" class="col-md-2">	
+					<div class="">
+						<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+					</div>				
+				</div>
+		</div><br>
+			<!-- Epicrisis-->
+	
 		<div class="tab-pane fade active in" id="new">
 		  <div class="container-fluid">
 			<div class="row">
-			  <div class="col-xs-12">
+			  <div class="col-xs-12 ">
 			  <form action="" method="POST">
-				<div class="grupo" id="cabeza">
+				<div class="panel-body ">
+					<div class="panel-group accordion accordion-semi " id="accordion3">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente</a> </h4>
+							</div>
+							<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+								<div class="panel-body"> 
+									<form>		
+										<div class="form-group">
+											<div class="col-sm-3">Historial N°: <br>
+												<label><font color="black"></font></label>
+												<input type="hidden" v-model="historial" :value=''> 
+											</div>
+											<div class="col-sm-3">Nombre Completo:  <br>
+												<label><font color="black"></font></label>
+											</div>
+											<div class="col-sm-3">Fecha Nacimiento: <br>
+												<label><font color="black"> </font></label>
+											</div>
+											<div class="col-sm-3">Proviene de: <br>
+												<label><font color="black"> </font></label> 
+											</div>
+												
+										</div>
+										<br> <br>
+											
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div >
+				<div class="col-md-12">
+				<!--se recupera de la primera -->	
+				<h6 class="panel-title">Diagnostico de Admición:</h6>
 
-				<p>Datos del Paciente </p>
-				  <div id="tres2">
-					<div class="entrada">Nombre Completo:<br>
-					  <input type="text" name="" value=""><br>
+				  	<div class="col-md-12"> 
+						<input class="form-control" type="text" name="" value=""size="10"readonly="" value="" ><br>	
 					</div>
-					<div class="entrada">CI.:<br>
-					  <input type="text" name="" value=""><br>
+				<h6 class="panel-title"><a>Diagnostico de Egreso:</a></h6>
+					<div class="col-md-12">
+							<input class="form-control" type="text" name="" size="10" readonly="" value="Busque el Diagnostico" ><br>
+						<table class="fl-table display table table-bordered table-striped" id="dynamic-table3">
+
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Código</th>
+									<th>Descripción</th>
+									<th class="center">Opciones</th>
+								</tr>
+							</thead>
+								<tbody>	   
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td class="center">
+										<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>								   
+										</td>
+									</tr>		
+								</tbody>                                                                       
+						</table> 
+								
 					</div>
-					<div class="entrada">Sexo:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
+					
+				</div>
 			
+				<br><br>
+				<h6 class="panel-title">Examenes Complementarios de Diagnosticos realizados </h6><br>
+				<div class="col-md-12">
+					<table class="fl-table display table table-bordered table-striped" id="dynamic-table3">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Código</th>
+								<th>Examene</th>
+								<th>Fecha</th>
+								<th class="center">Opciones</th>
+							</tr>
+						</thead>
+						<tbody>	   
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="center">
+									<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>								   
+								</td>
+							</tr>		
+						</tbody>                                                                       
+					</table> 
 				</div>
-				<br>
-				<p>Diagnostico de:</p>
-				<div class="grupo" id="cabeza">
-				  <div id="correo">
-					<div class="entrada">Admición:<br>
-						<input type="text" name="" value=""size="10"><br>
-					</div>
-					<div class="entrada">Egreso:<br>
-						<input type="text" name="" value=""size="10"><br>
-					</div>
-				  </div>
-			
-				</div>
-				<br>
-				<p>Examenes Complementarios de Diagnosticos realizados </p>
-				<div class="grupo" id="cabeza">
-				  <div id="">
-					<div class="entrada">Diagnostico:<br>
-					  <input type="text" name="" value=""><br>
-					</div>
-				  </div>
-			  
-				</div>
-				<br>
 				
-				<p>Detalles del Epicrisis</p>
-				<div class="grupo" id="cabeza">
+				
+				<div class="col-md-12"><br>
+					<div class="col-md-6">
+							<h6 >Condición al Egresar:</h6>
+						<select class="form-control" name="institucion">
+							<option>--------</option>
+							<option>Mejorado</option>
+							<option>No mejorado</option>
+							<option>Muerto</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<h6 >Fecha de Alta:</h6>
+						<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
+					</div>
+					
+					
+				</div>
+			</div>
+				</div>
+			<br>
+			<h6 class="panel-title">Detalles del Epicrisis</h6>
+				</div>		
+			<div id="main-content">
+			<section class="panel default blue_title h2">
+				<div class="page-content">
+				<div >
 					<div class="panel with-nav-tabs panel-default">
-						<div class="panel-heading">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#tab1default" data-toggle="tab">Tratamiento Quirurgico</a></li>
-								<li><a href="#tab2default" data-toggle="tab">Tratamiento Médico</a></li>
-								<li><a href="#tab3default" data-toggle="tab">Complicaciones</a></li>
-								<li><a href="#tab4default" data-toggle="tab">Control y Tratamiento a Seguir</a></li>
-								<li><a href="#tab4default" data-toggle="tab">Recomendaciones</a></li>
+						<div class="page-content">
+							<ul class="nav nav-tabs nav_bg" id="myTab">
+								<li class=" active active  text-center"><a href="#tab1default" data-toggle="tab">Tratamiento Quirurgico</a></li>
+								<li class=" text-center"><a href="#tab2default" data-toggle="tab">Tratamiento Médico</a></li>
+								<li class=" text-center"><a href="#tab3default" data-toggle="tab">Complicaciones</a></li>
+								<li class=" text-center"><a href="#tab4default" data-toggle="tab">Control y Tratamiento a Seguir</a></li>
+								<li class=" text-center"><a href="#tab4default" data-toggle="tab">Recomendaciones</a></li>
 							</ul>
 						</div>
 						<div class="panel-body">
@@ -156,13 +314,16 @@
 							</div>
 						</div>
 					</div>
-				</div> 
-				  
+				</div>
+				</div>
+			</section> 
+		</div>	  
 				  <p class="text-center">
 					  <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
 					  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
 					  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Imprimir</button>
 				  </p>
+				
 				</form>
 
 				                                                                         
@@ -170,9 +331,35 @@
 		  </div>
 		</div>
 	  </div>
-	</div>
-</section>
+	
+	 
+
+</div>
+
 	<!--====== Scripts -->
-	<%- include("../partials/scripts") -%>
+	<script src="/js/fecha.js"></script>
+	<script src="/js/get/consultaget.js"></script>	
+	
+	<script src="/js/get/consultaget.js"></script>
+
+
+    <script src="/js/jquery-2.1.0.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common-script.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+
+    <script src="/plugins/data-tables/jquery.dataTables.js"></script>
+    <script src="/plugins/data-tables/DT_bootstrap.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+    <script src="/plugins/edit-table/edit-table.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>
+
+    <script src="/js/jPushMenu.js"></script>
+    <script src="/js/side-chats.js"></script>
 </body>
 </html>
