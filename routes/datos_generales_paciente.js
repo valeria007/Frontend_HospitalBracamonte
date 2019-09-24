@@ -19,25 +19,30 @@ router.get('/volver', (req,res) => {
     res.redirect('/datos_generales_paciente/antecedentes')
 })
 
-router.get('/antecedentes', (req,res) => {
+router.get('/antecedentes/:token_id/:token_partial/:id_cita', (req,res) => {
+    const { token_id,token_partial,id_cita } = req.params;
     var list_antecedentes = Static.static_data.listAntecedentes;
     var dataPaciente = Static.static_data.data_Paciente
     res.render('antecedentes',{
         list_antecedentes,
         dataPaciente,
         update_paciente,
-        especialidad: Static.static_data.tipo_especialidad
+        especialidad: Static.static_data.tipo_especialidad,
+        token_id,
+        token_partial,
+        id_cita
     })      
 });
 
 //ruta para sacar el nombre del paciente
 
-router.get('/data_paciente', (req,res) => {
+router.get('/data_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
+    const { token_id,token_partial,id_cita } = req.params;
     fetch('http://localhost:3000/api/paciente_id/'+idPaciente)
         .then(resp => resp.json())
         .then(resp =>{
             Static.static_data.data_Paciente = resp;      
-            res.redirect('/datos_generales_paciente/antecedentes/') ;            
+            res.redirect('/datos_generales_paciente/antecedentes/'+token_id+'/'+token_partial+'/'+id_cita) ;            
         })
         .catch(error => {
             console.error('Error:', error)
@@ -48,14 +53,14 @@ router.get('/data_paciente', (req,res) => {
 
 // esta ruta es para poder mostrar todos los antecedentes del paciente
 var idPaciente;
-router.get('/lista_antecedentes/:id_paciente', (req,res) => {
-    const { id_paciente } = req.params;
+router.get('/lista_antecedentes/:id_cita/:id_paciente/:token_id/:token_partial', (req,res) => {
+    const { id_paciente,token_id,token_partial,id_cita } = req.params;
     idPaciente = id_paciente;
     fetch('http://localhost:3000/api/one_ant/'+id_paciente)
         .then(resp => resp.json())
         .then(resp =>{
             Static.static_data.listAntecedentes = resp;      
-            res.redirect('/datos_generales_paciente/data_paciente') ;            
+            res.redirect('/datos_generales_paciente/data_paciente/'+token_id+'/'+token_partial+'/'+id_cita) ;            
         })
         .catch(error => {
             console.error('Error:', error)

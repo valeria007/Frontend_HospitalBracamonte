@@ -1,0 +1,80 @@
+<!DOCTYPE >
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Login</title>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+  <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+  <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+  <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+  
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+
+<div class="wrapper" id="validator">
+  
+  <div class="login_page">
+  <div class="login_content" >
+  <div class="lock_image"><img src="images/doc.png" alt="lock" />
+    <b>BIENBENIDO</b><br>
+    <b>Inicio Sesion</b>
+  </div>
+  
+  <div class="porlets-content">
+    <form class="form-horizontal row-border" name="login-form"  action="/login2" method="POST" >
+      <div class="form-group">
+          
+          <div class="col-sm-12">
+            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input name="username" id="username"type="text" v-model="cuenta" class="form-control"  placeholder="Cuenta" />
+                
+            </div>
+            
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 ">
+              <div class="input-group"><span class="input-group-addon"><i class="fa fa-key"></i></span>
+                  <input name="password" type="password"  id="password"class="form-control" placeholder="Contraseña" />
+              </div>
+              
+            </div>
+          </div>
+          <br>
+          <br>
+      <div class="form-group">
+          <div class=" col-sm-12">
+            <button type="submit" class="btn btn-primary btn-icon">Iniciar<span>&nbsp;</span><i class="fa fa-hand-o-right"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+          </div>
+        </div>
+      
+    </form>
+  </div>
+ </div>
+  </div>
+
+  
+</div>
+
+<script src="/js/jquery-2.1.0.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common-script.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
+
+<script src="/plugins/validation/parsley.min.js"></script>
+<script>
+  const validator = new Vue({
+    el:'#validator',
+    data: () => ({
+      cuenta:"",
+      contraceña:""
+    }),
+  })
+</script>
+
+
+
+</body>
+</html>

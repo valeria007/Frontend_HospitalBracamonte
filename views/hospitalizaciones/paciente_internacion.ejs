@@ -54,7 +54,7 @@
         }
     </script>
 </head>
-<body class=" light_theme  fixed_header left_nav_fixed" >
+<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()" >
     <div class="wrapper">
         <div class="header_bar">
             <div class="brand">
@@ -65,7 +65,7 @@
 
                 <div class="top_right_bar">
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                                src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+                                src="/images/user.png" /><span class="user_adminname">     <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
                                 class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
@@ -80,29 +80,61 @@
             
         </div>
         <div class="inner">
-             <div class="left_nav">
+            <div class="left_nav">
                 <div class="left_nav_slidebar">
 					<ul>
 						<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul >
-								<li> <a href="/internaciones/hospitalizacion/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio   <%=especialidad%></b>
+								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b ><%=data_doc.data.area_esp.nombre%></b>
 								</a> </li>
 							</ul>
 						</li>
 						
-							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Listas de Paciente<span
-										class="plus"><i class="fa fa-plus"></i></span></a>
-								<ul class="opened" style="display:block" >
-									<li> <a href="/internaciones/ListaInternacionF/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-											<b class="theme_color">Listas de Internación</b>
-										</a> </li>
-									<li> <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-										<b >prueba</b>
-									</a> </li>
-									
-	
-								</ul>
-						</li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Listas de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block" >
+								<li> 
+                                    <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Listas de Internación</b> </a> 
+                                </li>
+								
+							</ul>
+                        </li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> 
+                                </li>
+								<li> 
+                                    <a href="/hospitalizacion/antecedentesvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> 
+                                </li>
+                                <li> 
+                                    <a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a> 
+                                </li>
+                                
+                                <li> 
+                                    <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a> 
+                                </li>
+							</ul>
+                        </li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+                                <li> 
+                                    <a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Egreso o Alta Médica</b> </a> 
+                                </li>
+								<li> 
+                                    <a href="/hospitalizacion/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Defunción General</b> </a> 
+                                </li>
+								
+							</ul>
+                        </li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href="/hospitalizacion/reporteP"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
+                                </li>
+								
+							</ul>
+                        </li>
+                        
 					</ul>
 				</div>
             </div>
@@ -111,7 +143,7 @@
                         <br>
                     <div class="header">
                         <div class="info blue_symbols "> <i class="fa fa-edit icon "></i></div>
-                            <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Area de Internacion del Paciente </h3>
+                            <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Area de Internación del Paciente </h3>
                     </div>
                     <br><br>
                     
@@ -170,7 +202,7 @@
                                 <br>
                                 <div class="panel-body">
 		    	                        <ul class="nav nav-tabs" id="myTab">
-		    			  	                <li class="col-lg-3 active active  text-center" v-on:click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>),oneEpicrisis()"><a  data-toggle="tab" href="#Tab1">Orden de Intervencion</a></li>
+		    			  	                <li class="col-lg-3 active active  text-center" v-on:click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>),oneEpicrisis()"><a  data-toggle="tab" href="#Tab1">Orden de Intervención</a></li>
 		    				                <li class="col-lg-3 text-center"><a data-toggle="tab" href="#Tab2"> Notas de Evoluciones</a></li>                             
                                             <li class="col-lg-3 text-center" @click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>)"><a  data-toggle="tab" href="#Tab3">Diagnostico</a></li>
                                             <li class="col-lg-3 text-center" v-on:click="idHistorial(<%=one_internacion[0].id%>,<%=data_paciente[0].numeroHistorial%>),oneEpicrisis()"><a data-toggle="tab" href="#Tab4"><i class="zmdi zmdi-assignment"></i> Epicrisis </a></li>
@@ -198,8 +230,10 @@
                            -->
                            
                             <div class="panel-body">
-
-                                <h3 class="text-center">Orden de Intervencion</h3>
+                                
+                                    <h3 class="text-center">Orden de Intervención</h3>
+                                
+                                
                                 <section class="panel default blue_title h2">
                                 <div class="panel-group accordion accordion-semi" id="accordion3">
                                     <div class="panel panel-default">
@@ -210,21 +244,22 @@
                                         <div class="panel-body"> 
                                             <div class="col-md-12">
                                                 <div class="table-responsive" >
-                                                    <table class="fl-table">
+                                                    <table class="fl-table display table table-bordered table-striped" id="dynamic-table">
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-center">#</th>
-                                                                <th class="text-center">Fecha de Intervencion </th>
-                                                                <th class="text-center">Motivo Intervencion</th>
+                                                                <th class="text-center">Fecha de Intervención </th>
+                                                                <th class="text-center">Motivo Intervención</th>
                                                                 <th class="text-center">Diagnostico</th>
                                                                 <th class="text-center">Observacion</th>	
-                                                                <th class="text-center" >Ver Intervencion</th> 
+                                                                <th class="text-center" >Ver Intervención</th> 
                                                             </tr>
                                                         </thead>
                                                         <tbody v-for="(list, index) in orden_internacion.list_Orden_intervencion">
                                                             <tr>
                                                                 <td>{{index + 1}}</td>
                                                                 <td>{{list.fechaOrden}}</td>
+                                                                    
                                                                 <td>{{list.motivoInternacion}}</td>
                                                                 <td>{{list.diagnostico}}</td>
                                                                 <td>{{list.observacion}}</td>
@@ -250,8 +285,11 @@
                                     <form @submit="postOrden_Intervencion">
                                         <div class="form-group">
                                             <div class="col-sm-12">
-                                                <label class="control-label">Fecha Intervencion:</label>
+                                                <label class="control-label">Fecha Intervención:</label>
+                                                <div  id="tab1default"><textarea   name="" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px " v-model="orden_internacion.reg_orden_intervencion.fechaOrden" ></textarea></div>
+                                                                        
                                                 <input type="date" class="form-control" name="" id=""  v-model="orden_internacion.reg_orden_intervencion.fechaOrden">
+                                            
                                             </div> 
                                         </div> 
                                         <br><br>
@@ -266,13 +304,109 @@
                                             </div>
                                         </div>
                                         <div class="form-group">  
-                                            <div class="col-sm-6"><br><br>
-                                                <label class="control-label">Examenes Complementarios:</label><br>
-                                                <textarea class="form-control" name="" cols="70" rows="5" v-model="orden_internacion.reg_orden_intervencion.examenComplementario"></textarea>
+                                            <div class="col-sm-12"><br><br>
+
+                                                <section class="panel default blue_title h2">
+                                                    <div class="panel-group accordion accordion-semi" id="accordion4">
+                                                        <div class="panel panel-default">
+                                                          <div class="panel-heading" @click="ListOrd_intervencion(<%=one_internacion[0].id%>)" >
+                                                            <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion4" href="#ac5-2"> <i class="fa fa-angle-right"></i>Examenes Complementarios</a> </h4>
+                                                          </div>
+                                                          <div id="ac5-2" class="panel-collapse collapse" style="height: 0px;" >
+                                                            <div class="panel-body"> 
+                                                                <div class="col-md-12">
+                                                                    <div class="table-responsive" >
+                                                                        
+                                                                        <!-------------------------------------------------------------------------------------------------------------------------
+                                                                            -------------------------------------debe rescatar de la pestaña de diagnostico de  ----------------------------------------------------
+                                                                        ---------------------------------------------------------------------------------------------------------------------------------->
+                                                                        <h5 class="text-center">Lista de Laboratorios</h5>
+                                                                        <table class="fl-table display table table-bordered table-striped" id="dynamic-table">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>Código</th>
+                                                                                <th>Examen Complementario</th>
+                                                                                <th class="center">Opciones</th>
+                                                                                
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                               
+                                                                                    <tr>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td>
+                                                                                            <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-eye text-muted"></i></a><span>&nbsp;</span>
+                                                                                           
+                                                                                        </td>
+                                                                                    </tr>
+                                                                            
+                                                                            </tbody>                                                                       
+                                                                        </table>
+                                                                        
+                                                                        <textarea class="form-control" name="" cols="70" rows="3" v-model="orden_internacion.reg_orden_intervencion.examenComplementario"></textarea>
+                                                
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                </section>
+                                            
                                             </div>
-                                            <div class="col-sm-6"><br><br>
-                                                <label class="control-label">Diagnostico:</label><br>
-                                                <textarea class="form-control" name="" cols="70" rows="5" v-model="orden_internacion.reg_orden_intervencion.diagnostico"></textarea>
+                                    
+                                              
+                                            <!-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                            ---------------------------------------------------------------------tambien debe rescatrse dela pertaña el ultimo diagnostico Diagnostico ---------------------------------------------------------------------------------->
+                                            <div class="col-sm-12"><br><br>
+                                                
+                                                <section class="panel default blue_title h2">
+                                                    <div class="panel-group accordion accordion-semi" id="accordion4">
+                                                        <div class="panel panel-default">
+                                                          <div class="panel-heading" @click="ListOrd_intervencion(<%=one_internacion[0].id%>)" >
+                                                            <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion4" href="#ac4-2"> <i class="fa fa-angle-right"></i>Diagnostico</a> </h4>
+                                                          </div>
+                                                          <div id="ac4-2" class="panel-collapse collapse" style="height: 0px;" >
+                                                            <div class="panel-body"> 
+                                                                <div class="col-md-12">
+                                                                    <div class="table-responsive" >
+                                                                        <table class="fl-table display table table-bordered table-striped" id="dynamic-table3">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>Código</th>
+                                                                                <th>Descripción</th>
+                                                                                <th class="center">Opciones</th>
+                                                                                
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                               
+                                                                                    <tr>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td>
+                                                                                            <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
+                                                                                           
+                                                                                        </td>
+                                                                                    </tr>
+                                                                            
+                                                                            </tbody>                                                                       
+                                                                        </table> 
+                                                                        <textarea class="form-control" name="" cols="70" rows="5" v-model="orden_internacion.reg_orden_intervencion.diagnostico"></textarea>
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                </section>
+                                            
                                             </div>
                                         </div>
                                         <br><br>
@@ -287,11 +421,54 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-sm-6"><br><br>
-                                                <label class="control-label">Diagnostico de Egreso: </label><br>
-                                                <textarea class="form-control" name="" cols="70" rows="5" v-model="orden_internacion.reg_orden_intervencion.diagnosticoEgreso"></textarea>
+                                            <div class="col-sm-12"><br><br>
+                                                <section class="panel default blue_title h2">
+                                                    <div class="panel-group accordion accordion-semi" id="accordion4">
+                                                        <div class="panel panel-default">
+                                                          <div class="panel-heading" @click="ListOrd_intervencion(<%=one_internacion[0].id%>)" >
+                                                            <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion4" href="#ac6-2"> <i class="fa fa-angle-right"></i>Diagnostico de Egreso a la Sala de Intervencion</a> </h4>
+                                                          </div>
+                                                          <div id="ac6-2" class="panel-collapse collapse" style="height: 0px;" >
+                                                            <div class="panel-body"> 
+                                                                <div class="col-md-12">
+                                                                    <div class="table-responsive" >
+                                                                        <table class="fl-table display table table-bordered table-striped" id="dynamic-table4">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>Código</th>
+                                                                                <th>Descripción</th>
+                                                                                <th class="center">Opciones</th>
+                                                                                
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                               
+                                                                                    <tr>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td>
+                                                                                            <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
+                                                                                           
+                                                                                        </td>
+                                                                                    </tr>
+                                                                            
+                                                                            </tbody>                                                                       
+                                                                        </table> 
+                                                                        <textarea class="form-control" name="" cols="70" rows="3" v-model="orden_internacion.reg_orden_intervencion.diagnosticoEgreso"></textarea>
+                                            
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                </section>
+                                               
+                                            
                                             </div>
-                                            <div class="col-sm-6"><br><br>
+                                            <div class="col-sm-12"><br><br>
                                                 <label class="control-label">Plan de Manejo de Tratamiento: </label><br>
                                                 <textarea class="form-control" name="" cols="70" rows="5" v-model="orden_internacion.reg_orden_intervencion.planManejoTratamiento"></textarea>
                                             </div>
@@ -468,7 +645,7 @@
                                                     <div class="panel-body">
                                                         <div class="col-md-12">
                                                             <div class="table-responsive" >
-                                                                <table class="fl-table">
+                                                                <table class="fl-table display table table-bordered table-striped" id="dynamic-table5">
                                                                     <thead>
                                                                         <tr>
                                                                             <th class="text-center">#</th>
@@ -572,7 +749,7 @@
                                                     <div class="panel-body">
                                                         <div class="col-md-12">
                                                             <div class="table-responsive" >
-                                                                <table class="fl-table">
+                                                                <table class="fl-table display table table-bordered table-striped" id="dynamic-table6">
                                                                     <thead>
                                                                           <tr>
                                                                             <th class="text-center">#</th>
@@ -607,27 +784,80 @@
                                         <template v-if="!daigTratameinto.one_diagTratamiento">                        
                                             <form @submit="reg_diagnostico">
                                                 <div class="form-group">
-                                                    <div class="col-sm-3"><br>
+                                                    <div class="col-sm-6"><br>
                                                         <label class="control-label">Sintomas:</label>  
                                                         <textarea class="form-control" name="" cols="50" rows="5"  v-model="daigTratameinto.sintomas"></textarea>
                                                     </div>
-                                                    <div class="col-sm-3"><br>
+                                                    <div class="col-sm-6"><br>
                                                         <label class="control-label">Examen Fisico:</label> 
                                                         <textarea class="form-control" name="" cols="50" rows="5" v-model="daigTratameinto.examenFisico"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="col-sm-3"><br>
-                                                        <label class="control-label">Diagnostico:</label> 
-                                                        <textarea class="form-control" name="" cols="50" rows="5" v-model="daigTratameinto.diagnostico"></textarea>
+                                                    <div class="col-sm-12"><br>
+                                                        <section class="panel default blue_title h2">
+                                                                <div class="panel-group accordion accordion-semi" id="accordion4">
+                                                                    <div class="panel panel-default">
+                                                                      <div class="panel-heading" @click="ListOrd_intervencion(<%=one_internacion[0].id%>)" >
+                                                                        <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion4" href="#ac8-2"> <i class="fa fa-angle-right"></i>Diagnostico</a> </h4>
+                                                                      </div>
+                                                                      <div id="ac8-2" class="panel-collapse collapse" style="height: 0px;" >
+                                                                        <div class="panel-body"> 
+                                                                            <div class="col-md-12">
+                                                                                <div class="table-responsive" >
+                                                                                    <table class="fl-table display table table-bordered table-striped" id="dynamic-table7">
+                                                                                        <thead>
+                                                                                        <tr>
+                                                                                            <th>#</th>
+                                                                                            <th>Código</th>
+                                                                                            <th>Descripción</th>
+                                                                                            <th class="center">Opciones</th>
+                                                                                            
+                                                                                        </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                           
+                                                                                                <tr>
+                                                                                                    <td></td>
+                                                                                                    <td></td>
+                                                                                                    <td></td>
+                                                                                                    <td>
+                                                                                                        <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
+                                                                                                       
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                        
+                                                                                        </tbody>                                                                       
+                                                                                    </table> 
+                                                                                    <textarea class="form-control" name="" cols="50" rows="3" v-model="daigTratameinto.diagnostico"></textarea>
+                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                            </section>
+                                                     
+                                                    
                                                     </div>
-                                                    <div class="col-sm-3"><br>
+                                                    <div class="col-sm-12"><br>
                                                         <label class="control-label">Tratamiento:</label> 
                                                         <textarea class="form-control" name="" cols="50" rows="5" v-model="daigTratameinto.tratamiento"></textarea>
                                                     </div>
-                                                </div>
+                                                </div><br>
+                                                <!---------------------------------------------------------------------------------------------------
+                                                -----------------------------------------------Receta----------------------------------------------------->
                                                 <div class="form-group">
+                                                    <div class="header col-sm-12">
+                                                        <div class="actions"> <br>
+                                                             <a  @click="inserMed" class="list-group-item  blue_bg text-center "><i class="fa fa-arrow-left"></i> Insertar</a>
+                                                        </div><br>
+                                                            <h3 class="content-header">Receta</h3>
+                                                    </div>&nbsp;&nbsp;
+                                                          	
                                                     <div class="col-sm-3"><br>
+                                                           
                                                         <label class="form-label">Medicamento:</label> 
                                                         <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.med.medic">
                                                     </div>
@@ -646,13 +876,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-sm-3"><br>
-                                                        <a class="btn btn-info btn-icon" @click="inserMed" >Insertar <i class="fa fa-arrow-left"></i></a>
+                                                       
                                                     </div>
                                                 
                                                 <div class="row">
                                                     <div class="col-md-12"><br>
                                                         <div class="table-responsive" >
-                                                            <table class="fl-table">
+                                                            <table class="fl-table display table table-bordered table-striped" id="dynamic-table5">
                                                                 <thead>
                                                                     <tr>
                                                                         <th class="text-center">#</th>
@@ -678,47 +908,99 @@
                                                     </div>
                                                 </div>
                                                 </div>
-                                                <div class="form-group" >
-                                                    <div class="col-sm-6"> <br>
-                                                        <label class="form-label">Estudio:</label>
-                                                        <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.est.estud">
-                                                    </div>
-                                                    <div class="col-sm-6">  <br>
-                                                        <label class="form-label">Nombre estudio:</label>
-                                                        <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.est.nombre_estudio">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-sm-3"><br>
-                                                        <a  class="btn btn-info btn-icon" @click="inserEstudio"> Insertar<i class="fa fa-arrow-left"></i> </a><br>
-                                                    </div>
-                                                </div>
+                                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                ---------------------------------------son las ordenes o examenes complementarios en la estatia del paciente-----------------------------------------------------
+                                                ----------------------------------------------------------------------------------------------------------------------------------------------------------------->
                                                 
-                                                <div class="row">
-                                                    <div class="col-md-12"><br>
-                                                        <div class="table-responsive" >
-                                                            <table class="fl-table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th class="text-center">#</th>
-                                                                        <th class="text-center">estudios</th>
-                                                                        <th class="text-center">nombreEstudio</th>                                                
-                                                                        <th class="text-center">Opciones</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody v-for="(list, index) in daigTratameinto.estudios">
-                                                                    <tr>
-                                                                        <td>{{index + 1}} </td>
-                                                                        <td>{{list.estudios}}</td>  
-                                                                        <td>{{list.nombreEstudio}}</td>  
-                                                                        <td> <a @click="eliminarEstudio(index)"> Eliminar </a></td>                                          
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                                <div class="form-group" >
+                                                    <section class="panel default blue_title h2">
+                                                    <div class="panel-group accordion accordion-semi" id="accordion4">
+                                                        <div class="panel panel-default">
+                                                          <div class="panel-heading" @click="ListOrd_intervencion(<%=one_internacion[0].id%>)" >
+                                                            <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion4" href="#ac7-2"> <i class="fa fa-angle-right"></i>Examenes Complementarios</a> </h4>
+                                                          </div>
+                                                          <div id="ac7-2" class="panel-collapse collapse" style="height: 0px;" >
+                                                            <div class="panel-body"> 
+                                                                <div class="col-md-12">
+                                                                    <div class="table-responsive" >
+                                                                        
+                                                                        <!---------------------------------------------------------------------
+                                                                            -de aqui se debe llevar para la orden de intervencion-
+                                                                        ---------------------------------------------------------------------->
+                                                                        <h5 class="text-center">Lista de Laboratorios</h5>
+                                                                        <table class="fl-table display table table-bordered table-striped" id="dynamic-table">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>Código</th>
+                                                                                <th>Examen Complementario(Estudio)</th>
+                                                                                <th class="center">Opciones</th>
+                                                                                
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                               
+                                                                                    <tr>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td>
+                                                                                            <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-eye text-muted"></i></a><span>&nbsp;</span>
+                                                                                           
+                                                                                        </td>
+                                                                                    </tr>
+                                                                            
+                                                                            </tbody>                                                                       
+                                                                        </table>
+                                                                        
+                                                                        <div class="col-sm-6"> <br>
+                                                                            <label class="form-label">Estudio:</label>
+                                                                            <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.est.estud">
+                                                                        </div>
+                                                                        <div class="col-sm-6">  <br>
+                                                                            <label class="form-label">Nombre estudio:</label>
+                                                                            <input class="form-control" type="text" name="" id="" v-model="daigTratameinto.est.nombre_estudio">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-3"><br>
+                                                                            <a  class="btn btn-info btn-icon" @click="inserEstudio"> Insertar<i class="fa fa-arrow-left"></i> </a><br>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-md-12"><br>
+                                                                            <div class="table-responsive" >
+                                                                                <table class="fl-table display table table-bordered table-striped" id="dynamic-table5">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th class="text-center">#</th>
+                                                                                            <th class="text-center">estudios</th>
+                                                                                            <th class="text-center">nombreEstudio</th>                                                
+                                                                                            <th class="text-center">Opciones</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody v-for="(list, index) in daigTratameinto.estudios">
+                                                                                        <tr>
+                                                                                            <td>{{index + 1}} </td>
+                                                                                            <td>{{list.estudios}}</td>  
+                                                                                            <td>{{list.nombreEstudio}}</td>  
+                                                                                            <td> <a @click="eliminarEstudio(index)"> Eliminar </a></td>                                          
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                          </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <br>
+                                                      </div>
+                                                </section>
+                                                
                                                 <div class="form-group">
                                                     <div class="col-sm-offset-4 col-sm-10">
                                                         <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
@@ -777,7 +1059,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12"><br>
                                                         <div class="table-responsive" >
-                                                            <table class="fl-table">
+                                                            <table class="fl-table display table table-bordered table-striped" id="dynamic-table5">
                                                                 <thead>
                                                                     <tr>
                                                                         <th class="text-center">#</th>
@@ -857,7 +1139,7 @@
                             </div>
                         </div>
                             
-                    </div>
+        </div>
                     <div id="Tab4" class="tab-pane fade ">
                         <div class="row">
                             <div class="col-sm-12">
@@ -999,7 +1281,7 @@
                                             <form @submit="formSubmit">
                                                 <div class="form-group"> 
                                                     <div class="col-sm-6">  
-                                                        <label class="control-label">Fecha de Internacion:</label>
+                                                        <label class="control-label">Fecha de Internación:</label>
                                                         <input type="date" class="form-control"name="" v-model="fecha_internacion" >
                                                     </div>   
                                                     <div class="col-sm-6">   
@@ -1132,6 +1414,7 @@
         </div>
     </div>
    <%- include("../partials/scripts") -%>
+
    <script src="/js/vue/epicrisis.js"></script>  
 </body>
 </html>

@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Egreso</title>
+    <title>Defunción General</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="viewport"
@@ -46,7 +46,7 @@
     </style>
     <%- include("../partials/head") -%>
 </head>
-<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
+<body class=" light_theme  fixed_header left_nav_fixed" >
 	 <!-- Content page-->
 	<div class="wrapper">
         <!--\\\\\\\ wrapper Start \\\\\\-->
@@ -120,11 +120,11 @@
                         <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
                                 <li> 
-                                    <a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color" >Egreso del Paciente</b> </a> 
+                                    <a href="/hospitalizacion/egresoVoluntariovis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b  >Egreso del Paciente</b> </a> 
                                 </li>
                             
 								<li> 
-                                    <a href="/hospitalizacion/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Defunción General</b> </a> 
+                                    <a href="/hospitalizacion/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Defunción General</b> </a> 
                                 </li>
 								
 							</ul>
@@ -155,7 +155,7 @@
 			<div class="header ">
 				<div class="">
 					<div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div><br>
-						<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Egreso o Alta Médica</h3>
+						<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Defunción General</h3>
 					</div>       
 				</div>
 				<div id="" class="col-md-2">	
@@ -175,7 +175,7 @@
 					<div class="panel-group accordion accordion-semi " id="accordion3">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente</a> </h4>
+								<h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del/ la Difunto(a)</a> </h4>
 							</div>
 							<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
 								<div class="panel-body"> 
@@ -197,7 +197,16 @@
 												
 										</div>
 										<br> <br>
+										<div class="form-group">
+												<div class="col-sm-3">Edad: <br>
+													<label><font color="black"></font></label>
+													<input type="hidden" v-model="historial" :value=''> 
+												</div>
+												<div class="col-sm-3">Estado Civil:  <br>
+													<label><font color="black"></font></label>
+												</div>
 											
+											</div>
 									</form>
 								</div>
 							</div>
@@ -206,43 +215,42 @@
 				<div >
 				<div class="col-md-12">
 				<!--se recupera de la primera -->	
-				<h6 class="panel-title">Diagnostico de Admición:</h6>
-
-				  	<div class="col-md-12"> 
-						<input class="form-control" type="text" name="" value=""size="10"readonly="" value="" ><br>	
+				
+				<h6 class="panel-title">Datos de la Defunción:</h6><br>
+						
+				  	<div class="col-md-4"> 
+						<label class="">Fecha de la defunción:</label>
+						<input class="form-control" type="text" name="" value=""size="10" ><br>	
 					</div>
-				<h6 class="panel-title"><a>Diagnostico de Egreso:</a></h6>
-					<div class="col-md-12">
-							<input class="form-control" type="text" name="" size="10" readonly="" value="Busque el Diagnostico" ><br>
-						<table class="fl-table display table table-bordered table-striped" id="dynamic-table3">
 
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Código</th>
-									<th>Descripción</th>
-									<th class="center">Opciones</th>
-								</tr>
-							</thead>
-								<tbody>	   
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td class="center">
-										<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>								   
-										</td>
-									</tr>		
-								</tbody>                                                                       
-						</table> 
-								
+					<div class="col-md-4"> 
+						<label class="">Hora de la defunción:</label>
+						<input class="form-control" type="text" name="" value=""size="10" ><br>	
 					</div>
+					<div class="col-md-4"> 
+						<label class="">Lugar de la defunción:</label>
+						<input class="form-control" type="text" name="" value=""size="10" ><br>	
+					</div>
+					
+					
+				<div class="col-md-12">
+					<label class="">Tuvo Atención Médica durante la enfermedad o Lesión que condujo su muerte:</label>
+					
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Si</option>
+						<option>No</option>
+				
+					</select>
+				</div>
+
 					
 				</div>
 			
 				<br><br>
-				<h6 class="panel-title">Examenes Complementarios de Diagnosticos realizados </h6><br>
-				<div class="col-md-12">
+				
+				<div class="col-md-12"><br>
+					<h6 class="panel-title">Causas basicas de la defunción </h6><br>
 					<table class="fl-table display table table-bordered table-striped" id="dynamic-table3">
 						<thead>
 							<tr>
@@ -266,58 +274,94 @@
 						</tbody>                                                                       
 					</table> 
 				</div>
+			
+				<div class="col-md-6">
+						<br>
+				<h6 class="panel-title">Si la defuncion fue accidental o violenta especifique:</h6>
+					<label for="">Fue un presunto</label>
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Accidente</option>
+						<option>Suicidio</option>
+						<option>Homicidio</option>
+					</select>
+
 				
-				
-				<div class="col-md-12"><br>
-					<div class="col-md-6">
-							<h6 >Condición al Egresar:</h6>
-						<select class="form-control" name="institucion">
-							<option>--------</option>
-							<option>Mejorado</option>
-							<option>No mejorado</option>
-							<option>Muerto</option>
-						</select>
-					</div>
-					<div class="col-md-6">
-						<h6 >Fecha de Alta:</h6>
-						<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
-					</div>
-					
-					
 				</div>
+				<div class="col-md-6"><br><br>
+					<label for="">Probable Mecanismos que produjo la muerte</label>
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Accidente de trancito</option>
+						<option>Desastre Natural</option>
+						<option>Gople</option>
+						<option>Asficcia</option>
+						<option>Otro</option>
+					</select>
+
+				</div>
+				<div class="col-md-12"> 
+					<label for="">Descripción Breve del Suceso</label>
+					<input class="form-control" type="text" name="" value=""size="10" ><br>	
+				</div>
+				<div class="col-md-6">
+					<label for="">Lugar que ocurrio la Lesion</label>
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Domicilio</option>
+						<option>Via Publica</option>
+						<option>Trabajo</option>
+						<option>Escuela U</option>
+						<option>Oficina</option>
+					</select>
+	
+				</div><br>
+				<div class="col-md-12"><br>
+					<label class="panel-title">La Defuncion corresponde a a Mujeren en edad Fertil(10 a 59 años)Especifique</label>
+						<br>	
+				<div class="col-md-12">
+						
+					<label for="">La Defuncion Ocurrio Durante</label>
+					
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Embarazo</option>
+						<option>Parto</option>
+						<option>Post Aborto</option>
+					</select>
+	
+				</div>
+				
+			</div>
+				<div class="col-md-12"><br>
+						<label class="panel-title">Persona que certifica la defuncion</label>
+					
+						<br>
+					<div class="col-md-6">
+					<label for="">Quien lo verifica</label>
+						
+					<select class="form-control" name="institucion">
+						<option>--------</option>
+						<option>Medico</option>
+						<option>Forence</option>
+						
+					</select>
+				</div>
+				<div class="col-md-6"> 
+						<label for="">Nombre</label>
+						<input class="form-control" type="text" name="" value=""size="10" ><br>	
+					</div>
+					<div class="col-md-6"> 
+							<label for="">Marticula Profecional</label>
+							<input class="form-control" type="text" name="" value=""size="10" ><br>	
+						</div>
+		
+				</div>
+				
+	
 			</div>
 				</div>
-			<br>
-			<h6 class="panel-title">Detalles del Epicrisis</h6>
-				</div>		
-			<div id="main-content">
-			<section class="panel default blue_title h2">
-				<div class="page-content">
-				<div >
-					<div class="panel with-nav-tabs panel-default">
-						<div class="page-content">
-							<ul class="nav nav-tabs nav_bg" id="myTab">
-								<li class=" active active  text-center"><a href="#tab1default" data-toggle="tab">Tratamiento Quirurgico</a></li>
-								<li class=" text-center"><a href="#tab2default" data-toggle="tab">Tratamiento Médico</a></li>
-								<li class=" text-center"><a href="#tab3default" data-toggle="tab">Complicaciones</a></li>
-								<li class=" text-center"><a href="#tab4default" data-toggle="tab">Control y Tratamiento a Seguir</a></li>
-								<li class=" text-center"><a href="#tab4default" data-toggle="tab">Recomendaciones</a></li>
-							</ul>
-						</div>
-						<div class="panel-body">
-							<div class="tab-content">
-								<div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="anamnesis"  cols="100" rows="10"></textarea></div>
-								<div class="tab-pane fade" id="tab2default"><textarea class="large-compact" name="diagnostico" cols="100" rows="10"></textarea></div>
-								<div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="100" rows="10"></textarea></div>
-								<div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="100" rows="10"></textarea></div>
-								<div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="100" rows="10"></textarea></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				</div>
-			</section> 
-		</div>	  
+			<br>		</div>	  
 				  <p class="text-center">
 					  <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
 					  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
@@ -337,7 +381,7 @@
 </div>
 
 	<!--====== Scripts -->
-	<script src="/js/fecha.js"></script>
+	
 	<script src="/js/get/consultaget.js"></script>	
 	
 	<script src="/js/get/consultaget.js"></script>

@@ -78,14 +78,24 @@
 				<div class="col-md-12">
 					<div class="block-web">
 						<div class="header">
-							<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+							<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a> </div>
 							<h3 class="content-header"> <i class="fa fa-medkit icon"></i> Registro de Medicamento</h3>
 						</div>
 						<%if(msg) { %>
 							<%if(msg.data.success == false) { %>
-								<h3 style="color: red"><%=msg.data.data_med%></h3>
+								<div class="bs-example mover">
+									<div class="alert alert-danger fade in">
+									  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+									  <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(95, 4, 4);"><%=msg.data.data_med%></h6></strong>
+									</div>
+								  </div>
 							<% } else {%>
-								<h3 style="color: blue"><%=msg.data.data_med%></h3>
+								<div class="bs-example mover">
+									<div class="alert alert-info fade in">
+									  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+									  <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg.data.data_med%></h6></strong>
+									</div>
+								  </div>
 							<% } %>
 						<% } %>
 						<div class="porlets-content">
@@ -102,11 +112,11 @@
 											<div class="form-group">
 												<label >Grupo de Asignación:</label>
 												<select name="descripcion"required class="form-control" id="source" onkeyup="mayus(this);" >
-													<optgroup label="Estatus de la compra">
+													<option selected>SELECCIONE AQUI...</option>
+													<optgroup label="Grupo Asignacion">
 														<%for(data of list_grupoAsig_Far) { %>
 															<option><%= data.descripcion%></option>
 														<% } %>
-														
 													</optgroup>                       
 												</select>
 											</div>
@@ -171,7 +181,7 @@
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-									<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+									<button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
 								</form>
 								<% } else { %>
 							
@@ -181,7 +191,7 @@
 											<div class="form-group">
 												<label >Grupo de Asignación:</label>
 												<select name="descripcion"required class="form-control" id="source" onkeyup="mayus(this);" >
-													<optgroup label="Estatus de la compra">
+													<optgroup label="Grupo Asignacion">
 														<option><%=data_body_post.data.descripcion%></option>
 														<option value="">----------------------------</option>
 														<%for(data of list_grupoAsig_Far) { %>
@@ -276,11 +286,10 @@
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-									<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+									<button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
 								</form>
 							<% } %>
 							<% } else { %>
-								<h3>formulario de actualizacion</h3> <br>
 								<a href="/voler123/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"></a>
 								<form  action="/farmacia/update_medicamento/<%=one_medicamento.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
 									<div class="col-md-12">
@@ -288,7 +297,7 @@
 											<div class="form-group">
 												<label >Grupo de Asignación:</label>
 												<select name="descripcion"required class="form-control" id="source" onkeyup="mayus(this);" >
-													<optgroup label="Estatus de la compra">
+													<optgroup label="Grupo de Asignacion">
 														<option><%=one_medicamento.data[0].grupo_asignacion.descripcion%></option>
 														<option value="">------------------------------</option>
 														<%for(data of list_grupoAsig_Far) { %>
@@ -353,63 +362,62 @@
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-									<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+									<a class="btn btn-danger" href="/farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i>Cancelar</a>
 								</form>
 							<% } %>
 						</div>
+						<div id="main-content">
+								<div class="page-content">
+									  <div class="row">
+										<div class="col-md-12">
+											 <div class="block-web">
+												<div class="header">
+													  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a>  </div>
+													  <h3 class="content-header">Lista de Medicamentos</h3>
+												</div>
+												<div class="porlets-content">
+													  <div class="table-responsive">
+														<table  class="display table table-bordered table-striped " id="dynamic-table">
+															<thead>
+																<tr>
+																	<th>#</th>
+																	<th>Codigo</th>
+																	<th>Nombre</th>
+																	<th>Unidad de Medida</th>
+																	<th>Forma Farmaceutica</th>
+																	<th>Cantidad en Unidad</th>												
+																	<th>Precio Venta</th>
+																	<th>Modificar</th>
+																	<th>Ver cantidades</th>
+																</tr>
+															</thead>
+															<tbody>
+																<%for(var i = 0; i< list_medicamentos.length; i++) { %>
+																<tr>
+																	<td><%=i+1%></td>
+																	<td><%=list_medicamentos[i].codificacion%></td>
+																	<td><%=list_medicamentos[i].nombre%></td>
+																	<td><%=list_medicamentos[i].unida_medida%></td>
+																	<td><%=list_medicamentos[i].forma_f%></td>
+																	<td><%=list_medicamentos[i].cantidad_unidad%></td>
+																	<td><%=list_medicamentos[i].precio%></td>
+																	<td class="center hidden-phone"><a class="btn btn-success" href="/farmacia/one_medicamento/<%=list_medicamentos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-refresh"></i> </a></td>
+																	<td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/farmacia/medicametos_cantidad/<%=list_medicamentos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-folder-open"></i> </a></td>
+																</tr>
+																<% } %>
+															<tbody>
+														</table>
+													  </div><!--/table-responsive-->
+												</div><!--/porlets-content-->
+											  </div><!--/block-web--> 
+										</div><!--/col-md-12--> 
+									</div><!--/row-->
+								</div><!--/page-content end--> 
+							  </div><!--/main-content end--> 
 					</div>
 				</div>
 			</div>
-		<!--/row-->
-      	<!--\\\\\\\ table \\\\\\-->
-      	<div id="main-content">
-        	<div class="page-content">
-          		<div class="row">
-            		<div class="col-md-12">
-             			<div class="block-web">
-                			<div class="header">
-                  				<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                  				<h3 class="content-header">Tabla de Datos</h3>
-                			</div>
-                			<div class="porlets-content">
-                  				<div class="table-responsive">
-                    				<table  class="display table table-bordered table-striped " id="dynamic-table">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>Codigo</th>
-												<th>Nombre</th>
-												<th>Unidad de Medida</th>
-												<th>Forma Farmaceutica</th>
-												<th>Cantidad en Unidad</th>												
-												<th>Precio Venta</th>
-												<th>Opciones</th>
-												<th>Ver cantidades</th>
-											</tr>
-										</thead>
-										<tbody>
-											<%for(var i = 0; i< list_medicamentos.length; i++) { %>
-											<tr>
-												<td><%=i+1%></td>
-												<td><%=list_medicamentos[i].codificacion%></td>
-												<td><%=list_medicamentos[i].nombre%></td>
-												<td><%=list_medicamentos[i].unida_medida%></td>
-												<td><%=list_medicamentos[i].forma_f%></td>
-												<td><%=list_medicamentos[i].cantidad_unidad%></td>
-												<td><%=list_medicamentos[i].precio%></td>
-												<td><a class="btn btn-success" href="/farmacia/one_medicamento/<%=list_medicamentos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-refresh"></i> </a></td>
-												<td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/farmacia/medicametos_cantidad/<%=list_medicamentos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-folder-open"></i> </a></td>
-											</tr>
-											<% } %>
-										<tbody>
-                    				</table>
-                  				</div><!--/table-responsive-->
-                			</div><!--/porlets-content-->
-              			</div><!--/block-web--> 
-            		</div><!--/col-md-12--> 
-        		</div><!--/row-->
-        	</div><!--/page-content end--> 
-      	</div><!--/main-content end--> 
+		
     </div>
 	<!--\\\\\\\ content panel end \\\\\\-->
 </div>

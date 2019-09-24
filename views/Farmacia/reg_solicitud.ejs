@@ -82,76 +82,67 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bar-chart-o icon"></i> Lista de Productos</h4>
           </div>
-          <!-- 
-            lista de medicamentos
-           -->
-          <div class="modal-body"> 
-              <div class="row">
-                  <span style="color: red;">{{alert}}</span>
-                  <span style="color: blue;">{{pass}}</span>
-               
-                <div class="col-xs-12">
-                  <br>
-                  <label><i class="fa fa-search"> buscar </i></label>
-                  <div class="control is-grouped">
-                    <p class="control is-expanded">
-                      <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el Nombre y la Presentacion">
-                      <a class="button is-primary" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">Limpiar</a><br>
-                      <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
-                    </p>
-                  </div>
-                </div> 
-                <div class="col-xs-12">
-                  <nav class="pagination m-pagination">
-                    <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Anterior</a>
-                    <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Siguiente</a>
-                    <ul>
-                      <li>
-                        <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}"><<</a>
-                      </li>
-                      <li class="is-space"></li>
-                      <li v-for="item in paginationMeds.filteredMeds">
-                        <a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
-                      </li>
-                      <li class="is-space"></li>
-                      <li>
-                        <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">>></a>
-                      </li>
-                    </ul>
-                  </nav>
+          <!-- lista de medicamentos-->
+          
+            <div class="row">
+              <span style="color: red;">{{alert}}</span>
+              <span style="color: blue;">{{pass}}</span>
+              <div class="col-xs-10 col-md-offset-1">
+                <br>
+                <label><i class="fa fa-search"> buscar </i></label>
+                <div class="control is-grouped">
+                  <p class="control is-expanded">
+                    <input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el Nombre y la Presentacion">
+                    <a class="button is-primary" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">Limpiar</a>
+                    <span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
+                  </p>
                 </div>
-                <div class="col-xs-12">
-                  <table class="table is-bordered is-striped is-narrow">
-                    <thead>
-                      <tr>
-                      <th>Option</th>
-                      <th>Cantidad</th>												
-                      <th>Nombre</th>
-                      <th>Precentacion</th>
-                      <th>Cantidad</th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody v-for="(med, index) in paginatedMeds">
-                      <tr>
-                      <td><a @click="insert(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
-                      <td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
-                      <td>{{med.nombre}}</td>
-                      <td>{{med.presentacion}}</td>
-                      <td>{{med.cantidad}}</td>
-                      
-                      </tr>
-                    </tbody>
-                  </table>   
-                </div>
-               
+              </div> 
+              <div class="col-xs-10 col-md-offset-1">
+                <nav class="pagination m-pagination">
+                  <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Anterior</a>
+                  <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Siguiente</a>
+                  <ul>
+                    <li>
+                      <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}"><<</a>
+                    </li>
+                    <li class="is-space"></li>
+                    <li v-for="item in paginationMeds.filteredMeds">
+                      <a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
+                    </li>
+                    <li class="is-space"></li>
+                    <li>
+                      <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">>></a>
+                    </li>
+                  </ul>
+                </nav>
               </div>
-            <button type="submit" class="btn btn-primary">Aceptar</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <div class="col-xs-10 col-md-offset-1">
+                <table class="table is-bordered is-striped is-narrow">
+                  <thead>
+                    <tr>
+                    <th>Option</th>
+                    <th>Cantidad</th>												
+                    <th>Nombre</th>
+                    <th>Precentacion</th>
+                    <th>Cantidad</th>
+                    </tr>
+                  </thead>
+                  <tbody v-for="(med, index) in paginatedMeds">
+                    <tr>
+                    <td><a @click="insert(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+                    <td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
+                    <td>{{med.nombre}}</td>
+                    <td>{{med.presentacion}}</td>
+                    <td>{{med.cantidad}}</td>
+                    </tr>
+                  </tbody>
+                </table>   
+              </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
           </div>
-          <!-- 
-            <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-           -->
         </div>
       </div>
     </div>
@@ -181,11 +172,11 @@
                     <div class="form-group">
                       <label>Trimestre a Reportar:</label>
                       <select required class="form-control" v-model="trimestre" onkeyup="mayus(this);">
-                        <option>Primer Trimestre</option>
-                        <option>Segundo Trimestre</option>
-                        <option>Tercer Trimestre</option>
-                        <option>Cuarto Trimestre</option>
-                        <option>Solicitud de Emergencia</option>
+                        <option>PRIMER TRIMESTRE</option>
+                        <option>SEGUNDO TRIMESTRE</option>
+                        <option>TERCER TRIMESTRE</option>
+                        <option>CUARTO TRIMESTRE</option>
+                        <option>SOLICITUD DE EMERGENCIA</option>
                       </select>
                     </div>
                   </div>
@@ -240,7 +231,7 @@
                   </table>
                 </div><!--/table-responsive-->
                 <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-                <a class="btn btn-danger" href="/Farmacia/solicitudes"><i class="fa fa-times"></i> Cancelar</a>
+                <a class="btn btn-danger" href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i> Cancelar</a>
               </form>
 						</div>
           </div>

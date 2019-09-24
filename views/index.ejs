@@ -10,7 +10,41 @@
   <link href="/css/admin.css" rel="stylesheet" type="text/css" />
   
 </head>
+<script>
+    /*  locartion() */
+     ver()
+      function ver (){
+       var data =localStorage.getItem('data') 
+       var url = localStorage.getItem('url')
+       if(data != null){
+         var data_token =JSON.parse( localStorage.getItem('data') )
+         var data  = {
+           data_token: data_token,
+           url:url
+         }
+           var enviar = {
+           method: 'POST',
+           body: JSON.stringify(data),
+           headers: {
+             'Content-type' : "application/json"
+           }
+         }
+         fetch('/enviar',enviar)
+         .then(res => res.json())
+         .then(data => {
+          if(data.success == true){
+             window.location.replace(url+data_token.user.id)
+            //console.log(url+data_token.user.id)
+           }else{
+             console.log("false")
+           }
+           console.log(data.success)
+         })
+       }
+     } 
+</script>
 <body class="light_theme  fixed_header left_nav_fixed">
+   
   <%if (msg1 != null) {%>
     <div class="bs-example mover">
       <div class="alert alert-danger fade in">
@@ -86,17 +120,6 @@
 <script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
 
 <script src="/plugins/validation/parsley.min.js"></script>
-<script>
-  const validator = new Vue({
-    el:'#validator',
-    data: () => ({
-      cuenta:"",
-      contraceña:""
-    }),
-  })
-</script>
-
-
 
 </body>
 </html>

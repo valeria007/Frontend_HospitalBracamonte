@@ -107,11 +107,10 @@
 													<td><%=i+1%></td>
 													<td><%=resp[i].num_solicitud%></td>
 													<td><%=resp[i].responsable%></td>
-													<td><%=resp[i].createdAt%></td>
+													<td><%=resp[i].createdAt.split("T")[0]%></td>
 													<td><%=resp[i].trimestre%></td>													
 													<td>verificar si el pedido llego todo completo</td>
 													<td><%=resp[i].destino%></td>
-													
 													<td>ver</td>
 												</tr>
 											<% } %>
