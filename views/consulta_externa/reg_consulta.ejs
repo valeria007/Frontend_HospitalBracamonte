@@ -98,6 +98,14 @@
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>  </a> </li>
                         </ul>
                     </li>
+                    <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+                        <ul >
+                            <li> <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> </li>
+                            <li> <a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> </li>
+                            <li> <a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a> </li>
+                            <li> <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a></li>
+                        </ul>
+                    </li>
                     <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
                         <ul >
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nacido vivo</b>  </a> </li>
