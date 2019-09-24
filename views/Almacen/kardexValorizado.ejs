@@ -101,31 +101,35 @@
                         <table  class="display table table-bordered table-striped" id="dynamic-table">
                           <thead>
                             <tr>
+                            <th>#</th>
                             <th>Grupo de Asignacion</th>
+                            <th>Codigo</th>
                             <th>Articulo</th>
-                            <th>Unidad de Medida</th>
                             <th>Total de Ingresos</th>
                             <th>Valor de Ingresos</th>
                             <th>Totalo de Stock</th>
                             <th>Valor de Stock</th>
                             <th>Total de Salidas</th>
-                            <th>Valr de Salidas</th>
+                            <th>Valor de Salidas</th>
                             <th>Utilidad Valorizada</th>
                             </tr>
                           </thead>
                           <tbody>
+                              <% for(var i=0; i < resp.length; i++) { %>
                             <tr>
-                            <td>1</td>
-                            <td>123</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
+                                <td><%= i+1%></td>
+                                <td><%=resp[i].GrupoDesignado.descripcion%></td>
+                                <td><%=resp[i].codificacion%></td>
+                                <td><%=resp[i].nombre%></td>	
+                                <td>falta</td>
+                                <td>falta</td>
+                                <td><%=resp[i].unidades%></td>
+                                <td>falta</td>
+                                <td>falta</td>
+                                <td>falta</td>
+                                <td>falta</td>
                             </tr>
+                            <% } %>
                           <tbody>
                         </table>
                       </div><!--/table-responsive-->

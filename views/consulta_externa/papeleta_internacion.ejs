@@ -143,6 +143,13 @@
                                             <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt  "></i><span>&nbsp;&nbsp;&nbsp;</span> Lista de Internación del Paciente</a>
                                             </li>
                                         </ul>
+                                        <% if(msg != null) { %>
+                                            <% if(msg.data.success == true) { %>
+                                              <span style="color: blue"> <%=msg.data.msg%></span>
+                                            <% } else { %>
+                                              <span style="color: red"> <%=msg.data.msg%></span>
+                                            <% } %>  
+                                          <% } %>
                                         <div id="myTabContent" class="tab-content">
                                             <div class="tab-pane fade active in" id="PapeletaInternacion">
                                                 <div class="container-fluid">
@@ -154,7 +161,7 @@
                                                         <% if(resp == "") { %>
 
                                                         <form action="/consulta_externa/Pinternacion/<%=one_consulta[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
-
+                                                            <input type="hidden" name="id_medico" value="<%=data_doc.data.medico.id%>">
                                                             <div class="block-web">
                                                                 <div class="header">
                                                                     <div class="actions"> <a class="minimize"
@@ -530,19 +537,20 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-                                                            <p class="text-center">
-                                                                <button type="reset" class="btn btn-info"
-                                                                    style="margin-right: 20px;"><i
-                                                                        class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-                                                                    Limpiar</button>
-                                                                <button type="submit" class="btn btn-danger"><i
-                                                                        class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-                                                                    Guardar</button>
-                                                                <button type="submit" class="btn btn-outline-danger"><i
-                                                                        class="zmdi zmdi-download"></i> &nbsp;&nbsp;
-                                                                    Imprimir</button>
-                                                            </p>
+                                                            <%if(resp[0].estado_update == true) { %>
+                                                                <p class="text-center">
+                                                                    <button type="reset" class="btn btn-info"
+                                                                        style="margin-right: 20px;"><i
+                                                                            class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
+                                                                        Limpiar</button>
+                                                                    <button type="submit" class="btn btn-danger"><i
+                                                                            class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
+                                                                        Actualizar</button>
+                                                                    <button type="submit" class="btn btn-outline-danger"><i
+                                                                            class="zmdi zmdi-download"></i> &nbsp;&nbsp;
+                                                                        Imprimir</button>
+                                                                </p>
+                                                            <% } %>
                                                         </form>
                                                         <% } %>
                                                         <div class="container-fluid">

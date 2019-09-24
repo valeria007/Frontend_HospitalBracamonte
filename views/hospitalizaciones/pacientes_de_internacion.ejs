@@ -58,7 +58,7 @@
                 <div class="top_right_bar">
 
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                                src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+                                src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
                                 class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
@@ -79,7 +79,7 @@
 							class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
 							class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul >
-								<li> <a href="/internaciones/hospitalizacion/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b ><%=especialidad%></b>
+								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b ><%=data_doc.data.area_esp.nombre%></b>
 								</a> </li>
 							</ul>
 						</li>
@@ -87,7 +87,7 @@
 							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Lista de Paciente <span
 										class="plus"><i class="fa fa-plus"></i></span></a>
 								<ul class="opened" style="display:block" >
-									<li> <a href="/internaciones/ListaInternacionF/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+									<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 											<b class="theme_color">Listas de Internación</b>
 										</a> </li>
 									
@@ -139,7 +139,7 @@
 											<td><%=list_internacion[i].Paciente.apellidop%></td>
 											<td><%=list_internacion[i].Paciente.apellidom%></td>
 											<td><%=list_internacion[i].fechaIngreso%></td>
-											<td class="text-center" ><a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
+											<td class="text-center" ><a href="/internaciones/paciente_internacion/<%=list_internacion[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" ><i class="fa fa-pencil-square-o" style="color:green"></i></a></td>
 											
 										</tr>
 									<% } %>

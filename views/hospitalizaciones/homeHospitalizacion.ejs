@@ -4,6 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Home Hospitalización</title>
+
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
@@ -45,12 +46,35 @@
 </head>
 
 <body class="light_theme  fixed_header left_nav_fixed">
+	<script>
+		/* <%if(login != null){%> */
+			var esto  = `<%- JSON.stringify(token) %>`
+			var url = "/Internaciones/home/"
+			localStorage.setItem('data', esto ) 
+			localStorage.setItem('url', url) 
+		/* <% } else { %> */
+			/* 	<%if(token == "") {%> */
+				console.log("no hay token")
+			/* 	<% } else { %> */
+					var data = localStorage.getItem('data')
+					if (data == null){     // esto no esta funcionando como deberia de fucnionar 
+						window.location.replace('/')
+					}else{
+						var esto  = `<%- JSON.stringify(token) %>`
+						var url = "/Internaciones/home/"
+						localStorage.setItem('data', esto ) 
+						localStorage.setItem('url', url) 
+					}
+			/* 	<% } %> */
+		/* <% } %> */
+	
+	</script>
 	<!-- SideBar -->
 
 	<!-- Content page-->
 	<div class="wrapper">
 		<!--\\\\\\\ wrapper Start \\\\\\-->
-		<div class="header_bar">
+		<div class="header_bar ">
 			<!--\\\\\\\ header Start \\\\\\-->
 			<div class="brand">
 				<!--\\\\\\\ brand Start \\\\\\-->
@@ -65,7 +89,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								src="/images/user.png" /><span class="user_adminname">   <%=data_token.medico.nombre%> <%=data_token.medico.apellidop%> </span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -90,7 +114,7 @@
 									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
 									class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/internaciones/hospitalizacion/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b class="theme_color"><%=especialidad%></b>
+								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b class="theme_color"><%=especialidad.nombre%></b>
 									</a> </li>
 							</ul>
 						</li>
@@ -98,7 +122,7 @@
 						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Listas de Pacientes <span
 									class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/internaciones/ListaInternacionF/<%=especialidad%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+								<li> <a href="/internaciones/ListaInternacionF/<%=especialidad.id%>/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 										<b >Listas de Internación</b>
 									</a> </li>
 								
@@ -150,7 +174,7 @@
 										  <div class="col-sm-3">
 											  <div class="ticket_open">
 												  
-												  <a href="/internaciones/list_internadios" class="open_ticket_comment text-center ">
+												  <a href="/internaciones/list_internadios/<%=especialidad.id%>/<%=data_token.token_id%>" class="open_ticket_comment text-center ">
 													  <h4>Pacientes Internados</h4>
 													  
 													  <div class="btn-group">
@@ -197,6 +221,7 @@
 <!--\\\\\\\ inner end\\\\\\-->
 </div>
 <!--\\\\\\\ wrapper end\\\\\\-->
+</div>
 
 
 
@@ -296,6 +321,11 @@ e.preventDefault();
 });
 
 </script>
+ <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+ <script src="/axios/dist/axios.min.js"></script>
+
+ 
+
 
 </body>
 

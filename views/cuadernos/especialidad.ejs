@@ -38,7 +38,7 @@
             <ul>
               <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
               <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Farmacia</a> </li>
-              <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
+              <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
             </ul>
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -86,7 +86,12 @@
               <div class="form-group col-sm-12">
               <div class="col-sm-4">
                 <label class="control-labe">Especialidad:</label>
-                <input type="text" name="nombre" class="form-control" parsley-trigger="change"   required placeholder="Introdusca Nombre" onkeyup="mayus(this)"/>
+                <select class="selectpicker" data-show-subtext="true" data-live-search="true">
+                  <option>Paco</option>
+                  <option>Luis</option>
+                  <option>Luna</option>
+                  <option>Daniela</option>
+                </select>
               </div>
               
               <div class="col-sm-4">
@@ -134,6 +139,7 @@
           </div>
         </div>
         </div>
+        <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
         <div class="row">
         <div class="col-md-12">
           <div class="block-web">
@@ -162,9 +168,10 @@
                       <td class="text-center"><%=resp[i].sigla%></td>
                       <td class="text-center"><%=resp[i].descripcion%></td>
                       <td class="text-center">
-                        <a @click="data(<%=resp[i].id%>)" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
+                        <a @click="data(<%=resp[i].id%>),lista_consulta()" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
                         <a href=""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a>
                         <a href="/cuaderno/oneEsp/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a>
+                        <a @click="data(<%=resp[i].id%>),lista_doctores()" data-target="#myModal3" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar Doctor"><i class="fa fa-user "></i></a>                        
                       </td>							
                     </tr>
                     <% } %>
@@ -207,11 +214,11 @@
                                           <th class="text-center">Nombre</th>
                                         </tr>
                                       </thead>
-                                      <tbody >
+                                      <tbody v-for="(list, index) in list_consulta_especialidad">
                                         <tr>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
+                                          <td>{{index+1}}</td>
+                                          <td>{{list.sigla}}</td>
+                                          <td>{{list.nombre}}</td>
                                         </tr>
                                       </tbody>
                                   </table>
@@ -246,7 +253,99 @@
       </div>
     </div>
 </div>
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+       
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel">Consultorios </h4>
+      <span style="color: blue">{{msg}}</span>
+    </div>
+    <div class="modal-body"> 
+        <section class="panel default blue_title h2">
+            <div class="panel-group accordion accordion-semi" id="accordion3">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-3"> <i class="fa fa-angle-right"></i>Lista de Consultorios</a> </h4>
+                  </div>
+                  <div id="ac3-3" class="panel-collapse collapse" style="height: 0px;" >
+                    <div class="panel-body"> 
+                        <div class="col-md-12">
+                            <div class="table-responsive" >
+                                <table class="fl-table">
+                                    <thead>
+                                      <tr>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">ci</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody v-for="(list, index) in especilidad_lista_medicas">
+                                      <tr>
+                                        <td>{{index+1}}</td>
+                                        <td>{{list.nombre_doctor}}</td>
+                                        <td>{{list.ci}}</td>
+                                      </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+      <form class="form-horizontal" @submit="register_medicos" parsley-validate novalidate>
+          <div class="form-group">
+			  			<label for="inputPassword3" class="col-sm-2 control-label">C.I.:<i class="fa fa-users"> :</i></label>
+			  			<div class="col-sm-8">
+							<select v-model="ci_medico" @click="list_medicos">
+                <option disabled> Buscar por C.I... </option>
+				  			<% for(var i = 0; i< Lista_medicos.length; i++) { %>
+                  <option><%=Lista_medicos[i].ci%></option>
+                <% } %>
+							</select>
+			  			</div>
+					</div><!--/form-group-->
+      <div class="form-group">
+        <label  class="col-sm-2 control-label">Personal:</label>
+        <div class="col-sm-4">
+            <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change"  />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success btn-icon"  >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+            <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+        </div>
+      </div> 
+      </form>
+    </div>
+    </div>
+  </div>
 </div>
+</div>
+<script>
+  function buscarSelect()
+  {
+    // creamos un variable que hace referencia al select
+    var select=document.getElementById("elementos");
+   
+    // obtenemos el valor a buscar
+    var buscar=document.getElementById("buscar").value;
+   
+    // recorremos todos los valores del select
+    for(var i=1;i<select.length;i++)
+    {
+      if(select.options[i].text==buscar)
+      {
+        // seleccionamos el valor que coincide
+        select.selectedIndex=i;
+      }
+    }
+  }
+  </script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

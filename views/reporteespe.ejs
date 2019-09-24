@@ -78,9 +78,9 @@
                 <ul class="opened" style="display:block">
                   <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
                   <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                  <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Person.</b> </a> </li>
+                  <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
                   <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                  <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
+                  <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Espc.</b> </a> </li>
                 </ul>
               </li>
               <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -101,7 +101,7 @@
             <div class="block-web">
               <div class="header">
                     <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                    <h3 class="content-header ">Reportes Personal</h3>
+                    <h3 class="content-header ">Reportes Especialidades</h3>
               </div>
               <br>
               <br>
@@ -119,67 +119,28 @@
                       <input type="date" class="form-control" >
                     </div>
                   </div><!--/form-group-->  
-                  <div class="form-group pull-right">
-                    <div class="col-sm-4">
-                      <div class="btn-group">
-                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Generales<span class="caret"></span></button>
-                        <ul role="menu" class="dropdown-menu">
-                          <li><a href="/usuarios/onlymedico">Medicos</a></li>
-                          <li><a href="/usuarios/onlyperso">Personales</a></li>
-                          <li><a href="/usuarios/onlyenferme">Enfermeras</a></li>
-                          <li><a href="/usuarios/onlyfarma">Farmaceuticos</a></li>
-                          
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group pull-right">
-                    <div class="col-sm-4">
-                      <div class="btn-group">
-                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Usuarios<span class="caret"></span></button>
-                        <ul role="menu" class="dropdown-menu">
-                          <li><a href="/usuarios/allcuentas">Cuentas</a></li>
-                          <li><a href="/usuarios/allroles">Roles</a></li>
-                          
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                  
                 </form>
               </div>
-              <br>
               <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
                     <tr>
-                      <th class="text-center">Nombre</th>
-                      <th class="text-center">Apellido Paterno</th>
-                      <th class="text-center">Apellido Materno</th>	
-                      <th class="text-center">Cargo</th>	
-                      <th class="text-center">Fecha Creación</th>	
-                      <th class="text-center">Cuentas</th>
-                      <th class="text-center">Optiones</th>
+                          <th class="text-center">Nombre</th>
+                          <th class="text-center">Sigla</th>	
+                          <th class="text-center">Fecha Creación</th>	
+                          <th class="text-center">Optiones</th>
                     </tr>
                   </thead>
                   <tbody>
                     <%for (var i = 0; i< data.length; i++) { %>
                       <tr>
                         <td class="text-center"><%=data[i].nombre%></td>
-                        <td class="text-center"><%=data[i].apellidop%></td>
-                        <td class="text-center"><%=data[i].apellidom%></td>
-                        <td class="text-center"><%=data[i].cargo%></td>
+                        <td class="text-center"><%=data[i].sigla%></td>
                         <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                        <td ><select name="" id=""> 
-                          <%for(var j = 0; j < allusers.length; j++) {%>
-                            <%if (allusers[j].perso_id == data[i].id) { %>
-                              <option><%=allusers[j].username%></option>
-                            <% } %>
-                          <% } %>
-                        </select></td>
-
-                        <td><a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
-                        
-                        
+                        <td>
+                          <a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
+                        </td>
                       </tr>
                     <% } %>
                   </tbody>

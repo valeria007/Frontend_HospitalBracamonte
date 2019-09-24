@@ -4,6 +4,23 @@ const fetch = require('node-fetch');
 
 const datas = require('./url/export');
 
+router.post('/enviar', (req,res) => {
+  var data = req.body
+  if (data != "" ){
+    tok(data.data_token,data.data_token.user.id)
+    datas.name.token = listItems
+    res.status(200).json({
+      success:true
+    })
+    
+  }else{
+    res.status(400).json({
+      success:false,
+    })
+  }
+})
+
+// esta funcion es para poder mandar el usuario gegistrado de cada usuario
 var listItems = {}
 function tok(token,id){
   let storedItem = listItems[id];
@@ -27,6 +44,34 @@ function array () {
 function remove_Token(id) {
   delete datas.name.token[id];
 }
+
+
+//funcion para saver si se estaentrando por login 
+var login = {}
+function sessions(token,id){
+  let storedItem = login[id];
+    if (!storedItem) {
+      storedItem = login[id] = {
+        data: token,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array_session () {
+  let arr = [];
+  for (const id in login) {
+      arr.push(login[id]);
+  }
+  return arr;
+}
+
+function remove_session(id) {
+  delete datas.name.session[id];
+}
+
+
 
 router.get('/',(req, res) => {
   res.render('index', { msg1, msg2, msg3 })
@@ -68,6 +113,7 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
+    
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -81,7 +127,13 @@ router.post('/login', (req,res)  => {
     }else if ( datas.name.token[resp.user.id] == null ){
       token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
       tok(resp,resp.user.id); //funcion para añadir token del usuario  
-      
+
+      var session = {
+        login:true
+      }
+      sessions(session,resp.user.id)
+      datas.name.session = login // esto es para ver si el usuario inicio session desde login
+
       datas.name.token = listItems // esto es para añadir tokens a datas
       fetch('http://localhost:3600/api/user/'+resp.user.id)
       .then(resp => resp.json())
@@ -101,8 +153,10 @@ router.post('/login', (req,res)  => {
             res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
           }else if(resp.role[0].name == "farmacia"){
             res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
+          }else if(resp.role[0].name == "hospitalizacion"){
+            res.redirect('/Internaciones/home/'+resp.id)
           }else{
-            res.send(resp.role)
+            res.send(resp)
           }
         }else{
           res.redirect('/home')
@@ -111,6 +165,15 @@ router.post('/login', (req,res)  => {
         //res.redirect('/almacen/home/'+resp.user.id)
       }) 
     }else {
+
+      var session = {
+        login:true
+      }
+      remove_session(resp.user.id)
+      sessions(session,resp.user.id)
+      datas.name.session = login // esto es para ver si el usuario inicio session desde login
+
+
       token_part = resp.token.split(" ")[1].split(".")[2] // esto saca la parte final del token      
       remove_Token(resp.user.id)
       
@@ -136,6 +199,8 @@ router.post('/login', (req,res)  => {
             res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
           }else if(resp.role[0].name == "farmacia"){
             res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
+          }else if(resp.role[0].name == "hospitalizacion"){
+            res.redirect('/Internaciones/home/'+resp.id)
           }else{
             res.send(resp)
           }
@@ -156,9 +221,72 @@ router.post('/login', (req,res)  => {
   }
 })
 
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        login 2.0
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+router.get('/login2', (req,res) => {
+  res.render('login2');
+})
+
+router.post('/login2', (req,res) => {
+  const username = req.body.username;
+  const password = req.body.password;  
+ 
+  if(username =="" ){
+    msg3 = null
+    msg1='Introdusca por favor la cuenta.';
+    res.redirect('/')
+    
+  }else if( password == "" ){
+    msg3 = null
+    msg2 = 'Introdusca password.'
+    res.redirect('/')   
+
+  }else {
+    var data = req.body;
+    var enviar = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type' : "application/json"
+      }
+    }
+    fetch('http://localhost:3600/api/login',enviar)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(data_login => {
+      if(data_login.success == true){
+        if ( datas.name.token[data_login.user.id] == null ){
+          tok(data_login,data_login.user.id);
+
+          fetch('Internaciones/prueba',{id:45,nombre:"alejandro"})
+          
+        }else{
+          remove_Token(resp.user.id)
+          tok(data_login,data_login.user.id);
+          res.redirect('/Internaciones/prueba',{id:45,nombre:alejandro})
+        }
+        
+      }else{
+        res.redirect('/')
+      }
+
+    })
+  }
+})
+
 //ver token
 router.get('/token', (req,res) => {
-  res.send(datas.name.token)
+  res.send({
+    token:datas.name.token,
+    session: datas.name.session
+  })
 })
 
 router.get('/forrm',(req, res) => {
@@ -218,7 +346,13 @@ router.get('/salas',(req, res) => {
 });
 // role
 router.get('/roles',(req, res) => {
-  res.render('roles')
+  fetch('http://localhost:3600/api/personal')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('roles', {
+      data
+    })
+  })
 });
 router.get('/creroles',(req, res) => {
   fetch('http://localhost:3600/api/roleall')        

@@ -205,5 +205,108 @@ router.post('/crearCuenta/:id', (req,res) => {
   })
 });
 
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                             Reportes personal
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+router.get('/volver', (req,res) => {
+  all = null;
+  res.redirect('/usuarios/roles');
+})
+
+router.get('/roles',(req, res) => {
+  fetch('http://localhost:3600/api/personal')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    
+    fetch('http://localhost:3600/api/allUser')        
+    .then(resp => resp.json())
+    .then(allusers =>{ 
+      res.render('roles', {
+        data,
+        allusers
+      })
+    })
+   
+  })
+});
+router.get('/cuentas/:id', (req,res) => {
+  var id = req.params
+    fetch('http://127.0.0.1:3600/api/allrol/'+id.id)
+    .then(resp => resp.json())
+    .then(data =>{ 
+
+      fetch('http://127.0.0.1:3600/api/personal/'+id.id)
+      .then(resp => resp.json())
+      .then(one_person =>{ 
+
+        res.render('reporAdmin/detallimpre',{
+          data,
+          one_person
+        })
+      })
+     
+    })
+  
+  
+})
+
+
+router.get('/onlymedico',(req, res) =>{
+  fetch('http://localhost:3600/api/Only_Medicos')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriA', {
+      data
+    })
+  })
+})
+router.get('/onlyfarma',(req, res) =>{
+  fetch('http://localhost:3600/api/OnlyFarma')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriA', {
+      data
+    })
+  })
+})
+router.get('/onlyperso',(req, res) =>{
+  fetch('http://localhost:3600/api/OnlyPersonal')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriA', {
+      data
+    })
+  })
+})
+
+router.get('/onlyenferme',(req, res) =>{
+  fetch('http://localhost:3600/api/OnlyEnfermera')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriA', {
+      data
+    })
+  })
+})
+router.get('/allcuentas',(req, res) =>{
+  fetch('http://localhost:3600/api/allUser')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriusers', {
+      data
+    })
+  })
+})
+router.get('/allroles',(req, res) =>{
+  fetch('http://localhost:3600/api/roleall')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriRol', {
+      data
+    })
+  })
+})
 
 module.exports = router;

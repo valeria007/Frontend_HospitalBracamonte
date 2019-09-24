@@ -88,32 +88,34 @@
                         <button data-target="#myModal2" data-toggle="modal" class="btn btn-success btn-lg mb10"> Seleccione Aqui </button>
                       </div>  
                       <div class="table-responsive">
-                        <table  class="display table table-bordered table-striped " id="dynamic-table">
+                        <table  class="display table table-bordered table-striped" id="dynamic-table">
                           <thead>
                             <tr>
+                            <th>#</th>
                             <th>Codigo</th>
-                            <th>Descripcion</th>
+                            <th>Grupo Asignacion</th>
+                            <th>Nombre</th>
                             <th>Concentracion</th>
-                            <th>Forma Farmaceutica</th>
                             <th>Cantidad</th>
-                            <th>Fecha Vencimiento</th>
-                            <th>Grupo Asig.</th>
-                            <th>Precio de Compra</th>
                             <th>Precio de Venta</th>
+                            <th>Fecha Vencimiento</th>
+                            <th>estado Vencido</th>
                             </tr>
                           </thead>
                           <tbody>
+                              <% for(var i = 0; i < resp.length; i++) { %>
                             <tr>
-                            <td>1</td>
-                            <td>123</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
+                              <td><%= i+1%></td>
+                              <td><%=resp[i].codificacion%></td>
+															<td><%=resp[i].GrupoDesignado.descripcion%></td>
+                              <td><%=resp[i].nombre%></td>
+                              <td><%=resp[i].concentracion%></td>		 
+															<td><%=resp[i].precio%></td>	
+                              <td><%=resp[i].unidades%></td>
+                              <td><%=resp[i].createdAt.split("T")[0]%></td>	
+                              <td>Falta</td>
                             </tr>
+                            <% } %>
                           <tbody>
                         </table>
                       </div><!--/table-responsive-->

@@ -43,19 +43,24 @@ router.get('/limpiar', (req,res) => {
 //serv para renderizar y listar todas las especialidades
 router.get('/especialidad', (req,res) => {
     fetch(url.name.cuadernos+'/api/especialidad')
+    .then(res => res.json())
+    .then(resp => { 
+        fetch(url.name.pruebas+'/api/Only_Medicos')
         .then(res => res.json())
-        .then(resp => { 
+        .then(Lista_medicos => {
             res.render('cuadernos/especialidad',{
                 resp,
                 espONE,
                 mg1,
-                mg2
+                mg2,
+                Lista_medicos
             });
         })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-        }) 
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
     
 });
 //serv para poder sacar una sola especialidad para que pueda ser actualizado
@@ -119,6 +124,53 @@ router.post('/updateEsp/:id', (req,res)=> {
         mg2=data.message
         res.redirect('/cuaderno/oneEsp/'+id)
     })  
+})
+
+//asignar medico
+router.get('/VUe_lista_medicos', (req,res) => {
+    fetch(url.name.pruebas+'/api/Only_Medicos')
+    .then(res => res.json())
+    .then(Lista_medicos => { 
+        res.status(200).json(Lista_medicos)
+    })
+})
+
+router.post('/Vue_reg_doctor_especialidad/:id_especialidad', (req,res) => {
+    const { id_especialidad } = req.params
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch(url.name.cuadernos+'/api/reg_doctor_especialidad/'+id_especialidad,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)       
+    })  
+})
+
+router.get('/vue_only_list_doctores_especialidad/:id_especialidad', (req,res) => {
+    const { id_especialidad } = req.params
+    fetch(url.name.cuadernos+'/api/only_list_doctores_especialidad/'+id_especialidad)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
+router.get('/vue_list_EspCons/:id_especialidad', (req,res) => {
+    const { id_especialidad } = req.params
+    fetch(url.name.cuadernos+'/api/list_EspCons/'+id_especialidad)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
 })
 
 
@@ -857,5 +909,28 @@ router.get('/VueDoctores/:id_cuaderno', (req,res) => {
         res.send("no hay coneccion con el servidor");
     }) 
 })
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                             Reportes 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+router.get('/recuadernos',(req, res) => {
+    fetch('http://localhost:4600/api/liscuaderno')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reprtescuader', {
+        data
+      })
+    })
+  });
+router.get('/repespecialidad',(req, res) => {
+    fetch('http://localhost:4600/api/especialidad')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporteespe', {
+        data
+      })
+    })
+});
 
 module.exports = router;
