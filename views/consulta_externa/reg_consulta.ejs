@@ -415,7 +415,7 @@
                                                                            
                                                                         <div class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
                                                                           <ul>
-                                                                            <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
+                                                                            <li><a href="/datos_generales_paciente/lista_antecedentes/<%=idCIta%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
                                                                             
                                                                             <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
                                                                             
@@ -460,7 +460,8 @@
                                                                     <div class="entrada">
                                                                         <h6 class=" blue_info">Fecha de Consulta:</h6>
                                                                             <input class="form-control"  type="text" name="fechaConsulta"require value="<%=updateCita[0].fechaConsulta%>" readonly="">
-                                                                    </div>                        
+                                                                    
+                                                                        </div>                        
                                                                 </div>
                                                                     <div class="col-sm-4 col-sm-6">
                                                                         <div class="entrada">
