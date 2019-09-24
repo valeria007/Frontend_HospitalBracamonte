@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <%- include("../partials/head") -%>
+  <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+		
+		h2.uppercase
+		{
+			text-transform: uppercase;
+		}
+  </style>
+  <style type="text/css">
+		
+		td.uppercase
+		{
+			text-transform: uppercase;
+		}
+        div.uppercase
+		{
+			text-transform: uppercase;
+		}
+	</style>
+</head>
+<body class="light_theme  fixed_header left_nav_fixed">
+  <div class="wrapper">
+    <!--\\\\\\\ wrapper Start \\\\\\-->
+    <div class="header_bar">
+      <!--\\\\\\\ header Start \\\\\\-->
+      <div class="brand">
+        <!--\\\\\\\ brand Start \\\\\\-->
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <!--\\\\\\\ brand end \\\\\\-->
+      <div class="header_top_bar oculto-impresion">
+        <!--\\\\\\\ header top bar start \\\\\\-->
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+        <!--Boton i,prir-->
+        <div class="btn-group"> <a class="btn btn-warning" href="" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
+        <div class="btn-group"> <a class="btn btn-success" href="/usuarios/roles"> <i class="fa fa-reply"></i> Salir</a> </div>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+          </div> 
+        </div>
+      </div>
+      <!--\\\\\\\ header top bar end \\\\\\-->
+    </div>
+    <!--\\\\\\\ header end \\\\\\-->
+    <div class="inner">
+      <!--\\\\\\\ inner start \\\\\\-->
+      <div class="left_nav">
+        <div class="left_nav">
+            <div class="left_nav_slidebar">
+              <ul>
+                <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                  <ul >
+                    <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                  </ul>
+                </li>
+                <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+                  <ul  >
+                    <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+                  </ul>
+                </li>
+                <li > <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
+                  <ul >
+                    <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                    <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                    <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+                  </ul>
+                </li>
+                <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                  <ul class="opened" style="display:block">
+                    <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                    <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                    <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Person.</b> </a> </li>
+                    <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                    <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
+                  </ul>
+                </li>
+                <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+                  <ul>
+                    <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                    <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        </div>
+      </div>
+      <!--Contenido-->
+      <div class="contentpanel"><br>
+        <!--\\\\\\\ contentpanel start\\\\\\-->
+        <div class="container clear_both padding_fix">
+        <!--\\\\\\\ container  start \\\\\\-->
+        <!--Hoja-->
+          <div class="invoice ">
+            <div class="invoice_body" data-print-content>
+              <div  class="pull-left">
+                <address>
+                  <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
+                  Av. Italia Final S/N<br>
+                  Telfs. 26246064-26244960<br>
+                  POTOSI-BOLIVIA
+                </address>
+              </div>
+            <div class="pull-right">
+                <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
+            </div>
+            <div class="clearfix"></div>
+            <br/>
+            <br/>
+            <h2 class="text-center">REPORTES ESPECIFICO PERSONAL</h2>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div> <strong>NOMBRE COMPLETO :</strong> <%=one_person.apellidop%> <span>&nbsp;</span> <%=one_person.apellidom%><span>&nbsp;</span>  <%=one_person.nombre%> </div>
+                    <div> <strong>C.I. :</strong>  <%=one_person.ci%>  </div>
+                    <div> <strong>CEL-TELF :</strong> <%=one_person.telefono%></div>
+                    <div> <strong>DIRECCION:</strong> <%=one_person.direcion%></div>
+                    <div class="uppercase"> <strong>CARGO:</strong> <%=one_person.cargo%>  </div>
+                    
+                  <br/>
+              </div>
+            </div>
+            
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Correo</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Fecha Creación</th>
+                        <th class="text-center">Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                       <% for (var i=0; i< data.length; i++) { %>
+                      <tr>
+                        <td class="text-center"><%=i+1%></td>
+                        <td class="text-center"><%=data[i].username %></td>
+                        <td class="text-center"><%=data[i].email %></td>
+                        <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                        
+                          <td>
+                            <%for (var j = 0; j < data[i].role.length; j++) { %>
+                              <%=data[i].role[j].name%>
+                            <% } %>
+                          </td>
+                        
+                      </tr>
+                        <% } %>
+                </tbody>
+            </table>
+                  
+            </div>
+            
+           
+            
+          </div>
+          </div>
+      </div>
+    <!--\\\\\\\ content panel end \\\\\\-->
+    </div>
+  </div>
+
+  <%- include("../partials/scripts") -%>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="https://www.jqueryscript.net/demo/Print-Specified-Area-Of-A-Page-PrintArea/demo/jquery.PrintArea.js"></script>
+  <script src="/js/imprimir.js"></script>
+</body>
+</html>
+

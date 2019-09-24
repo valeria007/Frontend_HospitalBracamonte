@@ -86,7 +86,12 @@
               <div class="form-group col-sm-12">
               <div class="col-sm-4">
                 <label class="control-labe">Especialidad:</label>
-                <input type="text" name="nombre" class="form-control" parsley-trigger="change"   required placeholder="Introdusca Nombre" onkeyup="mayus(this)"/>
+                <select class="selectpicker" data-show-subtext="true" data-live-search="true">
+                  <option>Paco</option>
+                  <option>Luis</option>
+                  <option>Luna</option>
+                  <option>Daniela</option>
+                </select>
               </div>
               
               <div class="col-sm-4">
@@ -247,6 +252,26 @@
     </div>
 </div>
 </div>
+<script>
+  function buscarSelect()
+  {
+    // creamos un variable que hace referencia al select
+    var select=document.getElementById("elementos");
+   
+    // obtenemos el valor a buscar
+    var buscar=document.getElementById("buscar").value;
+   
+    // recorremos todos los valores del select
+    for(var i=1;i<select.length;i++)
+    {
+      if(select.options[i].text==buscar)
+      {
+        // seleccionamos el valor que coincide
+        select.selectedIndex=i;
+      }
+    }
+  }
+  </script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

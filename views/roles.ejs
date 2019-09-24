@@ -119,19 +119,46 @@
                       <input type="date" class="form-control" >
                     </div>
                   </div><!--/form-group-->  
-                  
+                  <div class="form-group pull-right">
+                    <div class="col-sm-4">
+                      <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Generales<span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu">
+                          <li><a href="/usuarios/onlymedico">Medicos</a></li>
+                          <li><a href="/usuarios/onlyperso">Personales</a></li>
+                          <li><a href="/usuarios/onlyenferme">Enfermeras</a></li>
+                          <li><a href="/usuarios/onlyfarma">Farmaceuticos</a></li>
+                          
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group pull-right">
+                    <div class="col-sm-4">
+                      <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Usuarios<span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu">
+                          <li><a href="/usuarios/allcuentas">Cuentas</a></li>
+                          <li><a href="/usuarios/allroles">Roles</a></li>
+                          
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
+              <br>
               <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
                     <tr>
-                          <th class="text-center">Nombre</th>
-                          <th class="text-center">Apellido Paterno</th>
-                          <th class="text-center">Apellido Materno</th>	
-                          <th class="text-center">Cargo</th>	
-                          <th class="text-center">Fecha Creación</th>	
-                          <th class="text-center">Optiones</th>
+                      <th class="text-center">Nombre</th>
+                      <th class="text-center">Apellido Paterno</th>
+                      <th class="text-center">Apellido Materno</th>	
+                      <th class="text-center">Cargo</th>	
+                      <th class="text-center">Fecha Creación</th>	
+                      <th class="text-center">Cuentas</th>
+                      <th class="text-center">Optiones</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -142,9 +169,17 @@
                         <td class="text-center"><%=data[i].apellidom%></td>
                         <td class="text-center"><%=data[i].cargo%></td>
                         <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                        <td>
-                          <a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
-                        </td>
+                        <td ><select name="" id=""> 
+                          <%for(var j = 0; j < allusers.length; j++) {%>
+                            <%if (allusers[j].perso_id == data[i].id) { %>
+                              <option><%=allusers[j].username%></option>
+                            <% } %>
+                          <% } %>
+                        </select></td>
+
+                        <td><a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
+                        
+                        
                       </tr>
                     <% } %>
                   </tbody>

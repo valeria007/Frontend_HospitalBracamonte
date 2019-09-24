@@ -20,6 +20,32 @@ $(document).ready(function() {
     $('#dynamic-table3').dataTable( {
         "aaSorting": [[ 4, "desc" ]]
     } );
+    $('#dynamic-table4').dataTable({
+        dom: 'lBfrtip',
+        buttons: [
+            { extend: 'print', exportOptions:
+                { columns: ':visible' }
+            },
+            { extend: 'copy', exportOptions:
+                 { columns: [ 0, ':visible' ] }
+            },
+            { extend: 'excel', exportOptions:
+                 { columns: ':visible' }
+            },
+            { extend: 'pdf', exportOptions:
+                  { columns: [ 0, 1, 2, 3, 4 ] }
+            },
+            { extend: 'colvis',   postfixButtons: [ 'colvisRestore' ] }
+           ],
+          language: {
+              buttons: {
+                  print: 'Stampa',
+                  copy: 'Copia',
+                  colvis: 'Colonne da visualizzare'
+               } //buttons
+           }, //language
+           "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+    });
     /*
      * Insert a 'details' column to the table
      */
@@ -66,3 +92,5 @@ $(document).ready(function() {
         }
     } );
 } );
+
+
