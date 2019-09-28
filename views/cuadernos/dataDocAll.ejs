@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>USUARIOS</title>
+<title>Medicos</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -26,51 +26,58 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 <style>
-div.centera {
-    width: 110px; 
-    margin-left: 80%;
-    transform: translateX(120%);
-}
+  .centerbtn{ 
+      position:absolute; 
+      width:100%; left:300;
+      text-align:center;
+      margin:auto;
+      /*position: relative; top: 50%; transform: translateY(-50%) translateX(30%); width: 100%;*/
+  }
 </style>
+<style>
+  div.centera {
+      width: 300px; 
+      margin-left: 100%;
+      transform: translateX(120%);
+  }
+  td.uppercase
+		{
+			text-transform: uppercase;
+		}
+  div.uppercase
+		{
+			text-transform: uppercase;
+		}
+</style>
+    
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <!--\\\\\\\ wrapper Start \\\\\\-->
-  <div class="header_bar">
-    <!--\\\\\\\ header Start \\\\\\-->
-    <div class="brand">
-      <!--\\\\\\\ brand Start \\\\\\-->
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      
-    </div>
-    <!--\\\\\\\ brand end \\\\\\-->
-    <div class="header_top_bar">
-      <!--\\\\\\\ header top bar start \\\\\\-->
-      
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-          </ul>
-        </div>
-       
+  <div class="wrapper">
+    <div class="header_bar">
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
-    </div>
+      <div class="header_top_bar">
+      <!--\\\\\\\ header top bar start \\\\\\-->
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+          </div>
+       </div>
+      </div>
     <!--\\\\\\\ header top bar end \\\\\\-->
-  </div>
-  <!--\\\\\\\ header end \\\\\\-->
-  <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
-    <div class="left_nav">
-      <!--\\\\\\\left_nav start \\\\\\-->
-      
-      <div class="left_nav_slidebar">
+    </div>
+    <div class="inner">
+      <div class="left_nav">
+        <div class="left_nav_slidebar">
           <ul>
             <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home  <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
@@ -106,144 +113,110 @@ div.centera {
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="/reportes_pacientes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Paciente General</b> </a> </li>
-                <li> <a href="/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                <li> <a href="/reporte"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administracion</b> </a> </li>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
               </ul>
             </li>
           </ul>
         </div>
-    </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
-    <div class="contentpanel">
+      </div>
+      <div class="contentpanel">
       <!--\\\\\\\ contentpanel start\\\\\\-->
 
         <!--\\\\\\\ container  start \\\\\\-->
         <div class="container clear_both padding_fix" id="cuadernos">
-        <br>
-        <a href="/cuaderno/volver_a_doctor" class="btn btn-success btn-icon"><i class="fa fa-arrow-left">Volver</i></a></td>
-        <br>
-        <br>
-         <div class="row">
-        <div class="col-md-12">
-          <div class="block-web">
-            <div class="header">
-              <div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
-              <h3 class="content-header ">Ver Medico</h3>
-            </div>
-            <br>
-            <br>
-            <div class="porlets-content">
-
-                <form class="form-horizontal group-border-dashed" action="/cuaderno/docCuaderno" method="POST" parsley-validate novalidate>
-                  <div class="form-group centera" >
-
-                      
-                        <div class="col-sm-4 " style="width: 330px; margin: 0 auto;" >  
-                                                            
-                                <button @click="buscador(<%=id_cuaderno%>)" class="btn btn-info btn-icon" v-if="!buscar.lists.length" >Buscar Doctor  <span>&nbsp;</span><i class="fa fa-search"></i></button>
-                               
-                                <ul class="list-group" v-else>
-                                    <li class="list-group-item">
-                                        <input type="text" placeholder="buscar" class="form-control" v-model="buscar.name">
-                                    </li>
-                                    <li v-for="item in search" class="list-group-item">
-                                        <a :href="'/cuaderno/alldataDoctor/'+item.id+'/'+item.idCuaderno">{{item.nombre}}</a>                                
-                                    </li>
-                                    <button @click="deleteList" type="button" class="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>  
-                                </ul>
-                            </div> 
-                    
-                      
-                      
-                  </div><!--/form-group--> 
-                  <br>
-                  <br>
-                  <div class="form-group">
-                    
-                    <div class="col-sm-6">Nombre Completo del Medico:<br>
-                        <label  class="control-labe" for=""><%=resp[0].nombre%> </label>
-                    </div>
-                    
-                    <div class="col-sm-6">Tipo Medico: <br>
-                        <label class="control-labe" for=""><%=resp[0].TDoctor%></label>
-                      
-                    </div>
-                    <div class="col-sm-6">Enfermera:<br>
-                        <label class="control-labe" for=""><%=resp[0].enfermera%></label>
-                      
-                    </div>
-                    <div class="col-sm-6">Fecha de estadia del doctor:<br>
-                        <select  class="form-control" id="source" v-model="id" @click="mostrar(<%=resp[0].id%>)"> 
-                                <option disabled="disabled" value>Seleccione</option>
-                            <%for(var i = 0; i< resp[0].Fechas.length; i++) {%>
-                                <option value="<%=resp[0].Fechas[i].id%>"> Del <%=resp[0].Fechas[i].fechaini.split("T")[0]%> al <%=resp[0].Fechas[i].fechafin.split("T")[0]%> </option>
-                            <%}%>
-                        </select>
-                      
-                    </div>
-                  </div><!--/form-group--> 
-                
-                  
-                </form>
-            
-                
-              
-          </div><!--/block-web--> 
-        </div><!--/col-md-12--> 
-      </div>
-    </div>
-      
-    <div class="row">
+          <br>
+          <div class="row">
             <div class="col-md-12">
               <div class="block-web">
-               <div class="header">
-                 
-                  <h3 class="content-header">LISTA DE TURNOS</h3>
+                <div class="header">
+                  <div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
+                  <h3 class="content-header ">Detalles del Medico</h3>
                 </div>
-             <div class="porlets-content">
-                <div class="table-responsive">
-                    <table  class="display table table-bordered table-striped" id="dynamic-table">
-                        <thead>
-                                <tr>
-                                        <th>#</th>
-                                        <th>Dia de atencion</th>
-                                        <th>Turno</th>
-                                        <th>Horas</th>                            
-                                    </tr>
-                          </thead>
-                          <tbody>
-                                <tr v-for="(data, index) in Turnos">
-                                        <td>{{index+1}}</td>
-                                        <td>{{data.diasAten}}</td>
-                                        <td>{{data.turno}}</td>
-                                    </tr>
-                          <tbody>
-                    </table>
+                <div class="porlets-content">
+                  <br>
+                  <br>
+                  <a class="btn btn-info"href="/cuaderno/volver_a_doctor"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
+                  <form class="form-horizontal group-border-dashed" action="/cuaderno/docCuaderno" method="POST" parsley-validate novalidate>
+                    <div class="form-group centera" >
+                      <div class="col-sm-4 " style="width: 300px; margin: 0 auto;" >  
+                        <button @click="buscador(<%=id_cuaderno%>)" class="btn btn-primary btn-icon" v-if="!buscar.lists.length" >Buscar Doctor  <span>&nbsp;</span><i class="fa fa-search"></i></button>
+                        <ul class="list-group" v-else>
+                          <li class="list-group-item">
+                              <input type="text" placeholder="buscar" class="form-control" v-model="buscar.name">
+                          </li>
+                          <li v-for="item in search" class="list-group-item">
+                              <a :href="'/cuaderno/alldataDoctor/'+item.id+'/'+item.idCuaderno">{{item.nombre}}</a>                                
+                          </li>
+                          <button @click="deleteList" type="button" class="close" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>  
+                        </ul>
+                      </div> 
+                    </div><!--/form-group--> 
+                    <br>
+                    <br>
+                    <div class="form-group">
+                      <div class="col-sm-4 uppercase">
+                        <strong>COMPLETO DEL MEDICO :</strong><span>&nbsp;</span><br>
+                        <label  class="control-label"><%=resp[0].nombre%> </label>
+                      </div>
+                      <div class="col-sm-4 uppercase">
+                        <strong>MEDICO :</strong><span>&nbsp;</span><br>
+                        <label class="control-label"><%=resp[0].TDoctor%></label>
+                      </div>
+                      <div class="col-sm-4 uppercase">
+                        <strong>ENFERMERA :</strong><span>&nbsp;</span><br>
+                        <label class="control-label"><%=resp[0].enfermera%></label>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <div class="col-sm-4">
+                        <strong>FECHA DE ESTADIA DEL DOCTOR</strong><span>&nbsp;</span><br>
+                        <select  class="form-control" id="source" v-model="id" @click="mostrar(<%=resp[0].id%>)"> <br>
+                              <option disabled="disabled" value>Seleccione</option>
+                            <%for(var i = 0; i< resp[0].Fechas.length; i++) {%>
+                              <option value="<%=resp[0].Fechas[i].id%>"> Del <%=resp[0].Fechas[i].fechaini.split("T")[0]%> al <%=resp[0].Fechas[i].fechafin.split("T")[0]%> </option>
+                            <%}%>
+                        </select>
+                      </div>
+                    </div><!--/form-group--> 
+                  </form>
+                </div><!--/block-web--> 
+                <div class="porlets-content">
+                  <div class="table-responsive">
+                    <table  class="table table-bordered" >
+                      <thead>
+                          <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Dia Atención</th>
+                            <th class="text-center">Turno</th>
+                            <th class="text-center">Horas</th> 
+                          </tr>
+                      </thead>
+                      <tbody v-for="(data, index) in Turnos">
+                        <tr >
+                          <td class="text-center">{{index+1}}</td>
+                          <td class="text-center">{{data.diasAten}}</td>
+                          <td class="text-center">{{data.turno}}</td>
+                          <td class="text-center"></td>
+                        </tr>
+                      </tbody>
+                  </table>
                   </div><!--/table-responsive-->
                 </div><!--/porlets-content-->
-                
-                
-              </div><!--/block-web--> 
-            </div><!--/col-md-12--> 
-          </div><!--/row-->
-      
-        
-      <!--\\\\\\\ container  end \\\\\\-->
-    
-    <!--\\\\\\\ content panel end \\\\\\-->
-  </div>
+              </div><!--/col-md-12--> 
+            </div>
+          </div>
+        </div>
   <!--\\\\\\\ inner end\\\\\\-->
+      </div>
     </div>
-</div>
-</div>
-<!--\\\\\\\ wrapper end\\\\\\-->
-<!-- Modal -->
-
-
-
+  </div>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

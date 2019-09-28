@@ -1,5 +1,5 @@
 var reg_roles = new Vue({
-    el: ".cuentarole",
+    el: "#cuentarole",
     data: () =>({
         msg: "",
         iduser: '',

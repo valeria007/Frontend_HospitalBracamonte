@@ -1,182 +1,267 @@
-<!DOCTYPE >
-<html >
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-<title>Cuadernos</title>
-<%- include("../partials/head") -%>	
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Cuadernos</title>
+	<meta charset="UTF-8">
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<!--validaciones-->
+
+<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+	<style>
+		div.a {
+			text-align: center;
+		}
+
+		h1.letras {
+			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+		}
+	</style>
 
 </head>
+
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <%- include("../partials/menusali") -%>	
-  <div class="inner">
-    <div class="left_nav">
-      <div class="left_nav_slidebar">
-        <ul>
-          <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul >
-              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-            </ul>
-          </li>
-          <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul  >
-              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
-            </ul>
-          </li>
-          <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul class="opened" style="display:block">
-              <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Cuadernos</b> </a> </li>
-              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
-              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Farmacia</a> </li>
-              <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul>
-              <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-            </ul>
-          </li>
-        </ul>
+	<div class="wrapper">
+		<div class="header_bar">
+			<!--\\\\\\\ header Start \\\\\\-->
+			<div class="brand">
+				<!--\\\\\\\ brand Start \\\\\\-->
+				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+			</div>
+			<!--\\\\\\\ brand end \\\\\\-->
+			<div class="header_top_bar">
+				<!--\\\\\\\ header top bar start \\\\\\-->
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+
+				<div class="top_right_bar">
+
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							<li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+							<li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+							<li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+							<li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--\\\\\\\ header top bar end \\\\\\-->
+		</div>
+		<div class="inner">
+			<div class="left_nav">
+        <div class="left_nav_slidebar">
+          <ul>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul  >
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="contentpanel">
-      <div class="container clear_both padding_fix">
-        <br>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="block-web">
-              <%if (mess != null) {%>
-                <div class="bs-example mover">
-                  <div class="alert alert-danger fade in">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
-                    <hr class="message-inner-separator">
-                    <strong><%=mess %></strong></div>
-                </div>
-              <%} else if(mgconf != null) { %>
-                <div class="bs-example mover">
-                  <div class="alert alert-success fade in">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
-                    <hr class="message-inner-separator">  
-                    <strong><%=mgconf %></strong>
+			<div class="contentpanel">
+				<div class="container clear_both padding_fix col-lg-8">
+					<br>
+					<div class="row">
+            <div class="col-lg-12 ">
+              <div id="main-content" class=" block-web">
+								<%if (mess != null) {%>
+                  <div class="bs-example mover">
+                    <div class="alert alert-danger fade in">
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                      <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
+                      <hr class="message-inner-separator">
+                      <strong><%=mess %></strong></div>
                   </div>
-                </div>
-              <% } %>
-              <div class="header">
-                  <div class="actions"><a class="refresh"  role="button" href="/cuaderno/limpiar2">Refresh  <span>&nbsp;</span><i class="fa fa-repeat"></i></a> </div>
-              <div class="info blue_symbols"><i class="fa fa-medkit icon"></i></div>
-              <h3 class="content-header ">Creacion Cuadernos</h3>
-              </div>
-              <br>
-              <br>
-              <div class="porlets-content">
-                <% if (OnlyC == null) { %>
-                <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos" method="POST" parsley-validate novalidate>
-                  <div class="form-group">
-                    <div class="col-sm-2">
-                      <label class="control-labe">Codigo:</label>
-                      <input type="text"  class="form-control"  readonly />
-                    </div>
-                    
-                    <div class="col-sm-4">
-                      <label class="control-labe">Titulo de Cuaderno:</label>
-                      <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo"  onkeyup="mayus(this)"/>
-                    </div>
-                    <div class="col-sm-4">
-                      <label class="control-labe">Grupo de Asignacion:</label>
-                      <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Asignacion" onkeyup="mayus(this)"/>
+                <%} else if(mgconf != null) { %>
+                  <div class="bs-example mover">
+                    <div class="alert alert-success fade in">
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                      <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
+                      <hr class="message-inner-separator">  
+                      <strong><%=mgconf %></strong>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-10">
-                      <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                      <a class="btn btn-danger active btn-icon" aria-pressed="true" role="button"  href="/home">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-                    </div>
-                  </div>
-                </form>
-                <% } else { %>           
-                <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST" parsley-validate novalidate>
-                  <div class="form-group">
-                    <div class="col-sm-2">
-                      <label class="control-labe">Codigo:</label>
-                      <input type="text" value="<%=OnlyC[0].id%>" class="form-control" readonly />
-                    </div>
-                    
-                    <div class="col-sm-4">
-                      <label class="control-labe">Titulo de Cuaderno:</label>
-                      <input type="text" name="titulo" value="<%=OnlyC[0].titulo%>" class="form-control" parsley-trigger="change"  name="nombre" required placeholder onkeyup="mayus(this)" />
-                    </div>
-                    <div class="col-sm-4">
-                      <label class="control-labe">Grupo de Asignacion:</label>
-                      <input type="text"  name="grupo" value="<%=OnlyC[0].grupo%>" class="form-control" parsley-trigger="change" name="apellidom" required placeholder onkeyup="mayus(this)" />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-10">
-                      <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiarC">Limpiar<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-                      <button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                      
-                    </div>
-                  </div>
-                </form>
                 <% } %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="block-web">
-              <div class="header">
-                <h3 class="content-header">Lista Cuadernos</h3>
-              </div>
-              <div class="porlets-content">
-                <div class="table-responsive">
-                  <table  class="display table table-bordered table-striped" id="dynamic-table">
-                    <thead>
-                      <tr>
-                      <th class="text-center">Codigo</th>
-                      <th class="text-center">Grupo de Asignacion</th>
-                      <th class="text-center">Titulo de Cuaderno</th>
-                      <th class="text-center">Fecha de Creacion</th>
-                      <th class="text-center">Opciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% for(var i=0; i< resp.length; i++) { %>
-                      <tr>
-                        <td class="text-center"><%=resp[i].id%></td>
-                        <td class="text-center"><%=resp[i].grupo%></td>
-						            <td class="text-center"><%=resp[i].titulo%></td>
-						            <td class="text-center"><%=resp[i].createdAt.split("T")[0]%></td>								
-                        <td class="text-center">
-                          <a href="/cuaderno/getEsp/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Medico"><i class="fa fa fa-user-md "></i></a><span>&nbsp;</span>
-                          <a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                          <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
-                        </td>
-                    </tr>
-                     <% } %>
-                    </tbody>
-                  </table>
+                <div class="header">
+                  <div class="info blue_symbols"><i class="fa fa-folder-open icon"></i></div>
+                  <h3 class="content-header ">Creación Cuadernos</h3>
                 </div>
-              </div>
-            </div>
+								<div class="page-content">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="block-web">
+												<div class="header">
+													<div class="actions"> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
+                            <a class="refresh" href="/cuaderno/limpiarC"><i class="fa fa-repeat"></i></a>
+													</div>
+                        </div>
+                        <br><br>
+												<div class="porlets-contents">
+                          <div id="demo" class="collapse in ">
+                            <% if (OnlyC == null) { %>
+                            <form class="form-horizontal group-border-dashed" action="/cuaderno/cuadernos" method="POST" parsley-validate novalidate>
+                              <div class="form-group">
+                                <label class=" col-sm-4 control-label">Titulo de Cuaderno :</label>
+                                <div class="col-sm-4">
+                                  <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo"  onkeyup="mayus(this)"/>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-4  control-label">Grupo de Asociado :</label>
+                                <div class="col-sm-4">
+                                  <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Asignacion" onkeyup="mayus(this)"/>
+                                </div>
+                              </div>
+                              <br><br>
+                              <div class="col-md-4">
+                                <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                              </div>
+                            </form>
+                            <% } else { %>           
+                            <form class="form-horizontal group-border-dashed" action="/cuaderno/updateCuaderno/<%=OnlyC[0].id%>" method="POST" parsley-validate novalidate>
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Titulo de Cuaderno :</label>
+                                <div class="col-sm-4">
+                                  <input type="text" name="titulo" value="<%=OnlyC[0].titulo%>" class="form-control" parsley-trigger="change"  name="nombre" required placeholder onkeyup="mayus(this)" />
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class=" col-sm-4 control-label">Grupo de Asociado :</label>
+                                <div class="col-sm-4">
+                                  <input type="text"  name="grupo" value="<%=OnlyC[0].grupo%>" class="form-control" parsley-trigger="change" name="apellidom" required placeholder onkeyup="mayus(this)" />
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
+                                <a class="btn btn-danger"href="/cuaderno/limpiarC"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
+                              </div>
+                            </form>
+                            <% } %>
+                          </div>
+                          <br><br>
+                          <div class="porlets-content">
+                            <div class="table-responsive">
+                              <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                <thead>
+                                  <tr>
+                                  <th class="text-center">Codigo</th>
+                                  <th class="text-center">Grupo de Asociado</th>
+                                  <th class="text-center">Titulo de Cuaderno</th>
+                                  <th class="text-center">Fecha de Creación</th>
+                                  <th class="text-center">Opciones</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% for(var i=0; i< resp.length; i++) { %>
+                                  <tr>
+                                    <td class="text-center"><%=resp[i].id%></td>
+                                    <td class="text-center"><%=resp[i].grupo%></td>
+                                    <td class="text-center"><%=resp[i].titulo%></td>
+                                    <td class="text-center"><%=resp[i].createdAt.split("T")[0]%></td>								
+                                    <td class="text-center">
+                                      <a href="/cuaderno/getEsp/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Médico"><i class="fa fa fa-user-md "></i></a><span>&nbsp;</span>
+                                      <a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                      <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
+                                    </td>
+                                </tr>
+                                 <% } %>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+											</div>
+										</div>
+										<!--/col-md-12-->
+									</div>
+									<!--/row-->
+
+								</div>
+								<!--/page-content end-->
+							</div>
+						</div>
           </div>
-        </div>
-      </div>
+				</div>
+		</div>
     </div>
- </div>
-</div>
-<%- include("../partials/scripts") -%>
+    
+  
+  </div>
+  <script>
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+      });
+   }, 2000);
+   </script>
+   <script>
+    function mayus(e) {
+    e.value = e.value.toUpperCase();
+   }
+     </script>
+		
+		<!--====== Scripts -->
+		
+    <%- include("../partials/scripts") -%>
 
 </body>
+
 </html>
