@@ -22,6 +22,9 @@ import OrdenIntervencion from '../controllers/orden_intervencion';
 import NotaEvolucion from '../controllers/nota_evolucion'; 
 import Diag_tratameinto from '../controllers/diagTratameinto_internacion'; 
 
+import Traslados from '../controllers/traslados'; 
+
+
 export default (app) => {
 
 app.get('/api', (req, res) => res.status(200).send({
@@ -99,6 +102,8 @@ app.get('/api/recetaOfConsulta/:historial/:tipoConsulta', Receta.recOfConsulta);
 app.post('/api/updateReceta/:id', Receta.updateReceta);
 app.get('/receta/:id',Receta.citaRecetas); // para sacar receta y 
 
+app.get('/api/one_receta/:id_receta', Receta.one_receta);
+
 
 //papeleta de internacion
 app.post('/api/papeletaIntConsulta/:idConsultaMedica', papeletaInt.enviarPapeletaINT); // consulta medica
@@ -109,8 +114,8 @@ app.get('/api/InternacionEMG/:id', papeletaInt.PEmergecia);///esto va a entrar d
 app.get('/api/getPinternacionPaciente/:historial/:tipoConsulta', papeletaInt.getPinternacionPaciente);
 app.get('/api/ListPinternaciones/:historial', papeletaInt.ListPinternacion); // servicio para mostrar lista de papeleta de internacios segun historial
 app.post('/api/updatePinternacion/:id', papeletaInt.upinternacion);
-app.get('/api/PinterTrue/:especialidad', papeletaInt.PINterTRUE);// serv para traer papeleta de internacion de tipo true
-app.get('/api/PinterFalse/:especialidad', papeletaInt.PINterFALSE);// serv para traer papeleta de internacion de tipo false
+app.get('/api/PinterTrue/:id_especialidad', papeletaInt.PINterTRUE);// serv para traer papeleta de internacion de tipo true
+app.get('/api/PinterFalse/:id_especialidad', papeletaInt.PINterFALSE);// serv para traer papeleta de internacion de tipo false
 app.get('/api/one_Pinternacion/:id/:tipoCons', papeletaInt.idPinternacion); // 
 
 app.get('/api/estado_p_internacion/:idPinternacion', papeletaInt.estadoPInternacion); // esta ruta es para poder cambiar el estado de papeleta de internacion
@@ -133,8 +138,11 @@ app.get('/api/list_internacion_paciente/:id_Pinternacion/:historial', Intern.lis
 app.post('/api/update_form_internacion/:id', Intern.update_form_internacion) // ruta para actulizar form internacion
 app.get('/api/One_Internacion/:id', Intern.One_Internacion);
 
-app.get('/api/list_internacion_especialidad/:especialidad', Intern.list_internacion_especialidad); // esta ruta listara todas las internaciones segun especialidad
+app.get('/api/list_internacion_especialidad/:id_especialidad', Intern.list_internacion_especialidad); // esta ruta listara todas las internaciones segun especialidad
 app.get('/api/One_intern/:id', Intern.One_intern);// ruta para poder mostrar una solo internacion del paciente
+app.post('/api/update_estado_alta/:id', Intern.update_estado_alta) // ruta para actualizar el estado de alta de internacion
+
+app.post('/api/Internacion_of_traslado/:id_traslado', Intern.Internacion_of_traslado) // ruta para poder registrar la internacion de traslado
 
 
 //responssables del apciente
@@ -187,7 +195,7 @@ app.post('/api/updateInternacion/:id', OrdenIntervencion.updateOrdenIntervencion
 app.get('/api/One_Orden_intenrvencion/:id', OrdenIntervencion.One_Orden_intenrvencion); // sacar una orden de internacion
 
 
-//nota de internacion
+//nota de evolucion
 app.post('/api/reg_notaEvolucion/:id_internacion', NotaEvolucion.reg_notaEvolucion ) // ruta para poder insertar en nota evolucion
 app.get('/api/nota_evolucion', NotaEvolucion.notaEvolucion);
 app.get('/api/list_notaEvolucion/:id_internacion', NotaEvolucion.list_notaEvolucion);// esta ruta es para poder traer la lista de notas del paciente segun el id de la interncaion
@@ -198,4 +206,9 @@ app.post('/api/reg_diagTratameinto/:id_internacion', Diag_tratameinto.reg_diagTr
 app.get('/api/diagTratamiento', Diag_tratameinto.diagTratamiento);
 app.get('/api/list_DiagnosticoTratameinto/:id_internacion', Diag_tratameinto.list_DiagnosticoTratameinto);
 app.get('/api/One_DiagTratamiento/:id', Diag_tratameinto.One_DiagTratamiento);
+
+// traslados
+app.post('/api/create_traslado/:id_paleta_internacion', Traslados.create_traslado)
+app.get('/api/list_traslados', Traslados.list_traslados);
+
 };

@@ -63,3 +63,8 @@ sequelize model:create --name nota_evolucion_Paciente --attributes fecha:string,
 diganostico y tratamientos
 
 sequelize model:create --name diagnostico_tratamientos --attributes historial:integer,fehca:string,sintomas:text,examenFisico:text,diagnostico:text,tratamiento:text,medicamentos:string,dosis:string,frecuencia:string,duracion:string,estudios:string
+ 
+
+sequelize model:create --name diagnostico --attributes codigo:string,descripcion:text
+
+sequelize model:create --name traslados --attributes fecha_hora:string,enviado_de:string,operaciones:text,diagnostico_principal:text,otros_diagnosticos:text,causa_externa:text,id_paleta_internacion:integer,id_internacio:integer,id_medico:integer

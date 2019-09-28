@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Internaciones = sequelize.define('Internaciones', {
+    estado_update:DataTypes.BOOLEAN,
+    estado_alta:DataTypes.BOOLEAN,
     historial: DataTypes.INTEGER,
     fechaIngreso: DataTypes.STRING,
-    tipoPaciente: DataTypes.STRING,
-    institucion: DataTypes.STRING,
     provieneDE: DataTypes.STRING,
     observacion: DataTypes.TEXT,
     especialidad: DataTypes.STRING,
@@ -13,8 +13,14 @@ module.exports = (sequelize, DataTypes) => {
     doctor: DataTypes.STRING,
     diagnostico: DataTypes.TEXT,
     idCama: DataTypes.INTEGER,
+
     idPinternacion: DataTypes.INTEGER,
-    id_paciente: DataTypes.INTEGER
+    id_traslado: DataTypes.INTEGER,
+
+    id_paciente: DataTypes.INTEGER,
+    id_especialidad: DataTypes.INTEGER,
+    id_user: DataTypes.INTEGER
+
   }, {});
   Internaciones.associate = function(models) {
     // associations can be defined here
@@ -45,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
     });
     Internaciones.belongsTo(models.PapeletaInternacion, {
       foreignKey: 'idPinternacion',
+      onDelete: 'CASCADE'
+    });
+    Internaciones.belongsTo(models.traslados, {
+      foreignKey: 'id_traslado',
       onDelete: 'CASCADE'
     });
   };

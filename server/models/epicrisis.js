@@ -1,21 +1,30 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const epicrisis = sequelize.define('epicrisis', {
+    estado_update: DataTypes.BOOLEAN,
     historial: DataTypes.INTEGER,
     Fecha_internacion:DataTypes.STRING,
     Fecha_alta:DataTypes.STRING,
-    diagnostico_ingreso: DataTypes.TEXT,
-    resumenExmen_clinico: DataTypes.TEXT,
-    resumen_evolucion: DataTypes.TEXT,
-    medicamentos_usados: DataTypes.TEXT,
-    diagnosticoPos_operatorio: DataTypes.TEXT,
-    intervenciones_quirurgicas: DataTypes.TEXT,
-    resAnatomia_patologica: DataTypes.TEXT,
-    resAllasgos_lab: DataTypes.TEXT,
-    diagnostico_final: DataTypes.TEXT,
-    estadoPaciente_alta: DataTypes.TEXT,
-    result_autopcia: DataTypes.TEXT,
-    id_internacion: DataTypes.INTEGER
+
+    datos_clinicos: DataTypes.TEXT,
+    diagnostico_admicion: DataTypes.TEXT,
+    diagnostico_egreso: DataTypes.TEXT,
+
+    condicion_egreso: DataTypes.TEXT,
+    causa_egreso: DataTypes.TEXT,
+    examenes_complementario: DataTypes.TEXT,
+
+    tratamiento_quirurgico: DataTypes.TEXT,
+    tratamiento_medico: DataTypes.TEXT,
+    complicaciones: DataTypes.TEXT,
+
+    pronostico_vital: DataTypes.TEXT,
+    pronostico_funcional: DataTypes.TEXT,
+    control_tratamiento: DataTypes.TEXT,
+
+    recomendaciones: DataTypes.TEXT,
+    id_internacion: DataTypes.INTEGER,
+    id_medico:DataTypes.INTEGER
   }, {});
   epicrisis.associate = function(models) {
     // associations can be defined here

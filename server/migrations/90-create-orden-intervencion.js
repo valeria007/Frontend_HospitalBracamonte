@@ -8,47 +8,31 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      estado_update:{
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: true
+      },
       historial: {
         type: Sequelize.INTEGER
       },
       fechaOrden: {
         type: Sequelize.STRING
       },
-      motivoInternacion: {
+      nombre_cirujano:{
         type: Sequelize.TEXT
       },
-      resumneDatosClinicos: {
+      ayudantes:{
         type: Sequelize.TEXT
       },
-      examenComplementario: {
+      diag_pre_operatorio:{
         type: Sequelize.TEXT
       },
-      diagnostico: {
+      intr_parcticada:{
         type: Sequelize.TEXT
       },
-      resumenEgreso: {
+      diag_pos_operatorio:{
         type: Sequelize.TEXT
-      },
-      tratamientoIndicado: {
-        type: Sequelize.TEXT
-      },
-      diagnosticoEgreso: {
-        type: Sequelize.TEXT
-      },
-      planManejoTratamiento: {
-        type: Sequelize.TEXT
-      },
-      resAutopcia: {
-        type: Sequelize.TEXT
-      },
-      observacion: {
-        type: Sequelize.TEXT
-      },
-      condicionEgreso: {
-        type: Sequelize.STRING
-      },
-      CausaEgreso: {
-        type: Sequelize.STRING
       },
       id_internacion: {
         type: Sequelize.INTEGER,
@@ -58,6 +42,9 @@ module.exports = {
           key: 'id',
           as: 'id_internacion'
         }
+      },
+      id_medico: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

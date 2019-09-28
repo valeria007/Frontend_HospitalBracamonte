@@ -43,6 +43,9 @@ module.exports = {
       observaciones: {
         type: Sequelize.TEXT
       },
+      id_medico:{
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

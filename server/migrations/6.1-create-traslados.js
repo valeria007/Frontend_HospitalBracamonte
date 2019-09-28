@@ -1,43 +1,58 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('diagnostico_tratamientos', {
+    return queryInterface.createTable('traslados', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      estado_update: {
+      estado_upadte:{
         type: Sequelize.BOOLEAN, 
         allowNull: false, 
         defaultValue: true
       },
-      historial: {
+      historial:{
         type: Sequelize.INTEGER
       },
-      fecha: {
-        type: Sequelize.STRING
-      },
-      evolucion: {
+      nombre_doctor:{
         type: Sequelize.TEXT
       },
-      medicamentos: {
-        type: Sequelize.JSON
+      fecha_hora: {
+        type: Sequelize.STRING
       },
-      estudios: {
-        type: Sequelize.JSON
+      enviado_de: {
+        type: Sequelize.STRING
       },
-      id_internacion: {
+      operaciones: {
+        type: Sequelize.TEXT
+      },
+      diagnostico_principal: {
+        type: Sequelize.TEXT
+      },
+      otros_diagnosticos: {
+        type: Sequelize.TEXT
+      },
+      causa_externa: {
+        type: Sequelize.TEXT
+      },
+      id_paleta_internacion: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Internaciones',
+          model: 'PapeletaInternacions',
           key: 'id',
-          as: 'id_internacion'
+          as: 'id_paleta_internacion',
         }
       },
+      id_internacio: {
+        type: Sequelize.INTEGER
+      },
       id_medico: {
+        type: Sequelize.INTEGER
+      },
+      id_especialidad: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -51,6 +66,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('diagnostico_tratamientos');
+    return queryInterface.dropTable('traslados');
   }
 };

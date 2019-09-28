@@ -12,22 +12,75 @@ const { Camas } = model;
 const { Salas } = model;
 
 class Intern { 
-    static Internacion(req,res){
-      Pacientes.findAll({
-        where: {numeroHistorial : req.body.historial}
-      })
-      .then((datos) => {
-        var id = datos[0].id
-        const { historial,fechaIngreso,tipoPaciente,institucion,provieneDE,observacion,especialidad,sala,cama,doctor,diagnostico } = req.body 
-        const { idCama } = req.params
-        const { idPinternacion } = req.params
-        var id_paciente = id;
-        return Internaciones
-        .create({
+  static Internacion(req,res){
+    
+    Pacientes.findAll({
+      where: {numeroHistorial : req.body.historial}
+    })
+    .then((datos) => {
+      if(datos ==""){
+        res.status(400).json({
+          success:false,
+          msg:"Ese paciente no existe"
+        })
+      }else{
+        
+        const { historial, fechaIngreso, provieneDE, observacion, especialidad, sala, cama, doctor, diagnostico, id_especialidad, id_user } = req.body 
+        if(historial == "" || isNaN(historial) || fechaIngreso == "" || provieneDE == "" || especialidad == "" || sala == "" || cama == "" || doctor == "" || diagnostico == ""){
+          if(historial == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Historial no se esta mandando"
+            })
+          }else if (isNaN(historial)){
+            res.status(400).json({
+              success:false,
+              msg:"Historial solo puede contener numeros"
+            })
+          }else if (fechaIngreso == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Fehca es obligatorio"
+            })
+          }else if(provieneDE == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Por favor indique el area de donde esta viniendo el paciente"
+            })
+          }else if (especialidad == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte el area de internacion"
+            })
+          }else if (sala == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte sala a la cual el paciente va estar internado"
+            })
+          }else if (cama == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte la cama en la cual el paciente va estar internado"
+            })
+          }else if (doctor == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte el nombre del doctor por favor"
+            })
+          }else if (diagnostico == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte Diagnostico pe prescripcion"
+            })
+          }
+        }else{
+          const { idCama } = req.params
+          const { idPinternacion } = req.params
+          var id_paciente = datos[0].id;
+          return Internaciones
+          .create({
             historial,
             fechaIngreso,
-            tipoPaciente,
-            institucion,
             provieneDE,
             observacion,
             especialidad,
@@ -37,17 +90,26 @@ class Intern {
             diagnostico,
             idCama,
             idPinternacion,
-            id_paciente
-        })
-        .then(data => res.status(200).send({
-            success: true,
-            message: "Internacion",
-            data
-        }))
-
-      })
+            id_paciente,
+            id_especialidad,
+            id_user
+          })
+          .then(data => {
+            console.log(data, "<<<<<<<<<<<<<<<<                     <<<<<<<<<<<<<<<<<<< <<<<<<<<<<<<<<<< asda  <<<<<<<<<<<<<<<<<<<<<")
+            res.status(200).json({
+              success: true,
+              msg: "Registrado en el area de " + especialidad,
+              data
+            })
+          })
+        }
         
-    }
+      }
+      
+    })
+    .catch(error => res.status(500).send(error))
+      
+  }
     // Servicio para para mostrar Internaciones
     static listInternaciones(req, res) {
         return Internaciones                
@@ -114,38 +176,35 @@ class Intern {
     //actualizar form  internacio
     static update_form_internacion(req, res) {
       var idCama = req.body.cama
-      const { historial,fechaIngreso,tipoPaciente,institucion,provieneDE,observacion,especialidad,sala,cama,doctor,diagnostico } = req.body
+      const { observacion,especialidad,sala,cama,diagnostico } = req.body
+
+      console.log(req.body, " <<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+
+      var estado_update = 'false'
       return Internaciones
         .findByPk(req.params.id)
         .then((data) => { 
           data.update({
-            historial: historial || data.historial,
-            fechaIngreso: fechaIngreso || data.fechaIngreso,  
-            tipoPaciente: tipoPaciente || data.tipoPaciente,  
-            institucion: institucion || data.institucion,                    
-            provieneDE: provieneDE || data.provieneDE,
+            estado_update: estado_update || data.estado_update,
             observacion: observacion || data.observacion,
             especialidad: especialidad || data.especialidad, 
             sala: sala || data.sala,
             cama: cama || data.cama,
-            doctor: doctor || data.doctor,
+          
             diagnostico: diagnostico || data.diagnostico,
             idCama: idCama || data.idCama     
           })
           .then(update => {
-            res.status(200).send({              
-              message: 'Actualizado',
+            res.status(200).send({ 
+              success:true,             
+              msg: 'Actualizado',
               data: {
-                historial: historial || update.historial,
-                fechaIngreso: fechaIngreso || update.fechaIngreso,  
-                tipoPaciente: tipoPaciente || update.tipoPaciente,  
-                institucion: institucion || update.institucion,                    
-                provieneDE: provieneDE || update.provieneDE,
+                estado_update: estado_update || update.estado_update,
                 observacion: observacion || update.observacion,
                 especialidad: especialidad || update.especialidad, 
                 sala: sala || update.sala,
                 cama: cama || update.cama,
-                doctor: doctor || update.doctor,
+              
                 diagnostico: diagnostico || update.diagnostico,
                 idCama: idCama || update.idCama       
               }
@@ -167,18 +226,18 @@ class Intern {
 
     // ruta para poder mostrar una lista segun especialidad
     static list_internacion_especialidad(req, res){                
-      const { especialidad } = req.params
+      const { id_especialidad } = req.params
       Internaciones.findAll({
-         where: {especialidad: especialidad},
+         where: {id_especialidad: id_especialidad},
          //attributes: ['id', ['description', 'descripcion']]
         include:[{
           model:Pacientes
         }]
-        
+
        }).then((data) => {
          res.status(200).json(data);
        });     
-  }
+    }
   //ruta para poder mostrar una internacion segun id
   static One_intern(req, res){                
     const { id } = req.params
@@ -194,6 +253,133 @@ class Intern {
      }).then((data) => {
        res.status(200).json(data);
      });     
+  }
+
+  static update_estado_alta(req, res) {
+    const { estado_alta } = req.body
+
+    return Internaciones
+      .findByPk(req.params.id)
+      .then((data) => { 
+        data.update({
+          estado_alta: estado_alta || data.estado_alta,
+        })
+        .then(update => {
+          res.status(200).send({ 
+            success:true,             
+            msg: 'Actualizado',
+            data: {
+              estado_alta: estado_alta || update.estado_alta,      
+            }
+          })
+        })
+        .catch(error => res.status(400).send(error));
+      })
+      .catch(error => res.status(400).send(error));
+  }
+
+  /* 
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                  Traslados
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  */
+  static Internacion_of_traslado(req,res){
+    
+    Pacientes.findAll({
+      where: {numeroHistorial : req.body.historial}
+    })
+    .then((datos) => {
+      if(datos ==""){
+        res.status(400).json({
+          success:false,
+          msg:"Ese paciente no existe"
+        })
+      }else{
+
+        const { historial, fechaIngreso, provieneDE, observacion, especialidad, sala, cama, doctor, diagnostico, id_especialidad, id_user } = req.body 
+        if(historial == "" || isNaN(historial) || fechaIngreso == "" || provieneDE == "" || especialidad == "" || sala == "" || cama == "" || doctor == "" || diagnostico == ""){
+          if(historial == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Historial no se esta mandando"
+            })
+          }else if (isNaN(historial)){
+            res.status(400).json({
+              success:false,
+              msg:"Historial solo puede contener numeros"
+            })
+          }else if (fechaIngreso == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Fehca es obligatorio"
+            })
+          }else if(provieneDE == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Por favor indique el area de donde esta viniendo el paciente"
+            })
+          }else if (especialidad == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte el area de internacion"
+            })
+          }else if (sala == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte sala a la cual el paciente va estar internado"
+            })
+          }else if (cama == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte la cama en la cual el paciente va estar internado"
+            })
+          }else if (doctor == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte el nombre del doctor por favor"
+            })
+          }else if (diagnostico == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte Diagnostico pe prescripcion"
+            })
+          }
+        }else{
+          const { idCama } = req.params
+          const { id_traslado } = req.params
+          var id_paciente = datos[0].id;
+          return Internaciones
+          .create({
+            historial,
+            fechaIngreso,
+            provieneDE,
+            observacion,
+            especialidad,
+            sala,
+            cama,
+            doctor,
+            diagnostico,
+            idCama,
+            id_traslado,
+            id_paciente,
+            id_especialidad,
+            id_user
+          })
+          .then(data => {
+            res.status(200).json({
+              success: true,
+              msg: "Registrado en el area de " + especialidad,
+              data
+            })
+          })
+        }
+
+      }
+
+    })
+    .catch(error => res.status(500).send(error))
   }
  }
 

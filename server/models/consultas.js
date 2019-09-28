@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     anamnesis: DataTypes.TEXT,
     diagnostico: DataTypes.TEXT,
     tratamiento: DataTypes.TEXT,
-    observaciones: DataTypes.TEXT
+    observaciones: DataTypes.TEXT,
+    id_medico: DataTypes.INTEGER
 
   }, {});
   Consultas.associate = function(models) {

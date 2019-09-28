@@ -6,27 +6,65 @@ const { Pacientes } = model;
 class Consulta {
     
     static reg_consulta(req, res) {
-        const { estado,tipoConsulta,fechaConsulta,numeroHistorial,anamnesis,diagnostico,tratamiento,observaciones} = req.body
-        var  id_cita  = req.params.id_cita
-        console.log(id_cita)
-        return Consultas
-          .create({
-            id_cita,
-            estado,
-            tipoConsulta,
-            fechaConsulta,
-            numeroHistorial,
-            anamnesis,
-            diagnostico,
-            tratamiento,
-            observaciones
+      const { tipoConsulta,fechaConsulta,numeroHistorial,anamnesis,diagnostico,tratamiento,observaciones,id_medico } = req.body
+      if(tipoConsulta == "" || fechaConsulta == "" || numeroHistorial == "" || isNaN(numeroHistorial) || diagnostico == "" || tratamiento == "" || id_medico == "" || isNaN(id_medico)){
+        if(tipoConsulta == ""){
+          res.status(400).json({
+            success:false,
+            msg:"El tipo de consulta no puede estar vació"
           })
-           .then(consultaData => res.status(201).send({
-              success: true,
-              message: 'consulta guardada',
-              consultaData
-          }))
-       }
+        }else if (fechaConsulta == ""){
+          res.status(400).json({
+            success:false,
+            msg:"Inserte la fecha actual por favor"
+          })
+        }else if(numeroHistorial == ""){
+          res.status(400).json({
+            success:false,
+            msg:"Numero historial no puede estar vació"
+          })
+        }else if(isNaN(numeroHistorial)){
+          res.status(400).json({
+            success:false,
+            msg:"Numero historial no pude contener letras"
+          })
+        }else if(diagnostico == ""){
+          res.status(400).json({
+            success:false,
+            msg:"Inserte el diagnostico del paciente por favor"
+          })
+        }else if(tratamiento == ""){
+          res.status(400).json({
+            success:false,
+            msg:"Inserte tratamiento por favor"
+          })
+        }else if(id_medico == "" || isNaN(id_medico)){
+          res.status(400).json({
+            success:false,
+            msg:"Id de medico no se esta mandando"
+          })
+        }
+      }else{
+      var  id_cita  = req.params.id_cita;
+      return Consultas
+        .create({
+          id_cita,  // este es el id de la cita medica
+          tipoConsulta,
+          fechaConsulta,
+          numeroHistorial,
+          anamnesis,
+          diagnostico,
+          tratamiento,
+          observaciones,
+          id_medico
+        })
+        .then(consultaData => res.status(201).send({
+          success: true,
+          msg: 'consulta guardada',
+          consultaData
+        }))
+      }
+    }
     static getConsulta(req, res) {
         return Consultas
      .findAll()

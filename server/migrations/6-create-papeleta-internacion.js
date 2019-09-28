@@ -13,6 +13,11 @@ module.exports = {
         allowNull: false, 
         defaultValue: true
       },
+      estado_update: {
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: true
+      },
       tipoConsulta: {
         type: Sequelize.STRING
       },
@@ -55,7 +60,10 @@ module.exports = {
           as: 'idEmergencia',
         }
       },
-      id_medico: {                      // este id es de otro servicio
+      id_medico: {                      // este id es de otro servicio 
+        type: Sequelize.INTEGER
+      },
+      id_especialidad:{   
         type: Sequelize.INTEGER
       },
       createdAt: {

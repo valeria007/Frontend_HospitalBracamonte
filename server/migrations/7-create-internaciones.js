@@ -8,16 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      estado_update: {
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: true
+      },
+      estado_alta:{
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: false   // esto va a cambiar cuando se realize el alta del paciente
+      },
       historial: {
         type: Sequelize.INTEGER,
       },
       fechaIngreso: {
-        type: Sequelize.STRING
-      },
-      tipoPaciente: {
-        type: Sequelize.STRING
-      },
-      institucion: {
         type: Sequelize.STRING
       },
       provieneDE: {
@@ -50,6 +54,7 @@ module.exports = {
           as: 'idCama'
         }
       },
+
       idPinternacion: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
@@ -59,6 +64,16 @@ module.exports = {
           as: 'idPinternacion'
         }
       },
+      id_traslado: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'traslados',
+          key: 'id',
+          as: 'id_traslado'
+        }
+      },
+
       id_paciente: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
@@ -67,7 +82,13 @@ module.exports = {
           key: 'id',
           as: 'id_paciente'
         }
-      },      
+      },  
+      id_especialidad:{
+        type: Sequelize.INTEGER
+      } ,  
+      id_user:{
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

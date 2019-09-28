@@ -1,34 +1,91 @@
 import model from '../models';
 
 const { orden_Intervencion } = model;
+const { Internaciones } = model;
 
 class OrdenIntervencion{
     static reg_OrdenIntervencion(req,res){
-        const { historial,fechaOrden,motivoInternacion,resumneDatosClinicos,examenComplementario,diagnostico,resumenEgreso,tratamientoIndicado,diagnosticoEgreso,planManejoTratamiento,resAutopcia,observacion,condicionEgreso,CausaEgreso } = req.body;
+        const { historial,fechaOrden,nombre_cirujano,ayudantes, diag_pre_operatorio, intr_parcticada,diag_pos_operatorio,id_medico } = req.body;
         const { id_internacion } = req.params;
-        return orden_Intervencion
-        .create({
-            historial,
-            fechaOrden,
-            motivoInternacion,
-            resumneDatosClinicos,
-            examenComplementario,
-            diagnostico,
-            resumenEgreso,
-            tratamientoIndicado,
-            diagnosticoEgreso,
-            planManejoTratamiento,
-            resAutopcia,
-            observacion,
-            condicionEgreso,
-            CausaEgreso,
-            id_internacion
+
+        return Internaciones                
+        .findAll({
+            where : { id : id_internacion }
         })
-        .then(data => res.status(200).send({
-            success: true,
-            message: "Exito",
-            data
-        }))    
+        .then(data => {
+            if (data == ""){
+                res.status(400).json({
+                    success:false,
+                    msg:"No se puede registrar"
+                })
+            }else{
+                if(data[0].estado_alta == true ){
+                    res.status(400).json({
+                        success : false,
+                        msg : "No se pude registrar, por que el paciente ya fue dado de alta"
+                    })
+                }else{
+                    if( historial == "" || isNaN(historial) || fechaOrden == "" || nombre_cirujano == "" || ayudantes == "" || diag_pre_operatorio == "" || intr_parcticada =="" || diag_pos_operatorio == "" || id_medico == "" || isNaN(id_medico) ){
+                        if( historial == "" ){
+                            res.status(400).json({
+                                success:false,
+                                msg: "Historial del paciente no se esta mandando"
+                            })
+                        }else if(isNaN(historial)){
+                            res.status(400).json({
+                                success:false,
+                                msg: "historial solo puede contener nuemros"
+                            })
+                        }else if (nombre_cirujano == ""){
+                            res.status(400).json({
+                                success:false,
+                                msg: "Por favor inserte nombre del cirujano"
+                            })
+                        }else if (ayudantes == ""){
+                            res.status(400).json({
+                                success:false,
+                                msg: "Inserte nombre de los ayudantes"
+                            })
+                        }else if (diag_pre_operatorio == "" || intr_parcticada == "" || diag_pos_operatorio== ""){
+                            res.status(400).json({
+                                success:false,
+                                msg: "Los campos diagnostico pre operatorio, intervenciones practicadas y orden post operatorio son obligatorios"
+                            })
+                        }else if (id_medico == "" || isNaN(id_medico)){
+                            res.status(400).json({
+                                success:false,
+                                msg: "La indetidad del medico no se esta mandando o se esta mandando mal"
+                            })
+                        }else if (fechaOrden == ""){
+                            res.status(400).json({
+                                success:false,
+                                msg: "Inserte fecha por favor"
+                            })
+                        }
+                    }else{
+                        
+                        return orden_Intervencion
+                        .create({
+                            historial,
+                            fechaOrden,
+                            nombre_cirujano,
+                            ayudantes,
+                            diag_pre_operatorio,
+                            intr_parcticada,
+                            diag_pos_operatorio,
+                            id_internacion,
+                            id_medico
+                        })
+                        .then(data => res.status(200).send({
+                            success: true,
+                            msg: "Se insertaron los datos",
+                            data
+                        }))
+                    }  
+                }
+            }
+        })
+         
     }
     // Servicio para para mostrar Ordenes de internacion
     static getOrdenIntervencion(req, res) {

@@ -127,7 +127,17 @@ class Receta {
     }
   static getReceta(req, res) {
     return Recetas
-     .findAll()
+     .findAll({
+      include:[
+        {model : Consultas, attributes:['id'],
+       include:[{
+         model : Citas_Medicas, attributes:['id'],
+         include:[{
+           model : Pacientes, attributes:['id','nombre', 'apellidop','apellidom']
+         }]
+       }]}
+      ]
+     })
      .then(Recetas => res.status(200).send(Recetas));
     }
 
@@ -233,6 +243,16 @@ class Receta {
      }).then((data) => {
        res.status(200).json(data);
      });   
+  }
+
+  // esta ruta es para sacar una receta
+  static one_receta(req,res){
+    const { id_receta } = req.params
+    Recetas.findAll({
+      where : { id: id_receta },
+    }).then(receta => {
+      res.status(200).send(receta)
+    })
   }
     
 }

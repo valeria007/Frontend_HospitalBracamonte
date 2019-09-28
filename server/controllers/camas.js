@@ -107,42 +107,56 @@ import model from '../models';
             })
             .then(update => {
               res.status(200).send({
-                message: 'se actualizo el estado de cama',
+                success: true,
+                msg: 'Se actualizo el estado de cama',
                 data : {
                   historial: historial || update.historial,
                   estado : estado  || update.estado 
                 }
               })
-              .catch(error => res.status(400).send(error))
+              .catch(error => {
+                res.status(500).json({
+                  success:false,
+                  msg: "Algo sucedio con el servidor",
+                  error
+                })
+              })
             })
-            .catch(error => res.status(400).send(error))
+            .catch(error => {
+              res.status(500).json({
+                success:false,
+                msg: "Algo sucedio con el servidor",
+                error
+              })
+            })
           })
         }
 
         //ruta para poder actulizar el estado una cama a false y quitar de esa cama a null
-        static Update_cama_estado(req,res){
-          const { idCama } = req.params;  
-          const { estado, historial } = req.body;       
-          return Camas
-          .findByPk(idCama)
-          .then((data) => {
-            data.update({
-              historial: historial || data.historial,
-              estado : estado  || data.estado             
-            })
-            .then(update => {
-              res.status(200).send({
-                message: 'Se actualizo el estado de cama',
-                data : {
-                  historial: historial || update.historial,
-                  estado : estado  || update.estado 
-                }
-              })
-              .catch(error => res.status(400).send(error))
+      static Update_cama_estado(req,res){
+        const { idCama } = req.params;  
+        const { estado, historial } = req.body;       
+        return Camas
+        .findByPk(idCama)
+        .then((data) => {
+          data.update({
+            historial: historial || data.historial,
+            estado : estado  || data.estado             
+          })
+          .then(update => {
+            res.status(200).send({
+              success:true,
+              msg: 'Se actualizo el estado de cama',
+              data : {
+                historial: historial || update.historial,
+                estado : estado  || update.estado 
+              }
             })
             .catch(error => res.status(400).send(error))
           })
-        }
+          .catch(error => res.status(400).send(error))
+        })
+      }
 
     }
 

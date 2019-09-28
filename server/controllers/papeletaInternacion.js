@@ -1,4 +1,6 @@
 import model from '../models';
+const fetch = require('node-fetch');
+
 
 const { PapeletaInternacion } = model;
 const { Consultas } = model;
@@ -18,30 +20,53 @@ class papeletaInt{
           msg: "Diagnostico no puede estar vacío"
         })
       }else if(req.body.especialidad != ""){
-        const { estado,tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico,especialidad,id_medico } = req.body
-        const { idConsultaMedica } = req.params
-        const { idEmergencia } = req.params
-        return PapeletaInternacion
-        .create({
-          estado,
-          tipoConsulta,
-          fechaIngreso, 
-          Historial, 
-          nombreDoctor,
-          apellidoD1,
-          apellidoD2,
-          diagnostico,
-          especialidad,
-          idConsultaMedica,
-          idEmergencia,
-          id_medico
+        fetch('http://localhost:4600/api/especialidad_nombre/'+ req.body.especialidad)
+        .then(resp => resp.json())
+        .then(resp => {
+        console.log(resp, "   <<<<<<<<<<<<<<<<<<<<<<    esto es lo que quiero ver")
+          if(resp == ""){
+            res.status(400).json({
+              success: false,
+              msg: "No existe esa especialidad"
+            })
+          }else{
+
+            const { tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico,especialidad,id_medico } = req.body
+            const { idConsultaMedica } = req.params
+            const { idEmergencia } = req.params
+            var id_especialidad = resp[0].id
+
+            return PapeletaInternacion
+            .create({
+              tipoConsulta,
+              fechaIngreso, 
+              Historial, 
+              nombreDoctor,
+              apellidoD1,
+              apellidoD2,
+              diagnostico,
+              especialidad,   // esto es el area de internacion a la que va estar registrado el paciente
+              idConsultaMedica,  // este id se llena cuando se registran los datos desde consulta medica
+              idEmergencia,  // este id se llena cuando se llenan los datos desde emergencia 
+              id_medico, // este es el id del medico
+              id_especialidad  
+            })
+            .then(data => res.status(200).send({
+                success: true,
+                msg: 'Se inserto con exito',
+                data
+            }))
+            .catch(error => res.status(400).send(error));   
+          }
         })
-        .then(data => res.status(200).send({
-            success: true,
-            msg: 'Se inserto con exito',
-            data
-        }))
-        .catch(error => res.status(400).send(error));    
+        .catch(error => {
+          res.status(500).json({
+            success:false,
+            msg:"Algo salio mal con el servidor de cuadernos",
+            error
+          })
+        })
+         
       }else{
         res.status(400).json({
           success:false,
@@ -118,44 +143,63 @@ class papeletaInt{
         });     
     }
     static upinternacion(req, res) {
-      console.log(req.body, " <<<<<<<<<<<<<<<<<<<<<")
-      const { estado, tipoConsulta, Historial,diagnostico,especialidad } = req.body
-      return PapeletaInternacion
-        .findByPk(req.params.id)
-        .then((data) => { 
-          data.update({
-            estado:estado || data.estado,
-            tipoConsulta: tipoConsulta || data.tipoConsulta,
-            
-            Historial: Historial || data.Historial,  
-            
-            diagnostico: diagnostico || data.diagnostico, 
-            especialidad: especialidad || data.especialidad   
-          })
-          .then(update => {
-            res.status(200).send({
-              success:true,
-              msg: 'Actualizado',
-              data: {
-                estado:estado || update.estado,
-                tipoConsulta: tipoConsulta || update.tipoConsulta,
-               
-                Historial: Historial || update.Historial,  
-                
-                diagnostico: diagnostico || update.diagnostico,
-                especialidad:especialidad || update.especialidad    
+     
+      const { tipoConsulta, Historial,diagnostico,especialidad } = req.body
+      
+      fetch('http://localhost:4600/api/especialidad_nombre/'+ especialidad)
+        .then(resp => resp.json())
+        .then(resp => {
+          if(resp == ""){
+            res.status(400).json({
+              success: false,
+              msg: "No existe esa especialidad"
+            })
+          }else{
+            var id_especialidad = resp[0].id
+            var estado_update = 'false'
+            return PapeletaInternacion
+            .findByPk(req.params.id)
+            .then((data) => { 
+              data.update({
+                estado_update:estado_update || data.estado_update,
+                tipoConsulta: tipoConsulta || data.tipoConsulta,
+
+                Historial: Historial || data.Historial,  
+
+                diagnostico: diagnostico || data.diagnostico, 
+                especialidad: especialidad || data.especialidad , 
+                id_especialidad: id_especialidad || data.id_especialidad   
+
+              })
+              .then(update => {
+                res.status(200).send({
+                  success:true,
+                  msg: 'Actualizado',
+                  data: {
+                    estado_update:estado_update || update.estado_update,
+                    tipoConsulta: tipoConsulta || update.tipoConsulta,
+                  
+                    Historial: Historial || update.Historial,  
+
+                    diagnostico: diagnostico || update.diagnostico,
+                    especialidad:especialidad || update.especialidad,
+                    id_especialidad: id_especialidad || update.id_especialidad   
+
+                  }
+                })
+              })
+              .catch(error => res.status(400).send(error));
+            })
+            .catch(error => res.status(400).send(error));
               }
             })
-          })
-          .catch(error => res.status(400).send(error));
-        })
-        .catch(error => res.status(400).send(error));
+      
   }
   // este serv va a mostrar los datos de tipo true solamente
   static PINterTRUE(req, res){ 
-    const { especialidad } = req.params               
+    const { id_especialidad } = req.params               
     PapeletaInternacion.findAll({
-        where: { estado: true, especialidad:especialidad },
+        where: { estado: true, id_especialidad:id_especialidad },
         //attributes: ['id', ['description', 'descripcion']]
         
       }).then((resp) => {
@@ -164,9 +208,9 @@ class papeletaInt{
   }
   // este serv va a mostrar los datos de tipo false solamente
   static PINterFALSE(req, res){ 
-    const { especialidad } = req.params                   
+    const { id_especialidad } = req.params                   
     PapeletaInternacion.findAll({
-        where: { estado: false, especialidad:especialidad },
+        where: { estado: false, id_especialidad:id_especialidad },
         //attributes: ['id', ['description', 'descripcion']]
        
       }).then((resp) => {
@@ -224,7 +268,8 @@ class papeletaInt{
       })
       .then(update => {
         res.status(200).send({
-          message: 'se actualizo el estado',
+          success:true,
+          msg: 'Se actualizo el estado',
           data : {
             estado : estado  || update.estado 
           }
