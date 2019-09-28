@@ -11,7 +11,7 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
+  <div class="wrapper">
     <div class="header_bar">
         <div class="brand">
           <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -29,146 +29,155 @@
            
           </div>
         </div>
-      </div>
-    
-  <div class="inner">
+    </div>
+    <div class="inner">
       <div class="left_nav">
-          <div class="left_nav_slidebar">
-            <ul>
-              <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul >
-                  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-                </ul>
-              </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul  >
-                  <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
-                </ul>
-              </li>
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul class="opened" style="display:block">
-                  <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                  <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Cuadernos</b> </a> </li>
-                  <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-                </ul>
-              </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul>
-                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
-                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Farmacia</a> </li>
-                  <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
-                </ul>
-              </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul>
-                  <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-      </div>
-    <div class="contentpanel">
-      <div class="container clear_both padding_fix">
-        <br>
-        <div class="row">
-        <div class="col-md-12">
-          <div class="block-web">
-            <div class="header">
-              <div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div>
-              <h3 class="content-header ">Asignación Medico<span class="semi-bold">/Turnos</span></h3>
-            </div>
-            <br><br>
-            
-            <div class="porlets-content">
-					  <form class="form-horizontal group-border-dashed" action="/cuaderno/turnos" method="POST" parsley-validate novalidate>  
-					 
-            <div class="form-group">
-                <label class="control-label col-md-4">Día de atencion:</label>
-                <div class="col-md-4 col-xs-10">
-                    <select  class="form-control" id="source" name="diasAten" >
-                        <option>Lunes</option>
-                        <option>Martes</option>
-                        <option>Miercoles</option>
-                        <option>Jueves</option>
-                        <option>Viernes</option>
-                        <option>Sabado</option>
-                        <option>Domingo</option>
-                      </select><br>
-                </div>                      
-              </div><!--/form-group--> 
-              <div class="form-group">
-                  <label class="control-label col-md-4">Turno:</label>
-                  <div class="col-md-4 col-xs-10">
-                      <select class="form-control" id="source" name="turno" >                               
-                          <option>Mañanas</option>
-                          <option>Tardes</option>
-                          <option>Noches</option>
-                        </select><br>
-                  </div>                      
-                </div><!--/form-group--> 
-              <div class="form-group">
-                <div class="col-sm-offset-4 col-sm-10"> 
-                  <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                  <div class="btn-group">
-                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Volver <span class="caret"></span></button>
-                    <ul role="menu" class="dropdown-menu">
-                      <li><a href="/cuaderno/cuadernos1">Cuadernos </a></li>
-                      <li><a href="/cuaderno/docCuaderno ">Asignación Medico</a></li>
-                      <li><a href="/cuaderno/volverFechas">Fechas</a></li>
-                      <li><a href="/home">Home</a></li>
-                      
-                    </ul>
-                  </div>               
-                </div>
-              </div><!--/form-group--> 
-              </form>
-            </div>
-          </div>
+        <div class="left_nav_slidebar">
+          <ul>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul  >
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="block-web">
-           <div class="header">
-             
-              <h3 class="content-header">LISTA DE TURNOS</h3>
-            </div>
-            <div class="porlets-content">
-              <div class="table-responsive">
-                <table  class="display table table-bordered table-striped" id="dynamic-table">
-                  <thead>
-                    <tr>
-                      <th class="text-center">#</th>
-                      <th class="text-center">Dia de atencion</th>
-                      <th class="text-center">Turno</th>
-                      <th class="text-center">Opciones</th>
-                    </tr>
-                      </thead>
-                      <tbody>
-                        <% for (var i=0; i< resp.length; i++) { %>
-                        <tr>
-                          <td class="text-center"><%=i+1%></td>
-                          <td class="text-center"><%=resp[i].diasAten%></td>
-                          <td class="text-center"><%=resp[i].turno%></td>
-                          <td class="text-center">
-                            <a href="" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
-                            <a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_horas"><i class="fa fa-plus-square"></i></a>
-                            <a href="/cuaderno/delturno/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                          </td>
-                        </tr>
-                        <% } %>
-                      <tbody>
-                </table>
+      <div class="contentpanel">
+        <div class="container clear_both padding_fix col-lg-8">
+          <br>
+          <div class="row">
+            <div class="col-lg-12 ">
+              <div id="main-content" class=" block-web">
+                <div class="header">
+                    <div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div>
+                    <h3 class="content-header ">Asignación Medico<span class="semi-bold">/Turnos</span></h3>
+                </div>
+                <div class="page-content">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="block-web">
+                        <div class="header">
+                          <div class="actions"> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
+                            <a class="refresh" href=""><i class="fa fa-repeat"></i></a>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="porlets-contents">
+                          <div id="demo" class="collapse in">
+                            <form class="form-horizontal group-border-dashed" action="/cuaderno/turnos" method="POST" parsley-validate novalidate>  
+				                      <div class="form-group">
+                                <label class="control-label col-md-4">Día de atencion:</label>
+                                <div class="col-md-4 col-xs-10">
+                                  <select  class="form-control" id="source" name="diasAten" >
+                                    <option>Lunes</option>
+                                    <option>Martes</option>
+                                    <option>Miercoles</option>
+                                    <option>Jueves</option>
+                                    <option>Viernes</option>
+                                    <option>Sabado</option>
+                                    <option>Domingo</option>
+                                  </select><br>
+                                </div>                      
+                              </div><!--/form-group--> 
+                              <div class="form-group">
+                                <label class="control-label col-md-4">Turno:</label>
+                                <div class="col-md-4 col-xs-10">
+                                  <select class="form-control" id="source" name="turno" >                               
+                                    <option>Mañanas</option>
+                                    <option>Tardes</option>
+                                    <option>Noches</option>
+                                  </select><br>
+                                </div>                      
+                              </div><!--/form-group--> 
+                              <div class="form-group">
+                                <div class="col-sm-4"> 
+                                  <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                  <div class="btn-group">
+                                      <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver<span class="caret"></span></button>
+                                    <ul role="menu" class="dropdown-menu">
+                                      <li><a href="/cuaderno/cuadernos1">Cuadernos </a></li>
+                                      <li><a href="/cuaderno/docCuaderno ">Asignación Medico</a></li>
+                                      <li><a href="/cuaderno/volverFechas">Fechas</a></li>
+                                      <li><a href="/home">Home</a></li>
+                                    </ul>
+                                  </div>               
+                                </div>
+                              </div><!--/form-group--> 
+                            </form>
+                          </div>
+                          <br><br>
+                          <div class="porlets-content">
+                            <div class="table-responsive">
+                              <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Dia de atencion</th>
+                                    <th class="text-center">Turno</th>
+                                    <th class="text-center">Opciones</th>
+                                  </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% for (var i=0; i< resp.length; i++) { %>
+                                      <tr>
+                                        <td class="text-center"><%=i+1%></td>
+                                        <td class="text-center"><%=resp[i].diasAten%></td>
+                                        <td class="text-center"><%=resp[i].turno%></td>
+                                        <td class="text-center">
+                                          <a href="" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
+                                          <a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_horas"><i class="fa fa-plus-square"></i></a>
+                                          <a href="/cuaderno/delturno/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                        </td>
+                                      </tr>
+                                      <% } %>
+                                    <tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <!--/porlets-content-->
+                      </div>
+                      <!--/block-web-->
+                    </div>
+                    <!--/col-md-12-->
+                  </div>
+                  <!--/row-->
+                </div>
+                <!--/page-content end-->
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-      </div>
-   </div>
- </div>
-</div>
+    </div>
+  </div>
 
 <!-------MODALLLLL-------->
 

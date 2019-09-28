@@ -183,6 +183,8 @@ router.get('/vue_list_EspCons/:id_especialidad', (req,res) => {
 */
 
 router.get('/limpiarC', (req,res) => {
+    mess=null;
+    mgconf=null;
     OnlyC = null;
     res.redirect('/cuaderno/Cuadernos')
 })
@@ -222,7 +224,7 @@ router.get('/onlyCuadernos/:id', (req,res) => {
         })
         .catch(error => {
             console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
+            res.send("404error");
         })   
 })
 
@@ -268,8 +270,16 @@ router.post('/updateCuaderno/:id', (req,res) => {
     fetch(url.name.cuadernos+'/api/updateCuaderno/'+id,esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(data => {        
-        res.redirect('/cuaderno/onlyCuadernos/'+id)       
+    .then(data => {   
+        if(data.success == true){
+            console.log('esto esssssssssssssss',data)
+            mgconf=data.message;
+            res.redirect('/cuaderno/onlyCuadernos/'+id)  
+        }else{
+            mess=data.message;
+            res.redirect('/cuaderno/onlyCuadernos/'+id) 
+        }     
+              
     })  
 })
 

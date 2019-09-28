@@ -152,24 +152,27 @@ router.post('/updatePersonal/:id',(req,res) => {
 router.get('/UsuraioCuenta/:id', (req,res) => {
   var id = req.params
   fetch('http://127.0.0.1:3600/api/mostrarCuenta/'+id.id)
-        .then(resp => resp.json())
-        .then(resp =>{
-          //console.log(resp)
-          if (resp == null){
-            res.render('usuarioCuenta',{
-              id,
-              resp
-            });
-          }else{
-            res.render('usuarioCuenta',{
-              id,
-              resp,
-              mg1,
-              mg2,
-              data
-            });
-          }
-     });
+  .then(resp => resp.json())
+  .then(resp =>{
+    //console.log(resp)
+    if (resp == null){
+      res.render('usuarioCuenta',{
+        id,
+        resp
+      });
+    }else{
+      res.render('usuarioCuenta',{
+        id,
+        resp,
+        mg1,
+        mg2,
+        data,
+        
+      });
+    }
+    msg_del(),{ expiresIn: 10 * 800 } 
+  });
+  
 });
 var mg1,mg2,data
 router.post('/crearCuenta/:id', (req,res) => {
@@ -190,20 +193,27 @@ router.post('/crearCuenta/:id', (req,res) => {
   .then(resp => {
     console.log(resp, "    <<<<<<<<<<<<<<<<<<<<  esto es la respuesta")
     if (resp.success == false){
-      mg1= resp.msg
-      res.redirect('/usuarios/UsuraioCuenta/'+id.id)
-      mg2 = null
-  }else{
-      mg2= resp.message
-      mg1 = null
-      data=null 
-      console.log(resp)
-      res.redirect('/usuarios/UsuraioCuenta/'+id.id)
-  }
-
+        mg1= resp.msg
+        res.redirect('/usuarios/UsuraioCuenta/'+id.id)
+        mg2 = null
+        
+    }else{
+        mg2= resp.message
+        mg1 = null
+        data=null 
+        console.log(resp)
+      
+        res.redirect('/usuarios/UsuraioCuenta/'+id.id)
+    }
+   
   
   })
 });
+
+function msg_del(){
+  mg1 = null
+  mg2 = null
+}
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
