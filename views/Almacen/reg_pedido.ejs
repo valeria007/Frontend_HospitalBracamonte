@@ -56,11 +56,11 @@
           <div class="col-md-12">
             <div class="block-web">
               <div class="header">
-                <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar" ><i class="fa fa-chevron-down"></i></a> </div>
-                <h5 class="content-header"><i class="fa fa-shopping-cart icon"></i> Registro de Pedido</h5>
+                  <div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href="/medicamento/volver15"><i class="fa fa-repeat"></i></a></div>
+                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div> Pedido /<span class="semi-bold"> Registro de Pedido</span></h2>  
               </div>
                 <span style="color: red;">{{respuestaPost}}</span>
-              
+              <br><br>
                 <form @submit="formSubmit" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Codigo de Compra:</label>
@@ -116,9 +116,9 @@
                       <textarea class="form-control" v-model="Observaciones" onkeyup="mayus(this);"></textarea>
                     </div>
                   </div>
-                  <p class="text-center"> <button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success">Lista Productos</button></p>
+                  <p class="text-center"> <button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-info">Lista Productos</button></p>
                   <div class="col-lg-12"> 
-                    <section class="panel default black_title h4">
+                    <section class="panel default black_title h3">
                       <div class="panel-heading">
                         <span class="semi-bold">Lista Pedidos</span> 
                       </div>
@@ -193,8 +193,8 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10"> 
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+                    <div class="col-sm-offset-0 col-sm-10"> 
+                      <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
                       <a type="reset" class="btn btn-danger" href="/pedidos/volver"><i class="fa fa-times"></i> Cancelar</a>
                     </div>
                   </div><!--/form-group--> 
@@ -212,10 +212,11 @@
                 <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit"> Lista de Productos </i></h4>
               </div>
               <div class="row">
-                  <span style="color: red;">{{alert}}</span>
-                  <span style="color: blue;">{{pass}}</span>
+                  
                 <!--/////////////table-->
                 <div class="col-xs-10 col-md-offset-1">
+                    <span style="color: red;">{{alert}}</span>
+                    <span style="color: blue;">{{pass}}</span>
                   <br>
                   <label><i class="fa fa-search"> buscar </i></label>
                   <div class="control is-grouped">

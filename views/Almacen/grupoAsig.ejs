@@ -69,15 +69,14 @@
       </div>
      <!--Contenido-->
      <div class="contentpanel"><br>
-      <!--\\\\\\\ contentpanel start\\\\\\-->
       <!--Formulario-->
       <div class="container clear_both padding_fix">
         <div class="row">
           <div class="col-md-12">
             <div class="block-web">
               <div class="header">
-                <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/almacen/volver1"><i class="fa fa-repeat"></i></a> </div>
-                <h3 class="content-header"> <i class="fa fa-list icon"></i> Registrar Grupo de Asignacion</h3>
+                <div class="actions"><a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="/almacen/volver1"><i class="fa fa-repeat"></i></a> </div>
+                <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-list icon"></i></div>   Registrar Grupo de Asignación</h2>
               </div>
               <div class="porlets-content">
                 <% if(msg != null) { %>
@@ -95,9 +94,11 @@
                   </div>
                 </div>
                 <% } %>
+                <br>
+                <br>
                 <%if (oneGrupoAsig == null) { %>
                 <form  class="form-horizontal group-border-dashed" action="/almacen/grupoAsig" method="POST" parsley-validate novalidate onkeyup="mayus(this);">
-                  <%if(err != null) { %>
+                <%if(err != null) { %>
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Codigo</label>
                     <div class="col-sm-6">                   
@@ -110,7 +111,7 @@
                       <input type="text" class="form-control" required parsley-minlength="6" name="descripcion" value="<%=err.descripcion%>" onkeyup="mayus(this);"/>
                     </div>
                   </div><!--/form-group--> 
-                  <% } else { %>
+                <% } else { %>
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Codigo</label>
                     <div class="col-sm-6">                       
@@ -123,10 +124,10 @@
                       <input type="text" class="form-control" required parsley-minlength="6"  name="descripcion" onkeyup="mayus(this);"/>
                     </div>
                   </div><!--/form-group--> 
-                  <% } %>
+                <% } %>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button  type="submit" class="btn btn-primary" ><i class="fa fa-floppy-o"></i>  Guardar</button>
+                    <div class="col-sm-offset-1 col-sm-10">
+                      <button  type="submit" class="btn btn-success" ><i class="fa fa-floppy-o"></i>  Guardar</button>
                       <button type="reset" value="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
                     </div>
                   </div><!--/form-group--> 
@@ -146,14 +147,14 @@
                     </div>
                   </div><!--/form-group--> 
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+                    <div class="col-sm-offset-1 col-sm-10">
+                      <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
                       <a type="reset" class="btn btn-danger" href="/almacen/volver1"><i class="fa fa-times"></i> Cancelar</a>
                     </div>
                   </div>
                 </form>
-                <% } %>  
-              </div><!--/porlets-content-->
+                <% } %>
+              </div><!--/block-web--> 
               <div id="main-content">
                 <div class="page-content">
                   <div class="row">
@@ -161,49 +162,46 @@
                       <div class="block-web">
                         <div class="header">
                           <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
-                          <h3 class="content-header">Lista de Grupo de Asignacion</h3>
+                          <h3 class="content-header">Lista de Grupo de Asignación</h3>
                         </div>
                         <div class="porlets-content">
                           <div class="table-responsive">
-                          <table  class="display table table-bordered table-striped " id="dynamic-table">
-                            <thead>
-                              <tr>
-                              <th>#</th>
-                              <th>Codigo</th>
-                              <th>Descripcion</th>
-                              <th >Modificar</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                            <% for(var i=0; i < resp.length; i++) { %>
-                              <tr>
-                              <td><%= i+1 %></td>
-                              <td><%=resp[i].codigo%></td>
-                              <td><%=resp[i].descripcion%></td>
-                              <td class="center hidden-phone">
-                              <a class="btn btn-success btn-sm" href="/almacen/GrupoAsigONLY/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a>
-                              </td>
-                              </tr>
-                            <% } %>
-                            </tbody>
-                          </table>
+                            <table  class="display table table-bordered table-striped " id="dynamic-table">
+                              <thead>
+                                <tr>
+                                <th>#</th>
+                                <th>Codigo</th>
+                                <th>Descripcion</th>
+                                <th >Modificar</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% for(var i=0; i < resp.length; i++) { %>
+                                <tr>
+                                <td><%= i+1 %></td>
+                                <td><%=resp[i].codigo%></td>
+                                <td><%=resp[i].descripcion%></td>
+                                <td class="center hidden-phone">
+                                <a href="/almacen/GrupoAsigONLY/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Actualizar"><i class="fa fa-refresh "></i></a><span>&nbsp;</span>
+                                </td>
+                                </tr>
+                                <% } %>
+                              </tbody>
+                            </table>
                           </div><!--/table-responsive-->
                         </div><!--/porlets-content-->
                       </div><!--/block-web--> 
                     </div><!--/col-md-12--> 
                   </div><!--/row-->
                 </div><!--/page-content end--> 
-              </div><!--/main-content end-->
-            </div><!--/block-web--> 
-          </div><!--/col-md-12--> 
-        </div>
+              </div>
+            </div>
+          </div>
+        </div><!--/row-->
       </div>
-    <!--\\\\\\\ content panel end \\\\\\-->
     </div>
   </div>
 </div>
-
-  <%- include("../partials/scripts") -%>
+<%- include("../partials/scripts") -%>
 </body>
 </html>
-

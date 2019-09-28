@@ -49,11 +49,10 @@
                         <div class="row">
                             <div class="col-md-12">
                               <div class="block-web">
-                                <div class="header">
-                                    <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar"><i class="fa fa-chevron-down"></i></a> </div>
-                                    <h3 class="content-header"> <i class="fa fa-shopping-cart icon"></i> Pedido</h3>   
-                                    
-                                </div>
+                                    <div class="header">
+                                            
+                                            <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div> Pedido /<span class="semi-bold"> Ver Pedido</span></h2>  
+                                        </div>
                                 <div class="porlets-content">
                                         <span style="color: red;">{{error}}</span>
                                         <span style="color: blue;">{{msg}}</span><br><br>
@@ -62,7 +61,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Codigo de Compra:</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].codigoCompra%>">
+                                                <input type="text" class="form-control" readonly value="<%=resp[0].codigoCompra%>">
                                             </div>
                                         </div><!--/form-group--> 
                                         <div class="form-group">
@@ -268,13 +267,13 @@
                                                     </div>
                                                 </div><br>
                                                 <p class="text-center">
-                                                    <a class="btn btn-success" href="/almacen/volver"><i class="fa fa-reply"></i> Volve Pedidos</a>
+                                                    <a class="btn btn-info" href="/almacen/volver"><i class="fa fa-reply"></i> Volve Pedidos</a>
                                                 </p>
                                             </div>
                                         </template>
                                         <div class="form-group"  v-if="pedido == ''">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+                                            <div class="col-sm-offset-0 col-sm-10">
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
                                                 <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
                                                 <button type="button" class="btn btn-warning" onclick=location="/almacen/imprimir/<%=resp[0].id%>"><i class="fa fa-print"></i> Imprimir</button>
                                             </div>

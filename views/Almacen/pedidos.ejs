@@ -72,22 +72,19 @@
 		<!--\\\\\\\ contentpanel start\\\\\\-->
 		<!--Formulario-->
 		<div class="container clear_both padding_fix">
-        <div id="main-content">
-          <div class="page-content">
+        
             <div class="row">
               <div class="col-md-12">
-                <div class="block-web">
-                    <div class="header">
-                      <div class="actions"><a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/pedidos/volver"><i class="fa fa-repeat"></i></a> </div>
-                      <h3 class="content-header"> <i class="fa fa-shopping-cart icon"></i> Pedidos </h3>
-                    </div>
+                <div class="block-web"><div class="header">
+                    <div class="actions"><a class="minimize" href="#">Refresh</a><a class="refresh" href="/pedidos/volver"><i class="fa fa-repeat"></i></a> </div>
+                    <h2 class="content-header"><div class="info gray_symbols"><i class="fa  fa-shopping-cart icon"></i></div>  Pedidos</h2>  
+                </div> 
                   <div class="porlets-content">
                       <div class="panel-body">
                           <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/pedidos/pedidos/proveedor" >Nuevo Pedido</button>
+                          <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/pedidos/pedidos/proveedor" > <i class="fa  fa-shopping-cart icon"></i>   Nuevo Pedido</button>
                         </div>
-                      
-                    <div class="table-responsive">
+                      <div class="table-responsive">
                       <table  class="display table table-bordered table-striped" id="dynamic-table">
                         <thead>
                             <tr>
@@ -99,7 +96,6 @@
                               <th>Impuestos</th>
                               <th>Total</th>
                               <th>Estado</th>
-                              <th>Imprimir</th>
                               <th>Opciones</th>
                             </tr>
                         </thead>
@@ -115,8 +111,10 @@
                                 <td><%=resp[i].iva%></td>
                                 <td><%=resp[i].total%></td>
                                 <td><span style="color: blue;">Aceptado</span></td>
-                                <td class="text-center"><button type="button" class="btn btn-warning" onclick=location="/almacen/imprimir/<%=resp[0].id%>"><i class="fa fa-print"></i></button></td>
-                                <td><a href="/pedidos/verPedido/<%=resp[i].id%>" class="btn btn-success btn-raised btn-sm">Ver Pedido</a></td>
+                                <td class="text-center"><a href="/pedidos/verPedido/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Pedido"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+                                  <a onclick=location="/almacen/imprimir/<%=resp[0].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print" style="color:rgb(236, 198, 26)"></i></a><span>&nbsp;</span>
+                                 </td>
+                                
                               </tr>
                             <% } else { %>
                               <tr>
@@ -128,8 +126,9 @@
                                   <td><%=resp[i].iva%></td>
                                   <td><%=resp[i].total%></td>
                                   <td><span style="color: red;">No aceptado</span></td>
-                                  <td class="text-center"><button type="button" class="btn btn-warning" onclick=location="/almacen/imprimir/<%=resp[0].id%>"><i class="fa fa-print"></i></button></td>
-                                  <td><a href="/pedidos/verPedido/<%=resp[i].id%>" class="btn btn-success btn-raised btn-xs">Ver Pedido</a></td>
+                                  <td class="text-center"><a href="/pedidos/verPedido/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Pedido"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+                                    <a onclick=location="/almacen/imprimir/<%=resp[0].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print" style="color:rgb(236, 198, 26)"></i></a><span>&nbsp;</span>
+                                   </td>
                                 </tr>
                             <% } %>
                           <% } %>

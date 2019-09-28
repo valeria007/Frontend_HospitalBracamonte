@@ -78,9 +78,9 @@
 					<div class="block-web">
 						<div class="header">
 							<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/proveedores/volver"><i class="fa fa-repeat"></i></a></div>
-							<h3 class="content-header"><i class="fa fa-users icon"></i> Registrar Proveedor</h3>
+							<h2 class="content-header"><div class="info gray_symbols"><i class="fa  fa-users icon"></i></div>     Registrar Proveedor</h2>
 						</div>
-						<div class="porlets-content">
+						<div class="porlets-content"><br>
 							<%if(one_proveedor == null) { %>
 							<form action="/proveedores/proveedores" method="POST" parsley-validate novalidate >
 								<div class="col-md-12">
@@ -117,13 +117,16 @@
 										</div>
 									</div>
 								</div>
-								<p class="text-center">
-									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+								<div class="form-group">
+										<div class="col-sm-offset-0 col-sm-10">
+									<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
 									<button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-								</p>
+										</div>
+									</div>
 							</form>
 							<% } else { %>	
 							<!--Formulario de Actuaizacion-->
+							
 							<form action="/proveedores/UpdateProveedor/<%=one_proveedor[0].id%>" method="POST" parsley-validate novalidate>
 								<div class="col-md-12">
 									<div class="col-md-4">
@@ -159,10 +162,12 @@
 										</div>
 									</div>
 								</div>
-								<p class="text-center">
-									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
+								<div class="form-group">
+										<div class="col-sm-offset-0 col-sm-10">
+									<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
 									<a class="btn btn-danger" href="/proveedores/volver"><i class="fa fa-times"></i> Cancelar</a>
-								</p>
+										</div>
+								</div>	
 							</form>
 							<% } %>
 						</div>
@@ -185,7 +190,7 @@
 															<th>Direccion</th>
 															<th>Telefono</th>
 															<th>Responsable de atención</th>
-															<th>Modificar</th>
+															<th>Opciones</th>
 														</thead>
 														<tbody>
 													 	<% for (var i = 0; i< resp.length; i++) { %>
@@ -196,8 +201,10 @@
 															<td><%=resp[i].direccion%></td>
 															<td><%=resp[i].telefono%></td>
 															<td><%=resp[i].empresa%></td>
-															<td><a class="btn btn-success btn-sm" href="/proveedores/OnlyProveedor/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a></td>
-															</tr>
+															<td class="center hidden-phone">
+															<a href="/proveedores/OnlyProveedor/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Actualizar"><i class="fa fa-refresh "></i></a><span>&nbsp;</span>
+														</td>
+														</tr>
 														<% } %>
 														</tbody>
 													</table>
