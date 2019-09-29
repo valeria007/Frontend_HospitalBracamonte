@@ -11,211 +11,205 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <%- include("partials/menusali") -%>	
-  <div class="inner">
+  <div class="wrapper">
+    <%- include("partials/menusali") -%>	
+    <div class="inner">
       <div class="left_nav">
-          <div class="left_nav_slidebar">
-            <ul>
-              <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul >
-                  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-                </ul>
-              </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul  >
-                  <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
-                </ul>
-              </li>
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul class="opened" style="display:block">
-                  <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                  <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
-                  <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Salas</b> </a> </li>
-                </ul>
-              </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul>
-                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
-                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Farmacia</a> </li>
-                  <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
-                </ul>
-              </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul>
-                  <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+        <div class="left_nav_slidebar">
+          <ul>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul  >
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Salas</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+              <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+              <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+              <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    <div class="contentpanel">
-      <div class="container clear_both padding_fix">
-        <br>
-        <div class="row">
-        <div class="col-md-12">
-          <div class="block-web">
-            <div class="header">
-              <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
-              <h3 class="content-header ">Creacion Salas</h3>
-            </div>
-            <br>
-            <br>
-            
-            <div class="porlets-content">
-                <%if (OnlySala != null) { %>
-                    <%if (dataSala == null) { %>   
-                    <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
-                    <% } else { %>   
-                    <h1>Formulario para Actualizar Sala</h1> 
-                    <%=OnlySala[0].id%>
-					<form class="form-horizontal group-border-dashed" action="/salas/updateSalas/<%=OnlySala[0].id%>"  method="POST" parsley-validate novalidate>
-					<div class="form-group col-sm-12">
-						
-						<div class="col-sm-3">
-							<label class="control-labe">Especialidad:</label>
-                            <select class="form-control" id="source" name="nombre">
-                                <option><%=OnlySala[0].nombre%></option>
-                                <% for (var i=0; i < dataSala.length; i++) { %>
-                                <option><%=dataSala[i].nombre%></option>
-                                <% } %>   
-                            </select>
-						</div>
-						
-						<div class="col-sm-3">
-							<label class="control-labe">Descricion:</label>
-                            <select  class="form-control" id="source" name="descripcionSala">
-                                <option><%=OnlySala[0].descripcionSala%></option>
-                                <option>Sala H.- Niños</option>
-                                <option>Sala H.- Hombres</option>
-                                <option>Sala H.- Mujeres</option>
-                                <option>Sala H.- 3ra. Edad</option>
-                                <option>Sala H.- Cirugia General</option>
-                            </select>
-						</div>
-						<div class="col-sm-3">
-              <label class="control-label">Piso:</label>
-              <input class="form-control" parsley-trigger="change" type="text" name="piso" value="<%=OnlySala[0].piso%>" />
-            </div>
-              <label class="control-label">Camas:</label>
-            <div class="col-sm-3">
-                <input class="form-control" parsley-trigger="change" type="text" required placeholder="Introdusca Apellido" ></input>
-            </div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-offset-4 col-sm-10">
-                                <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/salas/salas">Volver<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-						  <button type="submit" class="btn btn-success btn-icon" >Guardar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-						  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+      <div class="contentpanel">
+        <div class="container clear_both padding_fix col-lg-8">
+          <br>
+          <div class="row">
+            <div class="col-lg-12 ">
+              <div id="main-content" class=" block-web">
+                <div class="header">
+                  <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
+                  <h3 class="content-header ">Creación Salas</h3>
+                </div>
+                <div class="page-content">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="block-web">
+                        <div class="header">
+                          <div class="actions"> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
+                            <a class="refresh" href=""><i class="fa fa-repeat"></i></a>
+                          </div>
                         </div>
-                        
-					  </div><!--/form-group--> 
-                  
-                </form>
-                <% } %>
-                <% } else if (dataSala == null) { %>
-                    <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
-                <% } else { %>
-                    <form class="form-horizontal group-border-dashed" action="/salas/salas" method="POST" parsley-validate novalidate>
-                        <div class="form-group ">
-                            
-                            <div class="col-sm-3">
-                                    <label class="control-labe">Especialidad:</label>
-                                    <select class="form-control" id="source" name="nombre">
-                                        <% for (var i=0; i < dataSala.length; i++) { %>
-                                            <option><%=dataSala[i].nombre%></option>
-                                            <% } %>  
-                                    </select>
-                                      
-                                </div>
-                                
+                        <br>
+                        <div class="porlets-contents">
+                          <div id="demo" class="collapse in">
+                            <%if (OnlySala != null) { %>
+                              <%if (dataSala == null) { %>   
+                              <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
+                              <% } else { %>
+                            <form class="form-horizontal group-border-dashed" action="/salas/updateSalas/<%=OnlySala[0].id%>"  method="POST" parsley-validate novalidate>
+                              <div class="form-group col-sm-12">
                                 <div class="col-sm-3">
-                                    <label class="control-labe">Descricion:</label>
-                                    <select  class="form-control" id="source"  name="descripcionSala">
-                                        <option>Sala H.- Niños</option>
-                                        <option>Sala H.- Hombres</option>
-                                        <option>Sala H.- Mujeres</option>
-                                        <option>Sala H.- 3ra. Edad</option>
-                                        <option>Sala H.- Cirugia General</option>
-                                    </select>
+                                  <label class="control-label">Especialidad:</label>
+                                  <select class="form-control" id="source" name="nombre">
+                                    <option><%=OnlySala[0].nombre%></option>
+                                    <% for (var i=0; i < dataSala.length; i++) { %>
+                                      <option><%=dataSala[i].nombre%></option>
+                                    <% } %>   
+                                  </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="control-labe">Piso:</label>
-                                    <input class="form-control" parsley-trigger="change"  type="text" name="piso"  />
+                                  <label class="control-label">Descricion:</label>
+                                  <select  class="form-control" id="source" name="descripcionSala">
+                                    <option><%=OnlySala[0].descripcionSala%></option>
+                                    <option>Sala H.- Niños</option>
+                                    <option>Sala H.- Hombres</option>
+                                    <option>Sala H.- Mujeres</option>
+                                    <option>Sala H.- 3ra. Edad</option>
+                                    <option>Sala H.- Cirugia General</option>
+                                  </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="control-labe">Camas:</label>
-                                    <input class="form-control" parsley-trigger="change"  type="text"  />
+                                  <label class="control-label">Piso:</label>
+                                  <input class="form-control" parsley-trigger="change" type="text" name="piso" value="<%=OnlySala[0].piso%>" />
                                 </div>
-                            
-                        </div><!--/form-group--> 
-                           
-                        <div class="form-group">
-                            <div class="col-sm-offset-4 col-sm-10">
-                                
-                                <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                                <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                                        
+                                <div class="col-sm-3">
+                                  <label class="control-label">Camas:</label>
+                                  <input class="form-control" parsley-trigger="change" type="number" required placeholder="" ></input>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="col-md-4">
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
+                                  <a class="btn btn-danger"href=""><i class="fa fa-reply"></i><span>&nbsp;</span>Cancelar</a>
+                                </div>
+                              </div>
+                            </form>
+                            <% } %>
+                            <% } else if (dataSala == null) { %>
+                            <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
+                            <% } else { %>
+                            <form class="form-horizontal group-border-dashed" action="/salas/salas" method="POST" parsley-validate novalidate>
+                              <div class="form-group ">
+                                <div class="col-sm-3">
+                                  <label class="control-label">Especialidad:</label>
+                                  <select class="form-control" id="source" name="nombre">
+                                    <% for (var i=0; i < dataSala.length; i++) { %>
+                                      <option><%=dataSala[i].nombre%></option>
+                                    <% } %>  
+                                  </select>
+                                </div>
+                                <div class="col-sm-3">
+                                  <label class="control-label">Descricion:</label>
+                                  <select  class="form-control" id="source"  name="descripcionSala">
+                                    <option>Sala H.- Niños</option>
+                                    <option>Sala H.- Hombres</option>
+                                    <option>Sala H.- Mujeres</option>
+                                    <option>Sala H.- 3ra. Edad</option>
+                                    <option>Sala H.- Cirugia General</option>
+                                  </select>
+                                </div>
+                                <div class="col-sm-3">
+                                  <label class="control-label">Piso:</label>
+                                  <input class="form-control" parsley-trigger="change"  type="text" name="piso" required placeholder="" />
+                                </div>
+                                <div class="col-sm-3">
+                                  <label class="control-label">Camas:</label>
+                                  <input class="form-control" parsley-trigger="change"  type="text" required placeholder="" />
+                                </div>
+                              </div><!--/form-group--> 
+                              <div class="form-group">
+                                <div class="col-md-4">
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                  <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                                </div>
+                              </div>
+                            </form>
+                            <% } %>
+                          </div>
+                          <br><br>
+                          <div class="porlets-content">
+                            <div class="table-responsive">
+                              <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                <thead>
+                                  <tr>
+                                    <tr>
+                                      <th class="text-center">#</th>
+                                      <th class="text-center">Especilidad</th>
+                                      <th class="text-center">Descripcion</th>
+                                      <th class="text-center">Piso</th>
+                                      <th class="text-center">Camas</th>
+                                      <th class="text-center">Opciones</th>
+                                    </tr>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% for (var i=0; i< resp.length; i++) { %>
+                                  <tr>
+                                    <td class="text-center"><%=i+1%></td>
+                                    <td class="text-center"><%=resp[i].nombre%></td>
+                                    <td class="text-center"><%=resp[i].descripcionSala%></td>
+                                    <td class="text-center"><%=resp[i].piso%></td>
+                                    <td></td>
+                                  <td>
+                                      <a href="/salas/renderCamas/<%=resp[i].id%> " data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Camas"><i class="fa fa-plus "></i></a><span>&nbsp;</span>
+                                      <a href="/salas/updateSalas/<%=resp[i].id%>""  data-toggle="tooltip" class="btn  tooltips" data-original-title="editar"><i class="fa fa-pencil " style="color: darkgreen"></i></a><span>&nbsp;</span>
+                                          
+                                  </td>							
+                                  </tr>
+                                  <% } %>
+                                </tbody>
+                              </table>
                             </div>
-                          </div><!--/form-group--> 
-                      
-                    </form>
-                    <% } %>
-                    
-              </div>
-          </div>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-12">
-          <div class="block-web">
-           <div class="header">
-             <!-- Lista de Salas-->
-              <h3 class="content-header">Lista Especialidades</h3>
-            </div>
-         <div class="porlets-content">
-            <div class="table-responsive">
-                <table  class="display table table-bordered table-striped" id="dynamic-table">
-                    <thead>
-                         <tr>
-                            <th>#</th>
-                            <th>Especilidad</th>
-                            <th>Descripcion</th>
-                            <th>Piso</th>
-                            <th>Camas</th>
-                            <th>Opciones</th>
-                            
-
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% for (var i=0; i< resp.length; i++) { %>
-                        <tr>
-                          <td><%=i+1%></td>
-                          <td><%=resp[i].nombre%></td>
-                          <td><%=resp[i].descripcionSala%></td>
-                          <td><%=resp[i].piso%></td>
-                          <td></td>
-                        <td>
-                            <a href="/salas/renderCamas/<%=resp[i].id%> " data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Camas"><i class="fa fa-plus "></i></a><span>&nbsp;</span>
-                            <a href="/salas/updateSalas/<%=resp[i].id%>""  data-toggle="tooltip" class="btn  tooltips" data-original-title="editar"><i class="fa fa-pencil " style="color: darkgreen"></i></a><span>&nbsp;</span>
-                                
-                        </td>							
-                        </tr>
-                        <% } %>
-                      </tbody>
-                </table>
+                          </div>
+                        </div>
+                        <!--/porlets-content-->
+                      </div>
+                      <!--/block-web-->
+                    </div>
+                    <!--/col-md-12-->
+                  </div>
+                  <!--/row-->
+                </div>
+                <!--/page-content end-->
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-        </div>
- </div>
-</div>
-</div>
+    </div>
+  </div>
 <%- include("partials/scripts") -%>
 
 
