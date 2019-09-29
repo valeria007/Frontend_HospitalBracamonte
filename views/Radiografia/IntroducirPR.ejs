@@ -137,19 +137,106 @@
             
                  
                     <div class="form-group">
-                      <div class="col-sm-4">
-                        <label class="control-labe">Nombre del Paciente:</label>
-                        <input type="text"  class="form-control" parsley-trigger="change"  name="" required placeholder="Nombre del Paciente" />
-                      </div>
-                      <div class="col-sm-4">
-                        <label class="control-labe">Numero de Historial:</label>
-                        <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="" required placeholder="Introdusca N° Historial" />
-                      </div>
-                      <div class="col-sm-4">
-                        <label class="control-labe">C.I.:</label>
-                        <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="" required placeholder="Introdusca CI." />
-                      </div>
+						<div class="col-md-12">
+									<section class="panel default blue_title h2">
+										<div class="col-md-6 panel panel-default">
+											<div class=" panel panel-default">
+												<li href="#ac3-1" data-parent="#accordion3"
+													data-toggle="collapse"
+													class=" list-group-item  blue_bg text-center">
+													Datos Personales</li>
+											</div>
+											<div style="height: 0px;" id="ac3-1"
+												class="panel-collapse collapse in">
+												<div class="">
 
+													<div class="col-md-5">
+														<div class="entrada ">
+															<label class=" ">N° de Historia:</label>
+															<p><b></b>
+															</p>
+															<input type="hidden"
+																name="numeroHistorial"
+																v-model=""
+																class="form-control" readonly=""
+																value="Read only text goes here">
+														</div>
+													</div>
+													<div class="col-sm-6 col-sm-12">
+														<div class="entrada">
+															<label class=" ">Nombre
+																Completo:</label>
+															<p><b></b>
+															</p>
+															<input type="hidden"
+																name="nombre apellidop apellidom"
+																value=""
+																class="form-control" readonly=""
+																value="Read only text goes here">
+														</div>
+													</div>
+													<div class="col-sm-4 col-sm-4">
+														<div class="entrada">
+															<label class=" "> Sexo: </label>
+															<p><b></b></p>
+															<input type="hidden" name="sexo"
+																value=""
+																class="form-control" readonly=""
+																value="Read only text goes here">
+														</div>
+													</div>
+													<div class="col-sm-8 col-sm-9">
+														<div class="entrada">
+															<label class="">Fecha de
+																Nacimiento:</label>
+															<p><b></b>
+															</p>
+															<input type="hidden" name="fechanacimiento" value="" class="form-control" readonly="" value="Read only text goes here">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 panel panel-default">
+											<div class=" panel panel-default">
+												<li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center"> Datos de la Cita</li>
+											</div>
+											<div style="height: 0px;" id="ac3-2"
+												class="panel-collapse collapse in">
+
+												<div class="">
+													<div class="col-sm-6 ">
+														<div class="entrada">
+															<label class=" ">Fecha Prescripción:</label>
+															<input class="form-control" type="date" v-model="data_receta.fecha" require>
+														</div>
+													</div>
+													<div class="col-sm-6 col-sm-6">
+														<div class="entrada">
+															<label class="">Especialidad:</label>
+															<p><b></b>
+															</p>
+															<input type="hidden" name="tipoConsulta" v-model="" class="form-control" readonly="" value="Read only text goes here">
+														</div>
+													</div>
+													<div class="col-sm-12 col-sm-12">
+														<div class="entrada">
+															<label class="">Profecional Médico:</label>
+															<p><b></b>
+															</p>
+															<input type="hidden" v-model="" class="form-control" readonly="" value="Read only text goes here">
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</section>
+						</div>
+						<label>Peticiones del Médico</label>
+						<div class=" col-md-12" >
+							<textarea class="large-compact" name="observaciones" cols="123" rows="5"></textarea>
+						</div>
                       <div class="col-md-6">
                             <div class="block-web">
                               <div class="header">
@@ -173,10 +260,9 @@
 								  <div class="porlets-content">
 									
 										<div class="col-sm-4">
-												<label class="control-labe">Descripción:</label>
-												<textarea class="large-compact" name="diagnostico" cols="50" rows="10"></textarea>
-												<input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="" required placeholder="Introdusca CI." />
-											  </div>
+											<label class="control-labe">Descripción:</label>
+											<textarea class="large-compact" name="diagnostico" cols="50" rows="10"></textarea>
+										</div>
 								</div><!--/porlets-content--> 
 								</div><!--/block-web--> 
 							  </div><!--/col-md-6-->
@@ -185,7 +271,7 @@
                     </div>
                     <div class="form-group"><br>
                       <div class="col-sm-offset-4 col-sm-10">
-                        <button type="" class="btn btn-success btn-icon">Buscar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                        <button type="" class="btn btn-success btn-icon">Guardar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
                         <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
                       </div>
                     </div>
