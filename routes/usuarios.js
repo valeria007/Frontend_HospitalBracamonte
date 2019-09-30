@@ -62,7 +62,10 @@ router.get('/usuarios',(req, res) => {
      })
      .catch(error => {       
       console.error('Error:', error)
-      /*res.redirect('/')*/
+      res.render('404error',{
+        msg:"No hay conección con el sevidor de Registros"
+      })
+      
   })
 });
   var msg
@@ -240,6 +243,12 @@ router.get('/roles',(req, res) => {
     })
    
   })
+  .catch(error => {
+    console.error('Error:', error)
+    res.render('404error',{
+      msg:"No hay conección con el sevidor"
+    });
+    })
 });
 router.get('/cuentas/:id', (req,res) => {
   var id = req.params
