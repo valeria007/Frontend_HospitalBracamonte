@@ -229,6 +229,7 @@ router.post('/cita_medica/:id', (req,res) => {
 <<<>><<<>><<<><>>><<<><<<>><<>><<>>>>><<<<
 */
 
+
 router.get('/clean', (req,res) => {
   citaUpdate = null;
   res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial + '/'+ data_token.token_p);
