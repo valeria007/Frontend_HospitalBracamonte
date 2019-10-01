@@ -134,7 +134,7 @@ app.post('/api/internaciones/:idPinternacion/:idCama', Intern.Internacion);
 app.get('/api/internciones', Intern.listInternaciones);
 app.get('/api/delete_form_internacion/:id', Intern.delete_internacion);
 app.get('/api/one_Form_internacion/:id_Pinternacion', Intern.One_form_Internacion);
-app.get('/api/list_internacion_paciente/:id_Pinternacion/:historial', Intern.list_internacion_paciente);
+app.get('/api/list_internacion_paciente/:id_especialidad/:historial', Intern.list_internacion_paciente);
 app.post('/api/update_form_internacion/:id', Intern.update_form_internacion) // ruta para actulizar form internacion
 app.get('/api/One_Internacion/:id', Intern.One_Internacion);
 
@@ -142,7 +142,8 @@ app.get('/api/list_internacion_especialidad/:id_especialidad', Intern.list_inter
 app.get('/api/One_intern/:id', Intern.One_intern);// ruta para poder mostrar una solo internacion del paciente
 app.post('/api/update_estado_alta/:id', Intern.update_estado_alta) // ruta para actualizar el estado de alta de internacion
 
-app.post('/api/Internacion_of_traslado/:id_traslado', Intern.Internacion_of_traslado) // ruta para poder registrar la internacion de traslado
+app.post('/api/Internacion_of_traslado/:id_traslado/:idCama', Intern.Internacion_of_traslado) // ruta para poder registrar la internacion de traslado
+app.get('/api/one_intern_of_traslado/:id_traslado', Intern.one_intern_of_traslado)
 
 
 //responssables del apciente
@@ -210,5 +211,13 @@ app.get('/api/One_DiagTratamiento/:id', Diag_tratameinto.One_DiagTratamiento);
 // traslados
 app.post('/api/create_traslado/:id_paleta_internacion', Traslados.create_traslado)
 app.get('/api/list_traslados', Traslados.list_traslados);
+app.get('/api/traslados_id_internacion/:id_internacio', Traslados.traslados_id_internacion)
+app.get('/api/delete_traslado/:id', Traslados.delete_traslado)
+app.get('/api/list_traslados_esp/:id_especialidad', Traslados.list_traslados_esp) // esta ruta muestra los traslados de una especialidad
+app.get('/api/list_traslados_esp_flase/:id_especialidad', Traslados.list_traslados_esp_flase)
+
+app.get('/api/one_traslado/:id_traslado', Traslados.one_traslado)
+app.get('/api/estado_traslado/:id_traslado', Traslados.estado_traslado)
+
 
 };
