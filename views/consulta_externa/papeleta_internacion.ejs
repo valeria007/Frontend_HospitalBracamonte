@@ -72,10 +72,8 @@
                             </span> <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
-                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Ayuda</a> </li>
-                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                            
+                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -88,22 +86,16 @@
                 <!--\\\\\\\left_nav start \\\\\\-->
                 <div class="left_nav_slidebar">
                     <ul>
-                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
-                                    class="left_nav_pointer"></span> <span class="plus"><i
-                                        class="fa fa-plus"></i></span> </a>
+                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul>
                                 <li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">
                                         <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
                             </ul>
                         </li>
-                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-                                    class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
-                                        class="fa fa-plus"></i></span></a>
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
-                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">
-                                        <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas
-                                            de Citas</b>
-                                    </a> </li>
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b> </a> 
+                                </li>
                             </ul>
                         </li>
                         <%- include("../partials/footerDocotr") -%>

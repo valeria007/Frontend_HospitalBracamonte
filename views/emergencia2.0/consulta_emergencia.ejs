@@ -8,7 +8,7 @@
 
 
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
+<body class="light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
 <div class="wrapper">
 <!--Navegation-->
 <div class="header_bar">
@@ -22,10 +22,8 @@
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">  <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
           </ul>
         </div>
        
@@ -36,18 +34,31 @@
    <!--Menu-->
    <div class="left_nav">
     <div class="left_nav_slidebar">
-        <ul>
-			<li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-			<ul >
-			<li> <a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio </b> </a> </li>
-			</ul>
-			</li>
-			<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
-			<ul class="opened" style="display:block">
-			<li> <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
-			</ul>
-			</li>
+      <ul>
+			  <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+			    <ul >
+			      <li> <a href="/emergencia2.0/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio </b> </a> </li>
+			    </ul>
+		  	</li>
+			  <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+		    	<ul class="opened" style="display:block">
+			      <li> <a href="/emergencia2.0/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+			    </ul>
+        </li>
+        <li> <a href="javascript:void(0);"> <i class="fa fa-archive icon"></i>Historia de Emerg.<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+		    	<ul >
+			      <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Última Cosulta </b> </a> </li>
+			    </ul>
+        </li>
+        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+          <ul >
+            <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
+            <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
+            <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
         </ul>
+      </li>
+     
+      </ul>
     </div>
 </div>
     <div class="contentpanel">
@@ -152,44 +163,112 @@
                       <% } %>
 											<div class="block-web">
                         <div class="porlets-content">
-                            <h3 class="text-center">Datos del Paciente </h3>
-                            <div class="form-group">
-                               
+                            <div class="row ">
                               
-                              <div class="col-sm-6">
-                                <label class="control-label">Sexo:</label>
-                                <select class="form-control" id="source"  name="sexo" readonly="">
-                                  <option ><%=dataPaciente[0].sexo%></option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <div class="col-sm-3">
-                                <label class="control-label">Apellido Paterno:</label>
-                                <input type="text" class="form-control" name="apellidop" value="<%=dataPaciente[0].apellidop%>" readonly />
-                              </div>
-                              <div class="col-sm-3">
-                                <label class="control-label">Apellido Materno:</label>
-                                <input type="text"  class="form-control"name="apellidom" value="<%=dataPaciente[0].apellidom%>" readonly/>
-                              </div>
-                              <div class="col-sm-3">
-                                <label class="control-label">Nombre(s):</label>
-                                <input type="text" class="form-control" name="nombre" value="<%=dataPaciente[0].nombre%>" readonly />
-                              </div>
-                              <div class="col-sm-3">
-                                <label class="control-label">Edad:</label>
-                                <input type="text"class="form-control" name="fechanacimiento" value="<%=dataPaciente[0].fechanacimiento%>" readonly/>
-                              </div>
+                                <div class="col-md-9">
+                                    <section class="panel default blue_title h2">  
+                                        <div class="col-md-6 panel panel-default">
+                                            <div class=" panel panel-default">
+                                                <li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Personales</li>            
+                                            </div>
+                                            <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+                                                <div class=""> 
+                                                                       
+                                                    <div class="col-md-5">
+                                                        <div class="entrada ">
+                                                            <label class=" ">N° de Historia:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
+                                                                <input type="hidden" name="numeroHistorial"  value="<%=dataPaciente[0].numeroHistorial%>"  class="form-control" readonly="" value="Read only text goes here">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="entrada">
+                                                            <label class=" ">CI.:</label><p><b><%=dataPaciente[0].ci%></b></p>
+                                                            <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-sm-4">
+                                                        <div class="entrada">
+                                                            <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
+                                                            <input type="hidden" name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8 col-sm-9">
+                                                        <div class="entrada">
+                                                            <label class="">Fecha de Nacimiento:</label><p><b><%=dataPaciente[0].fechanacimiento%></b></p>
+                                                            <input  type="hidden" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-sm-12 col-sm-12">
+                                                        <div class="entrada">
+                                                            <label class=" ">Nombre Completo:</label><p><b><%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%></b></p>
+                                                                <input type="hidden" name="nombre apellidop apellidom" 
+                                                                    value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+                                                                    class="form-control" readonly=""
+                                                                    value="Read only text goes here">
+                                                        </div> 
+                                                    </div> 
+                                                    <div>
+                                                       <li href="javascript:void(0);" class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i> <span> Dar mas Información</span> </li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 panel panel-default">
+                                               
+                                            <div class=" panel panel-default">
+                                                <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos del Médico</li>            
+                                            
+                                            </div>
+                                            <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
+                                                <div class="col-sm-12 row"> 
+                                                                               
+                                                    <div class=" col-sm-5 ">
+                                                      
+                                                    </div> 
+                                                    <div class=" col-sm-12 ">
+                                                        <div class="col-sm- 12 col-sm-12">
+                                                            <div class="entrada">
+                                                                <label class="">Nombre del Médico:</label><p><b><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%></b></p>
+                                                                <input type="hidden" value="<%=data_doc.data.medico.nombre%>" class="form-control" readonly="" value="Read only text goes here" >
+                                                            </div>
+                                                        </div>
+                                                    </div>               
+                                                </div>
+                                            </div>
+                                                
+                                        </div> 
+                                    </section>          
+                                </div>  
+                                <div class="col-md-3">
+                                    <div class="file_sidebar">   
+                                        <li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
+                                        <div  class="file_sidebar_list panel-collapse collapse "   id="collapse" style="height: auto;">
+                                            <ul>
+                                                <li><a href="/emergencia2.0/datos_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Datos de responsable</a></li>
+                                                <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-user"></i>Datos de Interes</a></li>
+                                                <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
+                                              
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             
                           <% if( updateConsultaEmg == "") { %>
                            
                           <form class="form-horizontal group-border-dashed" action="/emergencia2.0/consultaEmergencia/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"method="POST" parsley-validate novalidate>
-                                <div class="form-group">
-                                  <div class="col-sm-4">
-                                    <label class="control-label">N° de Historial</label>
-                                    <input type="text" name="Nhistorial" class="form-control" value="<%=dataPaciente[0].numeroHistorial%>" readonly/>
+                            <h3 class="text-center">Estado del Paciente</h3>
+                            <div class="header">
+                                <div class="actions"> 
+                                  <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
+                                        
                                   </div>
+                                  
+                                  <a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger " ><i class="fa fa-plus-square"></i> <span> Examen Físico General</span> </a>
+                              </div>  
+                            <div class="form-group">
+                              
+                                  
                                   <div class="col-sm-4">
                                     <label class="control-label">Medico</label>
                                     <select class="form-control" id="source" >
@@ -197,29 +276,14 @@
                                     </select>
                                     <input type="hidden" name="idDoctor" value="<%=data_doc.data.medico.id%>">
                                     <input type="hidden" name="hora" value="<%=cita[0].hora%>">
+                                    <input type="hidden" name="numeroHistorial"  value="<%=dataPaciente[0].numeroHistorial%>"  class="form-control" readonly="" value="Read only text goes here">
+                                                       
                                   </div>
                                   <div class="col-sm-4">
                                       <label class="control-label">Fecha de Consulta:</label>
-                                      <input  type="date"  class="form-control" name="fechaAtencion" require />
+                                    
                                     </div>
                                 </div>
-                                
-                                <p>Datos del Medico</p>
-                                <div class="form-group">
-                                  <div class="col-sm-3">
-                                    <label class="control-label">Apellido Paterno del Medico:</label>
-                                    <input type="text" class="form-control" name="apellidoD1" value="<%=data_doc.data.medico.apellidop%>"><br>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <label class="control-label">Apellido Materno del Medico:</label>
-                                    <input type="text" class="form-control" name="apellidoD2" value="<%=data_doc.data.medico.apellidom%>"><br>
-                                  </div>
-                                  <div class="col-sm-6">
-                                    <label class="control-label">Nombre(s) del Medico:</label>
-                                    <input type="text" class="form-control" name="nombreDoctor" value="<%=data_doc.data.medico.nombre%>"><br>
-                                  </div>
-                                </div>
-                                <h3 class="text-center">Estado del Paciente</h3>
                                 <div class="form-group">
                                   <div class="col-sm-12">
                                     <label class="control-label">Motivo de Consulta:</label>
@@ -273,39 +337,32 @@
                           </form>
                           <% } else { %>           
                           <form class="form-horizontal group-border-dashed" action="/emergencia2.0/update_consulta/<%=updateConsultaEmg[0].id%>/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
-                            <br>
-                            <br>
-                                                            
-                                    
+                              
                                     <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label class="control-label">N° de Historial</label>
-                                            <input type="text"  class="form-control" value="<%=dataPaciente[0].numeroHistorial%>" readonly/>
+                                            
+                                            <input type="hidden"  class="form-control" value="<%=dataPaciente[0].numeroHistorial%>" readonly/>
                                           </div>
-                                      <div class="col-sm-3">
-                                        <label class="control-label">Fecha de Consulta:</label>
-                                        <input  type="date"  class="form-control"  value="<%=updateConsultaEmg[0].fechaAtencion%>" require />
-                                      </div>
+                                          <div class="col-sm-3">
+                                              <label class="control-label">Fecha de Consulta:</label><%=updateConsultaEmg[0].fechaAtencion%>
+                                              <input  type="date"  class="form-control"  value="<%=updateConsultaEmg[0].fechaAtencion%>" require />
+                                              <input class="form-control"  type="hidden" name="fechaConsulta"require value="<%=updateConsultaEmg[0].fechaAtencion%>" readonly="">
+                                              
+                                            </div>
                                       
                                     </div>
-                                    <h2 class="text-center"> Formulario de Actualizacion   <%=updateConsultaEmg[0].id%></h2>   
-                                    
-                                    <p>Datos del Medico</p>
-                                    <div class="form-group">
-                                      <div class="col-sm-3">
-                                        <label class="control-label">Apellido Paterno del Medico:</label>
-                                        <input readonly type="text" class="form-control" name="apellidoD1" value="<%=updateConsultaEmg[0].apellidoD1%>"><br>
-                                      </div>
-                                      <div class="col-sm-3">
-                                        <label class="control-label">Apellido Materno del Medico:</label>
-                                        <input readonly type="text" class="form-control" name="apellidoD2" value=" <%=updateConsultaEmg[0].apellidoD2%>"><br>
-                                      </div>
-                                      <div class="col-sm-6">
-                                        <label class="control-label">Nombre(s) del Medico:</label>
-                                        <input readonly type="text" class="form-control" name="nombreDoctor" value="<%=updateConsultaEmg[0].nombreDoctor%>"><br>
-                                      </div>
-                                    </div>
-                                    <h3 class="text-center">Estado del Paciente</h3>
+                                    <h3 class="center">Estado del Paciente<span class="semi-bold">/Actualizacion   <%=updateConsultaEmg[0].id%></span></h3>
+                          
+                            <div class="header">
+                                <div class="actions"> 
+                                  <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
+                                        
+                                  </div>
+                                  
+                                  <a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-danger " ><i class="fa fa-plus-square"></i> <span> Examen Físico General</span> </a>
+                              </div>  
+                              
+                            <div class="form-group">
                                     <div class="form-group">
                                       <div class="col-sm-6">
                                         <label class="control-label">Motivo de Consulta:</label>

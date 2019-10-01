@@ -23,10 +23,8 @@
             <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
               <ul class="dropdown-menu">
                 <div class="top_pointer"></div>
-                <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-                <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                
+                <li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
               </ul>
             </div>
         
@@ -116,7 +114,7 @@
 											<label class="control-label">Temperatura (°C):</label>
 											<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
 										</div>
-															<div class="col-sm-4">
+										<div class="col-sm-4">
 											<label class="control-label">Frec. Cardiaca (lat/min):</label>
 											<input type="text"  class="form-control"  name="frecuencia_cardiaca" size="20" name="frecuencia_cardiaca">
 										  </div>

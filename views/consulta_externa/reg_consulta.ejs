@@ -37,10 +37,8 @@
                     </span> <b class="caret"></b> </a>
                     <ul class="dropdown-menu">
                         <div class="top_pointer"></div>
-                        <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                        <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Ayuda</a> </li>
-                        <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                        <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                        
+                        <li> <a href="/login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
                     </ul>
                 </div>
             </div>
@@ -63,30 +61,20 @@
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>  </a> </li>
                         </ul>
                     </li>
-                    <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+                    <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Historial<span class="plus"><i class="fa fa-plus"></i></span></a>
                         <ul >
-                            <li> <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> </li>
-                            <li> <a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> </li>
-                            <li> <a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a> </li>
-                            <li> <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a></li>
+                            <li> <a href="/paciente/ultimaCOnsultaH"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Última Consulta</b> </a></li>
                         </ul>
                     </li>
-                    <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
-                        <ul >
-                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nacido vivo</b>  </a> </li>
-                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Defunción Neonatal</b>  </a> </li>
-                            <li> <a href="/paciente/defuncionGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Defunción General</b>  </a> </li>
-                        </ul>
-                    </li>
+                   
                     <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
                         <ul >
-                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial</b>  </a> </li>
+                            <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Recetas</b>  </a> </li>
+                            <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
                         </ul>
                     </li>
-                    
-                    <%- include("../partials/footerDocotr") -%>
+          
                 </ul>
             </div>
         </div>
@@ -114,16 +102,14 @@
                             </div>
                         </div>
                     </div>     
-                        <div class="main-content">
-                                <section class="panel default  h2  ">
-                            <div class="page-content">
+                     <div class="">
+                        <section class="panel default  h2  ">
+                            <div class="">
                                 <ul class="nav nav-tabs" id="myTab">
                                     <li class=" col-lg-6 active active  text-center"><a href="#new" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Registro de consulta medica</a></li>
                                     <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt "></i><span>&nbsp;&nbsp;&nbsp;</span>Listado de consultas del paciente</a></li>
                                 </ul>
-                                                       
-                                
-                        
+
                                 <!-- Rconten page-->
                                 <% if(msg != null) { %>
                                     <% if(msg.data.success == true) { %>
@@ -141,6 +127,7 @@
                                                 <div class="header">
                                                     <div class="actions"> 
                                                         <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
+                                                        
                                                     </div>
                                                     <h3>Consulta Externa</h3>
                                                 </div>
@@ -158,10 +145,7 @@
                                                                             <div class="col-md-5">
                                                                                 <div class="entrada ">
                                                                                     <label class=" ">N° de Historia:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
-                                                                                        <input type="hidden" name="numeroHistorial" 
-                                                                                            value="<%=dataPaciente[0].numeroHistorial%>"
-                                                                                                class="form-control" readonly=""
-                                                                                                value="Read only text goes here">
+                                                                                        <input type="hidden" name="numeroHistorial"  value="<%=dataPaciente[0].numeroHistorial%>"  class="form-control" readonly="" value="Read only text goes here">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-4">
@@ -204,10 +188,10 @@
                                                                     
                                                                     </div>
                                                                     <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
-                                                                        <div class=""> 
+                                                                        <div class="col-sm-12 row"> 
                                                                                                        
-                                                                            <div class="">
-                                                                                <div class="col-sm-4 col-sm-2">
+                                                                            <div class=" col-sm-5 ">
+                                                                                <div class="col-sm-6  ">
                                                                                     <div class="entrada">
                                                                                         <label class="">Hora:</label>
                                                                                             <p><%=cita[0].hora.split("/")[0]%></p>
@@ -215,20 +199,21 @@
                                                                                     </div>
                                                                                                                    
                                                                                 </div>
-                                                                                <div class="col-sm-8 col-sm-8">
-                                                                                        <div class="entrada">
+                                                                                <div class="col-sm-6 center">
+                                                                                        <div class="entrada center">
                                                                                             <label class="">Especialidad:</label><p><b><%=cita[0].especialidad%></b></p>
                                                                                             <input type="hidden" name="tipoConsulta" value="<%=cita[0].especialidad%>"class="form-control" readonly="" value="Read only text goes here">                                                                
                                                                                         </div>
-                                                                                    </div>                 
-                                                                                <div class="col-sm-12 col-sm-12">
+                                                                                </div> 
+                                                                            </div> 
+                                                                            <div class=" col-sm-12 ">
+                                                                                <div class="col-sm- 12 col-sm-12">
                                                                                     <div class="entrada">
                                                                                         <label class="">Nombre del Médico:</label><p><b><%=cita[0].medico%></b></p>
                                                                                         <input type="hidden" value="<%=cita[0].medico%>" class="form-control" readonly="" value="Read only text goes here" >
                                                                                     </div>
                                                                                 </div>
-                                                                                      
-                                                                            </div>
+                                                                            </div>               
                                                                         </div>
                                                                     </div>
                                                                         
@@ -242,10 +227,9 @@
                                                                     <ul>
                                                                         <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
                                                                         <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-                                                                       
+                                                                        <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li>
                                                                         <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-                                                                           
-                                                                        <li><a><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+                                                                      
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -257,10 +241,12 @@
                                             <div class="block-web">
                                                 <div class="header">
                                                     <div class="actions">
-                                                        <li href="javascript:void(0);" class="btn btn-primary " data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i> <span> Examen Físico General</span> </li>
+                                                        Reconsulta <li type="button" class="btn btn-primary btn-lg btn-mini">Si</li>
+                                                        <li href="javascript:void(0);" class="btn btn-danger " data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i> <span> Examen Físico General</span> </li>
 											        </div>        
                                                     <h3>Estado del paciente</h3>
                                                 </div>
+                     
                                             </div>
                                             <div >
                                                 <di class="col-md-12">
@@ -268,7 +254,7 @@
                                                         <label class=" ">Motivo de Consulta:</label>
                                                         <textarea class="large-compact" name="anamnesis"  cols="112" rows="5"></textarea>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-12"><br><br>
                                                         <div class="col-md-12 panel panel-default">
                                                             <div class=" panel panel-default">
                                                                <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-3"> <i class="fa fa-angle-right"></i>Insertar Diagnostico</a> </h4>
@@ -327,10 +313,14 @@
                                                     </section>
                                                 </div>
                                             </div> 
-                                            <p class="modal-footer">
-                                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
-                                            </p>
+                                            <div class="col-md-12">
+												<div class="header"></div>
+												<p class="col-md-8">
+													<button type="reset" class="btn btn-primary" style="margin-right: 20px;"><i class="fa fa-minus-square"></i> &nbsp;&nbsp; Limpiar</button>
+                                                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+												</p>
+											</div>
+                                        
                                         </form>                           
                                        
                                         <% } else { %>
@@ -453,7 +443,7 @@
                                                                         <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
                                                                         <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li>
                                                                         <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-                                                                        <li><a><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+                                                                        
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -465,7 +455,7 @@
                                             <div class="block-web">
                                                 <div class="header">
                                                     <div class="actions">
-                                                        <li href="javascript:void(0);" class="btn btn-primary " data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i> <span> Examen Físico General</span> </li>
+                                                        <li href="javascript:void(0);" class="btn btn-danger " data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i> <span> Examen Físico General</span> </li>
                                                     </div> 
                                                     <h3 class="" >Estado del paciente</h3>
                                                 </div>
@@ -488,7 +478,7 @@
                                                             <li><a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <i class="fa fa-building-o"></i>Receta</a></li>  
                                                             <li><a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
                                                             <li><a href="/paciente/O_Laboratorio"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li>
-                                                                      
+                                                                    
                                                         </ul>  
                                                     </div>
                                                 </div>                                                 
@@ -558,6 +548,7 @@
                                                     </div>
                                                     <div class="col-md-12 ">
                                                         <p class="modal-footer">
+                                                            
                                                             <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="fa fa-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                                             <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp;  Guardar</button>
                                                         </p>
@@ -721,7 +712,7 @@
                     <div class="">
                         <ul class="nav nav-tabs" id="myTab">
                             <li class="col-lg-6 text-center active"><a href="#general" data-toggle="tab"><i class="fa fa-stethoscope "></i><span>&nbsp;&nbsp;&nbsp;</span>Examen General</a></li>
-                            <li class="col-lg-6 text-center"><a href="#lista" data-toggle="tab"><i class="fa fa-file-text-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Lista </a></li>
+                            
                         </ul>
                     </div>
                     <div class="">
@@ -729,111 +720,90 @@
                             <div class="tab-pane fade in active" id="general">
                                 <form class=" " action='/paciente/postPaciente' method='post'>
                                     <div class="container-fluid  "><br>
+                                        <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
+                                                        
                                         <div class="col-md-20 ">
                                            
                                             <div class="col-md-6 ">
                                                 <div class=" " >
                                                     <label>Actitud:</label>
-                                                    <input  class="form-control"type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change">
+                                                    <input  class="form-control"type='text' name='nombre'placeholder="" >
                                                 </div>
                                                 <div class=" ">
                                                     <label>Facies:</label>
-                                                    <input  class="form-control"type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change">
+                                                    <input  class="form-control"type='text' name='nombre'placeholder="" >
                                                 </div>
                                                 <div class="">
                                                     <label>Hábito Corporal:</label>
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                                    <input class="form-control" type='text' name='apellidom' placeholder="">
                                                 </div>
                                                 <div class="">
                                                     <label>Piel y Faneras:</label>
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                                    <input class="form-control" type='text' name='apellidom' placeholder="" >
                                                 </div>
                                                 <div class="">
                                                     <label>Pulso:</label>
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                                    <input class="form-control" type='text' name='apellidom' placeholder="">
                                                 </div>
                                                 <div class="">
                                                     <label>Presión Arterial Brazo Derecho:</label>
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                                    <input type="text" class="form-control" name="presion" ></input>
                                                 </div>                
                                             </div>
                                             <div class="col-md-6  ">
                                                 <div class="">
                                                     <label>Nivel de Conciencia:</label>
-                                                    <input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change">
+                                                    <input class="form-control" type='text' name='apellidop' class='upper' placeholder="" >
                                                 </div>
                                                 <div class="col-md-4 row ">
-                                                    Peso:
-                                                    <input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change">
-                                                </div>
-                                                <div class="col-md-4  ">
-                                                    Talla:
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                                    Peso(kg):
+                                                	<input type="number" value="50.08" data-decimals="2" min="10" max="500" step="0.1"class="form-control" name="peso" maxlength="5">
+												</div>
+                                                <div class="col-md-5  ">
+                                                    Talla(m):
+                                                    <input class="form-control" type='text' name='apellidom' pl" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="talla" maxlength="3">
                                                </div>
                                                 <div class="col-md-4 ">
                                                     IMC:
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                                    <input class="form-control" type='text' name='apellidom' placeholder="">
                                                 </div>
                                                 <div class="" >
                                                     <label>Estado Nutricional Regular:</label>
-                                                    <input  class="form-control"type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change">
+                                                    <input  class="form-control"type='text' name='nombre'placeholder="">
                                                 </div>
                                                 <div class="col-md-6 row">
-                                                    Temp. Axilar:
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
-                                                </div>
+                                                    Temp. Axilar(°C):
+                                                	<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
+										        </div>
                                                 <div class="col-md-6 ">
-                                                    Temp. Rectal:
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
-                                                </div>
+                                                    Temp. Rectal(°C):
+                                                	<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
+										        </div>
                                                 <div>
-                                                    <label>Frecuencia Respiratoria:</label>
-                                                    <input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change">    
+                                                    <label>Frecuencia Respiratoria(min):</label>
+                                                    <input type="number" value="1.08" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="respiracion" ></input>
                                                 </div>
                                                 <div class="">
                                                     <label>Brazo Isquierdo:</label>
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+                                                    <input type="text" class="form-control" name="presion" ></input>
                                                 </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer ">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-                                            <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
-                                            <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                                        <div class="col-md-12 page-content ">
+                                           
+                                            <div class="col-md-8 ">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                                                <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
+                                                <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                                            </div>
                                         </div>
+                                       
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="lista">
                                 <div class="table-wrapper row">
-                                <table class="display table table-bordered table-striped" id="dynamic-table4">
-                                    <thead>
-                                        <tr>
-                                            <th>Estado General</th>
-                                            <th>Facies</th>
-                                            <th>Precion Arterail </th>
-                                            <th>Estado Nutricional</th>
-                                            <th>peso</th>
-                                            <th>Frecuencia Cardiaca</th>
-                                            <th>Saturación de Oxigeno </th>
-                                            <th>Fecha de Revisión </th>
-                                            <th>Ver</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"><a href="" class="btn btn-info"><i class="fa fa-edit"></i></a></td>
-                                        </tr>
-                                    <tbody>
-                                </table>
+                              
                                 </div>
                             </div>
                         </div>
