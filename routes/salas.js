@@ -12,7 +12,9 @@ router.get('/salas',(req, res) => {
   })
 .catch(error => {
   console.error('Error:', error)
-  res.send("no hay coneccion con el servidor");
+  res.render('404error',{
+    msg:"No hay conección con el sevidor de Salas"
+  });
   })
   OnlySala = null;
 });
@@ -32,7 +34,9 @@ router.get('/renderSalas', (req,res) => {
   })
 .catch(error => {
   console.error('Error:', error)
-  res.send("no hay coneccion con el servidor");
+  res.render('404error',{
+    msg:"No hay conección con el sevidor de Salas"
+  });
   })
   }  
 });

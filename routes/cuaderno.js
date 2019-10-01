@@ -59,7 +59,9 @@ router.get('/especialidad', (req,res) => {
     })
     .catch(error => {
         console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
+        res.render('404error',{
+            msg:"No hay conección con el sevidor de Especialidades"
+        });
     }) 
     
 });
@@ -209,7 +211,9 @@ router.get('/Cuadernos', (req,res) => {
         })
         .catch(error => {
             console.error('Error:', error)
-            res.render('404error');
+            res.render('404error',{
+                msg:"No hay conección con el sevidor de Cuadernos"
+            });
         })     
 })
 //ruta para poder sacar una solo cuaderno
