@@ -11,7 +11,7 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper" id="reg_sala">
+  <div class="wrapper" id="reg_sala">
   <%- include("../partials/menusali") -%>	
   <div class="inner">
     <div class="left_nav">
@@ -19,7 +19,7 @@
         <ul>
           <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul >
-              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+              <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
             </ul>
           </li>
           <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -36,9 +36,11 @@
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
-              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pacientes</b> </a> </li>
-              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Farmacia</a> </li>
-              <li> <a href="/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Administración</b> </a> </li>
+              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
             </ul>
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -50,11 +52,11 @@
       </div>
     </div>
     <div class="contentpanel">
-      <div class="container clear_both padding_fix">
+      <div class="container clear_both padding_fix col-lg-8">
         <br>
-         <div class="row">
-        <div class="col-md-12">
-          <div class="block-web">
+        <div class="row">
+          <div class="col-lg-12 ">
+            <div id="main-content" class=" block-web">
               <%if (mg1 != null) {%>
                 <div class="bs-example mover">
                   <div class="alert alert-danger fade in">
@@ -73,113 +75,209 @@
                   </div>
                 </div>
               <% } %>
-            <div class="header">
-              <div class="actions"><a class="refresh"  role="button" href="/cuaderno/limpiar">Refresh  <span>&nbsp;</span><i class="fa fa-repeat"></i></a> </div>
-              <div class="info2 blue_symbols"><i class="fa fa-plus-square icon"></i></div>
-              <h3 class="content-header ">Creacion Especialidad </h3>
-            </div>
-            <br>
-            <br>
-            <div class="porlets-content">
-                <%if (espONE == null) { %>
-                <form class="form-horizontal group-border-dashed" action="/cuaderno/especialidad" method="POST" parsley-validate novalidate>
-              <div class="form-group col-sm-12">
-              <div class="col-sm-4">
-                <label class="control-labe">Especialidad:</label>
-                <input type="text" name="nombre" class="form-control" parsley-trigger="change"   required placeholder="Introdusca Nombre" onkeyup="mayus(this)"/>
+              <div class="header">
+                <div class="info blue_symbols"><i class="fa fa-heart icon"></i></div>
+                <h3 class="content-header ">Creación Especialidad </h3>
               </div>
-              
-              <div class="col-sm-4">
-                <label class="control-labe">Sigla:</label>
-                <input type="text" name="sigla" class="form-control" parsley-trigger="change" required placeholder="Introdusca Sigla" onkeyup="mayus(this)" />
-              </div>
-              <div class="col-sm-4">
-                <label class="control-labe">Area:</label>
-                <input class="form-control" name="descripcion" parsley-trigger="change" required placeholder="Introdusca Area" onkeyup="mayus(this)" />
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="col-sm-offset-4 col-sm-10">
-                <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                <a class="btn btn-danger active btn-icon" aria-pressed="true" role="button"  href="/home">Cancelar<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-              </div>
-              </div>
-                </form>
-                  <% } else { %>
-                  <form class="form-horizontal group-border-dashed" action="/cuaderno/updateEsp/<%=espONE[0].id%>" method="POST" parsley-validate novalidate >
-                    <div class="form-group ">
-                      <div class="col-sm-4">
-                        <label class="control-labe">Especialidad:</label>
-                        <input type="text" name="nombre" class="form-control"  value="<%=espONE[0].nombre%>" parsley-trigger="change"   required placeholder  onkeyup="mayus(this)"/>
+              <div class="page-content">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="block-web">
+                      <div class="header">
+                        <div class="actions"> 
+                          <a class="minimize" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a> 
+                          <a class="refresh" href="/cuaderno/limpiar"><i class="fa fa-repeat"></i></a>
+                        </div>
                       </div>
-                      <div class="col-sm-4">
-                        <label class="control-labe">Sigla:</label>
-                        <input type="text" name="sigla" class="form-control" value="<%=espONE[0].sigla%>" parsley-trigger="change" required placeholder  onkeyup="mayus(this)"/>
+                      <br><br>
+                      <div class="porlets-contents">
+                        <div id="demo" class="collapse in ">
+                          <%if (espONE == null) { %>
+                            <form class="form-horizontal group-border-dashed" action="/cuaderno/especialidad" method="POST" parsley-validate novalidate>
+                              <div class="form-group">
+                                <label class=" col-sm-4 control-label">Especialidad o Servicio :</label>
+                                <div class="col-sm-4">
+                                  <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nombre" >
+                                    <option value="" selected disabled hidden >--Seleccione--</option>
+                                    <option>ANATOMÍA PATOLÓGICA</option>
+                                    <option>CARDIOLOGÍA</option>
+                                    <option>CIRUGÍA GENERAL</option>
+                                    <option>CIRUGÍA MAXILOFACIAL</option>
+                                    <option>CIRUGÍA PEDIATRICA</option>
+                                    <option>CIRUGÍA PLASTACA</option>
+                                    <option>DERMATOLOGÍA</option>
+                                    <option>ECOGRAFÍA</option>
+                                    <option>ENDOCRINOLOGÍA</option>
+                                    <option>ESPIROMETRÍA</option>
+                                    <option>FISIOTERAPIA</option>
+                                    <option>GASTROENTEROLOGÍA</option>
+                                    <option>GENÉTICA</option>
+                                    <option>GINECOLOGÍA</option>
+                                    <option>HEMODIÁLISIA</option>
+                                    <option>LABORATORIO</option>
+                                    <option>MEDICINA INTERNA</option>
+                                    <option>MEDICINA TRADICIONAL</option>
+                                    <option>NEFROLOGÍA</option>
+                                    <option>NEUMOLOGÍA</option>
+                                    <option>NUEROCIRUGÍA</option>
+                                    <option>NUEROCIRUGÍA CLINICA</option>
+                                    <option>NUEROCIRUGÍA PEDIÁTRICA</option>
+                                    <option>OBSTETRICIA</option>
+                                    <option>ODONTOLOGÍA</option>
+                                    <option>OFTANMOLOGÍA</option>
+                                    <option>OTORRINOLARINGOLOGÍA</option>
+                                    <option>PEDIATRÍA</option>
+                                    <option>PSIQUIATRÍA INFANTIL</option>
+                                    <option>RAYOS X</option>
+                                    <option>REUMATOLOGÍA</option>
+                                    <option>SALUD MENTAL</option>
+                                    <option>TELE SALUD</option>
+                                    <option>TERAPIA INTENSIVA ADULTOS</option>
+                                    <option>TERAPIA INTENSIVA PEDIATRIA</option>
+                                    <option>TERAPIA INTENSIVA NEONATAL</option>
+                                    <option>TRAUMATOLOGÍA</option>
+                                    <option>TRAUMATOLOGÍA PEDIÁTRICA</option>
+                                    <option>TOMOGRAFÍA</option>
+                                    <option>UROLOGÍA</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-4  control-label">Sigla :</label>
+                                <div class="col-sm-4">
+                                  <input type="text" name="sigla" class="form-control" parsley-trigger="change" required placeholder="Introdusca Sigla" onkeyup="mayus(this)" />
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-4  control-label">Area :</label>
+                                <div class="col-sm-4">
+                                  <input class="form-control" name="descripcion" parsley-trigger="change" required placeholder="Introdusca Area" onkeyup="mayus(this)" />
+                                </div>
+                              </div>
+                              <br><br>
+                              <div class="col-md-4">
+                                <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                              </div>
+                            </form>
+                          <% } else { %>
+                            <form class="form-horizontal group-border-dashed" action="/cuaderno/updateEsp/<%=espONE[0].id%>" method="POST" parsley-validate novalidate >
+                              <div class="form-group">
+                                  <label class=" col-sm-4 control-label">Especialidad o Servicio :</label>
+                                  <div class="col-sm-4">
+                                    <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nombre" >
+                                      <option ><%=espONE[0].nombre%></option>
+                                      <option>-----------------------</option>
+                                      <option>ANATOMÍA PATOLÓGICA</option>
+                                      <option>CARDIOLOGÍA</option>
+                                      <option>CIRUGÍA GENERAL</option>
+                                      <option>CIRUGÍA MAXILOFACIAL</option>
+                                      <option>CIRUGÍA PEDIATRICA</option>
+                                      <option>CIRUGÍA PLASTACA</option>
+                                      <option>DERMATOLOGÍA</option>
+                                      <option>ECOGRAFÍA</option>
+                                      <option>ENDOCRINOLOGÍA</option>
+                                      <option>ESPIROMETRÍA</option>
+                                      <option>FISIOTERAPIA</option>
+                                      <option>GASTROENTEROLOGÍA</option>
+                                      <option>GENÉTICA</option>
+                                      <option>GINECOLOGÍA</option>
+                                      <option>HEMODIÁLISIA</option>
+                                      <option>LABORATORIO</option>
+                                      <option>MEDICINA INTERNA</option>
+                                      <option>MEDICINA TRADICIONAL</option>
+                                      <option>NEFROLOGÍA</option>
+                                      <option>NEUMOLOGÍA</option>
+                                      <option>NUEROCIRUGÍA</option>
+                                      <option>NUEROCIRUGÍA CLINICA</option>
+                                      <option>NUEROCIRUGÍA PEDIÁTRICA</option>
+                                      <option>OBSTETRICIA</option>
+                                      <option>ODONTOLOGÍA</option>
+                                      <option>OFTANMOLOGÍA</option>
+                                      <option>OTORRINOLARINGOLOGÍA</option>
+                                      <option>PEDIATRÍA</option>
+                                      <option>PSIQUIATRÍA INFANTIL</option>
+                                      <option>RAYOS X</option>
+                                      <option>REUMATOLOGÍA</option>
+                                      <option>SALUD MENTAL</option>
+                                      <option>TELE SALUD</option>
+                                      <option>TERAPIA INTENSIVA ADULTOS</option>
+                                      <option>TERAPIA INTENSIVA PEDIATRIA</option>
+                                      <option>TERAPIA INTENSIVA NEONATAL</option>
+                                      <option>TRAUMATOLOGÍA</option>
+                                      <option>TRAUMATOLOGÍA PEDIÁTRICA</option>
+                                      <option>TOMOGRAFÍA</option>
+                                      <option>UROLOGÍA</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-4  control-label">Sigla :</label>
+                                  <div class="col-sm-4">
+                                    <input type="text" name="sigla" class="form-control" value="<%=espONE[0].sigla%>" parsley-trigger="change" required placeholder  onkeyup="mayus(this)"/>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-sm-4  control-label">Area :</label>
+                                  <div class="col-sm-4">
+                                    <input class="form-control" name="descripcion" value="<%=espONE[0].descripcion%>" parsley-trigger="change" required placeholder onkeyup="mayus(this)"/>
+                                  </div>
+                                </div> 
+                              <div class="col-md-4">
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
+                                  <a class="btn btn-danger"href="/cuaderno/limpiar"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
+                              </div>
+                            </form>
+                          <% } %>
+                        </div>
+                        <br><br>
+                        <div class="porlets-content">
+                          <div class="table-responsive">
+                            <table  class="display table table-bordered table-striped" id="dynamic-table">
+                              <thead>
+                                <tr>
+                                  <th class="text-center">#</th>
+                                  <th class="text-center">Especilidad</th>
+                                  <th class="text-center">Descripcion</th>
+                                  <th class="text-center">Area</th>
+                                  <th class="text-center">Opciones</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% for (var i=0; i< resp.length; i++) { %>
+                                <tr>
+                                  <td class="text-center"><%= i+1%></td>
+                                  <td class="text-center"><%=resp[i].nombre%></td>
+                                  <td class="text-center"><%=resp[i].sigla%></td>
+                                  <td class="text-center"><%=resp[i].descripcion%></td>
+                                  <td class="text-center">
+                                    <a @click="data(<%=resp[i].id%>),lista_consulta()" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-wheelchair "></i></a>
+                                    <!--<a href=""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a>-->
+                                    <a href="/cuaderno/oneEsp/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a>
+                                    <a @click="data(<%=resp[i].id%>),lista_doctores()" data-target="#myModal3" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar Doctor"><i class="fa fa-user "></i></a>                        
+                                  </td>							
+                                </tr>
+                                <% } %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-sm-4">
-                        <label class="control-labe">Area:</label>
-                        <input class="form-control" name="descripcion" value="<%=espONE[0].descripcion%>" parsley-trigger="change" required placeholder onkeyup="mayus(this)"/>
-                      </div>
-                    </div> 
-                    <div class="form-group">
-                      <div class="col-sm-offset-4 col-sm-10">
-                        <button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                        <a class="btn btn-info active btn-icon" aria-pressed="true" role="button"  href="/cuaderno/limpiar">Limpiar<span>&nbsp;</span><i class="fa fa-arrow-left"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
-                      </div>
+                      <!--/porlets-content-->
                     </div>
-                  </form>
-                  <% } %>
+                    <!--/block-web-->
+                  </div>
+                  <!--/col-md-12-->
+                </div>
+                <!--/row-->
               </div>
-          </div>
-        </div>
-        </div>
-        <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
-        <div class="row">
-        <div class="col-md-12">
-          <div class="block-web">
-           <div class="header">
-             <!-- Lista de Salas-->
-              <h3 class="content-header text-center">Lista Especialidades</h3>
-            </div>
-            <div class="porlets-content">
-              <div class="table-responsive">
-                <table  class="display table table-bordered table-striped" id="dynamic-table">
-                  <thead>
-                    <tr>
-                            <th class="text-center">#</th>
-                            <th class="text-center">Especilidad</th>
-                            <th class="text-center">Descripcion</th>
-                            <th class="text-center">Area</th>
-                            <th class="text-center">Opciones</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% for (var i=0; i< resp.length; i++) { %>
-                    <tr>
-                      <td class="text-center"><%= i+1%></td>
-                      <td class="text-center"><%=resp[i].nombre%></td>
-                      <td class="text-center"><%=resp[i].sigla%></td>
-                      <td class="text-center"><%=resp[i].descripcion%></td>
-                      <td class="text-center">
-                        <a @click="data(<%=resp[i].id%>),lista_consulta()" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
-                        <a href=""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a>
-                        <a href="/cuaderno/oneEsp/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a>
-                        <a @click="data(<%=resp[i].id%>),lista_doctores()" data-target="#myModal3" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar Doctor"><i class="fa fa-user "></i></a>                        
-                      </td>							
-                    </tr>
-                    <% } %>
-                  </tbody>
-                </table>
-              </div>
+              <!--/page-content end-->
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
- </div>
+  </div>
 
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -191,58 +289,58 @@
         <span style="color: blue">{{msg}}</span>
       </div>
       <div class="modal-body"> 
-          <section class="panel default blue_title h2">
-              <div class="panel-group accordion accordion-semi" id="accordion3">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-2"> <i class="fa fa-angle-right"></i>Lista de Consultorios</a> </h4>
-                    </div>
-                    <div id="ac3-2" class="panel-collapse collapse" style="height: 0px;" >
-                      <div class="panel-body"> 
-                          <div class="col-md-12">
-                              <div class="table-responsive" >
-                                  <table class="fl-table">
-                                      <thead>
-                                        <tr>
-                                          <th class="text-center">#</th>
-                                          <th class="text-center">Sigla</th>
-                                          <th class="text-center">Nombre</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody v-for="(list, index) in list_consulta_especialidad">
-                                        <tr>
-                                          <td>{{index+1}}</td>
-                                          <td>{{list.sigla}}</td>
-                                          <td>{{list.nombre}}</td>
-                                        </tr>
-                                      </tbody>
-                                  </table>
-                              </div>
-                          </div>
-                      </div>
+        <section class="panel default blue_title h2">
+          <div class="panel-group accordion accordion-semi" id="accordion3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-2"> <i class="fa fa-angle-right"></i>Lista de Consultorios</a> </h4>
+              </div>
+              <div id="ac3-2" class="panel-collapse collapse" style="height: 0px;" >
+                <div class="panel-body"> 
+                  <div class="col-md-12">
+                    <div class="table-responsive" >
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Sigla</th>
+                            <th class="text-center">Nombre</th>
+                          </tr>
+                        </thead>
+                        <tbody v-for="(list, index) in list_consulta_especialidad">
+                          <tr>
+                            <td class="text-center">{{index+1}}</td>
+                            <td class="text-center">{{list.sigla}}</td>
+                            <td class="text-center">{{list.nombre}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
-              </section>
+              </div>
+            </div>
+          </div>
+        </section>
         <form class="form-horizontal" @submit="reg_consultorio" parsley-validate novalidate>
-        <div class="form-group">
-          <label  class="col-sm-2 control-label">Sigla:</label>
-          <div class="col-sm-4">
+          <div class="form-group">
+            <label  class="col-sm-4 control-label">Sigla:</label>
+            <div class="col-sm-4">
               <input type="text" v-model="sigla" class="form-control" parsley-trigger="change"   />
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label  class="col-sm-2 control-label">Nombre:</label>
-          <div class="col-sm-4">
+          <div class="form-group">
+            <label  class="col-sm-4 control-label">Nombre:</label>
+            <div class="col-sm-4">
               <input type="text" v-model="nombre" class="form-control" parsley-trigger="change"  />
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
+          <div class="form-group">
+            <div class="col-sm-5 ">
               <button type="submit" class="btn btn-success btn-icon"  >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-						  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-          </div>
-        </div> 
+				  		<button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+            </div>
+          </div> 
         </form>
       </div>
       </div>
@@ -320,7 +418,8 @@
     </div>
   </div>
 </div>
-</div>
+  </div>
+
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>

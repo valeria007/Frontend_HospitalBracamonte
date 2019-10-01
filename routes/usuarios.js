@@ -62,7 +62,10 @@ router.get('/usuarios',(req, res) => {
      })
      .catch(error => {       
       console.error('Error:', error)
-      /*res.redirect('/')*/
+      res.render('404error',{
+        msg:"No hay conección con el sevidor de Registros"
+      })
+      
   })
 });
   var msg
@@ -152,24 +155,27 @@ router.post('/updatePersonal/:id',(req,res) => {
 router.get('/UsuraioCuenta/:id', (req,res) => {
   var id = req.params
   fetch('http://127.0.0.1:3600/api/mostrarCuenta/'+id.id)
-        .then(resp => resp.json())
-        .then(resp =>{
-          //console.log(resp)
-          if (resp == null){
-            res.render('usuarioCuenta',{
-              id,
-              resp
-            });
-          }else{
-            res.render('usuarioCuenta',{
-              id,
-              resp,
-              mg1,
-              mg2,
-              data
-            });
-          }
-     });
+  .then(resp => resp.json())
+  .then(resp =>{
+    //console.log(resp)
+    if (resp == null){
+      res.render('usuarioCuenta',{
+        id,
+        resp
+      });
+    }else{
+      res.render('usuarioCuenta',{
+        id,
+        resp,
+        mg1,
+        mg2,
+        data,
+        
+      });
+    }
+    msg_del(),{ expiresIn: 10 * 800 } 
+  });
+  
 });
 var mg1,mg2,data
 router.post('/crearCuenta/:id', (req,res) => {
@@ -190,20 +196,136 @@ router.post('/crearCuenta/:id', (req,res) => {
   .then(resp => {
     console.log(resp, "    <<<<<<<<<<<<<<<<<<<<  esto es la respuesta")
     if (resp.success == false){
-      mg1= resp.msg
-      res.redirect('/usuarios/UsuraioCuenta/'+id.id)
-      mg2 = null
-  }else{
-      mg2= resp.message
-      mg1 = null
-      data=null 
-      console.log(resp)
-      res.redirect('/usuarios/UsuraioCuenta/'+id.id)
-  }
-
+        mg1= resp.msg
+        res.redirect('/usuarios/UsuraioCuenta/'+id.id)
+        mg2 = null
+        
+    }else{
+        mg2= resp.message
+        mg1 = null
+        data=null 
+        console.log(resp)
+      
+        res.redirect('/usuarios/UsuraioCuenta/'+id.id)
+    }
+   
   
   })
 });
 
+function msg_del(){
+  mg1 = null
+  mg2 = null
+}
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                             Reportes personal
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+router.get('/volver', (req,res) => {
+  all = null;
+  res.redirect('/usuarios/roles');
+})
+
+router.get('/roles',(req, res) => {
+  fetch('http://localhost:3600/api/personal')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    
+    fetch('http://localhost:3600/api/allUser')        
+    .then(resp => resp.json())
+    .then(allusers =>{ 
+      res.render('roles', {
+        data,
+        allusers
+      })
+    })
+   
+  })
+  .catch(error => {
+    console.error('Error:', error)
+    res.render('404error',{
+      msg:"No hay conección con el sevidor"
+    });
+    })
+});
+router.get('/cuentas/:id', (req,res) => {
+  var id = req.params
+    fetch('http://127.0.0.1:3600/api/allrol/'+id.id)
+    .then(resp => resp.json())
+    .then(data =>{ 
+
+      fetch('http://127.0.0.1:3600/api/personal/'+id.id)
+      .then(resp => resp.json())
+      .then(one_person =>{ 
+
+        res.render('reporAdmin/detallimpre',{
+          data,
+          one_person
+        })
+      })
+     
+    })
+  
+  
+})
+
+
+router.get('/onlymedico',(req, res) =>{
+  fetch('http://localhost:3600/api/Only_Medicos')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriA', {
+      data
+    })
+  })
+})
+router.get('/onlyfarma',(req, res) =>{
+  fetch('http://localhost:3600/api/OnlyFarma')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriA', {
+      data
+    })
+  })
+})
+router.get('/onlyperso',(req, res) =>{
+  fetch('http://localhost:3600/api/OnlyPersonal')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriA', {
+      data
+    })
+  })
+})
+
+router.get('/onlyenferme',(req, res) =>{
+  fetch('http://localhost:3600/api/OnlyEnfermera')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriA', {
+      data
+    })
+  })
+})
+router.get('/allcuentas',(req, res) =>{
+  fetch('http://localhost:3600/api/allUser')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriusers', {
+      data
+    })
+  })
+})
+router.get('/allroles',(req, res) =>{
+  fetch('http://localhost:3600/api/roleall')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('reporAdmin/impriRol', {
+      data
+    })
+  })
+})
 
 module.exports = router;

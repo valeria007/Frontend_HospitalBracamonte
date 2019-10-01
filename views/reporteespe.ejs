@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Pacientes</title>
+<title>Reportes</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -76,16 +76,17 @@
               </li>
               <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                 <ul class="opened" style="display:block">
-                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Pacientes</b> </a> </li>
+                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
                   <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
                   <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
                   <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                  <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                  <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Espc.</b> </a> </li>
                 </ul>
               </li>
               <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
                 <ul>
                   <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                  <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
                 </ul>
               </li>
             </ul>
@@ -93,89 +94,64 @@
       </div>
     </div>
     <div class="contentpanel">
-        <br>
-        <div class="container clear_both padding_fix">
-          <div class="row">
-                <div class="col-md-12">
-                    
-                  <div class="block-web">
-                     
-                    <div class="header">
-                      <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                      <h3 class="content-header ">Reportes Pacientes</h3>
+      <br>
+      <div class="container clear_both padding_fix">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="block-web">
+              <div class="header">
+                    <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
+                    <h3 class="content-header ">Reportes Especialidades</h3>
+              </div>
+              <br>
+              <br>
+              <div class="porlets-content">
+                <form class="form-horizontal"  >
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Desde:</label>
+                    <div class="col-sm-4">
+                      <input type="date" class="form-control" >
                     </div>
-                    <br>
-                    <br>
-                    <div class="porlets-content">
-                        <form class="form-horizontal"  parsley-validate novalidate>
-                            <div class="form-group">
-                              <label class="col-sm-4 control-label">Desde:</label>
-                              <div class="col-sm-4">
-                              <input type="date" class="form-control" >
-                              </div>
-                            </div><!--/form-group--> 
-                            <div class="form-group">
-                              <label  class="col-sm-4 control-label">Hasta:</label>
-                              <div class="col-sm-4">
-                              <input type="date" class="form-control" >
-                              </div>
-                            </div><!--/form-group-->  
-                            <div class="form-group">
-                              <label  class="col-sm-4 control-label">Tipo:</label>
-                              <div class="col-sm-4">
-                              <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                                <option>General</option>
-                                <option>Internados</option>
-                                <option>Emergencias</option>
-                              </select>
-                              </div>
-                            </div><!--/form-group-->
-                            <div class="form-group">
-                              <div class="col-sm-offset-4 col-sm-10">
-                                  <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                              </div>
-                            </div><!--/form-group--> 
-                            </form>
-
+                  </div><!--/form-group--> 
+                  <div class="form-group">
+                    <label  class="col-sm-4 control-label">Hasta:</label>
+                    <div class="col-sm-4">
+                      <input type="date" class="form-control" >
                     </div>
-                    <div class="table-responsive">
-                        <table  class="display table table-bordered table-striped " id="dynamic-table">
-                          <thead>
-                          <tr>                          
-                          <th>N° Historial</th>
-                          <th>Nombre</th>
-                          <th>Apellido Paterno</th>
-                          <th>Apellido Materno</th>
-                          <th>Edad</th>
-                          <th>alergia</th>
-                          
-                          </tr>
-                          </thead>
-                          <tbody>
-                            <%for (var i = 0; i< data.length; i++) { %>
-                              <tr>
-                                <td><%=data[i].numeroHistorial%></td>
-                                <td><%=data[i].nombre%></td>
-                                <td><%=data[i].apellidop%></td>
-                                <td><%=data[i].apellidom%></td>
-                                <td><%=data[i].fechanacimiento%></td>
-                                <% for(var i=0; i< data[i].alergias; i++) { %>
-                                  <td><%=data[i].alergias%></td>
-                                <% } %>
-                                
-                              </tr>
-                            <% } %>
-                          <tbody>
-                        </table>
-                    </div>
-                  </div>
+                  </div><!--/form-group-->  
                   
-         </div>
-         
+                </form>
+              </div>
+              <div class="table-responsive">
+                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                  <thead>
+                    <tr>
+                          <th class="text-center">Nombre</th>
+                          <th class="text-center">Sigla</th>	
+                          <th class="text-center">Fecha Creación</th>	
+                          <th class="text-center">Optiones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%for (var i = 0; i< data.length; i++) { %>
+                      <tr>
+                        <td class="text-center"><%=data[i].nombre%></td>
+                        <td class="text-center"><%=data[i].sigla%></td>
+                        <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                        <td>
+                          <a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
+                        </td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
-</div>
-</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="/js/jquery-2.1.0.js"></script>

@@ -229,6 +229,7 @@ router.post('/cita_medica/:id', (req,res) => {
 <<<>><<<>><<<><>>><<<><<<>><<>><<>>>>><<<<
 */
 
+
 router.get('/clean', (req,res) => {
   citaUpdate = null;
   res.redirect('/paciente/EnviarCita/'+idH.id + "/" + idH.historial + '/'+ data_token.token_p);
@@ -437,39 +438,20 @@ router.get('/vueDoctores/:esp/:dia/:turno', (req,res) => {
   });
 })
 
-//laboratorio
-router.get('/laboratorio', (req,res) => {
-  res.render('laboratorio/homeLab')
-});
-router.get('/buscaPaciente', (req,res) => {
-  res.render('laboratorio/buscaPaciente')
-});
-router.get('/IntroducirLab', (req,res) => {
-  res.render('laboratorio/IntroducirLab')
-});
-//para incertar lab
-router.get('/examenes', (req,res) => {
-  res.render('laboratorio/examenes')
-});
-//cuenta
-router.get('/miCuenta', (req,res) => {
-  res.render('consultaExterna/miCuenta')
-});
+
+
+//rutas de vacunas
 router.get('/vacunas', (req,res) => {
   res.render('consulta_externa/vacunas')
 });
 
-router.get('/O_ecografia', (req,res) => {
-  res.render('consulta_externa/O_ecografia')
-});
+//ruta de examenes complementario
 router.get('/O_Laboratorio', (req,res) => {
   res.render('consulta_externa/O_Laboratorio')
 });
-router.get('/O_Radiografia', (req,res) => {
-  res.render('consulta_externa/O_Radiografia')
-});
+
  
-//para citas
+//para fichaje citas
 
 
 router.get('/listasdeCitas', (req,res) => {
@@ -483,10 +465,13 @@ router.get('/imprimirNuevaConsulta', (req,res) => {
   res.render('Fichas/imprimirNuevaConsulta')
 });
 
+
+//RECONSULTA
 router.get('/citas_reconsulta', (req,res) => {
   res.render('Fichas/citas_reconsulta')
 });
-//ecografia y radio
+
+//Radiografia
 router.get('/radiografia', (req,res) => {
   res.render('Radiografia/homeRa')
 });
@@ -497,6 +482,7 @@ router.get('/IntroducePR', (req,res) => {
   res.render('Radiografia/IntroducirPR')
 });
 
+//ECOGRAFIA
 router.get('/ecografia', (req,res) => {
 res.render('Ecografia/homeec')
 });
@@ -507,6 +493,33 @@ router.get('/IntroduceEC', (req,res) => {
   res.render('Ecografia/IntroducirEC')
 });
 
+//laboratorio
+router.get('/laboratorio', (req,res) => {
+  res.render('laboratorio/homeLab')
+});
+router.get('/buscaPaciente', (req,res) => {
+  res.render('laboratorio/buscaPaciente')
+});
+router.get('/IntroducirLab', (req,res) => {
+  res.render('laboratorio/IntroducirLab')
+});
 
+//HISTORIAL CLINICO REPORTES
 
+router.get('/HistorialGeneral', (req,res) => {
+  res.render('consulta_externa/HistorialGeneral')
+});
+router.get('/H_hospitalizacion', (req,res) => {
+  res.render('consulta_externa/H_hospitalizacion')
+});
+router.get('/H_Emergencia', (req,res) => {
+  res.render('consulta_externa/H_Emergencia')
+});
+router.get('/H_Consulta', (req,res) => {
+  res.render('consulta_externa/H_Consulta')
+});
+
+router.get('/ultimaCOnsultaH',(req,res) =>{
+  res.render('consulta_externa/ultimaCOnsultaH')
+});
 module.exports = router;
