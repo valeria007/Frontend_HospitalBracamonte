@@ -118,13 +118,12 @@
             </div>
         </div>
         <!--\\\\\\\left_nav end \\\\\\-->
-        <div class="contentpanel " id="consulta">
+        <div class="contentpanel consulta" >
                 <!--\\\\\\\ contentpanel start\\\\\\-->
             <div class="container clear_both padding_fix col-lg-8">
                 <br>
                 
                     <div class="main-content">
-<<<<<<< HEAD
                             <div class="col-lg-12 block-web"> 
                                     <!-- Content page -->
                                     <div class=" container-fluid col-md-12" id="">
@@ -141,24 +140,6 @@
                                             </div>
                                     </div><br>
                                 </div>     
-=======
-                        <div class="col-lg-12 block-web"> 
-                            <!-- Content page -->
-                            <div class=" container-fluid col-md-12" id="">
-                                <div class="header ">
-                                    <div class="">
-                                        <div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div><br>
-                                            <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa</h3>
-                                        </div>       
-                                    </div>
-                                    <div id="" class="col-md-2">	
-                                        <div class="">
-                                            <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-                                        </div>				
-                                    </div>
-                                </div><br>
-                        </div>     
->>>>>>> f4e0b37704981f5d3914f43c0ba0475bf012782b
                         <div class="main-content">
                                 <section class="panel default blue_title h2">
                             <div class="page-content">
@@ -334,11 +315,11 @@
                                                                                 </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                   <%for(var i = 0; i< fileAsArray.length; i++) { %>
+                                                                                   <%for(var i = 0; i< diagnostico.length; i++) { %>
                                                                                         <tr>
                                                                                             <td><%= i+1%></td>
-                                                                                            <td><%=fileAsArray[i].c%></td>
-                                                                                            <td><%=fileAsArray[i].d%></td>
+                                                                                            <td><%=diagnostico[i].codigo%></td>
+                                                                                            <td><%=diagnostico[i].descripcion%></td>
                                                                                             <td>
                                                                                                 <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
                                                                                                
@@ -533,14 +514,14 @@
                                                                                     </tr>
                                                                                     </thead>
                                                                                     <tbody>
-                                                                                       <%for(var i = 0; i< fileAsArray.length; i++) { %>
+                                                                                       <%for(var i = 0; i< diagnostico.length; i++) { %>
                                                                                             <tr>
                                                                                                 <td><%= i+1%></td>
-                                                                                                <td><%=fileAsArray[i].c%></td>
-                                                                                                <td><%=fileAsArray[i].d%></td>
+                                                                                                <td><%=diagnostico[i].codigo%></td>
+                                                                                                <td><%=diagnostico[i].descripcion%></td>
                                                                                                 <td>
-                                                                                                    <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
-                                                                                                   
+                                                                                                    <a  data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
+                                                                                                   <a v-on:click="diagnostico('<%=diagnostico[i].codigo%>')" > ver</a>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         <% } %>
@@ -865,20 +846,39 @@
             
            
             const consulta = new Vue({
-                el:"#consulta",
+                el:".consulta",
                 data:() => ({
-                    msg : "aljand321"
+                    msg : "aljand321",
+                    list:'',
+                    
+                    select_diacnostico:[]
                 }),
                 
                 mounted(){
                    
-                    //console.log(data1)
-                    /* for(var i = 0; i < this.data.length; i++ ){
-                        console.log(data[i])
-                    }  */
+                    fetch('http://localhost:7000/consulta_externa/Vue_diagnostico')        
+                    .then(resp => resp.json())
+                    .then( diagnostico =>{
+                        this.list = diagnostico
+                        
+                    })
                 },
                 methods:{
-                    
+
+                   diagnostico(codigo){
+                       console.log(codigo)
+                        /* for(var i = 0; i < this.list.length; i++){
+                            if(this.list[i].codigo == codigo){
+                                this.select_diacnostico.push({
+                                    codigo:this.list[i].codigo,
+                                    descripcion: this.list[i].descripcion
+                                } )
+
+                                console.log(this.select_diacnostico)
+                            }
+                        } */
+                   }
+
                 }
             })
         </script>

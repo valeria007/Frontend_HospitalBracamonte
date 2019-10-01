@@ -1,87 +1,43 @@
-var app = new Vue({
-    el:"#app",
-    data:{
-        esto:'',
-        mensaje: 'aqui es el mensaje    ',
-        ocultar:{
-            genData: false,
-            table: false,
-            list_notasEvolucion:false,
-            list_diagReseta: false
-        },
 
+var hospital = new Vue({
+    el:"#hospital",
+    data:{
+        msg:'aljand321',
+        alta_paciente: false,
         idHist:{
             id_int:'',
             hist:'',
-            id_epicrisis:''
+            id_medico:'',
+            id_cama:''
         },
-
-        historial:'',
-        fecha_internacion:'',
-        fecha_alta:'',
-        diasnostico_ingreso:'',
-        res_examen_clinico:'',
-        res_evolucion:'',
-        meds_usados:'',
-        diag_pos_operatorio:'',
-        cirugias:'',
-        res_anatomia_patologica:'',
-        res_lab:'',
-        diagnostico_final:'',
-        estado_paciente_alta:'',
-        res_autopcia:'',
-
-        one_epicrisis:[],
-
-        orden_internacion:{
-            esto1:'',
-            list_Orden_intervencion:[],
-            reg_orden_intervencion:{
-
-                historial:'',
-                fechaOrden:'',
-                motivoInternacion:'',
-                resumneDatosClinicos:'',
-                examenComplementario:'',
-                diagnostico:'',
-                resumenEgreso:'',
-                tratamientoIndicado:'',
-                diagnosticoEgreso:'',
-                planManejoTratamiento:'',
-                resAutopcia:'',
-                observacion:'',
-                condicionEgreso:'',
-                CausaEgreso:''
-
-            },
-
-            one_intervencion:[]
-        },
-
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        //De notas de evolucion 
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         nota_evolucion:{
+            msg:"",
+            msg_false:"",
             fecha:'',
             nota_evolucion:'',
             listNotas_evolucion:[],
             one_notaEvolucion:''
         },
-
-        //esto es para diagnostico tratamiento
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        //DIAGNOSTICO
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         daigTratameinto:{
+            msg:'',
+            msg_false:'',
+
             fecha:'',
-            sintomas:'',
-            examenFisico:'',
-            diagnostico:'',
-            tratamiento:'',
+            evolucion:'',            
             medicamentos:[],
-            estudios:[],
 
             listDiagnostico:[],
 
             med:{
                 medic:'',
                 dosis:'',
-                frecuencia:'',
-                duracion:''
+                frecuencia:''
             },
             est:{
                 estud:'',
@@ -89,343 +45,174 @@ var app = new Vue({
             },
 
             one_diagTratamiento:'',
+        },
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        //INTERVENCIONES
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        ord_int:{
+            msg:'',
+            msg_false:'',
+            fechaOrden:'',
+            nombre_cirujano:'',
+            ayudantes:'',
+            diag_pre_operatorio:'',
+            intr_parcticada:'',
+            diag_pos_operatorio:'',
+
+            list_operaciones:'',
+            one_intervencion:''
+        },
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        //EPICRISIS
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        epicrisis:{
+            msg:'',
+            msg_false:'',
+            Fecha_internacion:'',
+            Fecha_alta:'',
+            datos_clinicos:'',
+            diagnostico_admicion:'',
+            diagnostico_egreso:'',
+            condicion_egreso:'',
+            causa_egreso:'',
+            examenes_complementario:'',
+            tratamiento_quirurgico:'',
+            tratamiento_medico:'',
+            complicaciones:'',
+            pronostico_vital:'',
+            pronostico_funcional:'',
+            control_tratamiento:'',
+            recomendaciones:''
         }
-
+        
     },
-    methods:{       
-        ocultar2: function(){
-            this.ocultar.genData = !this.ocultar.genData
-        },
+    mounted(){
+        axios
+        .get('http://localhost:7000/internaciones/vue_listEvolucion/'+this.idHist.id_int)
+        .then(response => {
+            this.nota_evolucion.listNotas_evolucion = response.data   
+        })
 
-        idHistorial(id,historial1){
-            this.idHist.id_int = id
-            this.idHist.hist = historial1
-
-            console.log(id, " ssd ", historial1)
-        },
-
-        formSubmit(e){
-            e.preventDefault();
-            
-            axios.post('http://localhost:7000/internaciones/Vue_reg_epicrisis/'+this.idHist.id_int, {
-                historial:this.idHist.hist,
-                Fecha_internacion:this.fecha_internacion,
-                Fecha_alta:this.fecha_alta,
-                diagnostico_ingreso:this.diasnostico_ingreso,
-                resumenExmen_clinico: this.res_examen_clinico,
-                resumen_evolucion:this.res_evolucion,
-                medicamentos_usados:this.meds_usados,
-                diagnosticoPos_operatorio:this.diag_pos_operatorio,
-                intervenciones_quirurgicas:this.cirugias,
-                resAnatomia_patologica:this.res_anatomia_patologica,
-                resAllasgos_lab:this.res_lab,
-                diagnostico_final:this.diagnostico_final,
-                estadoPaciente_alta:this.estado_paciente_alta,
-                result_autopcia:this.res_autopcia
-                })
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                });
-
-                this.fecha_alta = "";
-                this.fecha_internacion = "";
-                this.diasnostico_ingreso= "";
-                this.res_examen_clinico= "";
-                this.res_evolucion= "";
-                this.meds_usados= "";
-                this.diag_pos_operatorio= "";
-                this.cirugias= "";
-                this.res_anatomia_patologica= "";
-                this.res_lab= "";
-                this.diagnostico_final= "";
-                this.estado_paciente_alta= "";
-                this.res_autopcia= "";
-                this.oneEpicrisis(this.idHist.id_int);
-
-        },
-
-        updateEpicrisis(e){
-            e.preventDefault();
-            var esto;
-            axios
-            .post('http://localhost:7000/internaciones/update_epicrisis/'+this.idHist.id_epicrisis, {
-                Fecha_internacion:this.fecha_internacion,
-                Fecha_alta:this.fecha_alta,
-                diagnostico_ingreso:this.diasnostico_ingreso,
-                resumenExmen_clinico: this.res_examen_clinico,
-                resumen_evolucion:this.res_evolucion,
-                medicamentos_usados:this.meds_usados,
-                diagnosticoPos_operatorio:this.diag_pos_operatorio,
-                intervenciones_quirurgicas:this.cirugias,
-                resAnatomia_patologica:this.res_anatomia_patologica,
-                resAllasgos_lab:this.res_lab,
-                diagnostico_final:this.diagnostico_final,
-                estadoPaciente_alta:this.estado_paciente_alta,
-                result_autopcia:this.res_autopcia
-            })
-            .then(function (response) {
-                
-                esto = response.data.success
-                console.log(response.data)
-                
-            })
-            .catch(function (error) {
-                console.log(error)
-            });
-            this.mensaje = esto
-        },
-
-        //muestar una epicrisis
-        oneEpicrisis(){
-            console.log(this.idHist.id_int, " <<<<<<<<<<<<<<<<<<   este es el id de internacion")
-            axios
-            .get('http://localhost:7000/internaciones/one_epicrisis/'+this.idHist.id_int)
-            .then(response => {
-                this.one_epicrisis = response.data
-
-                this.idHist.id_epicrisis = this.one_epicrisis[0].id; 
-
-                
-                this.fecha_internacion = this.one_epicrisis[0].Fecha_internacion;
-                this.fecha_alta = this.one_epicrisis[0].Fecha_alta;
-                this.diasnostico_ingreso= this.one_epicrisis[0].diagnostico_ingreso;        
-                this.res_examen_clinico= this.one_epicrisis[0].resumenExmen_clinico;
-                this.res_evolucion= this.one_epicrisis[0].resumen_evolucion;
-                this.meds_usados= this.one_epicrisis[0].medicamentos_usados;
-                this.diag_pos_operatorio= this.one_epicrisis[0].diagnosticoPos_operatorio;
-                this.cirugias= this.one_epicrisis[0].intervenciones_quirurgicas;
-                this.res_anatomia_patologica= this.one_epicrisis[0].resAnatomia_patologica;
-                this.res_lab= this.one_epicrisis[0].resAllasgos_lab;
-                this.diagnostico_final= this.one_epicrisis[0].diagnostico_final;
-                this.estado_paciente_alta= this.one_epicrisis[0].estadoPaciente_alta;
-                this.res_autopcia= this.one_epicrisis[0].result_autopcia;
-                console.log(this.one_epicrisis)       
-            })
-        },
-
-        // desde aqui es para orden de intervencion
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-        postOrden_Intervencion(e){
-            e.preventDefault();
-
-            axios.post('http://localhost:7000/internaciones/Vue_regOrden_Intervencion/'+this.idHist.id_int, {
-                historial:this.idHist.hist,
-                fechaOrden:this.orden_internacion.reg_orden_intervencion.fechaOrden,
-                motivoInternacion:this.orden_internacion.reg_orden_intervencion.motivoInternacion,
-                resumneDatosClinicos:this.orden_internacion.reg_orden_intervencion.resumneDatosClinicos,
-                examenComplementario:this.orden_internacion.reg_orden_intervencion.examenComplementario,
-                diagnostico:this.orden_internacion.reg_orden_intervencion.diagnostico,
-                resumenEgreso:this.orden_internacion.reg_orden_intervencion.resumenEgreso,
-                tratamientoIndicado:this.orden_internacion.reg_orden_intervencion.tratamientoIndicado,
-                diagnosticoEgreso:this.orden_internacion.reg_orden_intervencion.diagnosticoEgreso,
-                planManejoTratamiento:this.orden_internacion.reg_orden_intervencion.planManejoTratamiento,
-                resAutopcia:this.orden_internacion.reg_orden_intervencion.resAutopcia,
-                observacion:this.orden_internacion.reg_orden_intervencion.observacion,
-                condicionEgreso:this.orden_internacion.reg_orden_intervencion.condicionEgreso,
-                CausaEgreso:this.orden_internacion.reg_orden_intervencion.CausaEgreso
-                })
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                });                
-                this.orden_internacion.reg_orden_intervencion.fechaOrden=''
-                this.orden_internacion.reg_orden_intervencion.motivoInternacion=''
-                this.orden_internacion.reg_orden_intervencion.resumneDatosClinicos=''
-                this.orden_internacion.reg_orden_intervencion.examenComplementario=''
-                this.orden_internacion.reg_orden_intervencion.diagnostico=''
-                this.orden_internacion.reg_orden_intervencion.resumenEgreso=''
-                this.orden_internacion.reg_orden_intervencion.tratamientoIndicado=''
-                this.orden_internacion.reg_orden_intervencion.diagnosticoEgreso='',
-                this.orden_internacion.reg_orden_intervencion.planManejoTratamiento=''
-                this.orden_internacion.reg_orden_intervencion.resAutopcia=''
-                this.orden_internacion.reg_orden_intervencion.observacion=''
-                this.orden_internacion.reg_orden_intervencion.condicionEgreso=''
-                this.orden_internacion.reg_orden_intervencion.CausaEgreso=''
-        },
-
-        async ListOrd_intervencion(id_internacion){
-            axios
-            .get('http://localhost:7000/internaciones/Vue_list_ord_intervencion/'+id_internacion)
-            .then(response => {
-                this.orden_internacion.list_Orden_intervencion = response.data
-                console.log(this.orden_internacion.list_Orden_intervencion, "  <<<<<<<<<<<<<<<<<<<<<<<<  esto lo que quiero  <<<<<<<")       
-            })
-        },
-        async OneOrd_intervencion(id){
-            axios
-            .get('http://localhost:7000/internaciones/vueOne_ordintervencion/'+id)
-            .then(response => {
-                this.orden_internacion.one_intervencion = response.data
-                console.log(response.data, " respuesta de one intervencion  ")
-                this.orden_internacion.reg_orden_intervencion.fechaOrden = this.orden_internacion.one_intervencion[0].fechaOrden
-                this.orden_internacion.reg_orden_intervencion.motivoInternacion = this.orden_internacion.one_intervencion[0].motivoInternacion
-                this.orden_internacion.reg_orden_intervencion.resumneDatosClinicos = this.orden_internacion.one_intervencion[0].resumneDatosClinicos
-                this.orden_internacion.reg_orden_intervencion.examenComplementario = this.orden_internacion.one_intervencion[0].examenComplementario
-                this.orden_internacion.reg_orden_intervencion.diagnostico = this.orden_internacion.one_intervencion[0].diagnostico
-                this.orden_internacion.reg_orden_intervencion.resumenEgreso = this.orden_internacion.one_intervencion[0].resumenEgreso
-                this.orden_internacion.reg_orden_intervencion.tratamientoIndicado = this.orden_internacion.one_intervencion[0].tratamientoIndicado
-                this.orden_internacion.reg_orden_intervencion.diagnosticoEgreso = this.orden_internacion.one_intervencion[0].diagnosticoEgreso
-                this.orden_internacion.reg_orden_intervencion.planManejoTratamiento = this.orden_internacion.one_intervencion[0].planManejoTratamiento
-                this.orden_internacion.reg_orden_intervencion.resAutopcia = this.orden_internacion.one_intervencion[0].resAutopcia
-                this.orden_internacion.reg_orden_intervencion.observacion = this.orden_internacion.one_intervencion[0].observacion
-                this.orden_internacion.reg_orden_intervencion.condicionEgreso = this.orden_internacion.one_intervencion[0].condicionEgreso
-                this.orden_internacion.reg_orden_intervencion.CausaEgreso = this.orden_internacion.one_intervencion[0].CausaEgreso
-                      
-            })
-        },
-
-        volver(){
-            this.orden_internacion.one_intervencion = [];
-            this.orden_internacion.reg_orden_intervencion.fechaOrden=''
-            this.orden_internacion.reg_orden_intervencion.motivoInternacion=''
-            this.orden_internacion.reg_orden_intervencion.resumneDatosClinicos=''
-            this.orden_internacion.reg_orden_intervencion.examenComplementario=''
-            this.orden_internacion.reg_orden_intervencion.diagnostico=''
-            this.orden_internacion.reg_orden_intervencion.resumenEgreso=''
-            this.orden_internacion.reg_orden_intervencion.tratamientoIndicado=''
-            this.orden_internacion.reg_orden_intervencion.diagnosticoEgreso='',
-            this.orden_internacion.reg_orden_intervencion.planManejoTratamiento=''
-            this.orden_internacion.reg_orden_intervencion.resAutopcia=''
-            this.orden_internacion.reg_orden_intervencion.observacion=''
-            this.orden_internacion.reg_orden_intervencion.condicionEgreso=''
-            this.orden_internacion.reg_orden_intervencion.CausaEgreso=''
-        },
-
-         // Desde aqui es para nota de evolucion
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        axios
+        .get('http://localhost:7000/internaciones/Vue_list_ord_intervencion/'+this.idHist.id_int)
+        .then(response => {
+            this.ord_int.list_operaciones = response.data 
+            console.log(this.ord_int.list_operaciones, "  <<<< lista de ordenes de intervencion")    
+        })
+    },
+    methods:{  
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        //De notas de evolucion 
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         reg_nota_evolucion(e){
             e.preventDefault();
-            axios
-            .post('http://localhost:7000/internaciones/Vue_regNotaEvolucion/'+this.idHist.id_int, { 
+
+            var data = {
                 historial : this.idHist.hist,
                 fecha : this.nota_evolucion.fecha,
                 nota_evolucion : this.nota_evolucion.nota_evolucion,
-            })
-            .then(function (response) {
-
-                if(response.data.success == true){
-                    this.msg = "se guardo con exito"
-                    console.log(response.data) 
-                }else{
-                    msg = " algo salio mal "
+                id_medico: this.idHist.id_medico
+            };
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
                 }
-            })
-            .catch(function (error) {
-                console.log(error)
-            });
-            this.nota_evolucion.fecha = "";
-            this.nota_evolucion.nota_evolucion = "";
-            this.ocultar.list_notasEvolucion = true
-            this.list_notaEvolucion()
-           
-        },
+            };
+            fetch('http://localhost:7000/internaciones/Vue_regNotaEvolucion/'+this.idHist.id_int,esto)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.success == true){
+                    this.nota_evolucion.msg = data.msg,
+                    this.nota_evolucion.fecha = "";
+                    this.nota_evolucion.nota_evolucion = "";
+                    this.nota_evolucion.msg_false = ""
+                    this.list_notaEvolucion()
+                }else{
+                    this.nota_evolucion.msg_false = data.msg
+                    this.nota_evolucion.msg = ""
 
+                }
+
+            })
+            .catch(error => {
+                this.nota_evolucion.msg_false = "Algo salio mal"
+            })
+           
+        },  
         list_notaEvolucion(){
+
             axios
             .get('http://localhost:7000/internaciones/vue_listEvolucion/'+this.idHist.id_int)
             .then(response => {
-                this.nota_evolucion.listNotas_evolucion = response.data
-                console.log(response.data, "  <<<<<<<<<<<<<<<<<<<<<<<<  esto lo que quiero  <<<<<<<")       
+                this.nota_evolucion.listNotas_evolucion = response.data 
             })
+        }, 
+
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        //De diagnostico
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        inserMed(){
+            if(this.daigTratameinto.med.medic == "" || this.daigTratameinto.med.dosis == "" || this.daigTratameinto.med.frecuencia == ""){
+                
+                this.daigTratameinto.msg_false = "Todos los campos son obligados en medicamento"
+            }else{
+                this.daigTratameinto.medicamentos.push({
+                    medicamento: this.daigTratameinto.med.medic,
+                    dosis: this.daigTratameinto.med.dosis,
+                    frecuencia: this.daigTratameinto.med.frecuencia
+                })
+                this.daigTratameinto.med.medic = ""
+                this.daigTratameinto.med.dosis = ""
+                this.daigTratameinto.med.frecuencia = ""
+                this.daigTratameinto.msg_false = ""
+            }
+           
         },
-
-        //One nota de evolucion 
-
-        one_evolucion(id_nota){
-            axios
-            .get('http://localhost:7000/internaciones/vue_one_notaEvolucion/'+id_nota)
-            .then(response => {
-                this.nota_evolucion.one_notaEvolucion = response.data
-
-                this.nota_evolucion.fecha = response.data[0].fecha;
-                this.nota_evolucion.nota_evolucion = response.data[0].nota_evolucion;
-                console.log(response.data.fecha, "  <<<<<<<<<<<<<<<<<<<<<<<<  esto lo que quiero  <<<<<<<")       
-            })
-        },
-
-        limpiar_oneLista_nota(){
-            
-            this.nota_evolucion.fecha = '';
-            this.nota_evolucion.nota_evolucion = '';
-            this.nota_evolucion.one_notaEvolucion = '';
-        },
-
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>><<<<<<<<<
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        // desde aqui es para daignostico tratamiento
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
         eliminarMed(index){
             this.daigTratameinto.medicamentos.splice(index,1)
         },
 
-        eliminarEstudio(index){
-            this.daigTratameinto.estudios.splice(index,1)
-        },
-
-        inserMed(){
-            this.daigTratameinto.medicamentos.push({
-                medicamento: this.daigTratameinto.med.medic,
-                dosis: this.daigTratameinto.med.dosis,
-                frecuencia: this.daigTratameinto.med.frecuencia,
-                duracion: this.daigTratameinto.med.duracion
-            })
-            this.daigTratameinto.med.medic = ""
-            this.daigTratameinto.med.dosis = ""
-            this.daigTratameinto.med.frecuencia = ""
-            this.daigTratameinto.med.duracion = ""
-        },
-
-        inserEstudio(){
-            this.daigTratameinto.estudios.push({
-                estudios : this.daigTratameinto.est.estud,
-                nombreEstudio : this.daigTratameinto.est.nombre_estudio
-            })
-            this.daigTratameinto.est.estud = ""
-            this.daigTratameinto.est.nombre_estudio =""
-        },
-
-        
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        //registrar diagnostico
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         reg_diagnostico(e){
-            e.preventDefault();            
-            axios
-            .post('http://localhost:7000/internaciones/Vue_reg_diagnostico/'+this.idHist.id_int,{
+            e.preventDefault(); 
+            
+            var data = {
                 historial:this.idHist.hist,
                 fecha:this.daigTratameinto.fecha,
-                sintomas:this.daigTratameinto.sintomas,
-                examenFisico:this.daigTratameinto.examenFisico,
-                diagnostico:this.daigTratameinto.diagnostico,
-                tratamiento:this.daigTratameinto.tratamiento,
-
+                evolucion: this.daigTratameinto.evolucion,
                 medicamentos:this.daigTratameinto.medicamentos,
-                estudios:this.daigTratameinto.estudios,
+                id_medico: this.idHist.id_medico
+            }
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch('http://localhost:7000/internaciones/Vue_reg_diagnostico/'+this.idHist.id_int,esto)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data, "<<<<<<<<<<<<<<<<asd ")
+                if (data.success == true){
+                    this.daigTratameinto.msg = data.msg
+                    this.daigTratameinto.fecha = ""
+                    this.daigTratameinto.evolucion=""
+                    this.daigTratameinto.medicamentos=[]
+                    this.daigTratameinto.msg_false = ""
+                }else{
+                    this.daigTratameinto.msg_false = data.msg
+                    this.daigTratameinto.msg = ""
+                }
             })
-            .then(function (response) {
-                console.log(response)
-            })
-            .catch(function (error) {
-                console.log(error)
-            });
-            this.daigTratameinto.fecha = ""
-            this.daigTratameinto.sintomas = ""
-            this.daigTratameinto.examenFisico = ""
-            this.daigTratameinto.diagnostico = " "
-            this.daigTratameinto.tratamiento = ""
-
-            this.daigTratameinto.medicamentos = []
-            this.daigTratameinto.estudios = []
-        },
-        
+        },  
         listaDiagnostico(){
             axios
             .get('http://localhost:7000/internaciones/Vue_list_diagnostico/'+this.idHist.id_int)
@@ -433,33 +220,177 @@ var app = new Vue({
                 this.daigTratameinto.listDiagnostico = response.data
                 console.log(response.data, "  <<<<<<<<<<<<<<<<<<<<<<<<  esto lo que quiero  <<<<<<<")       
             })
-        },
-
+        }, 
         one_Diagnostico(id){
             axios
             .get('http://localhost:7000/internaciones/Vue_oneTratamiento/'+id)
-            .then(response => {
+            .then(response => {               
                 this.daigTratameinto.one_diagTratamiento = response.data
-
-                this.daigTratameinto.sintomas = response.data[0].sintomas
-                this.daigTratameinto.examenFisico = response.data[0].examenFisico
-                this.daigTratameinto.diagnostico = response.data[0].diagnostico
-                this.daigTratameinto.tratamiento = response.data[0].tratamiento
-
-                this.daigTratameinto.medicamentos = response.data[0].medicamentos
-                this.daigTratameinto.estudios = response.data[0].estudios
-
-                console.log(response.data, " uno ><<<<<<<<<<<<<<")       
+                console.log(this.daigTratameinto.one_diagTratamiento, " uno ><<<<<<<<<<<<<<")       
             })
         },
-        limpiar_oneDiagnostico(){
-            this.daigTratameinto.one_diagTratamiento = ""
-            this.daigTratameinto.sintomas = ""
-            this.daigTratameinto.examenFisico = ""
-            this.daigTratameinto.diagnostico = ""
-            this.daigTratameinto.tratamiento = ""
-            this.daigTratameinto.medicamentos = ""
-            this.daigTratameinto.estudios = ""
+        clean_one_diagnostico(){
+            this.daigTratameinto.one_diagTratamiento = ''
+        }, 
+
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                //registrar oreden de intervencion
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        postOrden_Intervencion(e){
+            e.preventDefault();
+
+            var data = {
+                historial:this.idHist.hist,
+                fechaOrden: this.ord_int.fechaOrden,
+                nombre_cirujano: this.ord_int.nombre_cirujano,
+                ayudantes: this.ord_int.ayudantes,
+                diag_pre_operatorio: this.ord_int.diag_pre_operatorio,
+                intr_parcticada: this.ord_int.intr_parcticada,
+                diag_pos_operatorio: this.ord_int.diag_pos_operatorio,
+                id_medico: this.idHist.id_medico
+            }
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch('http://localhost:7000/internaciones/Vue_regOrden_Intervencion/'+this.idHist.id_int,esto)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data, " <<<<<<<<<< asdasd <<<<<<<<<<<<<< asd")
+                if(data.success == true){
+                    this.ord_int.msg = data.msg
+                    this.ord_int.fechaOrden = ""
+                    this.ord_int.nombre_cirujano = ""
+                    this.ord_int.ayudantes = ""
+                    this.ord_int.diag_pre_operatorio = ""
+                    this.ord_int.intr_parcticada = ""
+                    this.ord_int.diag_pos_operatorio = ""
+                    this.ord_int.msg_false = ""
+                    this.list_orden_intervencion()
+                }else{
+                    this.ord_int.msg_false = data.msg
+                    this.ord_int.msg = ""
+                }
+            })
+        },
+        list_orden_intervencion(){
+            axios
+            .get('http://localhost:7000/internaciones/Vue_list_ord_intervencion/'+this.idHist.id_int)
+            .then(response => {
+                this.ord_int.list_operaciones = response.data 
+                console.log(this.ord_int.list_operaciones, "  <<<< lista de ordenes de intervencion")    
+            })
+        },
+        OneOrd_intervencion(id){
+            axios
+            .get('http://localhost:7000/internaciones/vueOne_ordintervencion/'+id)
+            .then(response => {
+                this.ord_int.one_intervencion = response.data                      
+            })
+        },
+
+        formSubmit(e){
+            e.preventDefault();
+
+            var data = {
+                historial:this.idHist.hist,
+                Fecha_internacion:this.epicrisis.Fecha_internacion,
+                Fecha_alta:this.epicrisis.Fecha_alta,
+                datos_clinicos:this.epicrisis.datos_clinicos,
+                diagnostico_admicion:this.epicrisis.diagnostico_admicion,
+                diagnostico_egreso:this.epicrisis.diagnostico_egreso,
+                condicion_egreso:this.epicrisis.condicion_egreso,
+                causa_egreso:this.epicrisis.causa_egreso,
+                examenes_complementario:this.epicrisis.examenes_complementario,
+                tratamiento_quirurgico:this.epicrisis.tratamiento_quirurgico,
+                tratamiento_medico:this.epicrisis.tratamiento_medico,
+                complicaciones:this.epicrisis.complicaciones,
+                pronostico_vital:this.epicrisis.pronostico_vital,
+                pronostico_funcional:this.epicrisis.pronostico_funcional,
+                control_tratamiento:this.epicrisis.control_tratamiento,
+                recomendaciones:this.epicrisis.recomendaciones,
+                id_medico: this.idHist.id_medico
+            }
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch('http://localhost:7000/internaciones/Vue_reg_epicrisis/'+this.idHist.id_int,esto)
+            .then(res => res.json())
+            .then(data => { 
+                if (data.success == true){
+                    this.epicrisis.msg = data.msg
+                    this.epicrisis.Fecha_internacion = ""
+                    this.epicrisis.Fecha_alta = ""
+                    this.epicrisis.datos_clinicos = ""
+                    this.epicrisis.diagnostico_admicion = ""
+                    this.epicrisis.diagnostico_egreso = ""
+                    this.epicrisis.condicion_egreso = ""
+                    this.epicrisis.causa_egreso = ""
+                    this.epicrisis.examenes_complementario = ""
+                    this.epicrisis.tratamiento_quirurgico = ""
+                    this.epicrisis.tratamiento_medico = ""
+                    this.epicrisis.complicaciones = ""
+                    this.epicrisis.pronostico_vital = ""
+                    this.epicrisis.pronostico_funcional = ""
+                    this.epicrisis.control_tratamiento = ""
+                    this.epicrisis.recomendaciones = ""
+                    this.epicrisis.msg_false = ""
+                    this.update_estado_internacion()
+                    this.liverar_cama()
+                }else{
+                    this.epicrisis.msg_false = data.msg
+                    this.epicrisis.msg = ""
+                }
+
+            })
+
+        },
+
+        update_estado_internacion(){
+
+           
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch('http://localhost:7000/internaciones/vue_update_estado_alta/'+this.idHist.id_int,esto)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                console.log(data)
+            })
+            
+        },
+        
+        liverar_cama(){
+            var data = { 
+                historial: '0',              
+                estado: 'true'
+            };
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch('http://localhost:7000/internaciones/vue_update_cama_estado/'+this.idHist.id_cama,esto)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                console.log(data)
+            })
         }
+        
     }
 })

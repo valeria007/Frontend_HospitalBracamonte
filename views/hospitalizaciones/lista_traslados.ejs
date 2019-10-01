@@ -104,7 +104,7 @@
 										class="plus"><i class="fa fa-plus"></i></span></a>
 								<ul class="opened" style="display:block" >
 									<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-											<b class="theme_color">Listas de Internación</b>
+											<b >Listas de Internación</b>
 										</a> 
 									</li>
 									<li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
@@ -115,6 +115,10 @@
                                         <b >Pacientes de alta </b>
                                         </a> 
                                     </li>
+                                    <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+										<b class="theme_color">Traslados</b>
+								    	</a> 
+								    </li>
 									<!-- <li> <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
 										<b >prueba</b>
 									</a> 
@@ -136,119 +140,99 @@
                     <div class="main-content">
 						<div class="row">
 							<div class="col-lg-12"> 
-		<!-- Content page -->
-		<div class="header">
-			<div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
-			<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Ordenes de Internación</h3>
-		</div>	 		
-		<div class="container-fluid">
-			<div class="row">
-				
-				<div class="col-md-12 ">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
-					  	<li class="active"><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Lista Pacientes </a></li>
-						<li><a href="#listFalse" data-toggle="tab">Pacientes atendidos</a></li>
-						<li><a href="#">Refresh</a></li>
-					</ul>
-				</div>
-				<div class="">
-					
-					<div id="myTabContent" class="tab-content">
-						
-					  <div class="tab-pane fade active in" id="list">
-                        <table class="display table table-bordered table-striped" id="dynamic-tablee">
-                            <thead>
-								<tr>
-									<th class="text-center">#</th>
-									<th class="" WIDTH="15%">N° de historia </th>
-									<th class="" WIDTH="20%">Fecha</th>	
-									<th class="" WIDTH="20%">Motivo de Ingreso</th>	
-									<th class="" WIDTH="20%">Viene de</th>	
-									<th class="text-center" WIDTH="20%">Registrar</th>
-                  					
-              <!--
-                 <th class="text-center" WIDTH="20%">Darde Baja</th>
-              -->   
-								</tr>
-							</thead>
-							<tbody>
-								<% if(resp != null) { %>
-									
-									<% for(var i=0; i< resp.length; i++) { %>
-										<tr>
-											<td><%= i + 1 %></td>
-											<td><%=resp[i].Historial %></td>
-											<td><%=resp[i].fechaIngreso %></td>
-											<td><%=resp[i].diagnostico %></td>
-											<td><%=resp[i].tipoConsulta %></td>
-											<td class="text-center" >
-												<a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].id_especialidad%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Registrar Internación"><i class="fa fa-eye text-muted"></i></a><span>&nbsp;</span>
-																			
-												<a href="/internaciones/only_pInternacion/<%=resp[i].id%>/<%=resp[i].id_especialidad%>/<%=resp[i].tipoConsulta%>/<%=resp[i].Historial %>/<%=data_doc.data.token_id%>" class="btn btn-success "><i class="fa fa-refresh"></i></a>
-											</td>
-											
-										</tr>
-										<% } %>
-								<% } else { %>
-									<tr>
-										<td> NO HAY CONENCCION CON LA BASE DE DATOS </td>
-									</tr>
-								<% } %>							
-							</tbody>
-						</table>
-						
-					  </div>
-					  <div class="tab-pane fade" id="listFalse">
-							<table class="display table table-bordered table-striped" id="dynamic-table">
-								<thead>
-									<tr>
-										<th >#</th>
-										<th >N° de historia </th>
-										<th >Fecha</th>	
-										<th >Motivo de Ingreso</th>	
-										<th >Viene de</th>	
-										<th >Registrar</th>
-										  
-				  <!--
-					 <th class="text-center" WIDTH="20%">Darde Baja</th>
-				  -->   
-									</tr>
-								</thead>
-								<tbody>
-									<% if(listFalse != null) { %>
-										
-										<% for(var i=0; i< listFalse.length; i++) { %>
-											<tr>
-												<td><%= i + 1 %></td>
-												<td><%=listFalse[i].Historial %></td>
-												<td><%=listFalse[i].fechaIngreso %></td>
-												<td><%=listFalse[i].diagnostico %></td>
-												<td><%=listFalse[i].tipoConsulta %></td>
-												<td class="text-center" ><a href="/internaciones/only_pInternacion/<%=listFalse[i].id%>/<%=listFalse[i].id_especialidad%>/<%=listFalse[i].tipoConsulta%>/<%=listFalse[i].Historial %>/<%=data_doc.data.token_id%>" class="btn btn-success "><i class="fa fa-refresh"></i></a></td>
-												
-											</tr>
-											<% } %>
-									<% } else { %>
-										<tr>
-											<td> no hay datos </td>
-										</tr>
-									<% } %>							
-								</tbody>
-							</table>
-							
-						  </div>
-
-					</div>
-				</div>
-			</div>
-		</div>
+		                        <!-- Content page -->
+		                        <div class="header">
+		                            <div class="info blue_symbols "> <i class="fa fa-medkit icon "></i></div>
+		                        	<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Traslados</h3>
+		                        </div>	 		
+		                        <div class="container-fluid">
+		                        	<div class="row">
+                                    
+		                        		<div class="col-md-12 ">
+		                        			<ul class="nav nav-tabs" style="margin-bottom: 15px;" id="links">
+		                        			  	<li class="active"><a href="#list" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Lista Pacientes </a></li>
+		                        				<li><a href="#listFalse" data-toggle="tab">Pacientes atendidos</a></li>
+		                        				<li><a href="#">Refresh</a></li>
+		                        			</ul>
+		                        		</div>
+		                        		<div class="">
+                                        
+		                        			<div id="myTabContent" class="tab-content">
+                                            
+		                        			  <div class="tab-pane fade active in" id="list">
+                                                <table class="display table table-bordered table-striped" id="dynamic-tablee">
+                                                    <thead>
+		                        						<tr>
+		                        							<th class="text-center">#</th>
+		                        							<th class="" WIDTH="15%">N° de historia </th>
+		                        							<th class="" WIDTH="20%">Fecha</th>	
+		                        							<th class="" WIDTH="20%">Diagnostico principal</th>	
+		                        							<th class="" WIDTH="20%">Viene de</th>	
+		                        							<th class="text-center" WIDTH="20%">Registrar</th>
+                                                        
+                                                            <!--
+                                                               <th class="text-center" WIDTH="20%">Darde Baja</th>
+                                                            -->   
+		                        						</tr>
+		                        					</thead>
+		                        					<tbody>
+                                                        <%for(var i = 0; i < traslados_true.length; i++) { %>
+                                                            <tr>
+                                                                <td><%=i+1%></td>
+                                                                <td><%=traslados_true[i].historial%></td>
+                                                                <td><%=traslados_true[i].fecha_hora%></td>
+                                                                <td><%=traslados_true[i].diagnostico_principal%></td>
+                                                                <td><%=traslados_true[i].enviado_de%></td>
+                                                                <td><a href="/internaciones/internacion_traslado/<%=traslados_true[i].id%>/<%=traslados_true[i].historial%>/<%=traslados_true[i].id_especialidad%>/<%=data_doc.data.token_id%>">Ver</a></td>
+                                                            </tr>
+                                                        <% } %>
+		                        					</tbody>
+		                        				</table>
+                                            
+		                        			  </div>
+		                        			  <div class="tab-pane fade" id="listFalse">
+		                        					<table class="display table table-bordered table-striped" id="dynamic-table">
+		                        						<thead>
+		                        							<tr>
+		                        								<th >#</th>
+		                        								<th >N° de historia </th>
+		                        								<th >Fecha</th>	
+		                        								<th >Motivo de Ingreso</th>	
+		                        								<th >Viene de</th>	
+		                        								<th >Registrar</th>
+                                                            
+		                        		  <!--
+		                        			 <th class="text-center" WIDTH="20%">Darde Baja</th>
+		                        		  -->   
+		                        							</tr>
+		                        						</thead>
+		                        						<tbody>
+                                                            <%for(var i = 0; i < traslados_false.length; i++) { %>
+                                                                <tr>
+                                                                    <td><%=i+1%></td>
+                                                                    <td><%=traslados_false[i].historial%></td>
+                                                                    <td><%=traslados_false[i].fecha_hora%></td>
+                                                                    <td><%=traslados_false[i].diagnostico_principal%></td>
+                                                                    <td><%=traslados_false[i].enviado_de%></td>
+                                                                    <td><a href="/internaciones/internacion_traslado/<%=traslados_false[i].id%>/<%=traslados_false[i].historial%>/<%=traslados_false[i].id_especialidad%>/<%=data_doc.data.token_id%>">Ver</a></td>
+                                                                </tr>
+                                                            <% } %>		
+		                        						</tbody>
+		                        					</table>
+                                                
+		                        				  </div>
+                                              
+		                        			</div>
+		                        		</div>
+		                        	</div>
+		                        </div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	 </div>
+	</div>
 	<!--====== Scripts -->
 	
 	<script src="/js/get/consultaget.js"></script>	
