@@ -192,20 +192,21 @@
 													<div class="col-md-4 " >
 														<div class="entrada ">
 															<label>Nombre(s):</label>
-															<input  class="form-control"type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change">
+															<input  class="form-control"type='text' name='nombre'placeholder="Nombre" required  parsley-trigger="change"onkeyup="mayus(this);" >
 														</div>
 														
 													</div>
 													<div class="col-md-4  ">
 														<div class="entrada">
 															<label>Primer Apellido:</label>
-															<input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change">
+															<input class="form-control" type='text' name='apellidop' class='upper' placeholder="Primer Apellido" required  parsley-trigger="change"onkeyup="mayus(this);">
+								
 														</div>
 													</div>
 													<div class="col-md-4 ">
 														<div class="entrada">
 															<label>Segundo Apellido:</label>
-															<input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change">
+															<input class="form-control" type='text' name='apellidom' placeholder="Segundo Apellido" required  parsley-trigger="change" onkeyup="mayus(this);">
 														</div>
 													</div>
 												
@@ -214,15 +215,15 @@
 												<div class="col-md-13">
 													<div class="col-md-3">
 														<br><p>C.I.:</p>
-														<input size="13" type='text' name='ci'placeholder="N° de Carnet" required placeholder=""><br>
+														<input type='text' name='ci'placeholder="N° de Carnet" required placeholder="" parsley-trigger="change" maxlength="10"  class="form-control"/><br>
 													</div>	
 													<div class="col-md-4"><br><p>Dirección:</p>
-														<input type='text' name='direccion'placeholder="Dirección" required  parsley-trigger="change"><br>
+														<input type='text' name='direccion'placeholder="Dirección" required  parsley-trigger="change" onkeyup="mayus(this);"><br>
 													</div>
 													<div class="col-md-5 " ><br><p>Sexo:</p>
 														<select class="form-control " name='sexo'>
-															<option>Hombre</option>
-															<option>Mujer</option>
+															<option>HOMBRE</option>
+															<option>MUJER</option>
 														</select><br>
 													</div>
 												</div>
@@ -272,6 +273,11 @@
 		<!--\\\\\\\ wrapper end\\\\\\-->
 		
 		<!--====== Scripts -->
+		<script>
+			function mayus(e) {
+			e.value = e.value.toUpperCase();
+			}
+		  </script>
 		
 
 		<script src="/js/jquery-2.1.0.js"></script>
