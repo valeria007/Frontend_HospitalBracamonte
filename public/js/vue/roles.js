@@ -18,9 +18,9 @@ const roles = new Vue({
     }),
     methods:{
         traer(id){
-            fetch('http://localhost:7000/usuarios/roles/'+id)
+            fetch('http://192.168.1.9:7000/usuarios/roles/'+id)
             .then(res => res.json())
-            .then(res => {              
+            .then(res => {  
                 this.roles.nombre = res[0].nombre
                 this.roles.apellidop   = res[0].apellidop
                 this.roles.apellidom = res[0].apellidom
@@ -29,8 +29,6 @@ const roles = new Vue({
                 this.roles.direcion = res[0].direcion
                 this.roles.telefono = res[0].telefono
                 this.roles.roles = res[0].Users           
-                
-                console.log(this.roles.roles)
             })
         },
 

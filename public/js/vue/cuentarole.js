@@ -26,7 +26,7 @@ var reg_roles = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/role/register_rol',esto)
+            fetch('http://192.168.1.9:7000/role/register_rol',esto)
             .then(res => res.json())
             .then(data => {
                 if (data.success == true){
