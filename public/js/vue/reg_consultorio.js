@@ -1,3 +1,19 @@
+/* ver()
+function ver(){
+  console.log("esto quiero ver")
+  fetch('/routes/url/export.js')
+  .then(data => data.json())
+  .then(resp => {
+    console.log(resp)
+  }).
+  catch(error => {
+    console.log({
+      data:error
+    })
+  })
+  
+} */
+
 var reg_sala = new Vue({
     el : "#reg_sala",
     data: () =>({
@@ -17,7 +33,7 @@ var reg_sala = new Vue({
         
     }),
     mounted(){
-      fetch('http://localhost:7000/cuaderno/VUe_lista_medicos')
+      fetch('http://192.168.1.9:7000/cuaderno/VUe_lista_medicos')
       .then(res => res.json())
       .then(data => {
         this.data_medicos = data
@@ -41,13 +57,14 @@ var reg_sala = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/cuaderno/vue_regConsultorio/'+this.id_especialidad,esto)
+            fetch('http://192.168.1.9:7000/cuaderno/vue_regConsultorio/'+this.id_especialidad,esto)
             .then(res => res.json())
             .then(data => {
               if (data.success == true){
                 this.msg = data.msg
                 this.sigla = "",
                 this.nombre = ""
+                this.lista_consulta()
               }else{
                 this.msg = data.msg
               }
@@ -75,7 +92,7 @@ var reg_sala = new Vue({
                 'Content-type' : "application/json"
               }
           };
-          fetch('http://localhost:7000/cuaderno/Vue_reg_doctor_especialidad/'+this.id_especialidad,esto)
+          fetch('http://192.168.1.9:7000/cuaderno/Vue_reg_doctor_especialidad/'+this.id_especialidad,esto)
           .then(res => res.json())
           .then(data => {
             console.log(data)
@@ -89,7 +106,7 @@ var reg_sala = new Vue({
           
         },
         lista_doctores(){
-          fetch('http://localhost:7000/cuaderno/vue_only_list_doctores_especialidad/'+this.id_especialidad)
+          fetch('http://192.168.1.9:7000/cuaderno/vue_only_list_doctores_especialidad/'+this.id_especialidad)
           .then(res => res.json())
           .then(data => {
             console.log(data)
@@ -97,7 +114,7 @@ var reg_sala = new Vue({
           })
         },
         lista_consulta(){
-          fetch('http://localhost:7000/cuaderno/vue_list_EspCons/'+this.id_especialidad)
+          fetch('http://192.168.1.9:7000/cuaderno/vue_list_EspCons/'+this.id_especialidad)
           .then(res => res.json())
           .then(data => {
             console.log(data)
