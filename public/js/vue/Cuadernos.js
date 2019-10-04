@@ -2,6 +2,7 @@ const cuadernos = new Vue({
     el:"#cuadernos",
     data:() => ({
         mensaje: " Hola ",
+        url:data_url,
         fechas:[],
         id:'',
         Turnos:'',
@@ -15,7 +16,7 @@ const cuadernos = new Vue({
     }),
     methods:{
         mostrar(id){
-            fetch('http://localhost:7000/cuaderno/vueCuaderno/'+id)
+            fetch(this.url.url_front_end+'/cuaderno/vueCuaderno/'+id)
             .then(res => res.json())
             .then(res => {
                 console.log(res)
@@ -37,7 +38,7 @@ const cuadernos = new Vue({
 
         buscador(id){
             console.log(id, " esto es el id del cuaderno")
-            fetch('http://localhost:7000/cuaderno/VueDoctores/'+id)
+            fetch(this.url.url_front_end+'/cuaderno/VueDoctores/'+id)
             .then(res => res.json())
             .then(res => {
                 this.buscar.lists = res

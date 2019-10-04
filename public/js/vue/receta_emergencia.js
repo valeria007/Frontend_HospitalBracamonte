@@ -1,6 +1,9 @@
+
 const receta = new Vue({
     el: '#receta', 
     data : () => ({
+        url:data_url,
+
         id_consulta:'',
 
         data_msg:{
@@ -30,7 +33,7 @@ const receta = new Vue({
         One_receta:''
     }),
     mounted(){
-        fetch('http://localhost:7000/emergencia2.0/vue_receta_emergencia/'+this.id_consulta)        
+        fetch(this.url.url_front_end+'/emergencia2.0/vue_receta_emergencia/'+this.id_consulta)        
         .then(resp => resp.json())
         .then(data =>{            
             this.One_receta = {
@@ -45,7 +48,7 @@ const receta = new Vue({
     },
     methods:{
         get_receta(){
-            fetch('http://localhost:7000/emergencia2.0/vue_receta_emergencia/'+this.id_consulta)        
+            fetch(this.url.url_front_end+'/emergencia2.0/vue_receta_emergencia/'+this.id_consulta)        
             .then(resp => resp.json())
             .then(data =>{            
                 this.One_receta = {
@@ -92,7 +95,7 @@ const receta = new Vue({
                           'Content-type' : "application/json"
                         }
                     };
-                    fetch('http://localhost:7000/emergencia2.0/Vue_receta/'+this.id_consulta,esto)
+                    fetch(this.url.url_front_end+'/emergencia2.0/Vue_receta/'+this.id_consulta,esto)
                     .then(res => res.json())
                     .catch(error => console.error('Error:', error))
                     .then(data => { 
@@ -147,7 +150,7 @@ const receta = new Vue({
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/consulta_externa/VueupdateReceta/'+this.One_receta.id,esto)
+                fetch(this.url.url_front_end+'/consulta_externa/VueupdateReceta/'+this.One_receta.id,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(data => { 

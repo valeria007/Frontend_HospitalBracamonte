@@ -1,7 +1,8 @@
 const roles = new Vue({
     el:"#roles",
     data: () => ({
-        mensaje : " hola aljand ",
+        mensaje : "",
+        url:data_url,
         email:' esto ',
         roles: {
             nombre:"",
@@ -18,7 +19,7 @@ const roles = new Vue({
     }),
     methods:{
         traer(id){
-            fetch('http://192.168.1.9:7000/usuarios/roles/'+id)
+            fetch(this.url.url_front_end+'/usuarios/roles/'+id)
             .then(res => res.json())
             .then(res => {  
                 this.roles.nombre = res[0].nombre
@@ -33,12 +34,10 @@ const roles = new Vue({
         },
 
         mostrar_roles(){
-            console.log("click")
             for(var i = 0 ; i < this.roles.roles.length; i++){
                 if( this.roles.roles[i].email == this.email){
                     
                     this.roles.rolUser = this.roles.roles[i].role[0].name
-                    console.log(this.roles.rolUser)
                 }
             }
         }

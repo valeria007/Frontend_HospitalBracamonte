@@ -173,34 +173,31 @@
                                                     <div class="col-md-5">
                                                         <div class="entrada ">
                                                             <label class=" ">N° de Historia:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
-                                                                <input type="hidden" name="numeroHistorial"  value="<%=dataPaciente[0].numeroHistorial%>"  class="form-control" readonly="" value="Read only text goes here">
+                                                                
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="entrada">
                                                             <label class=" ">CI.:</label><p><b><%=dataPaciente[0].ci%></b></p>
-                                                            <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4 col-sm-4">
                                                         <div class="entrada">
                                                             <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
-                                                            <input type="hidden" name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8 col-sm-9">
                                                         <div class="entrada">
                                                             <label class="">Fecha de Nacimiento:</label><p><b><%=dataPaciente[0].fechanacimiento%></b></p>
-                                                            <input  type="hidden" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                            
                                                         </div>
                                                     </div> 
                                                     <div class="col-sm-12 col-sm-12">
                                                         <div class="entrada">
                                                             <label class=" ">Nombre Completo:</label><p><b><%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%></b></p>
-                                                                <input type="hidden" name="nombre apellidop apellidom" 
-                                                                    value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-                                                                    class="form-control" readonly=""
-                                                                    value="Read only text goes here">
+                                                               
                                                         </div> 
                                                     </div> 
                                                     <div>
@@ -211,6 +208,7 @@
                                         </div>
                                         <div class="col-md-6 panel panel-default">
                                                
+<<<<<<< HEAD
                                           <div class=" panel panel-default">
                                               <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos del Médico</li>            
                                           
@@ -226,6 +224,24 @@
                                                         <div class="entrada">
                                                             <label class="">Nombre del Médico:</label><p><b><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%></b></p>
                                                             <input type="hidden" value="<%=data_doc.data.medico.nombre%>" class="form-control" readonly="" value="Read only text goes here" >
+=======
+                                            <div class=" panel panel-default">
+                                                <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos del Médico</li>            
+                                            
+                                            </div>
+                                            <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
+                                                <div class="col-sm-12 row"> 
+                                                                               
+                                                    <div class=" col-sm-5 ">
+                                                      
+                                                    </div> 
+                                                    <div class=" col-sm-12 ">
+                                                        <div class="col-sm- 12 col-sm-12">
+                                                            <div class="entrada">
+                                                                <label class="">Nombre del Médico:</label><p><b><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%></b></p>
+                                                               
+                                                            </div>
+>>>>>>> 75c1c370d8cde49ec66a6d14645ae6e57b6a2202
                                                         </div>
                                                     </div>
                                                 </div>               
@@ -257,7 +273,7 @@
                             <h3 class="text-center">Estado del Paciente</h3>
                             <div class="header">
                                 <div class="actions"> 
-                                  <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
+                                  <div  id="tab1default"><textarea  name="fechaAtencion" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
                                         
                                   </div>
                                   
@@ -273,7 +289,8 @@
                                     </select>
                                     <input type="hidden" name="idDoctor" value="<%=data_doc.data.medico.id%>">
                                     <input type="hidden" name="hora" value="<%=cita[0].hora%>">
-                                    <input type="hidden" name="numeroHistorial"  value="<%=dataPaciente[0].numeroHistorial%>"  class="form-control" readonly="" value="Read only text goes here">
+                                    <input type="hidden" name="Nhistorial"  value="<%=dataPaciente[0].numeroHistorial%>"  class="form-control" readonly="" value="Read only text goes here">
+                                    <input type="hidden" name="nombreDoctor" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>" class="form-control" readonly="" value="Read only text goes here" >
                                                        
                                   </div>
                                   <div class="col-sm-4">
@@ -335,20 +352,18 @@
                           <% } else { %>           
                           <form class="form-horizontal group-border-dashed" action="/emergencia2.0/update_consulta/<%=updateConsultaEmg[0].id%>/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
                               
-                                    <div class="form-group">
+                                  <div class="form-group">
+                                      <div class="col-sm-3">
+                                        </div>
                                         <div class="col-sm-3">
+                                            <label class="control-label">Fecha de Consulta:</label><%=updateConsultaEmg[0].fechaAtencion%>
+                                            <input  type="date"  class="form-control"  value="<%=updateConsultaEmg[0].fechaAtencion%>" require />
+                                            <input class="form-control"  type="hidden" name="fechaConsulta"require value="<%=updateConsultaEmg[0].fechaAtencion%>" readonly="">
                                             
-                                            <input type="hidden"  class="form-control" value="<%=dataPaciente[0].numeroHistorial%>" readonly/>
                                           </div>
-                                          <div class="col-sm-3">
-                                              <label class="control-label">Fecha de Consulta:</label><%=updateConsultaEmg[0].fechaAtencion%>
-                                              <input  type="date"  class="form-control"  value="<%=updateConsultaEmg[0].fechaAtencion%>" require />
-                                              <input class="form-control"  type="hidden" name="fechaConsulta"require value="<%=updateConsultaEmg[0].fechaAtencion%>" readonly="">
-                                              
-                                            </div>
-                                      
-                                    </div>
-                                    <h3 class="center">Estado del Paciente<span class="semi-bold">/Actualizacion   <%=updateConsultaEmg[0].id%></span></h3>
+                                    
+                                  </div>
+                                  <h3 class="center">Estado del Paciente<span class="semi-bold">/Actualizacion   <%=updateConsultaEmg[0].id%></span></h3>
                           
                             <div class="header">
                                 <div class="actions"> 
