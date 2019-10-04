@@ -10,24 +10,15 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
-    <!--\\\\\\\ wrapper Start \\\\\\-->
     <div class="header_bar">
-      <!--\\\\\\\ header Start \\\\\\-->
       <div class="brand">
-        <!--\\\\\\\ brand Start \\\\\\-->
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
-      <!--\\\\\\\ brand end \\\\\\-->
       <div class="header_top_bar oculto-impresion">
-        
-        <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
-        
-            <div class="btn-group"> <a class="btn btn-warning" href="/almacen/volver13/<%=data[0].id%>" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
-            <div class="btn-group"> <a class="btn btn-success" href="/distribucion/volver"> <i class="fa fa-reply"></i> Salir</a> </div>
-            
+        <div class="btn-group"> <a class="btn btn-warning" href="/almacen/volver13/<%=data[0].id%>" data-print> <i class="fa fa-print"></i> Imprimir </a> </div>
+        <div class="btn-group"> <a class="btn btn-success" href="/distribucion/volver"> <i class="fa fa-reply"></i> Salir</a> </div>
         <div class="top_right_bar">
-          
           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
@@ -39,13 +30,9 @@
           </div> 
         </div>
       </div>
-      <!--\\\\\\\ header top bar end \\\\\\-->
     </div>
-    <!--\\\\\\\ header end \\\\\\-->
     <div class="inner">
-      <!--\\\\\\\ inner start \\\\\\-->
       <div class="left_nav">
-        <!--\\\\\\\left_nav start \\\\\\-->
         <div class="left_nav_slidebar oculto-impresion">
           <ul>
             <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -74,55 +61,46 @@
           </ul>
         </div>
       </div>
-     <!--Contenido-->
-     <div class="contentpanel"><br>
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-      <!--Formulario-->
-      <div class="container clear_both padding_fix">
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="invoice ">
-  
-          
-
+      <!--Contenido-->
+      <div class="contentpanel"><br>
+        <!--Formulario-->
+        <div class="container clear_both padding_fix">
+          <div class="invoice ">
             <div class="invoice_body" data-print-content>
-            <div  class="pull-left">
+              <div  class="pull-left">
                 <address>
-                    <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
-                    Av. Italia Final S/N<br>
-                    Telfs. 26246064-26244960<br>
-                    POTOSI-BOLIVIA
-                    </address>
-            </div>
-            <div class="pull-right">
+                  <strong>HOPITAL DANIEL BRACAMONTE</strong><br>
+                  Av. Italia Final S/N<br>
+                  Telfs. 26246064-26244960<br>
+                  POTOSI-BOLIVIA
+                </address>
+              </div>
+              <div class="pull-right">
                 <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
-            </div>
-            <div class="clearfix"></div>
-            <br/>
-            <h2 class="text-center">REGISTRO DE DISTRIBUCION</h2>
-            <div class="row">
-              <div class="col-sm-9">
+              </div>
+              <div class="clearfix"></div><br/>
+              <h2 class="text-center">REGISTRO DE DISTRIBUCION</h2>
+              <div class="row">
+                <div class="col-sm-9">
                   <div> <strong>CODIGO DE DISTRIBUCION :</strong>   <%=data[0].codigo%>  </div>
                   <div> <strong>FECHA :</strong>   <%=data[0].fechaLlegada%>  </div>
                   <div> <strong>RECIBE :</strong>   <%=data[0].recibe%>  </div>
                   <div> <strong>TRIMESTRE :</strong>  no esta  </div>
-                  <div> <strong>REPONSABLE :</strong> no esta<br/>
-                    
-                  </div>
-                  <br/>
+                  <div> <strong>REPONSABLE :</strong> no esta<br/></div><br/>
+                </div>
               </div>
-            </div>
-            <table class="table table-bordered" >
-              <thead>
-                <tr>
-                  <th class="text-center">#</th>
-                  <th>CATIDAD</th>
-                  <th>CODIGO</th>
-                  <th>PRODUCTO</th>
-                  <th>PRECIO</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%for(var i = 0; i < data[0].productos.length; i++) { %>
+              <table class="table table-bordered" >
+                <thead>
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th>CATIDAD</th>
+                    <th>CODIGO</th>
+                    <th>PRODUCTO</th>
+                    <th>PRECIO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%for(var i = 0; i < data[0].productos.length; i++) { %>
                   <tr>
                     <td><%=i+1%></td>
                     <td><%=data[0].productos[i].qty%></td>
@@ -130,40 +108,32 @@
                     <td><%=data[0].productos[i].item.nombre%></td>
                     <td><%=data[0].productos[i].item.price%></td>
                   </tr> 
-                <% } %>
-                
-                
-              </tbody>
-            </table>
-            
-            <div class="invoice_footer">
-            <div class="row">
-              <div class="col-sm-7">
-                <div class="payment-methods"></div>
-              </div>
-              <div class="col-sm-5">
-                <div class="invoice_total pull-right">
-                  <h3><strong>Total: <span class="well_text"> <%=data[0].productos[0].item.price%>  </span></strong></h3>
+                  <% } %>
+                </tbody>
+              </table>
+              <div class="invoice_footer">
+                <div class="row">
+                  <div class="col-sm-7">
+                    <div class="payment-methods"></div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="invoice_total pull-right">
+                      <h3><strong>Total: <span class="well_text"> <%=data[0].productos[0].item.price%>  </span></strong></h3>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-           
-            
-          </div>
-          </div>
+        </div>
       </div>
-    <!--\\\\\\\ content panel end \\\\\\-->
     </div>
   </div>
-</div>
-
-  <%- include("../partials/scripts") -%>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-  <script src="https://www.jqueryscript.net/demo/Print-Specified-Area-Of-A-Page-PrintArea/demo/jquery.PrintArea.js"></script>
-  <script src="/js/imprimir.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
+<%- include("../partials/scripts") -%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://www.jqueryscript.net/demo/Print-Specified-Area-Of-A-Page-PrintArea/demo/jquery.PrintArea.js"></script>
+<script src="/js/imprimir.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/distribucion.js"></script>
 </body>

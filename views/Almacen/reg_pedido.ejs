@@ -8,15 +8,12 @@
   <%- include("../partials/head") -%>	
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
- 
-  
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
     <%- include("../partials/menu") -%>
     <div class="inner">
       <div class="left_nav">
-        <!--\\\\\\\left_nav start \\\\\\-->
         <div class="left_nav_slidebar">
           <ul>
             <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -46,21 +43,19 @@
         </div>
       </div>      
     </div>
-  <div id="carMedicamentos">
-    <div class="contentpanel"><br>
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-      <!--Formulario-->
-      <div class="container clear_both padding_fix" >
-        <!--\\\\\\\ container  start \\\\\\-->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="block-web">
-              <div class="header">
+    <div id="carMedicamentos">
+      <div class="contentpanel"><br>
+        <!--Formulario-->
+        <div class="container clear_both padding_fix" >
+          <div class="row">
+            <div class="col-md-12">
+              <div class="block-web">
+                <div class="header">
                   <div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href="/medicamento/volver15"><i class="fa fa-repeat"></i></a></div>
                   <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-shopping-cart icon"></i></div> Pedido /<span class="semi-bold"> Registro de Pedido</span></h2>  
-              </div>
-                <span style="color: red;">{{respuestaPost}}</span>
-              <br><br>
+                </div>
+                
+                <span style="color: red;">{{respuestaPost}}</span><br><br>
                 <form @submit="formSubmit" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Codigo de Compra:</label>
@@ -212,11 +207,10 @@
                 <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit"> Lista de Productos </i></h4>
               </div>
               <div class="row">
-                  
                 <!--/////////////table-->
                 <div class="col-xs-10 col-md-offset-1">
-                    <span style="color: red;">{{alert}}</span>
-                    <span style="color: blue;">{{pass}}</span>
+                  <span style="color: red;">{{alert}}</span>
+                  <span style="color: blue;">{{pass}}</span>
                   <br>
                   <label><i class="fa fa-search"> buscar </i></label>
                   <div class="control is-grouped">
@@ -277,16 +271,11 @@
           </div>
         </div>
       </div>
-    <!--\\\\\\\ content panel end \\\\\\-->
     </div>
   </div>
-</div>
-<!-- Docs -->
-
 <%- include("../partials/scripts") -%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/pedidos.js"></script>
-<script src="/js/pdf.js"></script>
 </body>
 </html>

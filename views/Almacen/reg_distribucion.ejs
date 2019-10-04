@@ -8,196 +8,191 @@
 	<%- include("../partials/head") -%>	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-  	
-  
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 	<div class="wrapper">
 		<%- include("../partials/menu") -%>
 		<div class="inner">
-		  <div class="left_nav">
-			<!--\\\\\\\left_nav start \\\\\\-->
-			<div class="left_nav_slidebar">
-			  <ul>
-				<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class=""></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-				  <ul >
-					<li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
-				  </ul>
-				</li>
-				<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus left_nav_pointer"><i class="fa fa-plus"></i></span></a>
-				  <ul class="opened" style="display:block">
-					<li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-					<li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
-					<li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-					<li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-					<li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Distribucion</b> </a> </li>
-					<li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
-				  </ul>
-				</li>
-				<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
-				  <ul>
-					<li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-					<li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-					<li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-					<li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
-				  </ul>
-				</li>
-			  </ul>
-			</div>
-		  </div>      
+		  	<div class="left_nav">
+				<div class="left_nav_slidebar">
+			  		<ul>
+						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class=""></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+				  			<ul >
+								<li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+				  			</ul>
+						</li>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus left_nav_pointer"><i class="fa fa-plus"></i></span></a>
+					  		<ul class="opened" style="display:block">
+								<li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+								<li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
+								<li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+								<li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
+								<li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Distribucion</b> </a> </li>
+								<li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+				 	 		</ul>
+						</li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+					  		<ul>
+								<li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+								<li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+								<li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+								<li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+				  			</ul>
+						</li>
+			 		</ul>
+				</div>
+		  	</div>      
 		</div>
 		<div id="pedidos">
 			<div class="contentpanel"> <br>
 				<div class="container clear_both padding_fix" >
 					<!--Modal-->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
 						<div class="modal-dialog">
-						  <div class="modal-content">
-							<div class="modal-header">
-							  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							  <h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit"> Lista de Productos </i></h4>
-							</div>
-							<div class="row">
-		
-								<span style="color: blue;">{{pass}}</span>
-							  <!--/////////////table-->
-							  <div class="col-xs-10 col-md-offset-1">
-								<br>
-								<label><i class="fa fa-search"> buscar </i></label>
-								<div class="control is-grouped">
-								  <p class="control is-expanded">
-									<input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el Nombre y la Presentacion">
-									<a class="button is-primary" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">Limpiar</a><br>
-									<span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
-								  </p>
+						 	<div class="modal-content">
+								<div class="modal-header">
+							  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							  		<h4 class="modal-title" id="myModalLabel"><i class="fa fa-medkit"> Lista de Productos </i></h4>
 								</div>
-							  </div> 
-							  <div class="col-xs-10 col-md-offset-1">
-								<nav class="pagination m-pagination">
-								  <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Anterior</a>
-								  <a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Siguiente</a>
-								  <ul>
-									<li>
-									  <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}"><<</a>
-									</li>
-									<li class="is-space"></li>
-									<li v-for="item in paginationMeds.filteredMeds">
-									  <a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
-									</li>
-									<li class="is-space"></li>
-									<li>
-									  <a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">>></a>
-									</li>
-								  </ul>
-								</nav>
-							  </div>
-							  <div class="col-xs-10 col-md-offset-1">
-								<table class="table is-bordered is-striped is-narrow">
-								  <thead>
-									<tr>
-									<th>Option</th>
-									<th>Cantidad</th>												
-									<th>Nombre</th>
-									<th>Precentacion</th>
-									<th>Cantidad</th>   
-									</tr>
-								  </thead>
-								  <tbody v-for="(med, index) in paginatedMeds">
-									<tr>
-									<td><a @click="insertar(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
-									<td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
-									<td>{{med.nombre}}</td>
-									<td>{{med.presentacion}}</td>
-									<td>{{med.unidades}}</td>
-									</tr>
-								  </tbody>
-								</table>   
-							  </div>
-							  <!-- ////////-->
-							</div>
-							<div class="modal-footer">
-							  <button type="" class="btn btn-info" data-dismiss="modal">OK</button>
-							</div>
-						  </div>
+								<div class="row">
+									<span style="color: blue;">{{pass}}</span>
+							  		<!--/////////////table-->
+							  		<div class="col-xs-10 col-md-offset-1">
+										<br>
+										<label><i class="fa fa-search"> buscar </i></label>
+										<div class="control is-grouped">
+							  				<p class="control is-expanded">
+												<input class="input" v-model="searchMed" v-on:keyup="searchInTheListMed(searchMed)" type="text" placeholder="Puede buscar por el Nombre y la Presentacion">
+												<a class="button is-primary" v-on:click="clearSearchItemMed" v-bind:class="{'is-disabled': searchMed==''}">Limpiar</a><br>
+												<span class="help is-dark"><strong>{{filteredMeds.length | numeral}}</strong> de {{ListMedicamentos.length | numeral}} Medicamentos Encontrados</span>
+							  				</p>
+										</div>
+							  		</div> 
+							  		<div class="col-xs-10 col-md-offset-1">
+										<nav class="pagination m-pagination">
+							  				<a class="button" v-on:click="selectPageMed(paginationMeds.currentPage-1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[0] || paginationMeds.ListMedicamentos.length==0}">Anterior</a>
+							  				<a class="button" v-on:click="selectPageMed(paginationMeds.currentPage+1)" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1] || paginationMeds.ListMedicamentos.length==0}">Siguiente</a>
+							  				<ul>
+												<li>
+									  				<a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[0])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[0] || this.paginationMeds.ListMedicamentos.length==0}"><<</a>
+												</li>
+												<li class="is-space"></li>
+												<li v-for="item in paginationMeds.filteredMeds">
+									  				<a class="button" v-on:click="selectPageMed(item)" v-bind:class="{'is-info': item == paginationMeds.currentPage}">{{item | numeral}}</a>
+												</li>
+												<li class="is-space"></li>
+												<li>
+							 				 		<a class="button" v-on:click="selectPageMed(paginationMeds.ListMedicamentos[paginationMeds.ListMedicamentos.length-1])" v-bind:class="{'is-disabled': this.paginationMeds.currentPage==this.paginationMeds.ListMedicamentos[this.paginationMeds.ListMedicamentos.length-1] || this.paginationMeds.ListMedicamentos.length==0}">>></a>
+												</li>
+							  				</ul>
+										</nav>
+						  			</div>
+							  		<div class="col-xs-10 col-md-offset-1">
+										<table class="table is-bordered is-striped is-narrow">
+							  				<thead>
+												<tr>
+												<th>Option</th>
+												<th>Cantidad</th>												
+												<th>Nombre</th>
+												<th>Precentacion</th>
+												<th>Cantidad</th>   
+												</tr>
+										  	</thead>
+								  			<tbody v-for="(med, index) in paginatedMeds">
+												<tr>
+												<td><a @click="insertar(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+												<td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
+												<td>{{med.nombre}}</td>
+												<td>{{med.presentacion}}</td>
+												<td>{{med.unidades}}</td>
+												</tr>
+								 	 		</tbody>
+										</table>   
+						  			</div>
+							  		<!-- ////////-->
+								</div>
+								<div class="modal-footer">
+							  		<button type="" class="btn btn-info" data-dismiss="modal">OK</button>
+								</div>
+						  	</div>
 						</div>
-					  </div>
+					</div>
 					<!--Fin del Modal-->
 					<div class="row">
 						<div class="col-md-12">
 							<div class="block-web">
 								<div class="header">
-									<div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar" ><i class="fa fa-chevron-down"></i></a></div>
-									<h5 class="content-header"> <i class="fa fa-clipboard icon"></i> Registro de Distribucion</h5>
+									<div class="actions"> <a class="minimize" href="#">Refresh</a><a class="refresh" href="/distribucion/volver2"><i class="fa fa-repeat"></i></a></div>
+									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-clipboard icon"></i></div> Distribucion /<span class="semi-bold"> Registro de Distribucion</span></h2>  
 								</div>
 								<span style="color: blue;">{{respuestaPost}}</span>
 								<span style="color: red;">{{rep_post_false}}</span>
 								<div class="porlets-content">
+									<br><br>
 									<form @submit="formSubmit" method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Codigo:</label>
 											<div class="col-sm-6">
-											  <input type="text" class="form-control" required v-model="codigo" onkeyup="mayus(this);" />
+											 	<input type="text" class="form-control" required v-model="codigo" onkeyup="mayus(this);" />
 											</div>
 										</div><!--/form-group-->
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Recibe:</label>
 											<div class="col-sm-6">
-											  <input type="text" class="form-control" required v-model="recibe" onkeyup="mayus(this);" />
+											  	<input type="text" class="form-control" required v-model="recibe" onkeyup="mayus(this);" />
 											</div>
 										</div><!--/form-group--> 
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Nombre de Responsable:</label>
 											<div class="col-sm-6">
-											  <input type="text" class="form-control" required v-model="responsable" onkeyup="mayus(this);" />
+											  	<input type="text" class="form-control" required v-model="responsable" onkeyup="mayus(this);" />
 											</div>
 										</div><!--/form-group--> 
 										<div class="form-group">                   
 											<label class="control-label col-md-3">Fecha de Distribucion:</label>
 											<div class="col-md-6 col-xs-10">
-											  <input type="date" class="form-control form-control-inline input-medium" required v-model="fechaLlegada" onkeyup="mayus(this);">
+											  	<input type="date" class="form-control form-control-inline input-medium" required v-model="fechaLlegada" onkeyup="mayus(this);">
 											</div>                      
 										</div><!--/form-group-->
 										<p class="text-center">
-										<button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success">Lista Productos</button></p>
+											<button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-info">Lista Productos</button>
+										</p>
 										<div class="col-lg-12"> 
-												<section class="panel default black_title h">
-													<div class="panel-heading">
-													 <span class="semi-bold">Lista de Distribucion</span> 
-													</div>
-													<div class="panel-body">
-													
-													  <table class="table table-hover">
+											<section class="panel default black_title h">
+												<div class="panel-heading">
+												 	<span class="semi-bold">Lista de Distribucion</span> 
+												</div>
+												<div class="panel-body">
+													<table class="table table-hover">
 														<thead>
 															<tr>
-																<th>#</th>	
-																<th>Codigo</th>
-																<th>Descripcion</th>
-																<th>Unidad</th>
-																<th>Cantidad</th>
-																<th>Eliminar</th>
-																<th>Quitar</th>                                         
+															<th>#</th>	
+															<th>Codigo</th>
+															<th>Descripcion</th>
+															<th>Unidad</th>
+															<th>Cantidad</th>
+															<th>Eliminar</th>
+															<th>Quitar</th>                                         
 															</tr>
 														</thead>
 														<tbody v-for="(car, index) in distribucionList">
 															<tr>
-																<td>{{index}}</td>
-																<td>{{car.item.codificacion}}</td>
-																<td>{{car.item.nombre}}</td>
-																<td>{{car.item.presentacion}}</td>
-																<td>{{car.qty}}</td>
-																<td> <a  @click="reducir_cantidad(car.item.id)">Reducir</a>   </td>
-																<td><a  @click="eliminar_item(car.item.id)">Eliminar</a> </td>    
+															<td>{{index}}</td>
+															<td>{{car.item.codificacion}}</td>
+															<td>{{car.item.nombre}}</td>
+															<td>{{car.item.presentacion}}</td>
+															<td>{{car.qty}}</td>
+															<td> <a  @click="reducir_cantidad(car.item.id)">Reducir</a>   </td>
+															<td><a  @click="eliminar_item(car.item.id)">Eliminar</a> </td>    
 															</tr>
 														<tbody>
-													  </table>
-										   
-													</div>
-												</section>
-											</div> 
-										<div class="form-group text-center">
-											<div class="col-sm-offset-2 col-sm-10 ">
-												<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+													</table>
+										   		</div>
+											</section>
+										</div> 
+										<div class="form-group ">
+											<div class="col-sm-offset-0 col-sm-10 ">
+												<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
 												<a class="btn btn-danger" href="/distribucion/volver"><i class="fa fa-times"></i> Cancelar</a>
 											</div>
 										</div><!--/form-group--> 
@@ -207,13 +202,12 @@
 						</div>
 					</div> <!-- //row -->
 				</div>
-				
 			</div>
 		</div>
 	</div>
-	<%- include("../partials/scripts") -%>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
-  	<script src="/js/vue/distribucion.js"></script>
+<%- include("../partials/scripts") -%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+<script src="/js/vue/distribucion.js"></script>
 </body>
 </html>
