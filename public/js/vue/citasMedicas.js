@@ -1,6 +1,9 @@
+
 const citas = new Vue({
     el:"#citas",
     data: () => ({ 
+        url:data_url,
+
         dia:'Lunes',
         turno:'Mañanas',
         especialidades:'',
@@ -18,7 +21,7 @@ const citas = new Vue({
     
     mounted(){
         axios
-        .get('http://localhost:7000/paciente/vueEspecialidades_consulta/')
+        .get(this.url.url_front_end+'/paciente/vueEspecialidades_consulta/')
         .then(response => (
           this.especialidades = response.data
         ))
@@ -28,7 +31,7 @@ const citas = new Vue({
       especilida(){
         if(this.selectEsp != ""){        
           axios
-          .get('http://localhost:7000/paciente/vueDoctores/'+this.selectEsp+"/"+this.dia+"/"+this.turno)
+          .get(this.url.url_front_end+'/paciente/vueDoctores/'+this.selectEsp+"/"+this.dia+"/"+this.turno)
           .then(response => {
               
             var data = []
@@ -173,7 +176,7 @@ const citas = new Vue({
                 'Content-type' : "application/json"
               }
             };
-            fetch('http://localhost:7000/paciente/Vue_estado_libre_horas/'+this.horas_Turno_atendido[i].id,esto)
+            fetch(this.url.url_front_end+'/paciente/Vue_estado_libre_horas/'+this.horas_Turno_atendido[i].id,esto)
             .then(res => res.json())
             .then(res => {
               if(res.msg == true){

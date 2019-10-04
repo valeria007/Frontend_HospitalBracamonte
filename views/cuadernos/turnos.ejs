@@ -98,7 +98,7 @@
                                     <label class="col-sm-5 control-label">Médico :</label><br>
                                     <select  class="form-control" id="source" name="nombre">
                                       <%for (var i=0; i < resp.length; i++) { %>
-                                        <option><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
+                                        <option value="<%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%>/<%=resp[i].id%>"><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
                                       <% } %>                            
                                     </select>
                                   </div>
@@ -135,12 +135,12 @@
                               <form class="form-horizontal group-border-dashed" action="/cuaderno/updateDoctCuaderno/<%=modifDoct[0].id%>" method="POST" parsley-validate novalidate>
                                 <div class="form-group">
                                   <div class="col-sm-3">
-                                    <label class="col-sm-4 control-label">Médico :</label>
+                                    <label class="col-sm-4 control-label">Médico:</label>
                                     <select class="form-control" id="source" name="nombre" >
-                                      <option><%=modifDoct[0].nombre%></option>
+                                      <option value="<%=modifDoct[0].nombre%>"><%=modifDoct[0].nombre.split("/")[0]%></option>
                                       <option>---------------</option>
                                       <%for (var i=0; i < resp.length; i++) { %>
-                                          <option><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
+                                          <option value="<%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%>/<%=resp[i].id%>"><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
                                       <% } %>                            
                                     </select>
                                   </div>
