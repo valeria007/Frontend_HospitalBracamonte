@@ -13,22 +13,20 @@
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
     <div class="header_bar">
-        <div class="brand">
-          <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-        </div>
-        <div class="header_top_bar">
-          <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-         
-          <div class="top_right_bar">
-            <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>John Doe</span> <b class="caret"></b> </a>
-              <ul class="dropdown-menu">
-                <div class="top_pointer"></div>
-                <li> <a href=""><i class="fa fa-power-off"></i>Salir</a> </li>
-              </ul>
-            </div>
-           
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <div class="header_top_bar">
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a> <span>&nbsp;</span>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href=""><i class="fa fa-power-off"></i>Salir</a> </li>
+            </ul>
           </div>
         </div>
+      </div>
     </div>
     <div class="inner">
       <div class="left_nav">
@@ -39,7 +37,7 @@
                 <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
-            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
                 <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
               </ul>
@@ -63,6 +61,7 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
                 <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -75,8 +74,8 @@
             <div class="col-lg-12 ">
               <div id="main-content" class=" block-web">
                 <div class="header">
-                    <div class="info2 blue_symbols"><i class="fa fa-user-md icon"></i></div>
-                    <h3 class="content-header ">Asignación Medico<span class="semi-bold">/Turnos</span></h3>
+                    <div class="info2 blue_symbols"><i class="fa fa-calendar-o icon"></i></div>
+                    <h3 class="content-header ">Administración de Turnos</h3>
                 </div>
                 <div class="page-content">
                   <div class="row">
@@ -93,28 +92,28 @@
                           <div id="demo" class="collapse in">
                             <form class="form-horizontal group-border-dashed" action="/cuaderno/turnos" method="POST" parsley-validate novalidate>  
 				                      <div class="form-group">
-                                <label class="control-label col-md-4">Día de atencion:</label>
-                                <div class="col-md-4 col-xs-10">
+                                <label class="control-label col-md-4">Día de atención :</label>
+                                <div class="col-md-3 ">
                                   <select  class="form-control" id="source" name="diasAten" >
-                                    <option value="" selected disabled hidden>Selecione</option>
-                                    <option>Lunes</option>
-                                    <option>Martes</option>
-                                    <option>Miercoles</option>
-                                    <option>Jueves</option>
-                                    <option>Viernes</option>
-                                    <option>Sabado</option>
-                                    <option>Domingo</option>
+                                    <option value="" selected disabled hidden>--Seleccione--</option>
+                                    <option>LUNES</option>
+                                    <option>MARTES</option>
+                                    <option>MIERCOLES</option>
+                                    <option>JUEVES</option>
+                                    <option>VIERNES</option>
+                                    <option>SABADO</option>
+                                    <option>DOMINGO</option>
                                   </select><br>
                                 </div>                      
                               </div><!--/form-group--> 
                               <div class="form-group">
-                                <label class="control-label col-md-4">Turno:</label>
-                                <div class="col-md-4 col-xs-10">
+                                <label class="control-label col-md-4">Turno :</label>
+                                <div class="col-md-3 ">
                                   <select class="form-control" id="source" name="turno" >                               
-                                    <option value="" selected disabled hidden>Selecione</option>
-                                    <option>Mañanas</option>
-                                    <option>Tardes</option>
-                                    <option>Noches</option>
+                                    <option value="" selected disabled hidden>--Seleccione--</option>
+                                    <option>MAÑANAS</option>
+                                    <option>TARDES</option>
+                                    <option>NOCHES</option>
                                   </select><br>
                                 </div>                      
                               </div><!--/form-group--> 
@@ -141,7 +140,7 @@
                                 <thead>
                                   <tr>
                                     <th class="text-center">#</th>
-                                    <th class="text-center">Dia de atencion</th>
+                                    <th class="text-center">Día de Atención</th>
                                     <th class="text-center">Turno</th>
                                     <th class="text-center">Opciones</th>
                                   </tr>

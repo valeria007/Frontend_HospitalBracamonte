@@ -85,7 +85,7 @@
                 <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
-            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block" >
                 <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Registros</b> </a> </li>
               </ul>
@@ -110,6 +110,7 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
                 <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -160,7 +161,7 @@
                               <div class="form-group">
                                 <div class="col-sm-5">
                                   <label class="control-label">Cuenta :</label>
-                                  <input type="text"  class="form-control" parsley-trigger="change"  name="username" required placeholder="Introdusca Cuenta" />
+                                  <input type="text"  class="form-control" parsley-trigger="change"  name="username" required placeholder="Introdusca Cuenta"  />
                                 </div>
                                 <div class="col-sm-5">
                                   <label class="control-label">Email :</label>
@@ -178,7 +179,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                   <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
                                   <a class="btn btn-info"href="/usuarios/quitar3"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
                                 </div>
@@ -208,7 +209,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                   <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
                                   <a class="btn btn-danger"href="/usuarios/quitar4/<%=id.id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
                                 </div>
@@ -279,15 +280,15 @@
                     <option value="Almacen">ALMACEN</option>
                     <option value="emergencia">EMERGENCIA</option>
                     <option value="farmacia">FARMACEUTICO</option>
+                    <option value="hospitalizacion">HOSPITALIZACIÓN </option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                  <div class="col-md-2">
-
-                      <button type="submit" class="btn btn-success " ><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar </button>
-                      <button type="reset"class="btn btn-danger " data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
-                    </div>
+                <div class="col-md-5">
+                  <button type="submit" class="btn btn-success " ><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar </button>
+                  <button type="reset"class="btn btn-danger " data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+                </div>
               </div>
               
             </form>
@@ -393,6 +394,7 @@
     });
 
 </script>
+<script src="/url/export.js"></script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>

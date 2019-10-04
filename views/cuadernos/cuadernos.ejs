@@ -85,7 +85,7 @@
                 <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
-            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
                 <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
               </ul>
@@ -109,6 +109,7 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
                 <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -160,13 +161,20 @@
                               <div class="form-group">
                                 <label class=" col-sm-4 control-label">Titulo de Cuaderno :</label>
                                 <div class="col-sm-4">
-                                  <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo"  onkeyup="mayus(this)"/>
+                                  <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="nombre" required placeholder="Introdusca titulo"  onkeyup="mayus(this)" autofocus />
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label class="col-sm-4  control-label">Grupo de Asociado :</label>
                                 <div class="col-sm-4">
                                   <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Asignacion" onkeyup="mayus(this)"/>
+                                  <select class="form-control" id="source" name="cargo" required placeholder="" >
+                                      <option value="" selected disabled hidden>--Seleccione--</option>
+                                      <option value="medico">MÉDICO</option>
+                                      <option value="enfermera">EFERMERA</option>
+                                      <option value="personal">PERSONAL</option>
+                                      <option value="farmaseutico">FARMACÉUTICO</option>
+                                    </select>
                                 </div>
                               </div>
                               <br><br>
