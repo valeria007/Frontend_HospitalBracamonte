@@ -83,31 +83,47 @@
                                 <div class="col-sm-3">
                                   <label class="control-label">Especialidad:</label>
                                   <select class="form-control" id="source" name="nombre">
-                                    <option><%=OnlySala[0].nombre%></option>
-                                    <% for (var i=0; i < dataSala.length; i++) { %>
-                                      <option><%=dataSala[i].nombre%></option>
-                                    <% } %>   
+                                      <option><%=OnlySala[0].nombre%></option>
+                                      <option> ------------------------------------------</option>
+                                      <option >INTERNACIÓN GENERAL</option>
+                                      <option >UNIDAD DE TERAPIA INTENSIVA</option>
+                                      <option >UNIDAD DE CUIDADOS INTENSIVOS CORONARIOS</option>
+                                      <option >UNIDAD DE TERAPIA INTENSIVA PEDIÁTRICA</option>
+                                      <option >UNIDAD DE TERAPIA INTERMEDIA</option>
+                                      <option >MATERNIDAD Y OBSTETRICIA</option>
+                                      <option >UNIDAD DE TERAPIA INTENSIVA NEONATOLÓGICA </option>
+                                      <option >INTERNACIÓN DE PSIQUIATRÍA</option>
+                                      <option >PEDIATRÍA</option>
+                                      <option >CIRUGÍA</option>
+                                      <option >TRAUMATOLOGÍA</option>  
                                   </select>
                                 </div>
                                 <div class="col-sm-3">
                                   <label class="control-label">Descricion:</label>
                                   <select  class="form-control" id="source" name="descripcionSala">
                                     <option><%=OnlySala[0].descripcionSala%></option>
+                                    <option>-----------------</option>
                                     <option>Sala H.- Niños</option>
                                     <option>Sala H.- Hombres</option>
                                     <option>Sala H.- Mujeres</option>
                                     <option>Sala H.- 3ra. Edad</option>
-                                    <option>Sala H.- Cirugia General</option>
+                                    <option>Sala H.- General</option>
                                   </select>
                                 </div>
                                 <div class="col-sm-3">
                                   <label class="control-label">Piso:</label>
                                   <input class="form-control" parsley-trigger="change" type="text" name="piso" value="<%=OnlySala[0].piso%>" />
+                                  <select  class="form-control" id="source"  name="piso">
+                                    <option><%=OnlySala[0].piso%></option>
+                                    <option>-------------------------</option>
+                                    <option>P.: P. B.(PLANTA BAJA)</option>
+                                    <option>1.ª PLANTA(PRIMER PLANTA)</option>
+                                    <option>2.ª PLANTA(SEGUNDO PLANTA)</option>
+                                    <option>3.ª PLANTA(TERCERA PLANTA)</option>
+                                    <option>4.ª PLANTA(CUARTA PLANTA)</option>
+                                  </select>
                                 </div>
-                                <div class="col-sm-3">
-                                  <label class="control-label">Camas:</label>
-                                  <input class="form-control" parsley-trigger="change" type="number" required placeholder="" ></input>
-                                </div>
+                                
                               </div>
                               <div class="form-group">
                                 <div class="col-md-4">
@@ -122,12 +138,20 @@
                             <% } else { %>
                             <form class="form-horizontal group-border-dashed" action="/salas/salas" method="POST" parsley-validate novalidate>
                               <div class="form-group ">
-                                <div class="col-sm-3">
-                                  <label class="control-label">Especialidad:</label>
+                                <div class="col-sm-5">
+                                  <label class="control-label">Sala:</label>
                                   <select class="form-control" id="source" name="nombre">
-                                    <% for (var i=0; i < dataSala.length; i++) { %>
-                                      <option><%=dataSala[i].nombre%></option>
-                                    <% } %>  
+                                    <option >INTERNACIÓN GENERAL</option>
+                                    <option >UNIDAD DE TERAPIA INTENSIVA</option>
+                                    <option >UNIDAD DE CUIDADOS INTENSIVOS CORONARIOS</option>
+                                    <option >UNIDAD DE TERAPIA INTENSIVA PEDIÁTRICA</option>
+                                    <option >UNIDAD DE TERAPIA INTERMEDIA</option>
+                                    <option >MATERNIDAD Y OBSTETRICIA</option>
+                                    <option >UNIDAD DE TERAPIA INTENSIVA NEONATOLÓGICA </option>
+                                    <option >INTERNACIÓN DE PSIQUIATRÍA</option>
+                                    <option >PEDIATRÍA</option>
+                                    <option >CIRUGÍA</option>
+                                    <option >TRAUMATOLOGÍA</option>
                                   </select>
                                 </div>
                                 <div class="col-sm-3">
@@ -137,17 +161,20 @@
                                     <option>Sala H.- Hombres</option>
                                     <option>Sala H.- Mujeres</option>
                                     <option>Sala H.- 3ra. Edad</option>
-                                    <option>Sala H.- Cirugia General</option>
+                                    <option>Sala H.- General</option>
                                   </select>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                   <label class="control-label">Piso:</label>
-                                  <input class="form-control" parsley-trigger="change"  type="text" name="piso" required placeholder="" />
+                                  <select  class="form-control" id="source"  name="piso">
+                                    <option>P.: P. B.(PLANTA BAJA)</option>
+                                    <option>1.ª PLANTA(PRIMER PLANTA)</option>
+                                    <option>2.ª PLANTA(SEGUNDO PLANTA)</option>
+                                    <option>3.ª PLANTA(TERCERA PLANTA)</option>
+                                    <option>4.ª PLANTA(CUARTA PLANTA)</option>
+                                  </select>
                                 </div>
-                                <div class="col-sm-3">
-                                  <label class="control-label">Camas:</label>
-                                  <input class="form-control" parsley-trigger="change"  type="text" required placeholder="" />
-                                </div>
+                                
                               </div><!--/form-group--> 
                               <div class="form-group">
                                 <div class="col-md-4">
@@ -166,10 +193,9 @@
                                   <tr>
                                     <tr>
                                       <th class="text-center">#</th>
-                                      <th class="text-center">Especilidad</th>
-                                      <th class="text-center">Descripcion</th>
+                                      <th class="text-center">Sala</th>
+                                      <th class="text-center">Area</th>
                                       <th class="text-center">Piso</th>
-                                      <th class="text-center">Camas</th>
                                       <th class="text-center">Opciones</th>
                                     </tr>
                                   </tr>
@@ -181,12 +207,9 @@
                                     <td class="text-center"><%=resp[i].nombre%></td>
                                     <td class="text-center"><%=resp[i].descripcionSala%></td>
                                     <td class="text-center"><%=resp[i].piso%></td>
-                                    <td></td>
-                                  <td>
-                                      <a href="/salas/renderCamas/<%=resp[i].id%> " data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Camas"><i class="fa fa-plus "></i></a><span>&nbsp;</span>
+                                    <td>
                                       <a href="/salas/updateSalas/<%=resp[i].id%>""  data-toggle="tooltip" class="btn  tooltips" data-original-title="editar"><i class="fa fa-pencil " style="color: darkgreen"></i></a><span>&nbsp;</span>
-                                          
-                                  </td>							
+                                    </td>							
                                   </tr>
                                   <% } %>
                                 </tbody>

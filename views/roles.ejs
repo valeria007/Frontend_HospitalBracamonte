@@ -24,6 +24,9 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
         .info2{ border-radius:100%; float: left; height:80px; width:80px; }
       .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -31,95 +34,88 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <div class="header_bar">
-    <div class="brand">
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-    </div>
-    <div class="header_top_bar">
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-          </ul>
-        </div>
-       
+  <div class="wrapper">
+    <div class="header_bar">
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
-    </div>
-  </div>
-  <div class="inner">
-    <div class="left_nav">
-      <div class="left_nav">
-          <div class="left_nav_slidebar">
-            <ul>
-              <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul >
-                  <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-                </ul>
-              </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul  >
-                  <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
-                </ul>
-              </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul >
-                  <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                  <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
-                  <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-                </ul>
-              </li>
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                <ul class="opened" style="display:block">
-                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                  <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Person.</b> </a> </li>
-                  <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                  <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
-                </ul>
-              </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul>
-                  <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                  <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
-                </ul>
-              </li>
+      <div class="header_top_bar">
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
             </ul>
           </div>
+        
+        </div>
       </div>
     </div>
-    <div class="contentpanel">
-      <br>
-      <div class="container clear_both padding_fix">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="block-web">
-              <div class="header">
-                    <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                    <h3 class="content-header ">Reportes Personal</h3>
-              </div>
-              <br>
-              <br>
-              <div class="porlets-content">
-                <form class="form-horizontal"  >
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label">Desde:</label>
-                    <div class="col-sm-4">
-                      <input type="date" class="form-control" >
-                    </div>
-                  </div><!--/form-group--> 
-                  <div class="form-group">
-                    <label  class="col-sm-4 control-label">Hasta:</label>
-                    <div class="col-sm-4">
-                      <input type="date" class="form-control" >
-                    </div>
-                  </div><!--/form-group-->  
-                  <div class="form-group pull-right">
+    <div class="inner">
+      <div class="left_nav">
+        <div class="left_nav_slidebar">
+          <ul>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul  >
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              </ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul >
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="contentpanel">
+        <br>
+        <div class="container clear_both padding_fix">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="block-web">
+                <div class="header">
+                  <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
+                  <h3 class="content-header ">Reportes Personal</h3>
+                </div>
+                <br>
+                <br>
+                <div class="porlets-content">
+                  <form class="form-horizontal"  >
+                    <select class="inputxlg" id="rangeval">
+                      <option value="">Filter by Date Range</option>
+                      <option value="Custom Date Range">Custom Date Range</option>
+                    </select>
+
+                    <input id="selectDate" name="selectDate" type="text">
+                    <input id="selectDate2" name="selectDate" type="text">
+                  
                     <div class="col-sm-4">
                       <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Generales<span class="caret"></span></button>
@@ -132,8 +128,8 @@
                         </ul>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group pull-right">
+                    </div>
+                    <div class="form-group pull-right">
                     <div class="col-sm-4">
                       <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Usuarios<span class="caret"></span></button>
@@ -144,46 +140,93 @@
                         </ul>
                       </div>
                     </div>
+                    </div>
+                  </form>
+                  <div class="col-md-4 pull-right">
+                      <div class="input-group input-daterange">
+                      
+                        <input type="date" id="min-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="From:">
+                      
+                        <div class="input-group-addon">to</div>
+                      
+                        <input type="date" id="max-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="To:">
+                      
+                      </div>
                   </div>
-                </form>
-              </div>
-              <br>
-              <div class="table-responsive">
-                <table  class="display table table-bordered table-striped" id="dynamic-table">
-                  <thead>
-                    <tr>
-                      <th class="text-center">Nombre</th>
-                      <th class="text-center">Apellido Paterno</th>
-                      <th class="text-center">Apellido Materno</th>	
-                      <th class="text-center">Cargo</th>	
-                      <th class="text-center">Fecha Creación</th>	
-                      <th class="text-center">Cuentas</th>
-                      <th class="text-center">Optiones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <%for (var i = 0; i< data.length; i++) { %>
-                      <tr>
-                        <td class="text-center"><%=data[i].nombre%></td>
-                        <td class="text-center"><%=data[i].apellidop%></td>
-                        <td class="text-center"><%=data[i].apellidom%></td>
-                        <td class="text-center"><%=data[i].cargo%></td>
-                        <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                        <td ><select name="" id=""> 
-                          <%for(var j = 0; j < allusers.length; j++) {%>
-                            <%if (allusers[j].perso_id == data[i].id) { %>
-                              <option><%=allusers[j].username%></option>
-                            <% } %>
-                          <% } %>
-                        </select></td>
+                  <br>
+                  <div class="table-responsive">
+                    <table  class="display table table-bordered table-striped" id="dynamic-table01">
+                      <thead>
+                        <tr>
+                          <th class="text-center">Fecha Creación</th>
+                          <th class="text-center">Nombre</th>
+                          <th class="text-center">Apellido Paterno</th>
+                          <th class="text-center">Apellido Materno</th>	
+                          <th class="text-center">Cargo</th>	
+                          
+                          <th class="text-center">Optiones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <%for (var i = 0; i< data.length; i++) { %>
+                          <tr >
 
-                        <td><a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
-                        
-                        
-                      </tr>
-                    <% } %>
-                  </tbody>
-                </table>
+                            <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                            <td class="text-center "><%=data[i].nombre%></td>
+                            <td class="text-center"><%=data[i].apellidop%></td>
+                            <td class="text-center"><%=data[i].apellidom%></td>
+                            <td class="text-center"><%=data[i].cargo%></td>
+                            <td><a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
+                          </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                  <table>
+                      <caption>
+                          Table
+                      </caption>
+                      <thead>
+                          <tr>
+                              <th>No</th>
+                              <th>Status</th>
+                              <th>Date</th>
+                          </tr>
+                      </thead>
+                      <tbody id="mainBody">
+                          <tr >
+                              <td>11</td>
+                              <td>In-Progress</td>
+                              <td>11/05/17</td>
+                          </tr>
+                          <tr >
+                              <td>12</td>
+                              <td>In-Progress</td>
+                              <td>02/01/18</td>
+                          </tr>
+                          <tr >
+                              <td>1</td>
+                              <td>In-Progress</td>
+                              <td>11/01/17</td>
+                          </tr>
+                          <tr >
+                              <td>13</td>
+                              <td>In-Progress</td>
+                              <td>11/08/17</td>
+                          </tr>
+                          <tr >
+                              <td>14</td>
+                              <td>In-Progress</td>
+                              <td>11/06/17</td>
+                          </tr>
+                          <tr >
+                              <td>15</td>
+                              <td>In-Progress</td>
+                              <td>11/04/17</td>
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -191,8 +234,49 @@
       </div>
     </div>
   </div>
-</div>
+<script>
+  $(function(){
+    // Initialise the inputs on page load:
+    var today = new Date().toJSON().replace(/..(..)-(..)-(..).*/, '$2/$3/$1');
+    $("#selectDate").datepicker({ dateFormat: 'mm/dd/yy' }).val(today).change(applyFilter);
+    $("#selectDate2").datepicker({ dateFormat: 'mm/dd/yy' }).val(today).change(applyFilter);
+    $("#rangeval").change(applyFilter);
 
+    $.fn.date = function () {
+        return new Date((this.is(':input') ? this.val() : this.text()).replace(/\/(..)$/, '/20$1'));
+    }
+    
+    function applyFilter() {
+        var filterType = $("#rangeval").val(),
+            start, end;
+        // Set the visibility of the two date fields:
+        $("#selectDate").toggle(["Single Date", "Custom Date Range"].indexOf(filterType) > -1);
+        $("#selectDate2").toggle(filterType === "Custom Date Range");
+        // Depending on the type of filter, set the range of dates (start, end):
+        if (filterType === "") {
+            // Show all: choose extreme dates
+            start = new Date('1000-01-01');
+            end = new Date('3000-01-01');
+        } else if (!parseInt(filterType)) {
+            // Use data entry:
+            start = $("#selectDate").date();
+            end = filterType === "Custom Date Range" ? $("#selectDate2").date() : start;
+        } else {
+            // Show last X days:
+            start = new Date();
+            start.setHours(0,0,0,0);
+            start.setDate(start.getDate() - parseInt(filterType));
+            end = new Date(); // today
+        }
+        // For each row: set the visibility depending on the date range
+        $("#mainBody tr").each(function () {
+            var date = $("td:last-child", this).date();
+            $(this).toggle(date >= start && date <= end);
+        });
+    }
+    applyFilter(); // Execute also on page load
+});
+</script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>
@@ -219,14 +303,8 @@
 <script src="/plugins/data-tables/DT_bootstrap.js"></script>
 <script src="/plugins/data-tables/dynamic_table_init.js"></script>
 <script src="/plugins/edit-table/edit-table.js"></script>
-<script>
-          jQuery(document).ready(function() {
-              EditableTable.init();
-          });
- </script>
-<script>
 
-
+<script>
 /*==Porlets Actions==*/
     $('.minimize').click(function(e){
       var h = $(this).parents(".header");
@@ -263,11 +341,9 @@
       });
       e.preventDefault();
     });
-
 </script>
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
 
 </body>
-</html>
