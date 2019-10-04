@@ -107,9 +107,7 @@ router.get('/datos_responsablevis', (req,res) => {
   router.get('/VerHistorialvis',(req,res) =>{
     res.render('hospitalizaciones/VerHistorial')
   });
-  router.get('/egresoVoluntariovis',(req,res) =>{
-    res.render('hospitalizaciones/egresoVoluntario')
-  });
+  
   router.get('/OrdenInterCirugiavis', (req,res) => {
     res.render('hospitalizaciones/OrdenInterCirugia')
   });

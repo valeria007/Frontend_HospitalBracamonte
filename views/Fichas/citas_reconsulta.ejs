@@ -4,7 +4,7 @@
 <head>
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Recerva de ficha médica</title>
+	<title>Reserva de ficha médica</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
@@ -97,17 +97,19 @@
 							</ul>
 						</li>
 
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-									class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i
-										class="fa fa-plus"></i></span></a>
+						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Fichas Medicas <span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href=""> <span>&nbsp;</span> <i
-											class="fa fa-circle theme_color"></i>
-										<b class="theme_color">Citas Medicas</b>
-									</a> </li>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Citas Medicas</b> </a> </li>
 
 							</ul>
 						</li>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
+							class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Citas </b> </a></li>
+						   </ul>
+						</li>
+			
 
 
 
@@ -127,7 +129,7 @@
 							<div id="main-content" class=" block-web">
 							<div class="header">
 								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
-								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Recerva de Ficha Médica </h3>
+								<h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h3>
 							</div>
 							<div class="porlets-content">
 								<div id="citas">
@@ -159,7 +161,13 @@
 														</div>
 														<div class="form-group">
 															<div class="row">
-																<h3 class="text-center"> Reconsulta</h3>
+																<div class="header">
+																	<div class="actions"> 
+																		<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
+																	</div>
+																	<h3 class="text-center"> Reconsulta</h3>
+																</div>
+																
 																<br>
 																<div class="col-md-12">
 																	<div class="col-md-4">
@@ -216,12 +224,7 @@
 																				</option>
 																			</select>
 																		</div>
-																		<div class="entrada">
-																				<h6 class="">Fecha:</h6>
-																	  
-																				<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
-																				
-																			</div>
+																		
 																	</div>
 																</div>
 																<br>
@@ -237,13 +240,12 @@
 											<div class="col-md-12 ">
 												<div class="col-md-4 ">
 													<div class="block-web green-bg-color">
-														<h3 class="content-header ">Hora para Recervar</h3>
+														<h3 class="content-header ">Hora para Reservar</h3>
 														<div class="porlets-content">
 															<ul class="list-group task-list no-margin collapse in">
 																<template v-for="(horas, index, key) in horas_Turno">
 																	<li class="list-group-item blue-light-bg-color">
-																		<label class="label-checkbox inline  "
-																			for="">{{index+1}}</label>
+																		<label class="label-checkbox inline  " for="">{{index+1}}</label>
 																		<input type="radio" name="hora"
 																			class="blue_text"
 																			:value="horas.h +'/'+horas.id">{{horas.h}}<br>
@@ -301,16 +303,14 @@
 												</div>
 											</div>
 										</div>
-										<p class="text-center">
-											<button type="reset" class="btn btn-info btn-raised"
-												style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i>
-												&nbsp;&nbsp; Limpiar</button>
-											<button type="submit" class="btn btn-danger btn-raised"><i
-													class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-												Guardar</button>
-										</p>
-								
-
+										<div class="col-md-12">
+											<div class="header"></div>
+											<p class="col-md-8">
+												<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
+											
+												<button type="submit" class="btn btn-success btn-raised"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+											</p>
+										</div><br>
 								</form>
 							</div>
 
@@ -331,9 +331,8 @@
 													
 													<h3 class="content-header">  <a  href="/paciente/clean" class="btn btn-primary" >
 														<i class="fa fa-arrow-left"></i> <span> Volver a Fichas</span> </a>
-														<button type="button" value="Imprimir" onclick="window.print()"
-																class="btn btn-success btn-raised"><i class="fa fa-print"></i> &nbsp;&nbsp;
-																Imprimir</button> Actualización de Recerva de Ficha  
+														Reconsulta<span class="semi-bold">/Actualizar</span>
+													
 													</h3>
 			
 												</div>
@@ -413,7 +412,7 @@
 												<div v-if="horas_Turno == ''">
 													<div class="col-md-4 ">
 														<div class="block-web green-bg-color">
-															<h3 class="content-header ">Hora de Recerva</h3>
+															<h3 class="content-header ">Hora de Reserva</h3>
 															<input type="radio" name="hora"
 																value=""
 																checked><br>
@@ -438,14 +437,15 @@
 												</div>
 											</div>
 										</div><!-- row de hora-->
-										<p class="text-center">
-											<button type="reset" class="btn btn-info btn-raised"
-												style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i>
-												&nbsp;&nbsp; Limpiar</button>
-											<button type="submit" class="btn btn-danger btn-raised"><i
-													class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-												Guardar</button>
-										</p>
+									
+										<div class="col-md-12">
+											<div class="header"></div>
+											<p class="col-md-8">
+												<a href="/paciente/imprimirNuevaConsulta" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i> &nbsp;&nbsp;Imprimir</a> 
+												<button type="submit" class="btn btn-success btn-raised"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+											</p>
+										</div>
+										
 									</div>
 								</form>
                                

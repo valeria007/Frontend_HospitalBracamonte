@@ -4,7 +4,7 @@
 <head>
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Recerva de Ficha Médica</title>
+	<title>Reserva de Ficha Médica</title>
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
@@ -106,6 +106,13 @@
 
 							</ul>
 						</li>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span
+							class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Citas </b> </a></li>
+						   </ul>
+						</li>
+			
 					</ul>
 				</div>
 			</div>
@@ -123,10 +130,9 @@
 							<div id="main-content" class=" block-web">
 							<div class="header">
 									<div class="actions"> 
-										<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
 									</div>
 								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
-								<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Recerva de Ficha Médica </h2>
+								<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h2>
 							</div>
 							<div class="porlets-content">
 								<div id="citas">
@@ -160,10 +166,7 @@
 															<div class="row">
 																<div class="header">
 																	<div class="actions"> 
-																			
-																		<a href="#" class="minimize"> <i class="fa fa-chevron-down"></i></a> 
-																		<a href="/paciente/limpiar" class="refresh"> <i class="fa fa-repeat"></i></a>
-																		<a href="#" class="close-down"> <i class="fa fa-times"></i></a>
+																		<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
 																	</div>
 																	<h3 class="text-center"> Nueva Cita</h3>
 																</div>
@@ -242,7 +245,7 @@
 											<div class="col-md-12 ">
 												<div class="col-md-4 ">
 													<div class="block-web green-bg-color">
-														<h3 class="content-header ">Hora para Recervar</h3>
+														<h3 class="content-header ">Hora para Reservar</h3>
 														<div class="porlets-content">
 															<ul class="list-group task-list no-margin collapse in">
 																<template v-for="(horas, index, key) in horas_Turno">
@@ -305,15 +308,19 @@
 													<!--/block-web-->
 												</div>
 											</div>
+											<div class="col-md-12">
+												<div class="header"></div>
+												<p class="col-md-8">
+													<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
+													<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar/Imprimir</button>
+													<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
+												</p>
+											</div>
 										</div>
-										<p class="modal-footer">
-											<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"> <i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
-											<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar/Imprimir</button>
-											<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
-										</p>
+										
 								
 
-								</form>
+									</form>
 							</div>
 
 								<% } else { %>
@@ -327,17 +334,14 @@
 
 												<div class="header">
 													<div class="actions">
-														<a class="minimize" href="#"><i	class="fa fa-chevron-down"></i></a> 
-														<a	class="close-down" href="#"><i class="fa fa-times"></i></a>
+														
+														<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
+														
 													</div>
-													<a href="/paciente/imprimirNuevaConsulta">imprimir!</a> 
+													
 													<h3 class="content-header">  <a  href="/paciente/clean" class="btn btn-primary" >
-														<i class="fa fa-arrow-left"></i> <span> Volver a Fichas</span> </a>
-														<button type="button" value="Imprimir" onclick="window.print()"
-																class="btn btn-success btn-raised"><i class="fa fa-print"></i> &nbsp;&nbsp;
-																Imprimir</button> Actualización de Recerva de Ficha  
+														<i class="fa fa-arrow-left"></i> <span> Volver a Fichas</span> </a> Nueva Cita<span class="semi-bold">/Actualizar</span>
 													</h3>
-			
 												</div>
 												<div class="row">
 													<div class="grupo" id="cabeza">
@@ -420,7 +424,7 @@
 												<div v-if="horas_Turno == ''">
 													<div class="col-md-4 ">
 														<div class="block-web green-bg-color">
-															<h3 class="content-header ">Hora de Recerva</h3>
+															<h3 class="content-header ">Hora de Reserva</h3>
 															<input type="radio" name="hora"
 																value="<%= citaUpdate[0].hora%>"
 																checked><%= citaUpdate[0].hora.split("/")[0]  %><br>
@@ -445,11 +449,15 @@
 												</div>
 											</div>
 										</div><!-- row de hora-->
-										<p class="text-center">
-											<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class='fa fa-minus-square'></i> &nbsp;&nbsp; Limpiar</button>
-											<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-check-square-o'></i> &nbsp;&nbsp; Guardar/Imprimir</button>
-											<button type="submit" class="btn btn-default btn-raised" style="margin-right: 20px;"><i class='fa fa-mail-reply'></i>&nbsp;&nbsp; Cancelar</button>
-										</p>
+										<div class="">
+											<p class="col-md-6">
+												<a href="/paciente/imprimirNuevaConsulta" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i> &nbsp;&nbsp;Imprimir</a> 
+							
+												<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar/Imprimir</button>
+												<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-mail-reply'></i>&nbsp;&nbsp; Cancelar</button>
+											</p>
+										</div>
+										
 									</div>
 								</form>
 								<% } %>
@@ -580,6 +588,8 @@
 			EditableTable.init();
 		});
 	</script>
+	<script src="/url/export.js"></script>
+
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<!-- etiqueta sin internet-->
 	<script src="/axios/dist/axios.min.js"></script>
