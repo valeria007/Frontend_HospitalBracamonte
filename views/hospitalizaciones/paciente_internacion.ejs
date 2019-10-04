@@ -117,13 +117,24 @@
 								<li> 
                                     <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Listas de Internación</b> </a> 
                                 </li>
-                                <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                    <b class="theme_color">Pacientes Internados</b>
-                                    </a> 
-                                </li>
-                                <li> 
-                                    <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i><b >Pacientes de alta </b></a> 
-                                </li>
+                                
+                                <%if (one_internacion[0].estado_alta != true) { %>
+                                    <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b class="theme_color">Pacientes Internados</b>
+                                        </a> 
+                                    </li>
+                                    <li> 
+                                        <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i><b >Pacientes de alta </b></a> 
+                                    </li>
+                                <% } else { %>
+                                    <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b >Pacientes Internados</b>
+                                        </a> 
+                                    </li>
+                                    <li> 
+                                        <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i><b class="theme_color">Pacientes de alta </b></a> 
+                                    </li> 
+                                <% } %>
 								
 							</ul>
                         </li>
