@@ -65,15 +65,12 @@ class Emergencias {
         });     
     }
     static updateEmergencia(req, res) {
-        const { fechaAtencion, Nhistorial,nombreDoctor,apellidoD1,apellidoD2,motivoConsulta,diagnostico,tratamiento,observaciones } = req.body
+        const {motivoConsulta,diagnostico,tratamiento,observaciones } = req.body
         return emergencia
           .findByPk(req.params.id)
           .then((data) => {
             data.update({
-               
-              nombreDoctor: nombreDoctor || data.nombreDoctor,  
-              apellidoD1: apellidoD1 || data.apellidoD1,  
-              apellidoD2: apellidoD2 || data.apellidoD2,  
+            
               motivoConsulta: motivoConsulta || data.motivoConsulta,  
               diagnostico: diagnostico || data.diagnostico,  
               tratamiento: tratamiento || data.tratamiento, 
@@ -85,10 +82,7 @@ class Emergencias {
                 msg: 'Se actualizo los datos en la consulta de emergencia',
                 data: {
                   
-                   
-                  nombreDoctor: nombreDoctor || update.nombreDoctor,  
-                  apellidoD1: apellidoD1 || update.apellidoD1,  
-                  apellidoD2: apellidoD2 || update.apellidoD2,  
+              
                   motivoConsulta: motivoConsulta || update.motivoConsulta,  
                   diagnostico: diagnostico || update.diagnostico,  
                   tratamiento: tratamiento || update.tratamiento, 

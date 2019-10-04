@@ -70,7 +70,7 @@ class Intern {
           }else if (diagnostico == ""){
             res.status(400).json({
               success:false,
-              msg:"Inserte Diagnostico pe prescripcion"
+              msg:"Inserte Diagnostico de prescripcion"
             })
           }
         }else{
@@ -158,9 +158,9 @@ class Intern {
     }
 
     static list_internacion_paciente(req, res){                
-      const { id_Pinternacion, historial } = req.params
+      const { id_especialidad, historial } = req.params
       Internaciones.findAll({
-         where: {idPinternacion: id_Pinternacion, historial: historial},
+         where: {id_especialidad: id_especialidad, historial: historial},
          //attributes: ['id', ['description', 'descripcion']]
          include:[
            { model: Camas, attributes:['id','numeroCama'],
@@ -299,7 +299,7 @@ class Intern {
       }else{
 
         const { historial, fechaIngreso, provieneDE, observacion, especialidad, sala, cama, doctor, diagnostico, id_especialidad, id_user } = req.body 
-        if(historial == "" || isNaN(historial) || fechaIngreso == "" || provieneDE == "" || especialidad == "" || sala == "" || cama == "" || doctor == "" || diagnostico == ""){
+        if(historial == "" || isNaN(historial) || fechaIngreso == "" || provieneDE == "" || especialidad == "" || especialidad == null || sala == "" || cama == "" || doctor == "" || diagnostico == ""){
           if(historial == ""){
             res.status(400).json({
               success:false,
@@ -320,7 +320,7 @@ class Intern {
               success:false,
               msg:"Por favor indique el area de donde esta viniendo el paciente"
             })
-          }else if (especialidad == ""){
+          }else if (especialidad == "" || especialidad == null){
             res.status(400).json({
               success:false,
               msg:"Inserte el area de internacion"
@@ -343,7 +343,7 @@ class Intern {
           }else if (diagnostico == ""){
             res.status(400).json({
               success:false,
-              msg:"Inserte Diagnostico pe prescripcion"
+              msg:"Inserte Diagnostico de prescripcion"
             })
           }
         }else{
@@ -381,6 +381,22 @@ class Intern {
     })
     .catch(error => res.status(500).send(error))
   }
+
+  // one traslado of internacion 
+  static one_intern_of_traslado(req, res) {
+    const { id_traslado } = req.params
+    return Internaciones                
+    .findAll({
+      where:{id_traslado: id_traslado},
+      include:[
+        { model: Camas, attributes:['id','numeroCama'],
+       include:[
+         {model:Salas, attributes:['id','descripcionSala']}
+       ] }
+      ]
+    })
+    .then(data => res.status(200).send(data));                       
+} 
  }
 
 export default Intern

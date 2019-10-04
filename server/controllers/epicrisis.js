@@ -2,6 +2,8 @@ import model from '../models';
 
 const { epicrisis } = model;
 const { Pacientes } = model;
+const { Internaciones } = model;
+
 
 class Epicrisis{
     static reg_epicrisis(req,res){
@@ -14,104 +16,126 @@ class Epicrisis{
         } = req.body;
         const { id_internacion } = req.params;
 
-        if( historial == "" || isNaN(historial) || Fecha_internacion == "" || Fecha_alta == "" || id_medico == "" || condicion_egreso == "" || causa_egreso == ""){
-          if(historial == ""){
-            res.status(400).json({
-              success:false,
-              msg:"Historail no se esta mandando"
-            })
-          }else if (isNaN(historial)){
-            res.status(400).json({
-              success:false,
-              msg:"Historial solo puede contener numeros"
-            })
-          }else if (Fecha_internacion == ""){
-            res.status(400).json({
-              success:false,
-              msg:"Fecha internacion es obligatorio"
-            })
-          }else if (Fecha_alta == ""){
-            res.status(400).json({
-              success:false,
-              msg:"Fecha de alta es obligatorio"
-            })
-          }else if (id_medico == ""){
-            res.status(400).json({
-              success:false,
-              msg:"Identificador del medico no se esta mandando"
-            })
-          }else if (condicion_egreso == ""){
-            res.status(400).json({
-              success:false,
-              msg:"Condicion de egreso es obligatorio"
-            })
-          }else if (causa_egreso == ""){
-            res.status(400).json({
-              success:false,
-              msg:"Causa de egreso"
-            })
-          }
-        }else{
-
-          return epicrisis                
+        return Internaciones                
           .findAll({
-            where:{ id_internacion : id_internacion }
+              where : { id : id_internacion }
           })
-          .then(resp => {
-            if (resp != ""){
+          .then(data => {
+            if( data == "" ){
               res.status(400).json({
-                success:false,
-                msg:"Ya se registro el alta de este paciente"
+                  success:false,
+                  msg:"No se puede registrar"
               })
             }else{
-              return Pacientes                
-              .findAll({
-                where:{ numeroHistorial : historial }
-              })
-              .then(data => {
-                if(data == ""){
-                  res.status(400).json({
-                    success:false,
-                    msg:"Ese paciente no esta registrado"
+              if(data[0].estado_alta == true ){
+                res.status(400).json({
+                    success : false,
+                    msg : "No se pude registrar, por que el paciente ya fue dado de alta"
+                })
+              }else{
+                if( historial == "" || isNaN(historial) || Fecha_internacion == "" || Fecha_alta == "" || id_medico == "" || condicion_egreso == "" || causa_egreso == ""){
+                  if(historial == ""){
+                    res.status(400).json({
+                      success:false,
+                      msg:"Historail no se esta mandando"
+                    })
+                  }else if (isNaN(historial)){
+                    res.status(400).json({
+                      success:false,
+                      msg:"Historial solo puede contener numeros"
+                    })
+                  }else if (Fecha_internacion == ""){
+                    res.status(400).json({
+                      success:false,
+                      msg:"Fecha internacion es obligatorio"
+                    })
+                  }else if (Fecha_alta == ""){
+                    res.status(400).json({
+                      success:false,
+                      msg:"Fecha de alta es obligatorio"
+                    })
+                  }else if (id_medico == ""){
+                    res.status(400).json({
+                      success:false,
+                      msg:"Identificador del medico no se esta mandando"
+                    })
+                  }else if (condicion_egreso == ""){
+                    res.status(400).json({
+                      success:false,
+                      msg:"Condicion de egreso es obligatorio"
+                    })
+                  }else if (causa_egreso == ""){
+                    res.status(400).json({
+                      success:false,
+                      msg:"Causa de egreso"
+                    })
+                  }
+                }else{
+        
+                  return epicrisis                
+                  .findAll({
+                    where:{ id_internacion : id_internacion }
                   })
-                }else {
+                  .then(resp => {
+                    if (resp != ""){
+                      res.status(400).json({
+                        success:false,
+                        msg:"Ya se registro el alta de este paciente"
+                      })
+                    }else{
+                      return Pacientes                
+                      .findAll({
+                        where:{ numeroHistorial : historial }
+                      })
+                      .then(data => {
+                        if(data == ""){
+                          res.status(400).json({
+                            success:false,
+                            msg:"Ese paciente no esta registrado"
+                          })
+                        }else {
+                          
+                          return epicrisis
+                          .create({
+                              historial,
+                              Fecha_internacion,
+                              Fecha_alta,
                   
-                  return epicrisis
-                  .create({
-                      historial,
-                      Fecha_internacion,
-                      Fecha_alta,
-          
-                      datos_clinicos,
-                      diagnostico_admicion,
-                      diagnostico_egreso,
-          
-                      condicion_egreso,
-                      causa_egreso,
-                      examenes_complementario,
-          
-                      tratamiento_quirurgico,
-                      tratamiento_medico,
-                      complicaciones,
-          
-                      pronostico_vital,
-                      pronostico_funcional,
-                      control_tratamiento,
-          
-                      recomendaciones,
-                      id_internacion,
-                      id_medico
+                              datos_clinicos,
+                              diagnostico_admicion,
+                              diagnostico_egreso,
+                  
+                              condicion_egreso,
+                              causa_egreso,
+                              examenes_complementario,
+                  
+                              tratamiento_quirurgico,
+                              tratamiento_medico,
+                              complicaciones,
+                  
+                              pronostico_vital,
+                              pronostico_funcional,
+                              control_tratamiento,
+                  
+                              recomendaciones,
+                              id_internacion,
+                              id_medico
+                          })
+                          .then(data => res.status(200).send({
+                              success: true,
+                              msg: "Se insertaron los datos",
+                              data
+                          })) 
+                        }
+                      });
+                    }
                   })
-                  .then(data => res.status(200).send({
-                      success: true,
-                      msg: "Se insertaron los datos",
-                      data
-                  })) 
-                }
-              });
+                } 
+              }
             }
           })
-        }           
+
+                 
     }
      // Servicio para para mostrar emergencias
      static getEpicrisis(req, res) {

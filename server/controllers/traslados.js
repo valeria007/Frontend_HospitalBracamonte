@@ -2,6 +2,7 @@ import model from '../models';
 
 const { traslados } = model;
 const { Pacientes } = model;
+const { Internaciones } = model;
 
 
 class Traslados {
@@ -10,88 +11,212 @@ class Traslados {
         
         const { id_paleta_internacion } = req.params
 
-        if (historial == "" || isNaN(historial) || nombre_doctor == "" || fecha_hora == "" || enviado_de == "" || diagnostico_principal == "" || id_internacio == "" || id_medico == "" || id_especialidad == ""){
-            if(historial == "" || isNaN(historial)){
-                res.status(400).json({
-                    success: false,
-                    msg:"historial no se esta mandando o se esta mandando mal"
-                })
-            }else if (fecha_hora == ""){
-                res.status(400).json({
-                    success: false,
-                    msg:"Fecha y hora no es obligatorio"
-                })
-            }else if (enviado_de == ""){
-                res.status(400).json({
-                    success: false,
-                    msg:"No se esta enviando enviado de"
-                })
-            }else if (id_medico == ""){
-                res.status(400).json({
-                    success: false,
-                    msg:"No se esta enviando el identificador del medico"
-                })
-            }else if (id_internacio == ""){
-                res.status(400).json({
-                    success: false,
-                    msg:"No se esta enviando el identificador de internacion"
-                })
-            }else if (id_especialidad == ""){
-                res.status(400).json({
-                    success: false,
-                    msg:"Selecione area de traslado por favor"
-                })
-            }
+        if (id_internacio == "" || id_internacio == null){
+            res.status(400).json({
+                success: false,
+                msg:"No se esta mandando el identificador de internacion"
+            })
         }else{
-            return Pacientes                
+            return Internaciones                
             .findAll({
-                where:{numeroHistorial:historial}
+                where : { id : id_internacio }
             })
             .then(data => {
-                if (data == ""){
+                if( data == "" ){
                     res.status(400).json({
                         success:false,
-                        msg:"El numero de historail que esta mandando no pertenece a ningun paciente"
+                        msg:"No se puede registrar"
                     })
                 }else{
-                    return traslados
-                    .create({
-                        historial,
-                        nombre_doctor,
-                        fecha_hora,
-                        enviado_de,
-                        operaciones,
-                        diagnostico_principal,
-                        otros_diagnosticos,
-                        causa_externa,
-                        id_paleta_internacion,
-                        id_internacio,
-                        id_medico,
-                        id_especialidad
-                    })
-                    .then(data => {
-                        res.status(200).json({
-                          success: true,
-                          msg: "Se registraron los datos",
-                          data
+                    if(data[0].estado_alta == true ){
+                        res.status(400).json({
+                            success : false,
+                            msg : "No se pude registrar, por que el paciente ya fue dado de alta"
                         })
-                    })
-                    .catch(error => {
-                        res.status(500).json({
-                            success:false,
-                            msg: "Algo salio mal con el servidor"
-                        })
-                    });
-
+                    }else{
+                        if (historial == "" || isNaN(historial) || nombre_doctor == "" || fecha_hora == "" || enviado_de == "" || diagnostico_principal == "" || id_internacio == "" || id_internacio == null || id_medico == "" || id_medico == null || id_especialidad == "" || id_especialidad == null){
+                            if(historial == "" || isNaN(historial)){
+                                res.status(400).json({
+                                    success: false,
+                                    msg:"historial no se esta mandando o se esta mandando mal"
+                                })
+                            }else if (fecha_hora == ""){
+                                res.status(400).json({
+                                    success: false,
+                                    msg:"Fecha y hora no es obligatorio"
+                                })
+                            }else if (enviado_de == ""){
+                                res.status(400).json({
+                                    success: false,
+                                    msg:"No se esta enviando enviado de"
+                                })
+                            }else if (id_medico == "" || id_medico == null){
+                                res.status(400).json({
+                                    success: false,
+                                    msg:"No se esta enviando el identificador del medico"
+                                })
+                            }else if (id_internacio == "" || id_internacio == null){
+                                res.status(400).json({
+                                    success: false,
+                                    msg:"No se esta enviando el identificador de internacion"
+                                })
+                            }else if (id_especialidad == "" || id_especialidad == null){
+                                res.status(400).json({
+                                    success: false,
+                                    msg:"Selecione area de traslado por favor"
+                                })
+                            }
+                        }else{
+                            return Pacientes                
+                            .findAll({
+                                where:{numeroHistorial:historial}
+                            })
+                            .then(data => {
+                                if (data == ""){
+                                    res.status(400).json({
+                                        success:false,
+                                        msg:"El numero de historail que esta mandando no pertenece a ningun paciente"
+                                    })
+                                }else{
+                                    return traslados                
+                                    .findAll({
+                                        where:{ id_internacio : id_internacio }
+                                    })
+                                    .then(resp => {
+                                        if(resp != ""){
+                                            res.status(400).json({
+                                                success : false,
+                                                msg : "Ya se registro el traslado de este paciente"
+                                            })
+                                        }else{
+                                            return traslados
+                                            .create({
+                                                historial,
+                                                nombre_doctor,
+                                                fecha_hora,
+                                                enviado_de,
+                                                operaciones,
+                                                diagnostico_principal,
+                                                otros_diagnosticos,
+                                                causa_externa,
+                                                id_paleta_internacion,
+                                                id_internacio,
+                                                id_medico,
+                                                id_especialidad
+                                            })
+                                            .then(data => {
+                                                res.status(200).json({
+                                                  success: true,
+                                                  msg: "Se registraron los datos",
+                                                  data
+                                                })
+                                            })
+                                            .catch(error => {
+                                                res.status(500).json({
+                                                    success:false,
+                                                    msg: "Algo salio mal con el servidor"
+                                                })
+                                            });
+                                        }
+                                    }); 
+                                }
+                            });   
+                        }
+                    }
                 }
-            });   
+            })
         }
        
+
+      
+    
     }
     static list_traslados(req, res) {
         return traslados                
         .findAll()
-        .then(data => res.status(200).send(data));                       
+        .then(data => res.status(200).send(data));                
     }
+
+    //mostrar papeleta de internacion segun id
+    static one_traslado(req, res) {
+        const { id_traslado } = req.params
+        return traslados                
+        .findAll({
+            where:{id: id_traslado}
+        })
+        .then(data => res.status(200).send(data));                
+    }
+
+    // ver traslado con el id de internacion
+    static traslados_id_internacion(req, res) {
+        const { id_internacio } = req.params
+        return traslados                
+        .findAll({
+            where:{ id_internacio : id_internacio }
+        })
+        .then(data => res.status(200).send(data));                
+    }
+
+    static delete_traslado(req, res) {
+        return traslados
+        .findByPk(req.params.id)
+        .then(data => {
+          if (!data) {
+            return res.status(400).send({
+              message: 'no hay datos que eliminar',
+            });
+          }
+          return data
+            .destroy()
+            .then(() => res.status(204).send({
+                msg:'eliminado'
+            }))
+            .catch((error) => res.status(400).send(error));
+        })
+        .catch((error) => res.status(400).send(error));
+    }
+    //lis traslados especualidad
+    static list_traslados_esp(req, res) {
+        const { id_especialidad } = req.params
+        return traslados                
+        .findAll({
+            where:{ id_especialidad : id_especialidad, estado : true }
+        })
+        .then(data => res.status(200).send(data));                
+    }
+
+    //list false traslado especialidad
+    static list_traslados_esp_flase(req, res) {
+        const { id_especialidad } = req.params
+        return traslados                
+        .findAll({
+            where:{ id_especialidad : id_especialidad, estado : false }
+        })
+        .then(data => res.status(200).send(data));                
+    }
+
+    static estado_traslado(req,res){
+        var estado = 'false';
+        return traslados
+        .findByPk(req.params.id_traslado)
+        .then((data) => {
+            data.update({
+              estado : estado  || data.estado
+            })
+            .then(update => {
+              res.status(200).send({
+                success:true,
+                msg: 'Se actualizo el estado',
+                data : {
+                    estado : estado  || update.estado 
+                }
+              })
+              .catch(error => res.status(400).send(error))
+            })
+            .catch(error => res.status(400).send(error))
+        })
+    }
+    
+
 }
 export default Traslados

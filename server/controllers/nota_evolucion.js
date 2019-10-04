@@ -13,6 +13,7 @@ class NotaEvolucion{
             where : { id : id_internacion }
         })
         .then(data => {
+            console.log(data, "   <<<<<<<<<<<<<<<<<<<<<<<<<<<   esto quiero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             if( data == "" ){
                 res.status(400).json({
                     success:false,
