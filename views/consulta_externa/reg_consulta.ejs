@@ -79,31 +79,32 @@
             </div>
         </div>
         <!--\\\\\\\left_nav end \\\\\\-->
-        <div class="contentpanel consulta" >
+        <div class="contentpanel " id="consulta">
                 <!--\\\\\\\ contentpanel start\\\\\\-->
             <div class="container clear_both padding_fix col-lg-8">
                 <br>
                 
-                    <div class="main-content">
-                            <div class="col-lg-12 block-web"> 
-                                    <!-- Content page -->
-                                    <div class=" container-fluid col-md-12" id="">
-                                        <div class="header ">
-                                            <div class="">
-                                                <div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div><br>
-                                                    <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa {{msg}}</h3>
-                                                </div>       
-                                            </div>
-                                            <div id="" class="col-md-2">	
-                                                <div class="">
-                                                    <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-                                                </div>				
-                                            </div>
-                                    </div><br>
-                                </div>     
-                        <div class="main-content">
-                                <section class="panel default blue_title h2">
-                            <div class="page-content">
+                <div class="">
+                    <div class="col-lg-12 block-web"> 
+                    <!-- Content page -->
+                        <div class="" id="">
+                            <div class="header ">
+                                
+                                <div class="">
+                                    <div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div>
+                                        <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Consulta Externa {{msg}}</h2>
+                                    </div>       
+                            </div>
+                            <div id="" class="col-md-2">	
+                                <div class="">
+                                    <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+                                </div>				
+                            </div>
+                        </div>
+                    </div>     
+                     <div class="">
+                        <section class="panel default  h2  ">
+                            <div class="">
                                 <ul class="nav nav-tabs" id="myTab">
                                     <li class=" col-lg-6 active active  text-center"><a href="#new" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Registro de consulta medica</a></li>
                                     <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt "></i><span>&nbsp;&nbsp;&nbsp;</span>Listado de consultas del paciente</a></li>
@@ -277,11 +278,11 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <%for(var i = 0; i< fileAsArray.length; i++) { %>
+                                                                        <%for(var i = 0; i< diagnostico.length; i++) { %>
                                                                         <tr>
                                                                             <td><%= i+1%></td>
-                                                                            <td><%=fileAsArray[i].c%></td>
-                                                                            <td><%=fileAsArray[i].d%></td>
+                                                                            <td><%=diagnostico[i].c%></td>
+                                                                            <td><%=diagnostico[i].d%></td>
                                                                             <td>
                                                                                 <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
                                                                             </td>
@@ -292,64 +293,21 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>                                                              
-                                                
-                                                
-                                                
-                                                <!--diagnostico del paciente o estado del paciente-->
-                                                <div class="block-web">
-                                                        <div class="header">
-                                                                <h3 class="text-center "  >Estado del paciente</h3>
-                                                            </div>
-                                                </div>
-                                                <div class="grupo" id="cabeza">
-                                                    <div class="panel with-nav-tabs panel-default">
-                                                            <section class="panel default blue_title h2">
-                                                        <div class="">
-                                                            <ul class="nav nav-tabs" id="myTab">
-                                                                <li class="col-lg-3 text-center active"><a href="#tab1default" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Motivo de Consulta</a></li>
-                                                                <li class="col-lg-3 text-center"><a href="#tab2default" data-toggle="tab"><i class="fa fa-file-text "></i><span>&nbsp;&nbsp;&nbsp;</span>Diagnostico</a></li>
-                                                                <li class="col-lg-3 text-center"><a href="#tab3default" data-toggle="tab"><i class="fa fa-stethoscope "></i><span>&nbsp;&nbsp;&nbsp;</span>Tratamiento</a></li>
-                                                                <li class="col-lg-3 text-center"><a href="#tab4default" data-toggle="tab"><i class="fa fa-file-text-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Observaciones</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="">
-                                                            <div class="tab-content">
-                                                                <div class="tab-pane fade in active" id="tab1default"><textarea class="large-compact" name="anamnesis"  cols="112" rows="10"></textarea></div>
-                                                                <div class="tab-pane fade" id="tab2default">
-                                                                        <table class="fl-table display table table-bordered table-striped" id="dynamic-table">
-                                                                                <thead>
-                                                                                <tr>
-                                                                                    <th>#</th>
-                                                                                    <th>Código</th>
-                                                                                    <th>Descripción</th>
-                                                                                    <th class="center">Opciones</th>
-                                                                                    
-                                                                                </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                   <%for(var i = 0; i< diagnostico.length; i++) { %>
-                                                                                        <tr>
-                                                                                            <td><%= i+1%></td>
-                                                                                            <td><%=diagnostico[i].codigo%></td>
-                                                                                            <td><%=diagnostico[i].descripcion%></td>
-                                                                                            <td>
-                                                                                                <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
-                                                                                               
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    <% } %>
-                                                                                  
-                                                                            
-                                                                                
-                                                                                </tbody>                                                                       
-                                                                        </table> 
-                                                                    <textarea class="large-compact" name="diagnostico" cols="112" rows="10"></textarea>
-                                                                
-                                                                </div>
-                                                                <div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="112" rows="10"></textarea></div>
-                                                                <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="112" rows="10"></textarea></div>
-                                                            </div>
+                                                </di>
+                                            </div>
+                                            <div class="grupo" id="cabeza">
+                                                <div class="panel with-nav-tabs panel-default">
+                                                    <section class="panel default blue_title h2">
+                                                    <div class="">
+                                                        <ul class="nav nav-tabs" id="myTab">
+                                                            <li class="col-lg-6 text-center active"><a href="#tab3default" data-toggle="tab"><i class="fa fa-stethoscope "></i><span>&nbsp;&nbsp;&nbsp;</span>Tratamiento</a></li>
+                                                            <li class="col-lg-6 text-center"><a href="#tab4default" data-toggle="tab"><i class="fa fa-file-text-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Observaciones u Otra Conducta</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane fade in active" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="112" rows="10"></textarea></div>
+                                                            <div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="112" rows="10"></textarea></div>
                                                         </div>
                                                     </div>
                                                     </section>
@@ -501,50 +459,25 @@
                                                     </div> 
                                                     <h3 class="" >Estado del paciente</h3>
                                                 </div>
-                                                <div class="col-md-9">  
-                                                    <div class="grupo" id="cabeza">
-                                                            
-                                                        <div class="panel with-nav-tabs panel-default">
-                                                            <section class="panel default blue_title h2">
-                                                            <div class="">
-                                                                <ul class="nav nav-tabs"id="myTab">
-                                                                    <li class="col-lg-3 active"><a href="#tab1default" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span>Motivo de Consulta</a></li>
-                                                                    <li class="col-lg-3 text-center"><a href="#tab2default" data-toggle="tab"><i class="fa fa-file-text "></i><span>&nbsp;&nbsp;&nbsp;</span>Diagnostico</a></li>
-                                                                    <li class="col-lg-3 text-center"><a href="#tab3default" data-toggle="tab"><i class="fa fa-stethoscope "></i><span>&nbsp;&nbsp;&nbsp;</span>Tratamiento</a></li>
-                                                                    <li class="col-lg-3 text-center"><a href="#tab4default" data-toggle="tab"><i class="fa fa-file-text-o "></i><span>&nbsp;&nbsp;&nbsp;</span>Observaciones</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="tab-content">
-                                                                    <div class="tab-pane fade in active" id="tab1default"> <textarea class="large-compact" name="anamnesis" cols="80" rows="10"><%=updateCita[0].anamnesis%></textarea></div>
-                                                                    <div class="tab-pane fade" id="tab2default">
-                                                                            <table class="fl-table display table table-bordered table-striped" id="dynamic-table">
-                                                                                    <thead>
-                                                                                    <tr>
-                                                                                        <th>#</th>
-                                                                                        <th>Código</th>
-                                                                                        <th>Descripción</th>
-                                                                                        <th class="center">Opciones</th>
-                                                                                        
-                                                                                    </tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                       <%for(var i = 0; i< diagnostico.length; i++) { %>
-                                                                                            <tr>
-                                                                                                <td><%= i+1%></td>
-                                                                                                <td><%=diagnostico[i].codigo%></td>
-                                                                                                <td><%=diagnostico[i].descripcion%></td>
-                                                                                                <td>
-                                                                                                    <a  data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
-                                                                                                   <a v-on:click="diagnostico('<%=diagnostico[i].codigo%>')" > ver</a>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        <% } %>
-                                                                                      
-                                                                                
-                                                                                    
-                                                                                    </tbody>                                                                       
-                                                                            </table>     
+
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="col-md-12">
+                                                     <label class=" ">Motivo de Consulta:</label>
+                                                    <textarea class="large-compact" name="anamnesis"  cols="80" rows="6"><%=updateCita[0].anamnesis%></textarea>
+                                                </div>
+                                                
+                                            </div> 
+                                            <!------------------------------------------------------------------menu receta y ordenes---------------------------------------------------------->
+                                            <div class="col-md-3">    
+                                                <div class="file_sidebar">  
+                                                    <li href="#collapse4" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Herramientas</li>
+                                                       
+                                                    <div class="file_sidebar_list panel-collapse collapse in"   id="collapse4" style="height: auto;">
+                                                        <ul>
+                                                            <li><a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <i class="fa fa-building-o"></i>Receta</a></li>  
+                                                            <li><a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
+                                                            <li><a href="/paciente/O_Laboratorio"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li>
                                                                     
                                                         </ul>  
                                                     </div>
@@ -578,11 +511,11 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                               <%for(var i = 0; i< fileAsArray.length; i++) { %>
+                                                               <%for(var i = 0; i< diagnostico.length; i++) { %>
                                                                 <tr>
                                                                     <td><%= i+1%></td>
-                                                                    <td><%=fileAsArray[i].c%></td>
-                                                                    <td><%=fileAsArray[i].d%></td>
+                                                                    <td><%=diagnostico[i].c%></td>
+                                                                    <td><%=diagnostico[i].d%></td>
                                                                     <td>
                                                                         <a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
                                                                     </td>
@@ -895,39 +828,20 @@
 
         <script>
             const consulta = new Vue({
-                el:".consulta",
+                el:"#consulta",
                 data:() => ({
-                    msg : "aljand321",
-                    list:'',
-                    
-                    select_diacnostico:[]
+                    msg : "aljand321"
                 }),
                 
                 mounted(){
                    
-                    fetch('http://localhost:7000/consulta_externa/Vue_diagnostico')        
-                    .then(resp => resp.json())
-                    .then( diagnostico =>{
-                        this.list = diagnostico
-                        
-                    })
+                    //console.log(data1)
+                    /* for(var i = 0; i < this.data.length; i++ ){
+                        console.log(data[i])
+                    }  */
                 },
                 methods:{
-
-                   diagnostico(codigo){
-                       console.log(codigo)
-                        /* for(var i = 0; i < this.list.length; i++){
-                            if(this.list[i].codigo == codigo){
-                                this.select_diacnostico.push({
-                                    codigo:this.list[i].codigo,
-                                    descripcion: this.list[i].descripcion
-                                } )
-
-                                console.log(this.select_diacnostico)
-                            }
-                        } */
-                   }
-
+                    
                 }
             })
         </script>

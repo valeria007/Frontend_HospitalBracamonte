@@ -102,33 +102,29 @@
               </div>
 
               <div class="row">
-                    <div class="col-xs-12 "> 
-                        <h4 class="text-center">Estado del Paciente</h4>
-                        <div class="form-group">
-                            <div class="col-sm-6">
-                              <label class="control-label">Motivo de Consulta:</label>
-                              <textarea class="form-control" cols="100" rows="10">{{one_consulta.motivoConsulta}}</textarea>
-                            </div>
-                            <div class="col-sm-6">
-                              <label class="control-label">Diagnostico:</label>
-                              
-                              <textarea class="form-control" cols="100" rows="10" >{{one_consulta.diagnostico}}</textarea>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-sm-6">
-                              <label class="control-label">Tratamiento:</label>
-                              <textarea class="form-control" cols="100" rows="10">{{one_consulta.tratamiento}}</textarea>
-                            </div>
-                            <div class="col-sm-6">
-                              <label class="control-label">Observacione:</label>
-                              <textarea class="form-control" cols="100" rows="10">{{one_consulta.observaciones}}</textarea>
-                            </div>
-                          </div>
+                <div class="col-xs-12 "> 
+                    <h4 class="text-center">Estado del Paciente</h4>
+                    <div class="form-group">
+                      <div class="col-sm-6">
+                        <label class="control-label">Motivo de Consulta:</label>
+                        <textarea class="form-control" cols="100" rows="10">{{one_consulta.motivoConsulta}}</textarea>
+                      </div>
+                      <div class="col-sm-6">
+                        <label class="control-label">Diagnostico:</label>
+                        <textarea class="form-control" cols="100" rows="10" >{{one_consulta.diagnostico}}</textarea>
+                      </div>
                     </div>
-
-               
-               
+                      <div class="form-group">
+                        <div class="col-sm-6">
+                          <label class="control-label">Tratamiento:</label>
+                          <textarea class="form-control" cols="100" rows="10">{{one_consulta.tratamiento}}</textarea>
+                        </div>
+                        <div class="col-sm-6">
+                          <label class="control-label">Observacione:</label>
+                          <textarea class="form-control" cols="100" rows="10">{{one_consulta.observaciones}}</textarea>
+                        </div>
+                      </div>
+                </div>
               </div>
               
               <div class="modal-footer">
@@ -153,19 +149,19 @@
 							</ul>
 							<div class="tab-content" id="myTabContent">
 								<div id="Tab1" class="tab-pane fade in active">
-									<div class="row" >
-                      <% if(msg != null) { %>
-                        <% if(msg.data.success == true) { %>
-                          <span style="color: blue"> <%=msg.data.data%></span>
-                        <% } else { %>
-                          <span style="color: red"> <%=msg.data.data%></span>
-                        <% } %>  
-                      <% } %>
+									<div class="" >
+                    <% if(msg != null) { %>
+                      <% if(msg.data.success == true) { %>
+                        <span style="color: blue"> <%=msg.data.data%></span>
+                      <% } else { %>
+                        <span style="color: red"> <%=msg.data.data%></span>
+                      <% } %>  
+                    <% } %>
 											<div class="block-web">
                         <div class="porlets-content">
-                            <div class="row ">
+                          <div class="row ">
                               
-                                <div class="col-md-9">
+                              <div class="col-md-9">
                                     <section class="panel default blue_title h2">  
                                         <div class="col-md-6 panel panel-default">
                                             <div class=" panel panel-default">
@@ -215,31 +211,31 @@
                                         </div>
                                         <div class="col-md-6 panel panel-default">
                                                
-                                            <div class=" panel panel-default">
-                                                <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos del Médico</li>            
-                                            
-                                            </div>
-                                            <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
-                                                <div class="col-sm-12 row"> 
-                                                                               
-                                                    <div class=" col-sm-5 ">
-                                                      
-                                                    </div> 
-                                                    <div class=" col-sm-12 ">
-                                                        <div class="col-sm- 12 col-sm-12">
-                                                            <div class="entrada">
-                                                                <label class="">Nombre del Médico:</label><p><b><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%></b></p>
-                                                                <input type="hidden" value="<%=data_doc.data.medico.nombre%>" class="form-control" readonly="" value="Read only text goes here" >
-                                                            </div>
+                                          <div class=" panel panel-default">
+                                              <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos del Médico</li>            
+                                          
+                                          </div>
+                                          <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
+                                            <div class="col-sm-12 row"> 
+                                                                           
+                                                <div class=" col-sm-5 ">
+                                                  
+                                                </div> 
+                                                <div class=" col-sm-12 ">
+                                                    <div class="col-sm- 12 col-sm-12">
+                                                        <div class="entrada">
+                                                            <label class="">Nombre del Médico:</label><p><b><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%></b></p>
+                                                            <input type="hidden" value="<%=data_doc.data.medico.nombre%>" class="form-control" readonly="" value="Read only text goes here" >
                                                         </div>
-                                                    </div>               
-                                                </div>
+                                                    </div>
+                                                </div>               
                                             </div>
+                                          </div>
                                                 
                                         </div> 
                                     </section>          
-                                </div>  
-                                <div class="col-md-3">
+                              </div>  
+                              <div class="col-md-3">
                                     <div class="file_sidebar">   
                                         <li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
                                         <div  class="file_sidebar_list panel-collapse collapse "   id="collapse" style="height: auto;">
@@ -247,12 +243,13 @@
                                                 <li><a href="/emergencia2.0/datos_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Datos de responsable</a></li>
                                                 <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-user"></i>Datos de Interes</a></li>
                                                 <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
+                                                <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
                                               
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                              </div>
+                          </div>
                             
                           <% if( updateConsultaEmg == "") { %>
                            
@@ -400,7 +397,7 @@
                               <a href="/emergencia2.0/papeleta_internacion/<%=updateConsultaEmg[0].id%>/<%=updateConsultaEmg[0].Nhistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="btn btn-primary btn-default btn-block bs" >Orden de Internacion<span>&nbsp;</span><i class="fa fa-wheelchair" ></i></a>
                             </div>
                             <div class="col-sm-4">
-                              <a href="/emergencia/ListPInter/<%=updateConsultaEmg[0].id%>/<%=updateConsultaEmg[0].Nhistorial%>"  class="btn btn-primary btn-default btn-block bs" >Exmamnes Complementarios<span>&nbsp;</span><i class="fa fa-eye" ></i></a></td>
+                              <a href="/paciente/O_Laboratorio"  class="btn btn-primary btn-default btn-block bs" >Examenes Complementarios<span>&nbsp;</span><i class="fa fa-eye" ></i></a></td>
                             </div>
                           </div>
                           <% } %>
