@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Papeleta de Internacion</title>
+    <title>Papeleta de Internación</title>
     <meta charset="UTF-8">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta name="viewport"
@@ -47,7 +47,7 @@
 
 </head>
 
-<body class=" light_theme  fixed_header left_nav_fixed">
+<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
     <!-- SideBar -->
 
 
@@ -72,10 +72,8 @@
                             </span> <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
-                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Ayuda</a> </li>
-                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                            
+                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -88,22 +86,16 @@
                 <!--\\\\\\\left_nav start \\\\\\-->
                 <div class="left_nav_slidebar">
                     <ul>
-                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span
-                                    class="left_nav_pointer"></span> <span class="plus"><i
-                                        class="fa fa-plus"></i></span> </a>
+                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul>
                                 <li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">
                                         <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
                             </ul>
                         </li>
-                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i
-                                    class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
-                                        class="fa fa-plus"></i></span></a>
+                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
-                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">
-                                        <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas
-                                            de Citas</b>
-                                    </a> </li>
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b> </a> 
+                                </li>
                             </ul>
                         </li>
                         <%- include("../partials/footerDocotr") -%>
@@ -116,33 +108,36 @@
                 <!--\\\\\\\ contentpanel start\\\\\\-->
                 <div class="container clear_both padding_fix col-lg-8">
                     <br>
-                    <div class="row">
-                       
-                            <!-- NavBar -->
-                            <!-- Content page -->
-                        <div class="container-fluid">
-                            <div class="">
-                                        
-                                <div class="info blue_symbols "> <i class="fa fa-file-text icon "></i></div><br>
-                                        <h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Papeleta Internación</h3>
-                                    <div id="" class="col-md-2">	
-                                        <div class=""><br>
-                                            <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-                                        </div>				
+                    <div class="main-content">
+                        <div class="  col-xs-12 ">
+                            <div class="row">
+
+                                <div class="col-lg-12 block-web">
+                                    <div class=" head">
+                                        <div class="header">
+                                            <div class="info blue_symbols "> 
+                                                <i class="fa fa-file-text icon "></i>
+                                            </div>
+                                            <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Papeleta Internación</h2>
+                                
+                                            <div id="" class="col-md-2">	
+                                                <div class=""><br>
+                                                    <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+                                                </div>				
+                                            </div>
+                                        </div>       
                                     </div>
-                                    
-                            </div>
-                        </div><br>
+                                </div><br>
                             <div class="container-fluid">
                                 <div class="row ">
-                                    <section class="panel default blue_title h2">
-                                        <div class="page-content ">
-                                    <div class=" col-md-12">
-                                        <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                                            <li class=" col-lg-6 active active  text-center"><a href="#PapeletaInternacion" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span> Papeleta de Internación</a></li>
-                                            <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt  "></i><span>&nbsp;&nbsp;&nbsp;</span> Lista de Internación del Paciente</a>
-                                            </li>
-                                        </ul>
+                                    <section class="panel default  ">
+                                        <div class=" ">
+                                            <div class=" col-md-14">
+                                                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                                    <li class=" col-lg-6 active active  text-center"><a href="#PapeletaInternacion" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span> Papeleta de Internación</a></li>
+                                                    <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt  "></i><span>&nbsp;&nbsp;&nbsp;</span> Lista de Internación del Paciente</a>
+                                                    </li>
+                                                </ul>
                                         <% if(msg != null) { %>
                                             <% if(msg.data.success == true) { %>
                                               <span style="color: blue"> <%=msg.data.msg%></span>
@@ -154,136 +149,102 @@
                                             <div class="tab-pane fade active in" id="PapeletaInternacion">
                                                 <div class="container-fluid">
                                                     <div class="row">
-
-                                                        <!-- datos personales-->
-
-
                                                         <% if(resp == "") { %>
 
                                                         <form action="/consulta_externa/Pinternacion/<%=one_consulta[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
                                                             <input type="hidden" name="id_medico" value="<%=data_doc.data.medico.id%>">
-                                                            <div class="block-web">
+                                                            
+                                                                 
+                                                        <div class="row "> 
+                                                            <div class="block-web"> 
                                                                 <div class="header">
-                                                                    <div class="actions"> <a class="minimize"
-                                                                            href="#"><i
-                                                                                class="fa fa-chevron-down"></i></a> <a
-                                                                            class="close-down" href="#"><i
-                                                                                class="fa fa-times"></i></a> </div>
-                                                                    <h3 class="content-header">Datos del Paciente</h3>
+                                                                    <div class="actions"> 
+                                                                    </div>
+                                                                        <h3 class="content-header">Orden de Internación</h3>
                                                                 </div>
-                                                                <div class="">
-                                                                    <div class="form-group">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-
-                                                                                <div class="col-sm-3 col-sm-4">
+                                                                <div class="col-md-12">
+                                                                    <section class="panel default blue_title h2">  
+                                                                    <div class="col-md-6 panel panel-default">
+                                                                        <div class=" panel panel-default">
+                                                                            <li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Personales</li>            
+                                                                        </div>
+                                                                        <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+                                                                            <div class=""> 
+                                                                                                   
+                                                                                <div class="col-md-4">
                                                                                     <div class="entrada ">
-                                                                                        <h6 class=" blue_info">N° de
-                                                                                            Historia:</h6>
-                                                                                        <input name="Historial"
-                                                                                            type="text"
-                                                                                            value="<%=dataPaciente[0].numeroHistorial%>"
-                                                                                            class="form-control"
-                                                                                            readonly=""
-                                                                                            value="Read only text goes here">
+                                                                                        <label class=" ">N° de Historia:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
+                                                                                            <input type="hidden" name="numeroHistorial" 
+                                                                                                value="<%=dataPaciente[0].numeroHistorial%>"
+                                                                                                    class="form-control" readonly=""
+                                                                                                    value="Read only text goes here">
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-sm-4 col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">
-                                                                                                Nombre Completo:</h6>
-                                                                                            <input type="text"
-                                                                                                name="nombre apellidop apellidom"
+                                                                                <div class="col-sm-3 ">
+                                                                                    <div class="entrada">
+                                                                                        <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
+                                                                                        <input type="hidden" name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                                <div class="col-sm-5 col-sm-9">
+                                                                                    <div class="entrada">
+                                                                                        <label class="">Fecha de Nacimiento:</label><p><b><%=dataPaciente[0].fechanacimiento%></b></p>
+                                                                                        <input  type="hidden" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                                    </div>
+                                                                                </div> 
+                                                                                <div class="col-md-3">
+                                                                                    <div class="entrada">
+                                                                                        <label class=" ">CI.:</label><p><b><%=dataPaciente[0].ci%></b></p>
+                                                                                        <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-9">
+                                                                                    <div class="entrada">
+                                                                                        <label class=" ">Nombre Completo:</label><p><b><%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%></b></p>
+                                                                                            <input type="hidden" name="nombre apellidop apellidom" 
                                                                                                 value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-                                                                                                class="form-control"
-                                                                                                readonly=""
+                                                                                                class="form-control" readonly=""
                                                                                                 value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    </div> 
                                                                                 </div>
-                                                                                <div class="col-sm-2 col-sm-3">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">Sexo:
-                                                                                            </h6>
-                                                                                            <input name="sexo"
-                                                                                                value="<%=dataPaciente[0].sexo%>"
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-3 col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">Fecha
-                                                                                                de Nacimiento:</h6>
-                                                                                            <input name="edad"
-                                                                                                type="text"
-                                                                                                value="<%=dataPaciente[0].fechanacimiento%>"
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- datos del doctor-->
-                                                            <div class="block-web">
-                                                                <div class="header">
-                                                                    <div class="actions">
-                                                                        <a href="#" class="minimize"> <i
-                                                                                class="fa fa-chevron-down"></i></a>
-                                                                        <a href="#" class="refresh"> <i
-                                                                                class="fa fa-repeat"></i></a>
-                                                                        <a href="#" class="close-down"> <i
-                                                                                class="fa fa-times"></i></a>
-                                                                    </div>
-                                                                    <h3>Datos de la cita</h3>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-
-
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">
-                                                                                    <h6 class=" blue_info">Nombre del
-                                                                                        Médico:</h6>
-                                                                                    <input type="text"
-                                                                                        name="nombreDoctor"
-                                                                                        value="<%=one_consulta[0].Citas_Medica.medico%>"
-                                                                                        class="form-control" readonly=""
-                                                                                        value="Read only text goes here">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">
-                                                                                    <h6 class=" blue_info">Especialidad:
-                                                                                    </h6>
-                                                                                    <input
-                                                                                        value="<%=one_consulta[0].tipoConsulta%>"
-                                                                                        name="tipoConsulta"
-                                                                                        class="form-control" readonly=""
-                                                                                        value="Read only text goes here">
+                                                                                <div class="col-sm-2">
+                                                                                    <li href="javascript:void(0);" class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i> <span> Dar mas Información</span> </li>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-
                                                                     </div>
+                                                                    <div class="col-md-6 panel panel-default">
+                                                                           
+                                                                        <div class=" panel panel-default">
+                                                                            <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Cita</li>            
+                                                                    
+                                                                        </div>
+                                                                        <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
+                                                                           
+                                                                            <div class="col-sm-6 col-sm-8">
+                                                                                        <div class="entrada">
+                                                                                            <label class="">Especialidad:</label><p><b><%=one_consulta[0].tipoConsulta%></b></p>
+                                                                                            <input type="hidden" name="tipoConsulta" value="<%=one_consulta[0].tipoConsulta%>"class="form-control" readonly="" value="Read only text goes here">                                                                
+                                                                                        </div>
+                                                                            </div>                 
+                                                                            <div class="col-sm-6 col-sm-12">
+                                                                                        <div class="entrada">
+                                                                                            <label class="">Nombre del Médico:</label><p><b><%=one_consulta[0].Citas_Medica.medico%></b></p>
+                                                                                            <input type="hidden" value="<%=one_consulta[0].Citas_Medica.medico%>" class="form-control" readonly="" value="Read only text goes here" >
+                                                                                        </div>
+                                                                            </div>
+                                                                      
+                                                                        </div>
+                                                                        
+                                                                    </div> 
+                                                                    </section>          
                                                                 </div>
                                                             </div>
-
-
-                                                            <div class="block-web">
-                                                                <div class="header">
+                                                        </div>    
+                                                                 
+                                                        <div class="block-web">
+                                                            <div class="header">
                                                                     <div class="actions"> <a class="minimize"
                                                                             href="#"><i
                                                                                 class="fa fa-chevron-down"></i></a> <a
@@ -292,6 +253,7 @@
                                                                     </div>
                                                                     <h3 class="content-header">Estado del Paciente</h3>
                                                                 </div>
+
                                                                 <div class="form-group">
                                                                     <div class="row">
                                                                         <div class="col-md-12">
@@ -309,12 +271,11 @@
                                                                             </div>
                                                                             <div class="col-sm-6 col-sm-6">
                                                                                 <div class="entrada ">
-                                                                                    <div class="entrada">Fecha de
-                                                                                        Ingreso
-                                                                                        <input class="form-control"
-                                                                                            type="date"
-                                                                                            name="fechaIngreso"
-                                                                                            value=""><br>
+                                                                                    <div class="entrada">Fecha de Orden
+                                                                                        <div  id="tab1default"><textarea  name="fechaIngresoo" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
+                                                                                        <input class="form-control" type="date"  name="fechaIngreso" require value="" ><br>
+
+                                                                                        
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -325,9 +286,7 @@
                                                                             <div class="col-sm-4 col-sm-4">
 
                                                                                 <div class="entrada"> Diagnostico<br>
-                                                                                    <textarea name="diagnostico"
-                                                                                        cols="100"
-                                                                                        rows="10"></textarea><br>
+                                                                                    <textarea name="diagnostico" cols="100" rows="10"></textarea><br>
                                                                                 </div>
                                                                             </div>
 
@@ -335,154 +294,117 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                        </div>
+                                                        
                                                             <!--   lado derecho-->
 
 
-                                                            <p class="text-center">
-                                                                <button type="reset" class="btn btn-info"
-                                                                    style="margin-right: 20px;"><i
-                                                                        class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-                                                                    Limpiar</button>
-                                                                <button type="submit" class="btn btn-danger"><i
-                                                                        class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-                                                                    Guardar</button>
-                                                                <button type="submit" class="btn btn-outline-danger"><i
-                                                                        class="zmdi zmdi-download"></i> &nbsp;&nbsp;
-                                                                    Imprimir</button>
+                                                            <p class="modal-footer">
+                                                                <button type="reset" class="btn btn-info"  style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+                                                                <button type="submit" class="btn btn-warning"><i class="fa fa-print"></i> &nbsp;&nbsp; Imprimir</button>
                                                             </p>
                                                         </form>
+                                                    
                                                         <% } else { %>
-                                                        <form action="/consulta_externa/updateInternacion/<%=resp[0].id%>/<%=one_consulta[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"
-                                                            method="POST">
-                                                            <h4 class="text-center">Formulario de actualización</h4>
-
+                                                        <form action="/consulta_externa/updateInternacion/<%=resp[0].id%>/<%=one_consulta[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
+                                                           
                                                             <div class="block-web">
                                                                 <div class="header">
-                                                                    <div class="actions"> <a class="minimize"
-                                                                            href="#"><i
-                                                                                class="fa fa-chevron-down"></i></a> <a
-                                                                            class="close-down" href="#"><i
-                                                                                class="fa fa-times"></i></a> </div>
-                                                                    <h3 class="content-header">Datos del Paciente</h3>
+                                                                    <div class="actions">
+                                                                        
+                                                                    </div>
+                                                                    
+                                                                    <h3 class="">Orden de Internación <span class="semi-bold">/Actualizar</span></h3>
                                                                 </div>
                                                                 <div class="">
                                                                     <div class="form-group">
                                                                         <div class="row">
                                                                             <div class="col-md-12">
-
-                                                                                <div class="col-sm-3 col-sm-4">
-                                                                                    <div class="entrada ">
-                                                                                        <h6 class=" blue_info">N° de
-                                                                                            Historia:</h6>
-                                                                                        <input name="Historial"
-                                                                                            type="text"
-                                                                                            value="<%=dataPaciente[0].numeroHistorial%>"
-                                                                                            class="form-control"
-                                                                                            readonly=""
-                                                                                            value="Read only text goes here">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-4 col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">
-                                                                                                Nombre Completo:</h6>
-                                                                                            <input type="text"
-                                                                                                name="nombre apellidop apellidom"
-                                                                                                value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
+                                                                                <section class="panel default blue_title h2">  
+                                                                                    <div class="col-md-6 panel panel-default">
+                                                                                        <div class=" panel panel-default">
+                                                                                            <li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos Personales</li>            
                                                                                         </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-2 col-sm-3">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">Sexo:
-                                                                                            </h6>
-                                                                                            <input name="sexo"
-                                                                                                value="<%=dataPaciente[0].sexo%>"
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
+                                                                                        <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+                                                                                            <div class=""> 
+                                                                                                                       
+                                                                                                <div class="col-md-4">
+                                                                                                    <div class="entrada ">
+                                                                                                        <label class=" ">N° de Historia:</label><p><b><%=dataPaciente[0].numeroHistorial%></b></p>
+                                                                                                            <input type="hidden" name="numeroHistorial" 
+                                                                                                                value="<%=dataPaciente[0].numeroHistorial%>"
+                                                                                                                    class="form-control" readonly=""
+                                                                                                                    value="Read only text goes here">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-sm-3 ">
+                                                                                                    <div class="entrada">
+                                                                                                        <label class=" "> Sexo: </label><p><b><%=dataPaciente[0].sexo%></b></p>
+                                                                                                        <input type="hidden" name="sexo" value="<%=dataPaciente[0].sexo%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                    
+                                                                                                <div class="col-sm-5 col-sm-9">
+                                                                                                    <div class="entrada">
+                                                                                                        <label class="">Fecha de Nacimiento:</label><p><b><%=dataPaciente[0].fechanacimiento%></b></p>
+                                                                                                        <input  type="hidden" name="fechanacimiento"  value="<%=dataPaciente[0].fechanacimiento%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                                                    </div>
+                                                                                                </div> 
+                                                                                                <div class="col-md-3">
+                                                                                                    <div class="entrada">
+                                                                                                        <label class=" ">CI.:</label><p><b><%=dataPaciente[0].ci%></b></p>
+                                                                                                        <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-sm-9">
+                                                                                                    <div class="entrada">
+                                                                                                        <label class=" ">Nombre Completo:</label><p><b><%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%></b></p>
+                                                                                                            <input type="hidden" name="nombre apellidop apellidom" 
+                                                                                                                value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+                                                                                                                class="form-control" readonly=""
+                                                                                                                value="Read only text goes here">
+                                                                                                    </div> 
+                                                                                                </div>
+                                                                                                <div class="col-sm-2">
+                                                                                                    <li href="javascript:void(0);" class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i> <span> Dar mas Información</span> </li>
+                                                                                                </div>
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-3 col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <div class="entrada">
-                                                                                            <h6 class=" blue_info">Fecha
-                                                                                                de Nacimiento:</h6>
-                                                                                            <input type="text"
-                                                                                                value="<%=dataPaciente[0].fechanacimiento%>"
-                                                                                                class="form-control"
-                                                                                                readonly=""
-                                                                                                value="Read only text goes here">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
+                                                                                        <div class="col-md-6 panel panel-default">
+                                                                                               
+                                                                                            <div class=" panel panel-default">
+                                                                                                <li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Cita</li>            
+                                                                                        
+                                                                                            </div>
+                                                                                            <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
+                                                                                               
+                                                                                                <div class="col-sm-6 col-sm-8">
+                                                                                                            <div class="entrada">
+                                                                                                                <label class="">Especialidad:</label><p><b><%=one_consulta[0].tipoConsulta%></b></p>
+                                                                                                                <input type="hidden" name="tipoConsulta" value="<%=one_consulta[0].tipoConsulta%>"class="form-control" readonly="" value="Read only text goes here">                                                                
+                                                                                                            </div>
+                                                                                                </div>                 
+                                                                                                <div class="col-sm-6 col-sm-12">
+                                                                                                            <div class="entrada">
+                                                                                                                <label class="">Nombre del Médico:</label><p><b><%=one_consulta[0].Citas_Medica.medico%></b></p>
+                                                                                                                <input type="hidden" value="<%=one_consulta[0].Citas_Medica.medico%>" class="form-control" readonly="" value="Read only text goes here" >
+                                                                                                            </div>
+                                                                                                </div>
+                                                                                          
+                                                                                            </div>
+                                                                                            
+                                                                                        </div> 
+                                                                                </section>          
                                                                             </div>
-
-                                                                        </div>
+                                                                       </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- datos del doctor-->
                                                             <div class="block-web">
                                                                 <div class="header">
-                                                                    <div class="actions">
-                                                                        <a href="#" class="minimize"> <i
-                                                                                class="fa fa-chevron-down"></i></a>
-                                                                        <a href="#" class="refresh"> <i
-                                                                                class="fa fa-repeat"></i></a>
-                                                                        <a href="#" class="close-down"> <i
-                                                                                class="fa fa-times"></i></a>
-                                                                    </div>
-                                                                    <h3>Datos de la cita</h3>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-
-
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">
-                                                                                    <h6 class=" blue_info">Nombre del
-                                                                                        Médico:</h6>
-                                                                                    <input type="text"
-                                                                                        name="nombreDoctor"
-                                                                                        value="<%=one_consulta[0].Citas_Medica.medico%>"
-                                                                                        class="form-control" readonly=""
-                                                                                        value="Read only text goes here">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-sm-6">
-                                                                                <div class="entrada">
-                                                                                    <h6 class=" blue_info">Especialidad:
-                                                                                    </h6>
-                                                                                    <input
-                                                                                        value="<%=one_consulta[0].tipoConsulta%>"
-                                                                                        name="tipoConsulta"
-                                                                                        class="form-control" readonly=""
-                                                                                        value="Read only text goes here">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-                                                            <div class="block-web">
-                                                                <div class="header">
-                                                                    <div class="actions"> <a class="minimize"
-                                                                            href="#"><i
-                                                                                class="fa fa-chevron-down"></i></a> <a
-                                                                            class="close-down" href="#"><i
-                                                                                class="fa fa-times"></i></a>
+                                                                    <div class="actions"> 
                                                                     </div>
                                                                     <h3 class="content-header">Estado del Paciente</h3>
                                                                 </div>
@@ -510,12 +432,10 @@
                                                                             </div>
                                                                             <div class="col-sm-6 col-sm-6">
                                                                                 <div class="entrada ">
-                                                                                    <div class="entrada">Fecha de
-                                                                                        Ingreso
-                                                                                        <input class="form-control"
-                                                                                            type="date"
-                                                                                            name="fechaIngreso"
-                                                                                            value="<%=resp[0].fechaIngreso%>"><br>
+                                                                                    <div class="entrada">Fecha de Ingreso
+                                                                                        <input class="form-control" type="date"  name="fechaIngreso" require value="<%=resp[0].fechaIngreso%>" ><br>
+
+                                                                                                
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -536,19 +456,17 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <p class="modal-footer">
+                                                                
+                                                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;  Actualizar</button>
+                                                                    <button type="submit" class="btn btn-warning"><i  class="fa fa-print"></i> &nbsp;&nbsp;  Imprimir</button>
+                                                                </p>
                                                             </div>
                                                             <%if(resp[0].estado_update == true) { %>
-                                                                <p class="text-center">
-                                                                    <button type="reset" class="btn btn-info"
-                                                                        style="margin-right: 20px;"><i
-                                                                            class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-                                                                        Limpiar</button>
-                                                                    <button type="submit" class="btn btn-danger"><i
-                                                                            class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-                                                                        Actualizar</button>
-                                                                    <button type="submit" class="btn btn-outline-danger"><i
-                                                                            class="zmdi zmdi-download"></i> &nbsp;&nbsp;
-                                                                        Imprimir</button>
+                                                                <p class="modal-footer">
+                                                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                                                                    <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;  Actualizar</button>
+                                                                    <button type="submit" class="btn btn-warning"><i  class="fa fa-print"></i> &nbsp;&nbsp;  Imprimir</button>
                                                                 </p>
                                                             <% } %>
                                                         </form>
@@ -556,21 +474,11 @@
                                                         <div class="container-fluid">
                                                             <div class="row">
                                                                 <div class="col-xs-12">
-                                                                    <ul class="nav nav-tabs"
-                                                                        style="margin-bottom: 15px;">
+                                                                    <ul class="nav nav-tabs" style="margin-bottom: 15px;">
 
-                                                                        <li class="active"><a href="#ListPaciente"
-                                                                                data-toggle="tab"><i
-                                                                                    class="zmdi zmdi-assignment"></i>
-                                                                                Datos generales</a></li>
-                                                                        <li class="active"><a href="#ListPaciente"
-                                                                                data-toggle="tab"><i
-                                                                                    class="zmdi zmdi-assignment"></i>
-                                                                                Antecendentes Personales</a></li>
-                                                                        <li class="active"><a href="#ListPaciente"
-                                                                                data-toggle="tab"><i
-                                                                                    class="zmdi zmdi-assignment"></i>
-                                                                                Antecentes Famliares</a></li>
+                                                                        <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i>  Datos generales</a></li>
+                                                                        <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecendentes Personales</a></li>
+                                                                        <li class="active"><a href="#ListPaciente" data-toggle="tab"><i class="zmdi zmdi-assignment"></i> Antecentes Famliares</a></li>
 
                                                                     </ul>
                                                                 </div>
@@ -578,8 +486,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
+
+                                            
                                             <div class="tab-pane fade" id="list">
                                                 <div id="correo">
                                                     
@@ -621,14 +530,18 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </div>
 
-                                    </div>
-                                </div>
+                                        </div>
                                     </section>
                                 </div>
+                                    
+                            </div>
                        
                         <!--====== Scripts -->
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -683,29 +596,11 @@
     </div>
 
     <!--====== Scripts -->
-
+    <%- include("../partials/scripts") -%>
     <script src="/js/get/consultaget.js"></script>
 
 
-    <script src="/js/jquery-2.1.0.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/common-script.js"></script>
-    <script src="/js/jquery.slimscroll.min.js"></script>
-
-
-    <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
-    <script src="/plugins/data-tables/jquery.dataTables.js"></script>
-    <script src="/plugins/data-tables/DT_bootstrap.js"></script>
-    <script src="/plugins/data-tables/dynamic_table_init.js"></script>
-    <script src="/plugins/edit-table/edit-table.js"></script>
-    <script>
-        jQuery(document).ready(function () {
-            EditableTable.init();
-        });
-    </script>
-
-    <script src="/js/jPushMenu.js"></script>
-    <script src="/js/side-chats.js"></script>
+ 
     <script src="/js/get/getECP.js"></script>
 </body>
 

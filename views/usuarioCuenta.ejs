@@ -149,7 +149,7 @@
 											<div class="block-web">
 												<div class="header">
 													<div class="actions"> 
-                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a> 
                             <a class="refresh" href="/usuarios/quitar4/<%=id.id%>"><i class="fa fa-repeat"></i></a>
 													</div>
 												</div>
@@ -177,10 +177,13 @@
                                   <input type="password" parsley-equalto="#pass1" class="form-control" name="" parsley-trigger="change"   required placeholder="Repita Contraseña" />
                                 </div>
                               </div>
-                              <div class="col-md-4">
-                                <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
-                                <a class="btn btn-info"href="/usuarios/quitar3"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
+                              <div class="form-group">
+                                <div class="col-md-4">
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                  <a class="btn btn-info"href="/usuarios/quitar3"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
+                                </div>
                               </div>
+                              
                             </form>
                             <% } else { %>
                             <form class="form-horizontal group-border-dashed" action="/usuarios/crearCuenta/<%=id.id%>" method="POST" parsley-validate novalidate>
@@ -204,10 +207,13 @@
                                   <input type="password" parsley-equalto="#pass1" class="form-control" name="" parsley-trigger="change"   required placeholder/>
                                 </div>
                               </div>
-                              <div class="col-md-4">
-                                <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
-                                <a class="btn btn-danger"href="/usuarios/crearCuenta/<%=id.id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                              <div class="form-group">
+                                <div class="col-md-4">
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                  <a class="btn btn-danger"href="/usuarios/quitar4/<%=id.id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                                </div>
                               </div>
+                              
                             </form>
                             <% } %>
                           </div>
@@ -267,20 +273,23 @@
                 <label  class="col-sm-5 control-label">Asignación de Rol :</label>
                 <div class="col-sm-4">
                   <select class="form-control" id="source" v-model="nomrol" >
-                    <option value="administrcion">Administrador</option>
-                    <option value="usuario">Usuario</option>
-                    <option value="medico">Medico</option>
-                    <option value="fichaje">Fichaje</option>
-                    <option value="Almacen">Almacen</option>
-                    <option value="emergencia">Emergencia</option>
-                    <option value="farmacia">Farmacia</option>
+                    <option value="administrcion">ADMINISTRADOR</option>
+                    <option value="medico">MÉDICO</option>
+                    <option value="fichaje">FICHAJE</option>
+                    <option value="Almacen">ALMACEN</option>
+                    <option value="emergencia">EMERGENCIA</option>
+                    <option value="farmacia">FARMACEUTICO</option>
                   </select>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-success " ><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar </button>
-                <button type="reset"class="btn btn-danger " data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+              <div class="form-group">
+                  <div class="col-md-2">
+
+                      <button type="submit" class="btn btn-success " ><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar </button>
+                      <button type="reset"class="btn btn-danger " data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+                    </div>
               </div>
+              
             </form>
           </div>
         </div>
@@ -384,6 +393,7 @@
     });
 
 </script>
+<script src="/url/export.js"></script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>

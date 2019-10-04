@@ -45,6 +45,14 @@
         }
     </style>
     <%- include("../partials/head") -%>
+    <script type="text/javascript">
+        // este scrip es para verificar si esta el token en local starge
+        var data = localStorage.getItem('data')
+        console.log(data)
+        if (data == null){
+            window.location.replace('/')
+        }
+    </script>
 </head>
 <body class=" light_theme  fixed_header left_nav_fixed" >
 	<div class="wrapper">
@@ -76,21 +84,29 @@
                 <div class="left_nav_slidebar">
 					<ul>
 						<li ><a href="javascript:void(0);"><i
-							class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
+							class="fa fa-home"></i> Home  <span
 							class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul >
+							<ul > 
 								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b ><%=data_doc.data.area_esp.nombre%></b>
 								</a> </li>
 							</ul>
 						</li>
 						
-							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Lista de Paciente <span
+							<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Lista de Paciente <span class="left_nav_pointer"></span> <span
 										class="plus"><i class="fa fa-plus"></i></span></a>
-								<ul class="opened" style="display:block" >
+								<ul  class="opened" style="display:block">
 									<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-											<b class="theme_color">Listas de Internación</b>
-										</a> </li>
-									
+										<b >Listas de Internación</b>
+                                        </a> 
+                                    </li>
+                                    <li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b class="theme_color">Pacientes Internados</b>
+                                        </a> 
+                                    </li>
+                                    <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+                                        <b >Pacientes de alta </b>
+                                        </a> 
+                                    </li>
 	
 								</ul>
 							</li>

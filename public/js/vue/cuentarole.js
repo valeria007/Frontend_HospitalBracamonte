@@ -1,7 +1,9 @@
+
 var reg_roles = new Vue({
     el: "#cuentarole",
     data: () =>({
         msg: "",
+        url:data_url,
         iduser: '',
         nomrol: ""
 
@@ -26,7 +28,7 @@ var reg_roles = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/role/register_rol',esto)
+            fetch(this.url.url_front_end+'/role/register_rol',esto)
             .then(res => res.json())
             .then(data => {
                 if (data.success == true){

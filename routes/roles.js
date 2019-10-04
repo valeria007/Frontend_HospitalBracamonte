@@ -17,7 +17,9 @@ router.get('/role',(req, res) => {
        })
        .catch(error => {       
         console.error('Error:', error)
-        res.redirect('/home')
+        res.render('404error',{
+          msg:"No hay conección con el sevidor"
+        })
     })
   });
   var msg, mg2;
@@ -90,6 +92,7 @@ router.get('/delrol/:id', (req, res) => {
       console.log(resp)
       res.redirect('/role/role');
   });
+  
 });
 
 module.exports = router;

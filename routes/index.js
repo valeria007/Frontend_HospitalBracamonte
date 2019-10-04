@@ -139,29 +139,35 @@ router.post('/login', (req,res)  => {
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(resp => {
-        console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
-        if(resp.role.length <=1){
-          if(resp.role[0].name == "Almacen"){
-            //res.send(resp.role[0].name)
-            res.redirect('/almacen/home/'+resp.id)
-          }else if(resp.role[0].name == "fichaje"){
-            res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
-            //res.send(resp.role)
-          }else if(resp.role[0].name == "medico"){
-            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
-          }else if(resp.role[0].name == "emergencia"){
-            res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
-          }else if(resp.role[0].name == "farmacia"){
-            res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
-          }else if(resp.role[0].name == "hospitalizacion"){
-            res.redirect('/Internaciones/home/'+resp.id)
-          }else{
-            res.send(resp)
-          }
+        if(resp.role[0] == null || resp.role[0] == ""){
+          res.status(400).json({
+            success:false,
+            msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
+          })
         }else{
-          res.redirect('/home')
+          console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
+          if(resp.role.length <=1){
+            if(resp.role[0].name == "Almacen"){
+              //res.send(resp.role[0].name)
+              res.redirect('/almacen/home/'+resp.id)
+            }else if(resp.role[0].name == "fichaje"){
+              res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
+              //res.send(resp.role)
+            }else if(resp.role[0].name == "medico"){
+              res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+            }else if(resp.role[0].name == "emergencia"){
+              res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
+            }else if(resp.role[0].name == "farmacia"){
+              res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
+            }else if(resp.role[0].name == "hospitalizacion"){
+              res.redirect('/Internaciones/home/'+resp.id)
+            }else{
+              res.send(resp)
+            }
+          }else{
+            res.redirect('/home')
+          }
         }
-        
         //res.redirect('/almacen/home/'+resp.user.id)
       }) 
     }else {
@@ -184,30 +190,35 @@ router.post('/login', (req,res)  => {
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(resp => {
-
-        if(resp.role.length <=1){
-          if(resp.role[0].name == "Almacen"){
-            //res.send(resp.role[0].name)
-            res.redirect('/almacen/home/'+resp.id)
-          }else if(resp.role[0].name == "fichaje"){
-            res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
-            //res.send(resp.role)
-          }else if(resp.role[0].name == "medico"){
-            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
-            console.log(resp, " entro y mostro esto")
-          }else if(resp.role[0].name == "emergencia"){
-            res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
-          }else if(resp.role[0].name == "farmacia"){
-            res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
-          }else if(resp.role[0].name == "hospitalizacion"){
-            res.redirect('/Internaciones/home/'+resp.id)
-          }else{
-            res.send(resp)
-          }
+        if(resp.role[0] == null || resp.role[0] == ""){
+          res.status(400).json({
+            success:false,
+            msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
+          })
         }else{
-          res.redirect('/home')
+          if(resp.role.length <=1){
+            if(resp.role[0].name == "Almacen"){
+              //res.send(resp.role[0].name)
+              res.redirect('/almacen/home/'+resp.id)
+            }else if(resp.role[0].name == "fichaje"){
+              res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
+              //res.send(resp.role)
+            }else if(resp.role[0].name == "medico"){
+              res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+              console.log(resp, " entro y mostro esto")
+            }else if(resp.role[0].name == "emergencia"){
+              res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
+            }else if(resp.role[0].name == "farmacia"){
+              res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
+            }else if(resp.role[0].name == "hospitalizacion"){
+              res.redirect('/Internaciones/home/'+resp.id)
+            }else{
+              res.send(resp)
+            }
+          }else{
+            res.redirect('/home')
+          }
         }
-        
         //res.redirect('/almacen/home/'+resp.user.id)
       }) 
       

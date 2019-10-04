@@ -199,10 +199,11 @@
                                     <input  parsley-type="number" type="text" class="form-control" name="telefono" required placeholder="XX-XXXXXX" maxlength="8" />
                                   </div>
                                 </div>
-                                <div class="form-group uppercase">
+                                <div class="form-group">
                                   <div class="col-sm-4">
                                     <label class="control-label" >Cargo :</label>
-                                    <select class="form-control" id="source" name="cargo">
+                                    <select class="form-control" id="source" name="cargo" required placeholder="" >
+                                      <option value="" selected disabled hidden>--Seleccione--</option>
                                       <option value="medico">MÉDICO</option>
                                       <option value="enfermera">EFERMERA</option>
                                       <option value="personal">PERSONAL</option>
@@ -248,7 +249,7 @@
                                 <div class="form-group ">
                                   <div class="col-sm-4 ">
                                     <label  class="control-label">Cargo :</label>
-                                    <select class="form-control" id="source" name="cargo">
+                                    <select class="form-control" id="source" name="cargo" required placeholder="">
                                       <option class="uppercase"><%=onlyUSer.cargo%></option>
                                       <option>-----------------------</option>
                                       <option class="uppercase" value="medico">Medico</option>
@@ -259,8 +260,8 @@
                                   </div>
                                 </div>
                                 <div class="col-sm-4">
-                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
-                                  <a class="btn btn-danger"href="/usuarios/quitar"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o" ></i><span>&nbsp;</span>Actualizar</button>
+                                  <a class="btn btn-danger" href="/usuarios/quitar"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
                                 </div>
                               </form>
                             <% } %>
@@ -293,8 +294,8 @@
                                     <td class="text-center">
                                       <a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user "></i></a><span>&nbsp;</span>
                                       <a href="#!"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                                      <a href="/usuarios/usuarios/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Rol" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
-                                      <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver cuentas"><i class="fa fa-eye " style="color:black"></i></a>
+                                      <a href="/usuarios/usuarios/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
+                                      <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Detalles"><i class="fa fa-eye " style="color:black"></i></a>
                                     </td>
                                   </tr>
                                   <% } %>
@@ -353,7 +354,7 @@
                 <div class="col-sm-6">
                   <div><strong>DIRECCiÓN :</strong><span>&nbsp;</span>{{roles.direcion}}</div><br>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 uppercase">
                   <div><strong>CARGO :</strong><span>&nbsp;</span>{{roles.cargo}}</div><br>
                 </div>
               </div><br>
@@ -479,6 +480,7 @@
     });
 
 </script>
+<script src="/url/export.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>

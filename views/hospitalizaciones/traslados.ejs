@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Traslados</title>
+    <meta charset="UTF-8">
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+    <link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+    <link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+
+
+    <style>
+        div.a {
+            text-align: center;
+        }
+
+        h1.letras {
+            font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+        }
+    </style>
+    <%- include("../partials/head") -%>
+</head>
+<body class=" light_theme  fixed_header left_nav_fixed" onload="actualizaReloj()">
+	 <!-- Content page-->
+	<div class="wrapper">
+        <!--\\\\\\\ wrapper Start \\\\\\-->
+        <div class="header_bar">
+            <!--\\\\\\\ header Start \\\\\\-->
+            <div class="brand">
+                <!--\\\\\\\ brand Start \\\\\\-->
+                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+            </div>
+            <!--\\\\\\\ brand end \\\\\\-->
+            <div class="header_top_bar">
+                <!--\\\\\\\ header top bar start \\\\\\-->
+                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+
+                <div class="top_right_bar">
+
+                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">    <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <div class="top_pointer"></div>
+                            <li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+                            <li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+                            <li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+                            <li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--\\\\\\\ header top bar end \\\\\\-->
+        </div>
+        <div class="inner">
+            <!--\\\\\\\ inner start \\\\\\-->
+            <div class="left_nav">
+
+                <!--\\\\\\\left_nav start \\\\\\-->
+
+				<div class="left_nav_slidebar">
+					<ul>
+						<li ><a href="javascript:void(0);"><i
+							class="fa fa-home"></i> Home </span> <span
+							class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul >
+								<li> <a href="/internaciones/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <%=data_doc.data.area_esp.nombre%> <b ></b>
+								</a> </li>
+							</ul>
+						</li>
+						
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Listas de Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							
+							<ul >
+								<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Internación</b> </a> </li>
+								<li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Pacientes Internados</b> </a> </li>
+								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Pacientes de alta</b> </a> </li>
+								
+							</ul>
+							
+						</li>
+						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Detalles del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href="/hospitalizacion/alergiasvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Alergias</b> </a> 
+                                </li>
+								<li> 
+                                    <a href="/hospitalizacion/antecedentesvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Antecedentes</b> </a> 
+                                </li>
+                                <li> 
+                                    <a href="/hospitalizacion/datos_responsablevis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Datos de responsable</b> </a> 
+                                </li>
+                                
+                                <li> 
+                                    <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Historial</b> </a> 
+                                </li>
+							</ul>
+                        </li>
+                        <li class="left_nav_active theme_border" > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Traslados <span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+                                <li> 
+                                    <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color" >Traslado Interno</b> </a> 
+                                </li>                   
+							</ul>
+                        </li>
+                        <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul >
+								<li> 
+                                    <a href=""> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Cuantas veces tuvo intervencion Quirurgica</b> </a> 
+                                </li>
+								
+							</ul>
+                        </li>
+	
+						</ul>
+					</div>
+            </div>
+            <!--\\\\\\\left_nav end \\\\\\-->
+            <div class="contentpanel" id="traslados">
+                <!--\\\\\\\ contentpanel start\\\\\\-->
+                <div class="row">
+					<br>
+					
+
+					
+					<div class="col-lg-14">
+                        <section class="panel default  h2">
+                            <div class="panel-body">
+                                <div class="panel-group accordion accordion-semi" id="accordion3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading"  >  
+                                            <div class="actions">
+                                            <h3 class="content-header pull-right text-top actions" ><span>&nbsp;&nbsp;&nbsp;</span>Area de Internación del Paciente </h3>
+											   	
+                                            </div>                                     
+                                            <h3 class="panel-title" > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente </a> </h3>
+                                        </div>
+                                        <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+                                            <div class="panel-body"> 
+                                               
+
+                                                <form  method="POST">
+                                                    <input type="hidden" :value="idHist.id_int = '<%=one_internacion[0].id%>'">
+                                                    <input type="hidden" :value="idHist.hist = '<%=data_paciente[0].numeroHistorial%>'">
+                                                    <input type="hidden" :value="idHist.id_medico = '<%=data_doc.data.medico.id%>'">
+                                                    <input type="hidden" :value="idHist.id_cama = '<%=one_internacion[0].idCama%>'">
+
+                                                    <%if(one_traslado == null) { %>
+                                                        <input type="hidden" :value="idHist.id_paleta_internacion = '<%=one_internacion[0].idPinternacion%>'">
+                                                    <% } else { %>
+                                                        <input type="hidden" :value="idHist.id_paleta_internacion = '<%=one_traslado[0].id_paleta_internacion%>'">
+                                                    <% } %>
+                                                   
+
+                
+                                                    <div class="form-group">
+                                                        <div class="col-sm-3">Historial N°: <br>
+                                                            <label><font color="black"><%=data_paciente[0].numeroHistorial%></font></label>
+                                                            
+                                                        </div>
+                                                        <div class="col-sm-3">Area De: <br>
+                                                            <label><font color="black"><%=one_internacion[0].especialidad%></font></label> 
+                                                        </div>
+                                                        <div class="col-sm-3">Ubicacion: <br>
+                                                            <label><font color="black"><%=one_internacion[0].Cama.Sala.descripcionSala%></font></label>
+                                                        </div>
+                                                        <div class="col-sm-3">Cama N°: <br>
+                                                            <label><font color="black"><%=one_internacion[0].Cama.numeroCama%></font></label>
+                                                        </div>
+                                                    </div>
+                                                    <br> <br>
+                                                    <div class="form-group">
+                                                        <p>Datos Generales del Paciente</p>
+                                                        <div class="col-sm-3">Nombre Completo: <br>
+                                                            <label><font color="black"><%=data_paciente[0].nombre%>  <%=data_paciente[0].apellidop%>  <%=data_paciente[0].apellidom%></font></label>
+                                                        </div>
+                                                        <div class="col-sm-3">Fecha Nacimiento: <br>
+                                                            <label><font color="black"> <%=data_paciente[0].fechanacimiento%></font></label>
+                                                        </div>
+                                                        <div class="col-sm-3">Sexo: <br>
+                                                            <label><font color="black"> <%=data_paciente[0].sexo%></font></label>
+                                                        </div>
+                                                        <div class="col-sm-3">C.I.: <br>
+                                                            <label><font color="black"> <%=data_paciente[0].ci%></font></label>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>                  
+					</div>
+                </div>
+                
+                <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+                <template v-if="one_traslado == '' || one_traslado == null">                
+				    <div class="container clear_both padding_fix col-lg-8">
+				    	<div class="row">
+				    		<div class="col-md-12">
+				    			<div class="block-web">
+				    			  	<div class="header">
+				    					<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+				    					<h4 class="content-header">Formulario de traslado</h4>
+				    			  	</div>
+				    			  	<div class="porlets-content">
+                                        <span style="color: red">{{traslado.msg_false}}</span>
+                                        <span style="color: blue">{{traslado.msg}}</span>
+				    					<form @submit="register_traslado" method="POST" parsley-validate novalidate>
+                                        
+				    						<div class="col-md-12">
+				    							<div class="form-group col-md-3">
+				    								<label>Fecha y hora</label>
+				    								<input type="datetime-local" parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
+				    							</div><!--/form-group-->
+				    							<div class="form-group col-md-3">
+				    								<label>Enviado de:</label>
+				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value= " traslado.enviado_de = '<%=data_doc.data.area_esp.nombre%>'">
+                                                </div><!--/form-group-->
+                                                <div class="form-group col-md-3">
+                                                    <label>Area de traslado:</label><br>
+                                                    <select v-model="idHist.id_especialidad">
+                                                        <% for (var i = 0; i < especialidad.length; i++) { %>
+                                                            <option value="<%=especialidad[i].id%>"><%=especialidad[i].nombre%></option>
+                                                        <% } %>
+                                                    </select>
+                                                </div><!--/form-group-->
+                                                <div class="form-group col-md-3">
+				    								<label>Doctor:</label>
+				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value=" traslado.nombre_doctor = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
+                                                </div><!--/form-group-->
+				    						</div>
+				    						<div class="col-md-12">
+				    							<div class="form-group col-md-12">
+				    								<label>Operaciones</label>												
+				    								<textarea name="" id="" cols="30" rows="5" required class="form-control" v-model="traslado.operaciones"></textarea>
+				    							</div><!--/form-group-->
+				    							<div class="form-group col-md-12">
+				    								<label>Diagnostico Principal</label>												
+				    								<textarea name="" id="" cols="30" rows="5" required class="form-control" v-model=" traslado.diagnostico_principal"></textarea>
+				    							</div><!--/form-group-->
+				    							<div class="form-group col-md-12">
+				    								<label>Otros diagnosticos</label>												
+				    								<textarea name="" id="" cols="30" rows="6" required class="form-control" v-model="traslado.otros_diagnosticos"></textarea>
+				    							</div><!--/form-group-->
+				    							<div class="form-group col-md-12">
+				    								<label>Causa Externa</label>												
+				    								<textarea name="" id="" cols="30" rows="1" required class="form-control" v-model="traslado.causa_externa"></textarea>
+                                                </div><!--/form-group-->
+
+				    						</div>							
+                                        
+				    					  	<button class="btn btn-primary" type="submit">Submit</button>
+				    					  	<button class="btn btn-default">Cancel</button>
+				    					</form>
+				    			  	</div><!--/porlets-content-->
+				    			</div><!--/block-web--> 
+				    		</div><!--/col-md-6-->
+				    	</div>
+                    
+                    </div>                
+                </template>
+
+                <template v-else>
+                    <div class="container clear_both padding_fix col-lg-8">
+				    	<div class="row">
+				    		<div class="col-md-12">
+				    			<div class="block-web">
+				    			  	<div class="header">
+				    					<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
+				    					<h4 class="content-header">Formulario de traslado</h4>
+				    			  	</div>
+				    			  	<div class="porlets-content">
+                                        <span style="color: red">{{traslado.msg_false}}</span>
+                                        <span style="color: blue">{{traslado.msg}}</span>
+				    					<form  parsley-validate novalidate>
+                                        
+				    						<div class="col-md-12">
+				    							<div class="form-group col-md-3">
+				    								<label>Fecha y hora</label>
+				    								<input type="datetime-local" readonly parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
+				    							</div><!--/form-group-->
+				    							<div class="form-group col-md-3">
+				    								<label>Enviado de:</label>
+				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value= " traslado.enviado_de = '<%=data_doc.data.area_esp.nombre%>'">
+                                                </div><!--/form-group-->
+                                                <div class="form-group col-md-3">
+                                                    <label>Area de traslado:</label><br>
+                                                    <input type="text" parsley-trigger="change" readonly class="form-control" v-model="esp">
+                                                   <!--  <select v-model="idHist.id_especialidad">
+                                                        <% for (var i = 0; i < especialidad.length; i++) { %>
+                                                            <option value="<%=especialidad[i].id%>"><%=especialidad[i].nombre%></option>
+                                                        <% } %>
+                                                    </select> -->
+                                                </div><!--/form-group-->
+                                                <div class="form-group col-md-3">
+				    								<label>Doctor:</label>
+				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value=" traslado.nombre_doctor = '<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>'">
+                                                </div><!--/form-group-->
+				    						</div>
+				    						<div class="col-md-12">
+				    							<div class="form-group col-md-12">
+				    								<label>Operaciones</label>												
+				    								<textarea name="" id="" cols="30" rows="5" readonly required class="form-control" v-model="traslado.operaciones">                                                   
+                                                    </textarea>
+				    							</div><!--/form-group-->
+				    							<div class="form-group col-md-12">
+				    								<label>Diagnostico Principal</label>												
+				    								<textarea name="" id="" cols="30" rows="5" readonly required class="form-control" v-model=" traslado.diagnostico_principal"></textarea>
+				    							</div><!--/form-group-->
+				    							<div class="form-group col-md-12">
+				    								<label>Otros diagnosticos</label>												
+				    								<textarea name="" id="" cols="30" rows="6" readonly required class="form-control" v-model="traslado.otros_diagnosticos"></textarea>
+				    							</div><!--/form-group-->
+				    							<div class="form-group col-md-12">
+				    								<label>Causa Externa</label>												
+				    								<textarea name="" id="" cols="30" rows="1" readonly required class="form-control" v-model="traslado.causa_externa"></textarea>
+                                                </div><!--/form-group-->
+                                                
+				    						</div>							
+                                        
+				    					  	<button class="btn btn-primary" disabled>Submit</button>
+				    					  	<button class="btn btn-default" disabled>Cancel</button>
+				    					</form>
+				    			  	</div><!--/porlets-content-->
+				    			</div><!--/block-web--> 
+				    		</div><!--/col-md-6-->
+				    	</div>
+                    
+                    </div>
+                </template>
+                
+			</div>
+		</div>
+	</div>
+
+	<!--====== Scripts -->
+	<script src="/js/fecha.js"></script>
+	<script src="/js/get/consultaget.js"></script>	
+	
+	<script src="/js/get/consultaget.js"></script>
+
+
+    <script src="/js/jquery-2.1.0.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common-script.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+
+    <script src="/plugins/data-tables/jquery.dataTables.js"></script>
+    <script src="/plugins/data-tables/DT_bootstrap.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+    <script src="/plugins/edit-table/edit-table.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>
+
+    <script src="/js/jPushMenu.js"></script>
+    
+
+    <script src="/js/side-chats.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="/axios/dist/axios.min.js"></script>
+    <script>
+    var traslados = new Vue({
+        el:"#traslados",
+        data:{            
+            idHist:{
+                id_int:'',
+                hist:'',
+                id_medico:'',
+                id_cama:'',
+                id_paleta_internacion:'',
+                id_especialidad:''
+            },
+            
+            traslado:{
+                msg:'',
+                msg_false:'',
+                nombre_doctor:'',
+                fecha_hora:'',
+                enviado_de:'',
+                operaciones:'',
+                diagnostico_principal:'',
+                otros_diagnosticos:'',
+                causa_externa:''
+            },
+
+            one_traslado:'',
+            esp:'',
+            operaciones:[]
+        },
+        mounted(){
+            
+            fetch('http://localhost:7000/internaciones/vue_traslado_int/'+ this.idHist.id_int)
+            .then(res => res.json())
+            .then(data => {
+                console.log (data , " <<<<<<<<<<<< sadf")
+
+                if(data == "" || data == null){
+                    console.log('no')
+                    this.one_traslado = ''
+      
+                }else{
+                   
+                    console.log('si null <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+                    this.one_traslado = data[0]
+                    this.traslado.fecha_hora = data[0].fecha_hora
+                    this.traslado.operaciones = data[0].operaciones
+                    this.traslado.diagnostico_principal = data[0].diagnostico_principal
+                    this.traslado.otros_diagnosticos = data[0].otros_diagnosticos
+                    this.traslado.causa_externa = data[0].causa_externa  
+                    
+                    this.idHist.id_especialidad = data[0].id_especialidad     
+                }
+                        
+                
+            })
+            fetch('http://localhost:7000/internaciones/vue_ver_especialidades')
+            .then(res => res.json())
+            .then(data => {
+                
+                for(var i = 0; i < data.length; i++){
+                    if(data[i].id == this.idHist.id_especialidad){
+                        
+                        this.esp = data[i].nombre
+
+                    }
+                }
+            })
+            
+            fetch('http://localhost:7000/internaciones/vue_ver_operaciones_internacion/' + this.idHist.id_int)
+            .then(res => res.json())
+            .then(data => {
+                   
+                for(var i = 0; i < data.length; i++){
+                    this.operaciones.push(data[i].intr_parcticada)                    
+                }  
+            })
+           
+        },
+        methods:{ 
+            register_traslado(e){
+                e.preventDefault();
+                console.log(this.idHist.id_int)
+                var data = {
+                    historial : this.idHist.hist,
+
+                    nombre_doctor:this.traslado.nombre_doctor,
+                    fecha_hora:this.traslado.fecha_hora,
+                    enviado_de:this.traslado.enviado_de,
+                    operaciones:this.traslado.operaciones,
+                    diagnostico_principal:this.traslado.diagnostico_principal,
+                    otros_diagnosticos:this.traslado.otros_diagnosticos,
+                    causa_externa:this.traslado.causa_externa,
+
+                    id_internacio: this.idHist.id_int,                   
+                    id_medico: this.idHist.id_medico,
+                    id_especialidad: this.idHist.id_especialidad 
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch('http://localhost:7000/internaciones/vue_register_traslado/'+this.idHist.id_paleta_internacion,esto)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if(data.success == true){
+                        this.traslado.msg = data.msg
+                        nombre_doctor:this.traslado.nombre_doctor,
+                        this.traslado.fecha_hora = ''
+                        this.traslado.enviado_de = ''
+                        this.traslado.operaciones = ''
+                        this.traslado.diagnostico_principal = ''
+                        this.traslado.otros_diagnosticos = ''
+                        this.traslado.causa_externa = ''
+                        this.traslado.msg_false = ''
+                        this.update_estado_internacion()
+                        this.liverar_cama()
+                        this.oneTraslado()
+                    }else{
+                        this.traslado.msg_false = data.msg
+                        this.traslado.msg = ''
+                    }
+
+                })
+            },
+            update_estado_internacion(){
+
+                var data = {
+                    estado_alta: 'true'
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch('http://localhost:7000/internaciones/vue_update_estado_alta/'+this.idHist.id_int,esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => {
+                    console.log(data)
+                })
+
+            },
+
+            liverar_cama(){
+                var data = { 
+                    historial: '0',              
+                    estado: 'true'
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch('http://localhost:7000/internaciones/vue_update_cama_estado/'+this.idHist.id_cama,esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => {
+                    console.log(data)
+                })
+            },
+
+            oneTraslado(){
+                fetch('http://localhost:7000/internaciones/vue_traslado_int/'+ this.idHist.id_int)
+                .then(res => res.json())
+                .then(data => {
+                    console.log (data , " <<<<<<<<<<<< sadf")
+
+                    if(data == "" || data == null){
+                        console.log('no')
+                        this.one_traslado = ''
+                    
+                    }else{
+                    
+                        console.log('si null <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+                        this.one_traslado = data[0]
+                        this.traslado.fecha_hora = data[0].fecha_hora
+                        this.traslado.operaciones = data[0].operaciones
+                        this.traslado.diagnostico_principal = data[0].diagnostico_principal
+                        this.traslado.otros_diagnosticos = data[0].otros_diagnosticos
+                        this.traslado.causa_externa = data[0].causa_externa  
+
+                        this.idHist.id_especialidad = data[0].id_especialidad     
+                    }
+                })
+            }
+            
+        }
+        
+    })
+        
+    </script>
+</body>
+</html>

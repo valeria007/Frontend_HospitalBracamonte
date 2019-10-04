@@ -9,6 +9,32 @@ var fileAsArray = cie10('array');
 var fileAsObject = cie10('obj');
 
 
+router.get('/ci10', (req,res) => {
+  
+  //res.status(200).json(fileAsArray)
+
+  for(var i = 0; i< fileAsArray.length; i++){
+
+    var data = {
+      codigo:fileAsArray[i].c,
+      descripcion:fileAsArray[i].d
+    };
+      var enviar = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type' : "application/json"
+      }
+    }
+    fetch('http://localhost:3100/diagnostico',enviar)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+      console.log(resp)
+    })
+  }
+})
+
 var data_user = {}
 function user(data,id){
   let storedItem = data_user[id];
@@ -154,6 +180,20 @@ router.get('/lista_pacientes/:token_id/:token_partial', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  */
 
+//    ruta vue de diagnostico
+
+router.get('/Vue_diagnostico', (req,res) => {
+
+  fetch('http://localhost:3100/diagnostico')        
+  .then(resp => resp.json())
+  .then( diagnostico =>{
+    res.status(200).json(diagnostico)
+  })
+
+})
+//
+
+
 router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
   const { idCIta,historial,token_id,token_p } = req.params
   var esp; // esto es la especialidad 
@@ -188,19 +228,27 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
           function paciente_consulta(hst, especialidad){
             fetch('http://localhost:3000/api/pacienteConsulta/' + hst + '/' + especialidad)        
               .then(resp => resp.json())
-              .then(resp =>{   
-                res.render('consulta_externa/reg_consulta',{
-                  data_doc:data_user[token_id],
-                  dataPaciente,
-                  cita,
-                  updateCita,                  
+              .then(resp =>{ 
 
-                  resp,  // esto es una lista de los pacientes 
-                  msg:msg_Consulta_Externa[token_id],
-                  fileAsArray, 
-                  idCIta
+                fetch('http://localhost:3100/diagnostico')        
+                .then(resp => resp.json())
+                .then( diagnostico =>{
 
-                }) 
+                  res.render('consulta_externa/reg_consulta',{
+                    data_doc:data_user[token_id],
+                    dataPaciente,
+                    cita,
+                    updateCita,                  
+  
+                    resp,  // esto es una lista de los pacientes 
+                    msg:msg_Consulta_Externa[token_id],
+                    diagnostico, 
+                    idCIta
+  
+                  }) 
+
+                })
+                
                 remove_msg()
                 function remove_msg(){
                   if(msg_Consulta_Externa[token_id] != null){
@@ -211,6 +259,7 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
                  
                 }
               })
+
               .catch(error => {
                   console.error('Error:', error)
                   res.send("no hay coneccion con el servidor");

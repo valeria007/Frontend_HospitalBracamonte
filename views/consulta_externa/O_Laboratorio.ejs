@@ -2,13 +2,14 @@
 <html lang="es">
 
 <head>
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-	<title>busca paciente</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
+	<title>Examenes Complementarios</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
+		<link href="/css/moldeable.css" rel="stylesheet" type="text/css" />
 
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -20,19 +21,19 @@
 
 
 
-<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
-<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+	<link href="/plugins/toggle-switch/toggles.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/icheck.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/blue.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/green.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/grey.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/orange.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/pink.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/checkbox/minimal/purple.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.css" rel="stylesheet">
+	<link href="/plugins/dropzone/dropzone.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
 	<style>
 		div.a {
@@ -44,7 +45,7 @@
 
 		}
 	</style>
-	
+
 </head>
 
 <body class="light_theme  fixed_header left_nav_fixed">
@@ -65,15 +66,11 @@
 
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
-								class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
-							<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-							<li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-							<li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-							<li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+							
+							<li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
 						</ul>
 					</div>
 				</div>
@@ -88,45 +85,30 @@
 
 				<div class="left_nav_slidebar">
 					<ul>
-						<li ><a href="javascript:void(0);"><i
-									class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span
-									class="plus"><i class="fa fa-plus"></i></span> </a>
-							<ul >
-								<li> <a href=""> <span>&nbsp;</span> <i
-											class="fa fa-circle "></i> <b >Inicio</b> </a> </li>
+						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
 							</ul>
 						</li>
-						<li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul >
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Listas de Citas</b>  </a> </li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b> </a> </li>
 							</ul>
 						</li>
-						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Estado del Paciente<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul >
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nacido vivo</b>  </a> </li>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Defunción Neonatal</b>  </a> </li>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Defunción General</b>  </a> </li>
+						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Historial<span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul>
+								<li> <a href="/hospitalizacion/VerHistorialvis"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Última Consulta</b> </a> </li>
+								
 							</ul>
 						</li>
 						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul >
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial</b>  </a> </li>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Recetas</b>  </a> </li>
+							<ul>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Historial Clinico</b> </a> </li>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Vicitas al doctor</b> </a> </li>
+								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
 							</ul>
-						</li>
-						<li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Ordenes<span
-									class="plus"><i class="fa fa-plus"></i></span></a>
-							<ul class="opened" style="display:block">
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color"> Laboratorios</b></a> </li>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b > Ecografía</b></a> </li>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b > Radiografia</b></a> </li>
-								
-							</ul>
-
 						</li>
 						
-
 					</ul>
 				</div>
 			</div>
@@ -135,118 +117,903 @@
 				<!--\\\\\\\ contentpanel start\\\\\\-->
 				<div class="container clear_both padding_fix col-lg-8">
 					<br>
-					<br>
-					<br>
 					<div class="row">
-
 						<div class="col-lg-12 ">
-							
+							<!--\\\\\\\ contentpanel start\\\\\\-->
+							<div class="row">
+								<div class="col-md-12">
+									<div class="block-web">
+										<div class="header">
+											<div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i>
+											</div>
+											<h2 class="content-header " > <span>&nbsp;&nbsp;&nbsp;</span>Orden de Examen</h2>
+											<div id="" class="col-md-2"><br>
+												<div class="">
+													<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> ATRAS</a>
+												</div>
+											</div>
+										</div>
+										<br>
+										<br>
+										<div class="block-web">
+											<div class="col-md-14">
+												<div class="row">
+													<div class="">
 
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-      <div class="row">
-            <div class="col-md-12">
-              <div class="block-web">
-                    <div class="header">
-                            <div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i></div>
-                            <h3 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Laboratorio </h3>
-							<div id="" class="col-md-2">	
-								<div class="">
-									<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-								</div>				
-							</div>
-					</div>
-                <br>
-                <br>
-                <div class="porlets-content">
-                    <div class="form-group">
-                        <div class="row">
-            
-                 
-                    <div class="form-group">
-                      <div class="col-sm-4">
-                        <label class="control-labe">Nombre del Paciente:</label>
-                        <input type="text"  class="form-control" parsley-trigger="change"  name="" required placeholder="Nombre del Paciente" />
-                      </div>
-                      <div class="col-sm-4">
-                        <label class="control-labe">Numero de Historial:</label>
-                        <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="" required placeholder="Introdusca N° Historial" />
-                      </div>
-                      <div class="col-sm-4">
-                        <label class="control-labe">C.I.:</label>
-                        <input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="" required placeholder="Introdusca CI." />
-                      </div>
+														<div class="col-sm-4">
+															<label class="control-labe">Nombre del Paciente:</label>
+															<input type="text" class="form-control" parsley-trigger="change" name="" required placeholder="Nombre del Paciente" />
+														</div>
+														<div class="col-sm-4">
+															<label class="control-labe">Numero de Historial:</label>
+															<input type="text" name="grupo" class="form-control" parsley-trigger="change" name="" required placeholder="Introdusca N° Historial" />
+														</div>
+														<div class="col-sm-4">
+															<label class="control-labe">C.I.:</label>
+															<input type="text" name="titulo" class="form-control" parsley-trigger="change" name="" required placeholder="Introdusca CI." />
+														</div><br>
 
-                      <div class="col-md-12">
-
-
-							<div class="tab-content">
-									<div >
-											<table class="fl-table display table table-bordered table-striped" id="dynamic-table">
-													<thead>
-													<tr>
-														<th>#</th>
-														<th>Código</th>
-														<th>Descripción</th>
-														<th class="center">Opciones</th>
+														<form>
+															<div class="header  ">
+                                								<div class="">
+																	<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Seleccione</h3>
+																</div>       
+															</div>
+															<div class="row">
+																<div class="col-md-14 row">
+																	<section class="panel default  h2">
+																		<!---<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Examen de Ecografia<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
 														
-													</tr>
-													</thead>
-													<tbody>
-													   
-															<tr>
-																<td></td>
-																<td></td>
-																<td></td>
-																<td>
-																	<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="insertar"><i class="fa fa-file-text text-muted"></i></a><span>&nbsp;</span>
-																   
-																</td>
-															</tr>
-													
-												
-													
-													</tbody>                                                                       
-											</table> 
+																		<div class="col-md-4 panel panel-default">
+																			<div class=" panel panel-default">
+																				<li href="#ac3-1" data-parent="#accordion3" data-toggle="collapse" class=" list-group-item  blue_bg text-center"> Examen Ecográfico</li>
+																			</div>
+																			<div style="height: 0px;" id="ac3-1" class="panel-collapse collapse">
+																				<div class="">
+																					<div>		
+																						<li href="javascript:void(0);"class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i>
+																							<span> Insertar</span> 
+																						</li>
+																					</div>
+																					<div class="col-md-12 row">
+																						<div class="col-md-2 ">
+																							<input type="checkbox" name="hora" value="ESTUDIO HEPATOBILIAR: HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES"  style="width:20px;height:20px">
+																						</div>
+																						<div class=" col-md-10 row">
+																							<label class=" "><FONT SIZE=1><b>1.- Estudio Hepatobiliar:</b> <br>HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES</FONT> </label>
+																							<br>
+																						</div>
+																						
+																					</div>
+																					<div class="col-md-12 row"><br>
+																						<div class="col-md-2">
+																							<input type="checkbox" name="hora" value="ESTUDIO NEFROLÓGICO:RIÑONES - CONDUCTOS - VEJIGA URINARIA" style="width:20px;height:20px">
+																						</div>
+																						<div class=" col-md-10 row">
+																							<label class=" "><FONT SIZE=1><b>2.- Estudio Nefrológico:</b> <br>RIÑONES - CONDUCTOS - VEJIGA URINARIA</FONT> </label>
+																							<br>
+																						</div>
+																						
+																					</div>
+																					<div class="col-md-12 row"><br>
+																						<div class="col-md-2">
+																							<input type="checkbox" name="hora" value="ESTUDIO GINECOLÓGICO:ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR "  style="width:20px;height:20px">
+																						</div>
+																						<div class=" col-md-10 row">
+																							<label class=" "><FONT SIZE=1><b>3.- Estudio Ginecológico:</b> <br>ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR </FONT> </label>
+																							<br>
+																						</div>
+																							
+																					</div>
+																					<div class="col-md-12 row"><br>
+																						<div class="col-md-2">
+																							<input type="checkbox" name="hora" value="ESTUDIO OBSTÉTRICO:VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO"  style="width:20px;height:20px">
+																						</div>
+																						<div class=" col-md-10 row">
+																							<label class=" "><FONT SIZE=1><b>4.- Estudio Obstétrico:</b> <br>VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO</FONT> </label>
+																							<br>
+																						</div>
+																							
+																					</div>
+																					<div class="col-md-12 row"><br>
+																						<div class="col-md-2">
+																							<input type="checkbox" name="hora" value="ESTUDIO UROLÓGICO:PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN"  style="width:20px;height:20px">
+																						</div>
+																						<div class=" col-md-10 row">
+																							<label class=" "><FONT SIZE=1><b>5.- Estudio Urológico:</b> <br>PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN</FONT></label>
+																						<br>
+																						</div>
+																							
+																					</div>
+																					
+																					
+																				</div>
+																			</div>
+																		</div>
+																		<!---<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Rayos X<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>><<<<<<<<
+																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+																		<div class="col-md-4 panel panel-default">
 
-										<h3>Detalle</h3>
-										<textarea class="large-compact" name="diagnostico" cols="112" rows="10"></textarea>
-									
+																			<div class=" panel panel-default">
+																				<li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center"> Examen de Rayos X</li>
+																			</div>
+																			<div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
+																				<div class="">
+																					<!------------------boton de insertar de rayos X--------------------->
+																					<div>		
+																						<li href="javascript:void(0);"class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i>
+																							<span> Insertar</span> 
+																						</li>
+																					</div>
+																					<div class="col-md-14 ">
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Torax<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Torax"> <i class="fa fa-angle-right"></i> Torax</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Torax" class="panel-collapse collapse">
+																								<div class="col-md-14 row center"><label> (Región infracervical- Apéndice xifoides)<br>(Pulmones, Corazón, Mediastino, Jaula Toráxica)</label></div>
+																						
+																								<div class="col-md-14 ">
+																									
+																									<input type="checkbox" name="toraxP" value="Tórax Pa."  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tórax Pa.</FONT> </label>&nbsp;&nbsp;&nbsp;
+																									
+																									<input type="checkbox" name="toraxo" value="Tórax Osco"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tórax Osco</FONT></label>&nbsp;&nbsp;&nbsp;
+																									
+																									
+																									<input type="checkbox" name="toraxl" value="Tórax Lateral"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tórax Lateral</FONT></label>
+																								
+																								</div>
+																								
+																								<div class="col-md-12 row">
+																									<input type="checkbox" name="toraxT" value="Tórax en Trendelemburg"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tórax en Trendelemburg</FONT></label><br>
+																									
+																									<input type="checkbox" name="HemitoraxD" value="Hemitórax oblicua derecha (Arcos Costales)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Hemitórax oblicua derecha (Arcos Costales)</FONT></label><br>
+																									
+																									<input type="checkbox" name="HemitoraxD" value="Hemitórax oblicua izquierda (Arcos Costales)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Hemitórax oblicua izquierda (Arcos Costales)</FONT></label>
+																									
+																								</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ABDOMEN<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Abdomen"> <i class="fa fa-angle-right"></i> Abdomen</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Abdomen" class="panel-collapse collapse">
+																							<div class="col-md-14 row center"><label> Apéndice xifoides - Sifilis del pubis</label></div>
+																								<div class="col-md-12 row">
+																									<input type="checkbox" name="AbdomenAp " value="Abdomen Ap (de pie o en de cúbito)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Abdomen Ap (de pie o en de cúbito)</FONT></label><br>
+																									
+																									<input type="checkbox" name="AbdomenT" value="Abdomen en Trendelemburg"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Abdomen en Trendelemburg</FONT></label><br>
+																									
+																									<input type="checkbox" name="Invertografia" value="Invertografía (Imperforación anal)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Invertografía (Imperforación anal)</FONT></label>
+																									
+																								</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Cráneo y Macizo Facial<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Craneo"> <i class="fa fa-angle-right"></i> Cráneo y Macizo Facial</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Craneo" class="panel-collapse collapse">
+																							<div class="col-md-14 row center"><label> </label></div>
+																						
+																								<div class="col-md-7 col-log-7 row ">
+																									
+																									<input type="checkbox" name="hora" value="Cáneo(Ap. lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Cáneo(Ap. lateral)</FONT></label>&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Cráneo Tawne(Agj.Occipital)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Cráneo Tawne(Agj.Occipital)</FONT></label><br>
+
+																									<input type="checkbox" name="hora" value="Cráneo macizo facial Ap."  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Cráneo macizo facial Ap.</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Craneo Silla Turca Lateral"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Craneo Silla Turca Lateral</FONT></label>
+																								
+																								</div>
+																								
+																								<div class="col-md-7 row">
+																									<input type="checkbox" name="hora" value="Cráneo Stenvers Der.(Peñasco)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Cráneo StenversDer.(Peñasco)</FONT></label>
+																									
+																									<input type="checkbox" name="hora" value="Cráneo Stenvers Izq.(Peñasco)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Cráneo Stenvers Izq.(Peñasco)</FONT></label>
+
+																									<input type="checkbox" name="hora" value="Cráneo macizo facial Lateral"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Cráneo macizo facial Lateral</FONT></label>
+																									
+																									
+																									<input type="checkbox" name="CraneoMayor" value="Cráneo Mayor izquierdo(Oido externo, matoides)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Cráneo Mayor izquierdo<br>(Oido externo, matoides)</FONT></label>
+																									
+																								</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Placas Radiograficas de craneo y macizo facial<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<div class="col-md-14 ">
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Placa"> <i class="fa fa-angle-right"></i> Placas Radiográficas de craneo y macizo facial</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Placa" class="panel-collapse collapse">
+																							<div class="col-md-14 row center"><label></label></div>
+																						
+																								<div class="col-md-7  row ">
+																									
+																									<input type="checkbox" name="hora" value="Huecos Propios de la nariz(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Huecos Propios de la nariz(<br>Ap. y Lateral)</FONT></label>&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Maxilar Superior Ap."  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Maxilar Superior Ap.</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="hora" value="Senos paranasales (Laterales)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Senos paranasales (Laterales)</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Izquierdo (boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Art.Temporomaxilar Izquierdo (boca cerrada y boca abierta)</FONT></label>
+																								
+																							
+																								</div>
+																							
+																								<div class="col-md-7 row">
+																									<input type="checkbox" name="hora" value="Senos paranasales (Fron y Nasal)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Senos paranasales <br>(Fron y Nasal)</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																								
+																									<input type="checkbox" name="hora" value="Maxilar inferior Ap."  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Maxilar inferior Ap.</FONT></label><br>
+																								
+																									<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Maxilar inferior Latearal</FONT></label><br>
+
+																									<input type="checkbox" name="hora" value="Cráneo Cavuno Faringeo"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Cráneo Cavuno Faringeo</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Art.Temporomaxilar Derecha<br>(boca cerrada y boca abierta)</FONT></label><br>
+																								
+																								</div>
+																						</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Columna vertebral<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Columna"> <i class="fa fa-angle-right"></i> Columna vertebral</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Columna" class="panel-collapse collapse">
+																							<div class="col-md-14 row center"><label> (Cervical a coxígea, por segmentos)(Cervical - Dorsal - Lumbosacra - Sacrocoxígea)</label></div>
+																						
+																								<div class="col-md-7  row ">
+																									
+																									<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col. Cervical(Ap. y Lateral)</FONT></label>&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col.Cervical <br>(Oblicuas Der. e Izq)</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="hora" value="Col.Dorsal del Cubito Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col.Dorsal del Cúbito Dorsal <br>o de pie(Ap. y Lateral)</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal del Cubito Dorsal o de pie(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col.Dorsal del Cúbito Dorsal<br> o de pie(Oblicuas Der. e Izq)</FONT></label>
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie( Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col.Lumbar del Cúbito Dorsal <br>o de pie( Ap. y Lateral)</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																								
+																							
+																								</div>
+																							
+																								<div class="col-md-7 row">
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col. Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)</FONT></label><br>
+																								
+																									<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col.Sacrocoxigea de Cúbito</FONT></label><br>
+
+																									<input type="checkbox" name="hora" value="Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Dorsal o de pie(Ap. y Lateral)</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col.Dorsal Lateral de<br> pie(en Flexion y extencion)</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Col.Lumbar Lateral de pie(en Flexion y extencion)</FONT></label><br>
+
+																								</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Miembros superiores <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Superior"> <i class="fa fa-angle-right"></i> Miembros superiores</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Superior" class="panel-collapse collapse">
+																							<div class="col-md-14 row center"><label> (Cintura Escapular - Mano)(Por Segundo)</label></div>
+																						
+																								<div class="col-md-7  row ">
+																									
+																									<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Hombro (Ap.)</FONT></label>&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Hombro Axial</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="hora" value="Col.Dorsal del Cubito Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Hombro Tangencial</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal del Cubito Dorsal o de pie(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Omóplato(Ap.)</FONT></label><br>
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie( Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Omóplato Axial</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Mano Ap. y Oblicua </FONT></label><br>
+
+																									
+																									<input type="checkbox" name="hora" value="Col.Dorsal del Cubito Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Mano Canal Carpiano</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal del Cubito Dorsal o de pie(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Mano Pisiforme(Ap.)</FONT></label><br>
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie( Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Desos Ap. y Lateral</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																								
+																							
+																								</div>
+																							
+																								<div class="col-md-7 row">
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Omóplato Tangencial</FONT></label><br>
+																								
+																									<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Clavícula(Ap.)</FONT></label><br>
+
+																									<input type="checkbox" name="hora" value="Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Clavícula Axial</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Clavícula Tangencial</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Art. Esternoclavicular(Ap.)</FONT></label><br>
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Brazo Ap. y Lat.</FONT></label><br>
+																								
+																									<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Antebrazo Ap. y Lat</FONT></label><br>
+
+																									<input type="checkbox" name="hora" value="Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Codo Ap. y Lat</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Art. Codo Tangencial</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Muñeca Ap. y Lat</FONT></label><br>
+																								</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Miembros inferiores <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Inferior"> <i class="fa fa-angle-right"></i> Miembros inferiores</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Inferior" class="panel-collapse collapse">
+																							<div class="col-md-14 row center"><label> (Cintura Pelpiana - Pié)(Por Segmentos)</label></div>
+																						
+																								<div class="col-md-7  row ">
+																									
+																									<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Pelvis(Ap. adultos, niños)</FONT></label>&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Pelvis Axial</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="hora" value="Col.Dorsal del Cubito Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Pelvis Tangencial</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal del Cubito Dorsal o de pie(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Sinfisis del Pubis </FONT></label><br>
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie( Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Art. Coxofemoral Ap.</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Art. Coxofemoral Lat.</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="hora" value="Col.Dorsal del Cubito Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Art. Coxofemoral Tang.</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="CraneoMayor" value="Musculo Ap. y Lat."  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Musculo Ap. y Lat.</FONT></label><br>
+																									
+																									<input type="checkbox" name="hora" value="Pierna Ap. y Lat."  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Pierna Ap. y Lat.</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																								
+																							
+																								</div>
+																							
+																								<div class="col-md-7 row">
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Rodilla Ap. y Lat.</FONT></label><br>
+																								
+																									<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tobillo Ap. y Lat.</FONT></label><br>
+
+																									<input type="checkbox" name="hora" value="Rodilla Oblicua"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Rodilla Oblicua</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Rodilla con Carga</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Rótula Tangencial</FONT></label><br>
+																									
+																									<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tobillo Oblicua</FONT></label><br>
+																								
+																									<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tobillo Tangencial</FONT></label><br>
+
+																									<input type="checkbox" name="hora" value="Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Calcaneo(Tang. y Lat.)</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Pié Ap. y Lat(de cúbito Dorsal)</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Pié con carga(parado)</FONT></label><br>
+																								</div>
+																						</div>
+																					</div>
+
+
+																				</div>
+																			</div>
+
+																		</div>
+																		<!---<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Laboratorio (sangre Y orina)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+																		<div class="col-md-4 panel panel-default">
+
+																			<div class=" panel panel-default">
+																				<li href="#ac3-3" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center"> Laboratorio</li>
+	
+																			</div>
+																			<div style="height: 0px;" id="ac3-3" class="panel-collapse collapse">
+																				<div class="">
+																					<!------------------boton de insertar laboratorio------------------->
+																					<div>		
+																						<li href="javascript:void(0);"class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i>
+																							<span> Insertar</span> 
+																						</li>
+																					</div>
+																					<div class="col-md-14 ">
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Hemotología<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Hemotología"> <i class="fa fa-angle-right"></i> Hemotología</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Hemotología" class="panel-collapse collapse">
+																							<div class="col-md-7  row ">
+																									
+																									<input type="checkbox" name="Hematocrito" value="Hematocrito"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Hematocrito</FONT></label>&nbsp;<br>
+																									
+																									<input type="checkbox" name="Hemograma" value="Hemograma Completo"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Hemograma Completo</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="Reticulocitos" value="Reticulocitos"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Reticulocitos</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="Grupos " value="Grupos Sanguineos Rh"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Grupos Sanguineos Rh</FONT></label><br>
+																									
+																									<input type="checkbox" name="Recuento" value="Recuento Leucocitos"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Recuento Leucocitos</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																									
+																									<input type="checkbox" name="Leucograma" value="Leucograma"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Leucograma</FONT></label><br>
+
+																									
+																									<input type="checkbox" name="CoombsD" value="Coombs Directo"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Coombs Directo</FONT></label><br>
+																							
+																							</div>
+																						
+																							<div class="col-md-7 row">
+
+																									<input type="checkbox" name="CoombsI" value="Coombs Indirecto"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Coombs Indirecto</FONT></label><br>
+																									
+																									<input type="checkbox" name="gota" value="Gota Gruesa(Palud)."  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Gota Gruesa(Palud)</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																									
+																									<input type="checkbox" name="hora" value="Tiempo de Sangria"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tiempo de Sangria</FONT></label><br>
+																								
+																									<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tiempo de Coagulación</FONT></label><br>
+
+																									<input type="checkbox" name="hora" value="Rodilla Oblicua"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Tiempo de Protombina</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>Rec. Plaquetas</FONT></label><br>
+
+																									<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																									<label class=" "><FONT SIZE=1>INR</FONT></label><br>
+																									
+																							</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Química Sanguínea<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Quimica"> <i class="fa fa-angle-right"></i> Química Sanguínea</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Quimica" class="panel-collapse collapse">
+																						
+																							<div class="col-md-7  row ">
+																									
+																								<input type="checkbox" name="Glucosa" value="Glucosa"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Glucosa</FONT></label>&nbsp;<br>
+																								
+																								<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>P. Tolerancia Glucosa</FONT></label><br>
+
+																								
+																								<input type="checkbox" name="hora" value="Col.Dorsal del Cubito Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Glicohemuglobina</FONT></label><br>
+
+																								
+																								<input type="checkbox" name="CraneoMayor" value="Col.Dorsal del Cubito Dorsal o de pie(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Urea </FONT></label><br>
+																								
+																								<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie( Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Creatinina</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																								
+																								<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Ácido Úrico</FONT></label><br>
+
+																								
+																								<input type="checkbox" name="hora" value="Col.Dorsal del Cubito Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Clearence de Creatinina</FONT></label><br>
+
+																								
+																								<input type="checkbox" name="CraneoMayor" value="Musculo Ap. y Lat."  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Colesterol Total</FONT></label><br>
+																								
+																								<input type="checkbox" name="hora" value="Pierna Ap. y Lat."  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>HDL Colesterol</FONT></label>&nbsp;&nbsp;&nbsp;<br>
+																								
+																								<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>LDL Colesterol</FONT></label><br>
+																							
+																								<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Triglicéridos</FONT></label><br>
+
+																								<input type="checkbox" name="hora" value="Rodilla Oblicua"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Bilirrubina D.I Y T.</FONT></label><br>
+																						
+																								<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>G.O.T.</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>G.P.T.</FONT></label><br>
+																							</div>
+																						
+																							<div class="col-md-7 row">
+																								
+																								<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Fosfatasa Alcalina</FONT></label><br>
+																							
+																								<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Albúminas</FONT></label><br>
+
+																								<input type="checkbox" name="hora" value="Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Globulinas</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Proteinas Totales</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Amilasa</FONT></label><br>
+
+																								<input type="checkbox" name="hora" value="Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Calcio</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>A.S.T.O</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Artrites(F.R.)</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Proteina C. Reactiva</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Reacción de Widal</FONT></label><br>
+
+																								<input type="checkbox" name="hora" value="Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>R. de VDRL</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Col.Dorsal Lateral de pie(en Flexion y extencion)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>R. de RPR</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>H.A.I. Chagas</FONT></label><br>
+
+																								<input type="checkbox" name="CraneoMayor" value="Art. Temporomaxilar Derecha(boca cerrada y boca abierta)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>H.A.I. Toxoplasmosis</FONT></label><br>
+																							</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Orina<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Orina"> <i class="fa fa-angle-right"></i> Orina</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Orina" class="panel-collapse collapse">
+																							
+																							<div class="col-md-7  row ">
+																									
+																								<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Examen General</FONT></label>&nbsp;<br>
+																								
+																								<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Citobacteriológico</FONT></label><br>
+
+																								
+																								<input type="checkbox" name="hora" value="Col.Dorsal del Cubito Dorsal o de pie(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>BK en orina</FONT></label><br>
+
+																							</div>
+																						
+																							<div class="col-md-7 row">
+																								
+																								<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Proteinuria de 24 Hrs</FONT></label><br>
+																							
+																								<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Glucosuria</FONT></label><br>
+
+																								<input type="checkbox" name="hora" value="Rodilla Oblicua"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Uricosuria</FONT></label><br>
+																							</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Prueba de Embarazo<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Prueba"> <i class="fa fa-angle-right"></i> Prueba de Embarazo</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Prueba" class="panel-collapse collapse">
+																						
+																							<div class="col-md-7  row ">
+																									
+																								<input type="checkbox" name="hora" value="H.G.C. en Sandre"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>H.G.C. en Sandre</FONT></label>&nbsp;<br>
+																							
+																							</div>
+																						
+																							<div class="col-md-7 row">
+																								
+																								<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>H.G.C. en Orina</FONT></label><br>
+																							
+																							</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Heces<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Heces"> <i class="fa fa-angle-right"></i> Heces</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Heces" class="panel-collapse collapse">
+																						
+																							<div class="col-md-7  row ">
+																									
+																								<input type="checkbox" name="hora" value="Parasitología Simple"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Parasitología Simple</FONT></label>&nbsp;<br>
+																								
+																								<input type="checkbox" name="hora" value="Parasitología Seriado"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Parasitología Seriado</FONT></label><br>
+
+																								
+																								<input type="checkbox" name="hora" value="Técnica Graham"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Técnica Graham</FONT></label><br>																							
+																						
+																							</div>
+																						
+																							<div class="col-md-7 row">
+																								
+																								<input type="checkbox" name="Moco" value="Moco Fecal"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Moco Fecal</FONT></label><br>
+																							
+																								<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>PH Fecal</FONT></label><br><br><br>
+
+																							</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Expectoración<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Expectoracion"> <i class="fa fa-angle-right"></i> Expectoración</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Expectoracion" class="panel-collapse collapse">
+																							<div class="col-md-7  row ">
+																									
+																								<input type="checkbox" name="BSimple" value="Basiloscopia Simple"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Basiloscopia Simple</FONT></label>&nbsp;<br>
+																								
+																								<input type="checkbox" name="BSeriadas" value="Basiloscopia Seriadas"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Basiloscopia Seriadas</FONT></label><br>
+
+																								
+																								<input type="checkbox" name="hora" value="Tención de Graham"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Tención de Gram</FONT></label><br>
+																						
+																							</div>
+																						
+																							<div class="col-md-7 row">
+																								
+																								<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Recuento de Eosinófilos</FONT></label><br>
+																							
+																								<input type="checkbox" name="hora" value="Maxilar inferior Latearal"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Cristales de Charcol Leyden</FONT></label><br><br><br>
+																						
+																							</div>
+																						
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Exámenes Especiales <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Examen"> <i class="fa fa-angle-right"></i> Exámenes Especiales</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Examen" class="panel-collapse collapse">
+																						
+																							<div class="col-md-7  row ">
+																									
+																								<input type="checkbox" name="hora" value="BACT. de Exudado Vaginal"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>BACT. de Exudado Vaginal</FONT></label>&nbsp;<br>
+																								
+																								<input type="checkbox" name="hora" value="Col. Cervical(Oblicuas Der. e Izq)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>BACT. de Secreción Uteral</FONT></label><br>
+																						
+																							</div>
+																						
+																							<div class="col-md-7 row">
+																								
+																								<input type="checkbox" name="hora" value="Col.Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Espermiograma</FONT></label><br><br><br>
+																							
+																							</div>
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Perfil preoperatorio<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-Preoperatorio"> <i class="fa fa-angle-right"></i> Perfil Preoperatorio</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-Preoperatorio" class="panel-collapse collapse">
+																						
+																							<div class="col-md-12  row ">
+																									
+																								<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Hemograma Tiempos de Sangria, Tiempo de Coagulación, Tiempo de protombina, Grupos Sanguineo RH. Glucosa y ÚREA Creatinina</FONT></label>&nbsp;<br>
+																								
+																							</div>
+																						
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Perfil Obstetrico<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-obs"> <i class="fa fa-angle-right"></i> Perfil Obstétrico</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-obs" class="panel-collapse collapse">
+																						
+																							<div class="col-md-12  row ">
+																									
+																								<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Hemograma Completo, Glucosa, V.D.R.L./R.P.R. Grupo Sanguineo + RH Examen Completo de Orina</FONT></label>&nbsp;<br>
+																								
+																							</div>
+																						
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Perfil reumatico <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-reumatico"> <i class="fa fa-angle-right"></i> Perfil Reumático</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-reumatico" class="panel-collapse collapse">
+																						
+																							<div class="col-md-12  row ">
+																									
+																								<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Hemograma ASTO, P.,C.R., F.R., Ácido Urico y Plaquetas </FONT></label>&nbsp;<br>
+																								
+																							</div>
+																						
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>perfil hepatico<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-hepatico"> <i class="fa fa-angle-right"></i> Perfil Hepático </a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-hepatico" class="panel-collapse collapse">
+																							
+																							<div class="col-md-12  row ">
+																									
+																								<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Bilirrubina(T, D é I)Gota. Ast G PT-ALT,F. Alcalina, Tiempo de protrombina</FONT></label>&nbsp;<br>
+																								
+																								
+																							</div>
+																						
+																						</div>
+																						<!--<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Perfil lipidico <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+																						<label class="center"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-lipidico"> <i class="fa fa-angle-right"></i> 	Perfil Lipídico</a> </label><br>
+																						
+																						<div style="height: 0px;" id="ac3-lipidico" class="panel-collapse collapse">
+																							
+																							<div class="col-md-12  row ">
+																									
+																								<input type="checkbox" name="hora" value="Col. Cervical(Ap. y Lateral)"  style="width:13px;height:13px">
+																								<label class=" "><FONT SIZE=1>Hemograma Glucosa Colesterol HDL, LDL, VLDL, Triglicéridos,Riesgo Cardiaco</FONT></label>&nbsp;<br>
+																								
+																							</div>
+																						
+																						</div>
+																						
+																						
+																						
+																					</div>
+
+
+																				</div>
+																			</div>
+	
+																		</div>
+																	</section>
+																</div>
+																<div class="col-md-12 ">
+																	<label class=" ">Otros:</label><br>
+																	<textarea class="large-compact" name="anamnesis"  cols="117" rows="3"></textarea>
+																</div>
+																<div class="col-md-12 ">
+																	<div class="col-md-10 ">
+																		<label class=" ">Examenes Requeridos:</label><br>
+																		<textarea class="large-compact" name="anamnesis"  cols="100" rows="3"></textarea>
+																	</div>
+																	<div class="col-md-2 "><br>
+																		<li href="javascript:void(0);"class="btn btn-info " data-toggle="modal" data-target="#DPaciente"><i class="fa fa-plus-square"></i>
+																			<span> Quitar</span> 
+																		</li>
+																	</div>
+																</div>
+
+
+															</div>
+															<p class="modal-footer"><br>
+																<button type="" class="btn btn-success btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+																<button type="reset" class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+															</p>
+														</form>
+
+
+													</div>
+												</div>
+
+											</div>
+										</div>
 									</div>
-									<div class="tab-pane fade" id="tab3default"><textarea class="large-compact" name="tratamiento"  cols="112" rows="10"></textarea></div>
-									<div class="tab-pane fade" id="tab4default"><textarea class="large-compact" name="observaciones" cols="112" rows="10"></textarea></div>
 								</div>
-                            
 
 
-                    </div>
-                    <div class="form-group"><br>
-                      <div class="col-sm-offset-4 col-sm-10">
-                        <button type="" class="btn btn-success btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                        <button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                      </div>
-                    </div>
-                 </div>
-                 </div>
-                 
-                  </div>
-              </div>
-            </div>
-          </div>
 
-						
+							</div>
 
 						</div>
 
+						<!--\\\\\\\ container  end \\\\\\-->
 					</div>
-
-					<!--\\\\\\\ container  end \\\\\\-->
+					<!--\\\\\\\ content panel end \\\\\\-->
 				</div>
-				<!--\\\\\\\ content panel end \\\\\\-->
+				<!--\\\\\\\ inner end\\\\\\-->
 			</div>
-			<!--\\\\\\\ inner end\\\\\\-->
+			<!--\\\\\\\ wrapper end\\\\\\-->
 		</div>
-		<!--\\\\\\\ wrapper end\\\\\\-->
-
 
 
 
@@ -254,7 +1021,7 @@
 
 
 		<!--====== Scripts -->
-		
+
 		<script src="/js/jquery-2.1.0.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/common-script.js"></script>
@@ -270,70 +1037,74 @@
 		</script>
 
 		<script src="/js/jPushMenu.js"></script>
-        <script src="/js/side-chats.js"></script>
-        <script type="text/javascript"  src="plugins/toggle-switch/toggles.min.js"></script> 
+		<script src="/js/side-chats.js"></script>
+		<script type="text/javascript" src="plugins/toggle-switch/toggles.min.js"></script>
 
-<script src="/plugins/checkbox/zepto.js"></script>
-<script src="/plugins/checkbox/icheck.js"></script>
-<script src="/js/icheck-init.js"></script>
-<script src="/js/jquery.slimscroll.min.js"></script>
-<script src="/js/icheck.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script> 
-<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script> 
-<script type="text/javascript" src="/js/form-components.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/jquery.inputmask.min.js"></script> 
-<script type="text/javascript"  src="/plugins/input-mask/demo-mask.js"></script> 
-<script type="text/javascript"  src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script> 
-<script type="text/javascript"  src="/plugins/dropzone/dropzone.min.js"></script> 
-<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+		<script src="/plugins/checkbox/zepto.js"></script>
+		<script src="/plugins/checkbox/icheck.js"></script>
+		<script src="/js/icheck-init.js"></script>
+		<script src="/js/jquery.slimscroll.min.js"></script>
+		<script src="/js/icheck.js"></script>
+		<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+		<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+		<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+		<script type="text/javascript" src="/js/form-components.js"></script>
+		<script type="text/javascript" src="/plugins/input-mask/jquery.inputmask.min.js"></script>
+		<script type="text/javascript" src="/plugins/input-mask/demo-mask.js"></script>
+		<script type="text/javascript" src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+		<script type="text/javascript" src="/plugins/dropzone/dropzone.min.js"></script>
+		<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
 
-<script>
-/*==Porlets Actions==*/
-    $('.minimize').click(function(e){
-      var h = $(this).parents(".header");
-      var c = h.next('.porlets-content');
-      var p = h.parent();
-      
-      c.slideToggle();
-      
-      p.toggleClass('closed');
-      
-      e.preventDefault();
-    });
-    
-    $('.refresh').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
-      
-      loading.appendTo(p);
-      loading.fadeIn();
-      setTimeout(function() {
-        loading.fadeOut();
-      }, 1000);
-      
-      e.preventDefault();
-    });
-    
-    $('.close-down').click(function(e){
-      var h = $(this).parents(".header");
-      var p = h.parent();
-      
-      p.fadeOut(function(){
-        $(this).remove();
-      });
-      e.preventDefault();
-    });
+		<script>
 
-</script>
+
+
+			/*==Porlets Actions==*/
+			$('.minimize').click(function (e) {
+				var h = $(this).parents(".header");
+				var c = h.next('.porlets-content');
+				var p = h.parent();
+
+				c.slideToggle();
+
+				p.toggleClass('closed');
+
+				e.preventDefault();
+			});
+
+			$('.refresh').click(function (e) {
+				var h = $(this).parents(".header");
+				var p = h.parent();
+				var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+
+				loading.appendTo(p);
+				loading.fadeIn();
+				setTimeout(function () {
+					loading.fadeOut();
+				}, 1000);
+
+				e.preventDefault();
+			});
+
+			$('.close-down').click(function (e) {
+				var h = $(this).parents(".header");
+				var p = h.parent();
+
+				p.fadeOut(function () {
+					$(this).remove();
+				});
+				e.preventDefault();
+			});
+
+		</script>
 
 
 
 
 
 </body>
+
 </html>
 
 
