@@ -4,6 +4,9 @@ const fetch = require('node-fetch');
 
 var Static = require('../public/static/datas');
 
+const datas = require('./url/export');
+
+
 
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -13,58 +16,38 @@ var Static = require('../public/static/datas');
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 */
-
-router.get('/volver', (req,res) => {
-    update_paciente = null;
-    res.redirect('/datos_generales_paciente/antecedentes')
-})
-
-router.get('/antecedentes/:token_id/:token_partial/:id_cita', (req,res) => {
-    const { token_id,token_partial,id_cita } = req.params;
-    var list_antecedentes = Static.static_data.listAntecedentes;
-    var dataPaciente = Static.static_data.data_Paciente
-    res.render('antecedentes',{
-        list_antecedentes,
-        dataPaciente,
-        update_paciente,
-        especialidad: Static.static_data.tipo_especialidad,
-        token_id,
-        token_partial,
-        id_cita
-    })      
-});
-
-//ruta para sacar el nombre del paciente
-
-router.get('/data_paciente/:token_id/:token_partial/:id_cita', (req,res) => {
-    const { token_id,token_partial,id_cita } = req.params;
-    fetch('http://localhost:3000/api/paciente_id/'+idPaciente)
-        .then(resp => resp.json())
-        .then(resp =>{
-            Static.static_data.data_Paciente = resp;      
-            res.redirect('/datos_generales_paciente/antecedentes/'+token_id+'/'+token_partial+'/'+id_cita) ;            
-        })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-    })
-})
-
-
 // esta ruta es para poder mostrar todos los antecedentes del paciente
-var idPaciente;
-router.get('/lista_antecedentes/:id_cita/:id_paciente/:token_id/:token_partial', (req,res) => {
-    const { id_paciente,token_id,token_partial,id_cita } = req.params;
-    idPaciente = id_paciente;
-    fetch('http://localhost:3000/api/one_ant/'+id_paciente)
+router.get('/lista_antecedentes/:id_cita/:id_paciente/:token_id/:token_p', (req,res) => {
+    const { id_paciente,token_id,token_p,id_cita } = req.params;
+    var update_paciente = [
+        { id : 0}
+    ]
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
+    fetch('http://localhost:3000/api/paciente_id/'+id_paciente)
         .then(resp => resp.json())
-        .then(resp =>{
-            Static.static_data.listAntecedentes = resp;      
-            res.redirect('/datos_generales_paciente/data_paciente/'+token_id+'/'+token_partial+'/'+id_cita) ;            
+        .then(dataPaciente =>{
+            res.render('antecedentes',{        
+                dataPaciente,
+                data_doc:datas.name.data_user[token_id],
+                id_cita,
+                update_paciente
+            })  
         })
         .catch(error => {
             console.error('Error:', error)
             res.send("no hay coneccion con el servidor");
+    })  
+    }else{
+        res.redirect('/')
+    }  
+})
+
+router.get('/vue_list_antecedentes/:id_paciente', (req,res) => {
+    const { id_paciente } = req.params
+    fetch('http://localhost:3000/api/one_ant/'+id_paciente)
+    .then(resp => resp.json())
+    .then(listAntecedentes =>{
+        res.status(200).json(listAntecedentes)
     })
 })
 
@@ -85,7 +68,7 @@ router.get('/one_antecedente/:id', (req,res) => {
 })
 
 //ruta para poder insertar antecedentes
-router.post('/antecedentes/:id_paciente', (req,res) => {
+router.post('/vue_antecedentes/:id_paciente', (req,res) => {
     const { id_paciente } = req.params;
     var data  = req.body;
     var esto = {
@@ -99,7 +82,7 @@ router.post('/antecedentes/:id_paciente', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-      res.redirect('/datos_generales_paciente/lista_antecedentes/'+id_paciente);
+        res.status(200).json(data)
     })
 })
 
@@ -135,49 +118,52 @@ router.get('/regresar', (req,res) => {
     res.redirect('/datos_generales_paciente/pacienteData')
 })
 
-var idP, alergias_list, update_Alergia;
+var update_Alergia;
 
-router.get('/pacienteData', (req,res) => {
-    fetch('http://localhost:3000/api/paciente_id/'+idP)
+//ruta para poder mostrar la lista de alergias del paciente
+router.get('/lista_alergias/:id_paciente/:token_id/:token_p/:id_cita', (req,res) => {
+    const { id_paciente,token_id,token_p,id_cita } = req.params;
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
+        fetch('http://localhost:3000/api/paciente_id/'+id_paciente)
         .then(resp => resp.json())
         .then(resp =>{
             res.render('alergias',{
                 dataPaciente : resp,
-                alergias_list,
-                especialidad: Static.static_data.tipo_especialidad,
-                update_Alergia
+                
+                data_doc:datas.name.data_user[token_id],
+                update_Alergia,
+                id_cita
             });            
         })
         .catch(error => {
             console.error('Error:', error)
             res.send("no hay coneccion con el servidor");
+        })
+    }else{
+        res.redirect('/')
+    }
+})
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        lista alergias
+*/
+router.get('/vue_list_alergias/:id_paciente', (req,res) => {
+    const { id_paciente } = req.params
+    fetch('http://localhost:3000/api/alergias_list/'+id_paciente)
+    .then(resp => resp.json())
+    .then(alergias_list =>{
+        res.status(200).json(alergias_list)
     })
 })
 
-//ruta para poder mostrar la lista de alergias del paciente
-router.get('/lista_alergias/:id_paciente', (req,res) => {
-    const { id_paciente } = req.params;
-    idP = id_paciente;
-    fetch('http://localhost:3000/api/alergias_list/'+id_paciente)
-        .then(resp => resp.json())
-        .then(resp =>{
-            alergias_list = resp;      
-            res.redirect('/datos_generales_paciente/pacienteData') ;            
-        })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-    })
-})
 
 //ruta para poder mostrar una alergia para que pueda ser actualizado
-router.get('/one_alergia/:id', (req,res) => {
+router.get('/vue_one_alergia/:id', (req,res) => {
     const { id } = req.params;
     fetch('http://localhost:3000/api/One_alergias/'+id)
         .then(resp => resp.json())
         .then(resp =>{
-            update_Alergia = resp;      
-            res.redirect('/datos_generales_paciente/lista_alergias/'+idP) ;            
+            res.status(200).json(resp)     
         })
         .catch(error => {
             console.error('Error:', error)
@@ -187,7 +173,7 @@ router.get('/one_alergia/:id', (req,res) => {
 
 
 //ruta para poder insertar alergias
-router.post('/reg_alergias/:id_paciente', (req,res) => {
+router.post('/vue_reg_alergias/:id_paciente', (req,res) => {
     const { id_paciente } = req.params
     var data = req.body;
     var esto = {
@@ -201,11 +187,11 @@ router.post('/reg_alergias/:id_paciente', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-      res.redirect('/datos_generales_paciente/lista_alergias/'+id_paciente);
+      res.status(200).json(data)
     })
 })
 
-router.post('/updateAlergia/:id', (req,res) => {
+router.post('/Vue_updateAlergia/:id', (req,res) => {
     const { id } = req.params;
     var data = req.body;
     var esto = {
@@ -219,7 +205,7 @@ router.post('/updateAlergia/:id', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-      res.redirect('/datos_generales_paciente/one_alergia/'+id);
+      res.status(200).json(data)
     })
 })
 
