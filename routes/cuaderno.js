@@ -202,6 +202,7 @@ router.get('/Cuadernos', (req,res) => {
     fetch(url.name.cuadernos+'/api/liscuaderno')
         .then(res => res.json())
         .then(resp => { 
+            console.log(OnlyC, " <<<<<<<<<<<<< askjdlaksdjlaksdjs")
             res.render('cuadernos/cuadernos',{
                 resp,
                 mess,

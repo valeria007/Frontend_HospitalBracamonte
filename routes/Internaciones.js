@@ -778,6 +778,32 @@ router.get('/list_internadios/:id_especialidad/:token_id', (req,res) => {
     
 })
 
+
+router.get('/list_internados_alta/:id_especialidad/:token_id', (req,res) => {
+    const { id_especialidad,token_id } = req.params
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:3000/api/list_internacion_especialidad_alta/'+id_especialidad)
+        .then(res => res.json())
+
+        .then(list_internacion => { 
+            res.render('hospitalizaciones/list_pacientes_alta',{
+                list_internacion,
+                data_doc: data_user[token_id]
+            })        
+        })
+        .catch(error => {
+            res.render('hospitalizaciones/404error',{
+                data_doc: data_user[token_id],
+                msg:"Algo paso con el servidor 3000",
+                error
+            })
+        })  
+    }else{
+        res.redirect('/')
+    }
+    
+})
+
 router.get('/paciente_internacion/:id/:token_id', (req,res) => {
     const { id,token_id } = req.params;
     if( datas.name.token[token_id] ){
@@ -1054,6 +1080,7 @@ router.get('/alergiasvis', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
 router.get('/traslado_interno/:id_internacion/:token_id',(req,res) =>{
+    var one_traslado
     const { id_internacion,token_id } = req.params
     if( datas.name.token[token_id] ){
         fetch('http://localhost:3000/api/One_intern/'+id_internacion)
@@ -1071,7 +1098,8 @@ router.get('/traslado_interno/:id_internacion/:token_id',(req,res) =>{
                         data_doc: data_user[token_id],
                         data_paciente,
                         one_internacion,
-                        especialidad
+                        especialidad,
+                        one_traslado
                     })
                 })
                 .catch(error => {
