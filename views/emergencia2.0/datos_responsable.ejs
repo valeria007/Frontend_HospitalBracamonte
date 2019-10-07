@@ -52,26 +52,36 @@
 </div>
     <div class="contentpanel">
       <div class="container clear_both padding_fix">
-		<br>
-		<div class="header">
-        <div class="info blue_symbols"><i class="fa fa-male icon"></i></div>
-        <h3 class="content-header ">Historial Medico<span class="semi-bold">/Responsables</span></h3>
+    <br>
+    <div class="col-lg-12 block-web">
+      <div class="" id="">
+        <div class="header">
+          <div class="actions">
+            <a href="/emergencia/volver3" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+          </div>
+          <div class="info blue_symbols"><i class="fa fa-male icon"></i></div>
+          <h3 class="content-header ">Historial Médico<span class="semi-bold">/Responsables</span></h3>
+        </div>
+        <div id="" class="col-md-2">	
+          <div class="">
+          </div>
+          <div class="btn-group ">
+            <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <i class="fa fa-clipboard"></i><span class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu">
+                <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Datos de Interes</a></li>
+              <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li>
+              <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Examen Físico General</a></li>		  
+            </ul>
+            </div>    
+        </div>
+      </div>
     </div>
-    <br><br><br>
-    <div class="btn-group ">
-		<button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button">Historial del Paciente <i class="fa fa-clipboard"></i><span class="caret"></span></button>
-		<ul role="menu" class="dropdown-menu">
-        <li><a href="/emergencia2.0/alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Datos de Interes</a></li>
-		  <li><a href="/datos_genPaciente_emergencia/lista_antecedentes/<%=dataPaciente[0].id%>">Informe</a></li>
-      <li><a href="/emergencia2.0/examen_fisico/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>">Examen Físico General</a></li>		  
-		</ul>
-	  </div>
-    
-		<div class="page-content">
-			<div class="row">
-				<div class="col-lg-14">
+	
+		<div class="">
+			<div class="">
+				<div class="">
 					<section class="panel default blue_title h2">
-						<div class="panel-body">
+						<div class="">
 							<ul class="nav nav-tabs" id="myTab">
 								<li class=" col-lg-6 active active  text-center"><a data-toggle="tab" href="#Tab1"> <i class="fa fa-user "></i><span>&nbsp;&nbsp;&nbsp;</span>Registro de Responsable</a></li>
 								<li class="col-lg-6 text-center" ><a  data-toggle="tab" href="#Tab2" > <i class="fa fa-group "></i><span>&nbsp;&nbsp;&nbsp;</span>Lista de Responsables</a></li>
@@ -79,7 +89,7 @@
 							<div class="tab-content" id="myTabContent">
 								<div id="Tab1" class="tab-pane fade in active">
 									<div class="row" >
-										<div class="block-web">
+										<div class="block-web ">
                         <%if(msg) { %>
                             <%if(msg.data.success == false) { %>
                                 <h3 style="color: red"><%=msg.data.data_responsable%></h3>
@@ -92,83 +102,86 @@
                             <%if(!data) { %>
                                
                             
-                     <form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+                    <form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
                        <input type="hidden" name="id_register" value="<%=data_doc.data.medico.id%>">
                        <h3 class="text-center">Datos del Responsable</h3>
                        <div class="form-group">
                          <div class="col-sm-4">
                            <label class="control-label">Nombre(s):</label>
-                           <input type="text" class="form-control" parsley-trigger="change" name="nombre" value=""size="10" />
+                           <input type="text" class="form-control" parsley-trigger="change" name="nombre" value=""size="10" onkeyup="mayus(this);" />
                          </div>
                          <div class="col-sm-4">
-                           <label class="control-label">Apellido Paterno:</label>
-                           <input type="text"  class="form-control" parsley-trigger="change" name="apellido1" value="" size="20" />
+                           <label class="control-label">Primer Apellido:</label>
+                           <input type="text"  class="form-control" parsley-trigger="change" name="apellido1" value="" size="20" onkeyup="mayus(this);" />
                              </div>
                          <div class="col-sm-4">
-                           <label class="control-label">Apellido Materno:</label>
-                           <input type="text" class="form-control" parsley-trigger="change" name="apellido2" value=""size="10" />
+                           <label class="control-label">Segundo Apellido:</label>
+                           <input type="text" class="form-control" parsley-trigger="change" name="apellido2" value=""size="10" onkeyup="mayus(this);"/>
                          </div>
                        </div>      
                        <div class="form-group">
                          <div class="col-sm-4">
-                           <label class="control-label">Direccion:</label>
-                           <input type="text" class="form-control" parsley-trigger="change" name="direccion" value=""size="10"/>
+                           <label class="control-label">Dirección:</label>
+                           <input type="text" class="form-control" parsley-trigger="change" name="direccion" value=""size="10" onkeyup="mayus(this);"/>
                          </div>	
                          <div class="col-sm-3">
                                <label class="control-label">C.I.:</label>
-                             <input type="text"  class="form-control" parsley-trigger="change" name="ci" value="" size="20" />
+                             <input type="text"  class="form-control" parsley-trigger="change" name="ci" value="" size="20" maxlength="10" />
                            </div>
                          <div class="col-sm-3">
                            <label class="control-label">Telefono:</label>
-                           <input  type="text" class="form-control"  name="telefono" value=""size="10" />
+                           <input  parsley-type="number" type="text" class="form-control" name="telefono" required placeholder="XX-XXXXXX" maxlength="8" />
+                                  
                          </div>
                       </div>
-                      <div class="form-group">
-                         <div class="col-sm-offset-4 col-sm-10">
-                           <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                           <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                         </div>
+                      <div class="col-md-12 page-content ">
+                                           
+                        <div class="col-md-8 ">
+                          <button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                          <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                        </div>
                       </div>
+                      
                     </form>
                     <%} else {%>
-                        <form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
-                            <input type="hidden" name="id_register" value="<%=data_doc.data.medico.id%>">
-                            <h3 class="text-center">Datos del Responsable</h3>
-                            <div class="form-group">
-                              <div class="col-sm-4">
-                                <label class="control-label">Nombre(s):</label>
-                                <input type="text" class="form-control" parsley-trigger="change" name="nombre" value="<%=data.data.nombre%>"size="10" />
+                    <form class="form-horizontal group-border-dashed" action="/emergencia2.0/reg_responsable/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+                        <input type="hidden" name="id_register" value="<%=data_doc.data.medico.id%>">
+                        <h3 class="text-center">Datos del Responsable</h3>
+                        <div class="form-group">
+                          <div class="col-sm-4">
+                            <label class="control-label">Nombre(s):</label>
+                            <input type="text" class="form-control" parsley-trigger="change" name="nombre" value="<%=data.data.nombre%>"size="10" />
+                          </div>
+                          <div class="col-sm-4">
+                            <label class="control-label">Primer Apellido:</label>
+                            <input type="text"  class="form-control" parsley-trigger="change" name="apellido1" value="<%=data.data.apellido1%>" size="20" />
                               </div>
-                              <div class="col-sm-4">
-                                <label class="control-label">Apellido Paterno:</label>
-                                <input type="text"  class="form-control" parsley-trigger="change" name="apellido1" value="<%=data.data.apellido1%>" size="20" />
-                                  </div>
-                              <div class="col-sm-4">
-                                <label class="control-label">Apellido Materno:</label>
-                                <input type="text" class="form-control" parsley-trigger="change" name="apellido2" value="<%=data.data.apellido2%>"size="10" />
-                              </div>
-                            </div>      
-                            <div class="form-group">
-                              <div class="col-sm-4">
-                                <label class="control-label">Direccion:</label>
-                                <input type="text" class="form-control" parsley-trigger="change" name="direccion" value="<%=data.data.direccion%>"size="10"/>
-                              </div>	
-                              <div class="col-sm-3">
-                                    <label class="control-label">C.I.:</label>
-                                  <input type="text"  class="form-control" parsley-trigger="change" name="ci" value="<%=data.data.ci%>" size="20" />
-                                </div>
-                              <div class="col-sm-3">
-                                <label class="control-label">Telefono:</label>
-                                <input  type="text" class="form-control"  name="telefono" value="<%=data.data.telefono%>"size="10" />
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="col-sm-offset-4 col-sm-10">
-                                <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                                <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                              </div>
-                           </div>
-                         </form>
+                          <div class="col-sm-4">
+                            <label class="control-label">Segundo Apellido:</label>
+                            <input type="text" class="form-control" parsley-trigger="change" name="apellido2" value="<%=data.data.apellido2%>"size="10" />
+                          </div>
+                        </div>      
+                        <div class="form-group">
+                          <div class="col-sm-4">
+                            <label class="control-label">Dirección:</label>
+                            <input type="text" class="form-control" parsley-trigger="change" name="direccion" value="<%=data.data.direccion%>"size="10"/>
+                          </div>	
+                          <div class="col-sm-3">
+                                <label class="control-label">C.I.:</label>
+                              <input type="text"  class="form-control" parsley-trigger="change" name="ci" value="<%=data.data.ci%>" size="20" />
+                            </div>
+                          <div class="col-sm-3">
+                            <label class="control-label">Telefono:</label>
+                            <input  type="text" class="form-control"  name="telefono" value="<%=data.data.telefono%>"size="10" />
+                          </div>
+                       </div>
+                       <div class="form-group">
+                          <div class="col-sm-offset-4 col-sm-10">
+                            <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                            <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                          </div>
+                       </div>
+                    </form>
                     <% } %>
                      <% } else { %>
                      <form class="form-horizontal group-border-dashed" action="/emergencia2.0/update_responsable/<%=update_responsable.data[0].id%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
@@ -179,7 +192,7 @@
                                  <input type="text" class="form-control" parsley-trigger="change" name="nombre" value="<%=update_responsable.data[0].nombre%>"size="10" />
                                </div>
                            <div class="col-sm-4">
-                             <label class="control-label">Apellido Paterno:</label>
+                             <label class="control-label">Primer Apellido:</label>
                              <input type="text"  class="form-control" parsley-trigger="change" name="apellido1" value="<%=update_responsable.data[0].apellido1%>" size="20" />
                                </div>
                            <div class="col-sm-4">
@@ -211,7 +224,8 @@
                      </form>
                      <% } %>
                    </div>
-										</div> 
+                    </div> 
+                    
 									</div>
 								</div>
 								<div id="Tab2" class="tab-pane fade">
@@ -240,7 +254,10 @@
                                         <td><%=list_responsables[i].direccion%></td>
                                         <td><%=list_responsables[i].ci%></td>
                                         <td><%=list_responsables[i].telefono%></td>
-                                        <td><a href="/emergencia2.0/one_responsable/<%=dataPaciente[0].id%>/<%=list_responsables[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="btn btn-info btn-raised btn-xs "><i class="zmdi zmdi-refresh-alt"></i></a></td>
+                                        <td>
+                                          
+                                          <a href="/emergencia2.0/one_responsable/<%=dataPaciente[0].id%>/<%=list_responsables[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="btn  tooltips"  data-original-title="Ver Consulta"><i class="fa fa-eye" style="color:black"></i></a>
+                                        </td>
                                       </tr>
                                     <% } %>
                                   </tbody> 
@@ -263,6 +280,11 @@
 
 <!--====== Scripts -->
 <%- include("../partials/scripts") -%>
+<script>
+  function mayus(e) {
+  e.value = e.value.toUpperCase();
+  }
+</script>
 
 </body>
 

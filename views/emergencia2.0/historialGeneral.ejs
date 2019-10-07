@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<title>Consulta Externa</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta charset="UTF-8">
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
+	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
+	<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+	<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+
+	<style>
+		div.a {
+			text-align: center;
+		}
+
+		h1.letras {
+			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
+		}
+	</style>
+	<%- include("../partials/head") -%>
+</head>
+
+<body class="light_theme  fixed_header left_nav_fixed">
+	<!-- Content page-->
+	<div class="wrapper">
+		<!--\\\\\\\ wrapper Start \\\\\\-->
+		<div class="header_bar">
+			<!--\\\\\\\ header Start \\\\\\-->
+			<div class="brand">
+				<!--\\\\\\\ brand Start \\\\\\-->
+				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+
+			</div>
+			<!--\\\\\\\ brand end \\\\\\-->
+			<div class="header_top_bar">
+				<!--\\\\\\\ header top bar start \\\\\\-->
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+
+				<div class="top_right_bar">
+
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"></span> <b class="caret"></b> </a>
+						<ul class="dropdown-menu">
+							<div class="top_pointer"></div>
+							
+							<li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--\\\\\\\ header top bar end \\\\\\-->
+		</div>
+		<div class="inner">
+			<!--\\\\\\\ inner start \\\\\\-->
+			<div class="left_nav">
+
+				<!--\\\\\\\left_nav start \\\\\\-->
+
+                
+                <div class="left_nav_slidebar">
+                  <ul>
+                          <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                            <ul >
+                              <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio </b> </a> </li>
+                            </ul>
+                          </li>
+                          <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul class="opened" style="display:block">
+                              <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
+                            </ul>
+                    </li>
+                    <li> <a href="javascript:void(0);"> <i class="fa fa-archive icon"></i>Historia de Emerg.<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+                            <ul >
+                              <li> <a href="/emergencia2.0/ultimaConsulta"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Última Cosulta </b> </a> </li>
+                            </ul>
+                    </li>
+                    <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+                      <ul >
+                        <li> <a href="/emergencia2.0/historialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clínico </b>  </a> </li>
+                        <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
+                        <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
+                      </ul>
+                    </li>
+                  
+                  </ul>
+                </div>
+                
+			</div>
+			<!--\\\\\\\left_nav end \\\\\\-->
+			<div class="contentpanel">
+				<!--\\\\\\\ contentpanel start\\\\\\-->
+				<div class="container clear_both padding_fix col-lg-8">
+					<br>
+					<br>
+					<br>
+					<div class="row">
+						<div class="col-md-12">
+					<div class="col-md-12 ">
+						<div class="col-md-8 ">
+							<div class="header center">
+								<div class="info blue_symbols "> <i class="fa fa-user-md icon "></i></div>
+								<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Historial Clinico</h3>
+							</div>	
+						</div>
+					<div class="col-md-3 ">
+						  <img class="centrado"src="/images/VIII.gif" width="80" height="50"  />
+					</div>
+					<br>
+					<br>
+					</div>
+					<div class="col-md-12">
+					<div class="row">
+					
+					<div class="col-sm-3">
+						<div class="ticket_open">
+							<a href="/emergencia2.0/H_hospitalizacion" class="open_ticket_comment text-center ">
+								<h4>Hospitalización</h4>
+								
+								<div class="btn-group">
+								<i class="fa fa-wheelchair"></i>
+								</div>
+								</a>
+						</div>
+					  </div>
+					  <div class="col-sm-3">
+						  <div class="ticket_open">
+							  
+							  <a href="/emergencia2.0/H_Emergencia" class="open_ticket_comment text-center ">
+								  <h4>Emergencia</h4>
+								  
+								  <div class="btn-group">
+								  <i class="fa fa-pencil-square-o"></i>
+								  </div>
+								  
+								  
+								
+								  </a>
+								  
+						  </div>
+						</div>
+					  <div class="col-sm-3">
+						  <div class="ticket_open">
+							  
+							  <a href="/emergencia2.0/H_Consulta" class="open_ticket_comment text-center ">
+								  <h4>Consulta Externa</h4>
+								  
+								  <div class="btn-group">
+								  <i class="fa fa-hospital-o"></i>
+								  </div>
+							
+								  </a>
+								  
+						  </div>
+						</div>
+					
+					</div>
+				  	</div>
+						</div>
+
+					</div>
+
+					<!--\\\\\\\ container  end \\\\\\-->
+				</div>
+				<!--\\\\\\\ content panel end \\\\\\-->
+			</div>
+			<!--\\\\\\\ inner end\\\\\\-->
+		</div>
+	</div>
+		<!--\\\\\\\ wrapper end\\\\\\-->
+
+		<!--====== Scripts -->
+		
+		<script src="/js/jquery-2.1.0.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/common-script.js"></script>
+		<script src="/js/jquery.slimscroll.min.js"></script>
+		<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+		<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+		<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+		<script src="/plugins/edit-table/edit-table.js"></script>
+		<script>
+			jQuery(document).ready(function () {
+				EditableTable.init();
+			});
+		</script>
+
+		<script src="/js/jPushMenu.js"></script>
+		<script src="/js/side-chats.js"></script>
+
+</body>
+
+</html>
