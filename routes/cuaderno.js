@@ -876,7 +876,53 @@ router.get('/horaslist', (req,res) => {
     }); 
     res.redirect('/cuaderno/de_paso')   
 })
+ ///vue
+ router.get('/Vuehoraturno/:id_turnos/:turno',(req,res)=>{
+    const { id_turnos, turno} = req.params
+   idTurno = id_turnos;
+   turn = turno;
+   fetch('http://localhost:4600/api/listHoras_turno/'+id_turnos)
+       .then(resp => resp.json())
+       .catch(error => console.error('Error:', error))
+       .then(resp =>{
+           res.render('cuadernos/horarios_turnos',{
+               resp
+           })
+   });  
+})
 
+router.post('/Vue_reg_hora', (req,res) => {
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:4600/api/listHoras_turno/'+idTurno,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)       
+    })  
+})
+router.post('/vuehora_turno', (req,res) => {
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch(url.name.cuadernos+'/api/hora_turno/'+idTurno,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data)       
+    })  
+})
 
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -924,6 +970,7 @@ router.get('/VueDoctores/:id_cuaderno', (req,res) => {
         res.send("no hay coneccion con el servidor");
     }) 
 })
+
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                              Reportes 
