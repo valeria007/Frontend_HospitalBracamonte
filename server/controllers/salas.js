@@ -38,8 +38,30 @@ class Sala {
        
     }
     static enviarSala1(req, res){
+      if (!req.body.nombre || !req.body.descripcionSala || !req.body.piso){
+        console.log(" todos los campos son requeridos  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        res.status(400).send({
+            success: false,
+            message: 'Todos los espacios son requeridos'
+        })
+    } else{
+      const { nombre, descripcionSala, piso } = req.body
+      return Salas
+      .create({
+        nombre, 
+        descripcionSala, 
+        piso
+      })
+        .then(data => res.status(200).send({
+          success: true,
+          message: 'se inserto con exito',
+          data
+      }))
+      .catch(error => res.status(400).send(error));
+        }
+    
           
-      fetch('http://localhost:4600/api/especialidad')   
+     /* fetch('http://localhost:4600/api/especialidad')   
       .then(resp => resp.json())
       .then(resp =>{        
           for(var i = 0; i< resp.length; i++){
@@ -49,10 +71,7 @@ class Sala {
               console.log(id , " id ")
               const { nombre, descripcionSala, piso } = req.body
               return Salas
-          .create({
-            nombre, 
-            descripcionSala, 
-            piso,
+          
             
           })
           .then(data => res.status(200).send({

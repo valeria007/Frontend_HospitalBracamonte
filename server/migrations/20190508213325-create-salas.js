@@ -18,7 +18,7 @@ module.exports = {
       },
       piso: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
       },
       especialidadID: {        
         type: Sequelize.INTEGER,

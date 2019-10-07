@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Salas = sequelize.define('Salas', {
     nombre: DataTypes.STRING,
     descripcionSala: DataTypes.STRING,
-    piso: DataTypes.INTEGER,
+    piso: DataTypes.STRING,
     especialidadID: DataTypes.INTEGER
   }, {});
   Salas.associate = function(models) {
