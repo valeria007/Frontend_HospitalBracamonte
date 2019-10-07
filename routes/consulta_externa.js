@@ -35,6 +35,10 @@ router.get('/ci10', (req,res) => {
   }
 })
 
+router.get('/data_user', (req,res) => {
+  res.send(datas.name)
+})
+
 var data_user = {}
 function user(data,id){
   let storedItem = data_user[id];
@@ -57,6 +61,7 @@ function array () {
 
 function remove_user(id) {
   delete data_user[id];
+  delete datas.name.data_user[id]
 }
 
 // esta funcion manda los mensajes del post segun el usuario
@@ -121,6 +126,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                   data_token.medico = resp 
                   if(data_user[data_token.token_id] == null){
                     user(data_token, data_token.token_id)
+                    datas.name.data_user = data_user
                     res.render('consulta_externa/home_consulta',{
                         data_token
                     })
@@ -128,6 +134,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                   }else{
                     remove_user( data_token.token_id)
                     user(data_token, data_token.token_id)
+                    datas.name.data_user = data_user
                     res.render('consulta_externa/home_consulta',{
                         data_token
                     })
@@ -193,10 +200,83 @@ router.get('/Vue_diagnostico', (req,res) => {
 })
 //
 
+router.get('/vue_diagnosticos', (req,res) => {
+  fetch('http://localhost:3100/diagnostico')        
+  .then(resp => resp.json())
+  .then( diagnostico =>{
+    res.status(200).json(diagnostico)
+  })
+  .catch(error => {
+    res.status(500).json({
+      success:false,
+      msg:"algo paso con el servidor de diagnosticos",
+      error
+    })
+  })
+})
+
+
+
+
+router.get('/vue_diagnostico_codigo/:codigo', (req,res) => {
+  const { codigo } = req.params
+  fetch('http://localhost:3100/one_diagnostico/'+codigo)        
+  .then(resp => resp.json())
+  .then( diagnostico =>{
+    res.status(200).json(diagnostico)
+  })
+  .catch(error => {
+    res.status(500).json({
+      success:false,
+      msg:"algo paso con el servidor de diagnosticos",
+      error
+    })
+  })
+})
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                  update data paciente
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+router.get('/vue_data_pacinte/:historial', (req,res) => {
+  const  { historial } = req.params
+  fetch('http://localhost:3000/api/onlyPaciente/'+historial)
+  .then(resp => resp.json())
+  .then(dataPaciente =>{
+    res.status(200).json(dataPaciente)
+  })
+})
+
+router.post('/vue_update_paciente_data/:id_paciente', (req,res) => {
+  const { id_paciente } = req.params
+  var datos = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/update_data_paciente/'+id_paciente,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
 
 router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
   const { idCIta,historial,token_id,token_p } = req.params
   var esp; // esto es la especialidad 
+ 
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
     fetch('http://localhost:3000/api/OneCita/'+idCIta)
     .then(resp => resp.json())
@@ -204,6 +284,7 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
 
       update_cita(resp[0].id) // esta funcion trae una consulta para poder ser actualizado
       var updateCita
+      
       function update_cita(idCIta){
         fetch('http://localhost:3000/api/updateConsulta/'+idCIta)
           .then(resp => resp.json())
@@ -218,7 +299,9 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
 
       data_paciente(historial,resp) // esta fucion mustra los datos de un paciente
       esp = resp[0].especialidad
+      console.log(esp, " <<<<<<<<<<<<<<<<<   esto es la especualidad")
       function data_paciente(hst,cita){
+        
         fetch('http://localhost:3000/api/onlyPaciente/'+hst)
         .then(resp => resp.json())
         .then(dataPaciente =>{
@@ -226,14 +309,15 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
           paciente_consulta(hst,esp) // esta funcion es para poder traer la lista de consultas del paciente
           
           function paciente_consulta(hst, especialidad){
+
             fetch('http://localhost:3000/api/pacienteConsulta/' + hst + '/' + especialidad)        
               .then(resp => resp.json())
               .then(resp =>{ 
-
+               
                 fetch('http://localhost:3100/diagnostico')        
                 .then(resp => resp.json())
                 .then( diagnostico =>{
-
+                  
                   res.render('consulta_externa/reg_consulta',{
                     data_doc:data_user[token_id],
                     dataPaciente,
@@ -292,6 +376,17 @@ router.get('/estado/:citaID/:historial/:token_id/:token_p', (req,res) =>{
     //res.status(200).send(data)
   })
 });
+
+router.get('/vue_estado_cita/:id_cita', (req,res) => {
+  const { id_cita } = req.params;
+  fetch('http://localhost:3000/api/estado/'+id_cita)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => { 
+    res.status(200).json(data)
+    //res.status(200).send(data)
+  })
+})
 
 
 //serv para insertar datos en la tabla consultas
@@ -370,6 +465,52 @@ router.post('/regConsulta/:citaID/:historial/:token_id/:token_p', (req, res) => 
   })
 });
 
+router.get('/VUE_data_update_consulta/:id_cita', (req,res) => {
+  const { id_cita } = req.params
+
+  fetch('http://localhost:3000/api/updateConsulta/'+id_cita)
+  .then(resp => resp.json())
+  .then(resp =>{
+      res.status(200).json(resp)
+  })
+})
+
+router.post('/Vue_update_hora/:id', (req,res) => {
+  const { id } = req.params
+  var estado = req.body
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(estado),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:4600/api/Update_Hora/'+id,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp => {
+    res.status(200).json(resp)
+  })
+})
+
+router.post('/VUE_reg_consulta_externa/:citaID', (req,res) => {
+  const { citaID } = req.params
+  var datos = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/reg_consulta/'+citaID,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {
+    res.status(200).json(data)
+  })
+})
+
 //ruta para poder actualizar los una consulta
 router.post('/updateConsulta/:id/:citaID/:historial/:token_id/:token_p', (req,res) => {
   //console.log(idCIta, "  esto >>>")
@@ -390,6 +531,24 @@ router.post('/updateConsulta/:id/:citaID/:historial/:token_id/:token_p', (req,re
     res.redirect('/consulta_externa/reg_consulta/'+ citaID + '/'+ historial + '/'+ token_id +'/'+ token_p);
   })
 
+})
+
+router.post('/vue_update_consulta/:id_consulta', (req,res) => {
+  const { id_consulta } = req.params
+  var datos = req.body;
+  var esto = {
+      method: 'POST',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3000/api/updateConsulta/'+id_consulta,esto)
+  .then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(data => {     
+    res.status(200).json(data)
+  })
 })
 
 
