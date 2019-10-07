@@ -60,7 +60,7 @@
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Codigo de Compra:</label>
                     <div class="col-sm-6">
-                      <input type="text" class="form-control" required placeholder="" v-model="codigoCompra" onkeyup="mayus(this);" />
+                      <input type="text" class="form-control" required placeholder="" v-model="codigoCompra" onkeyup="javascript:this.value=this.value.toUpperCase();" />
                     </div>
                   </div><!--/form-group-->
                   <div class="form-group">
@@ -108,7 +108,7 @@
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Observaciones</label>
                     <div class="col-sm-6">
-                      <textarea class="form-control" v-model="Observaciones" onkeyup="mayus(this);"></textarea>
+                      <textarea class="form-control" v-model="Observaciones" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                     </div>
                   </div>
                   <p class="text-center"> <button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-info">Lista Productos</button></p>
@@ -277,5 +277,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/pedidos.js"></script>
+
 </body>
 </html>
