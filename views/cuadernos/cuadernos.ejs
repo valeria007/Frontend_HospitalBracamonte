@@ -167,14 +167,14 @@
                               <div class="form-group">
                                 <label class="col-sm-4  control-label">Grupo de Asociado :</label>
                                 <div class="col-sm-4">
-                                  <input type="text" name="grupo" class="form-control" parsley-trigger="change" name="apellidom" required placeholder="Introdusca Asignacion" onkeyup="mayus(this)"/>
-                                  <select class="form-control" id="source" name="cargo" required placeholder="" >
-                                      <option value="" selected disabled hidden>--Seleccione--</option>
-                                      <option value="medico">MÉDICO</option>
-                                      <option value="enfermera">EFERMERA</option>
-                                      <option value="personal">PERSONAL</option>
-                                      <option value="farmaseutico">FARMACÉUTICO</option>
-                                    </select>
+                                  <select class="form-control" id="source" name="apellidom" required placeholder="" >
+                                    <option value="" selected disabled hidden >--Seleccione--</option>
+                                    <option>CONSULTA EXTERNA</option>
+                                    <option >HOSPITALIZACIÓN</option>
+                                    <option >LABORATORIO</option>
+                                    <option >RAYOS X</option>
+                                    <option >VACUNAS</option>
+                                  </select>
                                 </div>
                               </div>
                               <br><br>
@@ -194,7 +194,15 @@
                               <div class="form-group">
                                 <label class=" col-sm-4 control-label">Grupo de Asociado :</label>
                                 <div class="col-sm-4">
-                                  <input type="text"  name="grupo" value="<%=OnlyC[0].grupo%>" class="form-control" parsley-trigger="change" name="apellidom" required placeholder onkeyup="mayus(this)" />
+                                  <select class="form-control" id="source" name="apellidom" required placeholder="" >
+                                    <option ><%=OnlyC[0].grupo%>-</option>
+                                    <option >-----------------</option>
+                                    <option>CONSULTA EXTERNA</option>
+                                    <option >HOSPITALIZACIÓN</option>
+                                    <option >LABORATORIO</option>
+                                    <option >RAYOS X</option>
+                                    <option >VACUNAS</option>
+                                  </select>
                                 </div>
                               </div>
                               <div class="col-md-4">
@@ -265,7 +273,7 @@
     e.value = e.value.toUpperCase();
    }
      </script>
-		
+    
 		<!--====== Scripts -->
 		
     <%- include("../partials/scripts") -%>

@@ -4,7 +4,8 @@ var name = {
     pruebas: 'http://localhost:3600',
     cuadernos: 'http://localhost:4600',
     token:"",
-    session:''
+    session:'',
+    data_user:''
 }
 
     

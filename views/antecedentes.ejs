@@ -51,7 +51,7 @@
 	<!-- SideBar -->
 
 	<!-- Content page-->
-<div class="wrapper">
+<div class="wrapper" id="antecedentes">
 	<!--\\\\\\\ wrapper Start \\\\\\-->
 	<div class="header_bar">
 			<!--\\\\\\\ header Start \\\\\\-->
@@ -68,7 +68,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -82,7 +82,7 @@
 			</div>
 			<!--\\\\\\\ header top bar end \\\\\\-->
 	</div>
-	<div class="inner">
+	<div class="inner" >
 		<!--\\\\\\\ inner start \\\\\\-->
 		<div class="left_nav">
 				<!--\\\\\\\left_nav start \\\\\\-->
@@ -92,7 +92,7 @@
 									class="left_nav_pointer"></span> <span class="plus"><i
 										class="fa fa-plus"></i></span> </a>
 							<ul>
-								<li> <a href="/medico/renderVistaDocotr/<%=especialidad%>"> <span>&nbsp;</span> <i
+								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
 											class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
 							</ul>
 						</li>
@@ -100,8 +100,8 @@
 									class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
 										class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/consulta_externa/lista_pacientes/<%=token_id%>/<%=token_partial%>"> <span>&nbsp;</span> <i
-											class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>
+								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
+											class="fa fa-circle"></i> <b class="theme_color">Listas de Citas </b>
 									</a> </li>
 							</ul>
 						</li>
@@ -128,316 +128,207 @@
 					
 					<div class="main-content ">
 							<!-- Antecedentes de consultas-->
-							<section class="">
+						<section class="">
 						<div class="col-lg-12">
 								
 							<div  class="">
 								<div class="">
-										
-											<%if(update_paciente == null) { %>
-												<form  action="/datos_generales_paciente/antecedentes/<%=dataPaciente[0].id%>" method="POST">
-													
-													<div class="col-md-12">
-													<div class="">
-														<div class="col-md-12 block-web">
-														<div class="header ">
-															<div class="actions"> 
-																<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=token_id%>/<%=token_partial%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
-															</div>
-															<h3 class="content-header">Antecedentes</h3>&nbsp;&nbsp;
-														</div>
-													</div>
-													<div class=" ">
-														<div class=" row col-md-9 ">
-														<div class=" ">
-															<div class="col-sm-4 col-sm-4">
-																<div class="entrada ">
-																	<h6 class=" blue_info">N° de Historia:</h6>
-																	<input
-																		value="<%=dataPaciente[0].numeroHistorial%>"
-																		class="form-control" readonly=""
-																		value="Read only text goes here">
-																</div>
-															</div>
-															<div class="col-sm-8 col-sm-9">
-																<div class="form-group">
-																	<div class="entrada">
-																		<h6 class=" blue_info">Nombre Completo:</h6>
-																			<input
-																				value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-																				class="form-control" readonly=""
-																				value="Read only text goes here">
-																	</div>
-																</div>
-															</div>
-															
-														</div>
-										
-												<div class="">
-													<div class="col-sm-4 col-sm-4">
-														<div class="entrada">Fecha:<br>
-															<input type="date" name="fecha" require class="form-control"><br>
-														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">Antecedes de Familiares:<br>
-																<input type="text" name="familiares" value="" size="20" class="form-control"><br>
-															</div>
-														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">Antecedes Patologicos:<br>
-																<input type="text" name="personales_patologicos" size="20" class="form-control"><br>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="">
-													<div class="col-sm-4 col-sm-4">
-														<div class="form-group">
-															<div class="entrada">Antecedes no Patologicos:<br>
-																<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control"><br>
-															</div>
-														</div>
-													</div>
-													<div class="col-sm-4 col-sm-4">
-														<div class="entrada">Gineco Obstetrico:<br>
-															<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control"><br>
-														</div>
-													</div>
-												</div>
-												<div class=" col-md-9">
-													<div class="entrada">Descripción:<br>
-														<textarea class="large-compact" name="descripcion" cols="115" rows="10"></textarea>
-													 </div>
-												</div><br>
-												</div>
-												<div class="col-lg-3 row">
-														<div class="file_sidebar">                   
-																<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
-																<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
-																<ul>
-																   <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
-																   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-																   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-																   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
-																   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-																   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
-																</ul>
-														   </div>
-														 </div>
-													</div>
-													</div>
-													</div>
-												</div>
-												<br>
-												<br>
-												<p class="text-center">
-													<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
-																Limpiar</button>
-													<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-																Guardar</button>
-												</p>
-												</form>
-												<% } else { %>
-												<form action="/datos_generales_paciente/update_antecedentes/<%=update_paciente[0].id%>" method="POST">
-													
-													<div class="block-web">
-														<div class="header">
-															<div class="actions">
-																<a href="/datos_generales_paciente/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> Volver a Antecedentes</a>
-															</div>
-															<h3 class="">  Modificar Antecedentes 	
-															</h3>&nbsp;&nbsp;
-														</div>
-													</div>
-													<div class=" col-md-12 ">
-														<div class=" col-md-9 ">
-															
-															<div class="col-sm-4 col-sm-4">
-																<div class="entrada ">
-																	<h6 class=" blue_info">N° de Historia:</h6>
-																	<input
-																		value="<%=dataPaciente[0].numeroHistorial%>"
-																		class="form-control" readonly=""
-																		value="Read only text goes here">
-																</div>
-															</div>
-															<div class="col-sm-8 col-sm-9">
-																<div class="form-group">
-																	<div class="entrada">
-																		<h6 class=" blue_info">Nombre Completo:</h6>
-																			<input
-																				value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-																				class="form-control" readonly=""
-																				value="Read only text goes here">
-																	</div>
-																</div>
-															</div>
-															
-														
-														<div class="">
-															<div class="col-sm-4 col-sm-4">
-																<div class="entrada">Fecha:<br>
-																	<input type="date" name="fecha" value="<%=update_paciente[0].fecha%>" class="form-control"><br>
-																</div>
-															</div>
-															<div class="col-sm-4 col-sm-4">
-																<div class="form-group">
-																	<div class="entrada">Antecedes de Familiares:<br>
-																		<input type="text" name="familiares" value="<%=update_paciente[0].familiares%>" class="form-control"><br>
-																	</div>
-																</div>
-															</div>
-															<div class="col-sm-4 col-sm-4">
-																<div class="form-group">
-																	<div class="entrada">Antecedes Patologicos:<br>
-																		<input type="text" name="personales_patologicos" value="<%=update_paciente[0].personales_patologicos%>" class="form-control"><br>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="">
-															<div class="col-sm-4 col-sm-4">
-																<div class="form-group">
-																	<div class="entrada">Antecedes no Patologicos:<br>
-																		<input type="text" name="personales_no_patologicos" value="<%=update_paciente[0].personales_no_patologicos%>" class="form-control"><br>
-																	</div>
-																</div>
-															</div>
-															<div class="col-sm-4 col-sm-4">
-																<div class="entrada">Gineco Obstetrico:<br>
-																	<input type="text" name="gineco_obstetrico" value="<%=update_paciente[0].gineco_obstetrico%>" size="20" class="form-control"><br>
-																</div>
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="entrada">Descripción:<br>
-																<textarea class="large-compact" name="descripcion" cols="115" rows="5"> <%=update_paciente[0].descripcion%></textarea>
-															 </div>
-														</div>
-													</div>
-													<div class="col-md-3">
-															<div class="file_sidebar">                   
-																	<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
-																	<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
-																	<ul>
-																	   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-																	   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-																	   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
-																	   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-																	   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
-																	</ul>
-															   </div>
-															 </div>
-														</div>
-													</div>
-														<br>
-														<br>
-														<p class="text-center">
-															<button type="reset" class="btn btn-info btn-raised"
-																style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i>
-																&nbsp;&nbsp;
-																Limpiar</button>
-															<button type="submit" class="btn btn-danger btn-raised"><i
-																	class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
-																Guardar</button>
-														</p>
-												</form>
-											<% } %>
-								</div>					
-										<div >
-											<div class="container" > 
-											
+									<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+									<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
+									<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
+									<span style="color: red">{{msg_false}}</span>
+									<span style="color: blue">{{msg}}</span>
+									<form @submit="reg_antecedentes" method="POST">
 
-												<br><br>
-												<div class="table-responsive">
-													<div class="block-web">
-														<div class="header">
-															<div class="actions"> 
-																
-															</div>
-															<h3 class="text-center all-tittles">Lista de  Antecedentes</h3>&nbsp;&nbsp;
-														</div>
-											
-													</div>
-													
-													<div class="table-wrapper">
-														
-														<table class="display table table-bordered table-striped"
-															id="dynamic-tablee">
-															<thead>
-																<tr>
-
-																	<th>Antecedentes familiares</th>
-																	<th>Antecedentes Patologicos</th>
-																	<th>Atecedentes no Patologicos</th>
-																	<th>Gineco Obstetrico</th>
-																	<th>Descripción</th>
-																	<th>Opciones</th>
-
-																</tr>
-															</thead>
-															<tbody>
-																<% for(var i=0; i < list_antecedentes.length; i++) { %>
-																<tr>
-																	<td><%=list_antecedentes[i].familiares%></td>
-																	<td><%=list_antecedentes[i].personales_patologicos%>
-																	</td>
-																	<td><%=list_antecedentes[i].personales_no_patologicos%>
-																	</td>
-																	<td><%=list_antecedentes[i].gineco_obstetrico%>
-																	</td>
-																	<td><%=list_antecedentes[i].descripcion%></td>
-																	<td class="center">
-																		<a href="/datos_generales_paciente/one_antecedente/<%=list_antecedentes[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
-																		<a href="" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar de baja"><i class="fa fa-trash-o red"></i></a>
-																		
-																	</td>
-																</tr>
-																<% } %>
-															<tbody>
-														</table>
-													</div>
+										<div class="col-md-12">
+										<div class="">
+											<div class="col-md-12 block-web">
+											<div class="header ">
+												<div class="actions"> 
+													<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"  class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>
 												</div>
-
-
+												<h3 class="content-header">Antecedentes</h3>&nbsp;&nbsp;
 											</div>
 										</div>
+										<div class=" ">
+											<div class=" row col-md-9 ">
+											<div class=" ">
+												<div class="col-sm-4 col-sm-4">
+													<div class="entrada ">
+														<h6 class=" blue_info">N° de Historia:</h6>
+														<input
+															value="<%=dataPaciente[0].numeroHistorial%>"
+															class="form-control" readonly=""
+															value="Read only text goes here">
+													</div>
+												</div>
+												<div class="col-sm-8 col-sm-9">
+													<div class="form-group">
+														<div class="entrada">
+															<h6 class=" blue_info">Nombre Completo:</h6>
+																<input
+																	value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+																	class="form-control" readonly=""
+																	value="Read only text goes here">
+														</div>
+													</div>
+												</div>
+
+											</div>
+										
+											<div class="">
+												<div class="col-sm-4 col-sm-4">
+													<div class="entrada">Fecha:<br>
+														<input type="text"  readonly  class="form-control" v-model="fecha_registro"><br>
+													</div>
+												</div>
+												<div class="col-sm-4 col-sm-4">
+													<div class="form-group">
+														<div class="entrada">Antecedes de Familiares:<br>
+															<input type="text" size="20" class="form-control" v-model="familiares"><br>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4 col-sm-4">
+													<div class="form-group">
+														<div class="entrada">Antecedes Patologicos:<br>
+															<input type="text"  size="20" class="form-control" v-model="personales_patologicos"><br>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="">
+												<div class="col-sm-4 col-sm-4">
+													<div class="form-group">
+														<div class="entrada">Antecedes no Patologicos:<br>
+															<input type="text" name="personales_no_patologicos" value="" size="10" class="form-control" v-model="personales_no_patologicos"><br>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4 col-sm-4">
+													<div class="entrada">Gineco Obstetrico:<br>
+														<input type="text" name="gineco_obstetrico" value="" size="20" class="form-control" v-model="gineco_obstetrico"><br>
+													</div>
+												</div>
+											</div>
+											<div class=" col-md-9">
+												<div class="entrada">Descripción:<br>
+													<textarea class="large-compact" name="descripcion" cols="115" rows="10" v-model="descripcion"></textarea>
+												 </div>
+											</div><br>
+											</div>
+											<div class="col-lg-3 row">
+													<div class="file_sidebar">                   
+															<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
+															<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
+															<ul>
+															   <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
+															   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+															   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
+															   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
+															   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
+															   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+															</ul>
+													   </div>
+													 </div>
+												</div>
+												</div>
+												</div>
+											</div>
+											<br>
+											<br>
+											<p class="text-center">
+												<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp;
+															Limpiar</button>
+												<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;
+															Guardar</button>
+											</p>
+									</form>
+												
+								</div>					
+									<div >
+										<div class="container" > 
+										
+										
+											<br><br>
+											<div class="table-responsive">
+												<div class="block-web">
+													<div class="header">
+														<div class="actions"> 
+
+														</div>
+														<h3 class="text-center all-tittles">Lista de  Antecedentes</h3>&nbsp;&nbsp;
+													</div>
+												
+												</div>
+
+												<div class="table-wrapper">
+
+													<table class="display table table-bordered table-striped"
+														id="dynamic-tablee">
+														<thead>
+															<tr>
+																<th>#</th>
+																<th>Antecedentes familiares</th>
+																<th>Antecedentes Patologicos</th>
+																<th>Atecedentes no Patologicos</th>
+																<th>Opciones</th>
+															
+															</tr>
+														</thead>
+														<tbody v-for="(list,index) in antc_list">
+															<tr>
+																<td>{{index}}</td>
+																<td>{{list.familiares}}</td>
+																<td>{{list.personales_patologicos}}</td>
+																<td>{{list.personales_no_patologicos}}</td>
+																<td><a >ver</a></td>
+															</tr>
+
+														<tbody>
+													</table>
+												</div>
+											</div>
+										
+										
+										</div>
+									</div>
 									
-								</div>
+							</div>
 						</div>
-							</section>
+						</section>
 					</div>
 				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-							<!--====== Scripts -->
-							
-							<script src="/js/get/consultaget.js"></script>
+</div>
+	<!--====== Scripts -->
+	<script src="/js/jquery-2.1.0.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/common-script.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
+	<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/edit-table/edit-table.js"></script>
+	<script>
+		jQuery(document).ready(function () {
+			EditableTable.init();
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	<script src="/axios/dist/axios.min.js"></script>
+	
+	<script src="/js/jPushMenu.js"></script>
+	<script src="/js/side-chats.js"></script>
 
-							<script src="/js/jquery-2.1.0.js"></script>
-							<script src="/js/bootstrap.min.js"></script>
-							<script src="/js/common-script.js"></script>
-							<script src="/js/jquery.slimscroll.min.js"></script>
-
-							<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
-							<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-							<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-							<script src="/plugins/data-tables/dynamic_table_init.js"></script>
-							<script src="/plugins/edit-table/edit-table.js"></script>
-							<script>
-								jQuery(document).ready(function () {
-									EditableTable.init();
-								});
-							</script>
-
-							<script src="/js/jPushMenu.js"></script>
-							<script src="/js/side-chats.js"></script>
+	<script src="/moment/moment.js"></script>
+    <script src="/moment/locale/af.js"></script>
+	<script src="/url/export.js"></script>
+	<script src="/js/vue/antecedentes.js"></script>
 </body>
 
 </html>

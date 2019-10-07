@@ -11,7 +11,7 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-  <div class="wrapper">
+  <div class="wrapper" id="reghoras">
     <div class="header_bar">
       <div class="brand">
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -34,7 +34,7 @@
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
-                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -96,13 +96,13 @@
                                 <div class="col-md-3 ">
                                   <select  class="form-control" id="source" name="diasAten" >
                                     <option value="" selected disabled hidden>--Seleccione--</option>
-                                    <option>LUNES</option>
-                                    <option>MARTES</option>
-                                    <option>MIERCOLES</option>
-                                    <option>JUEVES</option>
-                                    <option>VIERNES</option>
-                                    <option>SABADO</option>
-                                    <option>DOMINGO</option>
+                                    <option value="Lunes">LUNES</option>
+                                    <option value="Martes">MARTES</option>
+                                    <option value="Miercoles">MIERCOLES</option>
+                                    <option value="Jueves">JUEVES</option>
+                                    <option value="Viernes">VIERNES</option>
+                                    <option value="Sabado">SABADO</option>
+                                    <option value="Domingo">DOMINGO</option>
                                   </select><br>
                                 </div>                      
                               </div><!--/form-group--> 
@@ -111,9 +111,9 @@
                                 <div class="col-md-3 ">
                                   <select class="form-control" id="source" name="turno" >                               
                                     <option value="" selected disabled hidden>--Seleccione--</option>
-                                    <option>MAÑANAS</option>
-                                    <option>TARDES</option>
-                                    <option>NOCHES</option>
+                                    <option value="Mañanas">MAÑANAS</option>
+                                    <option value="Tardes">TARDES</option>
+                                    <option value="Noches">NOCHES</option>
                                   </select><br>
                                 </div>                      
                               </div><!--/form-group--> 
@@ -152,7 +152,7 @@
                                         <td class="text-center"><%=resp[i].diasAten%></td>
                                         <td class="text-center"><%=resp[i].turno%></td>
                                         <td class="text-center">
-                                          <a href="" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
+                                          <a @click="" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
                                           <a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_horas"><i class="fa fa-plus-square"></i></a>
                                           <a href="/cuaderno/delturno/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
                                         </td>
@@ -178,68 +178,70 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Intervalo de atención</h4>
+            <span style="color: blue">{{msg}}</span>
+          </div>
+          <div class="modal-body"> 
+            <form class="form-horizontal"  @submit="reg_horasturno" parsley-validate novalidate>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Cantidad de Fichas:</label>
+                <div class="col-sm-3">
+                  <select  class="selectpicker" data-show-subtext="true" data-live-search="true"v-model="cantiFicha" >
+                    <option value="" selected disabled hidden>Selecione</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>  
+                    <option>12</option>      
+                    <option>13</option>      
+                    <option>14</option>      
+                    <option>15</option>
+                    <option>16</option> 
+                    <option>17</option>                                     
+  
+                  </select>
+                  <label style="color:red;">*Cantidad Maxima de Fichas del Medico*</label>
+                </div>
+              </div> 
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">Intervalo de horas:</label>
+                <div class="col-sm-3">
+                  <select class="form-control" id="source" v-model="minutos">
+                    <option value="15"> 15 minutos </option>
+                    <option value="20"> 20 minutos </option>
+                    <option value="30"> 30 minutos </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <a href="/cuaderno/horaslist" class="btn btn-info btn-icon">Eliminar Todo <span>&nbsp;</span><i class="fa fa-minus-square"></i></a></td> <span>&nbsp;&nbsp;&nbsp;</span>
+                  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 <!-------MODALLLLL-------->
 
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Intervalo de atención</h4>
-      </div>
-      <div class="modal-body"> 
-        <form class="form-horizontal"   parsley-validate novalidate>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Cantidad de Fichas:</label>
-          <div class="col-sm-3">
-            <select class="form-control" id="source" name="cantiFicha" >
-              <option value="" selected disabled hidden>Selecione</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>  
-              <option>12</option>      
-              <option>13</option>      
-              <option>14</option>      
-              <option>15</option>
-              <option>16</option> 
-              <option>17  </option>                                     
-              
-            </select>
-            <label style="color:red;">*Cantidad Maxima de Fichas del Medico*</label>
-          </div>
-        </div> 
-        <div class="form-group">
-          <label  class="col-sm-2 control-label">Intervalo de horas:</label>
-          <div class="col-sm-3">
-              <select class="form-control" id="source" name="minutos">
-                  <option value="15"> 15 minutos </option>
-                  <option value="20"> 20 minutos </option>
-                  <option value="30"> 30 minutos </option>
-                </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-              <a href="/cuaderno/horaslist" class="btn btn-info btn-icon">Eliminar Todo <span>&nbsp;</span><i class="fa fa-minus-square"></i></a></td> <span>&nbsp;&nbsp;&nbsp;</span>
-              <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-              <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        </form>
-      </div>
-      </div>
-    </div>
-  </div>
+ 
 <%- include("../partials/scripts") -%>
 </body>
 </html>
