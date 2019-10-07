@@ -6,8 +6,9 @@ const { Pacientes } = model;
 class Consulta {
     
     static reg_consulta(req, res) {
+      console.log(req.body, "  <<<<<<<<<<<<<<<<<< asdasd")
       const { tipoConsulta,fechaConsulta,numeroHistorial,anamnesis,diagnostico,tratamiento,observaciones,id_medico } = req.body
-      if(tipoConsulta == "" || fechaConsulta == "" || numeroHistorial == "" || isNaN(numeroHistorial) || diagnostico == "" || tratamiento == "" || id_medico == "" || isNaN(id_medico)){
+      if(tipoConsulta == "" || anamnesis == "" || fechaConsulta == "" || numeroHistorial == "" || isNaN(numeroHistorial) || diagnostico == "" || tratamiento == "" || id_medico == "" || isNaN(id_medico)){
         if(tipoConsulta == ""){
           res.status(400).json({
             success:false,
@@ -42,6 +43,11 @@ class Consulta {
           res.status(400).json({
             success:false,
             msg:"Id de medico no se esta mandando"
+          })
+        }else if(anamnesis == ""){
+          res.status(400).json({
+            success:false,
+            msg:"Inserte motivo de conulta del paciente"
           })
         }
       }else{
@@ -110,16 +116,32 @@ class Consulta {
           res.status(200).json(data);
         });     
       }
-      static updateCOnsPost(req, res) {
-        const { estado,tipoConsulta,fechaConsulta,numeroHistorial,anamnesis,diagnostico,tratamiento,observaciones } = req.body
-        return Consultas
+    static updateCOnsPost(req, res) {
+        const { estado_update,anamnesis,diagnostico,tratamiento,observaciones } = req.body
+        console.log(req.body)
+        if( diagnostico == "" || tratamiento == "" || anamnesis == ""){
+          if(diagnostico == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte el diagnostico del paciente por favor"
+            })
+          }else if(tratamiento == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte tratamiento por favor"
+            })
+          }else if(anamnesis == ""){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte motivo de conulta del paciente"
+            })
+          }
+        }else{
+          return Consultas
           .findByPk(req.params.id)
           .then((data) => {
             data.update({
-              estado: estado || data.estado,
-              tipoConsulta: tipoConsulta || data.tipoConsulta,  
-              fechaConsulta: fechaConsulta || data.fechaConsulta,  
-              numeroHistorial: numeroHistorial || data.numeroHistorial,  
+              estado_update: estado_update || data.estado_update,
               anamnesis: anamnesis || data.anamnesis,  
               diagnostico: diagnostico || data.diagnostico,  
               tratamiento: tratamiento || data.tratamiento,  
@@ -127,13 +149,10 @@ class Consulta {
             })
             .then(update => {
               res.status(200).send({
-                message: 'Sala actualizado',
-                data: {
-                  
-                  estado: estado || update.estado,
-                  tipoConsulta: tipoConsulta || update.tipoConsulta,  
-                  fechaConsulta: fechaConsulta || update.fechaConsulta,  
-                  numeroHistorial: numeroHistorial || update.numeroHistorial,  
+                success:true,
+                msg: 'Sala actualizado',
+                data: {                  
+                  estado_update: estado_update || update.estado_update,
                   anamnesis: anamnesis || update.anamnesis,  
                   diagnostico: diagnostico || update.diagnostico,  
                   tratamiento: tratamiento || update.tratamiento,  
@@ -144,6 +163,8 @@ class Consulta {
             .catch(error => res.status(400).send(error));
           })
           .catch(error => res.status(400).send(error));
+        }
+        
     }
 }
     export default Consulta;

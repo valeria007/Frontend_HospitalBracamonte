@@ -8,6 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      estado_update:{
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: true
+      },
+      fecha_registro:{
+        type: Sequelize.STRING
+      },
       tipoAlergia: {
         type: Sequelize.STRING
       },

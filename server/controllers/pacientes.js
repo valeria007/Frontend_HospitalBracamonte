@@ -75,6 +75,37 @@ const { alergias } = model;
           res.status(200).json(data);
         });  
   }
+  static update_paciente_data(req, res) {
+    const { estadocivil,ocupacion,zona,telef } = req.body    
+      return Pacientes
+      .findByPk(req.params.id_paciente)
+      .then((data) => {
+        data.update({
+          estadocivil: estadocivil || data.estadocivil,
+          zona: zona || data.zona,  
+          telef: telef || data.telef,  
+          ocupacion: ocupacion || data.ocupacion
+         
+        })
+        .then(update => {
+          res.status(200).send({
+            success:true,
+            msg: 'Datos actualizados',
+            data: {                  
+              estadocivil: estadocivil || update.estadocivil,
+              zona: zona || update.zona,  
+              telef: telef || update.telef,  
+              ocupacion: ocupacion || update.ocupacion
+              
+            }
+          })
+        })
+        .catch(error => res.status(400).send(error));
+      })
+      .catch(error => res.status(400).send(error));
+    
+    
+  }
 }
         
 export default Paciente;

@@ -64,6 +64,7 @@ app.get('/api/onlyPaciente/:id', Paciente.OnlyPaciente); // mostrar pacientes se
 app.get('/api/paciente_id/:id', Paciente.paciente_id);
 
 app.get('/api/paciente_alergias/:id_paciente', Paciente.paciente_alergias)
+app.post('/api/update_data_paciente/:id_paciente', Paciente.update_paciente_data)
 
 ////citas
 app.post('/api/reg_cita/:id_Paciente', Citas_medica.reg_cita);
@@ -167,6 +168,9 @@ app.get('/api/alergias', Alergias.list_alergias);
 app.get('/api/alergias_list/:id_paciente', Alergias.alergias_list); // lista de alergias del paciente
 app.get('/api/One_alergias/:id', Alergias.antecedenteOne);// mostrar una alergia para poder ser actulizado
 app.post('/api/update_alergia/:id', Alergias.update_alergia)
+
+app.post('/api/update_alergia_tiempo/:id', Alergias.update_alergia_tiempo)
+
 
 //examen fisico del paciente
 app.post('/api/examen_fisico/:id_paciente', Examen_Fisico.reg_examen_fisico);

@@ -3,11 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   const Consultas = sequelize.define('Consultas', {
     id_cita: DataTypes.INTEGER,
     estado: DataTypes.BOOLEAN,
+    estado_update: DataTypes.BOOLEAN,
     tipoConsulta: DataTypes.STRING,
     fechaConsulta: DataTypes.STRING,
     numeroHistorial: DataTypes.INTEGER,
     anamnesis: DataTypes.TEXT,
-    diagnostico: DataTypes.TEXT,
+    diagnostico: DataTypes.JSON,
     tratamiento: DataTypes.TEXT,
     observaciones: DataTypes.TEXT,
     id_medico: DataTypes.INTEGER

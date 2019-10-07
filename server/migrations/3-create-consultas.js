@@ -22,6 +22,11 @@ module.exports = {
         allowNull: false, 
         defaultValue: false
       },
+      estado_update: {
+        type: Sequelize.BOOLEAN, 
+        allowNull: false, 
+        defaultValue: true
+      },
       tipoConsulta: {
         type: Sequelize.STRING
       },
@@ -35,7 +40,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       diagnostico: {
-        type: Sequelize.TEXT
+        type: Sequelize.JSON
       },
       tratamiento: {
         type: Sequelize.TEXT

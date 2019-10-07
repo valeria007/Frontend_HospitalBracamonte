@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      fecha_registro:{
+        type: Sequelize.STRING
+      },
       familiares: {
         type: Sequelize.TEXT
       },
@@ -31,6 +34,9 @@ module.exports = {
           key: 'id',
           as: 'id_paciente',
         }
+      },
+      id_medico:{
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

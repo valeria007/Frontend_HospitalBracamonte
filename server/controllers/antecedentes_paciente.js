@@ -3,23 +3,47 @@ import model from '../models';
 const { antecedentes } = model
 
 class Antecedentes {
-    static reg_antecedente(req,res){
-        const { familiares,personales_patologicos,personales_no_patologicos,gineco_obstetrico,descripcion  } = req.body
-        const { id_paciente } = req.params
-        return antecedentes
-        .create({
-            familiares,
-            personales_patologicos,
-            personales_no_patologicos,
-            gineco_obstetrico,
-            descripcion,
-            id_paciente
+  static reg_antecedente(req,res){
+    const { fecha_registro,familiares,personales_patologicos,personales_no_patologicos,gineco_obstetrico,descripcion,id_medico  } = req.body
+    if(fecha_registro == "" || id_medico == "" || familiares == "" || familiares == null){
+      if(fecha_registro == ""){
+        res.status(400).json({
+          success:false,
+          msg:"Fecha de Registro esta vacio"
         })
-        .then(data => res.status(201).send({
-            success: true,
-            data
-          }))
+      }else if(id_medico == ""){
+        res.status(400).json({
+          success:false,
+          msg:"Id medico no se esta mandando"
+        })
+      }else if(familiares == "" || familiares == null){
+        res.status(400).json({
+          success:false,
+          msg:"Inserte Antecedentes familiares"
+        })
+      }
+    }else{
+      const { id_paciente } = req.params
+      return antecedentes
+      .create({
+          fecha_registro,
+          familiares,
+          personales_patologicos,
+          personales_no_patologicos,
+          gineco_obstetrico,
+          descripcion,
+          id_paciente,
+          id_medico
+      })
+      .then(data => res.status(201).send({
+          success: true,
+          msg:"Se registro el antecedente",
+          data
+      }))
     }
+      
+      
+  }
     static list_antecedentes(req,res){
         return antecedentes
         .findAll()
