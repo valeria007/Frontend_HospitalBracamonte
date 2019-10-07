@@ -122,12 +122,13 @@
                   
                 </form>
               </div>
+              <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
               <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
                     <tr>
                           <th class="text-center">Nombre</th>
-                          <th class="text-center">Sigla</th>	
+                          <th class="text-center">Consultorio</th>	
                           <th class="text-center">Fecha Creación</th>	
                           <th class="text-center">Optiones</th>
                     </tr>
@@ -139,7 +140,8 @@
                         <td class="text-center"><%=data[i].sigla%></td>
                         <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
                         <td>
-                          <a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
+                          <a href=""data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                        </td>
                         </td>
                       </tr>
                     <% } %>
