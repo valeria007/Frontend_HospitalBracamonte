@@ -51,7 +51,6 @@
               <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
             </ul>
           </div>
-        
         </div>
       </div>
     </div>
@@ -108,29 +107,22 @@
                 <br>
                 <div class="porlets-content">
                   <form class="form-horizontal"  >
-                    <select class="inputxlg" id="rangeval">
-                      <option value="">Filter by Date Range</option>
-                      <option value="Custom Date Range">Custom Date Range</option>
-                    </select>
+                    <div class="form-group">
+                      <div class="col-md-4">
+                        <div class="btn-group">
+                          <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Generales<span class="caret"></span></button>
+                          <ul role="menu" class="dropdown-menu">
+                            <li><a href="/usuarios/onlymedico">Medicos</a></li>
+                            <li><a href="/usuarios/onlyperso">Personales</a></li>
+                            <li><a href="/usuarios/onlyenferme">Enfermeras</a></li>
+                            <li><a href="/usuarios/onlyfarma">Farmaceuticos</a></li>
 
-                    <input id="selectDate" name="selectDate" type="text">
-                    <input id="selectDate2" name="selectDate" type="text">
-                  
-                    <div class="col-sm-4">
-                      <div class="btn-group">
-                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Generales<span class="caret"></span></button>
-                        <ul role="menu" class="dropdown-menu">
-                          <li><a href="/usuarios/onlymedico">Medicos</a></li>
-                          <li><a href="/usuarios/onlyperso">Personales</a></li>
-                          <li><a href="/usuarios/onlyenferme">Enfermeras</a></li>
-                          <li><a href="/usuarios/onlyfarma">Farmaceuticos</a></li>
-                          
-                        </ul>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                    </div>
-                    <div class="form-group pull-right">
-                    <div class="col-sm-4">
+                    <div class="form-group">
+                    <div class="col-md-4">
                       <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Usuarios<span class="caret"></span></button>
                         <ul role="menu" class="dropdown-menu">
@@ -142,17 +134,6 @@
                     </div>
                     </div>
                   </form>
-                  <div class="col-md-4 pull-right">
-                      <div class="input-group input-daterange">
-                      
-                        <input type="date" id="min-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="From:">
-                      
-                        <div class="input-group-addon">to</div>
-                      
-                        <input type="date" id="max-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="To:">
-                      
-                      </div>
-                  </div>
                   <br>
                   <div class="table-responsive">
                     <table  class="display table table-bordered table-striped" id="dynamic-table01">
@@ -176,63 +157,20 @@
                             <td class="text-center"><%=data[i].apellidop%></td>
                             <td class="text-center"><%=data[i].apellidom%></td>
                             <td class="text-center"><%=data[i].cargo%></td>
-                            <td><a href="/usuarios/cuentas/<%=data[i].id%>">ver</a></td>
+                            <td><a href="/usuarios/cuentas/<%=data[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                            </td>
                           </tr>
                         <% } %>
                       </tbody>
                     </table>
                   </div>
-                  <table>
-                      <caption>
-                          Table
-                      </caption>
-                      <thead>
-                          <tr>
-                              <th>No</th>
-                              <th>Status</th>
-                              <th>Date</th>
-                          </tr>
-                      </thead>
-                      <tbody id="mainBody">
-                          <tr >
-                              <td>11</td>
-                              <td>In-Progress</td>
-                              <td>11/05/17</td>
-                          </tr>
-                          <tr >
-                              <td>12</td>
-                              <td>In-Progress</td>
-                              <td>02/01/18</td>
-                          </tr>
-                          <tr >
-                              <td>1</td>
-                              <td>In-Progress</td>
-                              <td>11/01/17</td>
-                          </tr>
-                          <tr >
-                              <td>13</td>
-                              <td>In-Progress</td>
-                              <td>11/08/17</td>
-                          </tr>
-                          <tr >
-                              <td>14</td>
-                              <td>In-Progress</td>
-                              <td>11/06/17</td>
-                          </tr>
-                          <tr >
-                              <td>15</td>
-                              <td>In-Progress</td>
-                              <td>11/04/17</td>
-                          </tr>
-                      </tbody>
-                  </table>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
   </div>
 <script>
   $(function(){

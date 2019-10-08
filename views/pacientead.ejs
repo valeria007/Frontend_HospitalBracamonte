@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Pacientes</title>
+<title>Reportes</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -31,30 +31,30 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <div class="header_bar">
-    <div class="brand">
-      <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-    </div>
-    <div class="header_top_bar">
-      <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-      <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-          <ul class="dropdown-menu">
-            <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-          </ul>
+  <div class="wrapper">
+    <div class="header_bar">
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <div class="header_top_bar">
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+          </div>
+        
         </div>
-       
       </div>
     </div>
-  </div>
-  <div class="inner">
-    <div class="left_nav">
+    <div class="inner">
       <div class="left_nav">
+        <div class="left_nav">
           <div class="left_nav_slidebar">
             <ul>
               <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -90,89 +90,64 @@
               </li>
             </ul>
           </div>
+        </div>
       </div>
-    </div>
-    <div class="contentpanel">
+      <div class="contentpanel">
         <br>
         <div class="container clear_both padding_fix">
           <div class="row">
-                <div class="col-md-12">
-                    
-                  <div class="block-web">
-                     
-                    <div class="header">
-                      <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                      <h3 class="content-header ">Reportes Farmacia</h3>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="porlets-content">
-                        <form class="form-horizontal"  parsley-validate novalidate>
-                            <div class="form-group">
-                              <label class="col-sm-4 control-label">Desde:</label>
-                              <div class="col-sm-4">
-                              <input type="date" class="form-control" >
-                              </div>
-                            </div><!--/form-group--> 
-                            <div class="form-group">
-                              <label  class="col-sm-4 control-label">Hasta:</label>
-                              <div class="col-sm-4">
-                              <input type="date" class="form-control" >
-                              </div>
-                            </div><!--/form-group-->  
-                            <div class="form-group">
-                              <label  class="col-sm-4 control-label">Tipo:</label>
-                              <div class="col-sm-4">
-                              <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                                <option>General</option>
-                                <option>Vendidos</option>
-                                <option>Caducados</option>
-                              </select>
-                              </div>
-                            </div><!--/form-group-->
-                            <div class="form-group">
-                              <div class="col-sm-offset-4 col-sm-10">
-                                <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                              </div>
-                            </div><!--/form-group--> 
-                            </form>
-
-                    </div>
-                   
-                    <div class="table-responsive">
-                        <table  class="display table table-bordered table-striped " id="dynamic-table">
-                          <thead>
-                          <tr>                          
-                          <th>N° Historial</th>
-                          <th>Nombre</th>
-                          <th>Apellido Paterno</th>
-                          <th>Apellido Materno</th>
-                          <th>Edad</th>
-                          <th>Estdo</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                          <td>12458</td>
-                          <td>GUATAVO</td>
-                          <td>GUZMAN</td>
-                          <td>TORETO</td>
-                          <td>36</td>
-                          <td>HABILITADO</td>
-                          
-                          </tr>
-                          <tbody>
-                        </table>
-                        </div>
-                  </div>
-                  
-         </div>
-         
+            <div class="col-md-12">
+              <div class="block-web">
+                <div class="header">
+                  <div class="info blue_symbols"><i class="fa fa-briefcase icon"></i></div>
+                  <h3 class="content-header ">Reportes Farmacia</h3>
+                </div>
+                <br>
+                <br>
+                <div class="porlets-content">
+                  <form class="form-horizontal"  parsley-validate novalidate>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Desde:</label>
+                      <div class="col-sm-4">
+                      <input type="date" class="form-control" >
+                      </div>
+                    </div><!--/form-group--> 
+                    <div class="form-group">
+                      <label  class="col-sm-4 control-label">Hasta:</label>
+                      <div class="col-sm-4">
+                      <input type="date" class="form-control" >
+                      </div>
+                    </div><!--/form-group-->  
+                  </form>
+                </div>
+                <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                <div class="table-responsive">
+                  <table  class="display table table-bordered table-striped " id="dynamic-table">
+                    <thead>
+                      <tr>                          
+                        <th>N° Codigo</th>
+                        <th>Nombre Medicamento</th>
+                        <th>Cantidad Total</th>
+                        <th>Fecha de increso</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>12458</td>
+                        <td> PARACETAMOL</td>
+                        <td>300</td>
+                        <td>2018-10-28</td>
+                      </tr>
+                    <tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-</div>
-</div>
-</div>
+      </div>
+    </div>
+  </div>
 
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
