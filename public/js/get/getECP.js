@@ -79,6 +79,7 @@
     
     data () {
       return {
+        url:data_url.url_front_end,
         mensaje:'',
         mostrar:'',
         salaID:'',
@@ -88,7 +89,7 @@
     methods:{
       agregar: function (){
         axios
-        .get('http://localhost:7000/internaciones/Vue_list_salas/'+this.mensaje)
+        .get(this.url+'/internaciones/Vue_list_salas/'+this.mensaje)
         .then(response => {
           this.mostrar = response.data 
           //console.log(response.data)
@@ -97,7 +98,7 @@
       },
       traer: function (){
         axios
-        .get('http://localhost:7000/internaciones/VUe_list_camas/'+this.salaID)
+        .get(this.url+'/internaciones/VUe_list_camas/'+this.salaID)
         .then(response => {
           console.log(response.data)
           this.camas = response.data
