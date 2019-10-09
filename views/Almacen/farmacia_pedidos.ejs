@@ -9,16 +9,11 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
-    <!--\\\\\\\ wrapper Start \\\\\\-->
     <div class="header_bar">
-      <!--\\\\\\\ header Start \\\\\\-->
       <div class="brand">
-        <!--\\\\\\\ brand Start \\\\\\-->
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
-      <!--\\\\\\\ brand end \\\\\\-->
       <div class="header_top_bar">
-        <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -32,13 +27,9 @@
           </div> 
         </div>
       </div>
-      <!--\\\\\\\ header top bar end \\\\\\-->
     </div>
-    <!--\\\\\\\ header end \\\\\\-->
     <div class="inner">
-      <!--\\\\\\\ inner start \\\\\\-->
       <div class="left_nav">
-        <!--\\\\\\\left_nav start \\\\\\-->
         <div class="left_nav_slidebar">
           <ul>
             <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -68,62 +59,54 @@
           </ul>
         </div>
       </div>
-     <!--Contenido-->
-     <div class="contentpanel"><br>
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-      <!--Formulario-->
-      <div class="container clear_both padding_fix">
-			<!--\\\\\\\ container  start \\\\\\-->
-			  <div id="main-content">
-				<div class="page-content">
-				  <div class="row">
-					<div class="col-md-12">
-					  <div class="block-web">
-						<div class="header">
-						  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-						  <h3 class="content-header"><i class="fa fa-list-alt icon"></i>  Control de Stock</h3>
-						</div>
-						<div class="porlets-content">
-							<div class="table-responsive">
-							  <table  class="display table table-bordered table-striped " id="dynamic-table">
-                                <thead>
-									<tr>
-										<th>#</th>
-										<th>Nro. de Solicitud</th>
-										<th>Responsable</th>
-										<th>Fecha</th>
-										<th>Trimestre</th>
-										<th>Estado</th>
-										<th>Destino</th>
-										<th>Opciones</th>
-									</tr>
-								</thead>
-								<tbody>
-									<%for(var i = 0; i < resp.length; i++) { %>
-										<tr>
-											<td><%=i+1%></td>
-											<td><%=resp[i].num_solicitud%></td>
-											<td><%=resp[i].responsable%></td>
-											<td><%=resp[i].createdAt%></td>
-											<td><%=resp[i].trimestre%></td>													
-											<td>verificar si el pedido llego todo completo</td>
-											<td><%=resp[i].destino%></td>
-											
-											<td><a href="/almacen/farmacia_ver_pedidos/<%=resp[i].id%>">ver</a></td>
-										</tr>
-									<% } %>
-								<tbody>
-							  </table>
-							</div><!--/table-responsive-->
-						</div><!--/porlets-content-->
-					  </div><!--/block-web--> 
-					</div><!--/col-md-12--> 
+      <!--Contenido-->
+      <div class="contentpanel"><br>
+        <div class="container clear_both padding_fix">
+			    <div class="row">
+			      <div class="col-md-12">
+			  		  <div class="block-web">
+				    		<div class="header">
+                  <div class="actions"><a class="minimize" href="#">Refresh</a> <a class="refresh" href="/almacen/volver23"><i class="fa fa-repeat"></i></a> </div>
+                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-edit icon"></i></div>    Llegada de Solicitudes</h2>
+						    </div>
+						    <div class="porlets-content">
+							    <div class="table-responsive"><br><br>
+							      <table  class="display table table-bordered table-striped " id="dynamic-table">
+                      <thead>
+						      			<tr>
+								    		<th>#</th>
+										    <th>Nro. de Solicitud</th>
+										    <th>Responsable</th>
+						    				<th>Fecha</th>
+								    		<th>Trimestre</th>
+									    	<th>Estado</th>
+    										<th>Destino</th>
+		    								<th>Opciones</th>
+				      					</tr>
+							      	</thead>
+								      <tbody>
+      									<%for(var i = 0; i < resp.length; i++) { %>
+			    							<tr>
+					  						<td><%=i+1%></td>
+						  					<td><%=resp[i].num_solicitud%></td>
+							  				<td><%=resp[i].responsable%></td>
+								  			<td><%=resp[i].createdAt%></td>
+									  		<td><%=resp[i].trimestre%></td>													
+										  	<td>verificar si el pedido llego todo completo</td>
+											  <td><%=resp[i].destino%></td>
+											  <td><a href="/almacen/farmacia_ver_pedidos/<%=resp[i].id%>">ver</a></td>
+										    </tr>
+									      <% } %>
+      								<tbody>
+			    				  </table>
+					    		</div><!--/table-responsive-->
+						    </div><!--/porlets-content-->
+					    </div><!--/block-web--> 
+					  </div><!--/col-md-12--> 
 				  </div><!--/row-->
-				</div><!--/page-content end--> 
-			  </div><!--/main-content end--> 
-			</div>
-    <!--\\\\\\\ content panel end \\\\\\-->
-  </div>
+			  </div>
+      </div>
+    </div>
   </div>
   <%- include("../partials/scripts") -%>
 </body>

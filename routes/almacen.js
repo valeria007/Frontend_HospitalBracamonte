@@ -56,6 +56,10 @@ router.get('/volver', (req,res) => {
     res.redirect('/almacen/pedidos'); 
 })
 
+router.get('/volver23', (req,res) => {
+    res.redirect('/almacen/farmacia_pedidos'); 
+})
+
 router.get('/pedidos',(req, res) => {
     fetch('http://localhost:3500/api/pedido')   
         .then(resp => resp.json())

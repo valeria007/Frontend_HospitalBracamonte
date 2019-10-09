@@ -14,7 +14,9 @@ const antecedentes = new Vue({
         descripcion:'',       
         id_medico:'',
 
-        antc_list:{}
+        antc_list:{},
+        antecedente_one:'',
+        id_ant:''
     },
     mounted(){
         this.fecha_registro = moment().format('l'); 
@@ -73,6 +75,48 @@ const antecedentes = new Vue({
                 console.log(this.antc_list, " esto es lo quiero ver")
             })
         },
+        
+        one_antecedente(id_antecedente){
+            this.id_ant = id_antecedente
+            fetch(this.url+'/datos_generales_paciente/vue_one_antecedente/'+id_antecedente)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                this.antecedente_one = data[0]
+                console.log(this.antecedente_one, " esto es lo quiero ver")
+            })
+        },
+        update_alergia(e){
+            e.preventDefault();
+            var data = {     
+                familiares:this.antecedente_one.familiares,
+                personales_patologicos:this.antecedente_one.personales_patologicos,
+                personales_no_patologicos:this.antecedente_one.personales_no_patologicos,
+                gineco_obstetrico:this.antecedente_one.gineco_obstetrico,
+                descripcion:this.antecedente_one.descripcion,  
+            };
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch(this.url+'/datos_generales_paciente/vue_update_antecedentes/'+this.id_ant,esto)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                if(data.success == true){
+                    this.msg = data.msg
+                    this.msg_false = ""
+                    this.one_antecedente(this.id_ant)
+                    this.list()                    
+                }else{
+                    this.msg_false = data.msg
+                    this.msg = ""
+                }
+            })
+        }
         
     },
 })

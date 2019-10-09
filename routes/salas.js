@@ -26,6 +26,7 @@ router.get('/renderSalas', (req,res) => {
     fetch('http://localhost:3000/api/sala')   
   .then(resp => resp.json())
   .then(resp =>{
+    console.log(dataSala, "esto es lo que quiero ver")
     res.render('salas',{
       dataSala,
       resp,

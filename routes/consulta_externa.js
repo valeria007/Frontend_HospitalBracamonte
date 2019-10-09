@@ -568,16 +568,24 @@ router.get('/receta/:id_consulta/:token_id/:token_p', (req,res) => {
     fetch('http://localhost:3000/api/OnlyConsulta/'+id_consulta)        
     .then(resp => resp.json())
     .then(ConsultaOnly =>{
+      console.log(ConsultaOnly, " <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< qweasd123")
       data_paciente(ConsultaOnly[0].numeroHistorial)
       function data_paciente(hst){
         fetch('http://localhost:3000/api/onlyPaciente/'+hst)
         .then(resp => resp.json())
         .then(paciente_Data =>{
-          res.render('consulta_externa/receta',{          
-            paciente_Data,
-            ConsultaOnly,
-            data_doc: data_user[token_id]
+
+          fetch('http://localhost:3000/api/list_recetas_paciente/'+hst)        
+          .then(resp => resp.json())
+          .then(List_recetas =>{
+            res.render('consulta_externa/receta',{          
+              paciente_Data,
+              ConsultaOnly,
+              data_doc: data_user[token_id],
+              List_recetas
+            })
           })
+          
         })
       }
     
@@ -597,6 +605,16 @@ router.get('/receta/:id_consulta/:token_id/:token_p', (req,res) => {
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
+
+//ruta lista de recetas del paciente segun su historial
+router.get('/Vue_one_receta_id/:id_receta', (req,res) => {
+  const { id_receta } = req.params
+  fetch('http://localhost:3000/api/one_receta/'+id_receta)        
+  .then(resp => resp.json())
+  .then(data =>{
+    res.status(200).json(data)
+  })
+})
 
 router.post('/receta/:id_consulta', (req,res) => {
   const { id_consulta } = req.params
@@ -683,14 +701,21 @@ router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) =>
                 .then(resp => resp.json())
                 .then(especialidad =>{
                   console.log(especialidad, "  <<<<<<<<<<<<<<<< esto es la especialidad xzxzx<<<<<<<<<<<")
-                  res.render('consulta_externa/papeleta_internacion',{          
-                    dataPaciente,
-                    one_consulta,
-                    data_doc: data_user[token_id],
-                    resp,
-                    especialidad,
-                    msg:msg_Consulta_Externa[token_id],
+                  fetch('http://localhost:3000/api/ListPinternacion_hist/'+one_consulta[0].numeroHistorial)        
+                  .then(resp => resp.json())
+                  .then(list_p =>{
+                    console.log(list_p, " list_p pppp ppppppppppppp   lis_p")
+                    res.render('consulta_externa/papeleta_internacion',{          
+                      dataPaciente,
+                      one_consulta,
+                      data_doc: data_user[token_id],
+                      resp,
+                      especialidad,
+                      msg:msg_Consulta_Externa[token_id],
+                      list_p
+                    })
                   })
+                  
                   remove_msg()
                   function remove_msg(){
                     if(msg_Consulta_Externa[token_id] != null){
@@ -718,6 +743,15 @@ router.get('/papeleta_internacion/:id_consulta/:token_id/:token_p', (req,res) =>
     res.redirect('/')
   }
   
+})
+
+router.get('/VUE_One_p/:id_p', (req,res) => {
+  const { id_p } = req.params
+  fetch('http://localhost:3000/api/One_p/'+id_p)        
+  .then(resp => resp.json())
+  .then(list_p =>{
+    res.status(200).json(list_p)
+  })
 })
 
 

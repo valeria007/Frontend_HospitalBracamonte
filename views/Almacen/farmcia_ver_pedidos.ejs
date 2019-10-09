@@ -12,7 +12,6 @@
         <%- include("../partials/menu") -%>
         <div class="inner">
             <div class="left_nav">
-              <!--\\\\\\\left_nav start \\\\\\-->
                 <div class="left_nav_slidebar">
                     <ul>
                         <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -43,114 +42,108 @@
                 </div>
             </div>      
         </div>
-        <div class="contentpanel" id="ver_pedido_farmacia">
+        <div class="contentpanel" id="ver_pedido_farmacia"><br>
             <div class="container clear_both padding_fix">
-                <div id="main-content">
-                    <div class="page-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                              <div class="block-web">
-                                <div class="header">
-                                    <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar"><i class="fa fa-chevron-down"></i></a> </div>
-                                    <h3 class="content-header"> <i class="fa fa-shopping-cart icon"></i> Pedido {{msg}}</h3>   
-                                    
-                                </div>
-                                <div class="porlets-content">
-                                       <!--  <span style="color: red;">{{error}}</span>
-                                        <span style="color: blue;">{{msg}}</span><br><br> -->
-                                    <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
-                                    <form  method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
-                                        <input type="hidden" :value="id_pedido = '<%=resp[0].id%>'">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Numero solicitud:</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].num_solicitud%>">
-                                            </div>
-                                        </div><!--/form-group--> 
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Trimestre:</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].trimestre%>">
-                                            </div>
-                                        </div><!--/form-group-->
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Fecha de Pedido:</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].createdAt.split("T")[0]%>">
-                                            </div>
-                                        </div><!--/form-group--> 
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Responsable:</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly="" value="<%=resp[0].responsable%>">
-                                            </div>
-                                        </div><!--/form-group--> 
-                                       <!--/form-group--> 
-
-
-
-                                       <!--  <template v-if="pedido == ''"> -->
-                                            <div class="col-md-11"> 
-                                                <a class="btn btn-info" @click="ver(<%=resp[0].id%>)"><i class="fa fa-edit"></i> Ver Lista de Productos</a>
-                                                <section class="panel default black_title h4">
-                                                    <div class="panel-heading">Observaciones de la llegada del Pedido </div>
-                                                    <div class="panel-body">
-                                                        <table class="table table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                <th>#</th>
-                                                                <th>Codigo</th>
-                                                                <th>Nombre</th>
-                                                                <th>Precio</th>
-                                                                <th>Cantidad</th>
-                                                                <th>Precio Total</th>
-                                                                <th>Fecha de vencimiento</th>
-                                                                <th>Modificar</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody v-for="(item, index) in  list">  
-                                                                <tr>
-                                                                    <td>{{index+1}}</td>
-                                                                    <td>{{item.item.codificacion}}</td>
-                                                                    <td>{{item.item.nombre}}</td>
-                                                                    <td>{{item.item.price}}</td>
-                                                                    <td>{{item.qty}}</td>
-                                                                    <td>{{item.price}}</td>
-                                                                    <td><input type="date" v-model="item.fehca_vencimineto"></td>
-                                                                    <td><a @click="reduceByOne(index)">Reduce</a></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <div class="col-md-12">
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <div class="col-sm-9">
-                                                                        <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                                        <input type="text" class="form-control"  disabled="" ></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <div class="col-sm-9">
-                                                                        <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                                        <input type="text" class="form-control"  disabled=""></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <div class="col-sm-9">
-                                                                        <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                        <input type="text" class="form-control" disabled="" ></div>
-                                                                    </div>
-                                                                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block-web">
+                            <div class="header">
+                                <div class="actions"> <a class="minimize" v-on:click="mostrar = !mostrar"><i class="fa fa-chevron-down"></i></a> </div>
+                                <h3 class="content-header"> <i class="fa fa-shopping-cart icon"></i> Pedido {{msg}}</h3>   
+                            </div>
+                            <div class="porlets-content">
+                                <!--  <span style="color: red;">{{error}}</span>
+                                <span style="color: blue;">{{msg}}</span><br><br> -->
+                                <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+                                <form  method="POST" class="form-horizontal group-border-dashed"  parsley-validate novalidate>
+                                    <input type="hidden" :value="id_pedido = '<%=resp[0].id%>'">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Numero solicitud:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly="" value="<%=resp[0].num_solicitud%>">
+                                        </div>
+                                    </div><!--/form-group--> 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Trimestre:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly="" value="<%=resp[0].trimestre%>">
+                                        </div>
+                                    </div><!--/form-group-->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Fecha de Pedido:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly="" value="<%=resp[0].createdAt.split("T")[0]%>">
+                                        </div>
+                                    </div><!--/form-group--> 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Responsable:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly="" value="<%=resp[0].responsable%>">
+                                        </div>
+                                    </div><!--/form-group--> 
+                                    <!--/form-group--> 
+                                    <!--  <template v-if="pedido == ''"> -->
+                                    <div class="col-md-11"> 
+                                        <a class="btn btn-info" @click="ver(<%=resp[0].id%>)"><i class="fa fa-edit"></i> Ver Lista de Productos</a>
+                                        <section class="panel default black_title h4">
+                                            <div class="panel-heading">Observaciones de la llegada del Pedido </div>
+                                            <div class="panel-body">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                        <th>#</th>
+                                                        <th>Codigo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Precio</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Precio Total</th>
+                                                        <th>Fecha de vencimiento</th>
+                                                        <th>Modificar</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody v-for="(item, index) in  list">  
+                                                        <tr>
+                                                        <td>{{index+1}}</td>
+                                                        <td>{{item.item.codificacion}}</td>
+                                                        <td>{{item.item.nombre}}</td>
+                                                        <td>{{item.item.price}}</td>
+                                                        <td>{{item.qty}}</td>
+                                                        <td>{{item.price}}</td>
+                                                        <td><input type="date" v-model="item.fehca_vencimineto"></td>
+                                                        <td><a @click="reduceByOne(index)">Reduce</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
+                                                                <input type="text" class="form-control"  disabled="" ></div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </section>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                                <input type="text" class="form-control"  disabled=""></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
+                                                                <input type="text" class="form-control" disabled="" ></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                      <!--   </template> -->
+                                        </section>
+                                    </div>
+                                    <!--   </template> -->
                                         <!-- <template v-else>
                                             <div class="page-content">  
                                                 <div class="row">
@@ -272,22 +265,20 @@
                                                 </p>
                                             </div>
                                         </template> -->
-                                        <div class="form-group"  >
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-                                                <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
-                                            </div>
-                                        </div><!--/form-group--> 
-                                    </form>
-                                </div><!--/porlets-content--> 
-                            </div><!--/block-web--> 
-                        </div><!--/col-md-12--> 
-                    </div><!--/row-->    
-                </div>
+                                    <div class="form-group"  >
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+                                            <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
+                                        </div>
+                                    </div><!--/form-group--> 
+                                </form>
+                            </div><!--/porlets-content--> 
+                        </div><!--/block-web--> 
+                    </div><!--/col-md-12--> 
+                </div><!--/row-->    
             </div>
         </div>
     </div>
-</div>
 <%- include("../partials/scripts") -%>
 <script src="/js/vue/pedidos_ver_farmacia.js"></script>
 </body>

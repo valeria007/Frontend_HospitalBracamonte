@@ -1,6 +1,7 @@
 const recetas = new Vue({
     el: '#recetas', 
     data : () => ({
+        url:data_url.url_front_end,
         id_consulta:'',
         data_msg:{
             msg_true:'',
@@ -28,13 +29,13 @@ const recetas = new Vue({
 
         One_receta:'',
 
-
+        receta_id:'',
         //datos para receta
-        data_receta: ''
+        dataReceta: ''
     }),
     mounted(){
-
-        fetch('http://localhost:7000/consulta_externa/vueReceta/'+this.id_consulta)        
+        this.data_receta.fecha = moment().format('l'); 
+        fetch(this.url+'/consulta_externa/vueReceta/'+this.id_consulta)        
         .then(resp => resp.json())
         .then(data =>{   
             if(data != ""){
@@ -53,16 +54,16 @@ const recetas = new Vue({
             
         })
 
-        fetch('http://localhost:7000/consulta_externa/medicamentos')
+        fetch(this.url+'/consulta_externa/medicamentos')
         .then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(data => { 
-            this.data_receta = data
+            this.dataReceta = data
         })
     },
     methods:{
         get_receta(){
-            fetch('http://localhost:7000/consulta_externa/vueReceta/'+this.id_consulta)        
+            fetch(this.url+'/consulta_externa/vueReceta/'+this.id_consulta)        
             .then(resp => resp.json())
             .then(data =>{            
                 this.One_receta = {
@@ -96,7 +97,7 @@ const recetas = new Vue({
                 }                
             }else{
                 console.log(" entro ", this.lista.medicamento)
-                fetch('http://localhost:7000/consulta_externa/vue_one_medicamentos/'+this.lista.medicamento)        
+                fetch(this.url+'/consulta_externa/vue_one_medicamentos/'+this.lista.medicamento)        
                 .then(resp => resp.json())
                 .then(data =>{  
                     
@@ -140,7 +141,7 @@ const recetas = new Vue({
                           'Content-type' : "application/json"
                         }
                     };
-                    fetch('http://localhost:7000/consulta_externa/receta/'+this.id_consulta,esto)
+                    fetch(this.url+'/consulta_externa/receta/'+this.id_consulta,esto)
                     .then(res => res.json())
                     .catch(error => console.error('Error:', error))
                     .then(data => { 
@@ -180,7 +181,7 @@ const recetas = new Vue({
                 }
             }else{
                 console.log(" entro ", this.lista.medicamento)
-                fetch('http://localhost:7000/consulta_externa/vue_one_medicamentos/'+this.lista.medicamento)        
+                fetch(this.url+'/consulta_externa/vue_one_medicamentos/'+this.lista.medicamento)        
                 .then(resp => resp.json())
                 .then(data =>{  
                     
@@ -229,7 +230,7 @@ const recetas = new Vue({
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/consulta_externa/VueupdateReceta/'+this.One_receta.id,esto)
+                fetch(this.url+'/consulta_externa/VueupdateReceta/'+this.One_receta.id,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(data => { 
@@ -243,6 +244,14 @@ const recetas = new Vue({
                     }
                 }) 
             }  
+        },
+        one_receta_id(id_receta){
+            fetch(this.url+'/consulta_externa/Vue_one_receta_id/'+id_receta)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => { 
+                this.receta_id = data[0]
+            })
         }
     }
 })

@@ -9,16 +9,11 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
-    <!--\\\\\\\ wrapper Start \\\\\\-->
     <div class="header_bar">
-      <!--\\\\\\\ header Start \\\\\\-->
       <div class="brand">
-        <!--\\\\\\\ brand Start \\\\\\-->
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
-      <!--\\\\\\\ brand end \\\\\\-->
       <div class="header_top_bar">
-        <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -32,13 +27,9 @@
           </div> 
         </div>
       </div>
-      <!--\\\\\\\ header top bar end \\\\\\-->
     </div>
-    <!--\\\\\\\ header end \\\\\\-->
     <div class="inner">
-      <!--\\\\\\\ inner start \\\\\\-->
       <div class="left_nav">
-        <!--\\\\\\\left_nav start \\\\\\-->
         <div class="left_nav_slidebar">
           <ul>
             <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -54,6 +45,7 @@
                 <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pedidos</b> </a> </li>
                 <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
                 <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Stock</b> </a> </li>
+                <li> <a href="/almacen/farmacia_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos Farmacia</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -67,85 +59,81 @@
           </ul>
         </div>
       </div>
-     <!--Contenido-->
-     <div class="contentpanel"><br>
-		<!--\\\\\\\ contentpanel start\\\\\\-->
-		<!--Formulario-->
-		<div class="container clear_both padding_fix">
-        
-            <div class="row">
-              <div class="col-md-12">
-                <div class="block-web"><div class="header">
-                    <div class="actions"><a class="minimize" href="#">Refresh</a><a class="refresh" href="/pedidos/volver"><i class="fa fa-repeat"></i></a> </div>
-                    <h2 class="content-header"><div class="info gray_symbols"><i class="fa  fa-shopping-cart icon"></i></div>  Pedidos</h2>  
+      <!--Contenido-->
+      <div class="contentpanel"><br>
+		    <!--Formulario-->
+		    <div class="container clear_both padding_fix">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="block-web">
+                <div class="header">
+                  <div class="actions"><a class="minimize" href="#">Refresh</a><a class="refresh" href="/pedidos/volver"><i class="fa fa-repeat"></i></a> </div>
+                  <h2 class="content-header"><div class="info gray_symbols"><i class="fa  fa-shopping-cart icon"></i></div>  Pedidos</h2>  
                 </div> 
-                  <div class="porlets-content">
-                      <div class="panel-body">
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/pedidos/pedidos/proveedor" > <i class="fa  fa-shopping-cart icon"></i>   Nuevo Pedido</button>
-                        </div>
-                      <div class="table-responsive">
-                      <table  class="display table table-bordered table-striped" id="dynamic-table">
-                        <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Codigo</th>
-                              <th>Proveedor</th>
-                              <th>T. Comprovante</th>
-                              <th>Fecha</th>
-                              <th>Impuestos</th>
-                              <th>Total</th>
-                              <th>Estado</th>
-                              <th>Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          <%for(var i = 0; i< resp.length; i++) { %>
-                            <%if(resp[i].ProductosAceptados != null) { %>
-                              <tr>
-                                <td><%=i+1%></td>
-                                <td><%=resp[i].codigoCompra%></td>
-                                <td><%=resp[i].proveedor%></td>
-                                <td><%=resp[i].boletaPago%></td>
-                                <td><%=resp[i].fechaIngreso%></td>
-                                <td><%=resp[i].iva%></td>
-                                <td><%=resp[i].total%></td>
-                                <td><span style="color: blue;">Aceptado</span></td>
-                                <td class="text-center"><a href="/pedidos/verPedido/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Pedido"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-                                  <a onclick=location="/almacen/imprimir/<%=resp[0].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print" style="color:rgb(236, 198, 26)"></i></a><span>&nbsp;</span>
-                                 </td>
-                                
-                              </tr>
-                            <% } else { %>
-                              <tr>
-                                  <td><%=i+1%></td>
-                                  <td><%=resp[i].codigoCompra%></td>
-                                  <td><%=resp[i].proveedor%></td>
-                                  <td><%=resp[i].boletaPago%></td>
-                                  <td><%=resp[i].fechaIngreso%></td>
-                                  <td><%=resp[i].iva%></td>
-                                  <td><%=resp[i].total%></td>
-                                  <td><span style="color: red;">No aceptado</span></td>
-                                  <td class="text-center"><a href="/pedidos/verPedido/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Pedido"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-                                    <a onclick=location="/almacen/imprimir/<%=resp[0].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print" style="color:rgb(236, 198, 26)"></i></a><span>&nbsp;</span>
-                                   </td>
-                                </tr>
-                            <% } %>
-                          <% } %>
-                        </tbody>
+                <div class="porlets-content">
+                  <div class="panel-body">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-info btn-lg mb10" onclick=location="/pedidos/pedidos/proveedor" > <i class="fa  fa-shopping-cart icon"></i>   Nuevo Pedido</button>
+                  </div>
+                  <div class="table-responsive">
+                    <table  class="display table table-bordered table-striped" id="dynamic-table">
+                      <thead>
+                        <tr>
+                        <th>#</th>
+                        <th>Codigo</th>
+                        <th>Proveedor</th>
+                        <th>T. Comprovante</th>
+                        <th>Fecha</th>
+                        <th>Impuestos</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <%for(var i = 0; i< resp.length; i++) { %>
+                        <%if(resp[i].ProductosAceptados != null) { %>
+                        <tr>
+                        <td><%=i+1%></td>
+                        <td><%=resp[i].codigoCompra%></td>
+                        <td><%=resp[i].proveedor%></td>
+                        <td><%=resp[i].boletaPago%></td>
+                        <td><%=resp[i].fechaIngreso%></td>
+                        <td><%=resp[i].iva%></td>
+                        <td><%=resp[i].total%></td>
+                        <td><span style="color: blue;">Aceptado</span></td>
+                        <td class="text-center"><a href="/pedidos/verPedido/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Pedido"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+                        <a onclick=location="/almacen/imprimir/<%=resp[0].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print" style="color:rgb(236, 198, 26)"></i></a><span>&nbsp;</span>
+                        </td>
+                        </tr>
+                        <% } else { %>
+                        <tr>
+                        <td><%=i+1%></td>
+                        <td><%=resp[i].codigoCompra%></td>
+                        <td><%=resp[i].proveedor%></td>
+                        <td><%=resp[i].boletaPago%></td>
+                        <td><%=resp[i].fechaIngreso%></td>
+                        <td><%=resp[i].iva%></td>
+                        <td><%=resp[i].total%></td>
+                        <td><span style="color: red;">No aceptado</span></td>
+                        <td class="text-center"><a href="/pedidos/verPedido/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Pedido"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
+                        <a onclick=location="/almacen/imprimir/<%=resp[0].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print" style="color:rgb(236, 198, 26)"></i></a><span>&nbsp;</span>
+                        </td>
+                        </tr>
+                        <% } %>
+                        <% } %>
+                      </tbody>
                     </table>
-                    </div><!--/table-responsive-->
-                  </div><!--/porlets-content-->
-                </div><!--/block-web--> 
-              </div><!--/col-md-12--> 
-            </div><!--/row-->
-          </div>
-        </div> 
-      </div>
-	  <!--\\\\\\\ content panel end \\\\\\-->
+                  </div><!--/table-responsive-->
+                </div><!--/porlets-content-->
+              </div><!--/block-web--> 
+            </div><!--/col-md-12--> 
+          </div><!--/row-->
+        </div>
+      </div> 
+    </div>
 	</div>
-  </div>
-  <%- include("../partials/scripts") -%>
+<%- include("../partials/scripts") -%>
 </body>
 </html>
 

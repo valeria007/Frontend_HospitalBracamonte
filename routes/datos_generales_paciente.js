@@ -52,14 +52,12 @@ router.get('/vue_list_antecedentes/:id_paciente', (req,res) => {
 })
 
 //ruta para poder mostrar un atecedente para poder  actulaizar antecedente
-var update_paciente
-router.get('/one_antecedente/:id', (req,res) => {
-    const { id } = req.params;
-    fetch('http://localhost:3000/api/update_antecedente/'+id)
+router.get('/vue_one_antecedente/:id_antecedente', (req,res) => {
+    const { id_antecedente } = req.params;
+    fetch('http://localhost:3000/api/update_antecedente/'+id_antecedente)
         .then(resp => resp.json())
         .then(resp =>{
-            update_paciente = resp;      
-            res.redirect('/datos_generales_paciente/lista_antecedentes/'+idPaciente) ;            
+           res.status(200).json(resp)        
         })
         .catch(error => {
             console.error('Error:', error)
@@ -87,8 +85,8 @@ router.post('/vue_antecedentes/:id_paciente', (req,res) => {
 })
 
 //ruta para poder actulizar un antecedente
-router.post('/update_antecedentes/:id', (req,res) => {
-    const { id } = req.params;
+router.post('/vue_update_antecedentes/:id_antecedente', (req,res) => {
+    const { id_antecedente } = req.params;
     var data = req.body;
     var esto = {
         method: 'POST',
@@ -97,11 +95,11 @@ router.post('/update_antecedentes/:id', (req,res) => {
           'Content-type' : "application/json"
         }
     };
-    fetch('http://localhost:3000/api/update_antecedente/'+id,esto)
+    fetch('http://localhost:3000/api/update_antecedente/'+id_antecedente,esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-      res.redirect('/datos_generales_paciente/one_antecedente/'+id);
+        res.status(200).json(data)
     })
 })
 
@@ -112,13 +110,6 @@ router.post('/update_antecedentes/:id', (req,res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
-
-router.get('/regresar', (req,res) => {
-    update_Alergia = null
-    res.redirect('/datos_generales_paciente/pacienteData')
-})
-
-var update_Alergia;
 
 //ruta para poder mostrar la lista de alergias del paciente
 router.get('/lista_alergias/:id_paciente/:token_id/:token_p/:id_cita', (req,res) => {
@@ -131,7 +122,7 @@ router.get('/lista_alergias/:id_paciente/:token_id/:token_p/:id_cita', (req,res)
                 dataPaciente : resp,
                 
                 data_doc:datas.name.data_user[token_id],
-                update_Alergia,
+                
                 id_cita
             });            
         })
@@ -219,53 +210,54 @@ router.post('/Vue_updateAlergia/:id', (req,res) => {
 
 var data_id_paciente, lis_exFisico, update_exFisico;
 
-router.get('/regresar1', (req,res) => {
-    update_exFisico = null
-    res.redirect('/datos_generales_paciente/examenFisico')
-})
-
-router.get('/examenFisico', (req,res) => {
-    fetch('http://localhost:3000/api/paciente_id/'+data_id_paciente)
-        .then(resp => resp.json())
-        .then(resp =>{
-            res.render('examenFisico',{
-                dataPaciente : resp,
-                lis_exFisico,
-                especialidad:  Static.static_data.tipo_especialidad,
-                update_exFisico
-            });            
-        })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-    })
-});
-
 
 //ruta para poder mostrar todos los examenes fisicos del paciente
-router.get('/list_exFisico/:id_paciente', (req,res) => {
-    const { id_paciente } = req.params;
-    data_id_paciente = id_paciente;
-    fetch('http://localhost:3000/api/exFisico_list/'+id_paciente)
-        .then(resp => resp.json())
-        .then(resp =>{
-            lis_exFisico = resp;
-            res.redirect('/datos_generales_paciente/examenFisico')          
+router.get('/list_exFisico/:id_paciente/:id_cita/:token_id/:token_p', (req,res) => {
+    const { id_paciente,id_cita, token_id, token_p } = req.params;
+   
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_p){
+        fetch('http://localhost:3000/api/paciente_id/'+id_paciente)
+            .then(resp => resp.json())
+            .then(resp =>{
+                res.render('examenFisico',{
+                    dataPaciente : resp,
+
+                    data_doc:datas.name.data_user[token_id],
+                
+                    id_cita,
+                   
+                });            
+            })
+            .catch(error => {
+                console.error('Error:', error)
+                res.send("no hay coneccion con el servidor");
         })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-    })    
+    }else{
+        res.redirect('/')
+    }
+       
+})
+
+router.get('/vue_list_examenFisico/:id_paciente', (req,res) => {
+    const { id_paciente } = req.params
+    fetch('http://localhost:3000/api/exFisico_list/'+id_paciente)
+    .then(resp => resp.json())
+    .then(lis_exFisico =>{
+        res.status(200).json(lis_exFisico)    
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
 })
 
 //esta ruta es para poder mostrar un examen fisico para que pueda ser actualizado
-router.get('/one_ExFisico/:id', (req,res) => {
+router.get('/Vue_one_ExFisico/:id', (req,res) => {
     const { id } = req.params
     fetch('http://localhost:3000/api/one_exFisico/'+id)
         .then(resp => resp.json())
         .then(resp =>{
-            update_exFisico = resp;
-            res.redirect('/datos_generales_paciente/list_exFisico/'+data_id_paciente)          
+            res.status(200).json(resp)
         })
         .catch(error => {
             console.error('Error:', error)
@@ -274,7 +266,7 @@ router.get('/one_ExFisico/:id', (req,res) => {
 }) 
 
 //ruta para poder registrar un examen fisico
-router.post('/reg_exFisico/:id_paciente', (req,res) => {
+router.post('/vue_reg_exFisico/:id_paciente', (req,res) => {
     const { id_paciente } = req.params;
     var data = req.body;
     var esto = {
@@ -288,11 +280,11 @@ router.post('/reg_exFisico/:id_paciente', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-      res.redirect('/datos_generales_paciente/list_exFisico/'+id_paciente);
+        res.status(200).json(data)
     })
 })
 
-router.post('/update_exFisico/:id', (req,res) => {
+router.post('/vue_update_exFisico/:id', (req,res) => {
     const { id } = req.params;
     var data = req.body;
     var esto = {
@@ -306,7 +298,7 @@ router.post('/update_exFisico/:id', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 
-        res.redirect('/datos_generales_paciente/one_ExFisico/'+id);
+        res.status(200).json(data)
     })
 })
 

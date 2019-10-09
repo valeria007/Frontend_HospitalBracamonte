@@ -132,7 +132,7 @@
 										</ul>
 										<div id="myTabContent" class="tab-content">
 											<div class="tab-pane fade active in" id="new">
-									
+												<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
 											  <template v-if="One_receta == ''">
 						                		<form @submit="post_recetas" method="POST">
 													<div class="col-md-12 ">
@@ -143,9 +143,10 @@
 																<div class="actions"> 
 																	<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
 																</div>
-                                    	            					<h3 class="content-header">Estado General {{id_consulta}}</h3>
+                                    	            					<h3 class="content-header">Estado General</h3>
                                                    						<span style="color: red;">{{data_msg.msg_false}}</span>
-                                                   						<span style="color: blue;">{{data_msg.msg_true}}</span>
+																		   <span style="color: blue;">{{data_msg.msg_true}}</span>
+																		   
 															</div>
 															<div class="row">
 																<div class="col-md-12">
@@ -197,7 +198,7 @@
                                                                         		<div class="col-sm-6 ">
 																					<div class="entrada">
 																						<label class=" ">Fecha Prescripción:</label>
-																						<input class="form-control" type="date" v-model="data_receta.fecha" require >
+																						<input class="form-control" type="text" readonly required v-model="data_receta.fecha" require >
 																					</div>
                                                                        			</div>
                                                                        			<div class="col-sm-6 col-sm-6">
@@ -244,7 +245,7 @@
 																					<div class="entrada">
 																						<h6 class=" ">Medicamento:</h6>
 																						<select class="form-control" v-model="lista.medicamento">
-																							<template v-for="(list, index) in data_receta">
+																							<template v-for="(list, index) in dataReceta">
 																								<option>{{list.nombre}}</option>
 																							</template>	
 																						</select>
@@ -361,13 +362,13 @@
 																						<div class="col-md-5">
 																							<div class="entrada ">
 																								<label class=" ">N° de Historia:</label><p><b><%=paciente_Data[0].numeroHistorial%></b></p>
-																								<input type="hidden" name="numeroHistorial"  v-model="data_receta.historiaClinica = '<%=paciente_Data[0].numeroHistorial%>'" class="form-control" readonly=""  value="Read only text goes here">
+																								<input type="hidden"  v-model="data_receta.historiaClinica = '<%=paciente_Data[0].numeroHistorial%>'" class="form-control" readonly=""  value="Read only text goes here">
 																							</div>
 																						</div>
 																						<div class="col-sm-6 col-sm-12">
 																							 <div class="entrada">
 																									 <label class=" ">Nombre Completo:</label><p><b><%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%></b></p>
-																									 <input type="hidden" name="nombre apellidop apellidom" 
+																									 <input type="hidden" 
 																										 value="<%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%>"
 																										 class="form-control" readonly=""
 																										 value="Read only text goes here">
@@ -398,7 +399,7 @@
 																						 <div class="col-sm-6 ">
 																							 <div class="entrada">
 																								 <label class=" ">Fecha Prescripción:</label>
-																								 <input class="form-control" type="date" v-model="data_receta.fecha" require >
+																								 <input class="form-control" readonly type="text" v-model="data_receta.fecha" require >
 																							 </div>
 																							</div>
 																							<div class="col-sm-6 col-sm-6">
@@ -526,7 +527,7 @@
 																				<div class="entrada">
 																					<h6 class=" blue_info">Medicamento:</h6>
 																					<select v-model="lista.medicamento">
-																						<template v-for="(list, index) in data_receta">
+																						<template v-for="(list, index) in dataReceta">
 																							<option>{{list.nombre}}</option>
 																						</template>	
 																					</select>
@@ -612,35 +613,40 @@
 													
 												</template>
 													
-											</div>
-										
+											</div>																					
 											<div class="tab-pane fade" id="list"><br>
 												<div class="table-responsive"><br>
 													<table class="display table table-bordered table-striped"id="dynamic-tablee">
 														<thead>
 															<tr>
+																
+																
 																<th>#</th>
-																<th>N° de historia </th>
+																<th>De:</th>
+																<th>N° Historia</th>
+																
 																<th>Fecha</th>
-																<th>Farmaco </th>
 																<th>Doctor</th>
-																<th>Indicaciones</th>
 																<th class="text-center" WIDTH="20%">Modificar</th>
 																<!--
 												   <th class="text-center" WIDTH="20%">Darde Baja</th>
 												-->
 															</tr>
-															<tr>
-																<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
-																<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias" >a</td>
-																<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
-																<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
-																<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
-																<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias">a</td>
-																<td href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><a >ver</a></td>
-															</tr> 
+															
 														</thead>
 														<tbody>
+															
+															<%for(var i = 0; i < List_recetas.length; i++) { %>
+																<tr>
+																	<td><%=i+1%></td>
+																	<td  @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"> <%=List_recetas[i].tipoConsulta%></td>
+																	<td  @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias" ><%=List_recetas[i].historiaClinica%></td>
+																	<td  @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=List_recetas[i].fecha%></td>
+																	<td  @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=List_recetas[i].doctor%></td>
+																	
+																	<td @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><a >ver</a></td>
+																</tr> 
+															<% } %>
 															
 														</tbody>
 													</table>
@@ -658,6 +664,86 @@
 										</div><br>
 									</div>
 								</section>
+								<div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+											  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											  <h4 class="modal-title" id="myModalLabel">Detalles de la Receta</h4>
+										</div>
+										<div>
+											<div class="">
+												<div id="main-content">
+													<div class="">			
+														
+														<div id="myTabContent" class="tab-content">
+															  <div class="tab-pane fade active in " id="neww">
+																<div class="col-md-12">
+																	<div class="">
+																		<div class=" ">
+																			<p></p>
+																			<span></span>
+																			<span style="color: rgb(21, 21, 149)">N° de Historial:  </span> {{receta_id.historiaClinica}}<br>
+																			<span style="color: rgb(21, 21, 149)">Nombre Completo:</span>  <%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%><br>
+																			<span style="color: rgb(21, 21, 149)">Fecha de la Receta:</span>  {{receta_id.fecha}} <br>
+																			<span style="color: rgb(21, 21, 149)"> Nombre del Médico:</span> {{receta_id.doctor}}<br>
+																			<span style="color: rgb(21, 21, 149)">Especialidad:</span>  {{receta_id.tipoConsulta}}<br>
+																			<span style="color: rgb(21, 21, 149)">Medicamento:</span>
+																			<div class="col-lg-12"> 
+																					<section class="panel default blue_title h2">
+																				
+																					<div class="panel-body">
+																					
+																			  <table class="table table-hover">
+																				<thead>
+																				  <tr>
+																					<th>#</th>
+																					<th>Medicamento</th>
+																					<th>Dosis</th>
+																					<th>Frecuencia</th>
+																					<th>Duracion</th>
+																					<th>Cantidad</th>
+																					
+																				  </tr>
+																				</thead>
+																				<tbody v-for="(list, index) in receta_id.medicamentos">
+																				  <tr>
+																					<td>{{index + 1 }}</td>
+																					<td>{{list.medicamento}}</td>
+																					<td>{{list.dosis}}</td>
+																					<td>{{list.frecuencia}}</td>
+																					<td>{{list.duracion}}</td>
+																					<td>{{list.cantidad}}</td>
+																					
+																				  </tr> 
+																																								  
+																				</tbody>
+																			  </table>
+																		   
+																			</div>
+																			</section>
+																			</div>
+																			
+																		</div>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+														
+													</div>
+												</div>
+									  
+											</div>
+											<div class="modal-footer">
+											  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											 
+											</div>
+									  
+										</div>
+									</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>	
@@ -667,53 +753,7 @@
 	</div>
 
 <!-- Modal alergias -->
-<div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	    <div class="modal-content">
-			<div class="modal-header">
-			  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			  <h4 class="modal-title" id="myModalLabel">Detalles de la Receta</h4>
-		</div>
-		<div>
-		    <div class="">
-			    <div id="main-content">
-				    <div class="">			
-						
-						<div id="myTabContent" class="tab-content">
-						  	<div class="tab-pane fade active in " id="neww">
-								<div class="col-md-12">
-									<div class="">
-										<div class=" ">
-											<p></p>
-											N° de Historial: <h9><%=paciente_Data[0].numeroHistorial%></h9> <br>
-											Nombre Completo: <%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%><br>
-											Fecha de la Receta: <br><br>
-											Nombre del Médico: <h9><%=ConsultaOnly[0].Citas_Medica.medico%></h9><br>
-											Especialidad: <%=ConsultaOnly[0].tipoConsulta%><br>
-											Medicamento: <br>
-											Dosis: <br>
-											
-											Duración:<br>
-										</div>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-	  
-			</div>
-			<div class="modal-footer">
-			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			 
-			</div>
-	  
-		</div>
-	</div>
-	</div>
-</div>
+
         <!--====== Scripts -->
 		<script src="/js/fecha.js"></script>
 		
@@ -736,7 +776,9 @@
 				EditableTable.init();
 			});
 		</script>
-
+		<script src="/moment/moment.js"></script>
+		<script src="/moment/locale/af.js"></script>
+		<script src="/url/export.js"></script>
 		<script src="/js/jPushMenu.js"></script>
         <script src="/js/side-chats.js"></script>
         <script src="/js/vue/receta.js"></script>
