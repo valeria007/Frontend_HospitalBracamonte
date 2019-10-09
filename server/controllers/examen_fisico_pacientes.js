@@ -49,7 +49,8 @@ class Examen_Fisico{
             data
         }))
         .catch(error => res.status(400).send(error));
-      }
+      }id_paciente,
+      id_user 
         
     }
     static list_tesponsable(req,res){
@@ -81,37 +82,38 @@ class Examen_Fisico{
     //ruta para poder actulizar una los examenes fisicos
     static update_exFisico(req, res) {
         const { peso,talla,temperatura,frecuencia_cardiaca,respiracion,presion,saturacion_oxigeno,fecha_revision,otros } = req.body
+        var estado_update = 'false'
         return examen_fisico
           .findByPk(req.params.id)
           .then((data) => {
             data.update({
-
-                peso: peso || data.peso,
-                talla: talla || data.talla,
-                temperatura: temperatura || data.temperatura,
-                frecuencia_cardiaca: frecuencia_cardiaca|| data.frecuencia_cardiaca,
-                respiracion: respiracion || data.respiracion,
-                presion: presion || data.presion,
-                saturacion_oxigeno: saturacion_oxigeno || data.saturacion_oxigeno,
-                fecha_revision: fecha_revision || data.fecha_revision,
-                otros: otros|| data.otros
+              estado_update:estado_update||data.estado_update,
+              peso: peso || data.peso,
+              talla: talla || data.talla,
+              temperatura: temperatura || data.temperatura,
+              frecuencia_cardiaca: frecuencia_cardiaca|| data.frecuencia_cardiaca,
+              respiracion: respiracion || data.respiracion,
+              presion: presion || data.presion,
+              saturacion_oxigeno: saturacion_oxigeno || data.saturacion_oxigeno,
+              fecha_revision: fecha_revision || data.fecha_revision,
+              otros: otros|| data.otros
                                   
             })
             .then(update => {
               res.status(200).send({
                 success: true,
-                msg: 'Se modifico con exito..',
+                msg: 'Se modifico con exito...',
                 data: {
-                   
-                    peso: peso || update.peso,
-                    talla: talla || update.talla,
-                    temperatura: temperatura || update.temperatura,
-                    frecuencia_cardiaca: frecuencia_cardiaca|| update.frecuencia_cardiaca,
-                    respiracion: respiracion || update.respiracion,
-                    presion: presion || update.presion,
-                    saturacion_oxigeno: saturacion_oxigeno || update.saturacion_oxigeno,
-                    fecha_revision: fecha_revision || update.fecha_revision,
-                    otros: otros || update.otros
+                  estado_update:estado_update||update.estado_update,
+                  peso: peso || update.peso,
+                  talla: talla || update.talla,
+                  temperatura: temperatura || update.temperatura,
+                  frecuencia_cardiaca: frecuencia_cardiaca|| update.frecuencia_cardiaca,
+                  respiracion: respiracion || update.respiracion,
+                  presion: presion || update.presion,
+                  saturacion_oxigeno: saturacion_oxigeno || update.saturacion_oxigeno,
+                  fecha_revision: fecha_revision || update.fecha_revision,
+                  otros: otros || update.otros
                 }
               })
             })

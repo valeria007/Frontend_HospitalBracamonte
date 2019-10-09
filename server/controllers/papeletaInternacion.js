@@ -32,31 +32,60 @@ class papeletaInt{
           }else{
 
             const { tipoConsulta,fechaIngreso, Historial,nombreDoctor,apellidoD1,apellidoD2,diagnostico,especialidad,id_medico } = req.body
-            const { idConsultaMedica } = req.params
-            const { idEmergencia } = req.params
-            var id_especialidad = resp[0].id
+            if(!tipoConsulta || !Historial || !nombreDoctor || !id_medico){
+              if(!tipoConsulta){
+                res.status(400).json({
+                  success:false,
+                  msg:"NO se esta mandando tipo de consulta"
+                })
 
-            return PapeletaInternacion
-            .create({
-              tipoConsulta,
-              fechaIngreso, 
-              Historial, 
-              nombreDoctor,
-              apellidoD1,
-              apellidoD2,
-              diagnostico,
-              especialidad,   // esto es el area de internacion a la que va estar registrado el paciente
-              idConsultaMedica,  // este id se llena cuando se registran los datos desde consulta medica
-              idEmergencia,  // este id se llena cuando se llenan los datos desde emergencia 
-              id_medico, // este es el id del medico
-              id_especialidad  
-            })
-            .then(data => res.status(200).send({
-                success: true,
-                msg: 'Se inserto con exito',
-                data
-            }))
-            .catch(error => res.status(400).send(error));   
+              }else if(!Historial){
+                res.status(400).json({
+                  success:false,
+                  msg:"No se esta mandando el historial del paciente"
+                })
+
+              }else if(!nombreDoctor){
+                res.status(400).json({
+                  success:false,
+                  msg:"No se esta mandando el nombre del doctor"
+                })
+
+              }else if (!id_medico){
+                res.status(400).json({
+                  success:false,
+                  msg:"No se esta mandando el id del medico"
+                })
+
+              }
+            }else{
+              const { idConsultaMedica } = req.params
+              const { idEmergencia } = req.params
+              var id_especialidad = resp[0].id
+  
+              return PapeletaInternacion
+              .create({
+                tipoConsulta,
+                fechaIngreso, 
+                Historial, 
+                nombreDoctor,
+                apellidoD1,
+                apellidoD2,
+                diagnostico,
+                especialidad,   // esto es el area de internacion a la que va estar registrado el paciente
+                idConsultaMedica,  // este id se llena cuando se registran los datos desde consulta medica
+                idEmergencia,  // este id se llena cuando se llenan los datos desde emergencia 
+                id_medico, // este es el id del medico
+                id_especialidad  
+              })
+              .then(data => res.status(200).send({
+                  success: true,
+                  msg: 'Se inserto con exito',
+                  data
+              }))
+              .catch(error => res.status(400).send(error));   
+            }
+            
           }
         })
         .catch(error => {
@@ -90,6 +119,16 @@ class papeletaInt{
          }).then((data) => {
            res.status(200).json(data);
          });     
+    }
+
+    static One_p(req, res){                
+      var id = req.params.id_p;  
+      PapeletaInternacion.findAll({
+         where: {id: id}
+         //attributes: ['id', ['description', 'descripcion']]
+       }).then((data) => {
+         res.status(200).json(data);
+      });     
     }
 
     //serv para mostar papeleta de internacion segun emergencia
@@ -138,6 +177,14 @@ class papeletaInt{
             ]
            }
           ]
+        }).then((resp) => {
+          res.status(200).json(resp);
+        });     
+    }
+    static ListPinternacion_hist(req, res){                
+      var historial = req.params.historial;
+      PapeletaInternacion.findAll({
+          where: { Historial: historial } 
         }).then((resp) => {
           res.status(200).json(resp);
         });     

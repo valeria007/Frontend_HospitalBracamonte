@@ -28,26 +28,45 @@ class Receta {
           message: 'Al paciente  '+data[0].emergencium.Citas_Medica.Paciente.nombre+'  '+data[0].emergencium.Citas_Medica.Paciente.apellidop+ " ya se le dio una receta en esta consulta medica" ,
           data
         })
-       }else {
-        const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones,medicamentos,id_medico } = req.body;
-        const { id_consulta } = req.params;
-        const { id_emergencia } = req.params;
-        return Recetas
+       }else { 
+        console.log(req.body)
+        const { tipoConsulta,historiaClinica,fecha,doctor,medicamentos,id_medico } = req.body;
+        if( !tipoConsulta || !historiaClinica || !fecha || !doctor || !medicamentos || !id_medico){
+          if(!tipoConsulta){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte tipo de consulta"
+            })
+          }else if(!historiaClinica){
+            res.status(400).json({
+              success:false,
+              msg:"El historial clinico del paciente mo se esta mandando"
+            })
+          }else if (!fecha){
+            res.status(400).json({
+              success:false,
+              msg:"Fecha es obligatario"
+            })
+          }else if (!doctor){
+            res.status(400).json({
+              success:false,
+              msg:"Inserte medicamentos"
+            })
+          }else if(!id_medico){
+            res.status(400).json({
+              success:false,
+              msg:"El id del medico no se esta mandando"
+            })
+          }
+        }else{ 
+          const { id_consulta } = req.params;
+          return Recetas
           .create(  {
             id_consulta,
-            id_emergencia,
             tipoConsulta,
             historiaClinica,
             fecha,
-            posologia,
-            farmaco,
-            viaAdmincion,
             doctor,
-            indicaciones,
-            unidades,
-            informacionAd,
-            instruciones,
-
             medicamentos,
             id_medico 
           })
@@ -60,7 +79,9 @@ class Receta {
             success: false,
             msg:"No se pudo guardar los datos", 
             error
-          }));
+          })); 
+        }
+       /*  */
          }
         
      });   
@@ -88,27 +109,45 @@ class Receta {
             data
           })
          }else {
-          const { tipoConsulta,historiaClinica,fecha,posologia,farmaco,viaAdmincion,doctor,indicaciones,unidades,informacionAd,instruciones,medicamentos,id_medico  } = req.body;
-          const { id_consulta } = req.params;
+          const { tipoConsulta,historiaClinica,fecha,doctor,medicamentos,id_medico  } = req.body;
+          if( !tipoConsulta || !historiaClinica || !fecha || !doctor || !medicamentos || !id_medico){
+            if(!tipoConsulta){
+              res.status(400).json({
+                success:false,
+                msg:"Inserte tipo de consulta"
+              })
+            }else if(!historiaClinica){
+              res.status(400).json({
+                success:false,
+                msg:"El historial clinico del paciente mo se esta mandando"
+              })
+            }else if (!fecha){
+              res.status(400).json({
+                success:false,
+                msg:"Fecha es obligatario"
+              })
+            }else if (!doctor){
+              res.status(400).json({
+                success:false,
+                msg:"Inserte medicamentos"
+              })
+            }else if(!id_medico){
+              res.status(400).json({
+                success:false,
+                msg:"El id del medico no se esta mandando"
+              })
+            }
+          }else{
           const { id_emergencia } = req.params;
           return Recetas
             .create(  {
-              id_consulta,
               id_emergencia,
               tipoConsulta,
               historiaClinica,
               fecha,
-              posologia,
-              farmaco,
-              viaAdmincion,
               doctor,
-              indicaciones,
-              unidades,
-              informacionAd,
-              instruciones,
-              
               medicamentos,
-              id_medico
+              id_medico 
             })
              .then(consultaData => res.status(201).send({
                 success: true,
@@ -120,9 +159,11 @@ class Receta {
               msg:"No se pudo guardar los datos", 
               error
             }));
-           }
+          }
           
-       });   
+        }
+          
+      });   
       
     }
   static getReceta(req, res) {
@@ -235,10 +276,21 @@ class Receta {
     })
   }
    //mostar recetas solo de consultas
-   static recOfConsulta(req, res){    
+  static recOfConsulta(req, res){    
     var data = req.params;            
     Recetas.findAll({
        where: { tipoConsulta : data.tipoConsulta, historiaClinica : data.historial }
+       //attributes: ['id', ['description', 'descripcion']]
+     }).then((data) => {
+       res.status(200).json(data);
+     });   
+  }
+
+  //ruta para poder mostrar la lista de recetas del paciente
+  static list_recetas_paciente(req, res){    
+    var data = req.params;            
+    Recetas.findAll({
+       where: { historiaClinica : data.historial }
        //attributes: ['id', ['description', 'descripcion']]
      }).then((data) => {
        res.status(200).json(data);
@@ -250,6 +302,15 @@ class Receta {
     const { id_receta } = req.params
     Recetas.findAll({
       where : { id: id_receta },
+      include:[
+        {model : Consultas, attributes:['id'],
+       include:[{
+         model : Citas_Medicas, attributes:['id'],
+         include:[{
+           model : Pacientes, attributes:['id','nombre', 'apellidop','apellidom']
+         }]
+       }]}
+      ]
     }).then(receta => {
       res.status(200).send(receta)
     })

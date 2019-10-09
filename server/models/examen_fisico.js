@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const examen_fisico = sequelize.define('examen_fisico', {
+    estado_update: DataTypes.BOOLEAN,
     peso: DataTypes.STRING,
     talla: DataTypes.STRING,
     temperatura: DataTypes.STRING,

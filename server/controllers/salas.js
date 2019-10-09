@@ -8,14 +8,15 @@ const { Especialidad } = model;
 //servicio para insertar salas con id de servicio
 class Sala {
     static enviarSala(req, res){
-      
+        console.log(req.body, "esto es el cuerpo ")
         if(req.body.piso == ""){
             res.status(400).send("posrfavor introdusca un piso")
         }else{
           Especialidad.findAll({
             where: {nombre : req.body.nombre}
           })
-          .then((datos) => {            
+          .then((datos) => {  
+            console.log(datos, " esto es datos")          
             var id = datos[0].id;
             const { nombre, descripcionSala, piso } = req.body
             var  especialidadID  = id
@@ -31,7 +32,7 @@ class Sala {
                 message: 'se inserto con exito',
                 data
             }))
-            .catch(error => res.status(400).send(error));
+            .catch(error => res.status(400).send(error)); 
           })
             
         }
@@ -45,7 +46,49 @@ class Sala {
             message: 'Todos los espacios son requeridos'
         })
     } else{
-      const { nombre, descripcionSala, piso } = req.body
+      fetch('http://localhost:4600/api/especialidad')   
+      .then(resp => resp.json())
+      .then(resp =>{
+        for(var i = 0; i< resp.length; i++){
+          if(resp[i].nombre == req.body.nombre){
+            var id = resp[i].id
+            console.log(id , " id ")
+            const { nombre, descripcionSala, piso } = req.body
+            return Salas
+            .create({
+              nombre, 
+              descripcionSala, 
+              piso
+              
+            })
+            .then(data => {
+              res.status(200).json({
+                success: true,
+                message: 'se inserto con exito',
+                data
+              })
+            })
+            .catch(error => {
+              console.log(error)
+              res.status(400).json({
+                success:false,
+                msg:"no se pudo insertar los datos",
+                error
+              })
+            }); 
+          }
+        }
+
+      }).
+      catch( error => {
+        res.status(500).json({
+          success:false,
+          msg:"No hay coneccion con el servidor",
+          error
+        })
+      })
+      
+      /* const { nombre, descripcionSala, piso } = req.body
       return Salas
       .create({
         nombre, 
@@ -57,8 +100,8 @@ class Sala {
           message: 'se inserto con exito',
           data
       }))
-      .catch(error => res.status(400).send(error));
-        }
+      .catch(error => res.status(400).send(error)); */
+    }
     
           
      /* fetch('http://localhost:4600/api/especialidad')   

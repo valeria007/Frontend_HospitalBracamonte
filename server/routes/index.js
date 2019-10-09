@@ -99,7 +99,10 @@ app.get('/api/reg_Receta', Receta.getReceta);
 app.get('/api/OnlyReceta/:id', Receta.onlyReceta); // receta segun consulta medica
 app.get('/api/RecetaEmergencia/:id', Receta.RecetaEmergencia); // receta segun emergencia
 app.get('/api/recitasOfEMG/:id', Receta.recOfEmg);
-app.get('/api/recetaOfConsulta/:historial/:tipoConsulta', Receta.recOfConsulta);
+app.get('/api/recetaOfConsulta/:historial/:tipoConsulta', Receta.recOfConsulta); // esta ruta muestra la lista de recetas del paciente segun su histrial y segun el tipo de la consulta
+
+app.get('/api/list_recetas_paciente/:historial', Receta.list_recetas_paciente); // esta ruta muestra la lista de recetas del paciente
+
 app.post('/api/updateReceta/:id', Receta.updateReceta);
 app.get('/receta/:id',Receta.citaRecetas); // para sacar receta y 
 
@@ -118,6 +121,9 @@ app.post('/api/updatePinternacion/:id', papeletaInt.upinternacion);
 app.get('/api/PinterTrue/:id_especialidad', papeletaInt.PINterTRUE);// serv para traer papeleta de internacion de tipo true
 app.get('/api/PinterFalse/:id_especialidad', papeletaInt.PINterFALSE);// serv para traer papeleta de internacion de tipo false
 app.get('/api/one_Pinternacion/:id/:tipoCons', papeletaInt.idPinternacion); // 
+
+app.get('/api/ListPinternacion_hist/:historial', papeletaInt.ListPinternacion_hist) // lista de papeleta de internacion segun historial
+app.get('/api/One_p/:id_p', papeletaInt.One_p)
 
 app.get('/api/estado_p_internacion/:idPinternacion', papeletaInt.estadoPInternacion); // esta ruta es para poder cambiar el estado de papeleta de internacion
 

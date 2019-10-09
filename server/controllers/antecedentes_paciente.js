@@ -74,27 +74,31 @@ class Antecedentes {
     //esta ruta es para poder actulizar en antecedente
     static updateAntecedente(req, res) {
         const { familiares, personales_patologicos,personales_no_patologicos,gineco_obstetrico,descripcion, } = req.body
+        var estado_update = 'false'
         return antecedentes
           .findByPk(req.params.id)
           .then((data) => {
             data.update({
-
-                familiares: familiares || data.familiares,
-                personales_patologicos: personales_patologicos || data.personales_patologicos,
-                personales_no_patologicos: personales_no_patologicos || data.personales_no_patologicos,
-                gineco_obstetrico: gineco_obstetrico || data.gineco_obstetrico,
-                descripcion: descripcion || data.descripcion
+              estado_update:estado_update||data.estado_update,
+              familiares: familiares || data.familiares,
+              personales_patologicos: personales_patologicos || data.personales_patologicos,
+              personales_no_patologicos: personales_no_patologicos || data.personales_no_patologicos,
+              gineco_obstetrico: gineco_obstetrico || data.gineco_obstetrico,
+              descripcion: descripcion || data.descripcion
                                   
             })
             .then(update => {
               res.status(200).send({
-                message: 'Se nodifico con exito..',
+                success:true,
+                msg: 'Se nodifico con exito..',
                 data: {
-                    familiares: familiares || update.familiares,
-                    personales_patologicos: personales_patologicos || update.personales_patologicos,
-                    personales_no_patologicos: personales_no_patologicos || update.personales_no_patologicos,
-                    gineco_obstetrico: gineco_obstetrico || update.gineco_obstetrico,
-                    descripcion: descripcion || update.descripcion
+                  estado_update:estado_update||update.estado_update,
+
+                  familiares: familiares || update.familiares,
+                  personales_patologicos: personales_patologicos || update.personales_patologicos,
+                  personales_no_patologicos: personales_no_patologicos || update.personales_no_patologicos,
+                  gineco_obstetrico: gineco_obstetrico || update.gineco_obstetrico,
+                  descripcion: descripcion || update.descripcion
                 }
               })
             })

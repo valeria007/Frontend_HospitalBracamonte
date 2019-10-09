@@ -40,28 +40,7 @@ module.exports = {
       fecha: {
         type: Sequelize.DATE
       },
-      posologia:{
-        type: Sequelize.TEXT
-      },
-      farmaco: {
-        type: Sequelize.TEXT
-      },
-      viaAdmincion: {
-        type: Sequelize.TEXT
-      },
       doctor:{
-        type: Sequelize.TEXT
-      },
-      indicaciones: {
-        type: Sequelize.TEXT
-      },
-      unidades: {
-        type: Sequelize.INTEGER
-      },
-      informacionAd: {
-        type: Sequelize.TEXT
-      },
-      instruciones: {
         type: Sequelize.TEXT
       },
       medicamentos: {
