@@ -1172,4 +1172,26 @@ router.post('/update_exFisico/:id_examen/:id_paciente/:token_id/:token_partial',
   })
 })
 
+//laboratorio
+router.get('/examenComplement',(req,res) =>{
+  res.render('emergencia2.0/examenComplement')
+});
+//historial del dia
+router.get('/ultimaConsulta',(req,res) =>{
+  res.render('emergencia2.0/ultimaConsulta')
+});
+//historial del 
+router.get('/historialGeneral',(req,res) =>{
+  res.render('emergencia2.0/historialGeneral')
+});
+//reportes
+router.get('/H_Consulta',(req,res) =>{
+  res.render('emergencia2.0/H_Consulta')
+});
+router.get('/H_Emergencia',(req,res) =>{
+  res.render('emergencia2.0/H_Emergencia')
+});
+router.get('/H_hospitalizacion',(req,res) =>{
+  res.render('emergencia2.0/H_hospitalizacion')
+});
 module.exports = router;

@@ -42,10 +42,8 @@
         <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
-            <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-            <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-            <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            >
+            <li> <a href="login.html"><i class="fa fa-power-off"></i> Cerrar sesión</a> </li>
           </ul>
         </div>
        
@@ -59,36 +57,27 @@
             <ul>
               <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
                 <ul >
-                  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Inicio </b> </a> </li>
                 </ul>
               </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul  >
-                  <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
-                </ul>
-              </li>
-              <li > <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul >
-                  <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                  <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
-                  <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-                </ul>
-              </li>
-              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Emergencias<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
                 <ul class="opened" style="display:block">
-                  <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                  <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                  <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                  <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Espc.</b> </a> </li>
+                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Cita</b> </a> </li>
                 </ul>
               </li>
-              <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-                <ul>
-                  <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                  <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+              <li> <a href="javascript:void(0);"> <i class="fa fa-archive icon"></i>Historia de Emerg.<span class="left_nav_pointer"></span>  <span class="plus"><i class="fa fa-plus"></i></span></a>
+                <ul >
+                  <li> <a href="/emergencia2.0/ultimaConsulta"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Última Cosulta </b> </a> </li>
                 </ul>
               </li>
+              <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reportes<span class="plus"><i class="fa fa-plus"></i></span></a>
+                <ul >
+                  <li> <a href="/emergencia2.0/historialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clínico </b>  </a> </li>
+                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Vicitas al doctor</b>  </a> </li>
+                  <li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Lista Recetas</b>  </a> </li>
+                </ul>
+              </li>
+            
             </ul>
           </div>
       </div>
@@ -101,7 +90,7 @@
             <div class="block-web">
               <div class="header">
                     <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
-                    <h3 class="content-header ">Reportes Especialidades</h3>
+                    <h3 class="content-header ">Reportes de Emergencia</h3>
               </div>
               <br>
               <br>
@@ -122,29 +111,27 @@
                   
                 </form>
               </div>
-              <button type="submit" class="btn btn-warning btn-icon">Imprimir<span>&nbsp;</span><i class="fa fa-print"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
               <div class="table-responsive">
                 <table  class="display table table-bordered table-striped" id="dynamic-table">
                   <thead>
                     <tr>
                           <th class="text-center">Nombre</th>
-                          <th class="text-center">Consultorio</th>	
+                          <th class="text-center">Sigla</th>	
                           <th class="text-center">Fecha Creación</th>	
                           <th class="text-center">Optiones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <%for (var i = 0; i< data.length; i++) { %>
+                   
                       <tr>
-                        <td class="text-center"><%=data[i].nombre%></td>
-                        <td class="text-center"><%=data[i].sigla%></td>
-                        <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
                         <td>
-                          <a href=""data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
-                        </td>
+                          <a href="">ver</a></td>
                         </td>
                       </tr>
-                    <% } %>
+                 
                   </tbody>
                 </table>
               </div>
