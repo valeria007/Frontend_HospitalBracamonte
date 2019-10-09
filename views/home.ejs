@@ -11,88 +11,296 @@
 <link href="css/animate.css" rel="stylesheet" type="text/css" />
 <link href="css/admin.css" rel="stylesheet" type="text/css" />
 <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link href="plugins/kalendar/kalendar.css" rel="stylesheet">
-<link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
-<link href="plugins/morris/morris.css" rel="stylesheet" />
+<link href="plugins/calendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+<link href="plugins/calendar/fullcalendar.print.css" rel="stylesheet" type="text/css" />
+
 <style>
-		div.a {
-				text-align: center;
-		}
-		h1.letras {
-  font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
-  
-}
+  .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+  .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
 </style>
+<style>
+  * {
+	margin:0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.wrap {
+	width: 90%;
+	max-width: 870px;
+	/*margin:auto;*/
+}
+
+.widget {
+	width: 40%;
+	margin: 2em;
+	/*margin:32px; */
+}
+
+.widget p {
+	display: inline-block;
+	line-height: 1em;
+}
+
+.fecha {
+	font-family: Oswald, Arial;
+	text-align: center;
+	font-size:1.5em;
+	margin-bottom: 0.3125rem;
+	/*margin-bottom: 5px;*/
+	background: rgba(0,0,0,.5);
+	padding: 20px;
+	width: 100%;
+}
+
+.reloj {
+	font-family: Oswald, Arial;
+	width: 100%;
+	padding: 20px;
+	font-size: 4em;
+	text-align: center;
+	background: rgba(0,0,0,.5);
+}
+
+.reloj .caja-segundos {
+	display: inline-block;
+}
+
+.reloj .segundos,
+.reloj .ampm {
+	font-size: 2rem;
+	display: block;
+}
+
+</style>
+
 </head>
-<body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
-  <%- include("partials/menusali") -%>	
-  <div class="inner">
-    <div class="left_nav">
-      <div class="left_nav_slidebar">
-        <ul>
-          <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul class="opened" style="display:block">
-              <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Inicio</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios <span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul >
-              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+<body class="light_theme  fixed_header left_nav_fixed" onload="startTime()">
+  <div class="wrapper">
+    <%- include("partials/menusali") -%>	
+    <div class="inner">
+      <div class="left_nav">
+        <div class="left_nav_slidebar">
+          <ul>
+            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul class="opened" style="display:block">
+                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul >
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+              </ul>
+            </li>
+
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="contentpanel">
+        <div class="container clear_both padding_fix col-lg-8">
+          <br>
+          <div class="row">
+            <div class="col-lg-12 ">
               
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul>
-              
-              <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
-              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-            </ul>
-          </li>
-          
-          <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-              <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-              <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-              <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul>
-              <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-              <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
-            </ul>
-          </li>
-        </ul>
+              <div class="col-sm-3 col-sm-6">
+                <div class="information green_info">   
+                  <div class="information_inner">
+                    <div class="info green_symbols"><i class="fa fa-users icon"></i></div>
+                    <span>USUARIOS</span>
+                    <h1 class="bolded">3</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-sm-6">
+                <div class="information blue_info">
+                  <div class="information_inner">
+                  <div class="info2 blue2_symbols"><i class="fa fa-user-md icon"></i></div>
+                    <span>PERSONAL MÉDICO</span>
+                    <h1 class="bolded">30</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-sm-6">
+                <div class="information red_info">
+                  <div class="information_inner">
+                  <div class="info2 red_symbols"><i class="fa fa-user icon"></i></div>
+                    <span>PERSONAL ADMIN.</span>
+                    <h1 class="bolded">50</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-sm-6">
+               <div class="information violet_info">
+                  <div class="information_inner">
+                  <div class="info violet_symbols"><i class="fa fa-briefcase icon"></i></div>
+                    <span>FARMACEUTICOS </span>
+                    <h1 class="bolded">40</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-sm-6">
+                <div class="information yewoll_info">
+                   <div class="information_inner">
+                   <div class="info2 yewoll_symbols"><i class="fa fa-plus-square icon"></i></div>
+                     <span>ENFERMERA</span>
+                     <h1 class="bolded">40</h1>
+                   </div>
+                 </div>
+                </div>
+                <div class="form-group ">
+                  <div class="col-sm-10">
+                    <div class="wrap">
+                      <div class="widget">
+                        <div class="fecha">
+                          <p id="diaSemana" class="diaSemana">Martes</p>
+                          <p id="dia" class="dia">27</p>
+                          <p>de </p>
+                          <p id="mes" class="mes">Octubre</p>
+                          <p>del </p>
+                          <p id="year" class="year">2015</p>
+                        </div>
+                      
+                        <div class="reloj">
+                          <p id="horas" class="horas">11</p>
+                          <p>:</p>
+                          <p id="minutos" class="minutos">48</p>
+                          <p>:</p>
+                          <div class="caja-segundos">
+                            <p id="ampm" class="ampm">AM</p>
+                            <p id="segundos" class="segundos">12</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id='calendar'></div>
+            </div>
+                
+            
+          </div>
+        </div>
       </div>
     </div>
-    <div class="contentpanel">
-      <div class="container clear_both padding_fix col-lg-8">
-      <br>
-      <br>
-      <br>
-      <div class="row">
+  </div>
+<script>
+  (function(){
+	var actualizarHora = function(){
+		// Obtenemos la fecha actual, incluyendo las horas, minutos, segundos, dia de la semana, dia del mes, mes y año;
+		var fecha = new Date(),
+			horas = fecha.getHours(),
+			ampm,
+			minutos = fecha.getMinutes(),
+			segundos = fecha.getSeconds(),
+			diaSemana = fecha.getDay(),
+			dia = fecha.getDate(),
+			mes = fecha.getMonth(),
+			year = fecha.getFullYear();
 
-          <div class="col-lg-12 ">
-              <div class="a" style="display:block ">
-                  <h1 class="letras">GOBIERNO AUTONOMO DE POTOSI</h1>
-                  </div>
-                  <br>
-                  <br>
-			  <div >
-					<img class="centrado"src="images/VIII.gif" width="300" height="200"  />
-			  </div>
-			  <br>
-			  <br>
-			  
-        </div>
-        </div>
-    </div>
-</div>
-</div>
+		// Accedemos a los elementos del DOM para agregar mas adelante sus correspondientes valores
+		var pHoras = document.getElementById('horas'),
+			pAMPM = document.getElementById('ampm'),
+			pMinutos = document.getElementById('minutos'),
+			pSegundos = document.getElementById('segundos'),
+			pDiaSemana = document.getElementById('diaSemana'),
+			pDia = document.getElementById('dia'),
+			pMes = document.getElementById('mes'),
+			pYear = document.getElementById('year');
+
+		
+		// Obtenemos el dia se la semana y lo mostramos
+		var semana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+		pDiaSemana.textContent = semana[diaSemana];
+
+		// Obtenemos el dia del mes
+		pDia.textContent = dia;
+
+		// Obtenemos el Mes y año y lo mostramos
+		var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+		pMes.textContent = meses[mes];
+		pYear.textContent = year;
+
+		// Cambiamos las hora de 24 a 12 horas y establecemos si es AM o PM
+
+		if (horas >= 12) {
+			horas = horas - 12;
+			ampm = 'PM';
+		} else {
+			ampm = 'AM';
+		}
+
+		// Detectamos cuando sean las 0 AM y transformamos a 12 AM
+		if (horas == 0 ){
+			horas = 12;
+		}
+
+		// Si queremos mostrar un cero antes de las horas ejecutamos este condicional
+		// if (horas < 10){horas = '0' + horas;}
+		pHoras.textContent = horas;
+		pAMPM.textContent = ampm;
+
+		// Minutos y Segundos
+		if (minutos < 10){ minutos = "0" + minutos; }
+		if (segundos < 10){ segundos = "0" + segundos; }
+
+		pMinutos.textContent = minutos;
+		pSegundos.textContent = segundos;
+	};
+
+	actualizarHora();
+	var intervalo = setInterval(actualizarHora, 1000);
+}())
+</script>
+<script>
+  var yy;
+	var calendarArray =[];
+	var monthOffset = [6,7,8,9,10,11,0,1,2,3,4,5];
+	var monthArray = [["ENE","enero"],["FEB","Febrero"],["MAR","Marzo"],["ABR","Abril"],["MAY","Mayo"],["JUN","Junio"],["JUL","Julio"],["AGO","Agosto"],["SEP","Septiembre"],["OCT","Octubre"],["NOV","Noviembre"],["DIC","Diciembre"]];
+	var letrasArray = ["L","M","X","J","V","S","D"];
+	var dayArray = ["7","1","2","3","4","5","6"];
+	$(document).ready(function() {
+		$(document).on('click','.specific-day',activatecalendar);
+		$(document).on('click','.calendar-month-view-arrow',offsetcalendar);
+		$(window).resize(calendarScale);
+		$(".calendar").calendar({
+			"2013910": {
+				"Mulberry Festival": {
+					start: "9.00",
+					end: "9.30",
+					location: "London"
+				}
+			}
+		});
+		calendarSet();
+		calendarScale();
+		});
+
+</script>
 
 <script src="js/jquery-2.1.0.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -127,6 +335,10 @@
 <script src="js/side-chats.js"></script>
 <script src="js/jquery.slimscroll.min.js"></script>
 <script src="plugins/scroll/jquery.nanoscroller.js"></script>
+
+<script src="js/jquery-ui.custom.min.js"></script>
+<script src="plugins/calendar/fullcalendar.min.js"></script>
+<script src="plugins/calendar/external-draging-calendar.js"></script>
 
 
 

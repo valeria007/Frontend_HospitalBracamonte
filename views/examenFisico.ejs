@@ -46,7 +46,7 @@
 	<!-- SideBar -->
 
     <!-- Content page-->
-    <div class="wrapper">
+    <div class="wrapper" id="examen_f">
         <!--\\\\\\\ wrapper Start \\\\\\-->
         <div class="header_bar">
             <!--\\\\\\\ header Start \\\\\\-->
@@ -63,7 +63,7 @@
                 <div class="top_right_bar">
 
                     <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-                                src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+                                src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
                                 class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
@@ -89,7 +89,7 @@
                                     class="left_nav_pointer"></span> <span class="plus"><i
                                         class="fa fa-plus"></i></span> </a>
                             <ul>
-                                <li> <a href="/medico/renderVistaDocotr/<%=especialidad%>"> <span>&nbsp;</span> <i
+                                <li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
                                             class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
                             </ul>
                         </li>
@@ -97,7 +97,7 @@
                                     class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i
                                         class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
-                                <li> <a href="/medico/listfalseConsulta/<%=especialidad%>"> <span>&nbsp;</span> <i
+                                <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i
                                             class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>
                                     </a> </li>
                             </ul>
@@ -115,303 +115,339 @@
                     <div class="row">
                         <div class="col-lg-12 ">
 
-		<!-- Content page -->
-		<div class="container-fluid col-md-12" id="">
-			<div class="header">
-				<div class="info blue_symbols"><i class="fa fa-group icon"></i></div><br>
-					<h3 class="content-header "> Examen General</h3>
-				</div>	
-				<br><br>	
-		</div>
-	<!-- Examen Fisico-->
-	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade active in" id="new">
-		  <div class="container-fluid">
-			<div class="row">
-				<div class="">
+							<!-- Content page -->
+							<div class="container-fluid col-md-12" id="">
+								<div class="header">
+									<div class="info blue_symbols"><i class="fa fa-group icon"></i></div><br>
+									<h3 class="content-header "> Examen General</h3>
+								</div>	
+								<br><br>	
+							</div>
+								<!-- Examen Fisico-->
+							<div id="myTabContent" class="tab-content">
+								<div class="tab-pane fade active in" id="new">
+								  <div class="container-fluid">
+									<div class="row">
+										<div class="">
+											<input type="hidden" :value="id_paciente = '<%=dataPaciente[0].id%>'">
+											<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
+											<span style="color: red">{{msg_false}}</span>
+											<span style="color: blue">{{msg}}</span>
+										<template v-if="one_examen == ''">
 										
-			<%if(update_exFisico == null) { %>
-			  <form action="/datos_generales_paciente/reg_exFisico/<%=dataPaciente[0].id%>" method="POST">
-				<div class="block-web">
-					<div class="header">
-						<div class="actions">
-							<a href="/datos_generales_paciente/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> Atras</a>
-						</div>
-							<h3 class=""> Registrar Examen General	
-							</h3>&nbsp;&nbsp;
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="col-md-9">
-							<div class="col-sm-4 col-sm-4">
-								<div class="entrada ">
-									<h6 class=" blue_info">N° de Historia:</h6>
-										<input
-											value="<%=dataPaciente[0].numeroHistorial%>"
-											class="form-control" readonly=""
-											value="Read only text goes here">
-								</div>
-							</div>
-							<div class="col-sm-8 col-sm-9">
-								<div class="form-group">
-									<div class="entrada">
-										<h6 class=" blue_info">Nombre Completo:</h6>
-											<input
-												value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-												class="form-control" readonly=""
-												value="Read only text goes here">
-									</div>
-								</div>
-							</div>
-						
-				<div class="">
-					<div class="col-sm-4 col-sm-4">
-						<div class="entrada">Estado General:<br>
-							<input type="text" name="estado_general" value=""size="10" class="form-control"><br>
-						</div>
-					</div>
-					<div class="col-sm-4 col-sm-4">
-						<div class="form-group">
-								<div class="entrada">Facies:<br>
-									<input type="text" name="facies" value="" size="20"class="form-control"><br>
+											<form @submit="reg_examen_fisico" method="POST">
+												<div class="block-web">
+													<div class="header">
+														<div class="actions">
+															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> Atras</a>
+														</div>
+															<h3 class=""> Registrar Examen General	
+															</h3>&nbsp;&nbsp;
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="col-md-9">
+														<div class="col-sm-4 col-sm-4">
+															<div class="entrada ">
+																<h6 class=" blue_info">N° de Historia:</h6>
+																	<input
+																		value="<%=dataPaciente[0].numeroHistorial%>"
+																		class="form-control" readonly=""
+																		value="Read only text goes here">
+															</div>
+														</div>
+														<div class="col-sm-8 col-sm-9">
+															<div class="form-group">
+																<div class="entrada">
+																	<h6 class=" blue_info">Nombre Completo:</h6>
+																		<input
+																			value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+																			class="form-control" readonly=""
+																			value="Read only text goes here">
+																</div>
+															</div>
+														</div>
+
+														<div class="">
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Peso:<br>
+																	<input type="text" name="estado_general" value=""size="10" class="form-control" v-model="peso"><br>
+																</div>
+															</div>
+															<div class="col-sm-4 col-sm-4">
+																<div class="form-group">
+																		<div class="entrada">Talla:<br>
+																			<input type="text" name="facies" value="" size="20"class="form-control" v-model="talla"><br>
+																		  </div>
+																</div>
+															</div>
+															<div class="col-sm-4 col-sm-4">
+																	<div class="form-group">
+																			<div class="entrada">Temperatura:<br>
+																				<input type="text" name="precion_arterial" value=""size="10" class="form-control" v-model="temperatura"><br>
+																			  </div>
+																	</div>
+															</div>
+														</div>
+														<div class="">
+															<div class="col-sm-4 col-sm-4">
+																<div class="form-group">
+																	<div class="entrada">Frecuencia_cardiaca:<br>
+																		<input type="text" name="estado_nutricional" value=""size="10" class="form-control" v-model="frecuencia_cardiaca"><br>
+																	</div>
+																</div>
+															</div>
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Respiracion:<br>
+																	<input type="text" name="peso" value="" size="20" class="form-control" v-model="respiracion"><br>
+																</div>
+															</div>		
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Presión:<br>
+																	<input type="text" name="saturacion_oxigeno" value=""size="10" class="form-control" v-model="presion"><br>
+																</div>
+															</div>
+														</div>
+														<div class="col-md-12">		
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Saturacion de oxigeno:<br>
+																	<input type="text" name="frecuencia_cardiaca" value=""size="10" class="form-control" v-model="saturacion_oxigeno"><br>
+															  	</div>
+															</div>
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Fecha de Revisión:<br>
+																	<input type="text" readonly size="20" class="form-control" v-model="fecha_revision"><br>
+															  	</div>
+															</div>		
+														</div>
+															</div>
+														
+														<div class="col-md-3">
+															<div class="file_sidebar">                   
+																	<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
+																	<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
+																	<ul>
+																		<li><a href="/datos_generales_paciente/lista_antecedentes/<%=id_cita%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
+																		<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Alergias</a></li>
+																		<!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
+																		<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
+																		  
+																	   <!-- <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
+																	   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+																	   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
+																	   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
+																	   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
+																	   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> -->
+																	</ul>
+															   </div>
+															 </div>
+														</div>
+												</div>
+
+												<br>
+												<br>
+												<p class="text-center">
+												  <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+												  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+												</p>
+											</form>
+
+										</template>
+										<template v-else>
+											<form @submit="update_examen" method="POST">
+												<div class="block-web">
+													<div class="header">
+														<div class="actions">
+															<a href="/consulta_externa/reg_consulta/<%=id_cita%>/<%=dataPaciente[0].numeroHistorial%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> Atras</a>
+														</div>
+															<h3 class=""> Registrar Examen General	
+															</h3>&nbsp;&nbsp;
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="col-md-9">
+														<div class="col-sm-4 col-sm-4">
+															<div class="entrada ">
+																<h6 class=" blue_info">N° de Historia:</h6>
+																	<input
+																		value="<%=dataPaciente[0].numeroHistorial%>"
+																		class="form-control" readonly=""
+																		value="Read only text goes here">
+															</div>
+														</div>
+														<div class="col-sm-8 col-sm-9">
+															<div class="form-group">
+																<div class="entrada">
+																	<h6 class=" blue_info">Nombre Completo:</h6>
+																		<input
+																			value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
+																			class="form-control" readonly=""
+																			value="Read only text goes here">
+																</div>
+															</div>
+														</div>
+
+														<div class="">
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Peso:<br>
+																	<input type="text" name="estado_general" value=""size="10" class="form-control" v-model="one_examen.peso"><br>
+																</div>
+															</div>
+															<div class="col-sm-4 col-sm-4">
+																<div class="form-group">
+																		<div class="entrada">Talla:<br>
+																			<input type="text" name="facies" value="" size="20"class="form-control" v-model="one_examen.talla"><br>
+																		  </div>
+																</div>
+															</div>
+															<div class="col-sm-4 col-sm-4">
+																	<div class="form-group">
+																			<div class="entrada">Temperatura:<br>
+																				<input type="text" name="precion_arterial" value=""size="10" class="form-control" v-model="one_examen.temperatura"><br>
+																			  </div>
+																	</div>
+															</div>
+														</div>
+														<div class="">
+															<div class="col-sm-4 col-sm-4">
+																<div class="form-group">
+																	<div class="entrada">Frecuencia_cardiaca:<br>
+																		<input type="text" name="estado_nutricional" value=""size="10" class="form-control" v-model="one_examen.frecuencia_cardiaca"><br>
+																	</div>
+																</div>
+															</div>
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Respiracion:<br>
+																	<input type="text" name="peso" value="" size="20" class="form-control" v-model="one_examen.respiracion"><br>
+																</div>
+															</div>		
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Presión:<br>
+																	<input type="text" name="saturacion_oxigeno" value=""size="10" class="form-control" v-model="one_examen.presion"><br>
+																</div>
+															</div>
+														</div>
+														<div class="col-md-12">		
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Saturacion de oxigeno:<br>
+																	<input type="text" name="frecuencia_cardiaca" value=""size="10" class="form-control" v-model="one_examen.saturacion_oxigeno"><br>
+															  	</div>
+															</div>
+															<div class="col-sm-4 col-sm-4">
+																<div class="entrada">Fecha de Revisión:<br>
+																	<input type="text" readonly size="20" class="form-control" v-model="one_examen.fecha_revision"><br>
+															  	</div>
+															</div>		
+														</div>
+															</div>
+														
+														<div class="col-md-3">
+															<div class="file_sidebar">                   
+																	<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
+																	<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
+																	<ul>
+																		<li><a href="/datos_generales_paciente/lista_antecedentes/<%=id_cita%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
+																		<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Alergias</a></li>
+																		<!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
+																		<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
+																			  
+																	   <!-- <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
+																	   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+																	   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
+																	   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
+																	   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
+																	   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> -->
+																	</ul>
+															   </div>
+															 </div>
+														</div>
+												</div>
+
+												<br>
+												<br>
+												<p class="text-center">
+												  	<button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar {{one_examen.estado_update }}</button>
+												  	
+												  	<template v-if="one_examen.estado_update == true">
+												  		<button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>													
+													</template>
+													<button @click="one_examen = ''" type="button" class="btn btn-warning btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Volver</button>
+												  
+												</p>
+											</form>
+										</template>
+
+										<div class="col-lg-12"> 
+											<section class="panel default blue_title h2">
+												<div class="panel-heading">
+													 <span class="h6">Lista de Examenes fisicos</span>
+												</div>
+												<div class="panel-body">
+												
+													  <table class="table table-hover">
+														<thead>
+															  <tr>
+																<th>#</th>
+																<th>Fecha</th>
+																<th>Peso</th>
+																<th>Talla</th>
+																<th>Temperatura</th>
+																<th>Frecuencia cardiaca</th>
+																<th>Respiracion</th>
+																<th>Presion</th>
+																<th>Saturacion de oxigeno</th>
+																<th>Ver</th>
+															  </tr>
+														</thead>
+														<tbody v-for="(list,index) in examen_list">														  
+															<tr class="gradeX">
+																<td>{{index+1}}</td>
+																<td>{{list.fecha_revision}}</td>
+																<td>{{list.peso}}</td>
+																<td>{{list.talla}}</td>
+																<td>{{list.temperatura}}</td>
+																<td>{{list.frecuencia_cardiaca}}</td>
+																<td>{{list.respiracion}}</td>
+																<td>{{list.presion}}</td>		
+																<td>{{list.saturacion_oxigeno}}</td>			
+																<td >																			
+																	<a @click="oneExamen(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
+																																							
+																</td>
+
+															</tr>
+														</tbody>
+														<tfoot>
+															<tr>
+																<th></th>
+																<th>Fecha</th>
+																<th>Tipo de Alergia</th>
+																<th>Descripción</th>
+																<th>Ver</th>
+															</tr>
+														</tfoot>
+													  </table>
+									   
+												</div>
+											</section>
+										</div>
+
+
+
+									  </div>                          
 								  </div>
-						</div>
-					</div>
-					<div class="col-sm-4 col-sm-4">
-							<div class="form-group">
-									<div class="entrada">Presión Arterial:<br>
-										<input type="text" name="precion_arterial" value=""size="10" class="form-control"><br>
-									  </div>
-							</div>
-					</div>
-				</div>
-				<div class="">
-					<div class="col-sm-4 col-sm-4">
-						<div class="form-group">
-							<div class="entrada">Estado Nutricional:<br>
-								<input type="text" name="estado_nutricional" value=""size="10" class="form-control"><br>
+								</div>
+							  </div>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4 col-sm-4">
-						<div class="entrada">Peso:<br>
-							<input type="text" name="peso" value="" size="20" class="form-control"><br>
-						</div>
-					</div>		
-					<div class="col-sm-4 col-sm-4">
-						<div class="entrada">Saturación de Oxigeno:<br>
-							<input type="text" name="saturacion_oxigeno" value=""size="10" class="form-control"><br>
-						</div>
-					</div>
 				</div>
-				<div class="col-md-12">		
-					<div class="col-sm-4 col-sm-4">
-						<div class="entrada">Frecuencia Cardiaca:<br>
-							<input type="text" name="frecuencia_cardiaca" value=""size="10" class="form-control"><br>
-					  	</div>
-					</div>
-					<div class="col-sm-4 col-sm-4">
-						<div class="entrada">Fecha de Revisión:<br>
-							<input type="date" name="fecha_revision" value="" size="20" class="form-control"><br>
-					  	</div>
-					</div>		
-				</div>
-					</div>
-				
-				<div class="col-md-3">
-						<div class="file_sidebar">                   
-								<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
-								<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
-								<ul>
-								   <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
-								   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-								   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-								   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
-								   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-								   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
-								</ul>
-						   </div>
-						 </div>
-					</div>
 			</div>
-				
-				<br>
-				
-				<br>
-				
-				  
-				  <p class="text-center">
-					  <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-					  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-				  </p>
-				</form>
-			<% } else { %>
-				<form action="/datos_generales_paciente/update_exFisico/<%=update_exFisico[0].id%>" method="POST">
-					<div class="block-web">
-						<div class="header">
-							<div class="actions">
-								<a href="/datos_generales_paciente/regresar1" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> Volver a Antecedentes</a>
-							</div>
-								<h3 class=""> Modificar Examen Físico General	
-								</h3>&nbsp;&nbsp;
-						</div>
-					</div>
-					<div class="col-md-12">
-							<div class="col-md-9">
-									<div class="col-sm-4 col-sm-4">
-										<div class="entrada ">
-											<h6 class=" blue_info">N° de Historia:</h6>
-												<input
-													value="<%=dataPaciente[0].numeroHistorial%>"
-													class="form-control" readonly=""
-													value="Read only text goes here">
-										</div>
-									</div>
-									<div class="col-sm-8 col-sm-9">
-										<div class="form-group">
-											<div class="entrada">
-												<h6 class=" blue_info">Nombre Completo:</h6>
-													<input
-														value="<%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%>"
-														class="form-control" readonly=""
-														value="Read only text goes here">
-											</div>
-										</div>
-									</div>
-				
-					<br>
-		
-
-					<div class="">
-						<div class="col-sm-4 col-sm-4">
-							<div class="entrada">Estado General:<br>
-								<input type="text" name="estado_general" value="<%=update_exFisico[0].estado_general%>"size="10" class="form-control"><br>
-							</div>
-						</div>
-						<div class="col-sm-4 col-sm-4">
-							<div class="form-group">
-								<div class="entrada">Facies:<br>
-									<input type="text" name="facies" value="<%=update_exFisico[0].facies%>" size="20"class="form-control"><br>
-							  	</div>
-							</div>
-						</div>
-						<div class="col-sm-4 col-sm-4">
-							<div class="form-group">
-								<div class="entrada">Presión Arterial:<br>
-									<input type="text" name="precion_arterial" value="<%=update_exFisico[0].precion_arterial%>"size="10" class="form-control"><br>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="">
-						<div class="col-sm-4 col-sm-4">
-							<div class="form-group">
-								<div class="entrada">Estado Nutricional:<br>
-									<input type="text" name="estado_nutricional" value="<%=update_exFisico[0].estado_nutricional%>"size="10" class="form-control"><br>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4 col-sm-4">
-							<div class="entrada">Peso:<br>
-								<input type="text" name="peso" value="<%=update_exFisico[0].peso%>" size="20" class="form-control"><br>
-							</div>
-						</div>		
-						<div class="col-sm-4 col-sm-4">
-							<div class="entrada">Saturación de Oxigeno:<br>
-								<input type="text" name="saturacion_oxigeno" value="<%=update_exFisico[0].saturacion_oxigeno%>"size="10" class="form-control"><br>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">		
-						<div class="col-sm-4 col-sm-4">
-							<div class="entrada">Frecuencia Cardiaca:<br>
-								<input type="text" name="frecuencia_cardiaca" value="<%=update_exFisico[0].frecuencia_cardiaca%>"size="10" class="form-control"><br>
-							</div>
-						</div>
-						<div class="col-sm-4 col-sm-4">
-							<div class="entrada">Fecha de Revisión:<br>
-								<input type="date" name="fecha_revision" value="<%=update_exFisico[0].fecha_revision%>" size="20" class="form-control"><br>
-							</div>
-						</div>		
-					</div>				
-					<br>
-					
-							</div>
-							<div class="col-md-3">
-								<div class="file_sidebar">                   
-									<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>            
-									<div  class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
-											
-									<ul>
-											   <li><a href="/datos_generales_paciente/list_responsables/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Datos de responsable</a></li>
-											   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
-											   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
-											   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><i class="fa fa-user"></i>Falta Vacunas</a></li>
-											   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-											   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
-											</ul>
-									   </div>
-									 </div>
-								</div>
-					</div>
-					  <p class="text-center">
-						  <button type="reset" class="btn btn-info btn-raised" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-						  <button type="submit" class="btn btn-danger btn-raised"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
-					  </p>
-				</form>
-			<% } %>
-				<div class="table-responsive">
-					<div class="block-web">
-						<div class="header"><br><br>
-							<h3 class="text-center all-tittles">LISTA DE EXAMENES REALIZADOS</h3>
-							
-						</div>
-					</div>
-
-					
-					<div class="table-wrapper">
-						
-						<table class="display table table-bordered table-striped" id="dynamic-tablee">
-							<thead>
-								<tr>
-								
-								<th>Estado General</th>
-								<th>Facies</th>
-								<th>Precion Arterail </th>
-								<th>Estado Nutricional</th>
-								<th>peso</th>
-								<th>Frecuencia Cardiaca</th>
-								<th>Saturación de Oxigeno </th>
-								<th>Fecha de Revisión </th>
-								<th>Ver</th>
-								
-								</tr>
-							</thead>
-							<tbody>
-								<% for(var i=0; i< lis_exFisico.length; i++) { %>
-									<tr>
-										<td><%=lis_exFisico[i].estado_general%></td>
-										<td><%=lis_exFisico[i].facies%></td>
-										<td><%=lis_exFisico[i].precion_arterial%></td>
-										<td><%=lis_exFisico[i].estado_nutricional%></td>
-										<td><%=lis_exFisico[i].peso%></td>
-										<td><%=lis_exFisico[i].frecuencia_cardiaca%></td>
-										<td><%=lis_exFisico[i].saturacion_oxigeno%></td>
-										<td><%=lis_exFisico[i].fecha_revision%></td>
-										<td class="center"><a href="/datos_generales_paciente/one_ExFisico/<%=lis_exFisico[i].id%>" class="btn btn-info"><i class="fa fa-edit"></i></a></td>
-									
-									</tr>
-								<% } %>
-							<tbody>
-						</table>
-					</div>
-				</div>
-				                                                                         
-			  </div>                          
-		  </div>
 		</div>
-	  </div>
 	</div>
+	
+	
+				
 
 	<!--====== Scripts -->
 	<%- include("partials/scripts") -%>
@@ -423,18 +459,13 @@
     <script src="/js/common-script.js"></script>
     <script src="/js/jquery.slimscroll.min.js"></script>
 
-    <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
-    <script src="/plugins/data-tables/jquery.dataTables.js"></script>
-    <script src="/plugins/data-tables/DT_bootstrap.js"></script>
-    <script src="/plugins/data-tables/dynamic_table_init.js"></script>
-    <script src="/plugins/edit-table/edit-table.js"></script>
-    <script>
-        jQuery(document).ready(function () {
-            EditableTable.init();
-        });
-    </script>
 
     <script src="/js/jPushMenu.js"></script>
-    <script src="/js/side-chats.js"></script>
+	<script src="/js/side-chats.js"></script>
+	
+	<script src="/moment/moment.js"></script>
+    <script src="/moment/locale/af.js"></script>
+	<script src="/url/export.js"></script>
+	<script src="/js/vue/examen_fisico.js"></script>
 </body>
 </html>

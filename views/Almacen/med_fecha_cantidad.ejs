@@ -8,97 +8,83 @@
     <%- include("../partials/head") -%>	
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-    <div class="wrapper">
-        <%- include("../partials/menu") -%>
-        <div class="inner">
-            <div class="left_nav">
-              <!--\\\\\\\left_nav start \\\\\\-->
-                <div class="left_nav_slidebar">
-                    <ul>
-                        <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                            <ul >
-                                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
-                            </ul>
-                        </li>
-                        <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="left_nav_pointer"><i class="fa fa-plus"></i></span></a>
-                            <ul class="opened" style="display:block">
-                                <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-                                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
-                                <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-                                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
-                                <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
-                            </ul>
-                        </li>
-                        <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
-                            <ul>
-                                <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-                                <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-                                <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-                                <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>      
+  <div class="wrapper">
+    <%- include("../partials/menu") -%>
+    <div class="inner">
+      <div class="left_nav">
+        <div class="left_nav_slidebar">
+            <ul>
+              <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+                <ul >
+                  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+                </ul>
+              </li>
+              <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="left_nav_pointer"><i class="fa fa-plus"></i></span></a>
+                <ul class="opened" style="display:block">
+                  <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+                  <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
+                  <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                  <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
+                  <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                  <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+                  <li> <a href="/almacen/farmacia_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos Farmacia</b> </a> </li>
+                </ul>
+              </li>
+              <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+                <ul>
+                  <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                  <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                  <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                  <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+                </ul>
+              </li>
+            </ul>
         </div>
-    <div class="contentpanel">
-            <div class="container clear_both padding_fix">
-                    <div id="main-content">
-                            <div class="page-content">
-                                    <div class="row">
-                                            <div class="col-md-12">
-                                              <div class="block-web">
-                                                <div class="header">
-                                                  <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="#"><i class="fa fa-repeat"></i></a> <a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-                                                  <h3 class="content-header"><i class="fa fa-medkit icon"></i>  Datos de Medicamento</h3>
-                                                </div>
-                                             <div class="porlets-content">
-                                             
-                                             <div class="table-responsive">
-                                                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
-                                                      <thead>
-                                                        <tr>
-                                                          <th>#</th>
-                                                          <th>Codigo de Compra</th>
-                                                          <th class="hidden-phone">Fecha de confirmacion</th>
-                                                          <th class="hidden-phone">Fecha de Vencimiento</th>
-                                                          <th class="hidden-phone">Cantidad</th>
-                                                          <th class="hidden-phone">Precio</th>
-                                                        </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                       <%for(var i = 0; i< resp.length; i++) { %>
-                                                          <tr class="gradeA">
-                                                            <td><%=i+1%></td>
-                                                            <td><%=resp[i].codigo_compra%></td>
-                                                            <td class="hidden-phone"><%=resp[i].createdAt%></td>
-                                                            <td class="center hidden-phone"><%=resp[i].fehca_vencimineto%></td>
-                                                            <td class="center hidden-phone"><%=resp[i].cantidad_unidad%></td>
-                                                            <td class="center hidden-phone"><%=resp[i].precio%></td>
-                                                          </tr>
-                                                        <% } %>
-                                                        
-                                                       
-                                                        
-                                                    
-                                                      </tbody>
-                                                    </table>
-                                                  </div><!--/table-responsive-->
-                                             
-                                               </div><!--/porlets-content-->  
-                                              </div><!--/block-web--> 
-                                            </div><!--/col-md-12--> 
-                                    </div><!--/row-->
-                            </div>
-                        </div>
-            </div>
+      </div>      
     </div>
-   
-       
-       
-
+    <div class="contentpanel"> <br>
+      <div class="container clear_both padding_fix">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="block-web">
+              <div class="header">
+                <div class="actions"><a class="" href="/medicamento/volver15"><i class="fa fa-reply"></i></a> <a class="refresh" href="/medicamento/volver3/<%=resp[0].id%>"><i class="fa fa-repeat"></i></a></div>
+                <h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-medkit icon"></i></div> Medicamentos /<span class="semi-bold"> Ver Fechas</span></h2>
+              </div>
+              <div class="porlets-content">
+                <div class="table-responsive">
+                  <table class="display table table-bordered table-striped " id="dynamic-table">
+                    <thead>
+                      <tr>
+                      <th>#</th>
+                      <th>Codigo de Compra</th>
+                      <th class="hidden-phone">Fecha de confirmacion</th>
+                      <th class="hidden-phone">Fecha de Vencimiento</th>
+                      <th class="hidden-phone">Cantidad Actualizada</th>
+                      <th class="hidden-phone">Precio Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <%for(var i = 0; i< resp.length; i++) { %>
+                      <tr class="gradeA">
+                      <td class="center hidden-phone"><%=i+1%></td>
+                      <td class="center hidden-phone"><%=resp[i].codigo_compra%></td>
+                      <td class="center hidden-phone"><%=resp[i].createdAt.split("T")[0]%></td>
+                      <td class="center hidden-phone"><%=resp[i].fehca_vencimineto%></td>
+                      <td class="center hidden-phone"><%=resp[i].cantidad_unidad%></td>
+                      <td class="center hidden-phone"><%=resp[i].precio%></td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div><!--/table-responsive-->
+              </div><!--/porlets-content-->  
+            </div><!--/block-web--> 
+          </div><!--/col-md-12--> 
+        </div><!--/row-->
+      </div>
     </div>
-    <%- include("../partials/scripts") -%>
+  </div>
+<%- include("../partials/scripts") -%>
 </body>
 </html>

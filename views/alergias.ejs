@@ -208,11 +208,16 @@
 																			<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>				  
 																			<div class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
 																			<ul>
-																			   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+																				<li><a href="/datos_generales_paciente/lista_antecedentes/<%=id_cita%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
+																				<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Alergias</a></li>
+																				<!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
+																				<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
+																					  
+																			   <!-- <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
 																			   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
 																			   <li><a href="/paciente/vacunas" data-toggle="modal" ><i class="fa fa-user"></i>Vacunas</a></li>
 																			   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-																			   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+																			   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> -->
 																			</ul>
 																	   </div>
 																	 </div>
@@ -267,7 +272,7 @@
 																		<div class="col-sm-4 col-sm-4">
 																			<div class="entrada">Fecha:<br>
 
-																				<input class="form-control" type="text" readonly name="fecha"require v-model="fecha_registro"><br>
+																				<input class="form-control" type="text" readonly name="fecha"require v-model="oneAlergia.fecha_registro"><br>
 																			</div>
 																		</div>
 																		<div class="col-sm-8 col-sm-9">
@@ -293,11 +298,16 @@
 																			<li href="#collapse" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Detalles del Paciente</li>				  
 																			<div class="file_sidebar_list panel-collapse collapse in"   id="collapse" style="height: auto;">
 																			<ul>
-																			   <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
+																				<li><a href="/datos_generales_paciente/lista_antecedentes/<%=id_cita%>/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>
+																				<li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=id_cita%>"><i class="fa fa-user"></i>Alergias</a></li>
+																				<!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
+																				<li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=id_cita%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
+																					  
+																			   <!-- <li><a href="/datos_generales_paciente/lista_antecedentes/<%=dataPaciente[0].id%>" ><i class="fa fa-building-o"></i>Antecedentes</a></li>			   
 																			   <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
 																			   <li><a href="/paciente/vacunas" data-toggle="modal" ><i class="fa fa-user"></i>Vacunas</a></li>
 																			   <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>"><i class="fa fa-users"></i>Examen General</a></li>
-																			   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li>
+																			   <li><a href="/VerHistorial"><i class="fa fa-exclamation-triangle"></i>Ver Historial</a></li> -->
 																			</ul>
 																	   </div>
 																	 </div>

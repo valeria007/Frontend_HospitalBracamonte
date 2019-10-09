@@ -2,6 +2,7 @@
 var hospital = new Vue({
     el:"#hospital",
     data:{
+        url:data_url.url_front_end,
         msg:'aljand321',
         alta_paciente: false,
         idHist:{
@@ -88,13 +89,13 @@ var hospital = new Vue({
     },
     mounted(){
         axios
-        .get('http://localhost:7000/internaciones/vue_listEvolucion/'+this.idHist.id_int)
+        .get(this.url+'/internaciones/vue_listEvolucion/'+this.idHist.id_int)
         .then(response => {
             this.nota_evolucion.listNotas_evolucion = response.data   
         })
 
         axios
-        .get('http://localhost:7000/internaciones/Vue_list_ord_intervencion/'+this.idHist.id_int)
+        .get(this.url+'/internaciones/Vue_list_ord_intervencion/'+this.idHist.id_int)
         .then(response => {
             this.ord_int.list_operaciones = response.data 
             console.log(this.ord_int.list_operaciones, "  <<<< lista de ordenes de intervencion")    
@@ -120,7 +121,7 @@ var hospital = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/internaciones/Vue_regNotaEvolucion/'+this.idHist.id_int,esto)
+            fetch(this.url+'/internaciones/Vue_regNotaEvolucion/'+this.idHist.id_int,esto)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -145,7 +146,7 @@ var hospital = new Vue({
         list_notaEvolucion(){
 
             axios
-            .get('http://localhost:7000/internaciones/vue_listEvolucion/'+this.idHist.id_int)
+            .get(this.url+'/internaciones/vue_listEvolucion/'+this.idHist.id_int)
             .then(response => {
                 this.nota_evolucion.listNotas_evolucion = response.data 
             })
@@ -197,7 +198,7 @@ var hospital = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/internaciones/Vue_reg_diagnostico/'+this.idHist.id_int,esto)
+            fetch(this.url+'/internaciones/Vue_reg_diagnostico/'+this.idHist.id_int,esto)
             .then(res => res.json())
             .then(data => {
                 console.log(data, "<<<<<<<<<<<<<<<<asd ")
@@ -215,7 +216,7 @@ var hospital = new Vue({
         },  
         listaDiagnostico(){
             axios
-            .get('http://localhost:7000/internaciones/Vue_list_diagnostico/'+this.idHist.id_int)
+            .get(this.url+'/internaciones/Vue_list_diagnostico/'+this.idHist.id_int)
             .then(response => {
                 this.daigTratameinto.listDiagnostico = response.data
                 console.log(response.data, "  <<<<<<<<<<<<<<<<<<<<<<<<  esto lo que quiero  <<<<<<<")       
@@ -223,7 +224,7 @@ var hospital = new Vue({
         }, 
         one_Diagnostico(id){
             axios
-            .get('http://localhost:7000/internaciones/Vue_oneTratamiento/'+id)
+            .get(this.url+'/internaciones/Vue_oneTratamiento/'+id)
             .then(response => {               
                 this.daigTratameinto.one_diagTratamiento = response.data
                 console.log(this.daigTratameinto.one_diagTratamiento, " uno ><<<<<<<<<<<<<<")       
@@ -256,7 +257,7 @@ var hospital = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/internaciones/Vue_regOrden_Intervencion/'+this.idHist.id_int,esto)
+            fetch(this.url+'/internaciones/Vue_regOrden_Intervencion/'+this.idHist.id_int,esto)
             .then(res => res.json())
             .then(data => {
                 console.log(data, " <<<<<<<<<< asdasd <<<<<<<<<<<<<< asd")
@@ -278,7 +279,7 @@ var hospital = new Vue({
         },
         list_orden_intervencion(){
             axios
-            .get('http://localhost:7000/internaciones/Vue_list_ord_intervencion/'+this.idHist.id_int)
+            .get(this.url+'/internaciones/Vue_list_ord_intervencion/'+this.idHist.id_int)
             .then(response => {
                 this.ord_int.list_operaciones = response.data 
                 console.log(this.ord_int.list_operaciones, "  <<<< lista de ordenes de intervencion")    
@@ -286,7 +287,7 @@ var hospital = new Vue({
         },
         OneOrd_intervencion(id){
             axios
-            .get('http://localhost:7000/internaciones/vueOne_ordintervencion/'+id)
+            .get(this.url+'/internaciones/vueOne_ordintervencion/'+id)
             .then(response => {
                 this.ord_int.one_intervencion = response.data                      
             })
@@ -321,7 +322,7 @@ var hospital = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/internaciones/Vue_reg_epicrisis/'+this.idHist.id_int,esto)
+            fetch(this.url+'/internaciones/Vue_reg_epicrisis/'+this.idHist.id_int,esto)
             .then(res => res.json())
             .then(data => { 
                 if (data.success == true){
@@ -363,7 +364,7 @@ var hospital = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/internaciones/vue_update_estado_alta/'+this.idHist.id_int,esto)
+            fetch(this.url+'/internaciones/vue_update_estado_alta/'+this.idHist.id_int,esto)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
@@ -384,7 +385,7 @@ var hospital = new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/internaciones/vue_update_cama_estado/'+this.idHist.id_cama,esto)
+            fetch(this.url+'/internaciones/vue_update_cama_estado/'+this.idHist.id_cama,esto)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
