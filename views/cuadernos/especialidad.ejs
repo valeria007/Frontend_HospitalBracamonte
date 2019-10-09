@@ -5,8 +5,8 @@
 <title>Especialidad</title>
 <%- include("../partials/head") -%>	
 <style>
-      .info2{ border-radius:100%; float: left; height:80px; width:80px; }
-      .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+  .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+  .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
 </style>
 
 </head>
@@ -230,7 +230,6 @@
                                 <tr>
                                   <th class="text-center">#</th>
                                   <th class="text-center">Especilidad</th>
-                                  <th class="text-center">Descripcion</th>
                                   <th class="text-center">Area</th>
                                   <th class="text-center">Opciones</th>
                                 </tr>
@@ -240,7 +239,6 @@
                                 <tr>
                                   <td class="text-center"><%= i+1%></td>
                                   <td class="text-center"><%=resp[i].nombre%></td>
-                                  <td class="text-center"><%=resp[i].sigla%></td>
                                   <td class="text-center"><%=resp[i].descripcion%></td>
                                   <td class="text-center">
                                     <a @click="data(<%=resp[i].id%>),lista_consulta()" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-wheelchair "></i></a>
@@ -277,7 +275,7 @@
         <div class="modal-header">
          
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Consultorios </h4>
+          <h4 class="modal-title" id="myModalLabel">Consultorios  </h4>
           <span style="color: blue">{{msg}}</span>
         </div>
         <div class="modal-body"> 
@@ -387,7 +385,7 @@
       <div class="modal-header">
 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Consultorios </h4>
+        <h4 class="modal-title" id="myModalLabel">Asignación de Médico Consultorios </h4>
         <span style="color: blue">{{msg}}</span>
         <span style="color: red">{{msg_false}}</span>
       </div>
@@ -428,7 +426,7 @@
           <form class="form-horizontal" @submit="register_medicos" parsley-validate novalidate>
             <div class="form-group">
 	  		  			<label for="inputPassword3" class="col-sm-4 control-label">C.I.:<i class="fa fa-users"> :</i></label>
-	  		  			<div class="col-sm-5">
+	  		  			<div class="col-sm-4">
 	  						<select v-model="ci_medico" @click="list_medicos">
                   <option disabled> Buscar por C.I... </option>
 	  			  			<% for(var i = 0; i< Lista_medicos.length; i++) { %>
@@ -439,7 +437,7 @@
 	  				</div><!--/form-group-->
         <div class="form-group">
           <label  class="col-sm-4 control-label">Personal Médico:</label>
-          <div class="col-sm-5">
+          <div class="col-sm-4">
               <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change"  />
           </div>
         </div>
