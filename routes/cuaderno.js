@@ -930,7 +930,6 @@ router.post('/vuehora_turno', (req,res) => {
             ruta para poder todos los datos de un doctor
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
 */
 
 router.get('/alldataDoctor/:id/:id_cuaderno', (req,res) => {

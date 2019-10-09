@@ -1960,6 +1960,9 @@ input {
 .green_symbols{background:#3ac3a9;}
 .blue_symbols{background:#132539;} /*aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/
 .gray_symbols{background:#27394d;}
+.yewoll_symbols{background:#d5d817;}
+.violet_symbols{background:#853ac3;}
+.blue2_symbols{background:#518fd6;}
 
 
 .information_inner{ position:relative; text-align:center;}
@@ -1970,14 +1973,20 @@ input {
 .red_info{ background:#fff; color:#e84c3d; }
 .blue_info{ background:#fff; color:#00a2d3;}
 .gray_info{ background:#fff; color:#34495e;}
+.violet_info{ background:#fff; color:#b32eb7;}
+.yewoll_info{ background:#fff; color:#e8dd3d; }
 .infoprogress_green{ height:6px; background:#21937c; margin-bottom:5px; margin-top:28px;}
 .infoprogress_blue{ height:6px; background:#01799e; margin-bottom:10px;margin-top:28px;}
 .infoprogress_red{ height:6px; background:#b42819; margin-bottom:5px;margin-top:28px;}
 .infoprogress_gray{ height:6px; background:#11273e; margin-bottom:5px;margin-top:28px;}
+.infoprogress_yewoll{ height:6px; background:#a2b322; margin-bottom:5px;margin-top:28px;}
+.infoprogress_violet{ height:6px; background:#30113e; margin-bottom:5px;margin-top:28px;}
 .greenprogress{ width:80%; background:#3ac3a9; height:100%;}
 .redprogress{ width:80%; background:#e84c3d; height:100%;}
 .blueprogress{ width:80%; background:#00a2d3; height:100%;}
 .grayprogress{ width:80%; background:#4c5e72; height:100%;}
+.yewollprogress{ width:80%; background:#e6ec2b; height:100%;}
+.violetprogress{ width:80%; background:#813ac3; height:100%;}
 .profile_widget{ background:#fff; padding:15px; color:#999999; text-align:center;}
 .widget-status-data{ text-align:center; background-color:#1EC3C8; color:#FFFFFF;}
 
@@ -2494,6 +2503,8 @@ select, input[type="file"] { height: 34px !important;line-height: 30px;}
 #work-progress2{margin-top:5px;}
 #work-progress3{margin-top:5px;}
 #work-progress4{margin-top:5px;}
+#work-progress5{margin-top:5px;}
+#work-progress6{margin-top:5px;}
 
 
 

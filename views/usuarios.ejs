@@ -138,17 +138,13 @@
                 <%if (msm1 != null) {%>
                   <div class="bs-example mover">
                     <div class="alert alert-danger fade in">
-                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">Ã—</button>
-                      <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
-                      <hr class="message-inner-separator">
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
                       <strong><%=msm1 %></strong></div>
                   </div>
                 <%} else if(sms2 != null) { %>
                   <div class="bs-example mover">
                     <div class="alert alert-success fade in">
-                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">Ã—</button>
-                      <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de ConfirmaciÃ³n</strong>
-                      <hr class="message-inner-separator">  
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
                       <strong><%=sms2 %></strong>
                     </div>
                   </div>
@@ -387,7 +383,7 @@
   </div>
   <script>
     window.setTimeout(function() {
-      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+      $(".alert").fadeTo(700, 0).slideUp(700, function(){
         $(this).remove(); 
       });
    }, 2000);
