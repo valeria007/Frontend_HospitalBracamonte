@@ -85,7 +85,10 @@
                                   <select class="form-control" id="source" name="nombre">
                                       <option><%=OnlySala[0].nombre%></option>
                                       <option> ------------------------------------------</option>
-                                      <option >INTERNACIÓN GENERAL</option>
+                                      <%for(var i = 0; i< dataSala.length; i++) { %>
+                                        <option><%=dataSala[i.nombre]%></option>
+                                      <% } %>
+                                      <!-- <option >INTERNACIÓN GENERAL</option>
                                       <option >UNIDAD DE TERAPIA INTENSIVA</option>
                                       <option >UNIDAD DE CUIDADOS INTENSIVOS CORONARIOS</option>
                                       <option >UNIDAD DE TERAPIA INTENSIVA PEDIÁTRICA</option>
@@ -95,7 +98,7 @@
                                       <option >INTERNACIÓN DE PSIQUIATRÍA</option>
                                       <option >PEDIATRÍA</option>
                                       <option >CIRUGÍA</option>
-                                      <option >TRAUMATOLOGÍA</option>  
+                                      <option >TRAUMATOLOGÍA</option>   -->
                                   </select>
                                 </div>
                                 <div class="col-sm-3">
@@ -141,7 +144,10 @@
                                 <div class="col-sm-5">
                                   <label class="control-label">Sala:</label>
                                   <select class="form-control" id="source" name="nombre">
-                                    <option >INTERNACIÓN GENERAL</option>
+                                      <%for(var i = 0; i< dataSala.length; i++) { %>
+                                        <option><%=dataSala[i].nombre%></option>
+                                      <% } %>
+                                    <!-- <option >INTERNACIÓN GENERAL</option>
                                     <option >UNIDAD DE TERAPIA INTENSIVA</option>
                                     <option >UNIDAD DE CUIDADOS INTENSIVOS CORONARIOS</option>
                                     <option >UNIDAD DE TERAPIA INTENSIVA PEDIÁTRICA</option>
@@ -151,7 +157,7 @@
                                     <option >INTERNACIÓN DE PSIQUIATRÍA</option>
                                     <option >PEDIATRÍA</option>
                                     <option >CIRUGÍA</option>
-                                    <option >TRAUMATOLOGÍA</option>
+                                    <option >TRAUMATOLOGÍA</option> -->
                                   </select>
                                 </div>
                                 <div class="col-sm-3">
@@ -208,6 +214,7 @@
                                     <td class="text-center"><%=resp[i].descripcionSala%></td>
                                     <td class="text-center"><%=resp[i].piso%></td>
                                     <td>
+                                      <a href="/salas/renderCamas/<%=resp[i].id%>">camas</a>
                                       <a href="/salas/updateSalas/<%=resp[i].id%>""  data-toggle="tooltip" class="btn  tooltips" data-original-title="editar"><i class="fa fa-pencil " style="color: darkgreen"></i></a><span>&nbsp;</span>
                                     </td>							
                                   </tr>
