@@ -7,28 +7,70 @@ const { Pacientes } = model;
 class Emergencias {
     static Emergencia(req, res){
         const { fechaAtencion, Nhistorial,nombreDoctor,apellidoD1,apellidoD2,motivoConsulta,diagnostico,tratamiento,observaciones,idDoctor,idEnfermera } = req.body
-        const  { idCita }  = req.params
-        return emergencia
-        .create({
-            fechaAtencion,
-            Nhistorial,
-            nombreDoctor,
-            apellidoD1,
-            apellidoD2,
-            motivoConsulta,
-            diagnostico,
-            tratamiento,
-            observaciones,
-            idCita,
-            idDoctor,
-            idEnfermera            
-        })
-        .then(data => res.status(200).send({
-            success: true,
-            msg: "Se insertaron los datos correctamente",
-            data
-        }))
-        .catch(error => res.status(400).send(error));       
+        if(!fechaAtencion || !Nhistorial || !nombreDoctor || !motivoConsulta || !diagnostico || !tratamiento || !idDoctor){
+          if(!fechaAtencion){
+            res.status(200).json({
+              success:false,
+              msg:"Fecha es Obligatorio"
+            })
+          }else if (!Nhistorial){
+            res.status(200).json({
+              success:false,
+              msg:"No se esta mandando el N° de historial del paciente"
+            })
+          }else if(!nombreDoctor){
+            res.status(200).json({
+              success:false,
+              msg:"No se esta mandando el nombre del doctor"
+            })
+          }else if(!motivoConsulta){
+            res.status(200).json({
+              success:false,
+              msg:"Motivo de consulta es obligatorio"
+              
+            })
+          }else if(!diagnostico){
+            res.status(200).json({
+              success:false,
+              msg:"El diagnostico es obligatorio"
+             
+            })
+          }else if(!tratamiento){
+            res.status(400).json({
+              success:false,
+              msg:"Trata miento es obligatorio"
+            })
+          }else if (!idDoctor){
+            res.status(400).json({
+              success:false,
+              msg:"Id de medico no se esta mandando"
+            })
+          }
+        }else{
+          const  { idCita }  = req.params
+          return emergencia
+          .create({
+              fechaAtencion,
+              Nhistorial,
+              nombreDoctor,
+              apellidoD1,
+              apellidoD2,
+              motivoConsulta,
+              diagnostico,
+              tratamiento,
+              observaciones,
+              idCita,
+              idDoctor,
+              idEnfermera            
+          })
+          .then(data => res.status(200).send({
+              success: true,
+              msg: "Se insertaron los datos correctamente",
+              data
+          }))
+          .catch(error => res.status(400).send(error));       
+        }
+        
     }
     // Servicio para para mostrar emergencias
     static getEmergencia(req, res) {
@@ -51,7 +93,7 @@ class Emergencias {
         var historial = req.params.historial;  
         emergencia.findAll({
            where: {Nhistorial: historial},
-           attributes: ['id', 'fechaAtencion','Nhistorial','nombreDoctor','apellidoD1','diagnostico','idCita'],
+           //attributes: ['id', 'fechaAtencion','Nhistorial','nombreDoctor','apellidoD1','diagnostico','idCita'],
            include:[
                {model: Citas_Medicas,attributes: ['id'], 
                include:[{
@@ -100,7 +142,7 @@ class Emergencias {
       var id = req.params.id;  
       emergencia.findAll({
          where: {id: id},
-         attributes: ['id', 'nombreDoctor', 'apellidoD1','apellidoD2']
+         //attributes: ['id', 'nombreDoctor', 'apellidoD1','apellidoD2']
        }).then((data) => {
          res.status(200).json(data);
        });     

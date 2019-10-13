@@ -252,6 +252,51 @@ class Citas_medica {
       res.status(200).send(users)
     })
   }
-      
+  //rutas para poder ver la lista de citas de emergencia
+  static lista_emergencia (req,res){
+    const { id_medico } = req.params
+    Citas_Medicas.findAll({
+      where : { id_medico : id_medico, estado: 'true', especialidad: 'EMERGENCIA' }, // el url es para identificar si es emergencia o consulta medica
+      //attributes: ['id','estado','codigo_p','hora','especialidad'],
+      include: [
+        {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }
+      ]
+    }).then(users => {
+      res.status(200).send(users)
+    }) 
+  }
+
+  static lista_emergencia_false (req,res){
+    const { id_medico } = req.params
+    Citas_Medicas.findAll({
+      where : { id_medico : id_medico, estado: 'false', especialidad: 'EMERGENCIA' }, // el url es para identificar si es emergencia o consulta medica
+      //attributes: ['id','estado','codigo_p','hora','especialidad'],
+      include: [
+        {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }
+      ]
+    }).then(users => {
+      res.status(200).send(users)
+    }) 
+  }
+
+  //pruebas
+  static get_pruebas(req, res) {
+    return Citas_Medicas
+    .findAll({
+      where: {
+        estado: 'false',
+        [Op.not]: [
+          { especialidad: 'EMERGENCIA' },
+          //{ array: { [Op.contains]: [3,4,5] } }
+        ]
+      }
+    })
+    .then(Citas_Medicas => res.status(200).send(Citas_Medicas));
+  }
+
+ 
+
 }
+
+
 export default Citas_medica;

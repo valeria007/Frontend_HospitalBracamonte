@@ -83,6 +83,11 @@ app.post('/api/updateCita/:id', Citas_medica.updateCita); //ruta para poder actu
 app.get('/api/lista_pacaiente/:id_medico', Citas_medica.lista_pacienteDoctor)
 app.get('/api/lista_pacienteDoctor_false/:id_medico', Citas_medica.lista_pacienteDoctor_false)
 
+app.get('/api/lista_emergencia/:id_medico', Citas_medica.lista_emergencia); //lista de citas solo de emergencia
+app.get('/api/lista_emergencia_false/:id_medico', Citas_medica.lista_emergencia_false);// lista false de emergencia
+
+app.get('/prueba',Citas_medica.get_pruebas)
+
 
 
 ///consultas
@@ -146,6 +151,7 @@ app.post('/api/update_form_internacion/:id', Intern.update_form_internacion) // 
 app.get('/api/One_Internacion/:id', Intern.One_Internacion);
 
 app.get('/api/list_internacion_especialidad/:id_especialidad', Intern.list_internacion_especialidad); // esta ruta listara todas las internaciones segun especialidad
+app.get('/api/list_internacion_especialidad_false/:id_especialidad', Intern.list_internacion_especialidad_false)
 app.get('/api/One_intern/:id', Intern.One_intern);// ruta para poder mostrar una solo internacion del paciente
 app.post('/api/update_estado_alta/:id', Intern.update_estado_alta) // ruta para actualizar el estado de alta de internacion
 

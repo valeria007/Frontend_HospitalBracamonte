@@ -38,7 +38,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fecha: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       doctor:{
         type: Sequelize.TEXT

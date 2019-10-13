@@ -31,13 +31,8 @@ class Receta {
        }else { 
         console.log(req.body)
         const { tipoConsulta,historiaClinica,fecha,doctor,medicamentos,id_medico } = req.body;
-        if( !tipoConsulta || !historiaClinica || !fecha || !doctor || !medicamentos || !id_medico){
-          if(!tipoConsulta){
-            res.status(400).json({
-              success:false,
-              msg:"Inserte tipo de consulta"
-            })
-          }else if(!historiaClinica){
+        if( !historiaClinica || !fecha || !doctor || !medicamentos || !id_medico){
+          if(!historiaClinica){
             res.status(400).json({
               success:false,
               msg:"El historial clinico del paciente mo se esta mandando"
@@ -110,13 +105,8 @@ class Receta {
           })
          }else {
           const { tipoConsulta,historiaClinica,fecha,doctor,medicamentos,id_medico  } = req.body;
-          if( !tipoConsulta || !historiaClinica || !fecha || !doctor || !medicamentos || !id_medico){
-            if(!tipoConsulta){
-              res.status(400).json({
-                success:false,
-                msg:"Inserte tipo de consulta"
-              })
-            }else if(!historiaClinica){
+          if(  !historiaClinica || !fecha || !doctor || !medicamentos || !id_medico){
+             if(!historiaClinica){
               res.status(400).json({
                 success:false,
                 msg:"El historial clinico del paciente mo se esta mandando"
@@ -206,7 +196,7 @@ class Receta {
     static recOfEmg(req, res){    
       const { id } = req.params;            
       Recetas.findAll({
-         where: { tipoConsulta : null, historiaClinica : id }
+         where: { historiaClinica : id }
          //attributes: ['id', ['description', 'descripcion']]
        }).then((data) => {
          res.status(200).json(data);

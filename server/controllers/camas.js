@@ -135,29 +135,54 @@ import model from '../models';
         //ruta para poder actulizar el estado una cama a false y quitar de esa cama a null
       static Update_cama_estado(req,res){
         const { idCama } = req.params;  
-        const { estado, historial } = req.body;       
-        return Camas
-        .findByPk(idCama)
-        .then((data) => {
-          data.update({
-            historial: historial || data.historial,
-            estado : estado  || data.estado             
-          })
-          .then(update => {
-            res.status(200).send({
-              success:true,
-              msg: 'Se actualizo el estado de cama',
-              data : {
-                historial: historial || update.historial,
-                estado : estado  || update.estado 
-              }
+        const { estado, historial } = req.body;  
+        if(!estado || !historial){
+          if(!estado){
+            res.status(400).json({
+              success:false,
+              msg:"No se esta mandando el estado"
             })
-            .catch(error => res.status(400).send(error))
+          }else if(!historial){
+            res.status(400).json({
+              success:false,
+              msg:"No se esta mandando el historial"
+            })
+          }
+        }else{
+          return Camas
+          .findByPk(idCama)
+          .then((data) => {
+            data.update({
+              historial: historial || data.historial,
+              estado : estado  || data.estado             
+            })
+            .then(update => {
+              res.status(200).send({
+                success:true,
+                msg: 'Se actualizo el estado de cama',
+                data : {
+                  historial: historial || update.historial,
+                  estado : estado  || update.estado 
+                }
+              })
+              .catch(error => {
+                console.log(error)
+                res.status(500).json({
+                  success:false,
+                  msg: "No se pudo actualizar falla de servidor"
+                })
+              })
+            })
+            .catch(error => {
+              console.log(error)
+                res.status(500).json({
+                  success:false,
+                  msg: "No se pudo actualizar falla de servidor"
+                })
+            })
           })
-          .catch(error => res.status(400).send(error))
-        })
+        }        
       }
-
     }
 
 export default Cama

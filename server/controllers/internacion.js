@@ -228,7 +228,21 @@ class Intern {
     static list_internacion_especialidad(req, res){                
       const { id_especialidad } = req.params
       Internaciones.findAll({
-         where: {id_especialidad: id_especialidad},
+         where: {estado_alta:false, id_especialidad: id_especialidad},
+         //attributes: ['id', ['description', 'descripcion']]
+        include:[{
+          model:Pacientes
+        }]
+
+       }).then((data) => {
+         res.status(200).json(data);
+       });     
+    }
+    
+    static list_internacion_especialidad_false(req, res){                
+      const { id_especialidad } = req.params
+      Internaciones.findAll({
+         where: { estado_alta:true, id_especialidad: id_especialidad},
          //attributes: ['id', ['description', 'descripcion']]
         include:[{
           model:Pacientes
@@ -257,8 +271,13 @@ class Intern {
 
   static update_estado_alta(req, res) {
     const { estado_alta } = req.body
-
-    return Internaciones
+    if(estado_alta == ""){
+      res.status(400).json({
+        success:false,
+        msg:"No se esta mandando el estado"
+      })
+    }else{
+      return Internaciones
       .findByPk(req.params.id)
       .then((data) => { 
         data.update({
@@ -273,9 +292,23 @@ class Intern {
             }
           })
         })
-        .catch(error => res.status(400).send(error));
+        .catch(error => {
+          console.log(error)
+          res.status(500).json({
+            success:false,
+            msg:"No se puede actualizar, algo paso con el servidor"
+          })
+        });
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => {
+        console.log(error)
+        res.status(500).json({
+          success:false,
+          msg:"No se puede actualizar, algo paso con el servidor"
+        })
+      });
+    }
+    
   }
 
   /* 
