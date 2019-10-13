@@ -105,8 +105,12 @@
 											<td><%=resp[i].num_solicitud%></td>
 											<td><%=resp[i].responsable%></td>
 											<td><%=resp[i].createdAt%></td>
-											<td><%=resp[i].trimestre%></td>													
-											<td>verificar si el pedido llego todo completo</td>
+                      <td><%=resp[i].trimestre%></td>		
+                      <% if (resp[i].medicamento_mandado_almacen == null) { %>											
+                        <td><span style="color: crimson;">En espera</span></td>
+                      <% } else { %>
+                        <td><span style="color: rgb(220, 173, 20);">Mandado a almacen</span></td>
+                      <% } %>
 											<td><%=resp[i].destino%></td>
 											
 											<td><a href="/almacen/farmacia_ver_pedidos/<%=resp[i].id%>">ver</a></td>

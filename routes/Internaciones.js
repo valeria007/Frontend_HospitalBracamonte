@@ -782,7 +782,7 @@ router.get('/list_internadios/:id_especialidad/:token_id', (req,res) => {
 router.get('/list_internados_alta/:id_especialidad/:token_id', (req,res) => {
     const { id_especialidad,token_id } = req.params
     if( datas.name.token[token_id] ){
-        fetch('http://localhost:3000/api/list_internacion_especialidad_alta/'+id_especialidad)
+        fetch('http://localhost:3000/api/list_internacion_especialidad_false/'+id_especialidad)
         .then(res => res.json())
 
         .then(list_internacion => { 
@@ -909,6 +909,7 @@ router.post('/vue_update_estado_alta/:id_internacion', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
+        console.log (data, " esto es el estado alta")
         res.status(200).json(data)
     })
 })
@@ -927,6 +928,7 @@ router.post('/vue_update_cama_estado/:id_cama', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => {
+        console.log(data, " esto es el estado cama")
         res.status(200).json(data)
     })
 })
