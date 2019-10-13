@@ -12,6 +12,10 @@ router.get('/volver', (req,res) => {
 router.get('/volver2', (req,res) => {
     res.redirect('/medicamento/dataGrupoA'); 
 })
+router.get('/volver3/:id', (req,res) => {
+    const { id } = req.params
+    res.redirect('/medicamento/medFecha_cantidad/'+id); 
+})
 var dataGRUPOa;
 router.get('/dataGrupoA',(req,res) =>{
     fetch('http://localhost:3500/api/asignacion')   

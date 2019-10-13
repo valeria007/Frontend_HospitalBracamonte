@@ -8,254 +8,253 @@
   <%- include("../partials/head") -%>	
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-  <div class="wrapper">
-    <!--\\\\\\\ wrapper Start \\\\\\-->
-    <div class="header_bar">
-      <!--\\\\\\\ header Start \\\\\\-->
-      <div class="brand">
-        <!--\\\\\\\ brand Start \\\\\\-->
-        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      </div>
-      <!--\\\\\\\ brand end \\\\\\-->
-      <div class="header_top_bar">
-        <!--\\\\\\\ header top bar start \\\\\\-->
-        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
-        <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-            <ul class="dropdown-menu">
-              <div class="top_pointer"></div>
-              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-            </ul>
-          </div> 
-        </div>
-      </div>
-      <!--\\\\\\\ header top bar end \\\\\\-->
-    </div>
-    <!--\\\\\\\ header end \\\\\\-->
-    <div class="inner">
-      <!--\\\\\\\ inner start \\\\\\-->
-      <div class="left_nav">
-        <!--\\\\\\\left_nav start \\\\\\-->
-        <div class="left_nav_slidebar">
-          <ul>
-            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul class="opened" style="display:block">
-                <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
-                <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
-                <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Stock</b> </a> </li>
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-                <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-                <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-                <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    <!--Contenido-->
-    <div class="contentpanel"><br>
-		<!--\\\\\\\ contentpanel start\\\\\\-->
-		<!--Formulario-->
-		<div class="container clear_both padding_fix">
-			<!--\\\\\\\ container  start \\\\\\-->
-			<div class="row">
-				<div class="col-md-12">
-					<div class="block-web">
-						<div class="header">
-						  	<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/medicamento/volver15"><i class="fa fa-repeat"></i></a></div>
-						  	<h3 class="content-header"> <i class="fa fa-medkit icon"></i> Registrar Medicamento</h3>
-						</div>
-						<div class="porlets-content">
-							<% if(msg_post_false != null) { %>
-								<div class="bs-example mover">
-									<div class="alert alert-danger fade in">
-									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-										<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h4 class="text-center" style="color:rgb(99, 4, 4);"><%=msg_post_false%></h4></strong>
-									</div>
+  	<div class="wrapper">
+    	<div class="header_bar">
+     		<div class="brand">
+        		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      		</div>
+      		<div class="header_top_bar">
+       			<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+        		<div class="top_right_bar">
+          			<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            			<ul class="dropdown-menu">
+              				<div class="top_pointer"></div>
+              				<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              				<li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              				<li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              				<li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            			</ul>
+          			</div> 
+        		</div>
+      		</div>
+    	</div>
+    	<div class="inner">
+      		<div class="left_nav">
+        		<div class="left_nav_slidebar">
+          			<ul>
+            			<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              				<ul>
+                				<li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+              				</ul>
+            			</li>
+            			<li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
+             				<ul class="opened" style="display:block">
+               				 	<li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+                				<li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
+                				<li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                				<li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
+                				<li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                				<li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Stock</b> </a> </li>
+								<li> <a href="/almacen/farmacia_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos Farmacia</b> </a> </li>  
+							</ul>
+            			</li>
+            			<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
+              				<ul>
+                				<li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                				<li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                				<li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                				<li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+              				</ul>
+            			</li>
+          			</ul>
+        		</div>
+      		</div>
+    		<!--Contenido-->
+    		<div class="contentpanel"><br>
+				<!--Formulario-->
+				<div class="container clear_both padding_fix">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="block-web">
+								<div class="header">
+						  			<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/medicamento/volver15"><i class="fa fa-repeat"></i></a></div>
+							  		<h2 class="content-header"><div class="info gray_symbols"><i class="fa  fa-medkit icon"></i></div>  Registrar Medicamento</h2>  
 								</div>
+								<div class="porlets-content">
+								<% if(msg_post_false != null) { %>
+									<div class="bs-example mover">
+										<div class="alert alert-danger fade in">
+									  		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+											<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h4 class="text-center" style="color:rgb(99, 4, 4);"><%=msg_post_false%></h4></strong>
+										</div>
+									</div>
 								<% } else if(msg_post_true != null) { %>
-								<div class="bs-example mover">
-									<div class="alert alert-info fade in">
-									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-										<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg_post_true%></h6></strong>
+									<div class="bs-example mover">
+										<div class="alert alert-info fade in">
+									  		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+											<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg_post_true%></h6></strong>
+										</div>
 									</div>
-								</div>
 								<% } %>
 								<%if(OnlyMedicamento == null) { %>
-							  	<form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
-								  	<div class="col-md-4">
-									  	<div class="form-group">
-										  	<label>Grupo de Asignación:</label>
-											  <select  name="grupoAsig" onkeyup="mayus(this);" required class="form-control">
-												<option selected>SELECCIONE AQUI...</option>
-											  	<% for(var i=0; i< dataGRUPOa.length; i++) {%>
-											  	<option><%=dataGRUPOa[i].descripcion%></option>
-												<% } %>
-											</select>
-									  	</div>
-									  	<div class="form-group">
-										  	<label>Generico:</label>
-										  	<input type="text" name="generico" required class="form-control" onkeyup="mayus(this);">
-									  	</div>
-									  	<div class="form-group">
-										 	<label>Presentacion:</label>
-										  	<input type="text" name="presentacion" required class="form-control" onkeyup="mayus(this);">
-									  	</div>
-									</div>  
-								  	<div class="col-md-4">
-									  	<div class="form-group">
-										  	<label>Codificación:</label>
-										  	<input type="text" name="codificacion" required class="form-control" onkeyup="mayus(this);">
-									  	</div>
-									  	<div class="form-group">
-										  	<label>Unidad de Medida:</label>
-										  	<input type="text" name="unidadMedida" required class="form-control" onkeyup="mayus(this);">
-									  	</div>
-										<div class="form-group">
-											<label>Cantidad inicial:</label>
-											<input type="text" name="unidades" required class="form-control" onkeyup="mayus(this);">
-										</div>
-									</div>
-								 	<div class="col-md-4">
-									  	<div class="form-group">
-										  	<label>Nombre:</label>
-										  	<input  type="text" name="nombre"  required class="form-control" onkeyup="mayus(this);">
-									  	</div>
-									  	<div class="form-group">
-										  	<label>Concentracion:</label>
-										  	<input type="text" name="concentracion" required class="form-control" onkeyup="mayus(this);">
-									  	</div>
-										<div class="form-group">
-											<label>Precio:</label>
-											<input type="text" name="precio" required class="form-control" onkeyup="mayus(this);">
-										</div>								  
-									</div>
-								  	<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-								  	<button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-							  	</form>
-							<% } else { %>
-								<form  action="/medicamento/updateMedicamento/<%=OnlyMedicamento[0].id%>" method="POST" parsley-validate novalidate>
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Grupo de Asignación:</label>
-											<select required class="form-control" name="grupoAsig" onkeyup="mayus(this);">
-												<option><%=OnlyMedicamento[0].GrupoDesignado.descripcion%></option>
-												<option>--------------------------</option>
-												<% for(var i=0; i< dataGRUPOa.length; i++) {%>
-												<option><%=dataGRUPOa[i].descripcion%></option>
-												<% } %>
-											</select>
-										</div>
-										<div class="form-group">
-											<label>Generico:</label>
-											<input type="text" name="generico" required class="form-control" value="<%=OnlyMedicamento[0].generico%>" onkeyup="mayus(this);">
-										</div>
-										<div class="form-group">
-											<label>Presentacion:</label>
-											<input type="text" name="presentacion" required class="form-control" value="<%=OnlyMedicamento[0].presentacion%>" onkeyup="mayus(this);">
-										</div>
-									</div>  
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Codificación:</label>
-											<input type="text" name="codificacion" required class="form-control" value="<%=OnlyMedicamento[0].codificacion%>">
-										</div>
-										<div class="form-group">
-											<label>Unidad de Medida:</label>
-											<input type="text" name="unidadMedida" required class="form-control" value="<%=OnlyMedicamento[0].unidadMedida%>">
-										</div>
-										<div class="form-group">
-											<label>Cantidad inicial:</label>
-											<input type="text" name="unidades" required class="form-control" value="<%=OnlyMedicamento[0].unidades%>">
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>Nombre:</label>
-											<input  type="text" name="nombre"  required class="form-control" value="<%=OnlyMedicamento[0].nombre%>" onkeyup="mayus(this);">
-										</div>
-										<div class="form-group">
-											<label>Concentracion:</label>
-											<input type="text" name="concentracion" required class="form-control" value="<%=OnlyMedicamento[0].concentracion%>" onkeyup="mayus(this);">
-										</div>
-										<div class="form-group">
-											<label>Precio:</label>
-											<input type="text" name="precio" value="<%=OnlyMedicamento[0].precio%>" required class="form-control" onkeyup="mayus(this);">
-										</div>
-									</div>
-									<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-									<a class="btn btn-danger" href="/medicamento/volver15"><i class="fa fa-times"></i> Cancelar</a>
-								</form>
-							<% } %>	
-					  	</div>
-					  	<div id="main-content">
-							<div class="page-content">
-								<div class="row">
-									<div class="col-md-12">
-							  			<div class="block-web">
-						   					<div class="header">
-							  					<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a></div>
-							  					<h3 class="content-header">Lista de Medicamentos</h3>
+									<br>
+								  	<form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
+									  	<div class="col-md-4">
+										  	<div class="form-group">
+											  	<label>Grupo de Asignación:</label>
+												<select  name="grupoAsig" onkeyup="mayus(this);" required class="form-control">
+													<option selected>SELECCIONE AQUI...</option>
+												  	<% for(var i=0; i< dataGRUPOa.length; i++) {%>
+												  	<option><%=dataGRUPOa[i].descripcion%></option>
+													<% } %>
+												</select>
+									  		</div>
+									  		<div class="form-group">
+											  	<label>Generico:</label>
+											  	<input type="text" name="generico" required class="form-control" onkeyup="mayus(this);">
+										  	</div>
+										  	<div class="form-group">
+											 	<label>Presentacion:</label>
+											  	<input type="text" name="presentacion" required class="form-control" onkeyup="mayus(this);">
+										  	</div>
+										</div>  
+									  	<div class="col-md-4">
+										  	<div class="form-group">
+											  	<label>Codificación:</label>
+											  	<input type="text" name="codificacion" required class="form-control" onkeyup="mayus(this);">
+										  	</div>
+										  	<div class="form-group">
+											  	<label>Unidad de Medida:</label>
+											  	<input type="text" name="unidadMedida" required class="form-control" onkeyup="mayus(this);">
+										  	</div>
+											<div class="form-group">
+												<label>Cantidad inicial:</label>
+												<input type="text" name="unidades" required class="form-control" onkeyup="mayus(this);">
 											</div>
-						 					<div class="porlets-content">
-												<div class="table-responsive">
-													<table  class="display table table-bordered table-striped " id="dynamic-table">
-														<thead>
-															<tr>
-															<th>#</th>
-															<th>Grupo de Asignación</th>
-															<th>Codificación</th>
-															<th>Nombre</th>
-															<th>Precio</th>
-															<th>Cantidad</th>
-															<th>Opciones</th>
-															<th>ver cantidades</th>
-														</thead>
-														<tbody>
-															<% for(var i=0; i < resp.length; i++) { %>
-															<tr>
-															<td><%= i+1%></td>
-															<td><%=resp[i].GrupoDesignado.descripcion%></td>
-															<td><%=resp[i].codificacion%></td>
-															<td><%=resp[i].nombre%></td>		 
-															<td><%=resp[i].precio%></td>	
-															<td><%=resp[i].unidades%></td>	
-															<td class="center hidden-phone"><a class="btn btn-success btn-sm" href="/medicamento/OnlyMedicamento/<%=resp[i].id%>"><i class="fa fa-refresh"></i> </a></td>
-															<td class="center hidden-phone"><a class="btn btn-info btn-sm" href="/medicamento/medFecha_cantidad/<%=resp[i].id%>"><i class="fa fa-folder-open"></i> </a></td>
-															</tr>
-								   							<% } %>
-														</tbody>
-													</table>
-							  					</div><!--/table-responsive-->
-											</div><!--/porlets-content-->
-										</div><!--/block-web--> 
-									</div><!--/col-md-12--> 
-								</div><!--/row-->
-							</div><!--/page-content end--> 
-						</div><!--/main-content end--> 
-					</div>
-			  	</div>
-		  	</div><!--/row-->
-	  	</div>
-	<!--\\\\\\\ content panel end \\\\\\-->
+										</div>
+									 	<div class="col-md-4">
+										  	<div class="form-group">
+											  	<label>Nombre:</label>
+											  	<input  type="text" name="nombre"  required class="form-control" onkeyup="mayus(this);">
+										  	</div>
+										  	<div class="form-group">
+											  	<label>Concentracion:</label>
+											  	<input type="text" name="concentracion" required class="form-control" onkeyup="mayus(this);">
+									  		</div>
+											<div class="form-group">
+												<label>Precio:</label>
+												<input type="text" name="precio" required class="form-control" onkeyup="mayus(this);">
+											</div>								  
+										</div>
+										<div class="form-group">
+											<div class="col-sm-offset-0 col-sm-10">
+												<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
+												<button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+											</div>
+										</div>
+								  	</form>
+								<% } else { %>
+									<br>
+									<form  action="/medicamento/updateMedicamento/<%=OnlyMedicamento[0].id%>" method="POST" parsley-validate novalidate>
+										<div class="col-md-4">
+											<div class="form-group">
+												<label>Grupo de Asignación:</label>
+												<select required class="form-control" name="grupoAsig" onkeyup="mayus(this);">
+													<option><%=OnlyMedicamento[0].GrupoDesignado.descripcion%></option>
+													<option>--------------------------</option>
+													<% for(var i=0; i< dataGRUPOa.length; i++) {%>
+													<option><%=dataGRUPOa[i].descripcion%></option>
+													<% } %>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Generico:</label>
+												<input type="text" name="generico" required class="form-control" value="<%=OnlyMedicamento[0].generico%>" onkeyup="mayus(this);">
+											</div>
+											<div class="form-group">
+												<label>Presentacion:</label>
+												<input type="text" name="presentacion" required class="form-control" value="<%=OnlyMedicamento[0].presentacion%>" onkeyup="mayus(this);">
+											</div>
+										</div>  
+										<div class="col-md-4">
+											<div class="form-group">
+												<label>Codificación:</label>
+												<input type="text" name="codificacion" required class="form-control" value="<%=OnlyMedicamento[0].codificacion%>">
+											</div>
+											<div class="form-group">
+												<label>Unidad de Medida:</label>
+												<input type="text" name="unidadMedida" required class="form-control" value="<%=OnlyMedicamento[0].unidadMedida%>">
+											</div>
+											<div class="form-group">
+												<label>Cantidad inicial:</label>
+												<input type="text" name="unidades" required class="form-control" value="<%=OnlyMedicamento[0].unidades%>">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<label>Nombre:</label>
+												<input  type="text" name="nombre"  required class="form-control" value="<%=OnlyMedicamento[0].nombre%>" onkeyup="mayus(this);">
+											</div>
+											<div class="form-group">
+												<label>Concentracion:</label>
+												<input type="text" name="concentracion" required class="form-control" value="<%=OnlyMedicamento[0].concentracion%>" onkeyup="mayus(this);">
+											</div>
+											<div class="form-group">
+												<label>Precio:</label>
+												<input type="text" name="precio" value="<%=OnlyMedicamento[0].precio%>" required class="form-control" onkeyup="mayus(this);">
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-offset-0 col-sm-10">
+												<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
+												<a class="btn btn-danger" href="/medicamento/volver15"><i class="fa fa-times"></i> Cancelar</a>
+											</div>
+										</div>
+									</form>
+								<% } %>	
+					  			</div>
+					  			<div id="main-content">
+									<div class="page-content">
+										<div class="row">
+											<div class="col-md-12">
+									  			<div class="block-web">
+						   							<div class="header">
+							  							<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a></div>
+							  							<h3 class="content-header">Lista de Medicamentos</h3>
+													</div>
+								 					<div class="porlets-content">
+														<div class="table-responsive">
+															<table  class="display table table-bordered table-striped " id="dynamic-table">
+																<thead>
+																	<tr>
+																	<th>#</th>
+																	<th>Grupo de Asignación</th>
+																	<th>Codificación</th>
+																	<th>Nombre</th>
+																	<th>Precio</th>
+																	<th>Cantidad</th>
+																	<th>Opciones</th>
+																</thead>
+																<tbody>
+																	<% for(var i=0; i < resp.length; i++) { %>
+																	<tr>
+																	<td><%= i+1%></td>
+																	<td><%=resp[i].GrupoDesignado.descripcion%></td>
+																	<td><%=resp[i].codificacion%></td>
+																	<td><%=resp[i].nombre%></td>		 
+																	<td><%=resp[i].precio%></td>	
+																	<td><%=resp[i].unidades%></td>	
+																	<td class="center hidden-phone">
+																	<a href="/medicamento/OnlyMedicamento/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Actualizar"><i class="fa fa-refresh "></i></a><span>&nbsp;</span>
+																	<a href="/medicamento/medFecha_cantidad/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Fechas"><i class="fa fa-folder-open" style="color:rgb(114, 15, 172)"></i></a><span>&nbsp;</span>
+																	</tr>
+								   									<% } %>
+																</tbody>
+															</table>
+							  							</div><!--/table-responsive-->
+													</div><!--/porlets-content-->
+												</div><!--/block-web--> 
+											</div><!--/col-md-12--> 
+										</div><!--/row-->
+									</div><!--/page-content end--> 
+								</div><!--/main-content end--> 
+							</div>
+					  	</div>
+				  	</div><!--/row-->
+	  			</div>
+			</div>
+		</div>
 	</div>
-</div>
-</div>
 <%- include("../partials/scripts") -%>
 </body>
 </html>

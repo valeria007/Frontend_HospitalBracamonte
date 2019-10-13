@@ -6,9 +6,11 @@ Vue.component('modal', {
 Vue.filter('numeral', function (value) {
   return numeral(value).format('0,0');
 })
+console.log(data_url)
 const ver_pedido_farmacia =  new Vue({
   el:'#ver_pedido_farmacia',
   data: () => ({
+      url:data_url.url_front_end,
       msg: "",
       msg_false:'',
 
@@ -42,7 +44,7 @@ const ver_pedido_farmacia =  new Vue({
       totalPrice : 0,
   }),
   mounted() {
-      fetch('http://localhost:7000/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
+      fetch(this.url+'/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
       .then(resp => resp.json())
       .catch(error => console.error('Error',error))
       .then(resp => {
@@ -69,14 +71,14 @@ const ver_pedido_farmacia =  new Vue({
           }
           this.list = arr
       }) 
-      fetch('http://localhost:7000/pedidos/vuePedidos')
+      fetch(this.url+'/pedidos/vuePedidos')
       .then(res => res.json())
       .then(res => {
         for(var i = 0; i < res.length; i++){
           this.ListMedicamentos.push({
             id : res[i].id,
             nombre : res[i].nombre,
-            cantidad : res[i].cantidad,
+           /*  cantidad : res[i].cantidad, */
             codificacion: res[i].codificacion,
             precio : res[i].precio,
             presentacion : res[i].presentacion,
@@ -174,8 +176,8 @@ const ver_pedido_farmacia =  new Vue({
         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
       */
-      insertar: function (id, cantidad){
-        
+      insertar: function (id, cantidad, index){
+          console.log(index, " index")
           if(cantidad == 0 || cantidad <= 0 || cantidad == ""){
               //this.msg = "Inserte una cantidad del producto"
               if(cantidad == 0 || cantidad == ""){
@@ -186,30 +188,39 @@ const ver_pedido_farmacia =  new Vue({
 
           }  else {
               axios
-              .get('http://localhost:7000/pedidos/carrito/'+id)
-              .then(response => {
-                  var car = {
-                    id: response.data.id,
-                    codificacion: response.data.codificacion,
-                    nombre: response.data.nombre,
-                    price: response.data.price
-                  }   
+              .get(this.url+'/pedidos/carrito/'+id)
+              .then(response => {                  
+                var car = {
+                  id: response.data.id,
+                  codificacion: response.data.codificacion,
+                  nombre: response.data.nombre,
+                  price: response.data.price
+                }  
+                
+                var med_cant = this.ListMedicamentos[index].unidades - cantidad        
+                
+                if( med_cant < 0){
+                  this.alert = "Ya no existe esa cantidad de "+ car.nombre
+                  this.pass = ""
+                } else{
                   this.itemsCar = car;
                   this.pass = " Se insertaron  "+cantidad + " productos" + " de " + car.nombre
                   this.alert = ""
                   for(var i=0; i< cantidad; i++){
-                      this.add(car,id);
+                    this.add(car,id,index);
                   }  
-                  this.cantidad = 0 
+                  this.ListMedicamentos[index].unidades = this.ListMedicamentos[index].unidades - cantidad     
+                }
               })   
           }        
                
       },     
-      add: function(item, id)  {
+      add: function(item, id, position)  {
         let storedItem = this.listItems[id];
         if (!storedItem) {
           storedItem = this.listItems[id] = {
             item: item,
+            position, // esta es la posision en la que se encuentra en el modal vue o el filtrador de productos para poder rebertir la cantidad de productos
             qty: 0,
             price: 0
           };
@@ -220,7 +231,8 @@ const ver_pedido_farmacia =  new Vue({
         this.totalPrice += 1*storedItem.item.price;
 
       },
-      reduceByOne (id) {
+      reduceByOne (id,position) {
+          this.ListMedicamentos[position].unidades = this.ListMedicamentos[position].unidades + 1  // ESTO AÑADE A LA CANTIDAD DEL PRODUCTO QUE HABIA ANTES
           this.listItems[id].qty--;
           this.listItems[id].price -= this.listItems[id].item.price;
           this.totalQty--;
@@ -231,10 +243,19 @@ const ver_pedido_farmacia =  new Vue({
           }
       },
 
-      removeItem(id) {
+      removeItem(id,position) {
+
+        fetch(this.url+'/pedidos/carrito/'+id)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {
+          this.ListMedicamentos[position].unidades =  data.cantidad // esto remplaza la cantidad que tenia antes el medicamento
           this.totalQty -= this.listItems[id].qty;
           this.totalPrice -= this.listItems[id].price;
           delete this.listItems[id];
+
+        })
+        
       },
 
       generateArray: function () {
@@ -263,7 +284,7 @@ const ver_pedido_farmacia =  new Vue({
             'Content-type' : "application/json"
           }
       };
-      fetch('http://localhost:7000/almacen/Vue_update_peidodo_almacen_of_farmacia/'+this.id_pedido,esto)
+      fetch(this.url+'/almacen/Vue_update_peidodo_almacen_of_farmacia/'+this.id_pedido,esto)
       .then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(data => {
@@ -284,7 +305,7 @@ const ver_pedido_farmacia =  new Vue({
       if (producto == ""){
           this.respuestaPost = "No se selecciono Producto <<<<<<<<<<<<<<"
       }else{
-          axios.post('http://localhost:7000/distribucion/vueReduceStock', {
+          axios.post(this.url+'/distribucion/vueReduceStock', {
               producto: producto                
           })
           .then(function (response) {
@@ -296,7 +317,7 @@ const ver_pedido_farmacia =  new Vue({
       }            
   },
   get_pedido(){
-    fetch('http://localhost:7000/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
+    fetch(this.url+'/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {

@@ -134,7 +134,7 @@
               <div class="block-web">
                 <div class="header">
                   <div class="info blue_symbols"><i class="fa fa-clipboard icon"></i></div>
-                  <h3 class="content-header ">Detalles del Medico</h3>
+                  <h3 class="content-header ">Detalles del Médico</h3>
                 </div>
                 <div class="porlets-content">
                   <br>
@@ -164,6 +164,7 @@
                         <strong>COMPLETO DEL MEDICO :</strong><span>&nbsp;</span><br>
                         <label  class="control-label"><%=resp[0].nombre%> </label>
                       </div>
+                      
                       <div class="col-sm-4 uppercase">
                         <strong>MEDICO :</strong><span>&nbsp;</span><br>
                         <label class="control-label"><%=resp[0].TDoctor%></label>
@@ -195,7 +196,6 @@
                             <th class="text-center">#</th>
                             <th class="text-center">Dia Atención</th>
                             <th class="text-center">Turno</th>
-                            <th class="text-center">Horas</th> 
                           </tr>
                       </thead>
                       <tbody v-for="(data, index) in Turnos">
@@ -203,7 +203,6 @@
                           <td class="text-center">{{index+1}}</td>
                           <td class="text-center">{{data.diasAten}}</td>
                           <td class="text-center">{{data.turno}}</td>
-                          <td class="text-center"></td>
                         </tr>
                       </tbody>
                   </table>
@@ -243,11 +242,7 @@
 <script src="/plugins/data-tables/DT_bootstrap.js"></script>
 <script src="/plugins/data-tables/dynamic_table_init.js"></script>
 <script src="/plugins/edit-table/edit-table.js"></script>
-<script>
-          jQuery(document).ready(function() {
-              EditableTable.init();
-          });
- </script>
+
 <script>
 
 

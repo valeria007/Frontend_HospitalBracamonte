@@ -2,6 +2,7 @@ const roles = new Vue({
     el:"#roles",
     data: () => ({
         mensaje : "",
+        mesaje_f:"",
         url:data_url,
         email:' esto ',
         roles: {

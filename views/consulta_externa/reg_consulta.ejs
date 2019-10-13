@@ -216,6 +216,7 @@
                                         <li><a href="/datos_generales_paciente/lista_alergias/<%=dataPaciente[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>/<%=cita[0].id%>"><i class="fa fa-user"></i>Alergias</a></li>
                                         <!-- <li><a href="/paciente/Vacunas" ><i class="fa fa-user"></i> Vacunas</a></li> -->
                                         <li><a href="/datos_generales_paciente/list_exFisico/<%=dataPaciente[0].id%>/<%=cita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-users"></i>Examen General</a></li>
+                                        <li href="javascript:void(0);"  data-toggle="modal" data-target="#ExamenFisico"><a  ><i class="fa fa-users"></i>Examen General</a></li>
                                       
                                     </ul>
                                 </div>
@@ -396,6 +397,7 @@
                             <h4 class="modal-title" id="myModalLabel">Diagnosticos</h4>
                         </div>
                         <div class="modal-body"> 
+                          <div id="div2">
                             <template v-if="consulta_update == '' || consulta_update == null">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -410,6 +412,7 @@
                                     </div>  
                                 </div>
                             </template>
+                            
                             <template v-else>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -424,7 +427,7 @@
                                     </div>  
                                 </div>
                             </template>
-                            
+                          </div>  
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -585,99 +588,80 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
+<div class="modal fade" id="ExamenFisico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog " id="mdialTamanio">
         <div class="modal-content  ">
-            <div class="modal-header">
+            <div class="modal-header ">
                 <button type="button" class="close" data-dismiss="modal"aria-hidden="true">&times;</button>
-                <h4 >Datos del Paciente</h4>
+                <h3 class="modal-title" id="myModalLabel">Examen General</h3>
             </div>
-            <div class="grupo" id="cabeza">
-                <div class="panel with-nav-tabs panel-default">
-                    <section class="panel default blue_title h2">
-                    <div class="">
-                        <ul class="nav nav-tabs" id="myTab">
-                            <li class="col-lg-6 text-center active"><a href="#general" data-toggle="tab"><i class="fa fa-stethoscope "></i><span>&nbsp;&nbsp;&nbsp;</span>Examen General</a></li>
-                            
-                        </ul>
-                    </div>
-                    <div class="">
-                        <div class="tab-content">
-                            <div class="tab-pane fade in active" id="general">
-                                <form class=" " action='/paciente/postPaciente' method='post'>
-                                    <div class="container-fluid  "><br>
-                                        <div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
-                                                        
-                                        <div class="col-md-20 ">
-                                           
-                                            <div class="col-md-6 ">
-                                                <div class=" " >
-                                                    <label>Actitud:</label>
-                                                    <input  class="form-control"type='text' name='nombre'placeholder="" >
-                                                </div>
-                                                <div class=" ">
-                                                    <label>Facies:</label>
-                                                    <input  class="form-control"type='text' name='nombre'placeholder="" >
-                                                </div>
-                                                <div class="">
-                                                    <label>Hábito Corporal:</label>
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="">
-                                                </div>
-                                                <div class="">
-                                                    <label>Piel y Faneras:</label>
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="" >
-                                                </div>
-                                                <div class="">
-                                                    <label>Pulso:</label>
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="">
-                                                </div>
-                                                <div class="">
-                                                    <label>Presión Arterial Brazo Derecho:</label>
-                                                    <input type="text" class="form-control" name="presion" ></input>
-                                                </div>                
-                                            </div>
-                                            <div class="col-md-6  ">
-                                                <div class="">
-                                                    <label>Nivel de Conciencia:</label>
-                                                    <input class="form-control" type='text' name='apellidop' class='upper' placeholder="" >
-                                                </div>
-                                                <div class="col-md-4 row ">
-                                                    Peso(kg):
-                                                	<input type="number" value="50.08" data-decimals="2" min="10" max="500" step="0.1"class="form-control" name="peso" maxlength="5">
-												</div>
-                                                <div class="col-md-5  ">
-                                                    Talla(m):
-                                                    <input class="form-control" type='text' name='apellidom' pl" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="talla" maxlength="3">
-                                               </div>
-                                                <div class="col-md-4 ">
-                                                    IMC:
-                                                    <input class="form-control" type='text' name='apellidom' placeholder="">
-                                                </div>
-                                                <div class="" >
-                                                    <label>Estado Nutricional Regular:</label>
-                                                    <input  class="form-control"type='text' name='nombre'placeholder="">
-                                                </div>
-                                                <div class="col-md-6 row">
-                                                    Temp. Axilar(°C):
-                                                	<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
-										        </div>
-                                                <div class="col-md-6 ">
-                                                    Temp. Rectal(°C):
-                                                	<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
-										        </div>
-                                                <div>
-                                                    <label>Frecuencia Respiratoria(min):</label>
-                                                    <input type="number" value="1.08" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="respiracion" ></input>
-                                                </div>
-                                                <div class="">
-                                                    <label>Brazo Isquierdo:</label>
-                                                    <input type="text" class="form-control" name="presion" ></input>
-                                                </div>
-                                                </div>
-                                            </div>
+            <div class="">
+                <div class="tab-content">
+                    <div class="" id="general">
+                        <form class=" " action='/paciente/postPaciente' method='post'>
+                            <div class="container-fluid  ">
+                                               
+                                <div class="col-md-20 ">
+                                   
+                                    <div class="col-md-6">
+                                        <div class="col-md-6 ">
+                                            <label>Frec. Cardiaca(lat/min):</label>
+                                            <input type="number" value="1.08" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="respiracion" ></input>
                                         </div>
-                                        <div class="col-md-12 page-content ">
-                                           
+                                        <div class="col-md-6 ">
+                                            <label>Frec.Respiratoria(rep/min):</label>
+                                            <input type="number" value="1.08" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="respiracion" ></input>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <label>Pulso:</label>
+                                            <input class="form-control" type='text' name='apellidom' placeholder="">
+                                        </div>
+                                        <div class="col-md-6 " >
+                                            <label>Estado Nutricional:</label>
+                                            <input  class="form-control"type='text' name='nombre'placeholder="">
+                                        </div>
+                                        <div class="">
+                                            <label> Presión Arterial Brazo Isquierdo(mmHg):</label>
+                                            <input type="text" class="form-control" name="presion" ></input>
+                                        </div>
+                                      
+                                        
+                                        <div class="">
+                                            <label>Presión Arterial Brazo Derecho(mmHg):</label>
+                                            <input type="text" class="form-control" name="presion" ></input>
+                                        </div>                
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="col-md-4 row ">
+                                            <label>Peso(kg):</label> 
+                                        	<input type="number" value="50.08" data-decimals="2" min="10" max="500" step="0.1"class="form-control" name="peso" maxlength="5">
+										</div>
+                                        <div class="col-md-5  ">
+                                            <label>Talla(m):</label> 
+                                            <input class="form-control" type='text' name='apellidom' pl" data-decimals="2" min="1" max="3" step="0.01" class="form-control" name="talla" maxlength="3">
+                                       </div>
+                                        <div class="col-md-4 row ">
+                                            <label >IMC:</label> 
+                                            <input class="form-control"  name='apellidom' placeholder="">
+                                        </div>
+                                       
+                                        <div class="col-md-6 row">
+                                            <label>Temp. Axilar(°C):</label> 
+                                        	<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
+								        </div>
+                                        <div class="col-md-6 ">
+                                            <label>Temp. Rectal(°C):</label> 
+                                        	<input type="number" value="50.08" data-decimals="2" min="10" max="100" step="0.1" class="form-control"name="temperatura" maxlength="5">
+								        </div>
+                                        <div class="col-sm-12 row">
+                                            <label class="control-label">Observaciones:</label>
+                                            <textarea class="form-control" name="otros" ></textarea>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 page-content ">
+                                   
                                             <div class="col-md-8 ">
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
                                                 <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
@@ -687,24 +671,109 @@
                                        
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="lista">
-                                <div class="table-wrapper row">
-                              
-                                </div>
+                            <!--<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<lista examen>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>
+                                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+                            <div class="col-lg-12 "> 
+                                    <section class="panel default blue_title h2">
+                                        <div class="panel-heading">
+                                             <span class="h6">Lista de Examenes físicos</span>
+                                        </div>
+                                        <div id="div1" class="">
+                                        
+                                              <table class="display table table-bordered table-striped" id="dynamic-table2">
+                                                <thead>
+                                                      <tr>
+                                                        <th>#</th>
+                                                        <th>Fecha</th>
+                                                        <th>Peso</th>
+                                                        <th>Talla</th>
+                                                        <th>Temperatura</th>
+                                                        
+                                                        <th>Ver</th>
+                                                      </tr>
+                                                </thead>
+                                                <tbody v-for="(list,index) in examen_list">														  
+                                                    <tr class="gradeX">
+                                                        <td>{{index+1}}</td>
+                                                        <td>{{list.fecha_revision}}</td>
+                                                        <td>{{list.peso}}</td>
+                                                        <td>{{list.talla}}</td>
+                                                        <td>{{list.temperatura}}</td>
+                                                        		
+                                                        <td >																			
+                                                            <a @click="oneExamen(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
+                                                                                                                                                    
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr class="gradeX">
+                                                            <td>{{index+1}}</td>
+                                                            <td>{{list.fecha_revision}}</td>
+                                                            <td>{{list.peso}}</td>
+                                                            <td>{{list.talla}}</td>
+                                                            <td>{{list.temperatura}}</td>
+                                                                    
+                                                            <td >																			
+                                                                <a @click="oneExamen(list.id)" data-toggle="tooltip" class="btn  tooltips" data-original-title="Modificar"><i class="fa fa-edit"></i></a>
+                                                                                                                                                        
+                                                            </td>
+    
+                                                        </tr>
+                                                </tbody>
+                                               
+                                              </table>
+                               
+                                        </div>
+                                    </section>
                             </div>
+
                         </div>
-                    </div>
-                    </section>
-                </div>
-            </div> 
+            </div>       
         </div>
     </div>
 </div>
 
 
 
+<script>
+    document.querySelector('#botao').addEventListener('click', function () {
+      var peso = document.querySelector('#peso').value;
+      var altura = document.querySelector('#altura').value;
+      var imc = peso / (altura * altura);
+      var hr = document.createElement('hr');
+      var spanIMC = document.createElement('span');
+      spanIMC.textContent = 'IMC: ' + imc;
+      var divResultado = document.querySelector('#resultado');
+      divResultado.appendChild(hr);
+      divResultado.appendChild(spanIMC);
+    });
+</script>
 
+<script type="text/javascript">
+	calc = document.getElementById("calc");
+	kg = document.getElementById("kg");
+	m = document.getElementById("m");
+	imc = document.getElementById("imc");
+	lectura = document.getElementById("lectura");
 
+	calc.onclick = function(){
+		if(kg.value!="" && m.value!=""){
+			imcx = (kg.value / (m.value* m.value));
+			imc.innerHTML = imcx
+			console.log(imcx);
+
+			if(imcx<18.5){ lectura.innerHTML = "Peso inferior al normal"; }
+			else if(imcx>=18.5 && imcx<=24.9){ lectura.innerHTML = "Peso normal"; }
+			else if(imcx>=25 && imcx<=29.9){ lectura.innerHTML = "Peso superior al normal"; }
+			else if(imcx>30){ lectura.innerHTML = "Obesidad"; }
+
+		}else{
+			alert("Debes ingresar peso y altura.")
+		}
+
+	};
+</script>
     <!--====== Scripts -->
     <%- include("../partials/scripts") -%>
     <script src="/moment/moment.js"></script>

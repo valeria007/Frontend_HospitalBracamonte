@@ -7,6 +7,10 @@ var url = require('./url/export');
 router.get('/volver', (req,res) => {
     res.redirect('/distribucion/listDistribucion'); 
 })
+
+router.get('/volver2', (req,res) => {
+    res.redirect('/distribucion/nueva_distribucion'); 
+})
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

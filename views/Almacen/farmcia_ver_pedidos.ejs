@@ -14,7 +14,6 @@
         <%- include("../partials/menu") -%>
         <div class="inner">
             <div class="left_nav">
-              <!--\\\\\\\left_nav start \\\\\\-->
                 <div class="left_nav_slidebar">
                     <ul>
                         <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -45,7 +44,7 @@
                 </div>
             </div>      
         </div>
-        <div class="contentpanel" id="ver_pedido_farmacia">
+        <div class="contentpanel" id="ver_pedido_farmacia"><br>
             <div class="container clear_both padding_fix">
                 <div id="main-content">
                     <div class="page-content">
@@ -143,21 +142,21 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <div class="col-sm-9">
-                                                                        <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                                        <input type="text" class="form-control"  disabled=""></div>
-                                                                    </div>
-                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                                <input type="text" class="form-control"  disabled=""></div>
                                                             </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <div class="col-sm-9">
-                                                                        <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                        <input type="text" class="form-control" disabled="" ></div>
-                                                                    </div>
-                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
+                                                                <input type="text" class="form-control" disabled="" ></div>
                                                             </div>
                                                         </div> -->
                                                     </div>
@@ -219,7 +218,7 @@
                                                           </thead>
                                                           <tbody v-for="(med, index) in paginatedMeds">
                                                             <tr>
-                                                            <td><a @click="insertar(med.id, med.cant)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+                                                            <td><a @click="insertar(med.id, med.cant, index)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
                                                             <td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
                                                             <td>{{med.nombre}}</td>
                                                             <td>{{med.presentacion}}</td>
@@ -266,8 +265,8 @@
                                                                  
                                                                   <td>{{car.item.price}}</td>
                                                                   <td>{{car.price}}</td>
-                                                                  <td> <a @click="reduceByOne(car.item.id)">Reducir</a></td>
-                                                                  <td><a @click="removeItem(car.item.id)">Eliminar</a></td>                                                        
+                                                                  <td> <a @click="reduceByOne(car.item.id,car.position)">Reducir</a></td>
+                                                                  <td><a @click="removeItem(car.item.id,car.position)">Eliminar</a></td>                                                        
                                                                 </tr>                                                   
                                                             </tbody>
                                                         </table>
@@ -312,7 +311,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                      <!--   </template> -->
+                                        </section>
+                                    </div>
+                                    <!--   </template> -->
                                         <!-- <template v-else>
                                             <div class="page-content">  
                                                 <div class="row">
@@ -605,10 +606,11 @@
             </div>
         </div>
     </div>
-</div>
 <%- include("../partials/scripts") -%>
+<script src="/url/export.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/pedidos_ver_farmacia.js"></script>
+
 </body>
 </html>
