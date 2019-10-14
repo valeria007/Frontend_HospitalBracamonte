@@ -52,7 +52,7 @@
 	}
 </script>
 <body class="light_theme  fixed_header left_nav_fixed">
-	<div class="wrapper">
+	<div class="wrapper"  id="options">
 		<div class="header_bar">
 			<div class="brand">
 				<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
@@ -228,9 +228,9 @@
                                                                 <div class="col-md-12 panel-body">
                                                                     <div class="col-md-12">
                                                                         <div class="col-md-6">                               
-                                                                            <div class="form-group">
+                                                                            <div class="form-group" >
                                                                                 <label class="control-label">Fecha de Ingreso a Sala</label>
-                                                                                <input class="form-control" type="date" name="fechaIngreso">
+                                                                                <input class="form-control" type="text" name="fechaIngreso" readonly v-model="fecha_Registro">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-xs-6">
@@ -242,7 +242,7 @@
                                                                     </div>  
                                                                 </div>
                                                             
-                                                                <div class="col-md-12 panel-body" id="options">
+                                                                <div class="col-md-12 panel-body">
                                                                     <div class="col-md-12">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group label-floating" >
@@ -333,7 +333,7 @@
                                                                         </div>  
                                                                     </div>
                                                                 
-                                                                    <div class="col-md-12 panel-body" id="options">
+                                                                    <div class="col-md-12 panel-body" >
                                                                         <div class="col-md-12">
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group label-floating" >
@@ -426,7 +426,7 @@
                                                                         </div>  
                                                                     </div>
                                                                 
-                                                                    <div class="col-md-12 panel-body" id="options">
+                                                                    <div class="col-md-12 panel-body">
                                                                         <div class="col-md-12">
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group label-floating" >
@@ -647,7 +647,9 @@
           e.preventDefault();
         });    
     </script>
-
+    <script src="/url/export.js"></script>
+    <script src="/moment/moment.js"></script>
+    <script src="/moment/locale/af.js"></script>
     <script src="/js/jPushMenu.js"></script>
     <script src="/js/side-chats.js"></script>
     

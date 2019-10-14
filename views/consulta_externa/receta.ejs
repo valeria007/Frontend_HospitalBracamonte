@@ -43,6 +43,14 @@
 			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
 
 		}
+		#scroll{
+			position:absolute;
+    	    border:1px solid;
+    	    height:150px;
+    	    width:315px;
+    	    overflow-y:scroll;
+    	    overflow-x:hidden;
+    	}
 	</style>
 	<%- include("../partials/head") -%>
 </head>
@@ -241,7 +249,7 @@
 																				<h3 class="content-header">Lista de Medicamentos  </h3>
 																			</div>
 																			<div class="col-md-12 row"><br>  
-                        					                                	<div class="col-sm-3 col-sm-6">
+                        					                                	<!-- <div class="col-sm-3 col-sm-6">
 																					<div class="entrada">
 																						<h6 class=" ">Medicamento:</h6>
 																						<select class="form-control" v-model="lista.medicamento">
@@ -250,7 +258,23 @@
 																							</template>	
 																						</select>
 																					</div>
+																				</div> -->
+																				<div class="col-sm-3 col-sm-6">
+																					<ul class="list-group">
+																						<div class="entrada">
+																							<h6 class="">Dosis:</h6>
+																							<input type="text" placeholder="Buscar"  class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true"> <!-- @mouseleave="ocultar = false" -->                                          
+																						</div>
+																						<div id="scroll"  v-if="ocultar" @mouseleave="ocultar = false">
+																							<li  class="list-group-item" v-for="(list, index) in buscar_medicamentos">
+
+																								<a @click="name_insert(list.nombre)" >{{list.nombre}}</a>
+																							</li>			
+																						</div>
+	
+																					</ul>
 																				</div>
+																				
                             					                                <div class="col-sm-2 col-sm-6">
                                                 					                <div class="entrada">
                                                                     					<h6 class="">Dosis:</h6>
@@ -399,7 +423,7 @@
 																						 <div class="col-sm-6 ">
 																							 <div class="entrada">
 																								 <label class=" ">Fecha Prescripción:</label>
-																								 <input class="form-control" readonly type="text" v-model="data_receta.fecha" require >
+																								 <input class="form-control" readonly type="text" v-model="One_receta.fecha" require >
 																							 </div>
 																							</div>
 																							<div class="col-sm-6 col-sm-6">
@@ -480,9 +504,9 @@
 
 																		<div class="col-sm-3 col-sm-6">
 																			<div class="entrada">
-																				<h6 class=" blue_info">Fecha Prescripción:</h6>
-																				<input class="form-control" name="fecha" require :value="One_receta.fecha.split('T')[0]" readonly="">
-																				<h6 class=" blue_info">Fecha Prescripción:</h6>
+																				<h6 class=" blue_info">Fecha Prescripción:  sd</h6>
+																				<input class="form-control" name="fecha" require :value="One_receta.fecha" readonly="">
+																				
 																				<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
                                                                         
 																			</div>

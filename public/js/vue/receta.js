@@ -1,6 +1,10 @@
 const recetas = new Vue({
     el: '#recetas', 
     data : () => ({
+        // para buscar medicamentos
+        ocultar:false,
+        buscar:'',
+        //<<<<<<<<<<<<<<<<<<<<<<
         url:data_url.url_front_end,
         id_consulta:'',
         data_msg:{
@@ -33,11 +37,17 @@ const recetas = new Vue({
         //datos para receta
         dataReceta: ''
     }),
+    computed:{
+        buscar_medicamentos(){
+            return this.dataReceta.filter((item) => item.nombre.includes(this.lista.medicamento))
+        }
+    },
     mounted(){
         this.data_receta.fecha = moment().format('l'); 
         fetch(this.url+'/consulta_externa/vueReceta/'+this.id_consulta)        
         .then(resp => resp.json())
-        .then(data =>{   
+        .then(data =>{
+            console.log(data, "  esto es para one conuslta")   
             if(data != ""){
                 this.One_receta = {
                     id:data[0].id,
@@ -62,6 +72,10 @@ const recetas = new Vue({
         })
     },
     methods:{
+        name_insert(name){
+            console.log(name)
+            this.lista.medicamento = name
+        },
         get_receta(){
             fetch(this.url+'/consulta_externa/vueReceta/'+this.id_consulta)        
             .then(resp => resp.json())
@@ -101,14 +115,27 @@ const recetas = new Vue({
                 .then(resp => resp.json())
                 .then(data =>{  
                     
-                    this.medicamentos.push({
-                        id:data[0].id,
-                        medicamento:data[0].nombre,
-                        dosis:this.lista.dosis,
-                        frecuencia:this.lista.frecuencia,
-                        duracion:this.lista.duracion,
-                        cantidad:this.lista.cantidad
-                    });
+                    if(data.success == false ){
+                        this.medicamentos.push({
+                            id:0,
+                            medicamento:this.lista.medicamento,
+                            dosis:this.lista.dosis,
+                            frecuencia:this.lista.frecuencia,
+                            duracion:this.lista.duracion,
+                            cantidad:this.lista.cantidad
+                        });
+                        this.lista.medicamento = ""
+                    }else{
+                        this.medicamentos.push({
+                            id:data[0].id,
+                            medicamento:data[0].nombre,
+                            dosis:this.lista.dosis,
+                            frecuencia:this.lista.frecuencia,
+                            duracion:this.lista.duracion,
+                            cantidad:this.lista.cantidad
+                        });
+                        this.lista.medicamento = ""
+                    }         
                     console.log(this.medicamentos, " esto es <<<<<<<<<<<<<<<<<<<<<<<<<<<<");
                     this.data_msg.msg_false = ""
                     this.lista = {};

@@ -269,8 +269,8 @@
                                                                             <div class="col-sm-6 col-sm-6">
                                                                                 <div class="entrada ">
                                                                                     <div class="entrada">Fecha de Orden
-                                                                                        <div  id="tab1default"><textarea  name="fechaIngresoo" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>                                                
-                                                                                        <input class="form-control" type="date"  name="fechaIngreso" require value="" ><br>
+                                                                                                                                    
+                                                                                        <input class="form-control" type="text"  name="fechaIngreso" readonly :value="fecha" ><br>
 
                                                                                         
                                                                                     </div>
@@ -426,7 +426,7 @@
                                                                             <div class="col-sm-6 col-sm-6">
                                                                                 <div class="entrada ">
                                                                                     <div class="entrada">Fecha de Ingreso
-                                                                                        <input class="form-control" type="date"  name="fechaIngreso" require value="<%=resp[0].fechaIngreso%>" ><br>
+                                                                                        <input class="form-control" type="text" readonly name="fechaIngreso" require value="<%=resp[0].fechaIngreso%>" ><br>
 
                                                                                                 
                                                                                     </div>
@@ -540,7 +540,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title" id="myModalLabel">Detalles de la Receta</h4>
+                              <h4 class="modal-title" id="myModalLabel">Detalles de la Papeleta de Internacion</h4>
                         </div>
                         <div>
                             <div class="">
@@ -553,11 +553,13 @@
                                                     <div class="">
                                                         <div class=" ">
                                                             <p></p>
-                                                            <span style="color: rgb(48, 46, 160)"> N° de Historial:</span>  {{one_p.Historial}}  <br>
-                                                            <span style="color: rgb(48, 46, 160)"> Nombre Completo:</span> <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%> <br>
-                                                            <span style="color: rgb(48, 46, 160)"> Fecha de la Orden: </span>  {{one_p.fechaIngreso}} <br><br>
-                                                            <span style="color: rgb(48, 46, 160)"> Nombre del Médico:</span>  {{one_p.nombreDoctor}} <br>
-                                                            <span style="color: rgb(48, 46, 160)"> Area de Internación:</span> {{one_p.especialidad}}<br>
+                                                            <span style="color: rgb(48, 46, 160)"> De: </span>  {{one_p.tipoConsulta}} <br>
+                                                            <span style="color: rgb(48, 46, 160)"> N° de Historial: </span>  {{one_p.Historial}}  <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Nombre Completo: </span> <%=dataPaciente[0].nombre%> <%=dataPaciente[0].apellidop%> <%=dataPaciente[0].apellidom%> <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Fecha de la Orden: </span>  {{one_p.fechaIngreso}} <br>                                                        
+
+                                                            <span style="color: rgb(48, 46, 160)"> Nombre del Médico: </span>  {{one_p.nombreDoctor}} <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Area de Internación: </span> {{one_p.especialidad}}<br>
                                                             <span style="color: rgb(48, 46, 160)"> Diagnostico: </span>  {{one_p.diagnostico}} <br>
                                                         
                                                         </div>
@@ -597,8 +599,12 @@
             data : () => ({
                 url:data_url.url_front_end,
                 msg:'aljand',
-                one_p:''
+                one_p:'',
+                fecha:''
             }),
+            mounted(){
+                this.fecha = moment().format('l'); 
+            },
             methods:{
                 one_papeleta(id_p){
 

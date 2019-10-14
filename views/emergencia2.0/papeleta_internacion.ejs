@@ -29,7 +29,7 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
+<div class="wrapper" id="papeleta">
   
   <div class="header_bar">
     
@@ -79,11 +79,11 @@
 	<br>
 	<div class="header">
 		<div class="info blue_symbols "> <i class="fa fa-edit icon "></i></div>
-			<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias</h3>
+			<h3 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span>Emergencias {{msg}}</h3>
 	</div>
 		<br>
         <br>
-	<div class="page-content">
+	<div class="page-content" >
 		<div class="row">
 			<div class="col-lg-14">
 			    <section class="panel default blue_title h2">
@@ -130,7 +130,7 @@
 																</div>
 																<div class="col-sm-3">
                                                                     <label class="control-label">Fecha de Ingreso:</label>
-                                                                    <input  type="date"  class="form-control" name="fechaIngreso" require />
+                                                                    <input  type="text" readonly class="form-control" name="fechaIngreso" require :value="fecha_Registro" />
                                                                 </div>
 															</div>
 															<div class="form-group">
@@ -165,10 +165,8 @@
 															<div class="form-group">
 															    <div class="col-sm-4">
 																    <label class="control-label">Nombre Del Doctor:</label>
-                                                                    <input readonly  type="text"  class="form-control" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>"/>
-                                                                    <input type="hidden" name="nombreDoctor" value="<%=data_doc.data.medico.nombre%>">
-                                                                    <input type="hidden" name="apellidoD1" value="<%=data_doc.data.medico.apellidop%>">
-                                                                    <input type="hidden" name="apellidoD2" value="<%=data_doc.data.medico.apellidom%>">
+                                                                    <input readonly  type="text" name="nombreDoctor"  class="form-control" value="<%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%> <%=data_doc.data.medico.apellidom%>"/>
+                                                                    
                                                                     <input type="hidden" name="id_medico" value="<%=data_doc.data.medico.id%>">
                                                                     
                                                                 </div>
@@ -243,22 +241,15 @@
                                                                 </div>
                                                                 <div class="col-sm-3">
                                                                         <label class="control-label">Fecha de Ingreso:</label>
-                                                                        <input  type="date"  class="form-control" name="fechaIngreso" value="<%=updateInternacion[0].fechaIngreso%>" require />
+                                                                        <input  type="text" readonly  class="form-control" name="fechaIngreso" value="<%=updateInternacion[0].fechaIngreso%>" require />
                                                                     </div>
                                                             </div>
                                                             <h3 class="text-center">Datos de Medico</h3>
 															<div class="form-group">
-                                                                <div class="col-sm-3">
-                                                                    <label class="control-label">Apellido Paterno del Medico:</label>
-                                                                    <input type="text" class="form-control" value="<%=resp[0].apellidoD1%>" name="apellidoD1">
-                                                                </div>
-                                                                <div class="col-sm-3">
-                                                                    <label class="control-label">Apellido Materno del Medico:</label>
-                                                                    <input type="text" class="form-control" value="<%=resp[0].apellidoD2%>" name="apellidoD2">
-                                                                </div>
+                                                                
                                                                 <div class="col-sm-6">
-                                                                    <label class="control-label">Nombre(s) del Medico:</label>
-                                                                    <input type="text" class="form-control" value="<%=resp[0].nombreDoctor%>" name="nombreDoctor">
+                                                                    <label class="control-label">Nombre(s) del Medico 2314234:</label>
+                                                                    <input type="text" class="form-control" readonly value="<%=updateInternacion[0].nombreDoctor%>" name="nombreDoctor">
                                                                 </div>
                                                             </div>
                                                             <h3 class="text-center">Estado del Paciente</h3>
@@ -269,7 +260,7 @@
 																</div>
                                                             </div>
                                                             <br><br>
-                                                            <%if(updateInternacion[0].estado != false) { %>
+                                                            <%if(updateInternacion[0].estado_update != false) { %>
 									                        <div class="form-group">
 																<div class="col-sm-offset-4 col-sm-12">
 																	<button type="submit" class="btn btn-success btn-icon">Actualizar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</span>
@@ -305,14 +296,14 @@
 																<tbody>
                                                                     <% for(var i=0; i< listPinter.length; i++) { %>
                                                                         <tr>
-                                                                        <td><%= i + 1 %></td>
-                                                                        <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.nombre %></td>                                        
-                                                                        <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidop %></td>
-                                                                        <td><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidom %></td>
-                                                                        <td><%=listPinter[i].nombreDoctor %> <%=listPinter[i].apellidoD1 %> <%=listPinter[i].apellidoD2 %></td>
-                                                                        <td><%=listPinter[i].diagnostico %></td>
-                                                                        <td><%=listPinter[i].createdAt %></td>
-                                                                        <td class="text-center" ><a href="/emergencia/ListPInter/<%=listPinter[i].idEmergencia %>/<%=listPinter[i].Historial %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil" style="color:rgb(80, 145, 80)"></i></a></td>
+                                                                            <td><%= i + 1 %></td>
+                                                                            <td @click="one_papeleta(<%=listPinter[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=listPinter[i].emergencium.Citas_Medica.Paciente.nombre %></td>                                        
+                                                                            <td @click="one_papeleta(<%=listPinter[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidop %></td>
+                                                                            <td @click="one_papeleta(<%=listPinter[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=listPinter[i].emergencium.Citas_Medica.Paciente.apellidom %></td>
+                                                                            <td @click="one_papeleta(<%=listPinter[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=listPinter[i].nombreDoctor %> <%=listPinter[i].apellidoD1 %> <%=listPinter[i].apellidoD2 %></td>
+                                                                            <td @click="one_papeleta(<%=listPinter[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=listPinter[i].diagnostico %></td>
+                                                                            <td @click="one_papeleta(<%=listPinter[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=listPinter[i].createdAt %></td>
+                                                                            <td @click="one_papeleta(<%=listPinter[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias" class="text-center" ><a data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil" style="color:rgb(80, 145, 80)"></i></a></td>
                                                                         </tr>
                                                                     <% } %>
                                                                 </tbody>
@@ -325,7 +316,54 @@
 								</div>
 							</div>
 					</div>
-				</section>
+                </section>
+                <div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title" id="myModalLabel">Detalles de la papeleta internacion</h4>
+                        </div>
+                        <div>
+                            <div class="">
+                                <div id="main-content">
+                                    <div class="">			
+                                        
+                                        <div id="myTabContent" class="tab-content">
+                                              <div class="tab-pane fade active in " id="neww">
+                                                <div class="col-md-12">
+                                                    <div class="">
+                                                        <div class=" ">
+                                                            <p></p>
+                                                            <span style="color: rgb(48, 46, 160)"> De: </span>  {{one_p.tipoConsulta}} <br>
+                                                            <span style="color: rgb(48, 46, 160)"> N° de Historial:</span>  {{one_p.Historial}}  <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Nombre Completo:</span> <%=resp[0].Citas_Medica.Paciente.nombre%> <%=resp[0].Citas_Medica.Paciente.apellidop%> <%=resp[0].Citas_Medica.Paciente.apellidom%> <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Fecha de la Orden: </span>  {{one_p.fechaIngreso}} <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Nombre del Médico:</span>  {{one_p.nombreDoctor}} <br>
+                                                            <span style="color: rgb(48, 46, 160)"> Area de Internación:</span> {{one_p.especialidad}}<br>
+                                                            <span style="color: rgb(48, 46, 160)"> Diagnostico: </span>  {{one_p.diagnostico}} <br>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                                          <!--/porlets-content-->
+                                                  </div>
+                                              </div>
+                                  </div>
+                                
+                              </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -415,9 +453,40 @@
     });
 
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="/axios/dist/axios.min.js"></script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+
+<script src="/moment/moment.js"></script>
+<script src="/moment/locale/af.js"></script>
+<script src="/url/export.js"></script>
+<script>
+    const papeleta = new Vue({
+        el: '#papeleta', 
+        data : () => ({
+            url:data_url.url_front_end,
+            fecha_Registro:'',
+            msg:'aljand',
+            one_p:''
+        }),
+        mounted(){
+            this.fecha_Registro = moment().format('l'); 
+        },
+        methods:{
+            one_papeleta(id_p){
+
+                fetch(this.url+'/consulta_externa/VUE_One_p/'+id_p)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => { 
+                    this.one_p = data[0]
+                    console.log(this.one_p)
+                })
+            }
+        }
+    })
+</script>
 
 </body>
 

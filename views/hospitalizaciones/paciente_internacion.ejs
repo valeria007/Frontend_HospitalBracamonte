@@ -847,8 +847,8 @@
                                             <form @submit="formSubmit" parsley-validate novalidate>
                                                 <div class="col-md-14">
                                                     <div class="form-group col-md-6">
-                                                        <label>FECHA INTERNACION:</label>
-                                                        <input type="date" readonly class='form-control' :value="epicrisis.Fecha_internacion = '<%=one_internacion[0].fechaIngreso%>'">
+                                                        <label>FECHA INTERNACION: <%=one_internacion[0].fechaIngreso%></label>
+                                                        <input type="text" readonly class='form-control' :value="epicrisis.Fecha_internacion = '<%=one_internacion[0].fechaIngreso%>'">
                                                     </div><!--/form-group-->
                                                     <div class="form-group col-md-6">
                                                         <label>FECHA ALTA:</label>

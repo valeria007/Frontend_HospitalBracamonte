@@ -83,26 +83,36 @@
         mensaje:'',
         mostrar:'',
         salaID:'',
-        camas:[]
+        camas:[],
+        fecha_Registro:''
       }
+    },
+    mounted(){
+      this.fecha_Registro = moment().format('l'); 
     },
     methods:{
       agregar: function (){
-        axios
-        .get(this.url+'/internaciones/Vue_list_salas/'+this.mensaje)
-        .then(response => {
-          this.mostrar = response.data 
-          //console.log(response.data)
-          
-        })
+        if(this.mensaje != ""){
+          axios
+          .get(this.url+'/internaciones/Vue_list_salas/'+this.mensaje)
+          .then(response => {
+            this.mostrar = response.data 
+            //console.log(response.data)
+            
+          })
+        }
+       
       },
       traer: function (){
-        axios
-        .get(this.url+'/internaciones/VUe_list_camas/'+this.salaID)
-        .then(response => {
-          console.log(response.data)
-          this.camas = response.data
-        })
+        if(this.salaID != ""){
+          axios
+          .get(this.url+'/internaciones/VUe_list_camas/'+this.salaID)
+          .then(response => {
+            console.log(response.data)
+            this.camas = response.data
+          })
+        }
+       
       } 
     }
 })
