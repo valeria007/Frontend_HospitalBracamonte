@@ -289,7 +289,8 @@ router.get('/reg_consulta/:idCIta/:historial/:token_id/:token_p', (req,res) => {
         fetch('http://localhost:3000/api/updateConsulta/'+idCIta)
           .then(resp => resp.json())
           .then(resp =>{
-              updateCita = resp;                    
+              updateCita = resp;  
+              console.log(updateCita, "  <<<<<<<<<<<<<<< esto es update cita")                  
         })
         .catch(error => {
             console.error('Error:', error)
