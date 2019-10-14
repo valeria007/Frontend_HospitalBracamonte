@@ -43,6 +43,14 @@
 			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
 
 		}
+		#scroll{
+			position:absolute;
+    	    border:1px solid;
+    	    height:150px;
+    	    width:315px;
+    	    overflow-y:scroll;
+    	    overflow-x:hidden;
+    	}
 	</style>
 	<%- include("../partials/head") -%>
 </head>
@@ -132,7 +140,7 @@
 										</ul>
 										<div id="myTabContent" class="tab-content">
 											<div class="tab-pane fade active in" id="new">
-												<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+												<!-- <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea> -->
 											  <template v-if="One_receta == ''">
 						                		<form @submit="post_recetas" method="POST">
 													<div class="col-md-12 ">
@@ -241,7 +249,7 @@
 																				<h3 class="content-header">Lista de Medicamentos  </h3>
 																			</div>
 																			<div class="col-md-12 row"><br>  
-                        					                                	<div class="col-sm-3 col-sm-6">
+                        					                                	<!-- <div class="col-sm-3 col-sm-6">
 																					<div class="entrada">
 																						<h6 class=" ">Medicamento:</h6>
 																						<select class="form-control" v-model="lista.medicamento">
@@ -250,7 +258,23 @@
 																							</template>	
 																						</select>
 																					</div>
+																				</div> -->
+																				<div class="col-sm-3 col-sm-6">
+																					<ul class="list-group">
+																						<div class="entrada">
+																							<h6 class="">Dosis:</h6>
+																							<input type="text" placeholder="Buscar"  class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true"> <!-- @mouseleave="ocultar = false" -->                                          
+																						</div>
+																						<div id="scroll"  v-if="ocultar" @mouseleave="ocultar = false">
+																							<li  class="list-group-item" v-for="(list, index) in buscar_medicamentos">
+
+																								<a @click="name_insert(list.nombre)" >{{list.nombre}}</a>
+																							</li>			
+																						</div>
+	
+																					</ul>
 																				</div>
+																				
                             					                                <div class="col-sm-2 col-sm-6">
                                                 					                <div class="entrada">
                                                                     					<h6 class="">Dosis:</h6>
@@ -524,16 +548,30 @@
 																<div class="">
 																	
 																		<div class="col-sm-3 col-sm-6">
+																			<div class="entrada">
+																				<h6 class=" blue_info">Medicamento:</h6>
+																				<select v-model="lista.medicamento">
+																					<template v-for="(list, index) in dataReceta">
+																						<option>{{list.nombre}}</option>
+																					</template>	
+																				</select>
+																			</div>	   
+																		</div>
+																		<!-- <div class="col-sm-3 col-sm-6">
+																			<ul class="list-group">
 																				<div class="entrada">
-																					<h6 class=" blue_info">Medicamento:</h6>
-																					<select v-model="lista.medicamento">
-																						<template v-for="(list, index) in dataReceta">
-																							<option>{{list.nombre}}</option>
-																						</template>	
-																					</select>
-																						
-																					   
+																					<h6 class="">Dosis:</h6>
+																					<input type="text" placeholder="Buscar"  class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true">                                          
 																				</div>
+																				<div id="scroll"  v-if="ocultar" @mouseleave="ocultar = false">
+																					<li  class="list-group-item" v-for="(list, index) in buscar_medicamentos">
+																					
+																						<a @click="name_insert(list.nombre)" >{{list.nombre}}</a>
+																					</li>			
+																				</div>
+																			
+																			</ul>
+																		</div> -->
 																		</div>
 																			
 																			<div class="col-sm-2 col-sm-6">
@@ -564,38 +602,37 @@
 																							lista de medicamentos
 																			>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																		<div class="col-lg-12"> 
-																				<section class="panel default blue_title h2">
-																			
+																			<section class="panel default blue_title h2">																			
 																				<div class="panel-body">
-																				
-																		  <table class="table table-hover">
-																			<thead>
-																			  <tr>
-																				<th>#</th>
-																				<th>Medicamento</th>
-																				<th>Dosis</th>
-																				<th>Frecuencia</th>
-																				<th>Duracion</th>
-																				<th>Cantidad</th>
-																				<th>Quitar</th>
-																			  </tr>
-																			</thead>
-																			<tbody v-for="(list, index) in One_receta.medicamentos">
-																			  <tr>
-																				<td>{{index + 1 }}</td>
-																				<td>{{list.medicamento}}</td>
-																				<td>{{list.dosis}}</td>
-																				<td>{{list.frecuencia}}</td>
-																				<td>{{list.duracion}}</td>
-																				<td>{{list.cantidad}}</td>
-																				<td><a @click="eliminar_update(index)">eliminar</a></td>
-																			  </tr> 
-																			                                                                                  
-																			</tbody>
-																		  </table>
-																	   
-																		</div>
-																		</section>
+
+																		  			<table class="table table-hover">
+																						<thead>
+																						  	<tr>
+																								<th>#</th>
+																								<th>Medicamento</th>
+																								<th>Dosis</th>
+																								<th>Frecuencia</th>
+																								<th>Duracion</th>
+																								<th>Cantidad</th>
+																								<th>Quitar</th>
+																						  	</tr>
+																						</thead>
+																						<tbody v-for="(list, index) in One_receta.medicamentos">
+																						  	<tr>
+																								<td>{{index + 1 }}</td>
+																								<td>{{list.medicamento}}</td>
+																								<td>{{list.dosis}}</td>
+																								<td>{{list.frecuencia}}</td>
+																								<td>{{list.duracion}}</td>
+																								<td>{{list.cantidad}}</td>
+																								<td><a @click="eliminar_update(index)">eliminar</a></td>
+																						  	</tr> 
+
+																						</tbody>
+																		  			</table>
+																				  
+																				</div>
+																			</section>
 																		</div>
 																	
 																</div>

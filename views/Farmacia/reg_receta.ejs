@@ -146,7 +146,7 @@
 								</div>
 								<span style="color: red">{{msg_false_post}}</span>
 								<span style="color: blue">{{msg_true_post}}</span>
-								<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+								<!-- <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea> -->
 								<div class="porlets-content">
 									<input type="hidden" :value="id_receta = '<%=data_receta[0].id%>'">
 									<input type="hidden" :value="id_user = '<%=data_doc.data.medico.id%>'">
@@ -250,6 +250,9 @@
 										<template v-for="msg in false_msg_product">
 											<p style="color: red"> No se pudo insertar el. Producto: {{msg.nombre}}, cantidad requerida: {{msg.cantidad_requerida}}, en stock: {{msg.cantidad_actual}}   </p>
 										</template>
+										<template v-for="msg in product_false">
+											<p style="color: red" class="h5"> {{msg.product}} </p>
+										</template>
 										<div class="table-responsive">
 											<table  class="display table table-bordered table-striped " >
 												<thead>
@@ -319,6 +322,7 @@
 		</div>
 	</div>
 <%- include("../partials/scripts") -%>
+<script src="/url/export.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="/js/vue/receta_farmacia_paciente.js"></script>
