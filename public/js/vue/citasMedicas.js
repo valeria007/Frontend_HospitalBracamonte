@@ -83,6 +83,7 @@ const citas = new Vue({
 
           }
           this.horas_Turno = arr.sort()
+          console.log(orden, " esta son las horas")
         }else{
           console.log("no se selecciono doctor")
         }
