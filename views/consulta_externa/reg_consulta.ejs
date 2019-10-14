@@ -395,7 +395,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Diagnóstico</h4>
+                            <h4 class="modal-title" id="myModalLabel">Diagnosticos</h4>
                         </div>
                         <div class="modal-body"> 
                           <div id="div2">
@@ -407,7 +407,7 @@
                                                 <input type="text" placeholder="Buscar" class="form-control" v-model="data">
                                             </li>
                                             <li class="list-group-item" v-for="list in buscar">
-                                                 <a @click="insertar(list.codigo)">{{list.codigo}}  {{list.descripcion}}</a>
+                                                 <a @click="insertar(list.codigo)" data-dismiss="modal">{{list.codigo}}  {{list.descripcion}}</a>
                                             </li>
                                         </ul>
                                     </div>  

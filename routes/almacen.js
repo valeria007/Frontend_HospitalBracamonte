@@ -282,4 +282,29 @@ router.get('/Vue_one_pedido_farmacia/:id_pedido', (req,res) => {
     })
 })
 
+router.post('/Vue_update_peidodo_almacen_of_farmacia/:id_pedido', (req,res) => {
+    const { id_pedido } = req.params
+    var data = req.body
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3200/api/update_peidodo_almacen_of_farmacia/'+id_pedido,esto)
+    .then(res => res.json())    
+    .then(data => {  
+        res.status(200).json(data)
+    })
+    .catch( error => {
+        res.status(400).json({
+            success:false,
+            msg:"no se puedo actualizar los datos",
+            error
+        })
+    })
+    
+})
+
 module.exports = router;

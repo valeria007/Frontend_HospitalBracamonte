@@ -139,7 +139,7 @@
 												</div>
 												<div class="form-group">
 													<label>Receta de Medicamento:</label>
-													<input type="text" name="concentracion" required class="form-control" onkeyup="mayus(this);">
+													<input type="text" name="receta_medico"  required class="form-control" onkeyup="mayus(this);">
 												</div>
 												<div class="form-group">
 													<label>Cantidad por Unidades:</label>
@@ -232,14 +232,13 @@
 													<input  type="text" name="nombre" value="<%=data_body_post.data.nombre%>" required class="form-control" onkeyup="mayus(this);">
 												</div>
 											<% } %>
-												<div class="form-group">
-													<label>Receta de Medicamento:</label>
-													<input type="text" name="concentracion" value="<%=data_body_post.data.concentracion%>" required class="form-control" onkeyup="mayus(this);">
-												</div>
-												<div class="form-group">
-													<label>Cantidad por Unidades:</label>
-													<input type="text" name="cantidad_unidad" value="<%=data_body_post.data.cantidad_unidad%>" required class="form-control" onkeyup="mayus(this);">
-												</div>
+											<div class="form-group">
+												<label>Receta de Medicamento:</label>
+												<input type="text" name="receta_medico" value="<%=data_body_post.data.receta_medico%>" required class="form-control" onkeyup="mayus(this);">
+											</div>
+											<div class="form-group">
+												<label>Cantidad por Unidades:</label>
+												<input type="text" name="cantidad_unidad" value="<%=data_body_post.data.cantidad_unidad%>" required class="form-control" onkeyup="mayus(this);">
 											</div>
 										</div>
 										<div class="col-md-12">
@@ -307,7 +306,7 @@
 												</div>
 												<div class="form-group">
 													<label>Receta de Medicamento:</label>
-													<input type="text" required class="form-control" onkeyup="mayus(this);">
+													<input type="text" name="receta_medico" value="<%=one_medicamento.data[0].receta_medico%>" required class="form-control" onkeyup="mayus(this);">
 												</div>
 												<div class="form-group">
 													<label>Cantidad por Unidades:</label>
@@ -330,7 +329,7 @@
 											</div>
 										</div>
 										<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
-										<a class="btn btn-danger" href="/farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i>Cancelar</a>
+										<a class="btn btn-danger" href="/farmacia/voler123/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i>Cancelar</a>
 									</form>
 									<% } %>
 								</div>
