@@ -91,14 +91,14 @@ router.get('/home/:id/:token_part', (req,res) => {
 router.get('/lista_pacientes/:token_id/:token_partial', (req,res) => {
     const { token_id,token_partial } = req.params
     if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
-        fetch('http://localhost:3000/api/lista_pacaiente/'+data_user[token_id].data.medico.id)
+        fetch('http://localhost:3000/api/lista_emergencia/'+data_user[token_id].data.medico.id)
         .then(resp => resp.json())
         .catch(error => console.error('Error',error))
         .then(list_true => {
           //res.send(list_true)
           list_false(data_user[token_id].data.medico.id, list_true)
           function list_false(id_med, resp){
-            fetch('http://localhost:3000/api/lista_pacienteDoctor_false/' + id_med)
+            fetch('http://localhost:3000/api/lista_emergencia_false/' + id_med)
               .then(resp => resp.json())
               .catch(error => console.error('Error',error))
               .then(list_false => {
@@ -128,7 +128,7 @@ router.get('/registrar_emergencia/:id_cita/:historial/:token_id/:token_partial',
                 fetch('http://localhost:3000/api/OnlyEmergencia/'+historial)
                 .then(resp => resp.json())
                 .then(consultasEmergencia =>{ 
-
+                    //console.log(consultasEmergencia, " <<<<<<<<<<<< 87878787 <<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                     data_paciente()
                     function data_paciente(){
                         fetch('http://localhost:3000/api/onlyPaciente/'+historial)
@@ -342,7 +342,7 @@ router.post('/update_consulta/:id/:id_cita/:historial/:token_id/:token_partial',
       fetch('http://localhost:3000/api/recitasOfEMG/'+historial) // esto es la lista de recetas del paciente
       .then(res => res.json())
       .then(receta => {
-
+        console.log(receta, " <<<<<<<<<<<<<<<<<<<<<<<<<< sdfjsldkfj  <<<<<<<<<<<<<<<<<<<")
         fetch('http://localhost:3000/api/onlyPaciente/'+historial)
         .then(resp => resp.json())
         .then(dataPaciente =>{ 
@@ -420,6 +420,7 @@ router.get('/vue_receta_emergencia/:id_consulta',(req,res) =>{
           fetch('http://localhost:3000/api/EmergenciaP/'+id_consulta) // esto es la consulta de la emergencia
           .then(resp => resp.json())
           .then(resp =>{ 
+            console.log(resp, " qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
             res.render('emergencia2.0/papeleta_internacion',{
               resp,
               especialidad,

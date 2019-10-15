@@ -4,6 +4,7 @@ Vue.filter('numeral', function (value) {
 const receta_paciente = new Vue({
     el: '.receta_paciente', 
     data : () => ({
+        url:data_url.url_front_end,
         msg: 'aljand',
 
         alert: "",
@@ -13,6 +14,7 @@ const receta_paciente = new Vue({
         msg_false_post: '',
 
         false_msg_product:[],
+        product_false:[],
 
         id_receta:'',
         id_user:'',
@@ -49,16 +51,17 @@ const receta_paciente = new Vue({
         },
     }),
     mounted(){
-        fetch('http://localhost:7000/farmacia/vue_one_receta/'+this.id_receta)
+        fetch(this.url+'/farmacia/vue_one_receta/'+this.id_receta)
         .then(resp => resp.json())
         .then(data_receta_paciente => { 
+          console.log(data_receta_paciente, "  esto es el 1")
             for(var i = 0; i < data_receta_paciente[0].medicamentos.length; i++){
-                this.insert_men_receta(data_receta_paciente[0].medicamentos[i].id,data_receta_paciente[0].medicamentos[i].cantidad)
+                this.insert_men_receta(data_receta_paciente[0].medicamentos[i].id,data_receta_paciente[0].medicamentos[i].cantidad,data_receta_paciente[0].medicamentos[i].medicamento)
             }         
         })
     },
     created:function() {
-        fetch('http://localhost:7000/farmacia/Vue_medicamentos_farmacia')
+        fetch(this.url+'/farmacia/Vue_medicamentos_farmacia')
         .then(res => res.json())
         .then(res => {
             for(var i = 0; i < res.length; i++){
@@ -148,7 +151,7 @@ const receta_paciente = new Vue({
           })
         },
 
-        insert_men_receta: function (id, cantidad){
+        insert_men_receta: function (id, cantidad,nom_medicamento){
           if(cantidad == 0 || cantidad <= 0 || cantidad == ""){
             //this.msg = "Inserte una cantidad del producto"
             if(cantidad == 0 || cantidad == ""){
@@ -159,28 +162,35 @@ const receta_paciente = new Vue({
     
           }  else {
             axios
-            .get('http://localhost:7000/farmacia/vue_medicamento/'+id)
+            .get(this.url+'/farmacia/vue_medicamento/'+id)
             .then(response => {
-              var numero = response.data[0].cantidad_unidad - cantidad
-              if(numero <= 0){
-                this.false_msg_product.push(  {
-                  cantidad_requerida: cantidad,
-                  cantidad_actual: response.data[0].cantidad_unidad,
-                  nombre: response.data[0].nombre
+              //console.log(response, "  esto inserta 2")
+              if( response.data.success == false){
+                this.product_false.push({
+                  product:"No existe el producto "+nom_medicamento
                 })
               }else{
-                var car = {
-                  id: response.data[0].id,
-                  codificacion: response.data[0].codificacion,
-                  nombre: response.data[0].nombre,
-                  //cantidad: response.data[0].cantidad_unidad,
-                  price: response.data[0].precio_compra
-                }   
-                for(var i=0; i< cantidad; i++){
-                  this.add(car,id);
-                }  
-                this.cantidad = 0 
-              }
+                var numero = response.data[0].cantidad_unidad - cantidad
+                if(numero <= 0){
+                  this.false_msg_product.push({
+                    cantidad_requerida: cantidad,
+                    cantidad_actual: response.data[0].cantidad_unidad,
+                    nombre: response.data[0].nombre
+                  })
+                }else{
+                  var car = {
+                    id: response.data[0].id,
+                    codificacion: response.data[0].codificacion,
+                    nombre: response.data[0].nombre,
+                    //cantidad: response.data[0].cantidad_unidad,
+                    price: response.data[0].precio_compra
+                  }   
+                  for(var i=0; i< cantidad; i++){
+                    this.add(car,id);
+                  }  
+                  this.cantidad = 0 
+                }
+              }              
               
             })   
 
@@ -198,7 +208,7 @@ const receta_paciente = new Vue({
     
           }  else {
             axios
-            .get('http://localhost:7000/farmacia/vue_medicamento/'+id)
+            .get(this.url+'/farmacia/vue_medicamento/'+id)
             .then(response => {
               console.log(response.data[0].cantidad_unidad, " esto es un medicamentos insertado <<<<")
               var numero = response.data[0].cantidad_unidad - cantidad
@@ -295,7 +305,7 @@ const receta_paciente = new Vue({
                 'Content-type' : "application/json"
               }
             };
-            fetch('http://localhost:7000/farmacia/vue_reg_receta_paciente',esto)
+            fetch(this.url+'/farmacia/vue_reg_receta_paciente',esto)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
@@ -328,7 +338,7 @@ const receta_paciente = new Vue({
               'Content-type' : "application/json"
             }
           };
-          fetch('http://localhost:7000/farmacia/vue_update_cantidad/'+lista[i].item.id,esto)
+          fetch(this.url+'/farmacia/vue_update_cantidad/'+lista[i].item.id,esto)
           .then(res => res.json())
           .catch(error => console.error('Error:', error))
           .then(data => {

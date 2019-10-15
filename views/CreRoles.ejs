@@ -287,13 +287,24 @@
 <script src="/axios/dist/axios.min.js"></script>
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
+
+<script src="/moment/moment.js"></script>
+<script src="/moment/locale/af.js"></script>
+
 <script>
+  
   var roles = new Vue({
     el: "#roles",
     data: () =>({
       id_rol:''
 
-    })
+    }),
+    mounted(){
+      var breakfast = moment('8:32','HH:mm');
+      var lunch = moment('12:52','HH:mm');
+      console.log(moment().format('l'))
+      console.log( moment.duration(lunch - breakfast).humanize() + ' between meals' ) // 4 hours between meals
+    }
   })
 </script>
 

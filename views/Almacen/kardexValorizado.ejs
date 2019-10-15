@@ -9,16 +9,11 @@
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
-    <!--\\\\\\\ wrapper Start \\\\\\-->
     <div class="header_bar">
-      <!--\\\\\\\ header Start \\\\\\-->
       <div class="brand">
-        <!--\\\\\\\ brand Start \\\\\\-->
         <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
       </div>
-      <!--\\\\\\\ brand end \\\\\\-->
       <div class="header_top_bar">
-        <!--\\\\\\\ header top bar start \\\\\\-->
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         <div class="top_right_bar">
           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
@@ -32,13 +27,9 @@
           </div> 
         </div>
       </div>
-      <!--\\\\\\\ header top bar end \\\\\\-->
     </div>
-    <!--\\\\\\\ header end \\\\\\-->
     <div class="inner">
-      <!--\\\\\\\ inner start \\\\\\-->
       <div class="left_nav">
-        <!--\\\\\\\left_nav start \\\\\\-->
         <div class="left_nav_slidebar">
           <ul>
             <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -54,6 +45,7 @@
                 <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
                 <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
                 <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+                <li> <a href="/almacen/farmacia_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos Farmacia</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
@@ -67,87 +59,77 @@
           </ul>
         </div>
       </div>
-     <!--Contenido-->
-     <div class="contentpanel"><br>
-      <!--\\\\\\\ contentpanel start\\\\\\-->
-      <!--Formulario-->
-      <div class="container clear_both padding_fix">
-        <!--\\\\\\\ container  start \\\\\\-->
-          <div id="main-content">
-            <div class="page-content">
-              <div class="row">
-                <div class="col-md-12">
-                 <div class="block-web">
-                    <div class="header">
-                      <div class="actions"> </div>
-                      <h4 class="content-header"><div class="info gray_symbols"><i class="fa fa-folder-open icon"></i></div>   Kardex Valorizado</h4> 
-                    </div>
-                    <div class="porlets-content">
-                      <div class="panel-body">
-                      <!-- Button trigger modal -->
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">GRUPO DE ASIGNACION  <i class="fa fa-archive"></i>:</label>
-                            <div class="col-sm-7">
-                              <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                                <option>Paco</option>
-                                <option>Luis</option>
-                                <option>Luna</option>
-                                <option>Daniela</option>
-                              </select>
-                            </div>
-                          </div><!--/form-group-->
-                      </div>  
-                      <div class="table-responsive">
-                        <table  class="display table table-bordered table-striped" id="dynamic-table">
-                          <thead>
-                            <tr>
-                            <th>#</th>
-                            <th>Grupo de Asignacion</th>
-                            <th>Codigo</th>
-                            <th>Articulo</th>
-                            <th>Total de Ingresos</th>
-                            <th>Valor de Ingresos</th>
-                            <th>Totalo de Stock</th>
-                            <th>Valor de Stock</th>
-                            <th>Total de Salidas</th>
-                            <th>Valor de Salidas</th>
-                            <th>Utilidad Valorizada</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                              <% for(var i=0; i < resp.length; i++) { %>
-                            <tr>
-                                <td><%= i+1%></td>
-                                <td><%=resp[i].GrupoDesignado.descripcion%></td>
-                                <td><%=resp[i].codificacion%></td>
-                                <td><%=resp[i].nombre%></td>	
-                                <td>falta</td>
-                                <td>falta</td>
-                                <td><%=resp[i].unidades%></td>
-                                <td>falta</td>
-                                <td>falta</td>
-                                <td>falta</td>
-                                <td>falta</td>
-                            </tr>
-                            <% } %>
-                          <tbody>
-                        </table>
-                      </div><!--/table-responsive-->
-                    </div><!--/porlets-content-->
-                  </div><!--/block-web--> 
-                </div><!--/col-md-12--> 
-              </div><!--/row-->
-            </div><!--/page-content end--> 
-          </div><!--/main-content end--> 
-        
-        
-        
-        </div>
-    <!--\\\\\\\ content panel end \\\\\\-->
+      <!--Contenido-->
+      <div class="contentpanel"><br>
+        <!--Formulario-->
+        <div class="container clear_both padding_fix">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="block-web">
+                <div class="header">
+                  <div class="actions"> </div>
+                  <h4 class="content-header"><div class="info gray_symbols"><i class="fa fa-folder-open icon"></i></div>   Kardex Valorizado</h4> 
+                </div>
+                <div class="porlets-content">
+                  <div class="panel-body">
+                    <!-- Button trigger modal -->
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">GRUPO DE ASIGNACION  <i class="fa fa-archive"></i>:</label>
+                      <div class="col-sm-7">
+                        <select class="selectpicker" data-show-subtext="true" data-live-search="true">
+                          <option>Paco</option>
+                          <option>Luis</option>
+                          <option>Luna</option>
+                          <option>Daniela</option>
+                        </select>
+                      </div>
+                    </div><!--/form-group-->
+                  </div>  
+                  <div class="table-responsive">
+                    <table  class="display table table-bordered table-striped" id="dynamic-table">
+                      <thead>
+                        <tr>
+                        <th>#</th>
+                        <th>Grupo de Asignacion</th>
+                        <th>Codigo</th>
+                        <th>Articulo</th>
+                        <th>Total de Ingresos</th>
+                        <th>Valor de Ingresos</th>
+                        <th>Totalo de Stock</th>
+                        <th>Valor de Stock</th>
+                        <th>Total de Salidas</th>
+                        <th>Valor de Salidas</th>
+                        <th>Utilidad Valorizada</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for(var i=0; i < resp.length; i++) { %>
+                        <tr>
+                        <td><%= i+1%></td>
+                        <td><%=resp[i].GrupoDesignado.descripcion%></td>
+                        <td><%=resp[i].codificacion%></td>
+                        <td><%=resp[i].nombre%></td>	
+                        <td>falta</td>
+                        <td>falta</td>
+                        <td><%=resp[i].unidades%></td>
+                        <td>falta</td>
+                        <td>falta</td>
+                        <td>falta</td>
+                        <td>falta</td>
+                        </tr>
+                        <% } %>
+                      <tbody>
+                    </table>
+                  </div><!--/table-responsive-->
+                </div><!--/porlets-content-->
+              </div><!--/block-web--> 
+            </div><!--/col-md-12--> 
+          </div><!--/row-->
+        </div><!--/page-content end--> 
+      </div><!--/main-content end--> 
+    </div>
   </div>
-  </div>
-
-  <%- include("../partials/scripts") -%>
+<%- include("../partials/scripts") -%>
 </body>
 </html>
 

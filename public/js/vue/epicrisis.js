@@ -3,7 +3,7 @@ var hospital = new Vue({
     el:"#hospital",
     data:{
         url:data_url.url_front_end,
-        msg:'aljand321',
+        
         alta_paciente: false,
         idHist:{
             id_int:'',
@@ -84,7 +84,21 @@ var hospital = new Vue({
             pronostico_funcional:'',
             control_tratamiento:'',
             recomendaciones:''
-        }
+        },
+
+        /*
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+                        estado alta
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+         */
+        estado_alta:'',
+        msg1:'',
+        msg_false1:'',
+
+        estado_cama:'',
+        msg_cama:''
         
     },
     mounted(){
@@ -345,18 +359,22 @@ var hospital = new Vue({
                     this.epicrisis.msg_false = ""
                     this.update_estado_internacion()
                     this.liverar_cama()
+                
+                    this.estado_alta = 'false'
                 }else{
                     this.epicrisis.msg_false = data.msg
                     this.epicrisis.msg = ""
+                    this.estado_alta = 'false'
                 }
-
+            
             })
-
         },
 
-        update_estado_internacion(){
-
-           
+        update_estado_internacion(){   
+            
+            var data = {
+                estado_alta : 'true'
+            }
             var esto = {
                 method: 'POST',
                 body: JSON.stringify(data),

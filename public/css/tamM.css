@@ -1,0 +1,25 @@
+
+/*para el tamaño del modal*/
+#mdialTamanio{
+  width: 85% !important;
+}
+/*para el scron en una tabla*/
+
+
+#div1 {
+  overflow:scroll;
+  height:200px;
+  width:999px;
+}
+
+#div1 table {
+    width:999px;
+    background-color:lightgray;
+}
+
+/* tamaño diagonstico*/
+#div2 {
+  overflow:scroll;
+  height:400px;
+  width:570px;
+}

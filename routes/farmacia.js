@@ -601,19 +601,43 @@ router.get('/solicitudes/:token_id/:token_partial',(req, res) => {
   if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
 
     fetch('http://localhost:3200/api/list_pedidos')
-      .then(resp => resp.json())
-      .catch(error => console.error('Error',error))
-      .then(resp => {
-        res.render('Farmacia/solicitudes',{
-          resp, // esto es la lista de los pedidos
-          data_doc : data_user[token_id]
-        })
+    .then(resp => resp.json())
+    .catch(error => console.error('Error',error))
+    .then(resp => {
+      res.render('Farmacia/solicitudes',{
+        resp, // esto es la lista de los pedidos
+        data_doc : data_user[token_id]
       })
+    })
     
   }else{
     res.redirect('/')
   }
 });
+
+/* 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                          vista aceptar pedido
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+router.get('/peido/:id_pedido/:token_id/:token_partial', (req,res) => {
+  const { id_pedido,token_id,token_partial  } = req.params
+  if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_partial){
+    fetch('http://localhost:3200/api/one_pedido/'+id_pedido)
+      .then(resp => resp.json())
+      .catch(error => console.error('Error',error))
+      .then(resp => {
+        res.render('Farmacia/farmcia_ver_pedidos', {
+          resp,
+          data_doc : data_user[token_id]
+        })
+      })
+  }else{
+    res.redirect('/')
+  }
+})
 
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -680,6 +704,84 @@ router.post('/vue_post_pedidos', (req,res) => {
   })
 })
 
+
+router.post('/update_pedido/:id_pedido', (req,res) =>{
+  const { id_pedido } = req.params
+  var datos = req.body
+  console.log(datos, " <<<<<<<<<<<<<<<<")
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/update_peidodo_farmacia/'+id_pedido,esto)
+  .then(res => res.json())  
+  .then(data => {
+    res.status(200).json(data)
+  })
+  .catch(error => {
+    res.status(500).json({
+      success:false,
+      msg:"Error de servidor",
+      error
+    })
+  })
+})
+
+//esta ruta es para insertar a la tabla cantidad fecha
+router.post('/register_cantidad_fecha/:id_medicamento', (req,res) => {
+  const { id_medicamento } = req.params   
+  var datos = req.body
+  console.log(datos, " <<<<<<<<<<<<<<<<")
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/cerateFecha_Cantidad/'+id_medicamento,esto)
+  .then(res => res.json())  
+  .then(data => {
+    res.status(200).json(data)
+  })
+  .catch(error => {
+    res.status(500).json({
+      success:false,
+      msg:"Error de servidor",
+      error
+    })
+  })
+})
+
+//sumar cantidad
+router.post('/sumar_cantidad/:id_medicamento', (req,res) => {
+  const { id_medicamento } = req.params
+  var datos = req.body
+  console.log(datos, " <<<<<<<<<<<<<<<<")
+  var esto = {
+      method: 'post',
+      body: JSON.stringify(datos),
+      headers:{
+        'Content-type' : "application/json"
+      }
+  };
+  fetch('http://localhost:3200/api/sumar_cantidad/' + id_medicamento,esto)
+  .then(res => res.json())  
+  .then(data => {
+    res.status(200).json(data)
+  })
+  .catch(error => {
+    res.status(500).json({
+      success:false,
+      msg:"Error de servidor",
+      error
+    })
+  })
+  
+})
 
 /* 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

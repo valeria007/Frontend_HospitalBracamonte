@@ -1,195 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <%- include("../partials/head") -%>	
+  	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  	<title>Document</title>
+  	<%- include("../partials/head") -%>	
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-  <div class="wrapper">
-    <!--\\\\\\\ wrapper Start \\\\\\-->
-    <div class="header_bar">
-      <!--\\\\\\\ header Start \\\\\\-->
-      <div class="brand">
-        <!--\\\\\\\ brand Start \\\\\\-->
-        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-      </div>
-      <!--\\\\\\\ brand end \\\\\\-->
-      <div class="header_top_bar">
-        <!--\\\\\\\ header top bar start \\\\\\-->
-        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
-        <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
-            <ul class="dropdown-menu">
-              <div class="top_pointer"></div>
-              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-            </ul>
-          </div> 
-        </div>
-      </div>
-      <!--\\\\\\\ header top bar end \\\\\\-->
-    </div>
-    <!--\\\\\\\ header end \\\\\\-->
-    <div class="inner">
-      <!--\\\\\\\ inner start \\\\\\-->
-      <div class="left_nav">
-        <!--\\\\\\\left_nav start \\\\\\-->
-        <div class="left_nav_slidebar">
-			<ul>
-			  <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-				<ul>
-				  <li> <a href="/farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
-				</ul>
-			  </li>
-			  <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
-				<ul class="opened" style="display:block">
-				  <li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  class="theme_color">Almacenamiento</b> </a> </li>
-				  <li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
-				  <li> <a href="/Farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
-				  <li> <a href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
-				  <li> <a href="/Farmacia/Stock_far/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
-				</ul>
-			  </li>
-			  <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
-				<ul>
-				  <li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
-				  <li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
-				  <li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
-				  <li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
-				  <li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
-				  <li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-				  <li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
-				</ul>
-			  </li>
-			</ul>
-		  </div>
-      </div>
-     <!--Contenido-->
-     <div class="contentpanel"><br>
-		<!--\\\\\\\ contentpanel start\\\\\\-->
-		<div class="container clear_both padding_fix">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="block-web">
-						<div class="header">
-							<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="/farmacia/volver/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a> </div>
-				 			<h3 class="content-header"> <i class="fa fa-list icon"></i>  Registrar Grupo de Asignacion</h3>
-						</div>
-						<%if(msg) { %>
-							<%if(msg.data.success == false) { %>
+  	<div class="wrapper">
+    	<div class="header_bar">
+      		<div class="brand">
+        		<div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      		</div>>
+      		<div class="header_top_bar">
+        		<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
+        		<div class="top_right_bar">
+          			<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">   <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
+            			<ul class="dropdown-menu">
+              				<div class="top_pointer"></div>
+              				<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+             				<li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              				<li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              				<li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            			</ul>
+          			</div> 
+        		</div>
+      		</div>
+    	</div>
+    	<div class="inner">
+      		<div class="left_nav">
+        		<div class="left_nav_slidebar">
+					<ul>
+			  			<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+				  				<li> <a href="/farmacia/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+							</ul>
+			  			</li>
+			  			<li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Farmacia <span class="plus"><i class="fa fa-plus"></i></span></a>
+							<ul class="opened" style="display:block">
+				  				<li> <a href="/Farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b  class="theme_color">Almacenamiento</b> </a> </li>
+				  				<li> <a href="/Farmacia/solicitudes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Movimientos</b> </a> </li>
+				  				<li> <a href="/Farmacia/recetas_farm/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recetas</b> </a> </li>
+				  				<li> <a href="/Farmacia/ventas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ventas</b> </a> </li>
+				  				<li> <a href="/Farmacia/Stock_far/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+							</ul>
+			  			</li>
+			  			<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Farmacia<span class="plus"><i class="fa fa-plus"></i></span> </a>
+							<ul>
+				  				<li> <a href="/Farmacia/reportes_solicitudes"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Sol. </a> </li>
+				  				<li> <a href="/Farmacia/reportes_recetas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Rec.</b> </a> </li>
+				  				<li> <a href="/Farmacia/reportes_ventas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Ven.</b> </a> </li>
+				  				<li> <a href="/Farmacia/reportes_cajas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Cajas</b> </a> </li>
+				  				<li> <a href="/Farmacia/reportes_facturacion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Fact.</b> </a> </li>
+				  				<li> <a href="/Farmacia/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+				  				<li> <a href="/Farmacia/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+							</ul>
+			  			</li>
+					</ul>
+		 		 </div>
+      		</div>
+     		<!--Contenido-->
+     		<div class="contentpanel"><br>
+				<div class="container clear_both padding_fix">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="block-web">
+								<div class="header">
+									<div class="actions"><a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> <a class="refresh" href="/farmacia/volver/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-repeat"></i></a> </div>
+									<h2 class="content-header"><div class="info gray_symbols"><i class="fa fa-list icon"></i></div>   Registrar Grupo de Asignación</h2>
+								</div>
+								<%if(msg) { %>
+								<%if(msg.data.success == false) { %>
 								<div class="bs-example mover">
 									<div class="alert alert-danger fade in">
-									  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-									  <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(95, 4, 4);"><%=msg.data.data%></h6></strong>
+									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+									  	<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(95, 4, 4);"><%=msg.data.data%></h6></strong>
 									</div>
-								  </div>
-							<% } else {%>
+								</div>
+								<% } else {%>
 								<div class="bs-example mover">
 									<div class="alert alert-info fade in">
-									  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-									  <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg.data.data%></h6></strong>
+									  	<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+									  	<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg.data.data%></h6></strong>
 									</div>
-								  </div>
-							<% } %>
-						<% } %>
-						<div class="porlets-content">
-							<%if (one_grupo == null) { %>
-								<form  class="form-horizontal group-border-dashed" action="/farmacia/registrar_grupo/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Codigo:</label>
-										<div class="col-sm-6">
-											<input type="text" required class="form-control"  name="codigo" onkeyup="mayus(this);"/>
-										</div>
-									</div><!--/form-group--> 
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Descripcion:</label>
-										<div class="col-sm-6">
-											<input type="text" required class="form-control" name="descripcion" onkeyup="mayus(this);" />
-										</div>
-									</div><!--/form-group--> 
-									<div class="form-group">
-										<div class="col-sm-offset-2 col-sm-10">
-											<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-											<button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
-											<a class="btn btn-success" href="/farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-arrow-left"></i> Volver a Medicamentos</a>
-										</div>
-									</div><!--/form-group--> 
-								</form>
-							<% } else { %>
-								<form  class="form-horizontal group-border-dashed" action="/farmacia/update_grupo/<%=one_grupo.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Codigo:</label>
-										<div class="col-sm-6">
-											<input type="text" required class="form-control"  value="<%=one_grupo.data[0].codigo%>" readonly onkeyup="mayus(this);"/>
-										</div>
-									</div><!--/form-group--> 
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Descripcion:</label>
-										<div class="col-sm-6">
-											<input type="text" required class="form-control" name="descripcion" value="<%=one_grupo.data[0].descripcion%>" onkeyup="mayus(this);" />
-										</div>
-									</div><!--/form-group--> 
-									<div class="form-group">
-										<div class="col-sm-offset-2 col-sm-10">
-											<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  Guardar</button>
-											<a class="btn btn-danger" href="/farmacia/volver/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i>Cancelar</a>
-											<a class="btn btn-success" href="/farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-arrow-left"></i> Volver a Medicamentos</a>
-											
-										</div>
-									</div><!--/form-group--> 
-								</form>
-							<% } %>
-						</div><!--/porlets-content--> 
-						<div id="main-content">
-							<div class="page-content">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="block-web">
-											<div class="header">
-												<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
-												<h3 class="content-header">Lista de Grupos de Asignacion</h3>
-										  </div>
-											<div class="porlets-content">
-												<div class="table-responsive">
-													<table  class="display table table-bordered table-striped" id="dynamic-table">
-														<thead>
-															<tr>
-															<th>#</th>
-															<th>Codigo</th>
-															<th>Descripcion</th>
-															<th class="hidden-phone">Modificar</th>
-															</tr>
-														</thead>
-														<tbody>
-															<%for (var i = 0; i < list_grupoAsig_Far.length; i++) { %>
-																<tr>
+								</div>
+								<% } %>
+								<% } %>
+								<div class="porlets-content"><br><br>
+									<%if (one_grupo == null) { %>
+									<form  class="form-horizontal group-border-dashed" action="/farmacia/registrar_grupo/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Codigo:</label>
+											<div class="col-sm-6">
+												<input type="text" required class="form-control"  name="codigo" onkeyup="mayus(this);"/>
+											</div>
+										</div><!--/form-group--> 
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Descripcion:</label>
+											<div class="col-sm-6">
+												<input type="text" required class="form-control" name="descripcion" onkeyup="mayus(this);" />
+											</div>
+										</div><!--/form-group--> 
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10">
+												<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
+												<button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+												<a class="btn btn-info" href="/farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-reply"></i> Volver a Medicamentos</a>
+											</div>
+										</div><!--/form-group--> 
+									</form>
+									<% } else { %>
+									<form  class="form-horizontal group-border-dashed" action="/farmacia/update_grupo/<%=one_grupo.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST" parsley-validate novalidate>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Codigo:</label>
+											<div class="col-sm-6">
+												<input type="text" required class="form-control"  value="<%=one_grupo.data[0].codigo%>" readonly onkeyup="mayus(this);"/>
+											</div>
+										</div><!--/form-group--> 
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Descripcion:</label>
+											<div class="col-sm-6">
+												<input type="text" required class="form-control" name="descripcion" value="<%=one_grupo.data[0].descripcion%>" onkeyup="mayus(this);" />
+											</div>
+										</div><!--/form-group--> 
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10">
+												<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
+												<a class="btn btn-danger" href="/farmacia/volver/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-times"></i>Cancelar</a>
+												<a class="btn btn-info" href="/farmacia/almacenamiento/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-reply"></i> Volver a Medicamentos</a>
+											</div>
+										</div><!--/form-group--> 
+									</form>
+									<% } %>
+								</div><!--/porlets-content--> 
+								<div id="main-content">
+									<div class="page-content">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="block-web">
+													<div class="header">
+														<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a> </div>
+														<h3 class="content-header">Lista de Grupos de Asignación</h3>
+													</div>
+													<div class="porlets-content">
+														<div class="table-responsive">
+															<table  class="display table table-bordered table-striped" id="dynamic-table">
+																<thead>
+																	<tr>
+																	<th>#</th>
+																	<th>Codigo</th>
+																	<th>Descripcion</th>
+																	<th class="hidden-phone">Modificar</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<%for (var i = 0; i < list_grupoAsig_Far.length; i++) { %>
+																	<tr>
 																	<td><%=i+1%></td>
 																	<td><%=list_grupoAsig_Far[i].codigo%></td>
 																	<td><%=list_grupoAsig_Far[i].descripcion%></td>
-																	<td class="center hidden-phone"><a class="btn btn-success" href="/farmacia/one_grupo/<%=list_grupoAsig_Far[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-refresh"></i></a></td>
-																</tr>
-															<% } %>
-														</tbody>
-													</table>
-												</div><!--/table-responsive-->
-											</div><!--/porlets-content-->
-										</div><!--/block-web--> 
-									</div><!--/col-md-12--> 
-								</div><!--/row-->
-							</div>
-						</div> 
-					</div><!--/block-web--> 
-				</div><!--/col-md-12--> 
+																	<td class="center hidden-phone">
+																	<a href="/farmacia/one_grupo/<%=list_grupoAsig_Far[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Actualizar"><i class="fa fa-refresh "></i></a><span>&nbsp;</span></td>
+																	</tr>
+																	<% } %>
+																</tbody>
+															</table>
+														</div><!--/table-responsive-->
+													</div><!--/porlets-content-->
+												</div><!--/block-web--> 
+											</div><!--/col-md-12--> 
+										</div><!--/row-->
+									</div>
+								</div> 
+							</div><!--/block-web--> 
+						</div><!--/col-md-12--> 
+					</div>
+				</div>
 			</div>
 		</div>
-	  <!--\\\\\\\ content panel end \\\\\\-->
-	</div>
-</div>
+  	</div>
 <%- include("../partials/scripts") -%>
 </body>
 </html>
