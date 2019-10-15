@@ -9,7 +9,7 @@
   <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-<div class="wrapper">
+  <div class="wrapper">
     <!--\\\\\\\ wrapper Start \\\\\\-->
     <div class="header_bar">
       <!--\\\\\\\ header Start \\\\\\-->
@@ -47,7 +47,7 @@
             <ul>
               <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
                 <ul >
-                  <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                  <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
                 </ul>
               </li>
               <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -106,34 +106,34 @@
             <div class="row">
               <table class="table table-bordered">
                 <thead>
-                    <tr>
-                      <th class="text-center">#</th>
-                      <th class="text-center">Correo</th>
-                      <th class="text-center">Email</th>
-                      <th class="text-center">Nombre Personal</th>
-                      <th class="text-center">Fecha Creación</th>
-                    </tr>
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Cuenta</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Nombre Personal</th>
+                    <th class="text-center">Fecha Creación</th>
+                  </tr>
                 </thead>
                 <tbody>
-                     <% for (var i=0; i< data.length; i++) { %>
-                    <tr>
-                      <td class="text-center"><%=i+1%></td>
-                      <td class="text-center"><%=data[i].username %></td>
-                      <td class="text-center"><%=data[i].email %></td>
-                      <td class="text-center"><%=data[i].Registro_personal.nombre%> <%=data[i].Registro_personal.apellidop%>  <%=data[i].Registro_personal.apellidom%></td>
-                      <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                    </tr>
-                      <% } %>
+                   <% for (var i=0; i< data.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%=i+1%></td>
+                    <td class="text-center"><%=data[i].username %></td>
+                    <td class="text-center"><%=data[i].email %></td>
+                    <td class="text-center"><%=data[i].Registro_personal.nombre%> <%=data[i].Registro_personal.apellidop%>  <%=data[i].Registro_personal.apellidom%></td>
+                    <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                  </tr>
+                    <% } %>
                 </tbody>
               </table>
             </div>
+            </div>
           </div>
-        </div>
       </div>
     <!--\\\\\\\ content panel end \\\\\\-->
     </div>
+    </div>
   </div>
-</div>
 
   <%- include("../partials/scripts") -%>
   

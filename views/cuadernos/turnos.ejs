@@ -35,7 +35,7 @@
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
-                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -121,7 +121,7 @@
                                   </div>
                                   <div class="col-sm-3">
                                     <label class="control-label">Enfermera :</label>
-                                    <input type="text" class="form-control" name="enfermera" parsley-trigger="change"   required placeholder="Nombre Enfermera " />
+                                    <input type="text" class="form-control" name="enfermera" parsley-trigger="change"   required placeholder="Nombre Enfermera " onkeyup="mayus(this);"/>
                                   </div>
                                 </div>
                                 <br>
@@ -161,13 +161,13 @@
                                     <select  class="form-control" id="source" name="TDoctor" >
                                         <option><%=modifDoct[0].TDoctor%></option>
                                         <option>---------------</option>
-                                        <option>Medico Titular</option>
-                                        <option>Medico Suplente</option>
+                                        <option>MÉDICO TITULAR </option>
+                                        <option>MÉDICO SUPLENTE</option>
                                     </select>
                                   </div>
                                   <div class="col-sm-3">
                                       <label class=" control-label">Enfermera :</label>
-                                    <input type="text" class="form-control" name="enfermera" value="<%=modifDoct[0].enfermera%>" parsley-trigger="change"    />
+                                    <input type="text" class="form-control" name="enfermera" value="<%=modifDoct[0].enfermera%>" parsley-trigger="change" onkeyup="mayus(this);"   />
                                   </div>
                                 </div>
                                 <div class="form-group">

@@ -125,16 +125,12 @@
                   <div class="bs-example mover">
                     <div class="alert alert-danger fade in">
                       <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                      <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
-                      <hr class="message-inner-separator">
                       <strong><%=mess %></strong></div>
                   </div>
                 <%} else if(mgconf != null) { %>
                   <div class="bs-example mover">
                     <div class="alert alert-success fade in">
                       <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                      <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
-                      <hr class="message-inner-separator">  
                       <strong><%=mgconf %></strong>
                     </div>
                   </div>
@@ -220,7 +216,7 @@
                                   <tr>
                                   <th class="text-center">Código</th>
                                   <th class="text-center">Grupo de Asociado</th>
-                                  <th class="text-center">Titulo de Cuaderno</th>
+                                  <th class="text-center">Título de Cuaderno</th>
                                   <th class="text-center">Fecha de Creación</th>
                                   <th class="text-center">Opciones</th>
                                   </tr>
@@ -234,7 +230,7 @@
                                     <td class="text-center"><%=resp[i].createdAt.split("T")[0]%></td>								
                                     <td class="text-center">
                                       <a href="/cuaderno/getEsp/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Médico"><i class="fa fa fa-user-md "></i></a><span>&nbsp;</span>
-                                      <a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                      <!--<a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>-->
                                       <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
                                     </td>
                                 </tr>

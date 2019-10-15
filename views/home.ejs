@@ -10,7 +10,12 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/animate.css" rel="stylesheet" type="text/css" />
 <link href="css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
 <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="plugins/kalendar/kalendar.css" rel="stylesheet">
+<link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
 <link href="plugins/calendar/fullcalendar.css" rel="stylesheet" type="text/css" />
 <link href="plugins/calendar/fullcalendar.print.css" rel="stylesheet" type="text/css" />
 
@@ -26,14 +31,10 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-.wrap {
-	width: 90%;
-	max-width: 870px;
-	/*margin:auto;*/
-}
+
 
 .widget {
-	width: 40%;
+	width: 80%;
 	margin: 2em;
 	/*margin:32px; */
 }
@@ -71,6 +72,10 @@
 .reloj .ampm {
 	font-size: 2rem;
 	display: block;
+}
+td.uppercase
+{
+	text-transform: uppercase;
 }
 
 </style>
@@ -122,88 +127,369 @@
         </div>
       </div>
       <div class="contentpanel">
-        <div class="container clear_both padding_fix col-lg-8">
+        <div class="container clear_both padding_fix ">
           <br>
           <div class="row">
-            <div class="col-lg-12 ">
-              
-              <div class="col-sm-3 col-sm-6">
+            <div class="col-md-12 ">
+              <div class="col-sm-3 col-sm-6" data-target="#myModal" data-toggle="modal">
                 <div class="information green_info">   
                   <div class="information_inner">
                     <div class="info green_symbols"><i class="fa fa-users icon"></i></div>
-                    <span>USUARIOS</span>
-                    <h1 class="bolded">3</h1>
+                    <span>USUARIOS SISTEMA</span>
+                    <h1 class="bolded"><%=lo%></h1>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-3 col-sm-6">
+              <div class="col-sm-3 col-sm-6"data-target="#myModal2" data-toggle="modal">
                 <div class="information blue_info">
                   <div class="information_inner">
                   <div class="info2 blue2_symbols"><i class="fa fa-user-md icon"></i></div>
                     <span>PERSONAL MÉDICO</span>
-                    <h1 class="bolded">30</h1>
+                    <h1 class="bolded"><%=lar%></h1>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3 col-sm-6">
-                <div class="information red_info">
+                <div class="information red_info" data-target="#myModal3" data-toggle="modal">
                   <div class="information_inner">
                   <div class="info2 red_symbols"><i class="fa fa-user icon"></i></div>
                     <span>PERSONAL ADMIN.</span>
-                    <h1 class="bolded">50</h1>
+                    <h1 class="bolded"><%=long%></h1>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-3 col-sm-6">
+              <div class="col-sm-3 col-sm-6" data-target="#myModal4" data-toggle="modal">
                <div class="information violet_info">
                   <div class="information_inner">
-                  <div class="info violet_symbols"><i class="fa fa-briefcase icon"></i></div>
+                  <div class="info violet_symbols text-center"><i class="fa fa-briefcase icon"></i></div>
                     <span>FARMACEUTICOS </span>
-                    <h1 class="bolded">40</h1>
+                    <h1 class="bolded"><%=log3%></h1>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-3 col-sm-6">
+              <div class="col-sm-3 col-sm-6"  data-target="#myModal5" data-toggle="modal">
                 <div class="information yewoll_info">
-                   <div class="information_inner">
-                   <div class="info2 yewoll_symbols"><i class="fa fa-plus-square icon"></i></div>
-                     <span>ENFERMERA</span>
-                     <h1 class="bolded">40</h1>
-                   </div>
-                 </div>
+                  <div class="information_inner">
+                    <div class="info2 yewoll_symbols"><i class="fa fa-plus-square icon"></i></div>
+                    <span>ENFERMERAS</span>
+                    <h1 class="bolded"><%=long1%></h1>
+                  </div>
                 </div>
-                <div class="form-group ">
-                  <div class="col-sm-10">
-                    <div class="wrap">
-                      <div class="widget">
-                        <div class="fecha">
-                          <p id="diaSemana" class="diaSemana">Martes</p>
-                          <p id="dia" class="dia">27</p>
-                          <p>de </p>
-                          <p id="mes" class="mes">Octubre</p>
-                          <p>del </p>
-                          <p id="year" class="year">2015</p>
-                        </div>
-                      
-                        <div class="reloj">
-                          <p id="horas" class="horas">11</p>
-                          <p>:</p>
-                          <p id="minutos" class="minutos">48</p>
-                          <p>:</p>
-                          <div class="caja-segundos">
-                            <p id="ampm" class="ampm">AM</p>
-                            <p id="segundos" class="segundos">12</p>
-                          </div>
-                        </div>
-                      </div>
+              </div>
+              <div class="col-sm-3 col-sm-6"  data-target="#myModal6" data-toggle="modal">
+                <div class="information brown_info">
+                  <div class="information_inner">
+                    <div class="info2 brown_symbols"><i class="fa fa-folder icon"></i></div>
+                    <span>CUADERNOS</span>
+                    <h1 class="bolded"><%=log4%></h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-sm-6"  data-target="#myModal7" data-toggle="modal">
+                <div class="information silver_info">
+                  <div class="information_inner">
+                    <div class="info2 silver_symbols"><i class="fa fa-plus-square icon"></i></div>
+                    <span>ESPECIALIDADES</span>
+                    <h1 class="bolded"><%=log5%></h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-6">
+                <div class="widget">
+                  <div class="fecha">
+                    <p id="diaSemana" class="diaSemana">Martes</p>
+                    <p id="dia" class="dia">27</p>
+                    <p>de </p>
+                    <p id="mes" class="mes">Octubre</p>
+                    <p>del </p>
+                    <p id="year" class="year">2015</p>
+                  </div>
+                
+                  <div class="reloj">
+                    <p id="horas" class="horas">11</p>
+                    <p>:</p>
+                    <p id="minutos" class="minutos">48</p>
+                    <p>:</p>
+                    <div class="caja-segundos">
+                      <p id="ampm" class="ampm">AM</p>
+                      <p id="segundos" class="segundos">12</p>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="col-md-6 ">
                 <div id='calendar'></div>
+                <!--/calendar end-->
+              </div>
             </div>
-                
-            
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Lista de Usuarios</h4>
+        </div>
+        <div class="modal-body"> 
+          <div class="table-responsive">
+            <table  class="display table table-bordered table-striped" id="dynamic-table5">
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Cuenta</th>
+                  <th class="text-center">Email</th>
+                  <th class="text-center">Personal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (var i=0; i< data.length; i++) { %>
+                 <tr>
+                   <td class="text-center"><%=i+1%></td>
+                   <td class="text-center"><%=data[i].username %></td>
+                   <td class="text-center"><%=data[i].email %></td>
+                   <td class="text-center"><%=data[i].Registro_personal.nombre%> <%=data[i].Registro_personal.apellidop%>  <%=data[i].Registro_personal.apellidom%></td>
+                 </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Lista de Médicos</h4>
+          </div>
+          <div class="modal-body"> 
+            <div class="table-responsive">
+              <table  class="display table table-bordered table-striped" id="dynamic-table">
+                <thead>
+                  <tr>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Apellido Paterno</th>
+                    <th class="text-center">Apellido Materno</th>
+                    <th class="text-center">C.I.</th>
+                    <th class="text-center">Cargo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0; i< medi.length; i++) { %>
+                    <tr>
+                      <td class="text-center"><%=medi[i].nombre %></td>
+                      <td class="text-center"><%=medi[i].apellidop %></td>
+                      <td class="text-center"><%=medi[i].apellidom %></td>
+                      <td class="text-center"><%=medi[i].ci %></td>
+                      <td class="text-center uppercase"><%=medi[i].cargo %></td>										
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Lista de Personal Administrativo</h4>
+        </div>
+        <div class="modal-body"> 
+          <div class="table-responsive">
+            <table  class="display table table-bordered table-striped" id="dynamic-table2" >
+              <thead>
+                <tr>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Apellido Paterno</th>
+                  <th class="text-center">Apellido Materno</th>
+                  <th class="text-center">C.I.</th>
+                  <th class="text-center">Cargo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i=0; i< personal.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%=personal[i].nombre %></td>
+                    <td class="text-center"><%=personal[i].apellidop %></td>
+                    <td class="text-center"><%=personal[i].apellidom %></td>
+                    <td class="text-center"><%=personal[i].ci %></td>
+                    <td class="text-center uppercase"><%=personal[i].cargo %></td>										
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Lista de Farmacéuticos</h4>
+        </div>
+        <div class="modal-body"> 
+          <div class="table-responsive">
+            <table class="display table table-bordered table-striped" id="dynamic-table3" >
+              <thead>
+                <tr>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Apellido Paterno</th>
+                  <th class="text-center">Apellido Materno</th>
+                  <th class="text-center">C.I.</th>
+                  <th class="text-center">Cargo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i=0; i< fer.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%=fer[i].nombre %></td>
+                    <td class="text-center"><%=fer[i].apellidop %></td>
+                    <td class="text-center"><%=fer[i].apellidom %></td>
+                    <td class="text-center"><%=fer[i].ci %></td>
+                    <td class="text-center uppercase"><%=fer[i].cargo %></td>										
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Lista de Enfermeras</h4>
+        </div>
+        <div class="modal-body"> 
+          <div class="table-responsive">
+            <table  class="display table table-bordered table-striped" id="dynamic-table4" >
+              <thead>
+                <tr>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Apellido Paterno</th>
+                  <th class="text-center">Apellido Materno</th>
+                  <th class="text-center">C.I.</th>
+                  <th class="text-center">Cargo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i=0; i< enfe.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%=enfe[i].nombre %></td>
+                    <td class="text-center"><%=enfe[i].apellidop %></td>
+                    <td class="text-center"><%=enfe[i].apellidom %></td>
+                    <td class="text-center"><%=enfe[i].ci %></td>
+                    <td class="text-center uppercase"><%=enfe[i].cargo %></td>										
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Lista de Enfermeras</h4>
+          </div>
+          <div class="modal-body"> 
+            <div class="table-responsive">
+              <table  class="display table table-bordered table-striped" id="dynamic-table7" >
+                <thead>
+                  <tr>
+                    <th class="text-center">Código</th>
+                    <th class="text-center">Grupo de Asociado</th>
+                    <th class="text-center">Titulo de Cuaderno</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0; i< cua.length; i++) { %>
+                    <tr>
+                      <td class="text-center"><%=cua[i].id%></td>
+                      <td class="text-center"><%=cua[i].grupo%></td>
+                      <td class="text-center"><%=cua[i].titulo%></td>
+                    </tr>
+                   <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+          </div>
+        </div>
+      </div>
+  </div>  
+  <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Lista de Enfermeras</h4>
+        </div>
+        <div class="modal-body"> 
+          <div class="table-responsive">
+            <table  class="display table table-bordered table-striped" id="dynamic-table6" >
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Especilidad</th>
+                  <th class="text-center">Area</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (var i=0; i< esp.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%= i+1%></td>
+                    <td class="text-center"><%=esp[i].nombre%></td>
+                    <td class="text-center"><%=esp[i].descripcion%></td>						
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
         </div>
       </div>
     </div>
@@ -312,6 +598,10 @@
 <script src="js/edit-graph.js"></script>
 <script src="plugins/kalendar/kalendar.js" type="text/javascript"></script>
 <script src="plugins/kalendar/edit-kalendar.js" type="text/javascript"></script>
+
+<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+<script src="/plugins/data-tables/dynamic_table_init.js"></script>
 
 <script src="plugins/sparkline/jquery.sparkline.js" type="text/javascript"></script>
 <script src="plugins/sparkline/jquery.customSelect.min.js" ></script> 

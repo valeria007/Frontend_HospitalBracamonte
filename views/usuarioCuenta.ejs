@@ -220,7 +220,7 @@
                               <table  class="display table table-bordered table-striped" id="dynamic-table">
                                 <thead>
                                   <tr>
-                                    <th class="text-center">Correo</th>
+                                    <th class="text-center">Cuenta</th>
                                     <th class="text-center">Email</th>
                                     <th class="text-center">Opciones</th>
                                   </tr>
@@ -262,7 +262,10 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Asignación de Roles</h4>
-            <span style="color: blue">{{msg}}</span>
+            <div class="center">
+              <span style="color: blue">{{msg}}</span>
+              <span style="color: red">{{msg_false}}</span>
+            </div>
           </div>
           <div class="modal-body"> 
             <form @submit="crear_rol" class="form-horizontal" parsley-validate novalidate>

@@ -3,6 +3,7 @@ var reg_roles = new Vue({
     el: "#cuentarole",
     data: () =>({
         msg: "",
+        msg_false:"",
         url:data_url,
         iduser: '',
         nomrol: ""
@@ -34,11 +35,13 @@ var reg_roles = new Vue({
                 if (data.success == true){
                     console.log(data,"aqueiiiiiiiiiiiiiiiiiiiiiiii")
                     this.msg = data.msg
+                    this.msg_false=""
                     this.idUser = "",
                     this.nomrol = ""
                 }else{
                     console.log(data,"aqueiiiiiiiiiiiiiiiiiiiiiiii")
-                    this.msg = data.msg
+                    this.msg_false = data.msg
+                    this.msg=""
                 }
              console.log(data)
             })

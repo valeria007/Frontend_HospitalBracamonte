@@ -54,7 +54,8 @@ var reg_sala = new Vue({
                 this.nombre = ""
                 this.lista_consulta()
               }else{
-                this.msg = data.msg
+                this.msg_false = data.msg
+                this.msg =""
               }
             })
         },

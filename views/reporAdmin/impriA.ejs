@@ -61,7 +61,7 @@
               <ul>
                 <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
                   <ul >
-                    <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                    <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
                   </ul>
                 </li>
                 <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -111,55 +111,51 @@
                   POTOSI-BOLIVIA
                 </address>
               </div>
-            <div class="pull-right">
+              <div class="pull-right">
                 <div class="invoice_logo"><img src="/images/hospital2.png" /></div>
-            </div>
-            <div class="clearfix"></div>
-            <br/>
-            <h2 class="text-center uppercase">REPORTES GENERALES <%=data[0].cargo%></h2>
-            <div class="row">
+              </div>
+              <div class="clearfix"></div>
+              <br/>
+              <h2 class="text-center uppercase">REPORTES GENERALES <%=data[0].cargo%></h2>
+              <div class="row">
                 <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th class="text-center">#</th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">Apellido Paterno</th>
-                            <th class="text-center">Apellido Materno</th>	
-                            <th class="text-center">C.I.</th>
-                            <th class="text-center">Dirección</th>
-                            <th class="text-center">Cel.-Telef.</th>			
-                            <th class="text-center ">Cargo</th>	
-                            <th class="text-center">Fecha Creación</th>	
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <%for (var i = 0; i< data.length; i++) { %>
-                          <tr>
-                            <td class="text-center"><%=i+1%></td>
-                            <td class="text-center"><%=data[i].nombre%></td>
-                            <td class="text-center"><%=data[i].apellidop%></td>
-                            <td class="text-center"><%=data[i].apellidom%></td>
-                            <td class="text-center"><%=data[i].ci%></td>
-                            <td class="text-center"><%=data[i].direcion%></td>
-                            <td class="text-center"><%=data[i].telefono%></td>
-                            <td class="text-center uppercase"><%=data[i].cargo%></td>
-                            <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
-                          </tr>
-                        <% } %>
-                    </tbody>
-                  </table>
-                  
+                  <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th class="text-center">Nombre</th>
+                      <th class="text-center">Apellido Paterno</th>
+                      <th class="text-center">Apellido Materno</th>	
+                      <th class="text-center">C.I.</th>
+                      <th class="text-center">Dirección</th>
+                      <th class="text-center">Cel.-Telef.</th>			
+                      <th class="text-center ">Cargo</th>	
+                      <th class="text-center">Fecha Creación</th>	
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%for (var i = 0; i< data.length; i++) { %>
+                      <tr>
+                        <td class="text-center"><%=i+1%></td>
+                        <td class="text-center"><%=data[i].nombre%></td>
+                        <td class="text-center"><%=data[i].apellidop%></td>
+                        <td class="text-center"><%=data[i].apellidom%></td>
+                        <td class="text-center"><%=data[i].ci%></td>
+                        <td class="text-center"><%=data[i].direcion%></td>
+                        <td class="text-center"><%=data[i].telefono%></td>
+                        <td class="text-center uppercase"><%=data[i].cargo%></td>
+                        <td class="text-center"><%=data[i].createdAt.split("T")[0]%></td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            
-           
-            
           </div>
-          </div>
-      </div>
+        </div>
     <!--\\\\\\\ content panel end \\\\\\-->
+      </div>
     </div>
   </div>
-</div>
 
   <%- include("../partials/scripts") -%>
   
