@@ -250,21 +250,21 @@
                                                     <div class="form-group">
                                                         <label>Motivo de consulta</label>
                                                     
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "anamnesis"></textarea>
+                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca motivo de consulta" class="form-control" v-model = "anamnesis"onkeyup="mayus(this);" ></textarea>
                                                     </div><!--/form-group-->
                                                 </div> 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Tratamiento</label>
 
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "tratamiento"></textarea>
+                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca el tratamiento" class="form-control" v-model = "tratamiento" onkeyup="mayus(this);"></textarea>
                                                     </div><!--/form-group-->
                                                 </div>    
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Observaciones</label>
 
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "observaciones"></textarea>
+                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca las Observaciones" class="form-control" v-model = "observaciones" onkeyup="mayus(this);"></textarea>
                                                     </div><!--/form-group-->
                                                 </div> 
 
@@ -278,7 +278,7 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label>Observaciones</label>
-                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones"></textarea>                                                                    
+                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones" onkeyup="mayus(this);"></textarea>                                                                    
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -349,7 +349,7 @@
 
                                                     <div class="col-md-4">
                                                         <section class="panel default orange_border vertical_border h1">
-                                                            <div class="task-header orange_task">{{list.codigo}}<span><i></i><font size="2">{{list.descripcion}}</font></span> </div>
+                                                            <div class="task-header orange_task">{{list.codigo}}<span ><i></i><font size="2">{{list.descripcion}}</font></span> </div>
                                                             <div class="row task_inner inner_padding">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
@@ -735,7 +735,12 @@
     </div>
 </div>
 
-
+<script>
+    function mayus(e) {
+    e.value = e.value.toUpperCase();
+    }
+</script>
+    
 
 <script>
     document.querySelector('#botao').addEventListener('click', function () {
