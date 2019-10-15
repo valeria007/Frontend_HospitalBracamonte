@@ -211,15 +211,25 @@ const recetas = new Vue({
                 fetch(this.url+'/consulta_externa/vue_one_medicamentos/'+this.lista.medicamento)        
                 .then(resp => resp.json())
                 .then(data =>{  
-                    
-                    this.One_receta.medicamentos.push({
-                        id:data[0].id,
-                        medicamento:data[0].nombre,
-                        dosis:this.lista.dosis,
-                        frecuencia:this.lista.frecuencia,
-                        duracion:this.lista.duracion,
-                        cantidad:this.lista.cantidad
-                    });
+                    if(data.success == false ){
+                        this.One_receta.medicamentos.push({
+                            id:0,
+                            medicamento:this.lista.medicamento,
+                            dosis:this.lista.dosis,
+                            frecuencia:this.lista.frecuencia,
+                            duracion:this.lista.duracion,
+                            cantidad:this.lista.cantidad
+                        });
+                    }else{
+                        this.One_receta.medicamentos.push({
+                            id:data[0].id,
+                            medicamento:data[0].nombre,
+                            dosis:this.lista.dosis,
+                            frecuencia:this.lista.frecuencia,
+                            duracion:this.lista.duracion,
+                            cantidad:this.lista.cantidad
+                        });
+                    }                    
                     console.log(this.medicamentos, " esto es <<<<<<<<<<<<<<<<<<<<<<<<<<<<");
                     this.data_msg.msg_false = ""
                     this.lista = {};
