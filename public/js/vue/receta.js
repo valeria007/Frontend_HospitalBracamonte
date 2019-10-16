@@ -1,3 +1,4 @@
+console.log("esto es lo que queiro")
 const recetas = new Vue({
     el: '#recetas', 
     data : () => ({
