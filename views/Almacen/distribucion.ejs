@@ -95,16 +95,21 @@
                         </thead>
                         <tbody>
                           <%for(var i = 0; i < lis_farmacia_pedidos.length; i++) { %>
-                          <tr>
-                          <td><%=i+1%></td>
-                          <td><%=lis_farmacia_pedidos[i].num_solicitud%></td>
-                          <td><%=lis_farmacia_pedidos[i].responsable%></td>
-                          <td><%=lis_farmacia_pedidos[i].createdAt%></td>
-                          <td><%=lis_farmacia_pedidos[i].trimestre%></td>													
-                          <td>verificar si el pedido llego todo completo</td>
-                          <td><%=lis_farmacia_pedidos[i].destino%></td>
-                          <td><a href="/almacen/farmacia_ver_pedidos/<%=lis_farmacia_pedidos[i].id%>">ver</a></td>
-                          </tr>
+                            <tr>
+                              <td><%=i+1%></td>
+                              <td><%=lis_farmacia_pedidos[i].num_solicitud%></td>
+                              <td><%=lis_farmacia_pedidos[i].responsable%></td>
+                              <td><%=lis_farmacia_pedidos[i].createdAt%></td>
+                              <td><%=lis_farmacia_pedidos[i].trimestre%></td>		
+                              <% if (lis_farmacia_pedidos[i].medicamento_mandado_almacen == null) { %>											
+                                <td><span style="color: crimson;">En espera</span></td>
+                              <% } else { %>
+                                <td><span style="color: rgb(220, 173, 20);">Mandado a almacen</span></td>
+                              <% } %>
+                              <td><%=lis_farmacia_pedidos[i].destino%></td>
+                              
+                              <td><a href="/almacen/farmacia_ver_pedidos/<%=lis_farmacia_pedidos[i].id%>">ver</a></td>
+                            </tr>
                           <% } %>
                         <tbody>
                       </table>
