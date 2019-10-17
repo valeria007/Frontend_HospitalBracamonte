@@ -136,11 +136,8 @@
             <div class="col-lg-12 ">
               <div id="main-content" class=" block-web">
                 <%if (msm1 != null) {%>
-                  <div class="bs-example mover">
-                    <div class="alert alert-danger fade in">
-                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
-                      <strong><%=msm1 %></strong></div>
-                  </div>
+                
+                      <strong style="color: red;"><%=msm1 %></strong>
                 <%} else if(sms2 != null) { %>
                   <div class="bs-example mover">
                     <div class="alert alert-success fade in">
@@ -249,7 +246,7 @@
                                     <select class="form-control" id="source" name="cargo" required placeholder="">
                                       <option class="uppercase"><%=onlyUSer.cargo%></option>
                                       <option>-----------------------</option>
-                                      <option class="uppercase" value="medico">Medico</option>
+                                      <option class="uppercase" value="medico">MÉDICO</option>
                                       <option class="uppercase"value="enfermera">Enfermera</option>
                                       <option class="uppercase" value="personal">Personal</option>
                                       <option class="uppercase" value="farmaseutico">Farmaseutico</option>
@@ -391,7 +388,7 @@
               </div>
               <div class="center">
                 <h5><b>¿Estás seguro?</b></h5>
-                <p>No podra entar el <b> Usuario</b>....</p>
+                <p>De dar baja al Personal...</p>
               </div>
             </div>
             <div class="modal-footer">
@@ -402,7 +399,7 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
   
   </div>
   <script>

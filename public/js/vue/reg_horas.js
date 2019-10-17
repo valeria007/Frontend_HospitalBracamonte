@@ -14,10 +14,9 @@ var reghoras = new Vue({
 
         resp_hora:'',
         list_horas:[],
-        idT:'',
+        idT:'',/////id 
 
         view_list_horas:''
-
     }),
     mounted(){
         

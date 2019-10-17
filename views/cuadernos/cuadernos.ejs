@@ -174,7 +174,7 @@
                                 </div>
                               </div>
                               <br><br>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                 <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
                                 <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
                               </div>
@@ -201,7 +201,7 @@
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                 <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
                                 <a class="btn btn-danger"href="/cuaderno/limpiarC"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
                               </div>
@@ -242,37 +242,30 @@
                         </div>
 											</div>
 										</div>
-										<!--/col-md-12-->
 									</div>
-									<!--/row-->
-
 								</div>
-								<!--/page-content end-->
 							</div>
 						</div>
           </div>
 				</div>
-		</div>
+		  </div>
     </div>
-    
-  
   </div>
   <script>
     window.setTimeout(function() {
-      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+      $(".alert").fadeTo(600, 0).slideUp(600, function(){
         $(this).remove(); 
       });
-   }, 2000);
-   </script>
-   <script>
+    }, 2000);
+  </script>
+  <script>
     function mayus(e) {
     e.value = e.value.toUpperCase();
    }
-     </script>
-    
-		<!--====== Scripts -->
-		
-    <%- include("../partials/scripts") -%>
+  </script>
+  
+
+	<%- include("../partials/scripts") -%>
 
 </body>
 

@@ -97,7 +97,8 @@
                                 <div class="form-group">
                                   <div class="col-sm-3">
                                     <label class="control-label">Médico :</label><br>
-                                    <select  class="form-control" id="source" name="nombre">
+                                    <select  class="selectpicker" data-show-subtext="true" data-live-search="true" name="nombre">
+                                      <option value="" selected disabled hidden >--Seleccione--</option>
                                       <%for (var i=0; i < resp.length; i++) { %>
                                         <option value="<%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%>/<%=resp[i].id%>"><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
                                       <% } %>                            
@@ -105,7 +106,8 @@
                                   </div>
                                   <div class="col-sm-3">
                                     <label class=" control-label">Especialidad :</label><br>
-                                    <select  class="form-control" id="source" name="especialidad" >
+                                    <select   class="selectpicker" data-show-subtext="true" data-live-search="true"  name="especialidad" >
+                                      <option value="" selected disabled hidden >--Seleccione--</option>
                                       <%for (var i=0; i < esp.length; i++) { %>
                                         <option><%=esp[i].nombre%></option>
                                       <% } %>     
@@ -113,7 +115,7 @@
                                   </div>
                                   <div class="col-sm-3">
                                       <label class="control-label">Tipo :</label>
-                                      <select class="form-control" id="source" name="TDoctor" >
+                                      <select class="form-control" id="source" name="TDoctor" required placeholder="">
                                         <option value="" selected disabled hidden>--Seleccione--</option>
                                         <option>MÉDICO TITULAR </option>
                                         <option>MÉDICO SUPLENTE</option>
@@ -121,6 +123,7 @@
                                   </div>
                                   <div class="col-sm-3">
                                     <label class="control-label">Enfermera :</label>
+
                                     <input type="text" class="form-control" name="enfermera" parsley-trigger="change"   required placeholder="Nombre Enfermera " onkeyup="mayus(this);"/>
                                   </div>
                                 </div>
@@ -137,8 +140,8 @@
                                 <div class="form-group">
                                   <div class="col-sm-3">
                                     <label class="col-sm-4 control-label">Médico:</label>
-                                    <select class="form-control" id="source" name="nombre" >
-                                      <option value="<%=modifDoct[0].nombre%>"><%=modifDoct[0].nombre.split("/")[0]%></option>
+                                    <select  class="selectpicker" data-show-subtext="true" data-live-search="true"  name="nombre" >
+                                      <option value="<%=modifDoct[0].nombre%>"><!--<%=modifDoct[0].nombre.split("/")[0]%>--></option>
                                       <option>---------------</option>
                                       <%for (var i=0; i < resp.length; i++) { %>
                                           <option value="<%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%>/<%=resp[i].id%>"><%=resp[i].nombre%> <%=resp[i].apellidop%> <%=resp[i].apellidom%></option>
@@ -147,7 +150,7 @@
                                   </div>
                                   <div class="col-sm-3">
                                     <label class=" control-label">Especialidad:</label>
-                                    <select class="form-control" id="source" name="especialidad" >
+                                    <select  class="selectpicker" data-show-subtext="true" data-live-search="true" name="especialidad" >
                                       <option><%=modifDoct[0].Consulta_especilaida.nombre%></option>
                                       <option>---------------</option>
                                       <%for (var i=0; i < esp.length; i++) { %>

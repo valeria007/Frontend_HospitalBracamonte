@@ -106,16 +106,13 @@
                 <div class="bs-example mover">
                   <div class="alert alert-danger fade in">
                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
-                    <hr class="message-inner-separator">
                     <strong><%=msg %></strong></div>
                 </div>
               <%} else if(mg2 != null) { %>
                 <div class="bs-example mover">
                   <div class="alert alert-success fade in">
                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
-                    <hr class="message-inner-separator">  
+                    
                     <strong><%=mg2 %></strong>
                   </div>
                 </div>
@@ -299,12 +296,11 @@
       id_rol:''
 
     }),
-    mounted(){
-      var breakfast = moment('8:32','HH:mm');
-      var lunch = moment('12:52','HH:mm');
-      console.log(moment().format('l'))
-      console.log( moment.duration(lunch - breakfast).humanize() + ' between meals' ) // 4 hours between meals
-    }
+    methods: {
+            setFocus() {
+                 this.form.email.focus()// don't  work
+            },
+        }
   })
 </script>
 

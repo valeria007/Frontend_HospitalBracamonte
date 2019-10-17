@@ -83,7 +83,7 @@
                       <div class="block-web">
                         <div class="header">
                           <div class="actions"> 
-                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" ><i class="fa fa-chevron-down"></i></a> 
                             <a class="refresh" href=""><i class="fa fa-repeat"></i></a>
                           </div>
                         </div>
@@ -94,7 +94,7 @@
 				                      <div class="form-group">
                                 <label class="control-label col-md-4">Día de atención :</label>
                                 <div class="col-md-3 ">
-                                  <select  class="form-control" id="source" name="diasAten" >
+                                  <select  class="form-control" id="source" name="diasAten"required placeholder="" >
                                     <option value="" selected disabled hidden>--Seleccione--</option>
                                     <option value="Lunes">LUNES</option>
                                     <option value="Martes">MARTES</option>
@@ -109,7 +109,7 @@
                               <div class="form-group">
                                 <label class="control-label col-md-4">Turno :</label>
                                 <div class="col-md-3 ">
-                                  <select class="form-control" id="source" name="turno" >                               
+                                  <select class="form-control" id="source" name="turno" required placeholder="">                               
                                     <option value="" selected disabled hidden>--Seleccione--</option>
                                     <option value="Mañanas">MAÑANAS</option>
                                     <option value="Tardes">TARDES</option>
@@ -119,7 +119,7 @@
                               </div><!--/form-group--> 
                               <div class="form-group">
                                 <div class="col-md-4"> 
-                                  <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                  <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button>
                                   <div class="btn-group">
                                       <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver<span class="caret"></span></button>
                                     <ul role="menu" class="dropdown-menu">
@@ -134,6 +134,7 @@
                             </form>
                           </div>
                           <br><br>
+                          <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
                           <div class="porlets-content">
                             <div class="table-responsive">
                               <table  class="display table table-bordered table-striped" id="dynamic-table">
@@ -155,13 +156,13 @@
                                           <a @click="turn_id(<%=resp[i].id%>), turn = '<%=resp[i].turno%>'" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Fichas y Horas"><i class="fa fa-plus-square "></i></a>
                                           <!--<a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_horas"><i class="fa fa-plus-square"></i></a>
                                           <a href="/cuaderno/delturno/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>-->
-                                          <a href="" data-target="#myModal3" data-toggle="modal"data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                          <a @click="idT='<%=resp[i].id%>'" data-target="#myModal3" data-toggle="modal"data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
                                         </td>
                                       </tr>
                                       <% } %>
                                     <tbody>
                               </table>
-
+                              <!--<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>-->
                             </div>
                           </div>
                         </div>
@@ -265,34 +266,35 @@
         </div>
       </div>
     </div>
-  </div>
+    <!-------MODALLLLL-------->
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="center">
+              <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Estás seguro?</b></h5>
+              <p>Una vez eliminado no se podar volver atras....</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+              <a v-bind:href="'/cuaderno/delturno/'+idT"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
 
-<!-------MODALLLLL-------->
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="center">
-            <i  class="fa fa-exclamation-triangle red fa-6x"></i>
-          </div>
-          <div class="center">
-            <h5><b>¿Estás seguro?</b></h5>
-            <p>Una vez eliminado no se podar volver atras....</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <div class="center">
-            <a href=""  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-            
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
 
  
 <%- include("../partials/scripts") -%>
