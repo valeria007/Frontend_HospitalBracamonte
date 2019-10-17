@@ -99,7 +99,16 @@
 							<ul >
 								<li> <a href="/internaciones/ListaInternacionF/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Internación</b> </a> </li>
 								<li> <a href="/internaciones/list_internadios/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Pacientes Internados</b> </a> </li>
-								<li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Pacientes de alta</b> </a> </li>
+								<li> 
+									<a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+										<b >Pacientes de alta </b>
+									</a> 
+								</li>
+								<li> 
+									<a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+										<b >Traslados</b>
+									</a> 
+								</li>
 								
 							</ul>
 							
@@ -155,7 +164,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading"  >  
                                             <div class="actions">
-                                            <h3 class="content-header pull-right text-top actions" ><span>&nbsp;&nbsp;&nbsp;</span>Area de Internación del Paciente </h3>
+                                            <h3 class="content-header pull-right text-top actions" ><span>&nbsp;&nbsp;&nbsp;</span>Formulario de traslado del paciente</h3>
 											   	
                                             </div>                                     
                                             <h3 class="panel-title" > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Datos del Paciente </a> </h3>
@@ -219,7 +228,7 @@
 					</div>
                 </div>
                 
-                <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+              
                 <template v-if="one_traslado == '' || one_traslado == null">                
 				    <div class="container clear_both padding_fix col-lg-8">
 				    	<div class="row">
@@ -235,11 +244,15 @@
 				    					<form @submit="register_traslado" method="POST" parsley-validate novalidate>
                                         
 				    						<div class="col-md-12">
-				    							<div class="form-group col-md-3">
-				    								<label>Fecha y hora</label>
-				    								<input type="datetime-local" parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
-				    							</div><!--/form-group-->
-				    							<div class="form-group col-md-3">
+				    							<div class="form-group col-md-2">
+				    								<label>Fecha</label>
+				    								<input type="text" readonly parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
+                                                </div><!--/form-group-->
+                                                <div class="form-group col-md-2">
+                                                        <label>hora</label>
+                                                        <input type="text" readonly parsley-trigger="change" required class="form-control" v-model="traslado.hora">
+                                                    </div><!--/form-group-->
+				    							<div class="form-group col-md-2">
 				    								<label>Enviado de:</label>
 				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value= " traslado.enviado_de = '<%=data_doc.data.area_esp.nombre%>'">
                                                 </div><!--/form-group-->
@@ -302,11 +315,15 @@
 				    					<form  parsley-validate novalidate>
                                         
 				    						<div class="col-md-12">
-				    							<div class="form-group col-md-3">
-				    								<label>Fecha y hora</label>
-				    								<input type="datetime-local" readonly parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
+				    							<div class="form-group col-md-2">
+				    								<label>Fecha</label>
+				    								<input type="text" readonly parsley-trigger="change" required class="form-control" v-model="traslado.fecha_hora">
+                                                </div><!--/form-group-->
+                                                <div class="form-group col-md-2">
+				    								<label>hora</label>
+				    								<input type="text" readonly parsley-trigger="change" required class="form-control" v-model="traslado.hora">
 				    							</div><!--/form-group-->
-				    							<div class="form-group col-md-3">
+				    							<div class="form-group col-md-2">
 				    								<label>Enviado de:</label>
 				    								<input type="text" parsley-trigger="change" readonly class="form-control" :value= " traslado.enviado_de = '<%=data_doc.data.area_esp.nombre%>'">
                                                 </div><!--/form-group-->
@@ -389,6 +406,8 @@
     <script src="/js/side-chats.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="/axios/dist/axios.min.js"></script>
+    <script src="/moment/moment.js"></script>
+	<script src="/moment/locale/af.js"></script>
     <script src="/url/export.js"></script>
     <script>
     var traslados = new Vue({
@@ -408,6 +427,7 @@
                 msg_false:'',
                 nombre_doctor:'',
                 fecha_hora:'',
+                hora:'',
                 enviado_de:'',
                 operaciones:'',
                 diagnostico_principal:'',
@@ -420,6 +440,8 @@
             operaciones:[]
         },
         mounted(){
+            this.traslado.fecha_hora = moment().format('l'); 
+            this.traslado.hora = moment().format('HH:mm:ss')
             
             fetch('http://localhost:7000/internaciones/vue_traslado_int/'+ this.idHist.id_int)
             .then(res => res.json())
@@ -477,6 +499,7 @@
 
                     nombre_doctor:this.traslado.nombre_doctor,
                     fecha_hora:this.traslado.fecha_hora,
+                    hora: this.traslado.hora,
                     enviado_de:this.traslado.enviado_de,
                     operaciones:this.traslado.operaciones,
                     diagnostico_principal:this.traslado.diagnostico_principal,

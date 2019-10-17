@@ -186,63 +186,65 @@
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 														 -->
+														
 														 <h4>ECOGRAFIA</h4>
 														 <div class="row">
 															<div class="col-md-14 row">
+
 																<form action="">
-																	<div class="col-md-12 row">																
-																		<div class="col-md-2 row">
-																			<div class="col-md-2 ">
-																				<input type="checkbox" name="hora" value="ESTUDIO HEPATOBILIAR: HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES"  style="width:20px;height:20px">
-																			</div>
-																			<div class=" col-md-10 row">
-																				<label class=" "><FONT SIZE=1><b>1.- Estudio Hepatobiliar:</b> <br>HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES</FONT> </label>
-																				<br>
-																			</div>
-
+																	<div class="col-md-12">
+																		
+																		<div class="checkbox-inline">
+																			<label class=" ">
+																				<input @click="ecografia_select('1','ESTUDIO HEPATOBILIAR','HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES')" type="checkbox" /><!-- checked -->
+																				<FONT SIZE=1><b>1.- Estudio Hepatobiliar:</b> <br>HÍGADO - PÁNCREAS - VESÍCULA BILIAR - VÍAS BILIARES</FONT>
+																			 </label>
 																		</div>
-																		<div class="col-md-2 row"><br>
-																			<div class="col-md-2">
-																				<input type="checkbox" name="hora" value="ESTUDIO NEFROLÓGICO:RIÑONES - CONDUCTOS - VEJIGA URINARIA" style="width:20px;height:20px">
-																			</div>
-																			<div class=" col-md-10 row">
-																				<label class=" "><FONT SIZE=1><b>2.- Estudio Nefrológico:</b> <br>RIÑONES - CONDUCTOS - VEJIGA URINARIA</FONT> </label>
-																				<br>
-																			</div>
-
+																		<div class="checkbox-inline">
+																			<label class=" ">
+																				<input @click="ecografia_select('2','ESTUDIO NEFROLÓGICO','RIÑONES - CONDUCTOS - VEJIGA URINARIA')" type="checkbox"  />
+																				<FONT SIZE=1><b>2.- Estudio Nefrológico:</b> <br>RIÑONES - CONDUCTOS - VEJIGA URINARIA</FONT>
+																			</label>
 																		</div>
-																		<div class="col-md-2 row"><br>
-																			<div class="col-md-2">
-																				<input type="checkbox" name="hora" value="ESTUDIO GINECOLÓGICO:ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR "  style="width:20px;height:20px">
-																			</div>
-																			<div class=" col-md-10 row">
-																				<label class=" "><FONT SIZE=1><b>3.- Estudio Ginecológico:</b> <br>ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR </FONT> </label>
-																				<br>
-																			</div>
-
+																		<div class="checkbox-inline">
+																			<label class=" ">
+																				<input @click="ecografia_select('3','ESTUDIO GINECOLÓGICO','ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR')" type="checkbox" />
+																				<FONT SIZE=1><b>3.- Estudio Ginecológico:</b> <br>ÚTERO - OVARIOS - TROMPAS - FONDO DE SACO POSTERIOR </FONT>
+																			 </label>
 																		</div>
-																		<div class="col-md-2 row"><br>
-																			<div class="col-md-2">
-																				<input type="checkbox" name="hora" value="ESTUDIO OBSTÉTRICO:VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO"  style="width:20px;height:20px">
-																			</div>
-																			<div class=" col-md-10 row">
-																				<label class=" "><FONT SIZE=1><b>4.- Estudio Obstétrico:</b> <br>VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO</FONT> </label>
-																				<br>
-																			</div>
-
+																		<div class="checkbox-inline">
+																			<label class=" ">
+																				<input @click="ecografia_select('4','ESTUDIO OBSTÉTRICO','VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO')" type="checkbox"/>
+																				<FONT SIZE=1><b>4.- Estudio Obstétrico:</b> <br>VITALIDAD - BIOMETRÍA - PESO PLACENTA - LÍQUIDO AMNIÓTICO - SEXO</FONT>
+																			 </label>
 																		</div>
-																		<div class="col-md-2 row"><br>
-																			<div class="col-md-2">
-																				<input type="checkbox" name="hora" value="ESTUDIO UROLÓGICO:PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN"  style="width:20px;height:20px">
-																			</div>
-																			<div class=" col-md-10 row">
-																				<label class=" "><FONT SIZE=1><b>5.- Estudio Urológico:</b> <br>PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN</FONT></label>
-																			<br>
-																			</div>
-
+																		<div class="checkbox-inline">
+																			<label class=" ">
+																				<input @click="ecografia_select('5','ESTUDIO UROLÓGICO','PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN')" type="checkbox"  />
+																				<FONT SIZE=1><b>5.- Estudio Urológico:</b> <br>PRÓSTATA - VEJIGA URINARIA - VOL DE LLENADO - VOL PORT MICCIÓN</FONT>
+																			 </label>
 																		</div>
+																		
+																	</div>
+																	<!-- 
+																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																										Lista de Ecografias
+																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																		<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																	 -->
+																	<div class="col-lg-12">
+																		<section class="panel default blue_title h2">
+																		 
+																		<div class="panel-body">														
 
-
+																			<!-- Standard gray button with gradient -->
+																			<template v-for="(list,index) in ecografia">
+																				<button type="button" class="btn btn-default" @click="delete_exografia(index)">{{list.estudio}}</button>
+																			</template>
+																		</div>
+																			
+																		</section>
 																	</div>
 
 																	<div class="col-md-12 ">
@@ -257,16 +259,674 @@
 																			<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
 																		</div>
 																	</div>
-																</form>																	
-																
+																</form>						
 																		
 															</div>
 														 </div>
 
 
 													</div>
+
 													<div id="Tab2" class="tab-pane fade">
-														<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet</p>
+
+														<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+
+														<div class="col-md-14">
+															<form action="" method="POST">
+															
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Torax >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="col-md-3">
+																	<div class="block-web">
+																		<div class="porlets-content">
+																			<div class="row">
+																				<div class="col-md-12">																			
+
+
+																					<div class="form-group">
+
+																					  	<label class="control-label">Torax</label><br>
+
+																					  	<div class="col-sm-12 icheck ">
+																						
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																								  	<input @click="rayosX_select('1','Tórax Pa.')" type="checkbox" >
+																								  	<label>Tórax Pa. </label>
+																								</div>
+																							</div>
+																							<div class="minimal-red single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('1','Tórax Osco')" type="checkbox" >
+																									<label>Tórax Osco</label>
+																								</div>
+																					  		</div>
+																						  
+																					  		<div class="minimal-green single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('1','Tórax Lateral')" type="checkbox" >
+																									<label>Tórax Lateral</label>
+																								</div>
+																					  		</div>
+																						  
+																					  		<div class="minimal-blue single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('1','Tórax en Trendelemburg')" type="checkbox" >
+																									<label>Tórax en Trendelemburg</label>
+																								</div>
+																					  		</div>
+																						  
+																					  		<div class="minimal-yellow single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('1','Hemitórax oblicua derecha (Arcos Costales)')" type="checkbox" >
+																									<label>Hemitórax oblicua derecha (Arcos Costales)</label>
+																								</div>
+																					  		</div>
+																						  
+																					  		<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('1','Hemitórax oblicua izquierda (Arcos Costales)')" type="checkbox" >
+																									<label>Hemitórax oblicua izquierda (Arcos Costales)</label>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Abdomen >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																					<div class="form-group">
+																						<label class="control-label">Abdomen</label><br>
+
+																						<div class="col-sm-12 icheck ">
+																						
+																							<div class="minimal single-row">
+																							  	<div class="checkbox ">
+																									<input @click="rayosX_select('2','Apéndice xifoides - Sifilis del pubis')" type="checkbox" >
+																									<label>Apéndice xifoides - Sifilis del pubis</label>
+																							  	</div>
+																							</div>
+																							<div class="minimal-red single-row">
+																							  	<div class="checkbox ">
+																									<input @click="rayosX_select('2','Abdomen Ap (de pie o en de cúbito)')" type="checkbox" >
+																									<label>Abdomen Ap (de pie o en de cúbito)</label>
+																							  	</div>
+																							</div>
+																						
+																							<div class="minimal-green single-row">
+																							  	<div class="checkbox ">
+																									<input @click="rayosX_select('2','Abdomen en Trendelemburg')" type="checkbox" >
+																									<label>Abdomen en Trendelemburg</label>
+																							  	</div>
+																							</div>
+																						
+																							<div class="minimal-blue single-row">
+																							  	<div class="checkbox ">
+																									<input @click="rayosX_select('2','Invertografía (Imperforación anal)')" type="checkbox" >
+																									<label>Invertografía (Imperforación anal)</label>
+																							  	</div>
+																							</div>											
+																						</div>
+																					</div>																	
+
+																				</div>
+
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="col-md-3">
+																	<div class="block-web">
+																		<div class="porlets-content">
+																			<div class="row">
+																				<div class="col-md-12">																			
+
+																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Cráneo y Macizo Facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																					<div class="form-group">
+
+																						<label class="control-label">Cráneo y Macizo Facial</label><br>
+																						<div class="col-sm-12 icheck ">
+																						
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('3','Cáneo(Ap. lateral)')" type="checkbox" >
+																									<label>Cáneo(Ap. lateral)</label>
+																								</div>
+																							</div>
+																							<div class="minimal-red single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('3','Cráneo Tawne(Agj.Occipital)')" type="checkbox" >
+																									<label>Cráneo Tawne(Agj.Occipital)</label>
+																								</div>
+																							</div>
+																						
+																							<div class="minimal-green single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('3','Cráneo macizo facial Ap.')" type="checkbox" >
+																									<label>Cráneo macizo facial Ap.</label>
+																								</div>
+																							</div>
+																						
+																							<div class="minimal-blue single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('3','Cráneo Silla Turca Lateral')" type="checkbox" >
+																									<label>Cráneo Silla Turca Lateral</label>
+																								</div>
+																							</div>
+																						
+																							<div class="minimal-yellow single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('3','Cráneo StenversDer.(Peñasco)')" type="checkbox" >
+																									<label>Cráneo StenversDer.(Peñasco)</label>
+																								</div>
+																							</div>
+																						
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('3','Cráneo Stenvers Izq.(Peñasco)')" type="checkbox" >
+																									<label>Cráneo Stenvers Izq.(Peñasco)</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('3','Cráneo macizo facial Lateral')" type="checkbox" >
+																									<label>Cráneo macizo facial Lateral</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('3','Cráneo Mayor izquierdo (Oido externo, matoides)')" type="checkbox" >
+																									<label>Cráneo Mayor izquierdo<br>(Oido externo, matoides)</label>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Placas Radiograficas de craneo y macizo facial >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																					<div class="form-group">
+																						<label class="control-label">Placas Radiográficas de craneo y macizo facial</label><br>
+
+																						<div class="col-sm-12 icheck ">
+																						
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Huecos Propios de la nariz(Ap. y Lateral)')" type="checkbox" >
+																									<label>Huecos Propios de la nariz(<br>Ap. y Lateral)</label>
+																								</div>
+																							</div>			
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Maxilar Superior Ap.')" type="checkbox" >
+																									<label>Maxilar Superior Ap.</label>
+																								</div>
+																							</div>	
+
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Senos paranasales (Laterales)')" type="checkbox" >
+																									<label>Senos paranasales (Laterales)</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Art.Temporomaxilar Izquierdo (boca cerrada y boca abierta)')" type="checkbox" >
+																									<label>Art.Temporomaxilar Izquierdo (boca cerrada y boca abierta)</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Senos paranasales (Fron y Nasal)')" type="checkbox" >
+																									<label>Senos paranasales <br>(Fron y Nasal)</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Maxilar inferior Ap.')" type="checkbox" >
+																									<label>Maxilar inferior Ap.</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Maxilar inferior Latearal')" type="checkbox" >
+																									<label>Maxilar inferior Latearal</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Cráneo Cavuno Faringeo')" type="checkbox" >
+																									<label>Cráneo Cavuno Faringeo</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('4','Art.Temporomaxilar Derecha (boca cerrada y boca abierta)')" type="checkbox" >
+																									<label>Art.Temporomaxilar Derecha<br>(boca cerrada y boca abierta)</label>
+																								</div>
+																							</div>								
+																						</div>
+																					</div>																	
+
+																				</div>
+
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="col-md-3">
+																	<div class="block-web">
+																		<div class="porlets-content">
+																			<div class="row">
+																				<div class="col-md-12">																			
+
+																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Columna vertebral >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																					<div class="form-group">
+
+																						<label class="control-label">Columna vertebral</label><br>
+																						<div class="col-sm-12 icheck ">
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col. Cervical(Ap. y Lateral)')"type="checkbox" >
+																									<label>Col. Cervical(Ap. y Lateral)</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col.Cervical (Oblicuas Der. e Izq)')" type="checkbox" >
+																									<label>Col.Cervical <br>(Oblicuas Der. e Izq)</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col.Dorsal del Cúbito Dorsal o de pie(Ap. y Lateral)')" type="checkbox" >
+																									<label>Col.Dorsal del Cúbito Dorsal <br>o de pie(Ap. y Lateral)</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col.Dorsal del Cúbito Dorsal o de pie(Oblicuas Der. e Izq)')" type="checkbox" >
+																									<label>Col.Dorsal del Cúbito Dorsal<br> o de pie(Oblicuas Der. e Izq)</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col.Lumbar del Cúbito Dorsal o de pie( Ap. y Lateral)')" type="checkbox" >
+																									<label>Col.Lumbar del Cúbito Dorsal <br>o de pie( Ap. y Lateral)</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col. Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql')" type="checkbox" >
+																									<label>Col. Lumbar del Cúbito Dorsal o de pie(Oblicuas Der. e Izql</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col.Sacrocoxigea de Cúbito')" type="checkbox" >
+																									<label>Col.Sacrocoxigea de Cúbito</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Dorsal o de pie(Ap. y Lateral)')" type="checkbox" >
+																									<label>Dorsal o de pie(Ap. y Lateral)</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col.Dorsal Lateral de pie(en Flexion y extencion)')" type="checkbox" >
+																									<label>Col.Dorsal Lateral de<br> pie(en Flexion y extencion)</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('5','Col.Lumbar Lateral de pie(en Flexion y extencion)')" type="checkbox" >
+																									<label>Col.Lumbar Lateral de pie(en Flexion y extencion)</label>
+																								</div>
+																							</div>
+																						</div>
+
+																					</div>
+																					<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Miembros superiores >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																					<div class="form-group">
+																						<label class="control-label">Miembros superiores</label><br>
+
+																						<div class="col-sm-12 icheck ">
+																						
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Hombro (Ap.)')" type="checkbox" >
+																									<label>Hombro (Ap.)</label>
+																								</div>
+																							</div>			
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Hombro Axial')"type="checkbox" >
+																									<label>Hombro Axial</label>
+																								</div>
+																							</div>	
+
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Hombro Tangencial')" type="checkbox" >
+																									<label>Hombro Tangencial</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Omóplato(Ap.)')" type="checkbox" >
+																									<label>Omóplato(Ap.)</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Omóplato Axial')" type="checkbox" >
+																									<label>Omóplato Axial</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Mano Ap. y Oblicua')" type="checkbox" >
+																									<label>Mano Ap. y Oblicua </label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Mano Canal Carpiano')" type="checkbox" >
+																									<label>Mano Canal Carpiano</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Mano Pisiforme(Ap.)')" type="checkbox" >
+																									<label>Mano Pisiforme(Ap.)</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Desos Ap. y Lateral')" type="checkbox" >
+																									<label>Desos Ap. y Lateral</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Omóplato Tangencial')" type="checkbox" >
+																									<label>Omóplato Tangencial</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Clavícula(Ap.)')" type="checkbox" >
+																									<label>Clavícula(Ap.)</label>
+																								</div>
+																							</div>
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Clavícula Axial')" type="checkbox" >
+																									<label>Clavícula Axial</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Clavícula Tangencial')" type="checkbox" >
+																									<label>Clavícula Tangencial</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Art. Esternoclavicular(Ap.)')" type="checkbox" >
+																									<label>Art. Esternoclavicular(Ap.)</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Brazo Ap. y Lat.')" type="checkbox" >
+																									<label>Brazo Ap. y Lat.</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Antebrazo Ap. y Lat')" type="checkbox" >
+																									<label>Antebrazo Ap. y Lat</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Codo Ap. y Lat')" type="checkbox" >
+																									<label>Codo Ap. y Lat</label>
+																								</div>
+																							</div>	
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Art. Codo Tangencial')" type="checkbox" >
+																									<label>Art. Codo Tangencial</label>
+																								</div>
+																							</div>		
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('6','Muñeca Ap. y Lat')" type="checkbox" >
+																									<label>Muñeca Ap. y Lat</label>
+																								</div>
+																							</div>							
+																						</div>
+																					</div>																	
+
+																				</div>
+
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Miembros inferiores >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+																<div class="col-md-3">
+																	<div class="block-web">
+																		<div class="porlets-content">
+																			<div class="row">
+																				<div class="col-md-12">																			
+
+
+																					<div class="form-group">
+
+																						  <label class="control-label">Miembros inferiores</label><br>
+
+																						  <div class="col-sm-12 icheck ">
+																						
+																							<div class="minimal single-row">
+																								<div class="checkbox ">
+																									  <input @click="rayosX_select('7','Pelvis(Ap. adultos, niños)')" type="checkbox" >
+																									  <label>Pelvis(Ap. adultos, niños)</label>
+																								</div>
+																							</div>
+																							<div class="minimal-red single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Pelvis Axial')" type="checkbox" >
+																									<label>Pelvis Axial</label>
+																								</div>
+																							  </div>
+																						  
+																							  <div class="minimal-green single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Pelvis Tangencial')" type="checkbox" >
+																									<label>Pelvis Tangencial</label>
+																								</div>
+																							  </div>
+																						  
+																							  <div class="minimal-blue single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Sinfisis del Pubis')" type="checkbox" >
+																									<label>Sinfisis del Pubis</label>
+																								</div>
+																							  </div>
+																						  
+																							  <div class="minimal-yellow single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Art. Coxofemoral Ap.')" type="checkbox" >
+																									<label>Art. Coxofemoral Ap.</label>
+																								</div>
+																							  </div>
+																						  
+																							  <div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Art. Coxofemoral Lat.')" type="checkbox" >
+																									<label>Art. Coxofemoral Lat.</label>
+																								</div>
+																							</div>
+																							<!--  -->
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Art. Coxofemoral Tang.')" type="checkbox" >
+																									<label>Art. Coxofemoral Tang.</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Musculo Ap. y Lat.')" type="checkbox" >
+																									<label>Musculo Ap. y Lat.</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Pierna Ap. y Lat.')" type="checkbox" >
+																									<label>Pierna Ap. y Lat.</label>
+																								</div>
+																							</div>
+																							<!--  -->
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Rodilla Ap. y Lat.')" type="checkbox" >
+																									<label>Rodilla Ap. y Lat.</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Tobillo Ap. y Lat.')" type="checkbox" >
+																									<label>Tobillo Ap. y Lat.</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Rodilla Oblicua')" type="checkbox" >
+																									<label>Rodilla Oblicua</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Rodilla con Carga')" type="checkbox" >
+																									<label>Rodilla con Carga</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Rótula Tangencial')" type="checkbox" >
+																									<label>Rótula Tangencial</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Tobillo Oblicua')" type="checkbox" >
+																									<label>Tobillo Oblicua</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Tobillo Tangencial')" type="checkbox" >
+																									<label>Tobillo Tangencial</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Calcaneo(Tang. y Lat.)')" type="checkbox" >
+																									<label>Calcaneo(Tang. y Lat.)</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Pié Ap. y Lat(de cúbito Dorsal)')" type="checkbox" >
+																									<label>Pié Ap. y Lat(de cúbito Dorsal)</label>
+																								</div>
+																							</div>
+																							<div class="minimal-purple single-row">
+																								<div class="checkbox ">
+																									<input @click="rayosX_select('7','Pié con carga(parado)')" type="checkbox" >
+																									<label>Pié con carga(parado)</label>
+																								</div>
+																							</div>
+																						
+																						</div>
+																					</div>																																			
+
+																				</div>
+
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-lg-12">
+																	<section class="panel default blue_title h2">
+																	 
+																	<div class="panel-body">	
+																		<label v-if="group_rayosX.torax != ''">Torax:</label><br>													
+																		<!-- Standard gray button with gradient -->
+																		<template v-for="(list, index) in group_rayosX.torax">
+																			<button type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																		</template>	
+																	</div>
+																	<div class="panel-body">
+																		<label v-if="group_rayosX.abdomen != ''">Abdomen</label><br>														
+																		<!-- Standard gray button with gradient -->
+																		<template v-for="(list, index) in group_rayosX.abdomen">
+																			<button type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																		</template>	
+																	</div>	
+																	<div class="panel-body">
+																		<label v-if="group_rayosX.craneo_Macizo_Facial != ''">Craneo_Macizo_Facial</label>	<br>													
+																		<!-- Standard gray button with gradient -->
+																		<template v-for="(list, index) in group_rayosX.craneo_Macizo_Facial">
+																			<button type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																		</template>	
+																	</div>	
+																	<div class="panel-body">
+																		<label v-if="group_rayosX.Placas_Radiograficas != ''">Placas Radiograficas</label>	<br>													
+																		<!-- Standard gray button with gradient -->
+																		<template v-for="(list, index) in group_rayosX.Placas_Radiograficas">
+																			<button type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																		</template>	
+																	</div>	
+																	<div class="panel-body">
+																		<label v-if="group_rayosX.Columna_vertebral != ''">Columna vertebral</label><br>													
+																		<!-- Standard gray button with gradient -->
+																		<template v-for="(list, index) in group_rayosX.Columna_vertebral">
+																			<button type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																		</template>	
+																	</div>	
+																	<div class="panel-body">
+																		<label v-if="group_rayosX.Miembros_superiores != ''">Miembros superiores</label><br>														
+																		<!-- Standard gray button with gradient -->
+																		<template v-for="(list, index) in group_rayosX.Miembros_superiores">
+																			<button type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																		</template>	
+																	</div>	
+																	<div class="panel-body">
+																		<label v-if="group_rayosX.Miembros_inferiores != ''">Miembros inferiores</label><br>														
+																		<!-- Standard gray button with gradient -->
+																		<template v-for="(list, index) in group_rayosX.Miembros_inferiores">
+																			<button type="button" class="btn btn-default" >{{list.descripcion}}</button>																			
+																		</template>	
+																	</div>	
+
+																	</section>
+																</div>
+																<div class="col-md-12 ">
+																	<label class=" ">Otros:</label><br>
+																	<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" class="form-control"></textarea>
+																</div>
+																<div class="col-md-12 page-content ">
+																	<div class="col-md-8 ">
+																		<button type="reset" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+																		<button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+																		<button type="reset"class="btn btn-warning btn-icon"onclick="window.print()"> Imprimir <span>&nbsp;</span><i class="fa fa-print"></i> </button>
+																	</div>
+																</div>
+
+															</form>
+														</div>														
+														
 													</div>
 													<div id="Tab3" class="tab-pane fade">
 														<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
