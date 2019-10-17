@@ -253,7 +253,7 @@ router.get('/farmacia_pedidos', (req,res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
-        res.render('Almacen/farmacia_pedidos', {
+      res.render('Almacen/farmacia_pedidos', {
             resp
         })
     })
