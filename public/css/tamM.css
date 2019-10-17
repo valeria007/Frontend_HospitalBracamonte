@@ -23,3 +23,9 @@
   height:400px;
   width:570px;
 }
+
+/* ESTILO DE TABLA*/
+#tabla1 {
+  border: 1px solid black;
+  color:rgba(143, 200, 233, 0.568);
+}
