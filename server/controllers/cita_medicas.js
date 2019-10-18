@@ -236,6 +236,7 @@ class Citas_medica {
         {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }
       ]
     }).then(users => {
+      
       res.status(200).send(users)
     })
   }
@@ -256,7 +257,7 @@ class Citas_medica {
   static lista_emergencia (req,res){
     const { id_medico } = req.params
     Citas_Medicas.findAll({
-      where : { id_medico : id_medico, estado: 'true', especialidad: 'EMERGENCIA' }, // el url es para identificar si es emergencia o consulta medica
+      where : { id_medico : id_medico, estado: 'true', especialidad: 'CONSUL. EMERGENCIA' }, // el url es para identificar si es emergencia o consulta medica
       //attributes: ['id','estado','codigo_p','hora','especialidad'],
       include: [
         {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }
@@ -269,7 +270,7 @@ class Citas_medica {
   static lista_emergencia_false (req,res){
     const { id_medico } = req.params
     Citas_Medicas.findAll({
-      where : { id_medico : id_medico, estado: 'false', especialidad: 'EMERGENCIA' }, // el url es para identificar si es emergencia o consulta medica
+      where : { id_medico : id_medico, estado: 'false', especialidad: 'CONSUL. EMERGENCIA' }, // el url es para identificar si es emergencia o consulta medica
       //attributes: ['id','estado','codigo_p','hora','especialidad'],
       include: [
         {model: Pacientes, attributes: ['id','nombre', 'apellidop','apellidom'] }

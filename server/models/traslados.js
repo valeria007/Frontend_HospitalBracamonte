@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     historial: DataTypes.INTEGER,
     nombre_doctor:DataTypes.TEXT,
     fecha_hora: DataTypes.STRING,
+    hora: DataTypes.STRING,
     enviado_de: DataTypes.STRING,
     operaciones: DataTypes.TEXT,
     diagnostico_principal: DataTypes.TEXT,

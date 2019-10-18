@@ -19,6 +19,9 @@ module.exports = {
       fecha: {
         type: Sequelize.STRING
       },
+      hora: {
+        type: Sequelize.STRING
+      },
       evolucion: {
         type: Sequelize.TEXT
       },

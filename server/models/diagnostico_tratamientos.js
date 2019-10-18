@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     estado_update: DataTypes.BOOLEAN,
     historial: DataTypes.INTEGER,
     fecha: DataTypes.STRING,
+    hora: DataTypes.STRING,
     evolucion: DataTypes.TEXT,
     
     medicamentos: DataTypes.JSON,

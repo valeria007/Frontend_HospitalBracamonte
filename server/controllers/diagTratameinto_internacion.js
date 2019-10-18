@@ -6,7 +6,7 @@ const { Internaciones } = model;
 
 class Diag_tratameinto{
     static reg_diagTratameinto(req,res){
-        const { historial,fecha,evolucion,medicamentos,estudios,id_medico } = req.body
+        const { historial,fecha,hora,evolucion,medicamentos,estudios,id_medico } = req.body
         const { id_internacion } = req.params; 
         return Internaciones                
         .findAll({
@@ -25,7 +25,7 @@ class Diag_tratameinto{
                         msg : "No se pude registrar, por que el paciente ya fue dado de alta"
                     })
                 }else{
-                    if(historial == "" || isNaN(historial) || fecha == "" || evolucion == "" || medicamentos == "" || id_medico == ""){
+                    if(historial == "" || isNaN(historial) || fecha == "" || evolucion == "" || medicamentos == "" || id_medico == "" || !hora ){
                         if(historial == ""){
                             res.status(400).json({
                                 success:false,
@@ -56,12 +56,18 @@ class Diag_tratameinto{
                                 success:false,
                                 msg: " No se esta insertando el idetificador del medico "
                             })
+                        }else if (!hora){
+                            res.status(400).json({
+                                success:false,
+                                msg: "La hora es Obligatorio"
+                            })
                         }
                     }else{  
                         return diagnostico_tratamientos 
                         .create({
                             historial,
                             fecha,
+                            hora,
                             evolucion,
             
                             medicamentos,

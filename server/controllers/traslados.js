@@ -7,7 +7,7 @@ const { Internaciones } = model;
 
 class Traslados {
     static create_traslado(req,res){
-        const { historial,nombre_doctor,fecha_hora,enviado_de, operaciones,diagnostico_principal,otros_diagnosticos,causa_externa,id_internacio,id_medico,id_especialidad } = req.body   
+        const { historial,nombre_doctor,fecha_hora,enviado_de, operaciones,diagnostico_principal,otros_diagnosticos,causa_externa,id_internacio,id_medico,id_especialidad,hora } = req.body   
         
         const { id_paleta_internacion } = req.params
 
@@ -34,7 +34,7 @@ class Traslados {
                             msg : "No se pude registrar, por que el paciente ya fue dado de alta"
                         })
                     }else{
-                        if (historial == "" || isNaN(historial) || nombre_doctor == "" || fecha_hora == "" || enviado_de == "" || diagnostico_principal == "" || id_internacio == "" || id_internacio == null || id_medico == "" || id_medico == null || id_especialidad == "" || id_especialidad == null){
+                        if (historial == "" || isNaN(historial) || nombre_doctor == "" || fecha_hora == "" || enviado_de == "" || diagnostico_principal == "" || id_internacio == "" || id_internacio == null || id_medico == "" || id_medico == null || id_especialidad == "" || id_especialidad == null || !hora ){
                             if(historial == "" || isNaN(historial)){
                                 res.status(400).json({
                                     success: false,
@@ -65,6 +65,11 @@ class Traslados {
                                     success: false,
                                     msg:"Selecione area de traslado por favor"
                                 })
+                            }else if (!hora){
+                                res.status(400).json({
+                                    success: false,
+                                    msg:"Hora es obligatorio"
+                                })
                             }
                         }else{
                             return Pacientes                
@@ -94,6 +99,7 @@ class Traslados {
                                                 historial,
                                                 nombre_doctor,
                                                 fecha_hora,
+                                                hora,
                                                 enviado_de,
                                                 operaciones,
                                                 diagnostico_principal,

@@ -5,7 +5,7 @@ const { Internaciones } = model;
 
 class NotaEvolucion{
     static reg_notaEvolucion(req,res){
-        const { historial,fecha, nota_evolucion, id_medico } = req.body;
+        const { historial,fecha,hora, nota_evolucion, id_medico } = req.body;
         const { id_internacion } = req.params;
 
         return Internaciones                
@@ -13,7 +13,6 @@ class NotaEvolucion{
             where : { id : id_internacion }
         })
         .then(data => {
-            console.log(data, "   <<<<<<<<<<<<<<<<<<<<<<<<<<<   esto quiero <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             if( data == "" ){
                 res.status(400).json({
                     success:false,
@@ -26,7 +25,7 @@ class NotaEvolucion{
                         msg : "No se pude registrar, por que el paciente ya fue dado de alta"
                     })
                 }else{
-                    if( historial == "" || isNaN(historial) || fecha == "" || nota_evolucion == "" || id_medico == ""){
+                    if( historial == "" || isNaN(historial) || fecha == "" || nota_evolucion == "" || id_medico == "" || !hora ){
                         if(historial == ""){
                             res.status(400).json({
                                 success:false,
@@ -52,6 +51,11 @@ class NotaEvolucion{
                                 success:false,
                                 msg: " No se esta insertando el idetificador del medico "
                             })
+                        }else if(!hora){
+                            res.status(400).json({
+                                success:false,
+                                msg: "La hora actual es obligado"
+                            })
                         }
                     }else{
                         
@@ -59,6 +63,7 @@ class NotaEvolucion{
                         .create({
                             historial,
                             fecha, 
+                            hora,
                             nota_evolucion,
                             id_internacion,
                             id_medico

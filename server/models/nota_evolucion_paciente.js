@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const nota_evolucion_Paciente = sequelize.define('nota_evolucion_Paciente', {
     historial: DataTypes.INTEGER,
     fecha: DataTypes.STRING,
+    hora: DataTypes.STRING,
     nota_evolucion: DataTypes.TEXT,
     id_internacion: DataTypes.INTEGER,
     id_medico: DataTypes.INTEGER,

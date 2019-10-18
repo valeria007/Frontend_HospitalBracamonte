@@ -27,6 +27,9 @@ module.exports = {
       fecha_hora: {
         type: Sequelize.STRING
       },
+      hora: {
+        type: Sequelize.STRING
+      },
       enviado_de: {
         type: Sequelize.STRING
       },
