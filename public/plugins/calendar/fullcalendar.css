@@ -37,7 +37,7 @@ html .fc,
 
 .fc-header-left {
 	width: 25%;
-	text-align: left;
+	text-align: auto;
 	}
 	
 .fc-header-center {
@@ -117,11 +117,11 @@ html .fc,
 
 .fc-widget-header,    /* <th>, usually */
 .fc-widget-content {  /* <td>, usually */
-	border: 1px solid #ddd;
+	border: 1px solid rgb(7, 11, 71);
 	}
 	
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
-	background: #fcf8e3;
+	background: #b0b6da;
 	}
 	
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */
@@ -634,7 +634,7 @@ table.fc-border-separate {
 }
 
 .fc{background-color:#FFFFFF;}
-.fc-event-inner{ background-color:#5DCFF3; color:#fff;}
+.fc-event-inner{ background-color:rgb(96, 93, 243); color:#fff;}
 .fc-grid th{background-color: #000000; color: #FFFFFF; padding: 8px !important;text-align: center;}
-.fc-button-today{background:#5DCFF3; color:#FFFFFF;}
-.fc-button-month{background:#5DCFF3; color:#FFFFFF;}
+.fc-button-today{background:rgb(93, 103, 243); color:#FFFFFF;}
+.fc-button-month{background:rgb(93, 116, 243); color:#FFFFFF;}

@@ -116,14 +116,24 @@ router.get('/onlyDist/:id', (req,res) => {
 router.get('/listDistribucion', (req,res) => {
     fetch(url.name.urlFarmacia+'/api/distribucion')
     .then(res => res.json())
+    .catch(error => console.error('Error',error))
     .then(resp => { 
-        res.render('Almacen/distribucion',{resp})
+
+        fetch('http://localhost:3200/api/list_pedidos') // est fecth es para mostrar la lista de pedids de farmacia que hace a almancen
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(lis_farmacia_pedidos => {
+            res.render('Almacen/distribucion',{
+                resp,
+                lis_farmacia_pedidos
+            })
+        })
+        
     })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    })  
 })
+
+//ruta para pedidos  de farmacia
+
 
 //serv para enviar distribucion
 var message;
@@ -162,6 +172,7 @@ router.post('/distribucion', (req,res) => {
 router.get('/nueva_distribucion', (req,res) => {
     res.render('Almacen/reg_distribucion')
 })
+
 
 
 module.exports = router;

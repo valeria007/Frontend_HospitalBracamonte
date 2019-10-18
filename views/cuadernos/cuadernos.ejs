@@ -125,16 +125,12 @@
                   <div class="bs-example mover">
                     <div class="alert alert-danger fade in">
                       <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                      <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
-                      <hr class="message-inner-separator">
                       <strong><%=mess %></strong></div>
                   </div>
                 <%} else if(mgconf != null) { %>
                   <div class="bs-example mover">
                     <div class="alert alert-success fade in">
                       <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                      <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
-                      <hr class="message-inner-separator">  
                       <strong><%=mgconf %></strong>
                     </div>
                   </div>
@@ -178,7 +174,7 @@
                                 </div>
                               </div>
                               <br><br>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                 <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
                                 <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
                               </div>
@@ -205,7 +201,7 @@
                                   </select>
                                 </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                 <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
                                 <a class="btn btn-danger"href="/cuaderno/limpiarC"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
                               </div>
@@ -220,7 +216,7 @@
                                   <tr>
                                   <th class="text-center">Código</th>
                                   <th class="text-center">Grupo de Asociado</th>
-                                  <th class="text-center">Titulo de Cuaderno</th>
+                                  <th class="text-center">Título de Cuaderno</th>
                                   <th class="text-center">Fecha de Creación</th>
                                   <th class="text-center">Opciones</th>
                                   </tr>
@@ -234,7 +230,7 @@
                                     <td class="text-center"><%=resp[i].createdAt.split("T")[0]%></td>								
                                     <td class="text-center">
                                       <a href="/cuaderno/getEsp/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Médico"><i class="fa fa fa-user-md "></i></a><span>&nbsp;</span>
-                                      <a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                      <!--<a href="#"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>-->
                                       <a href="/cuaderno/onlyCuadernos/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
                                     </td>
                                 </tr>
@@ -246,37 +242,30 @@
                         </div>
 											</div>
 										</div>
-										<!--/col-md-12-->
 									</div>
-									<!--/row-->
-
 								</div>
-								<!--/page-content end-->
 							</div>
 						</div>
           </div>
 				</div>
-		</div>
+		  </div>
     </div>
-    
-  
   </div>
   <script>
     window.setTimeout(function() {
-      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+      $(".alert").fadeTo(600, 0).slideUp(600, function(){
         $(this).remove(); 
       });
-   }, 2000);
-   </script>
-   <script>
+    }, 2000);
+  </script>
+  <script>
     function mayus(e) {
     e.value = e.value.toUpperCase();
    }
-     </script>
-    
-		<!--====== Scripts -->
-		
-    <%- include("../partials/scripts") -%>
+  </script>
+  
+
+	<%- include("../partials/scripts") -%>
 
 </body>
 

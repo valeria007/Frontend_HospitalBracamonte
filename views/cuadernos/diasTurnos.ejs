@@ -83,7 +83,7 @@
                       <div class="block-web">
                         <div class="header">
                           <div class="actions"> 
-                            <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" ><i class="fa fa-chevron-down"></i></a> 
                             <a class="refresh" href=""><i class="fa fa-repeat"></i></a>
                           </div>
                         </div>
@@ -94,7 +94,7 @@
 				                      <div class="form-group">
                                 <label class="control-label col-md-4">Día de atención :</label>
                                 <div class="col-md-3 ">
-                                  <select  class="form-control" id="source" name="diasAten" >
+                                  <select  class="form-control" id="source" name="diasAten"required placeholder="" >
                                     <option value="" selected disabled hidden>--Seleccione--</option>
                                     <option value="Lunes">LUNES</option>
                                     <option value="Martes">MARTES</option>
@@ -109,7 +109,7 @@
                               <div class="form-group">
                                 <label class="control-label col-md-4">Turno :</label>
                                 <div class="col-md-3 ">
-                                  <select class="form-control" id="source" name="turno" >                               
+                                  <select class="form-control" id="source" name="turno" required placeholder="">                               
                                     <option value="" selected disabled hidden>--Seleccione--</option>
                                     <option value="Mañanas">MAÑANAS</option>
                                     <option value="Tardes">TARDES</option>
@@ -119,7 +119,7 @@
                               </div><!--/form-group--> 
                               <div class="form-group">
                                 <div class="col-md-4"> 
-                                  <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                                  <button type="submit" class="btn btn-success btn-icon">Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button>
                                   <div class="btn-group">
                                       <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver<span class="caret"></span></button>
                                     <ul role="menu" class="dropdown-menu">
@@ -134,6 +134,7 @@
                             </form>
                           </div>
                           <br><br>
+                          <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
                           <div class="porlets-content">
                             <div class="table-responsive">
                               <table  class="display table table-bordered table-striped" id="dynamic-table">
@@ -152,14 +153,16 @@
                                         <td class="text-center"><%=resp[i].diasAten%></td>
                                         <td class="text-center"><%=resp[i].turno%></td>
                                         <td class="text-center">
-                                          <a @click="" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-user "></i></a>
-                                          <a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_horas"><i class="fa fa-plus-square"></i></a>
-                                          <a href="/cuaderno/delturno/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                          <a @click="turn_id(<%=resp[i].id%>), turn = '<%=resp[i].turno%>'" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Fichas y Horas"><i class="fa fa-plus-square "></i></a>
+                                          <!--<a href="/cuaderno/horarios_turnos/<%=resp[i].id%>/<%=resp[i].turno%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_horas"><i class="fa fa-plus-square"></i></a>
+                                          <a href="/cuaderno/delturno/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>-->
+                                          <a @click="idT='<%=resp[i].id%>'" data-target="#myModal3" data-toggle="modal"data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
                                         </td>
                                       </tr>
                                       <% } %>
                                     <tbody>
                               </table>
+                              <!--<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>-->
                             </div>
                           </div>
                         </div>
@@ -183,65 +186,119 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Intervalo de atención</h4>
-            <span style="color: blue">{{msg}}</span>
+            <h4 class="modal-title" id="myModalLabel">Intervalo de Atención</h4>
+            <a @click="ver = !ver" class="btn btn-info btn-icon" ><i class="fa fa-plus-square"></i><span>&nbsp;</span>Nuevo</a>
+            <div class="center">
+              <span style="color: blue">{{msg}}</span>
+              <span style="color: red">{{msg_false}}</span>
+            </div>
           </div>
           <div class="modal-body"> 
-            <form class="form-horizontal"  @submit="reg_horasturno" parsley-validate novalidate>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Cantidad de Fichas:</label>
-                <div class="col-sm-3">
-                  <select  class="selectpicker" data-show-subtext="true" data-live-search="true"v-model="cantiFicha" >
-                    <option value="" selected disabled hidden>Selecione</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>  
-                    <option>12</option>      
-                    <option>13</option>      
-                    <option>14</option>      
-                    <option>15</option>
-                    <option>16</option> 
-                    <option>17</option>                                     
-  
-                  </select>
-                  <label style="color:red;">*Cantidad Maxima de Fichas del Medico*</label>
-                </div>
-              </div> 
-              <div class="form-group">
-                <label  class="col-sm-2 control-label">Intervalo de horas:</label>
-                <div class="col-sm-3">
-                  <select class="form-control" id="source" v-model="minutos">
-                    <option value="15"> 15 minutos </option>
-                    <option value="20"> 20 minutos </option>
-                    <option value="30"> 30 minutos </option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <a href="/cuaderno/horaslist" class="btn btn-info btn-icon">Eliminar Todo <span>&nbsp;</span><i class="fa fa-minus-square"></i></a></td> <span>&nbsp;&nbsp;&nbsp;</span>
-                  <button type="submit" class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-                  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-                </div>
-              </div>
-            </form>
+            <template v-if="ver">
+                <form class="form-horizontal"  parsley-validate novalidate>
+                    <p class="center" style="color:red;">*Asegurece de haber eliminado todas las Horas anteriores*</p>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Cantidad de Fichas:</label>
+                      <div class="col-sm-6">
+                        <select  class="form-control" v-model="cantiFicha">
+                          <option value="" selected disabled hidden>--Seleccione--</option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                          <option>10</option>
+                          <option>11</option>  
+                          <option>12</option>      
+                          <option>13</option>      
+                          <option>14</option>      
+                          <option>15</option>
+                          <option>16</option> 
+                          <option>17</option>                                     
+        
+                        </select>
+                        <p style="color:red;">*Cantidad Maxima de Fichas del Médico*</p>
+                      </div>
+                    </div> 
+                    <div class="form-group">
+                      <label  class="col-sm-4 control-label">Intervalo de horas:</label>
+                      <div class="col-sm-6">
+                        <select class="form-control" id="source" v-model="intervalo">
+                          <option value="" selected disabled hidden>--Seleccione--</option>
+                          <option value="15"> 15 minutos </option>
+                          <option value="20"> 20 minutos </option>
+                          <option value="30"> 30 minutos </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <a @click="eliminar" class="btn btn-info btn-icon">Eliminar Todo <span>&nbsp;</span><i class="fa fa-minus-square"></i></a></td> <span>&nbsp;&nbsp;&nbsp;</span>
+                        <a @click="sumar_horas"  class="btn btn-success btn-icon" >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></a><span>&nbsp;&nbsp;&nbsp;</span>
+                        <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+                      </div>
+                    </div>
+                  </form>
+            </template>
+            <template v-else>
+                <table  class="table table-bordered" >
+                    <thead>
+                        <tr>
+                          <th class="text-center">N° Fichas</th>
+                          <th class="text-center">Día Atención</th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody v-for="(list, index) in list_horas">
+                      <tr >
+                        <td class="text-center">{{index+1}}</td>
+                        <td class="text-center">{{list.hora}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </template>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-------MODALLLLL-------->
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="center">
+              <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Estás seguro?</b></h5>
+              <p>Una vez eliminado no se podar volver atras....</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+              <a v-bind:href="'/cuaderno/delturno/'+idT"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-<!-------MODALLLLL-------->
+
 
  
 <%- include("../partials/scripts") -%>
+<script src="/url/export.js"></script>
+<script src="/js/vue/reg_horas.js"></script>
 </body>
 </html>

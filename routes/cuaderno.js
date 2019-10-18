@@ -403,7 +403,6 @@ router.post('/docCuaderno', (req,res) => {
     .catch(error => console.error('Error:', error))
     .then(data => {     
         id_docCuaderno =  data.data.id
-        
         res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno )   
        
     }) 
@@ -441,6 +440,8 @@ router.post('/updateDoctCuaderno/:id', (req,res) => {
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
 
+
+
 router.get('/volverFechas', (req,res) => {
     res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno) //    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 })
@@ -453,7 +454,7 @@ router.get('/limpiarFecha',(req,res) => {
 router.get('/fechas', (req,res) => {
     res.render('cuadernos/fechas',{
         docFecha, //trae fecha de contrato del doctor
-        onlyFecha //para mostar una sola fecha y luego poder actualizar
+        onlyFecha, //para mostar una sola fecha y luego poder actualizar
     })
 })
 
@@ -506,7 +507,6 @@ router.post('/fechas', (req,res) => {
     .then(data => {  
         console.log("aquiiiiiiiiiiiii",data) 
         idFechas = data.data.id  
-        
             res.redirect('/cuaderno/turnos')
         
         
@@ -514,6 +514,23 @@ router.post('/fechas', (req,res) => {
         
        
     })  
+})
+
+router.get('/vue_list_horas/:id_turno', (req,res) => {
+    const { id_turno } = req.params
+    fetch('http://localhost:4600/api/listHoras_turno/'+id_turno)
+    .then(resp => resp.json())    
+    .then(resp =>{
+        res.status(200).json(resp)
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json({
+            success:false,
+            msg:"error de servidor",
+            error
+        })
+    })
 })
 
 //ruta para poder actualizar fecha
@@ -551,7 +568,8 @@ router.get('/volver_a_trunos', (req,res) => {
 router.get('/turnos', (req,res) => {
     fetch(url.name.cuadernos+'/api/oneTurno/'+idFechas)
     .then(res => res.json())
-    .then(resp => { 
+    .then(resp => {
+        console.log(resp, "   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   esto") 
         res.render('cuadernos/diasTurnos',{
             resp
         })
@@ -845,6 +863,16 @@ router.get('/horarios_turnos/:id_turnos/:turno', (req,res) => {
         } 
     }) 
 
+router.get('/VUE_delete_horas/:id_hora', (req,res) => {
+    const { id_hora } = req.params
+    fetch('http://localhost:4600/api/delete_horas_turnos/'+id_hora)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        res.status(200).json(resp)
+    }); 
+})
+
 router.get('/de_paso',(req,res) => {
     fetch('http://localhost:4600/api/listHoras_turno/'+idTurno)
         .then(resp => resp.json())
@@ -877,21 +905,19 @@ router.get('/horaslist', (req,res) => {
     res.redirect('/cuaderno/de_paso')   
 })
  ///vue
- router.get('/Vuehoraturno/:id_turnos/:turno',(req,res)=>{
-    const { id_turnos, turno} = req.params
-   idTurno = id_turnos;
-   turn = turno;
+ router.get('/Vuehoraturno/:id_turnos',(req,res)=>{
+    const { id_turnos } = req.params
    fetch('http://localhost:4600/api/listHoras_turno/'+id_turnos)
        .then(resp => resp.json())
        .catch(error => console.error('Error:', error))
        .then(resp =>{
-           res.render('cuadernos/horarios_turnos',{
-               resp
-           })
+           res.status(200).json(resp)
    });  
 })
 
-router.post('/Vue_reg_hora', (req,res) => {
+
+router.post('/vuehora_turno/:id_turno', (req,res) => {
+    const { id_turno } = req.params    
     var data = req.body;
     var esto = {
         method: 'POST',
@@ -900,23 +926,7 @@ router.post('/Vue_reg_hora', (req,res) => {
           'Content-type' : "application/json"
         }
     };
-    fetch('http://localhost:4600/api/listHoras_turno/'+idTurno,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => { 
-        res.status(200).json(data)       
-    })  
-})
-router.post('/vuehora_turno', (req,res) => {
-    var data = req.body;
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/hora_turno/'+idTurno,esto)
+    fetch(url.name.cuadernos+'/api/hora_turno/'+id_turno,esto)
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(data => { 

@@ -87,11 +87,9 @@
         </div>
         <!--\\\\\\\left_nav end \\\\\\-->
         <div class="contentpanel " id="consulta">
-                <!--\\\\\\\ contentpanel start\\\\\\-->
+            <!--\\\\\\\ contentpanel start\\\\\\-->
             <div class="container clear_both padding_fix col-lg-8">
                 <br>
-                
-                
                 <div class="col-lg-12 block-web"> 
                 <!-- Content page -->
                    
@@ -136,6 +134,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
+                
                                                 <div class="entrada">
                                                     <label class=" ">CI.:</label><p><b><%=dataPaciente[0].ci%></b></p>
                                                     <input type="hidden" name="ci" value="<%=dataPaciente[0].ci%>" class="form-control" readonly="" value="Read only text goes here">
@@ -236,7 +235,7 @@
                             <div class="block-web">
                                     <%if(msg) { %>
                                         <%if(msg.data.success == false) { %>
-                                        <div class="bs-example mover">
+                                        <div    ss="bs-example mover">
                                             <div class="alert alert-danger fade in">
                                               <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
                                               <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(95, 4, 4);"><%=msg.data.data_med%></h6></strong>
