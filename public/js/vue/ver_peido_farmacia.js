@@ -2,6 +2,7 @@
 const ver_pedido_farmacia =  new Vue({
     el:'#ver_pedido_farmacia',
     data: () => ({
+        url:data_url.url_front_end,
         msg: "aljand",
         id_pedido:'',
 
@@ -15,7 +16,7 @@ const ver_pedido_farmacia =  new Vue({
         list_acep_farmacia:''
     }),
     mounted() {
-        fetch('http://localhost:7000/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
+        fetch(this.url+'/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
         .then(resp => resp.json())
         .catch(error => console.error('Error',error))
         .then(resp => {
@@ -44,7 +45,7 @@ const ver_pedido_farmacia =  new Vue({
     methods:{
 
         list_acep(){
-            fetch('http://localhost:7000/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
+            fetch(this.url+'/almacen/Vue_one_pedido_farmacia/'+this.id_pedido)
             .then(resp => resp.json())
             .catch(error => console.error('Error',error))
             .then(resp => {
@@ -53,7 +54,7 @@ const ver_pedido_farmacia =  new Vue({
         },
         add_medicamento(id_medicamento, index){
            
-            fetch('http://localhost:7000/farmacia/vue_medicamento/'+id_medicamento)
+            fetch(this.url+'/farmacia/vue_medicamento/'+id_medicamento)
             .then(resp => resp.json())
             .catch(error => console.error('Error',error))
             .then(response => {
@@ -122,7 +123,7 @@ const ver_pedido_farmacia =  new Vue({
                   'Content-type' : "application/json"
                 }
             };
-            fetch('http://localhost:7000/farmacia/update_pedido/'+this.id_pedido,esto)
+            fetch(this.url+'/farmacia/update_pedido/'+this.id_pedido,esto)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
@@ -151,7 +152,7 @@ const ver_pedido_farmacia =  new Vue({
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/farmacia/register_cantidad_fecha/'+this.list[i].item.id,esto)
+                fetch(this.url+'/farmacia/register_cantidad_fecha/'+this.list[i].item.id,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(resp => {  
@@ -173,7 +174,7 @@ const ver_pedido_farmacia =  new Vue({
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/farmacia/sumar_cantidad/'+this.list[i].item.id,esto)
+                fetch(this.url+'/farmacia/sumar_cantidad/'+this.list[i].item.id,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(resp => {  

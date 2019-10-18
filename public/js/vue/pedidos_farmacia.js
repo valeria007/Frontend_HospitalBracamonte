@@ -5,6 +5,7 @@ Vue.filter('numeral', function (value) {
 const pedido_medicametos = new Vue({
     el: '#pedido_medicametos',    
     data : () => ({
+      url:data_url.url_front_end,
       msg: "aljand321",
 
       id_user:'',
@@ -42,7 +43,7 @@ const pedido_medicametos = new Vue({
       },
     }),
     created:function() {
-        fetch('http://localhost:7000/farmacia/Vue_medicamentos_farmacia')
+        fetch(this.url+'/farmacia/Vue_medicamentos_farmacia')
         .then(res => res.json())
         .then(res => {
             for(var i = 0; i < res.length; i++){
@@ -147,7 +148,7 @@ const pedido_medicametos = new Vue({
 
       }  else {
         axios
-        .get('http://localhost:7000/farmacia/vue_medicamento/'+id)
+        .get(this.url+'/farmacia/vue_medicamento/'+id)
         .then(response => {
           console.log(response)
           var car = {
@@ -231,7 +232,7 @@ const pedido_medicametos = new Vue({
               'Content-type' : "application/json"
             }
         };
-        fetch('http://localhost:7000/farmacia/vue_post_pedidos',esto)
+        fetch(this.url+'/farmacia/vue_post_pedidos',esto)
         .then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(data => { 
