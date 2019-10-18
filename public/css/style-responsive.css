@@ -362,7 +362,7 @@ label {
 }
 .daterangepicker .calendar th, .daterangepicker .calendar td {
     font-family: 'Open Sans',sans-serif;
-    font-weight: 300;
+    font-weight: 100;
     text-align: center;
     white-space: nowrap;
 }

@@ -62,16 +62,12 @@
                 <div class="bs-example mover">
                   <div class="alert alert-danger fade in">
                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <span class="glyphicon glyphicon-hand-right"></span> <strong><Menu:t>Mensaje de Alerta</Menu:t></strong>
-                    <hr class="message-inner-separator">
                     <strong><%=mg1 %></strong></div>
                 </div>
               <%} else if(mg2 != null) { %>
                 <div class="bs-example mover">
                   <div class="alert alert-success fade in">
                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación</strong>
-                    <hr class="message-inner-separator">  
                     <strong><%=mg2 %></strong>
                   </div>
                 </div>
@@ -121,8 +117,8 @@
                                     <option>MEDICINA TRADICIONAL</option>
                                     <option>NEFROLOGÍA</option>
                                     <option>NEUMOLOGÍA</option>
-                                    <option>NUEROCIRUGÍA</option>
-                                    <option>NUEROCIRUGÍA CLINICA</option>
+                                    <option>NEUROCIRUGÍA</option>
+                                    <option>NEUROCIRUGÍA CLINICA</option>
                                     <option>NUEROCIRUGÍA PEDIÁTRICA</option>
                                     <option>OBSTETRICIA</option>
                                     <option>ODONTOLOGÍA</option>
@@ -162,7 +158,7 @@
                               <div class="form-group">
                                   <label class=" col-sm-4 control-label">Especialidad o Servicio :</label>
                                   <div class="col-sm-4">
-                                    <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nombre" >
+                                    <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="nombre" required placeholder="" >
                                       <option ><%=espONE[0].nombre%></option>
                                       <option value="" disabled>-----------------------</option>
                                       <option>EMERGENCIA</option>
@@ -186,9 +182,9 @@
                                       <option>MEDICINA TRADICIONAL</option>
                                       <option>NEFROLOGÍA</option>
                                       <option>NEUMOLOGÍA</option>
-                                      <option>NUEROCIRUGÍA</option>
-                                      <option>NUEROCIRUGÍA CLINICA</option>
-                                      <option>NUEROCIRUGÍA PEDIÁTRICA</option>
+                                      <option>NEUROCIRUGÍA</option>
+                                      <option>NEUROCIRUGÍA CLINICA</option>
+                                      <option>NEUROCIRUGÍA PEDIÁTRICA</option>
                                       <option>OBSTETRICIA</option>
                                       <option>ODONTOLOGÍA</option>
                                       <option>OFTANMOLOGÍA</option>
@@ -273,10 +269,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-         
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">Consultorios  </h4>
-          <span style="color: blue">{{msg}}</span>
+          <div class="center">
+            <h6 style="color: blue">{{msg}}</h6>
+            <h6 style="color: red">{{msg_false}} </h6>
+          </div>
         </div>
         <div class="modal-body"> 
           <section class="panel default blue_title h2">
@@ -293,8 +291,8 @@
                           <thead>
                             <tr>
                               <th class="text-center">#</th>
-                              <th class="text-center">Sigla</th>
-                              <th class="text-center">Nombre</th>
+                              <th class="text-center">Sigla de Especialidad</th>
+                              <th class="text-center">Nombre Especialidad </th>
                             </tr>
                           </thead>
                           <tbody v-for="(list, index) in list_consulta_especialidad">
@@ -345,9 +343,9 @@
                 <option>CONSUL. MEDICINA TRADICIONAL</option>
                 <option>CONSUL. NEFROLOGÍA</option>
                 <option>CONSUL. NEUMOLOGÍA</option>
-                <option>CONSUL. NUEROCIRUGÍA</option>
-                <option>CONSUL. NUEROCIRUGÍA CLINICA</option>
-                <option>CONSUL. NUEROCIRUGÍA PEDIÁTRICA</option>
+                <option>CONSUL. NEUROCIRUGÍA</option>
+                <option>CONSUL. NEUROCIRUGÍA CLINICA</option>
+                <option>CONSUL. NEUROCIRUGÍA PEDIÁTRICA</option>
                 <option>CONSUL. OBSTETRICIA</option>
                 <option>CONSUL. ODONTOLOGÍA</option>
                 <option>CONSUL. OFTANMOLOGÍA</option>
@@ -385,9 +383,12 @@
       <div class="modal-header">
 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Asignación de Médico Consultorios </h4>
-        <span style="color: blue">{{msg}}</span>
-        <span style="color: red">{{msg_false}}</span>
+        <h4 class="modal-title" id="myModalLabel">Asignación de Médico Area Hospitalización </h4>
+        <div class="center">
+          <h6 style="color: blue">{{msg}}</h6>
+          <h6 style="color: red">{{msg_false}} </h6>
+        </div>
+        
       </div>
       <div class="modal-body"> 
           <section class="panel default blue_title h2">
@@ -404,8 +405,8 @@
                                       <thead>
                                         <tr>
                                           <th class="text-center">#</th>
-                                          <th class="text-center">Nombre</th>
-                                          <th class="text-center">ci</th>
+                                          <th class="text-center">Nombre del Médico</th>
+                                          <th class="text-center">C.I.</th>
                                         </tr>
                                       </thead>
                                       <tbody v-for="(list, index) in especilidad_lista_medicas">
@@ -425,10 +426,10 @@
           </section>
           <form class="form-horizontal" @submit="register_medicos" parsley-validate novalidate>
             <div class="form-group">
-	  		  			<label for="inputPassword3" class="col-sm-4 control-label">C.I.:<i class="fa fa-users"> :</i></label>
+	  		  			<label for="inputPassword3" class="col-sm-4 control-label">C.I.:</label>
 	  		  			<div class="col-sm-4">
 	  						<select v-model="ci_medico" @click="list_medicos">
-                  <option disabled> Buscar por C.I... </option>
+                  <option value="" selected disabled hidden >--Seleccione--</option>
 	  			  			<% for(var i = 0; i< Lista_medicos.length; i++) { %>
                     <option><%=Lista_medicos[i].ci%></option>
                   <% } %>
@@ -437,8 +438,8 @@
 	  				</div><!--/form-group-->
         <div class="form-group">
           <label  class="col-sm-4 control-label">Personal Médico:</label>
-          <div class="col-sm-4">
-              <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change"  />
+          <div class="col-sm-5">
+              <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change" readonly/>
           </div>
         </div>
         <div class="form-group">
@@ -466,7 +467,7 @@
 <script src="/js/alert.js"></script>
 
 <!--select Buscar-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 <!--pdf-->
 <script src="/js/pdf.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>

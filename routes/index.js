@@ -80,10 +80,56 @@ router.get('/',(req, res) => {
 router.get('/index2', (req,res) => {
   res.render('index2');
 });
+/**home aquiiiiiiiiiiiii */
 
 router.get('/home',(req, res) => {
-  res.render('home')
-});
+  
+  fetch('http://localhost:3600/api/allUser')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    var lo = data.length
+    fetch('http://localhost:3600/api/Only_Medicos')        
+      .then(resp => resp.json())
+      .then(medi =>{
+        fetch('http://localhost:3600/api/OnlyPersonal')
+        .then(resp => resp.json())
+        .then(personal =>{
+          fetch('http://localhost:3600/api/OnlyEnfermera')
+          .then(resp => resp.json())
+          .then(enfe =>{
+            fetch('http://localhost:3600/api/OnlyFarma')
+            .then(resp => resp.json())
+            .then( fer =>{
+              fetch('http://localhost:4600/api/liscuaderno')
+              .then(resp => resp.json())
+              .then(cua =>{
+                fetch('http://localhost:4600/api/especialidad')
+                .then(resp => resp.json())
+                .then(esp =>{
+                  res.render('home',{
+                    lo,
+                    medi,
+                    data,
+                    fer,
+                    personal,
+                    enfe,
+                    cua,
+                    esp,
+                    log5:esp.length,
+                    log4:cua.length,
+                    lar: medi.length,
+                    long: personal.length,
+                    long1:enfe.length,
+                    log3: fer.length
+                  })
+                })
+              })
+            })
+          })
+        })
+      })    
+    }) 
+  });
 
 var msg1,msg2,msg3, token_part;
 router.post('/login', (req,res)  => {
