@@ -106,22 +106,29 @@ router.get('/home',(req, res) => {
                 fetch('http://localhost:4600/api/especialidad')
                 .then(resp => resp.json())
                 .then(esp =>{
-                  res.render('home',{
-                    lo,
-                    medi,
-                    data,
-                    fer,
-                    personal,
-                    enfe,
-                    cua,
-                    esp,
-                    log5:esp.length,
-                    log4:cua.length,
-                    lar: medi.length,
-                    long: personal.length,
-                    long1:enfe.length,
-                    log3: fer.length
+                  fetch('http://localhost:3000/api/pacientes')
+                  .then(resp => resp.json())
+                  .then(paci =>{
+                    res.render('home',{
+                      lo,
+                      medi,
+                      data,
+                      fer,
+                      personal,
+                      enfe,
+                      cua,
+                      esp,
+                      paci,
+                      log5:esp.length,
+                      log4:cua.length,
+                      lar: medi.length,
+                      long: personal.length,
+                      long1:enfe.length,
+                      log3: fer.length,
+                      log6:paci.length
+                    })
                   })
+                  
                 })
               })
             })
@@ -427,7 +434,13 @@ router.get('/backup',(req, res) => {
 
 ///paciente admin
 router.get('/pacientead',(req, res) => {
-  res.render('pacientead')
+  fetch('http://localhost:3500/api/medicamento')        
+  .then(resp => resp.json())
+  .then(data =>{  
+    res.render('pacientead', {
+      data
+    })
+  })
 });
 // Internacion salas 
 
