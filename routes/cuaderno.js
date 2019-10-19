@@ -322,12 +322,18 @@ router.get('/docCuaderno', (req,res) => {
     fetch(url.name.pruebas+'/api/Only_Medicos',token)
     .then(res => res.json())
     .then(resp => { 
-        res.render('cuadernos/turnos',{
-            resp, // esto contiene los doctores
-            esp,   // esto trae las especialidades
-            listDoc,
-            modifDoct
-        });
+        fetch(url.name.pruebas+'/api/OnlyEnfermera',token)
+        .then(res => res.json())
+        .then(enfermeras => { 
+            res.render('cuadernos/turnos',{
+                resp, // esto contiene los doctores
+                esp,   // esto trae las especialidades
+                listDoc,
+                modifDoct,
+                enfermeras
+            });
+        })
+       
     })
     .catch(error => {
         console.error('Error:', error)

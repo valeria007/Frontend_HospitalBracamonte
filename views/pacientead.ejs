@@ -86,6 +86,7 @@
               <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
                 <ul>
                   <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                  <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
                 </ul>
               </li>
             </ul>
@@ -127,17 +128,20 @@
                       <tr>                          
                         <th>N° Codigo</th>
                         <th>Nombre Medicamento</th>
-                        <th>Cantidad Total</th>
+                        <th>Cantidad Unidades</th>
                         <th>Fecha de increso</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>12458</td>
-                        <td> PARACETAMOL</td>
-                        <td>300</td>
-                        <td>2018-10-28</td>
-                      </tr>
+                      <% for (var i=0; i< data.length; i++) { %>
+                        <tr>
+                          <td class="text-center"><%=data[i].codificacion%></td>
+                          <td class="text-center"><%=data[i].nombre%></td>
+                          <td class="text-center"><%=data[i].unidades%></td>
+                          <td class="text-center"><%=data[i].apellidom%></td>
+                          <td class="text-center"><%=data[i].ci%></td>
+                        </tr>
+                      <% } %>
                     <tbody>
                   </table>
                 </div>

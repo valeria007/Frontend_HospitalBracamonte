@@ -12,6 +12,8 @@
 <link href="/plugins/kalendar/kalendar.css" rel="stylesheet">
 <link rel="stylesheet" href="/plugins/scroll/nanoscroller.css">
 <link href="/plugins/morris/morris.css" rel="stylesheet" />
+<link href="/plugins/calendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/calendar/fullcalendar.print.css" rel="stylesheet" type="text/css" />
 <style>
 	div.a {
 		text-align: center;
@@ -20,6 +22,62 @@
     font: italic normal 400 16px/22px Arial, Verdana, Sans-serif; 
   }
 </style>
+<style>
+    * {
+    margin:0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  
+  .widget {
+    width: 80%;
+    margin: 2em;
+    /*margin:32px; */
+  }
+  
+  .widget p {
+    display: inline-block;
+    line-height: 1em;
+  }
+  
+  .fecha {
+    font-family: Oswald, Arial;
+    text-align: center;
+    font-size:1.5em;
+    margin-bottom: 0.3125rem;
+    /*margin-bottom: 5px;*/
+    background: rgba(0,0,0,.5);
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .reloj {
+    font-family: Oswald, Arial;
+    width: 100%;
+    padding: 20px;
+    font-size: 4em;
+    text-align: center;
+    background: rgba(0,0,0,.5);
+  }
+  
+  .reloj .caja-segundos {
+    display: inline-block;
+  }
+  
+  .reloj .segundos,
+  .reloj .ampm {
+    font-size: 2rem;
+    display: block;
+  }
+  td.uppercase
+  {
+    text-transform: uppercase;
+  }
+  
+  </style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -75,29 +133,151 @@
         </div>
       </div>
       <div class="contentpanel">
-        <div class="container clear_both padding_fix col-lg-8">
-        <br>
-        <br>
-        <br>
+        <div class="container clear_both padding_fix ">
+          <br>
           <div class="row">
-            <div class="col-lg-12 ">
-              <div class="a" style="display:block ">
-                  <h1 class="letras">GOBIERNO AUTONOMO DE POTOSI</h1>
+            <div class="col-md-12">
+              <div class="col-sm-3 col-sm-6">
+                <div class="information green_info">   
+                  <div class="information_inner">
+                    <div class="info green_symbols"><i class="fa fa-medkit icon"></i></div>
+                    <span>MEDICAMENTOS</span>
+                    <h1 class="bolded">0</h1>
+                  </div>
+                </div>
               </div>
-              <br>
-              <br>
-			        <div >
-					      <img class="centrado"src="/images/VIII.gif" width="300" height="200"  />
-			        </div>
-			        <br>
-			        <br>
-			      </div>
+              <div class="col-sm-3 col-sm-6">
+                <div class="information blue_info">
+                  <div class="information_inner">
+                  <div class="info blue_symbols"><i class="fa fa-list-alt icon"></i></div>
+                    <span>Stock</span>
+                    <h1 class="bolded">0</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-sm-6">
+                <div class="information silver_info">
+                  <div class="information_inner">
+                  <div class="info silver_symbols"><i class="fa fa-shopping-cart icon"></i></div>
+                    <span>PEDIDOS</span>
+                    <h1 class="bolded">0</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-sm-6">
+                <div class="information red_info">
+                  <div class="information_inner">
+                  <div class="info red_symbols"><i class="fa fa-shopping-cart icon"></i></div>
+                    <span>VENTAS</span>
+                    <h1 class="bolded">0</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-6">
+                <div class="widget">
+                  <div class="fecha">
+                    <p id="diaSemana" class="diaSemana">Martes</p>
+                    <p id="dia" class="dia">27</p>
+                    <p>de </p>
+                    <p id="mes" class="mes">Octubre</p>
+                    <p>del </p>
+                    <p id="year" class="year">2015</p>
+                  </div>
+                
+                  <div class="reloj">
+                    <p id="horas" class="horas">11</p>
+                    <p>:</p>
+                    <p id="minutos" class="minutos">48</p>
+                    <p>:</p>
+                    <div class="caja-segundos">
+                      <p id="ampm" class="ampm">AM</p>
+                      <p id="segundos" class="segundos">12</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 ">
+                <div id='calendar'></div>
+                <!--/calendar end-->
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+<script>
+  (function(){
+	var actualizarHora = function(){
+		// Obtenemos la fecha actual, incluyendo las horas, minutos, segundos, dia de la semana, dia del mes, mes y año;
+		var fecha = new Date(),
+			horas = fecha.getHours(),
+			ampm,
+			minutos = fecha.getMinutes(),
+			segundos = fecha.getSeconds(),
+			diaSemana = fecha.getDay(),
+			dia = fecha.getDate(),
+			mes = fecha.getMonth(),
+			year = fecha.getFullYear();
 
+		// Accedemos a los elementos del DOM para agregar mas adelante sus correspondientes valores
+		var pHoras = document.getElementById('horas'),
+			pAMPM = document.getElementById('ampm'),
+			pMinutos = document.getElementById('minutos'),
+			pSegundos = document.getElementById('segundos'),
+			pDiaSemana = document.getElementById('diaSemana'),
+			pDia = document.getElementById('dia'),
+			pMes = document.getElementById('mes'),
+			pYear = document.getElementById('year');
+
+		
+		// Obtenemos el dia se la semana y lo mostramos
+		var semana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+		pDiaSemana.textContent = semana[diaSemana];
+
+		// Obtenemos el dia del mes
+		pDia.textContent = dia;
+
+		// Obtenemos el Mes y año y lo mostramos
+		var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+		pMes.textContent = meses[mes];
+		pYear.textContent = year;
+
+		// Cambiamos las hora de 24 a 12 horas y establecemos si es AM o PM
+
+		if (horas >= 12) {
+			horas = horas - 12;
+			ampm = 'PM';
+		} else {
+			ampm = 'AM';
+		}
+
+		// Detectamos cuando sean las 0 AM y transformamos a 12 AM
+		if (horas == 0 ){
+			horas = 12;
+		}
+
+		// Si queremos mostrar un cero antes de las horas ejecutamos este condicional
+		// if (horas < 10){horas = '0' + horas;}
+		pHoras.textContent = horas;
+		pAMPM.textContent = ampm;
+
+		// Minutos y Segundos
+		if (minutos < 10){ minutos = "0" + minutos; }
+		if (segundos < 10){ segundos = "0" + segundos; }
+
+		pMinutos.textContent = minutos;
+		pSegundos.textContent = segundos;
+	};
+
+	actualizarHora();
+	var intervalo = setInterval(actualizarHora, 1000);
+  }())
+</script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>
@@ -124,5 +304,9 @@
 <script src="/js/side-chats.js"></script>
 <script src="/js/jquery.slimscroll.min.js"></script>
 <script src="/plugins/scroll/jquery.nanoscroller.js"></script>
+
+<script src="/js/jquery-ui.custom.min.js"></script>
+<script src="/plugins/calendar/fullcalendar.min.js"></script>
+<script src="/plugins/calendar/external-draging-calendar.js"></script>
 </body>
 </html>
