@@ -176,8 +176,8 @@
                                     <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
                                         <div class="col-sm-12 row"> 
                                                                        
-                                            <div class=" col-sm-5 ">
-                                                <div class="col-sm-6  ">
+                                            <div class=" col-sm-14 row">
+                                                <div class="col-sm-2 ">
                                                     <div class="entrada">
                                                         <label class="">Hora:</label>
                                                             <p><%=cita[0].hora.split("/")[0]%></p>
@@ -185,8 +185,8 @@
                                                     </div>
                                                                                    
                                                 </div>
-                                                <div class="col-sm-6 center">
-                                                        <div class="entrada center">
+                                                <div class="col-sm-9 text-center">
+                                                        <div class="entrada ">
                                                             <label class="">Especialidad:</label><p><b><%=cita[0].especialidad%></b></p>
                                                                                                                            
                                                         </div>
@@ -301,6 +301,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="task-footer">
+                                                                <div class="col-md-4">
+                                                                        <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-reply"></i> ATRAS</a>	
+										
+                                                                </div>
+                                                                    
                                                                 <a @click="eliminarDiag(index)">quitar</a>                                                        
                                                             </div>
                                                         </section>
@@ -310,8 +315,10 @@
 
                                             </div>
 
-                                            <button class="btn btn-primary" type="submit">Submit</button>
-                                            <button class="btn btn-default">Cancel</button>
+                                           
+											<button type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
+											<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
+
                                         </form>
 
                                     </template>
@@ -353,7 +360,7 @@
                                                                 <%if(updateCita != "") { %>
                                                                     <li><a href="/consulta_externa/receta/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <i class="fa fa-building-o"></i>Receta</a></li>  
                                                                     <li><a href="/consulta_externa/papeleta_internacion/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-exclamation-triangle"></i>Orden de Internación</a></li>        
-                                                                    <li><a href="/paciente/O_Laboratorio"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li>
+                                                                    <li><a href="/laboratorios/lab_consulta_externa/<%=updateCita[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"><i class="fa fa-clipboard"></i>Examenes Complementarios </a></li>
                                                                 <% }  %>
                                                                                                                                          
                                                             </ul>  
@@ -378,7 +385,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="task-footer">
-                                                                <a @click="eliminarDiag_update(index)">quitar</a>                                                        
+                                                                	<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-reply"></i> ATRAS</a>	
+										
+                                                                <a @click="eliminarDiag_update(index)"  class="btn btn-primary">quitar</a>                                                        
                                                             </div>
                                                         </section>
                                                     </div> 

@@ -1,6 +1,7 @@
 const ver_pedido =  new Vue({
     el:'#ver_pedido',
     data: () => ({
+        url:data_url.url_front_end,
         msg: "",
         error: "",
         list:[],
@@ -16,7 +17,7 @@ const ver_pedido =  new Vue({
         ver(id){
             this.id_pedido = id;
             console.log("click")
-            fetch('http://localhost:7000/pedidos/vue_verPedido/'+id)   
+            fetch(this.url+'/pedidos/vue_verPedido/'+id)   
             .then(resp => resp.json())
             .then(resp =>{
                 this.codigo_compra = resp[0].codigoCompra         
@@ -105,7 +106,7 @@ const ver_pedido =  new Vue({
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/pedidos/vue_update_pedido/'+this.id_pedido,esto)
+                fetch(this.url+'/pedidos/vue_update_pedido/'+this.id_pedido,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(data => { 
@@ -135,7 +136,7 @@ const ver_pedido =  new Vue({
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/pedidos/Vuecreate_pedido_medicamento/'+this.list[i].item.id,esto)
+                fetch(this.url+'/pedidos/Vuecreate_pedido_medicamento/'+this.list[i].item.id,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(resp => {  
@@ -155,7 +156,7 @@ const ver_pedido =  new Vue({
                       'Content-type' : "application/json"
                     }
                 };
-                fetch('http://localhost:7000/pedidos/Vue_add_unidades/'+this.list[i].item.id,esto)
+                fetch(this.url+'/pedidos/Vue_add_unidades/'+this.list[i].item.id,esto)
                 .then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(resp => {  
