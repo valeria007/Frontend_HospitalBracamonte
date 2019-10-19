@@ -4,7 +4,8 @@ Vue.filter('numeral', function (value) {
 const receta_cliente = new Vue({
     el: '.receta_cliente', 
     data : () => ({
-        msg: 'aljand',
+        url:data_url.url_front_end,
+        msg: '',
 
         alert: "",
         pass:"",
@@ -45,7 +46,7 @@ const receta_cliente = new Vue({
         },
     }),
     created:function() {
-        fetch('http://localhost:7000/farmacia/Vue_medicamentos_farmacia')
+        fetch(this.url+'/farmacia/Vue_medicamentos_farmacia')
         .then(res => res.json())
         .then(res => {
             for(var i = 0; i < res.length; i++){
@@ -145,7 +146,7 @@ const receta_cliente = new Vue({
       
             }  else {
               axios
-              .get('http://localhost:7000/farmacia/vue_medicamento/'+id)
+              .get(this.url+'/farmacia/vue_medicamento/'+id)
               .then(response => {
                 console.log(response.data[0].cantidad_unidad, " esto es un medicamentos insertado <<<<")
                 var numero = response.data[0].cantidad_unidad - cantidad
@@ -240,7 +241,7 @@ const receta_cliente = new Vue({
                 'Content-type' : "application/json"
               }
             };
-            fetch('http://localhost:7000/farmacia/register_venta_cliente/'+this.id_cliente,esto)
+            fetch(this.url+'/farmacia/register_venta_cliente/'+this.id_cliente,esto)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
@@ -274,7 +275,7 @@ const receta_cliente = new Vue({
                 'Content-type' : "application/json"
               }
             };
-            fetch('http://localhost:7000/farmacia/vue_update_cantidad/'+lista[i].item.id,esto)
+            fetch(this.url+'/farmacia/vue_update_cantidad/'+lista[i].item.id,esto)
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {

@@ -135,6 +135,11 @@
                                         <a href="/internaciones/list_internados_alta/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i><b class="theme_color">Pacientes de alta </b></a> 
                                     </li> 
                                 <% } %>
+                                <li> 
+									<a href="/internaciones/lista_traslados/<%=data_doc.data.area_esp.id%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
+										<b >Traslados</b>
+									</a> 
+								</li>
 								
 							</ul>
                         </li>
@@ -279,10 +284,14 @@
                                                 
                                             <form @submit="reg_nota_evolucion">
                                                 <div class="form-group">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <label class="control-label" >Fecha:</label><br>
-                                                        <input type="datetime-local" class="form-control" v-model="nota_evolucion.fecha" >
+                                                        <input type="text" readonly class="form-control" v-model="nota_evolucion.fecha" >
                                                     </div> 
+                                                    <div class="col-md-6">
+                                                            <label class="control-label" >Fecha:</label><br>
+                                                            <input type="text" readonly class="form-control" v-model="nota_evolucion.hora" >
+                                                        </div> 
                                                     <div class="col-sm-12"><br><br>
                                                         <label class="control-label">Nota de Evolución:</label>
                                                         <textarea class='form-control autoExpand' rows='2' data-min-rows='2' v-model="nota_evolucion.nota_evolucion"></textarea>
@@ -510,7 +519,7 @@
                                                 <template v-for="(list_nota, index) in nota_evolucion.listNotas_evolucion">
                                                     <div class="col-md-4" style="border: black">
                                                         <section class="panel default blue_border vertical_border h1">
-                                                            <div class="task-header blue_task">Nota {{index + 1}} <span><i class="fa fa-calendar-o"></i>{{ list_nota.fecha}}</span> </div>
+                                                            <div class="task-header blue_task">Nota {{index + 1}} <span><i class="fa fa-calendar-o"></i>{{ list_nota.fecha}} {{ list_nota.hora}}</span> </div>
                                                             <div class="row task_inner inner_padding">
                                                                 <div class="col-sm-12">
                                                                     <textarea name="" readonly id="" cols="30" rows="20" class="form-control">{{list_nota.nota_evolucion}}</textarea>
@@ -545,10 +554,14 @@
                                                 
                                                     <form @submit="reg_diagnostico"  >
                                                         <div class="form-group">
-                                                            <div class="col-sm-12"><br>
+                                                            <div class="col-sm-6"><br>
                                                                 <label class="control-label">fecha:</label>  
-                                                                <input type="datetime-local" name="" id="" v-model = "daigTratameinto.fecha">
-                                                            </div>                                                
+                                                                <input type="text" readonly  v-model = "daigTratameinto.fecha">
+                                                            </div>   
+                                                            <div class="col-sm-6"><br>
+                                                                <label class="control-label">Hora:</label>  
+                                                                <input type="text" readonly  v-model = "daigTratameinto.hora">
+                                                            </div>                                              
                                                         </div>
 
                                                         <div class="form-group">
@@ -996,6 +1009,8 @@
         </div>
     </div>
    <%- include("../partials/scripts") -%>
+   <script src="/moment/moment.js"></script>
+	<script src="/moment/locale/af.js"></script>
    <script src="/url/export.js"></script>
    <script src="/js/vue/epicrisis.js"></script>  
    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script>

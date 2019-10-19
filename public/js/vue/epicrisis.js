@@ -1,4 +1,5 @@
 
+console.log(moment().format('HH:mm:ss')); // 16:13:11
 var hospital = new Vue({
     el:"#hospital",
     data:{
@@ -18,6 +19,7 @@ var hospital = new Vue({
             msg:"",
             msg_false:"",
             fecha:'',
+            hora:'',
             nota_evolucion:'',
             listNotas_evolucion:[],
             one_notaEvolucion:''
@@ -30,6 +32,7 @@ var hospital = new Vue({
             msg_false:'',
 
             fecha:'',
+            hora:'',
             evolucion:'',            
             medicamentos:[],
 
@@ -102,6 +105,12 @@ var hospital = new Vue({
         
     },
     mounted(){
+        //notas de evolucion
+        this.nota_evolucion.fecha = moment().format('l'); 
+        this.nota_evolucion.hora = moment().format('HH:mm:ss')
+        //diagnostico
+        this.daigTratameinto.fecha = moment().format('l'); 
+        this.daigTratameinto.hora = moment().format('HH:mm:ss')
         axios
         .get(this.url+'/internaciones/vue_listEvolucion/'+this.idHist.id_int)
         .then(response => {
@@ -125,6 +134,7 @@ var hospital = new Vue({
             var data = {
                 historial : this.idHist.hist,
                 fecha : this.nota_evolucion.fecha,
+                hora: this.nota_evolucion.hora,
                 nota_evolucion : this.nota_evolucion.nota_evolucion,
                 id_medico: this.idHist.id_medico
             };
@@ -201,6 +211,7 @@ var hospital = new Vue({
             var data = {
                 historial:this.idHist.hist,
                 fecha:this.daigTratameinto.fecha,
+                hora: this.daigTratameinto.hora,
                 evolucion: this.daigTratameinto.evolucion,
                 medicamentos:this.daigTratameinto.medicamentos,
                 id_medico: this.idHist.id_medico

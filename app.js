@@ -43,6 +43,7 @@ app.use('/datos_genPaciente_emergencia', require('./routes/datos_generales_P_eme
 app.use('/consulta_externa', require('./routes/consulta_externa'));
 app.use('/emergencia2.0', require('./routes/emergencia2.0'));
 app.use('/role', require('./routes/roles'));
+app.use('/laboratorios', require('./routes/laboratorios'));
 
 
 

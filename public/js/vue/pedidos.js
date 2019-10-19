@@ -9,6 +9,7 @@ const carMedicamentos = new Vue({
     el: '#carMedicamentos',    
     data : () => ({
       
+      url:data_url.url_front_end,
       aljand:'aljand 321',
       mostrar:true,
 
@@ -26,6 +27,7 @@ const carMedicamentos = new Vue({
       totalPrice : 0,
 
       codigoCompra:'',
+      responsable:'',
       boletaPago:'',
       tipoMaterial:'',
       fechaIngreso:'',
@@ -51,7 +53,7 @@ const carMedicamentos = new Vue({
   
     }),
     created:function() {
-      fetch('http://localhost:7000/pedidos/vuePedidos')
+      fetch(this.url+'/pedidos/vuePedidos')
       .then(res => res.json())
       .then(res => {
         for(var i = 0; i < res.length; i++){
@@ -169,7 +171,7 @@ const carMedicamentos = new Vue({
         */
         agregar: function (){
             axios
-            .get('http://localhost:7000/pedidos/vuePedidos')
+            .get(this.url+'/pedidos/vuePedidos')
             .then(response => {
               this.resources = response.data              
             })
@@ -186,7 +188,7 @@ const carMedicamentos = new Vue({
             
           }  else {
             axios
-          .get('http://localhost:7000/pedidos/carrito/'+id)
+          .get(this.url+'/pedidos/carrito/'+id)
           .then(response => {
             var car = {
               id: response.data.id,
@@ -270,7 +272,7 @@ const carMedicamentos = new Vue({
                     'Content-type' : "application/json"
                   }
               };
-              fetch('http://localhost:7000/pedidos/PostCarrito',esto)
+              fetch(this.url+'/pedidos/PostCarrito',esto)
               .then(res => res.json())
               .catch(error => console.error('Error:', error))
               .then(data => { 
