@@ -11,10 +11,18 @@ router.get('/lab_consulta_externa/:id_consulta/:token_id/:token_p', (req,res) =>
         .then(resp => resp.json())
         .then(ConsultaOnly =>{
             console.log(ConsultaOnly, " <<<<<<<<<<<< esto es lo que quiero ver")
-            res.render('consulta_externa/O_Laboratorio',{
-                ConsultaOnly,
-                data_doc:datas.name.data_user[token_id],
-            })
+            fetch('http://localhost:3000/api/onlyPaciente/'+ConsultaOnly[0].numeroHistorial)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data_paciente => {
+                console.log(data_paciente, " <<<<<<<<<<<< esto es lo que quiero ver")
+                res.render('consulta_externa/O_Laboratorio',{
+                    ConsultaOnly,
+                    data_doc:datas.name.data_user[token_id],
+                    data_paciente
+                })
+             })
+            
         })
         .catch(error => {
             res.status(500).json({
@@ -26,6 +34,24 @@ router.get('/lab_consulta_externa/:id_consulta/:token_id/:token_p', (req,res) =>
     }else{
         res.redirect('/')
     }
+})
+
+router.post('/vue_insert_lab_consultaExterna/:id_consulta', (req,res) => {
+    const { id_consulta } = req.params
+    var data = req.body
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch('http://localhost:3050/api/create_lab_consulta/'+id_consulta,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then( data => {
+        res.status(400).json(data)
+    })
 })
 
 
