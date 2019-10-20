@@ -94,10 +94,28 @@ router.get('/home/:id', (req,res) => {
                 .then(resp => resp.json())
                 .catch(error => console.error('Error',error))
                 .then(resp => {
-                    //res.send(resp)
-                    res.render('Almacen/home',{
-                        resp
+                    fetch('http://localhost:3500/api/medicamento')
+                    .then(resp => resp.json())
+                    .then(medi =>{
+                        fetch('http://localhost:3500/api/proveedor')
+                        .then(resp => resp.json())
+                        .then(pro =>{
+                            fetch('http://localhost:3500/api/proveedor')
+                            .then(resp => resp.json())
+                            .then(pedi =>{
+                                res.render('Almacen/home',{
+                                    resp,
+                                    logs:medi.length,
+                                    logs1:pro.length,
+                                    logs2:pedi.length
+                                })
+                            })
+                            
+                        })
+                        
                     })
+                    //res.send(resp)
+                    
                     status = null
                 })
             }else{

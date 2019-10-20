@@ -10,9 +10,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/animate.css" rel="stylesheet" type="text/css" />
 <link href="css/admin.css" rel="stylesheet" type="text/css" />
-<link href="/plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
-<link href="/plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
+<link href="plugins/data-tables/DT_bootstrap.css" rel="stylesheet">
+<link href="plugins/advanced-datatable/css/demo_table.css" rel="stylesheet">
+<link href="plugins/advanced-datatable/css/demo_page.css" rel="stylesheet">
 <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
 <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
@@ -191,6 +191,15 @@ td.uppercase
                     <div class="info2 silver_symbols"><i class="fa fa-plus-square icon"></i></div>
                     <span>ESPECIALIDADES</span>
                     <h1 class="bolded"><%=log5%></h1>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-sm-6"  data-target="#myModal8" data-toggle="modal">
+                <div class="information blues_info">
+                  <div class="information_inner">
+                    <div class="info2 blues_symbols"><i class="fa fa-wheelchair icon"></i></div>
+                    <span>PACIENTES</span>
+                    <h1 class="bolded"><%=log6%></h1>
                   </div>
                 </div>
               </div>
@@ -494,6 +503,45 @@ td.uppercase
       </div>
     </div>
   </div>
+  <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Lista de Enfermeras</h4>
+        </div>
+        <div class="modal-body"> 
+          <div class="table-responsive">
+            <table  class="table table-bordered" >
+              <thead>
+                <tr>                          
+                  <th>N° Historial</th>
+                  <th>Nombre</th>
+                  <th>Apellido Paterno</th>
+                  <th>Apellido Materno</th>
+                  <th>Edad</th>
+              </tr>
+              </thead>
+              <tbody>
+                <% for (var i=0; i< paci.length; i++) { %>
+                  <tr>
+                    <td class="text-center"><%=paci[i].numeroHistorial%></td>
+                    <td class="text-center"><%=paci[i].nombre%></td>
+                    <td class="text-center"><%=paci[i].apellidop%></td>
+                    <td class="text-center"><%=paci[i].apellidom%></td>
+                    <td class="text-center"><%=paci[i].ci%></td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <script>
   (function(){
 	var actualizarHora = function(){
@@ -599,9 +647,9 @@ td.uppercase
 <script src="plugins/kalendar/kalendar.js" type="text/javascript"></script>
 <script src="plugins/kalendar/edit-kalendar.js" type="text/javascript"></script>
 
-<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+<script src="plugins/data-tables/jquery.dataTables.js"></script>
+<script src="plugins/data-tables/DT_bootstrap.js"></script>
+<script src="plugins/data-tables/dynamic_table_init.js"></script>
 
 <script src="plugins/sparkline/jquery.sparkline.js" type="text/javascript"></script>
 <script src="plugins/sparkline/jquery.customSelect.min.js" ></script> 
