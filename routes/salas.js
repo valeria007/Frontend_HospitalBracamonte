@@ -200,5 +200,25 @@ router.post('/updateCama/:id', (req,res) => {
     res.redirect('/salas/dataCam/'+datacama);     
   })
 });
+/**////////////////////////////eliminar cams ////////////////*/
+
+router.get('/delcama/:id', (req, res) => {
+  const { id }= req.params;
+  fetch('http://localhost:3000/api/DElcama/'+id)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error:', error))
+  .then(resp =>{
+      console.log(resp)
+      res.redirect('/salas/dataCam/'+datacama);
+  });
+  
+});
+////////////////limpiar actualizaciones//////////////////////////////////
+router.get('/limpiar', (req,res) => {
+  res.redirect('/salas/renderSalas');
+})
+router.get('/volverSalas', (req,res) => {
+  res.redirect('/salas/renderSalas')
+})
 
 module.exports = router;

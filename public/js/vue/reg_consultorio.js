@@ -17,7 +17,15 @@ var reg_sala = new Vue({
         data_medicos:'',
         ci_medico:'',
         nombre_medico: '',
-        especilidad_lista_medicas:''
+        especilidad_lista_medicas:'',
+        selected: "",
+        options: [{
+          id: 1,
+          name: "CONSUL. EMERGENCIA"
+        }, {
+          id: 2,
+          name: "CONSUL. ANATOMÍA PATOLÓGICA"
+        }]
         
     }),
     mounted(){

@@ -80,30 +80,32 @@
                               <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
                               <% } else { %>
                             <form class="form-horizontal group-border-dashed" action="/salas/updateSalas/<%=OnlySala[0].id%>"  method="POST" parsley-validate novalidate>
-                              <div class="form-group col-sm-12">
-                                <div class="col-sm-3">
-                                  <label class="control-label">Especialidad:</label>
+                              <div class="form-group ">
+                                <label class="col-sm-4 control-label">Especialidad:</label>
+                                <div class="col-sm-4">
                                   <select class="form-control" id="source" name="nombre">
-                                      <option><%=OnlySala[0].nombre%></option>
-                                      <option> ------------------------------------------</option>
-                                      <%for(var i = 0; i< dataSala.length; i++) { %>
-                                        <option><%=dataSala[i.nombre]%></option>
-                                      <% } %>
-                                      <!-- <option >INTERNACIÓN GENERAL</option>
-                                      <option >UNIDAD DE TERAPIA INTENSIVA</option>
-                                      <option >UNIDAD DE CUIDADOS INTENSIVOS CORONARIOS</option>
-                                      <option >UNIDAD DE TERAPIA INTENSIVA PEDIÁTRICA</option>
-                                      <option >UNIDAD DE TERAPIA INTERMEDIA</option>
-                                      <option >MATERNIDAD Y OBSTETRICIA</option>
-                                      <option >UNIDAD DE TERAPIA INTENSIVA NEONATOLÓGICA </option>
-                                      <option >INTERNACIÓN DE PSIQUIATRÍA</option>
-                                      <option >PEDIATRÍA</option>
-                                      <option >CIRUGÍA</option>
-                                      <option >TRAUMATOLOGÍA</option>   -->
+                                    <option><%=OnlySala[0].nombre%></option>
+                                    <option> ------------------------------------------</option>
+                                    <%for(var i = 0; i< dataSala.length; i++) { %>
+                                      <option><%=dataSala[i.nombre]%></option>
+                                    <% } %>
+                                    <!-- <option >INTERNACIÓN GENERAL</option>
+                                    <option >UNIDAD DE TERAPIA INTENSIVA</option>
+                                    <option >UNIDAD DE CUIDADOS INTENSIVOS CORONARIOS</option>
+                                    <option >UNIDAD DE TERAPIA INTENSIVA PEDIÁTRICA</option>
+                                    <option >UNIDAD DE TERAPIA INTERMEDIA</option>
+                                    <option >MATERNIDAD Y OBSTETRICIA</option>
+                                    <option >UNIDAD DE TERAPIA INTENSIVA NEONATOLÓGICA </option>
+                                    <option >INTERNACIÓN DE PSIQUIATRÍA</option>
+                                    <option >PEDIATRÍA</option>
+                                    <option >CIRUGÍA</option>
+                                    <option >TRAUMATOLOGÍA</option>   -->
                                   </select>
                                 </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Descricion:</label>
                                 <div class="col-sm-3">
-                                  <label class="control-label">Descricion:</label>
                                   <select  class="form-control" id="source" name="descripcionSala">
                                     <option><%=OnlySala[0].descripcionSala%></option>
                                     <option>-----------------</option>
@@ -114,9 +116,10 @@
                                     <option>Sala H.- General</option>
                                   </select>
                                 </div>
-                                <div class="col-sm-3">
-                                  <label class="control-label">Piso:</label>
-                                  <input class="form-control" parsley-trigger="change" type="text" name="piso" value="<%=OnlySala[0].piso%>" />
+                              </div>  
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Piso:</label>
+                                <div class="col-sm-4">
                                   <select  class="form-control" id="source"  name="piso">
                                     <option><%=OnlySala[0].piso%></option>
                                     <option>-------------------------</option>
@@ -127,12 +130,11 @@
                                     <option>4.ª PLANTA(CUARTA PLANTA)</option>
                                   </select>
                                 </div>
-                                
                               </div>
                               <div class="form-group">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                   <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
-                                  <a class="btn btn-danger"href=""><i class="fa fa-reply"></i><span>&nbsp;</span>Cancelar</a>
+                                  <a href="/salas/limpiar" class="btn btn-danger"href=""><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
                                 </div>
                               </div>
                             </form>
@@ -142,9 +144,10 @@
                             <% } else { %>
                             <form class="form-horizontal group-border-dashed" action="/salas/salas" method="POST" parsley-validate novalidate>
                               <div class="form-group ">
-                                <div class="col-sm-5">
-                                  <label class="control-label">Sala:</label>
-                                  <select class="form-control" id="source" name="nombre">
+                                <label class="col-sm-4 control-label">Sala:</label>
+                                <div class="col-sm-4">
+                                  <select data-show-subtext="true" data-live-search="true"  name="nombre" >
+                                      <option value="" selected disabled hidden >--Seleccione--</option>
                                       <%for(var i = 0; i< dataSala.length; i++) { %>
                                         <option><%=dataSala[i].nombre%></option>
                                       <% } %>
@@ -161,9 +164,12 @@
                                     <option >TRAUMATOLOGÍA</option> -->
                                   </select>
                                 </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Descricion:</label>
                                 <div class="col-sm-3">
-                                  <label class="control-label">Descricion:</label>
-                                  <select  class="form-control" id="source"  name="descripcionSala">
+                                  <select  class="form-control" id="source"  name="descripcionSala" required placeholder="">
+                                    <option value="" selected disabled hidden >--Seleccione--</option>
                                     <option>Sala H.- Niños</option>
                                     <option>Sala H.- Hombres</option>
                                     <option>Sala H.- Mujeres</option>
@@ -171,9 +177,12 @@
                                     <option>Sala H.- General</option>
                                   </select>
                                 </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Piso:</label>
                                 <div class="col-sm-4">
-                                  <label class="control-label">Piso:</label>
-                                  <select  class="form-control" id="source"  name="piso">
+                                  <select  class="form-control" id="source"  name="piso" required placeholder="">
+                                    <option value="" selected disabled hidden >--Seleccione--</option>
                                     <option>P.: P. B.(PLANTA BAJA)</option>
                                     <option>1.ª PLANTA(PRIMER PLANTA)</option>
                                     <option>2.ª PLANTA(SEGUNDO PLANTA)</option>
@@ -214,12 +223,12 @@
                                     <td class="text-center"><%=resp[i].nombre%></td>
                                     <td class="text-center"><%=resp[i].descripcionSala%></td>
                                     <td class="text-center"><%=resp[i].piso%></td>
-                                    <td>
+                                    <td class="text-center">
                                       <a href="/salas/renderCamas/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Camas"><i class="fa fa-plus" style="color:black"></i></a>
                                       <a href="/salas/updateSalas/<%=resp[i].id%>""  data-toggle="tooltip" class="btn  tooltips" data-original-title="editar"><i class="fa fa-pencil " style="color: darkgreen"></i></a><span>&nbsp;</span>
                                     </td>							
                                   </tr>
-                                  <% } %>
+                                  <% } %> 
                                 </tbody>
                               </table>
                             </div>
@@ -242,7 +251,8 @@
     </div>
   </div>
 <%- include("partials/scripts") -%>
-
+<!--select Buscar-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 </body>
 </html>
