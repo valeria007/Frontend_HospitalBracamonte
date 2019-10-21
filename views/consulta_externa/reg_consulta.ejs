@@ -325,21 +325,21 @@
                                                         <div class="form-group">
                                                             <label>Motivo de consulta</label>
                                                         
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.anamnesis"></textarea>
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.anamnesis"onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div> 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Tratamiento</label>
     
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.tratamiento"></textarea>
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.tratamiento" onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div>    
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Observaciones</label>
     
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.observaciones"></textarea>
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.observaciones" onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div> 
 
@@ -372,7 +372,7 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label>Observaciones</label>
-                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones"></textarea>                                                                    
+                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones"onkeyup="mayus(this);"></textarea>                                                                    
                                                                         </div>
                                                                     </div>
                                                                 </div>
