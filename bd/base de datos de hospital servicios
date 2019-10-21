@@ -68,3 +68,6 @@ sequelize model:create --name diagnostico_tratamientos --attributes historial:in
 sequelize model:create --name diagnostico --attributes codigo:string,descripcion:text
 
 sequelize model:create --name traslados --attributes fecha_hora:string,enviado_de:string,operaciones:text,diagnostico_principal:text,otros_diagnosticos:text,causa_externa:text,id_paleta_internacion:integer,id_internacio:integer,id_medico:integer
+
+
+sequelize model:create --name consulta_lab --attributes fecha:string,hora:string,historial:integer,nombre_doctor:text,examen:json,otros:text,id_internacion:integer,id_consulta:integer,id_user:integer
