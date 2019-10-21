@@ -2,6 +2,17 @@ const lab_consulta_externa = new Vue({
     el: '#lab_consulta_externa',    
     data : () => ({
         msg: "alejandro",
+        // datas
+        id_consulta:'',
+        historial:'',
+        nombre_doctor:'',
+        fecha:'',
+        hora:'',
+        tipo_laboratorio_eco:'ECOGRAFIA',
+        tipo_laboratorio_rayosX:'Rayos_x',
+        tipo_laboratorio_lab:'LABORATORIO',
+
+        //ecografia        
         ecografia:[],
         eco_data:{
             
@@ -11,7 +22,7 @@ const lab_consulta_externa = new Vue({
             4:{estado:false},
             5:{estado:false}
         },
-
+        otros_eco:'',
         //rayosX 
         x_data:{
             1:{estado:false},
@@ -105,7 +116,8 @@ const lab_consulta_externa = new Vue({
 
             Miembros_superiores:[],
             Miembros_inferiores:[]
-        },  
+        }, 
+         otros_rayosX:'',
         //LABORATORIOS
         group_laboratorio:{
             Hemotología:[],
@@ -193,8 +205,13 @@ const lab_consulta_externa = new Vue({
             67:{estado:false},
             68:{estado:false},
             
-        }
+        },
+        otros_lab:''
     }),
+    mounted(){
+        this.fecha = moment().format('l'); 
+        this.hora = moment().format('HH:mm:ss')
+    },
     methods:{  
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         //ecografia 
@@ -222,6 +239,32 @@ const lab_consulta_externa = new Vue({
             this.eco_data[id].estado = false
             this.ecografia.splice(index,1)
         },
+        
+        register_ecografia(e){
+            e.preventDefault();
+            var data = {
+                tipo_laboratorio : this.tipo_laboratorio_eco,
+                fecha : this.fecha,
+                hora : this.hora,
+                historial : this.historial,
+                nombre_doctor : this.nombre_doctor,
+                examen : this.ecografia,
+                otros : this.otros_eco,
+            };
+            var esto = {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                  'Content-type' : "application/json"
+                }
+            };
+            fetch(this.url+'/laboratorios/vue_insert_lab_consultaExterna/'+this.id_consulta,esto)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                console.log(data, " esto es lo que quiero ver")
+            })
+        },  
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         //rayos X
         rayosX_select(id,num,descripcion){
@@ -640,6 +683,7 @@ const lab_consulta_externa = new Vue({
                 this.group_laboratorio.Perfil_lipidico.splice(index,1)
             }
         },
+        
 
 
        
