@@ -146,7 +146,7 @@
                               <div class="form-group ">
                                 <label class="col-sm-4 control-label">Sala:</label>
                                 <div class="col-sm-4">
-                                  <select data-show-subtext="true" data-live-search="true"  name="nombre" >
+                                  <select class="selectpicker" data-show-subtext="true" data-live-search="true"  name="nombre" >
                                       <option value="" selected disabled hidden >--Seleccione--</option>
                                       <%for(var i = 0; i< dataSala.length; i++) { %>
                                         <option><%=dataSala[i].nombre%></option>
@@ -251,8 +251,7 @@
     </div>
   </div>
 <%- include("partials/scripts") -%>
-<!--select Buscar-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
 
 </body>
 </html>

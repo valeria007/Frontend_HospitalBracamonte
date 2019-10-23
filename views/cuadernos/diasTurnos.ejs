@@ -5,8 +5,8 @@
 <title>Cuadernos</title>
 <%- include("../partials/head") -%>	
 <style>
-    .info2{ border-radius:100%; float: left; height:80px; width:80px; }
-    .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+  .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+  .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
 </style>
 
 </head>
@@ -89,7 +89,13 @@
                         </div>
                         <br>
                         <div class="porlets-contents">
+                          <% if (msge2 != null) { %>
+                            <span style="color:darkblue;"><%=msge2%></span>
+                          <% } else if (msge1 != null)  {%>
+                            <span style="color: crimson;"><%=msge1%></span>
+                          <% } %>  
                           <div id="demo" class="collapse in">
+                            
                             <form class="form-horizontal group-border-dashed" action="/cuaderno/turnos" method="POST" parsley-validate novalidate>  
 				                      <div class="form-group">
                                 <label class="control-label col-md-4">Día de atención :</label>
@@ -134,7 +140,7 @@
                             </form>
                           </div>
                           <br><br>
-                          <textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
+                          
                           <div class="porlets-content">
                             <div class="table-responsive">
                               <table  class="display table table-bordered table-striped" id="dynamic-table">

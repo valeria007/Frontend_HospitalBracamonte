@@ -38,8 +38,10 @@
 		div.a {
 			text-align: center;
 		}
+
 		h1.letras {
 			font: italic normal 400 16px/22px Arial, Verdana, Sans-serif;
+
 		}
 		#scroll{
 			position:absolute;
@@ -115,19 +117,19 @@
 					
 							<div class="col-lg-12 block-web"> 
 							<!-- Content page -->
-							<div class="head ">
-								<div class="header">
-									<div class="actions">
-										<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-reply"></i> ATRAS</a>	
+								<div class="head ">
+									<div class="header">
+										<div class="actions">
+											<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+										</div>
+										<div class="info blue_symbols "> <i class="fa fa-file-text icon"></i></div>
+											<h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Recetas</h2>
 									</div>
-									<div class="info blue_symbols "> <i class="fa fa-file-text icon"></i></div>
-										<h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Recetas</h2>
 								</div>
-							</div>
 							</div>
 							<div class="main-content" id="recetas"> 
 								<section class="panel default  h2">
-									<div class="page-content">
+									<div class="">
 										<ul class="nav nav-tabs" style="margin-bottom: 15px;">
 											<li class=" col-lg-6 active active  text-center"><a href="#new" data-toggle="tab"><i class="fa fa-medkit"></i> Receta</a></li>
 											<li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt "></i> Lita de Recetas del Paciente</a></li>
@@ -138,6 +140,7 @@
 												<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
 												<input type="hidden" :value="data_receta.id_medico = '<%=data_doc.data.medico.id%>'">	
 												<!-- 
+
 												 -->
 												<div class="block-web">
 													<div class="header">
@@ -167,13 +170,13 @@
 																		<div class="">
 																			<div class="col-md-5">
 																				<div class="entrada ">
-																					<label class=" ">N° de Historia:</label><p><b><%=paciente_Data[0].numeroHistorial%></b></p>
-																					<input type="hidden" name="numeroHistorial"  v-model="data_receta.historiaClinica = '<%=paciente_Data[0].numeroHistorial%>'" class="form-control" readonly=""  value="Read only text goes here">
+																					<label class=" ">N° de Historia:</label><p><b> </b></p>
+																					<input type="hidden" name="numeroHistorial"  v-model="data_receta.historiaClinica = " class="form-control" readonly=""  value="Read only text goes here">
 																				</div>
 																			</div>
 																			   <div class="col-sm-6 col-sm-12">
 																				<div class="entrada">
-																					<label class=" ">Nombre Completo:</label><p><b><%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%></b></p>
+																					<label class=" ">Nombre Completo:</label><p><b></b></p>
 																					<input type="hidden" name="nombre apellidop apellidom" 
 																						value="<%=paciente_Data[0].nombre%> <%=paciente_Data[0].apellidop%> <%=paciente_Data[0].apellidom%>"
 																						class="form-control" readonly=""
@@ -277,8 +280,8 @@
 																				   <div class="col-sm-3 col-sm-6">
 																					   <ul class="list-group">
 																						   	<div class="entrada">
-																								<h6 class="">Medicamento:</h6>
-																								<input type="text" placeholder="Buscar"  class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true"> <!-- @mouseleave="ocultar = false" -->                                          
+																								<h6 class="">Dosis:</h6>
+																								<input type="text" placeholder="Buscar"  class="form-control" v-model="lista.medicamento"  @mouseover="ocultar = true" onkeyup="mayus(this);" > <!-- @mouseleave="ocultar = false" -->                                          
 																						   	</div>
 																						   	<div id="scroll"  v-if="ocultar" @mouseleave="ocultar = false">
 																								<li  class="list-group-item" v-for="(list, index) in buscar_medicamentos">	
@@ -292,13 +295,13 @@
 																				   <div class="col-sm-2 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">Dosis:</h6>
-																						   <input type="text"  class="form-control" v-model="lista.dosis">                                           
+																						   <input type="text"  class="form-control" v-model="lista.dosis" onkeyup="mayus(this);" >                                           
 																					   </div>
 																				   </div>
 																					   <div class="col-sm-3 col-sm-6">
 																					   <div class="entrada">
 																						   <h6 class="">Via de Administración: </h6>
-																							  <input class="form-control"  v-model="lista.frecuencia">                                                  
+																							  <input class="form-control"  v-model="lista.frecuencia"onkeyup="mayus(this);" >                                                  
 																					   </div>
 																				   </div>
 																				   <div class="col-sm-2 col-sm-6">
@@ -361,11 +364,14 @@
 
 														</div>
 														<div class="col-md-12 page-content ">
+                                   
 															<div class="col-md-8 ">
-															 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class=" fa fa-bars"></i> &nbsp;&nbsp; Limpiar</button>
-															 <button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+																<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class=" fa fa-bars"></i> &nbsp;&nbsp; Limpiar</button>
+																<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
+																<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i> &nbsp;&nbsp; Imprimir</button>
 															</div>
-													 	</div>
+														</div>
+														
 													</form>
 												</template>
 
@@ -471,13 +477,13 @@
 
 															</div>
 														</div>
-														<div class="col-md-12"><br>
-															<template v-if="One_receta.estado == false">														
+														<template v-if="One_receta.estado == false">														
+															<p class="text-center">
 																<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-																<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;  Actualizar</button>
-															</template>
-																<a href="/paciente/imprimirRecetas" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-														</div>
+																<button type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Actualizar</button>
+																<button type="submit" class="btn btn-warning"><i class="fa fa-print"></i> &nbsp;&nbsp; Imprimir</button>
+															</p>
+														</template>
 													</form>
 												</template>
 	
@@ -524,26 +530,6 @@
 										</div><br>
 									</div>
 								</section>
-								<!--<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-								>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><-->
-								<div class="modal fade" id="Alerta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-									  <div class="modal-content">
-										<div class="modal-header">
-										  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										</div>
-										<div class="modal-body"> 
-												<span style="color: red;">{{data_msg.msg_false}}</span>
-												<span style="color: blue;">{{data_msg.msg_true}}</span> 
-										</div>
-										<div class="modal-footer">
-										  <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-										</div>
-									  </div>
-									</div>
-							</div> 
-
-
 								<!-- Modal alergias -->
 								<div class="modal fade" id="alergias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
@@ -633,13 +619,13 @@
 		
 	</div>	
 
-	<!--====== Scripts -->
-	
-	<script>
-		function mayus(e) {
-		e.value = e.value.toUpperCase();
-		}
-	</script>
+    <!--====== Scripts -->
+    <script>
+    function mayus(e) {
+    e.value = e.value.toUpperCase();
+    }
+</script>
+    
 	<script src="/js/fecha.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   <!-- vue cdn -->
 	<script src="/js/jquery-2.1.0.js"></script>

@@ -176,8 +176,8 @@
                                     <div style="height: 0px;" id="ac3-2" class="panel-collapse collapse">
                                         <div class="col-sm-12 row"> 
                                                                        
-                                            <div class=" col-sm-5 ">
-                                                <div class="col-sm-6  ">
+                                            <div class=" col-sm-14 row">
+                                                <div class="col-sm-2 ">
                                                     <div class="entrada">
                                                         <label class="">Hora:</label>
                                                             <p><%=cita[0].hora.split("/")[0]%></p>
@@ -185,8 +185,8 @@
                                                     </div>
                                                                                    
                                                 </div>
-                                                <div class="col-sm-6 center">
-                                                        <div class="entrada center">
+                                                <div class="col-sm-9 text-center">
+                                                        <div class="entrada ">
                                                             <label class="">Especialidad:</label><p><b><%=cita[0].especialidad%></b></p>
                                                                                                                            
                                                         </div>
@@ -233,10 +233,25 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block-web">
-
-                                <span style="color: blue">{{msg}}</span>
-                                <span style="color: red">{{msg_false}}</span>
-                
+                                    
+                                <div class="modal fade" id="Alerta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body"> 
+                                            <span style="color: blue">{{msg}}</span>
+                                            <span style="color: red">{{msg_false}}</span>    
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>   
+                                      
+                                    
                                 <div class="porlets-content">
                                     
                                     <template v-if="consulta_update == '' || consulta_update == null">
@@ -248,21 +263,21 @@
                                                     <div class="form-group">
                                                         <label>Motivo de consulta</label>
                                                     
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "anamnesis"></textarea>
+                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca motivo de consulta" class="form-control" v-model = "anamnesis"onkeyup="mayus(this);" ></textarea>
                                                     </div><!--/form-group-->
                                                 </div> 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Tratamiento</label>
 
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "tratamiento"></textarea>
+                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca el tratamiento" class="form-control" v-model = "tratamiento" onkeyup="mayus(this);"></textarea>
                                                     </div><!--/form-group-->
                                                 </div>    
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Observaciones</label>
 
-                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "observaciones"></textarea>
+                                                        <textarea name="" id="" cols="10" rows="4" required placeholder="Introduzaca las Observaciones" class="form-control" v-model = "observaciones" onkeyup="mayus(this);"></textarea>
                                                     </div><!--/form-group-->
                                                 </div> 
 
@@ -276,13 +291,15 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label>Observaciones</label>
-                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones"></textarea>                                                                    
+                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones" onkeyup="mayus(this);"></textarea>                                                                    
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="task-footer">
-                                                                <a @click="eliminarDiag(index)">quitar</a>                                                        
+                                                            <div class="task-footer row">
+                                                                <div class="col-md-4 ">
+                                                                    <a @click="eliminarDiag(index)" class="btn btn-success " style='width:83px; height:30px'><i class="fa fa-times-circle"></i><font size="1"> Quitar</font></a>	
+										                        </div>
                                                             </div>
                                                         </section>
                                                     </div> 
@@ -290,9 +307,11 @@
                                                 </template> 
 
                                             </div>
+                                            
+                                           
+											<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-success btn-raised" style="margin-right: 20px;"><i class='fa fa-save'></i>&nbsp;&nbsp; Guardar</button>
+											<button type="submit" class="btn btn-danger btn-raised" style="margin-right: 20px;"><i class='fa fa-times'></i>&nbsp;&nbsp; Cancelar</button>
 
-                                            <button class="btn btn-primary" type="submit">Submit</button>
-                                            <button class="btn btn-default">Cancel</button>
                                         </form>
 
                                     </template>
@@ -306,21 +325,21 @@
                                                         <div class="form-group">
                                                             <label>Motivo de consulta</label>
                                                         
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.anamnesis"></textarea>
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.anamnesis"onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div> 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Tratamiento</label>
     
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.tratamiento"></textarea>
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.tratamiento" onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div>    
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Observaciones</label>
     
-                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.observaciones"></textarea>
+                                                            <textarea name="" id="" cols="10" rows="4" required placeholder="Enter user name" class="form-control" v-model = "consulta_update.observaciones" onkeyup="mayus(this);"></textarea>
                                                         </div><!--/form-group-->
                                                     </div> 
 
@@ -347,20 +366,23 @@
 
                                                     <div class="col-md-4">
                                                         <section class="panel default orange_border vertical_border h1">
-                                                            <div class="task-header orange_task">{{list.codigo}}<span><i></i><font size="2">{{list.descripcion}}</font></span> </div>
+                                                            <div class="task-header orange_task">{{list.codigo}}<span ><i></i><font size="2">{{list.descripcion}}</font></span> </div>
                                                             <div class="row task_inner inner_padding">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label>Observaciones</label>
-                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones"></textarea>                                                                    
+                                                                            <textarea rows="10" class="form-control" v-model="list.observaciones"onkeyup="mayus(this);"></textarea>                                                                    
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="task-footer">
-                                                                <a @click="eliminarDiag_update(index)">quitar</a>                                                        
+                                                            <div class="task-footer row">
+                                                                <div class="col-md-4 ">
+                                                                    <a @click="eliminarDiag_update(index)" class="btn btn-success " style='width:83px; height:30px'><i class="fa fa-times-circle"></i><font size="1"> Quitar</font></a>	
+                                                                </div>
                                                             </div>
+
                                                         </section>
                                                     </div> 
 
@@ -368,8 +390,8 @@
 
                                             </div>
 
-                                            <button class="btn btn-primary" type="submit">Submit</button>
-                                            <button class="btn btn-default">Cancel</button>
+                                            <button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" class="btn btn-success btn-raised" type="submit"> <i class='fa fa-save'></i>&nbsp;&nbsp;Actualizar</button>
+                                            
                                         </form>
                                     </template>
 
@@ -658,18 +680,18 @@
                                           </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12 page-content ">
-                                   
-                                            <div class="col-md-8 ">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
-                                                <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
-                                                <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
-                                            </div>
-                                        </div>
-                                       
-                                </form>
                             </div>
+                            <div class="col-md-12 page-content ">
+                                   
+                                <div class="col-md-8 ">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class='fa fa-times'></i>&nbsp;&nbsp;Cancelar</button>
+                                    <button type='reset' class='btn btn-info' ><i class='fa fa-minus-square'></i>&nbsp;&nbsp; Limpiar</button>
+                                    <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> &nbsp;&nbsp; Guardar</button>
+                                </div>
+                            </div>
+                                       
+                        </form>
+                    </div>
                             <!--<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<lista examen>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>
                                 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
@@ -734,6 +756,15 @@
 </div>
 
 
+
+
+
+<script>
+    function mayus(e) {
+    e.value = e.value.toUpperCase();
+    }
+</script>
+    
 
 <script>
     document.querySelector('#botao').addEventListener('click', function () {

@@ -66,7 +66,7 @@
 
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"> <%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							
@@ -87,12 +87,12 @@
 					<ul>
 						<li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 							<ul>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
+								<li> <a href="/consulta_externa/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a> </li>
 							</ul>
 						</li>
 						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Consulta Externa<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b> </a> </li>
+								<li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Citas</b> </a> </li>
 							</ul>
 						</li>
 						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Historial<span class="plus"><i class="fa fa-plus"></i></span></a>
@@ -141,20 +141,29 @@
 													<div class="">
 
 														<div class="col-sm-4">
-															<label class="control-labe">Nombre del Paciente:</label>
-															<input type="text" class="form-control" parsley-trigger="change" name="" required placeholder="Nombre del Paciente" />
+															<div class="col-md-12">
+																<label class="control-labe">Nombre del Paciente:</label>
+																<input type="text" class="form-control" readonly value="<%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%>"  />
+															</div>
+															<div class="col-md-12">
+																<label class="control-labe">Fecha:</label>
+																<input type="text" class="form-control" readonly v-model="fecha"  />
+															</div>
+															
 														</div>
 														<div class="col-sm-4">
 															<label class="control-labe">Numero de Historial:</label>
-															<input type="text" name="grupo" class="form-control" parsley-trigger="change" name="" required placeholder="Introdusca N° Historial" />
+															<input type="text" name="grupo" class="form-control" readonly value="<%=data_paciente[0].numeroHistorial%>" />
 														</div>
 														<div class="col-sm-4">
 															<label class="control-labe">C.I.:</label>
-															<input type="text" name="titulo" class="form-control" parsley-trigger="change" name="" required placeholder="Introdusca CI." />
+															<input type="text" name="titulo" class="form-control" value="<%=data_paciente[0].ci%>" readonly  />
+															<div class="col-md-12">
+																<label class="control-labe">Hora:</label>
+																<input type="text" class="form-control" readonly v-model="hora"  />
+															</div>
 														</div><br>
-														
-														
-													
+	
 													</div>
 												</div>
 
@@ -168,6 +177,7 @@
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 									 -->
+									<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
 									<div class="col-lg-14">
 										<section class="panel default blue_title h2">
 											  <div class="panel-heading">LABORATORIOS<span class="semi-bold"> </span> </div>
@@ -179,6 +189,9 @@
 												</ul>
 												<div class="tab-content" id="myTabContent">
 													<div id="Tab1" class="tab-pane fade in active">
+														<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
+														<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
+														<input type="hidden" :value="nombre_doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
 														<!-- 
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -191,7 +204,7 @@
 														 <div class="row">
 															<div class="col-md-14 row">
 
-																<form action="">
+																<form @submit="register_ecografia" method="POST">
 																	<div class="col-md-12">
 																		
 																		<div class="checkbox-inline">
@@ -248,7 +261,7 @@
 																	</div>
 
 																	<div class="col-md-12 ">
-																		<label class=" ">Otros:</label><br>
+																		<label class="">Otros:</label><br>
 																		<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" class="form-control"></textarea>
 																	</div>
 																	
@@ -1629,7 +1642,7 @@
 
 		<script src="/js/jPushMenu.js"></script>
 		<script src="/js/side-chats.js"></script>
-		<script type="text/javascript" src="plugins/toggle-switch/toggles.min.js"></script>
+		<script type="text/javascript" src="/plugins/toggle-switch/toggles.min.js"></script>
 
 		<script src="/plugins/checkbox/zepto.js"></script>
 		<script src="/plugins/checkbox/icheck.js"></script>

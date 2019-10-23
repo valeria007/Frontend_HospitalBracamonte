@@ -784,8 +784,8 @@ router.get('/list_internados_alta/:id_especialidad/:token_id', (req,res) => {
     if( datas.name.token[token_id] ){
         fetch('http://localhost:3000/api/list_internacion_especialidad_false/'+id_especialidad)
         .then(res => res.json())
-
         .then(list_internacion => { 
+            console.log(list_internacion, "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             res.render('hospitalizaciones/list_pacientes_alta',{
                 list_internacion,
                 data_doc: data_user[token_id]
