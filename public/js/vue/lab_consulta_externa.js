@@ -328,16 +328,29 @@ const lab_consulta_externa = new Vue({
             .catch(error => console.error('Error:', error))
             .then(data => {
                 if (data.success == true){
-                    this.msg_eco = data.msg
+                    
                     for (var i = 1; i <= 5; i++){
                         this.eco_data[i].estado = false
                     }
                     this.ecografia = []
                     this.otros_eco = ""
                     this.msg_eco_false = ""
+                    toastr.success(data.msg,'Error' ,{
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "closeButton": true,
+                    })
                 }else{
                     this.msg_eco_false = data.msg
                     this.msg_eco = ""
+                    setTimeout(()=>{
+                        this.msg_eco_false = ""
+                    },5000);
+                    toastr.error(data.msg,'Error' ,{
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "closeButton": true,
+                    } )
                 }                
             })
         },  
@@ -513,6 +526,14 @@ const lab_consulta_externa = new Vue({
             e.preventDefault();
             if( this.group_rayosX.torax.length == 0 && this.group_rayosX.abdomen.length == 0 && this.group_rayosX.craneo_Macizo_Facial.length == 0 && this.group_rayosX.Placas_Radiograficas.length == 0 && this.group_rayosX.Columna_vertebral.length == 0 &&this.group_rayosX.Miembros_superiores.length == 0 &&this.group_rayosX.Miembros_inferiores.length == 0  ){
                 this.msg_rayos_x_false = "Selecione uno o varios por favor"
+                setTimeout(()=>{
+                    this.msg_rayos_x_false = ""
+                },5000);
+                toastr.error('Selecione uno o varios por favor','Error' ,{
+                    "progressBar": true,
+                    "positionClass": "toast-top-center",
+                    "closeButton": true,
+                } )
             }else{
                 var data = {
                     tipo_laboratorio : this.tipo_laboratorio_rayosX,
@@ -537,7 +558,7 @@ const lab_consulta_externa = new Vue({
                 .then(data => {
                     console.log(data, "esto es de rayos x")
                     if (data.success == true){
-                        this.msg_rayos_x = data.msg
+                        
                         for(var i = 1; i <= 80; i++){
                             this.x_data[i].estado = false
                         }
@@ -552,9 +573,22 @@ const lab_consulta_externa = new Vue({
                         this.group_rayosX.Miembros_inferiores =[]
                        
                         this.msg_rayos_x_false = ""
+                        toastr.success(data.msg,'Error' ,{
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "closeButton": true,
+                        })
                     }else{
                         this.msg_rayos_x_false = data.msg
                         this.msg_rayos_x = ""
+                        setTimeout(()=>{
+                            this.msg_rayos_x_false = ""
+                        },5000);
+                        toastr.error(data.msg,'Error' ,{
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "closeButton": true,
+                        } )
                     }           
                 }) 
             }
@@ -844,6 +878,14 @@ const lab_consulta_externa = new Vue({
                 this.group_laboratorio.Perfil_Obstetrico.length == 0 && this.group_laboratorio.Perfil_Reumático.length == 0 && this.group_laboratorio.Perfil_hepatico.length == 0 && this.group_laboratorio.Perfil_lipidico.length == 0
                 ){
                 this.msg_lab_false = "Selecione uno o varios por favor"
+                setTimeout(()=>{
+                    this.msg_lab_false = ""
+                },5000);
+                toastr.error('Selecione uno o varios por favor','Error' ,{
+                    "progressBar": true,
+                    "positionClass": "toast-top-center",
+                    "closeButton": true,
+                } )
             }else{
                 var data = {
                     tipo_laboratorio : this.tipo_laboratorio_lab,
@@ -868,7 +910,7 @@ const lab_consulta_externa = new Vue({
                 .then(data => {
                     console.log(data, "esto es de rayos x")
                     if (data.success == true){     
-                        console.log(this.lab_data.length)                  
+                                     
                         for( var i = 1; i <=  68; i++){
                             
                             this.lab_data[i].estado = false
@@ -887,11 +929,24 @@ const lab_consulta_externa = new Vue({
                         this.group_laboratorio.Perfil_hepatico = []
                         this.group_laboratorio.Perfil_lipidico = [] 
                         this.otros_lab = ""
-                        this.msg_lab = data.msg                       
+                                              
                         this.msg_lab_false = ""
+                        toastr.success(data.msg,'Error' ,{
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "closeButton": true,
+                        })
                     }else{
                         this.msg_lab_false = data.msg
                         this.msg_lab = ""
+                        setTimeout(()=>{
+                            this.msg_lab_false = ""
+                        },5000);
+                        toastr.error(data.msg,'Error' ,{
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "closeButton": true,
+                        } )
                     }           
                 }) 
             }
