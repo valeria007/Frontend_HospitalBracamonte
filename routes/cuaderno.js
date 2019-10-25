@@ -577,7 +577,9 @@ router.get('/turnos', (req,res) => {
     .then(resp => {
         console.log(resp, "   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   esto") 
         res.render('cuadernos/diasTurnos',{
-            resp
+            resp,
+            msge2,
+            msge1
         })
     })
     .catch(error => {

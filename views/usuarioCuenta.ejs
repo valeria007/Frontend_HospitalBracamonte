@@ -146,8 +146,8 @@
 											<div class="block-web">
 												<div class="header">
 													<div class="actions"> 
-                            <a class="minimize" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a> 
-                            <a class="refresh" href="/usuarios/quitar4/<%=id.id%>"><i class="fa fa-repeat"></i></a>
+                            <a class="minimize" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"style="color: blue;"></i></a> 
+                            <a class="refresh" href="/usuarios/quitar4/<%=id.id%>"><i class="fa fa-repeat"style="color: blue;"></i></a>
 													</div>
 												</div>
 												<div class="porlets-contents">
@@ -275,6 +275,7 @@
                 <label  class="col-sm-5 control-label">Asignación de Rol :</label>
                 <div class="col-sm-4">
                   <select class="form-control" id="source" v-model="nomrol" >
+                    <option value="">--Seleccione--</option>
                     <option value="administrcion">ADMINISTRADOR</option>
                     <option value="medico">MÉDICO</option>
                     <option value="fichaje">FICHAJE</option>

@@ -1,25 +1,94 @@
-
+Vue.component('v-select', VueSelect.VueSelect);
 
 var reg_sala = new Vue({
-    el : "#reg_sala",
-    data: () =>({
-        msg: "",
-        msg_false :'',
-        url:data_url,
-
-        sigla:"",
-        nombre:"",
-
-        id_especialidad: '',
-        list_consulta_especialidad:'',
-
-
-        data_medicos:'',
-        ci_medico:'',
-        nombre_medico: '',
-        especilidad_lista_medicas:''
+  el : "#reg_sala",
+  data: () =>({
+      buscar:'',
+      msg: "",
+      msg_false :'',
+      url:data_url,
+      sigla:"",
+      nombre:"",
+      id_especialidad: '',
+      list_consulta_especialidad:'',
+      data_medicos:'',
+      ci_medico:'',
+      nombre_medico: '',
+      especilidad_lista_medicas:'',
+     
+      /*list_consultorios:[
+        {
+          id:1,
+          name:'CONSUL. EMERGENCIA'
         
-    }),
+        },
+        {
+          id:2,
+          name:'CONSUL. ANATOMÍA PATOLÓGICA'
+        
+        },
+        {
+          id:3,
+          name:'CONSUL. CARDIOLOGÍA'
+        
+        },
+        {
+          id:4,
+          name:'CONSUL. CIRUGÍA GENERAL'
+        
+        },
+        {
+          id:5,
+          name:'CONSUL. CIRUGÍA MAXILOFACIAL'
+        
+        },
+        {
+          id:6,
+          name:'CONSUL. CIRUGÍA PEDIATRICA'
+        
+        },
+        {
+          id:7,
+          name:'CONSUL. CIRUGÍA PLASTACA'
+        
+        },
+        {
+          id:8,
+          name:'CONSUL. DERMATOLOGÍA'
+        
+        },
+        {
+          id:8,
+          name:'CONSUL. ECOGRAFÍA'
+        
+        },
+        {
+          id:10,
+          name:'CONSUL. ENDOCRINOLOGÍA'
+        
+        },
+      ]*/
+      options:[
+        
+        'CONSUL. EMERGENCIA',
+        'CONSUL. ANATOMÍA PATOLÓGICA',
+        'CONSUL. CARDIOLOGÍA',
+        'CONSUL. CIRUGÍA GENERAL',
+        'CONSUL. CIRUGÍA MAXILOFACIAL',
+        'CONSUL. CIRUGÍA PEDIATRICA',
+        'CONSUL. CIRUGÍA PLASTACA',
+        'CONSUL. DERMATOLOGÍA',
+        'CONSUL. ECOGRAFÍA',
+        'CONSUL. ENDOCRINOLOGÍA'
+        
+      ], 
+      
+  }),
+    computed:{
+      buscar_consultorio(){
+        return this.list_consultorios.filter((item) => item.name.includes(this.buscar))
+      }
+    },
     mounted(){
       fetch(this.url.url_front_end+'/cuaderno/VUe_lista_medicos')
       .then(res => res.json())
@@ -28,6 +97,14 @@ var reg_sala = new Vue({
       })
     },
     methods:{
+      selected(name){
+        for(var i = 0; i < this.list_consultorios.length; i++){
+          if(this.list_consultorios[i].name == name){
+            this.buscar = this.list_consultorios[i].name
+            this.nombre = this.list_consultorios[i].name
+          }
+        }
+      },
         data(id){
             this.id_especialidad = id;
             this.msg = ""
