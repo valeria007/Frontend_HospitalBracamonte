@@ -40,7 +40,7 @@ class Sala {
     }
     static enviarSala1(req, res){
       if (!req.body.nombre || !req.body.descripcionSala || !req.body.piso){
-        console.log(" todos los campos son requeridos  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        console.log(" Todos los campos son requeridos  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         res.status(400).send({
             success: false,
             message: 'Todos los espacios son requeridos'
@@ -64,7 +64,7 @@ class Sala {
             .then(data => {
               res.status(200).json({
                 success: true,
-                message: 'se inserto con exito',
+                message: 'Se inserto correctamente',
                 data
               })
             })
@@ -72,7 +72,7 @@ class Sala {
               console.log(error)
               res.status(400).json({
                 success:false,
-                msg:"no se pudo insertar los datos",
+                message:"No se pudo insertar correctamente",
                 error
               })
             }); 
@@ -200,6 +200,7 @@ class Sala {
             })
             .then(update => {
               res.status(200).send({
+                success:true,
                 message: 'Sala actualizado',
                 data: {
                   nombre: nombre || update.nombre,
