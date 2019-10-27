@@ -143,7 +143,7 @@ router.post('/updatePersonal/:id',(req,res) => {
   .catch(error => console.error('Error',error))
   .then(resp => {
     if(resp.success==false){
-      
+      msm1="Error al actualizar"
       res.redirect('/usuarios/usuarios/'+id.id)
     }else{
       sms2= resp.message
@@ -217,6 +217,10 @@ function msg_del(){
   mg1 = null
   mg2 = null
 }
+/////****cerrar secion */
+router.get('/secionout',(req,res) => {
+  res.render('index', { msg1, msg2, msg3 })
+})
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

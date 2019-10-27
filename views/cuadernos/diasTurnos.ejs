@@ -88,12 +88,13 @@
                           </div>
                         </div>
                         <br>
+                        <% if (msge2 != null) { %>
+                          <h5 class="center" style="color:darkblue;"><%=msge2%></h5>
+                        <% } else if (msge1 != null)  {%>
+                          <h5 class="center" style="color: crimson;"><%=msge1%></h5>
+                        <% } %>  
                         <div class="porlets-contents">
-                          <% if (msge2 != null) { %>
-                            <span style="color:darkblue;"><%=msge2%></span>
-                          <% } else if (msge1 != null)  {%>
-                            <span style="color: crimson;"><%=msge1%></span>
-                          <% } %>  
+                          
                           <div id="demo" class="collapse in">
                             
                             <form class="form-horizontal group-border-dashed" action="/cuaderno/turnos" method="POST" parsley-validate novalidate>  
@@ -285,13 +286,12 @@
             </div>
             <div class="center">
               <h5><b>¿Estás seguro?</b></h5>
-              <p>Una vez eliminado no se podar volver atras....</p>
+              <p>Una vez eliminado no se podra volver atras....</p>
             </div>
           </div>
           <div class="modal-footer">
             <div class="center">
               <a v-bind:href="'/cuaderno/delturno/'+idT"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
-
               <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
             </div>
           </div>

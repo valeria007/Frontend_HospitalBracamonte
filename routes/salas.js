@@ -30,7 +30,9 @@ router.get('/renderSalas', (req,res) => {
     res.render('salas',{
       dataSala,
       resp,
-      OnlySala
+      OnlySala,
+      m1,
+      m2
     });
   })
 .catch(error => {
@@ -41,7 +43,7 @@ router.get('/renderSalas', (req,res) => {
   })
   }  
 });
-var mess,mecof
+var m1,m2
 router.post('/salas', (req,res) => {
   var data = req.body;
   var esto = {
@@ -56,12 +58,18 @@ router.post('/salas', (req,res) => {
   .catch(error => console.error('Error:', error))
   .then(data => { 
     if(data.success == false){
-      mess= data.mess
+      console.log(data)
+      m2=null
+      m1= data.message
       res.redirect('/salas/salas'); 
-    }
       
-    console.log(data)
-    res.redirect('/salas/salas'); 
+    }else{
+      m1=null
+      m2= data.message
+      res.redirect('/salas/salas'); 
+      
+    }
+    
       
   })
 });
@@ -96,8 +104,15 @@ router.post('/updateSalas/:id',(req,res) => {
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => { 
-          console.log(data)
-          res.redirect('/salas/salas'); 
+    if(data.success == false){
+      m2=null
+      m1= "Error al actualizar"
+      res.redirect('/salas/salas');
+    }else{
+      m1=null
+      m2= data.message
+      res.redirect('/salas/salas'); 
+    }
   })
   OnlySala = null;
 });
@@ -120,7 +135,9 @@ router.get('/dataCam/:id', (req,res) => {
      res.render('camas',{
       resp,
       salas,
-      onlyCamas /// datos recividos del serv renderCamas
+      onlyCamas, /// datos recividos del serv renderCamas
+      m1,
+      m2
      });
   })
   .catch(error => {
@@ -130,15 +147,18 @@ router.get('/dataCam/:id', (req,res) => {
   }
 });
 
-var salas;
+var salas, ms1, ms2;
 //Camas de cada sala 
 router.get('/renderCamas/:id', (req,res) => {
   var id = req.params.id;
   fetch('http://localhost:3000/api/salaOne/'+id)   
   .then(resp => resp.json())
   .then(resp =>{
+    
     salas = resp;
-     res.redirect('/salas/dataCam/'+id);
+
+    res.redirect('/salas/dataCam/'+id);
+    
   })
 .catch(error => {
   console.error('Error:', error)
@@ -161,7 +181,18 @@ router.post('/camas/:id', (req,res) => {
   .then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(data => { 
-    res.redirect('/salas/dataCam/'+id);     
+    if(data.success == false){
+      console.log(m1)
+      m2=null
+      m1= data.message
+      res.redirect('/salas/dataCam/'+id);  
+    }else{
+      console.log(m2)
+      m1=null
+      m2= data.message
+      res.redirect('/salas/dataCam/'+id);  
+    }
+       
   })
 });
 var onlyCamas;
