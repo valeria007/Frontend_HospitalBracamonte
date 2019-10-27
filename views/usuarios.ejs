@@ -31,6 +31,9 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
+
 <style type="text/css">
     div.a {
 			text-align: center;
@@ -514,7 +517,9 @@
 	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
 	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
 	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
-	<script src="/plugins/edit-table/edit-table.js"></script>
+  <script src="/plugins/edit-table/edit-table.js"></script>
+  
+  <script src="/js/toastr.js"></script>
 
   <!--validaciones-->
   <script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
@@ -584,6 +589,29 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="/axios/dist/axios.min.js"></script>
 <script src="/js/vue/roles.js"></script>
+
+<script>
+
+  /* <% if (msm1 != null) { %> */
+    alerta1()
+  /* <% } else if(sms2 != null) { %> */
+    alerta2()
+  /* <% } %> */
+  
+  function alerta1(){
+    console.log(" 1111")
+     
+      toastr.success( ` <%=msm1 %>`  , "esto")   
+    
+  }
+  
+  function alerta2(){
+    console.log(" 222222")
+   
+      toastr.success( ` <%=sms2%>` , "esto1")
+  }
+  
+  </script>
 
 </body>
 
