@@ -96,6 +96,21 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div id="main-content" class=" block-web">
+                <%if (m2 != null) {%>
+                  <div class="bs-example mover">
+                    <div class="alert alert-info fade in">
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                      <strong><%=m2 %></strong>
+                    </div>
+                  </div>
+                <%} else if(m1 != null) { %>
+                <div class="bs-example mover">
+                  <div class="alert alert-danger fade in">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                    <strong><%=m1 %></strong>
+                  </div>
+                </div>
+                <% } %>
                 <div class="header">
                   <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
                   <h3 class="content-header ">Camas de <b>/ <%=salas[0].nombre%></b> </h3>
@@ -218,7 +233,7 @@
             </div>
             <div class="center">
               <h5><b>¿Estás seguro?</b></h5>
-              <p>Una vez eliminado no se podar dar roles a <b> Usuarios</b>....</p>
+              <p>Una vez eliminado no se podra volver atras</p>
             </div>
           </div>
           <div class="modal-footer">

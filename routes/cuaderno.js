@@ -27,6 +27,27 @@ router.post('/vue_regConsultorio/:id_especialidad',(req,res) => {
     }) 
 })
 
+router.get('/VueliminarConsulta/:id',(req,res) =>{
+    const { id } = req.params;
+    fetch('http://localhost:4600/api/delturn/'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        res.status(200).json(resp)
+    });
+})
+
+router.get('/vude_del_med_especialidad/:id', (req,res) => {
+    const { id } = req.params
+    fetch('http://localhost:4600/api/delmedico/'+id)
+    .then(resp => resp.json())
+    .catch(error => console.error('Error:', error))
+    .then(resp =>{
+        res.status(200).json(resp)
+    });
+})
+
+
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 router.get('/cuaderno',(req,res) => {

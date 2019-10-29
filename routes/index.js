@@ -522,4 +522,10 @@ router.get('/table_prueba', (req,res) => {
   res.render('hospitalizaciones/z_prueba_table')
 })
 
+///**Cerrar secion */
+router.get('/outcerrar',(req, res) => {
+  res.render('index')
+});
+
+
 module.exports = router;
