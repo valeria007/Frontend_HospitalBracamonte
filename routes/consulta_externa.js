@@ -108,6 +108,7 @@ router.get('/home/:id/:token_part', (req,res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
+      console.log(resp, "   esto es user <<<<<<<<<<<<<<<<<<<     >>>>>>>>>>>>>>>>>>>>>>>>>>>< api/user")
       data_token.token_id = resp.id     // esto manda el el id para el token
       
         if(datas.name.token[resp.id] && datas.name.token[resp.id].data.token.split(" ")[1].split(".")[2] == token_part ){
@@ -123,6 +124,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                 .then(resp => resp.json())
                 .catch(error => console.error('Error',error))
                 .then(resp => {
+                  console.log(resp, " esto es lo que quiero ver  api/personal")
                   data_token.medico = resp 
                   if(data_user[data_token.token_id] == null){
                     user(data_token, data_token.token_id)

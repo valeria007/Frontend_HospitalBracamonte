@@ -276,13 +276,16 @@
                 <div class="col-sm-4">
                   <select class="form-control" id="source" v-model="nomrol" >
                     <option value="">--Seleccione--</option>
-                    <option value="administrcion">ADMINISTRADOR</option>
+                    <%for (var i = 0; i < list_role.length; i++) { %>
+                      <option value="<%=list_role[i].name%>" class="text-center uppercase"><%=list_role[i].name%></option>
+                    <% } %>
+                   <!--  <option value="administrcion">ADMINISTRADOR</option>
                     <option value="medico">MÉDICO</option>
                     <option value="fichaje">FICHAJE</option>
                     <option value="Almacen">ALMACEN</option>
                     <option value="emergencia">EMERGENCIA</option>
                     <option value="farmacia">FARMACEUTICO</option>
-                    <option value="hospitalizacion">HOSPITALIZACIÓN </option>
+                    <option value="hospitalizacion">HOSPITALIZACIÓN </option> -->
                   </select>
                 </div>
               </div>

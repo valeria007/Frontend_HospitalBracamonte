@@ -29,6 +29,29 @@
 	</style>
 	
 </head>
+<script>
+	/* <%if(login != null){%> */
+		var esto  = `<%- JSON.stringify(token) %>`
+		var url = "/laboratorios/home/"
+		localStorage.setItem('data', esto ) 
+		localStorage.setItem('url', url) 
+	/* <% } else { %> */
+		/* 	<%if(token == "") {%> */
+			console.log("no hay token")
+		/* 	<% } else { %> */
+				var data = localStorage.getItem('data')
+				if (data == null){     // esto no esta funcionando como deberia de fucnionar 
+					window.location.replace('/')
+				}else{
+					var esto  = `<%- JSON.stringify(token) %>`
+					var url = "/laboratorios/home/"
+					localStorage.setItem('data', esto ) 
+					localStorage.setItem('url', url) 
+				}
+		/* 	<% } %> */
+	/* <% } %> */
+
+</script>
 
 <body class="light_theme  fixed_header left_nav_fixed">
 	<!-- Content page-->
@@ -49,7 +72,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								src="/images/user.png" /><span class="user_adminname"><%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -78,7 +101,7 @@
 						</li>
 						<li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Laboratorio<span class="plus"><i class="fa fa-plus"></i></span></a>
 							<ul >
-								<li> <a href="/paciente/buscaPaciente"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Lista de Laboratorio</b> </a> </li>
+								<li> <a href="/laboratorios/view_list_lab/<%=data_token.personal.cargo%>/<%=data_token.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Lista de Laboratorio</b> </a> </li>
 							</ul>
 						</li>
 						

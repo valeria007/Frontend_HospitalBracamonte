@@ -3,7 +3,7 @@
 
 <head>
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
-	<title>Introduce</title>
+	<title>Laboratorio</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<meta charset="UTF-8">
@@ -34,6 +34,10 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
 
+	<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
+	<link href="/css/animate1.css" rel="stylesheet" type="text/css" />
+
+	<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 	<style>
 		div.a {
 			text-align: center;
@@ -46,7 +50,14 @@
 	</style>
 
 </head>
-
+<script type="text/javascript">
+    // este scrip es para verificar si esta el token en local starge
+    var data = localStorage.getItem('data')
+    console.log(data)
+    if (data == null){
+        window.location.replace('/')
+    }
+</script>
 <body class="light_theme  fixed_header left_nav_fixed">
 	<!-- Content page-->
 	<div class="wrapper">
@@ -66,7 +77,7 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
@@ -80,7 +91,7 @@
 			</div>
 			<!--\\\\\\\ header top bar end \\\\\\-->
 		</div>
-		<div class="inner">
+		<div class="inner" id="laboratorio">
 			<!--\\\\\\\ inner start \\\\\\-->
 			<div class="left_nav">
 
@@ -92,7 +103,7 @@
 									class="left_nav_pointer"></span> <span class="plus"><i
 										class="fa fa-plus"></i></span> </a>
 							<ul>
-								<li> <a href=""> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a>
+								<li> <a href="/laboratorios/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Inicio</b> </a>
 								</li>
 							</ul>
 						</li>
@@ -100,8 +111,8 @@
 									class="fa fa-tasks"></i> Laboratorio<span class="plus"><i
 										class="fa fa-plus"></i></span></a>
 							<ul class="opened" style="display:block">
-								<li> <a href="/paciente/examenes"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
-										<b>examenes</b> </a> </li>
+								<li> <a href="/laboratorios/view_list_lab/<%=data_doc.data.personal.cargo%>/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+										<b>Lista pacientes</b> </a> </li>
 								<li> <a href="/paciente/buscaPaciente"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
 										<b>Buscar Pacinete</b> </a> </li>
 
@@ -132,7 +143,7 @@
 											<div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i>
 											</div>
 											<h3 class="content-header " class="text-titles">
-												<span>&nbsp;&nbsp;&nbsp;</span>Laboratorio </h3>
+												<span>&nbsp;&nbsp;&nbsp;</span>Laboratorio</h3>
 										</div>
 										<br>
 										<br>
@@ -140,8 +151,14 @@
 											<div class="form-group">
 												<div class="row">
 
-
+												
 													<div class="col-md-12">
+
+														<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
+														<input type="hidden" :value="nombre_user = '<%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%> <%=data_doc.data.personal.apellidom%>'">
+														<input type="hidden" :value="id_lab = '<%=one_lab[0].id%>'">
+														<input type="hidden" :value="id_user = '<%=data_doc.data.personal.id%>'">
+
 														<section class="panel default blue_title h2">
 															<div class="col-md-6 panel panel-default">
 																<div class=" panel panel-default">
@@ -157,11 +174,11 @@
 																		<div class="col-md-5">
 																			<div class="entrada ">
 																				<label class=" ">N° de Historia:</label>
-																				<p><b></b>
+																				<p><b><%=data_paciente[0].numeroHistorial%></b>
 																				</p>
 																				<input type="hidden"
 																					name="numeroHistorial"
-																					v-model=""
+																					
 																					class="form-control" readonly=""
 																					value="Read only text goes here">
 																			</div>
@@ -170,7 +187,7 @@
 																			<div class="entrada">
 																				<label class=" ">Nombre
 																					Completo:</label>
-																				<p><b></b>
+																				<p><b><%=data_paciente[0].nombre%> <%=data_paciente[0].apellidop%> <%=data_paciente[0].apellidom%></b>
 																				</p>
 																				<input type="hidden"
 																					name="nombre apellidop apellidom"
@@ -182,7 +199,7 @@
 																		<div class="col-sm-4 col-sm-4">
 																			<div class="entrada">
 																				<label class=" "> Sexo: </label>
-																				<p><b></b></p>
+																				<p><b><%=data_paciente[0].sexo%></b></p>
 																				<input type="hidden" name="sexo"
 																					value=""
 																					class="form-control" readonly=""
@@ -193,7 +210,7 @@
 																			<div class="entrada">
 																				<label class="">Fecha de
 																					Nacimiento:</label>
-																				<p><b></b>
+																				<p><b><%=data_paciente[0].fechanacimiento%></b>
 																				</p>
 																				<input type="hidden" name="fechanacimiento" value="" class="form-control" readonly="" value="Read only text goes here">
 																			</div>
@@ -211,24 +228,24 @@
 																	<div class="">
 																		<div class="col-sm-6 ">
 																			<div class="entrada">
-																				<label class=" ">Fecha Prescripción:</label>
-																				<input class="form-control" type="date" v-model="data_receta.fecha" require>
+																				<label class=" ">Fecha y hora:</label>
+																				<p><b><%=one_lab[0].fecha%> <%=one_lab[0].hora%></b></p>
 																			</div>
 																		</div>
 																		<div class="col-sm-6 col-sm-6">
 																			<div class="entrada">
 																				<label class="">Especialidad:</label>
-																				<p><b></b>
+																				<p><b><%=data_consulta[0].tipoConsulta%></b>
 																				</p>
-																				<input type="hidden" name="tipoConsulta" v-model="" class="form-control" readonly="" value="Read only text goes here">
+																				<input type="hidden" name="tipoConsulta" class="form-control" readonly="" value="Read only text goes here">
 																			</div>
 																		</div>
 																		<div class="col-sm-12 col-sm-12">
 																			<div class="entrada">
 																				<label class="">Profecional Médico:</label>
-																				<p><b></b>
+																				<p><b><%=one_lab[0].nombre_doctor%></b>
 																				</p>
-																				<input type="hidden" v-model="" class="form-control" readonly="" value="Read only text goes here">
+																				<input type="hidden"  class="form-control" readonly="" value="Read only text goes here">
 																			</div>
 																		</div>
 																	</div>
@@ -237,9 +254,16 @@
 															</div>
 														</section>
 													</div>
-													<label>Peticiones del Médico</label>
+													<label> <b>Peticiones del Médico</b></label>
 													<div class=" col-md-12" >
-														<textarea class="large-compact" name="observaciones" cols="123" rows="5"></textarea>
+														<div class="col-md-6">
+															<% for (var i = 0; i < one_lab[0].examen.length; i++) { %>
+
+																<label> <b><%=one_lab[0].examen[i].estudio%></b>  </label>
+																<p> <%=one_lab[0].examen[i].descripcion%></p>
+															<% } %>
+														</div>
+														
 													</div>
                                                         
 													<div class="header">
@@ -247,48 +271,53 @@
 														<h3 class="content-header center">
 															<span>&nbsp;&nbsp;&nbsp;</span>Llenado del laboratorio </h3>
 													</div>
-													<h3></h3>
-													<div class="col-md-6">
-														<div class="block-web">
-															<div class="header">
-															   <h3 class="content-header">Subir la Laboratorio</h3>
-															</div>
-															<div class="porlets-content">
-																
-																<br>
-																<form class="dropzone dz-clickable" action="http://riaxe.com/file/post">
-																  
-															   
-															</div><!--/porlets-content--> 
-														</div><!--/block-web--> 
-													</div><!--/col-md-6-->
-														  
-													<div class="col-md-6">
-														<div class="block-web">
-															<div class="header">
-																<h3 class="content-header">Detalles</h3>
-															</div>
-															<div class="porlets-content">
+
+													<form  @submit="register_rep_lab" method="POST" enctype="multipart/form-data">
+
+														<div class="col-md-6">
+															<div class="block-web">
+																<div class="header">
+																   <h3 class="content-header">Subir la Laboratorio</h3>
+																</div>
+																<div class="porlets-content">
 																	
-															<div class="col-sm-4">
-																<label class="control-labe">Descripción:</label>
-																<textarea class="large-compact" name="diagnostico" cols="50" rows="10"></textarea>
-																<input type="text" name="titulo" class="form-control" parsley-trigger="change"  name="" required placeholder="Introdusca CI." />
-															</div>
-														</div><!--/porlets-content--> 
-													</div><!--/block-web--> 
-											  </div><!--/col-md-6-->
-													<div class="col-md-12"><br>
-														<div class="col-sm-6">
-															<button type="" class="btn btn-success btn-icon">EscanearLaboratoio<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-															<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-															<button type="button" onclick="scan();"> falta Scan</button>
-															<!-- Triggers scan -->
-															<div id="images">
-																<!-- Displays scanned images  -->
+																	<br>
+																	<input type="file" name="image" @change="getImage" accept="image/*">
+																	  
+																   
+																</div><!--/porlets-content--> 
+															</div><!--/block-web--> 
+														</div><!--/col-md-6-->
+															  
+														<div class="col-md-6">
+															<div class="block-web">
+																<div class="header">
+																	<h3 class="content-header">Detalles</h3>
+																</div>
+																<div class="porlets-content">																	
+																	<div class="col-sm-4">
+																		<label class="control-labe">Descripción:</label>
+																		<textarea v-model="descripcion" class="large-compact" name="diagnostico" cols="50" rows="10"></textarea>
+																		<!-- <input v-model="descripcion" type="text" name="titulo"  class="form-control" parsley-trigger="change"  required placeholder="Introdusca CI." /> -->
+																	</div>
+																</div><!--/porlets-content--> 
+														</div><!--/block-web--> 
+														  </div><!--/col-md-6-->
+														<div class="col-md-12"><br>
+															<div class="col-sm-6">
+																
+																<button type="submit" class="btn btn-success btn-icon">Guardar<span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+																<button type="reset"class="btn btn-danger btn-icon">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+																<button type="button" onclick="scan();"> falta Scan</button>
+																<!-- Triggers scan -->
+																<div id="images">
+																	<!-- Displays scanned images  -->
+																</div>
 															</div>
 														</div>
-													</div>
+
+													</form>
+													
 												</div>
 											</div>
 
@@ -309,147 +338,304 @@
 			</div>
 			<!--\\\\\\\ inner end\\\\\\-->
 		</div>
+	</div>
 		<!--\\\\\\\ wrapper end\\\\\\-->
 
 
 
-		<script type="text/javascript">
-			// Need to upload scanned images to server or save them on hard disk? Please refer to the dev guide: http://asprise.com/document-scan-upload-image-browser/ie-chrome-firefox-scanner-docs.html
-			// For more scanning code samples, please visit https://github.com/Asprise/scannerjs.javascript-scanner-access-in-browsers-chrome-ie.scanner.js
-
-			var scanRequest = {
-				"use_asprise_dialog": true, // Whether to use Asprise Scanning Dialog
-				"show_scanner_ui": false, // Whether scanner UI should be shown
-				"twain_cap_setting": { // Optional scanning settings
-					"ICAP_PIXELTYPE": "TWPT_RGB" // Color
-				},
-				"output_settings": [{
-					"type": "return-base64",
-					"format": "jpg"
-				}]
-			};
-
-			/** Triggers the scan */
-			function scan() {
-				scanner.scan(displayImagesOnPage, scanRequest);
+	<script type="text/javascript">
+		// Need to upload scanned images to server or save them on hard disk? Please refer to the dev guide: http://asprise.com/document-scan-upload-image-browser/ie-chrome-firefox-scanner-docs.html
+		// For more scanning code samples, please visit https://github.com/Asprise/scannerjs.javascript-scanner-access-in-browsers-chrome-ie.scanner.js
+	
+		var scanRequest = {
+			"use_asprise_dialog": true, // Whether to use Asprise Scanning Dialog
+			"show_scanner_ui": false, // Whether scanner UI should be shown
+			"twain_cap_setting": { // Optional scanning settings
+				"ICAP_PIXELTYPE": "TWPT_RGB" // Color
+			},
+			"output_settings": [{
+				"type": "return-base64",
+				"format": "jpg"
+			}]
+		};
+	
+		/** Triggers the scan */
+		function scan() {
+			scanner.scan(displayImagesOnPage, scanRequest);
+		}
+	
+		/** Processes the scan result */
+		function displayImagesOnPage(successful, mesg, response) {
+			if (!successful) { // On error
+				console.error('Failed: ' + mesg);
+				return;
 			}
-
-			/** Processes the scan result */
-			function displayImagesOnPage(successful, mesg, response) {
-				if (!successful) { // On error
-					console.error('Failed: ' + mesg);
-					return;
-				}
-				if (successful && mesg != null && mesg.toLowerCase().indexOf('user cancel') >= 0) { // User cancelled.
-					console.info('User cancelled');
-					return;
-				}
-				var scannedImages = scanner.getScannedImages(response, true, false); // returns an array of ScannedImage
-				for (var i = 0;
-					(scannedImages instanceof Array) && i < scannedImages.length; i++) {
-					var scannedImage = scannedImages[i];
-					var elementImg = scanner.createDomElementFromModel({
-						'name': 'img',
-						'attributes': {
-							'class': 'scanned',
-							'src': scannedImage.src
-						}
-					});
-					(document.getElementById('images') ? document.getElementById('images') : document.body).appendChild(elementImg);
-				}
+			if (successful && mesg != null && mesg.toLowerCase().indexOf('user cancel') >= 0) { // User cancelled.
+				console.info('User cancelled');
+				return;
 			}
-		</script>
-
-
-
-
-
-		<!--====== Scripts -->
-
-		<script src="/js/jquery-2.1.0.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/common-script.js"></script>
-		<script src="/js/jquery.slimscroll.min.js"></script>
-		<script src="/plugins/data-tables/jquery.dataTables.js"></script>
-		<script src="/plugins/data-tables/DT_bootstrap.js"></script>
-		<script src="/plugins/data-tables/dynamic_table_init.js"></script>
-		<script src="/plugins/edit-table/edit-table.js"></script>
-		<script>
-			jQuery(document).ready(function () {
-				EditableTable.init();
-			});
-		</script>
-
-		<script src="/js/jPushMenu.js"></script>
-		<script src="/js/side-chats.js"></script>
-		<script type="text/javascript" src="plugins/toggle-switch/toggles.min.js"></script>
-
-		<script src="/plugins/checkbox/zepto.js"></script>
-		<script src="/plugins/checkbox/icheck.js"></script>
-		<script src="/js/icheck-init.js"></script>
-		<script src="/js/jquery.slimscroll.min.js"></script>
-		<script src="/js/icheck.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-		<script type="text/javascript" src="/js/form-components.js"></script>
-		<script type="text/javascript" src="/plugins/input-mask/jquery.inputmask.min.js"></script>
-		<script type="text/javascript" src="/plugins/input-mask/demo-mask.js"></script>
-		<script type="text/javascript" src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-		<script type="text/javascript" src="/plugins/dropzone/dropzone.min.js"></script>
-		<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
-
-
-		<script src="/bower_components/scanner/dist/scanner.js"></script>
-
-		<script>
-			/*==Porlets Actions==*/
-			$('.minimize').click(function (e) {
-				var h = $(this).parents(".header");
-				var c = h.next('.porlets-content');
-				var p = h.parent();
-
-				c.slideToggle();
-
-				p.toggleClass('closed');
-
-				e.preventDefault();
-			});
-
-			$('.refresh').click(function (e) {
-				var h = $(this).parents(".header");
-				var p = h.parent();
-				var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
-
-				loading.appendTo(p);
-				loading.fadeIn();
-				setTimeout(function () {
-					loading.fadeOut();
-				}, 1000);
-
-				e.preventDefault();
-			});
-
-			$('.close-down').click(function (e) {
-				var h = $(this).parents(".header");
-				var p = h.parent();
-
-				p.fadeOut(function () {
-					$(this).remove();
+			var scannedImages = scanner.getScannedImages(response, true, false); // returns an array of ScannedImage
+			for (var i = 0;
+				(scannedImages instanceof Array) && i < scannedImages.length; i++) {
+				var scannedImage = scannedImages[i];
+				var elementImg = scanner.createDomElementFromModel({
+					'name': 'img',
+					'attributes': {
+						'class': 'scanned',
+						'src': scannedImage.src
+					}
 				});
-				e.preventDefault();
+				(document.getElementById('images') ? document.getElementById('images') : document.body).appendChild(elementImg);
+			}
+		}
+	</script>
+
+
+
+
+	<!--====== Scripts -->
+
+	<script src="/js/jquery-2.1.0.js"></script>
+	
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/common-script.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
+	<script src="/plugins/data-tables/jquery.dataTables.js"></script>
+	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
+	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
+	<script src="/plugins/edit-table/edit-table.js"></script>
+
+	<script src="/js/toastr.js"></script>
+
+	<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+	<script>
+		jQuery(document).ready(function () {
+			EditableTable.init();
+		});
+	</script>
+	<script src="/js/jPushMenu.js"></script>
+	<script src="/js/side-chats.js"></script>
+	<script type="text/javascript" src="plugins/toggle-switch/toggles.min.js"></script>
+
+	<script src="/plugins/checkbox/zepto.js"></script>
+	<script src="/plugins/checkbox/icheck.js"></script>
+	<script src="/js/icheck-init.js"></script>
+	<script src="/js/jquery.slimscroll.min.js"></script>
+	<script src="/js/icheck.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+	<script type="text/javascript" src="/js/form-components.js"></script>
+	<script type="text/javascript" src="/plugins/input-mask/jquery.inputmask.min.js"></script>
+	<script type="text/javascript" src="/plugins/input-mask/demo-mask.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+	<script type="text/javascript" src="/plugins/dropzone/dropzone.min.js"></script>
+	<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
+
+
+	<script src="/bower_components/scanner/dist/scanner.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+	<script>
+		/*==Porlets Actions==*/
+		$('.minimize').click(function (e) {
+			var h = $(this).parents(".header");
+			var c = h.next('.porlets-content');
+			var p = h.parent();
+		
+			c.slideToggle();
+		
+			p.toggleClass('closed');
+		
+			e.preventDefault();
+		});
+	
+		$('.refresh').click(function (e) {
+			var h = $(this).parents(".header");
+			var p = h.parent();
+			var loading = $('&lt;div class="loading"&gt;&lt;i class="fa fa-refresh fa-spin"&gt;&lt;/i&gt;&lt;/div&gt;');
+		
+			loading.appendTo(p);
+			loading.fadeIn();
+			setTimeout(function () {
+				loading.fadeOut();
+			}, 1000);
+		
+			e.preventDefault();
+		});
+	
+		$('.close-down').click(function (e) {
+			var h = $(this).parents(".header");
+			var p = h.parent();
+		
+			p.fadeOut(function () {
+				$(this).remove();
 			});
-
-		</script>
-
-
-
-
-
-</body>
-
-</html>
+			e.preventDefault();
+		});
+	
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   <!-- vue cdn -->
+	<script src="/moment/moment.js"></script>
+	<script src="/moment/locale/af.js"></script>
+	<script src="/url/export.js"></script>
+	<script>
+		var laboratorio = new Vue({
+    		el:"#laboratorio",
+			data:{
+				url:data_url.url_front_end,
+				msg_false:'',
+				msg:'',
+				imagen:'',
+				//Post
+				id_lab:'',
+				fecha:'',
+                hora:'',
+                historial:'',
+                nombre_user:'',
+                descripcion:'',
+                
+                id_user:''
+			},
+			mounted(){
+        		this.fecha = moment().format('l'); 
+        		this.hora = moment().format('HH:mm:ss')        
+    		},
+			methods:{
+				getImage(event){
+                	//Asignamos la imagen a  nuestra data
+					this.imagen = event.target.files[0];
+					
+            	},
+				register_rep_lab(e){
+					
+					e.preventDefault();
+					/* console.log(this.imagen)
+					let formData = new FormData();
+					formData.append('file', this.imagen);
+					console.log (formData, '<<<<<<<<<<<<<<<<  <>>>>>>>>>>>>>>>>>>>>    <<<<')
+					axios.post(this.url+'/laboratorios/vue_register_respLab/'+this.id_lab, formData,
+       				{
+       				   headers: {
+       				     'Content-Type': 'multipart/form-data'
+       				   }
+       				})
+       				.then(function (response) {
+					
+       				  console.log(response)
+					  
+       				})
+       				.catch(function (error) {
+       				    console.log(error);
+       				}); */
+					var datos = {
+						//archivo: formData,
+						fecha:this.fecha,
+                		hora:this.hora,
+                		historial:this.historial,
+                		nombre_user:this.nombre_user,
+                		descripcion:this.descripcion,
+                		id_user:this.id_user
+					};
+    				var esto = {
+    				    method: 'POST',
+    				    body: JSON.stringify(datos),
+    				    headers:{
+						  'Content-Type' : "application/json",
+						  //'Content-Type': 'multipart/form-data'
+    				    }
+    				};
+    				fetch(this.url+'/laboratorios/vue_register_respLab/'+this.id_lab,esto)
+    				.then(res => res.json())
+    				.catch(error => console.error('Error:', error))
+    				.then(data => {
+						if(data.success == true){
+							this.descripcion = ''
+							
+							swal.fire(
+								'Success!',
+								'<label style="color:green;">'+data.msg+'</label>',
+								'success'
+							)
+							this.update_estado_lab()
+							this.msg_false = ""
+						}else{
+							this.msg = ""
+							console.log(data.msg)
+							 /* Swal.fire({
+							  type: 'error',
+							  title: 'Oops...',
+							  text:  data.msg,
+							  footer: '<a href>Why do I have this issue?</a>' 
+							}) */ 
+							 swal.fire(
+								'Error!',
+								'<label style="color:red;">'+data.msg+'</label>',
+								'error'
+							) 
+							//mensaje en la parte de arriba
+							/*  swal.fire({    
+								position: 'top',
+								type:'error',
+								title:data.msg,
+								showConfirmButton:true,
+								timer:3500
+								
+							})  */
+							//css animated
+							/* swal.fire({    
+								title:'Error',
+								animation:false,
+								customClass:{
+									popup:'animated bounce'
+								}
+								
+							}) */
+							//personalizado
+							/*  swal.fire({    
+								title:'esto es lo que yo quiero',
+								text:data.msg,
+								
+								width:600,
+								padding:'5em',
+								background:'#fff url(/images/red.jpg)',
+								backdrop:`
+								rgba(5, 5, 25 0.4)
+								url("/images/red.jpg")
+								center left
+								no-repeat
+								`								
+							}) 
+							 toastr.error(data.msg,'Error' ,{
+                    		    "progressBar": true,
+                    		    "positionClass": "toast-top-center",
+                    		    "closeButton": true,
+                    		} )  */
+						}
+    				    
+    				})
+				},
+				update_estado_lab(){
+					var datos = {
+						estado:'false'
+					};
+    				var esto = {
+    				    method: 'POST',
+    				    body: JSON.stringify(datos),
+    				    headers:{
+    				      'Content-type' : "application/json"
+    				    }
+    				};
+    				fetch(this.url+'/laboratorios/vue_update_estado_Lab/'+this.id_lab,esto)
+    				.then(res => res.json())
+    				.catch(error => console.error('Error:', error))
+    				.then(data => {
+    				    console.log(data, " <<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+    				})
+				}
+			}
+		})
+	</script>
 
 
 </body>

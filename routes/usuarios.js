@@ -158,21 +158,30 @@ router.get('/UsuraioCuenta/:id', (req,res) => {
   .then(resp => resp.json())
   .then(resp =>{
     //console.log(resp)
-    if (resp == null){
-      res.render('usuarioCuenta',{
-        id,
-        resp
-      });
-    }else{
-      res.render('usuarioCuenta',{
-        id,
-        resp,
-        mg1,
-        mg2,
-        data,
-        
-      });
-    }
+    fetch('http://localhost:3600/api/roleall/')
+    .then(resp => resp.json())
+    .then(list_role =>{
+      console.log(resp, "esto es el mensaje")
+      if (resp == null){
+        res.render('usuarioCuenta',{
+          id,
+          resp,
+          list_role
+        });
+      }else{
+        res.render('usuarioCuenta',{
+          id,
+          resp,
+          mg1,
+          mg2,
+          data,
+          list_role
+          
+        });
+      }
+      
+    })
+    
     msg_del(),{ expiresIn: 10 * 800 } 
   });
   

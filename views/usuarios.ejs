@@ -202,6 +202,9 @@
                                       <option value="enfermera">EFERMERA</option>
                                       <option value="personal">PERSONAL ADMINSTRATIVO</option>
                                       <option value="farmaseutico">FARMACÉUTICO</option>
+                                      <option value="ECOGRAFIA">LABORATORISTA DE ECOGRAFIA</option>
+                                      <option value="Rayos_x">LABORATORISTA DE RAYOS X</option>
+                                      <option value="LABORATORIO">LABORATORISTA</option>
                                     </select>
                                   </div>
                                 </div>
@@ -250,6 +253,9 @@
                                       <option class="uppercase"value="enfermera">Enfermera</option>
                                       <option class="uppercase" value="personal">Personal</option>
                                       <option class="uppercase" value="farmaseutico">Farmaseutico</option>
+                                      <option value="ECOGRAFIA">LABORATORISTA DE ECOGRAFIA</option>
+                                      <option value="Rayos_x">LABORATORISTA DE RAYOS X</option>
+                                      <option value="LABORATORIO">LABORATORISTA</option>
                                     </select>
                                   </div>
                                 </div>
@@ -480,7 +486,7 @@
     $('.close-down').click(function(e){
       var h = $(this).parents(".header");
       var p = h.parent();
-      
+
       p.fadeOut(function(){
         $(this).remove();
       });

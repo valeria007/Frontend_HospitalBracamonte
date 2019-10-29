@@ -166,7 +166,7 @@ router.post('/login', (req,res)  => {
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    
+    //console.log(resp, " esto es http://localhost:3600/api/login")
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -198,7 +198,7 @@ router.post('/login', (req,res)  => {
             msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
           })
         }else{
-          console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
+          //console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
           if(resp.role.length <=1){
             if(resp.role[0].name == "Almacen"){
               //res.send(resp.role[0].name)
@@ -214,6 +214,8 @@ router.post('/login', (req,res)  => {
               res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
             }else if(resp.role[0].name == "hospitalizacion"){
               res.redirect('/Internaciones/home/'+resp.id)
+            }else  if(resp.role[0].name == "laboratorio") {
+              res.redirect('/laboratorios/home/'+resp.id)
             }else{
               res.send(resp)
             }
@@ -265,6 +267,8 @@ router.post('/login', (req,res)  => {
               res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
             }else if(resp.role[0].name == "hospitalizacion"){
               res.redirect('/Internaciones/home/'+resp.id)
+            }else if(resp.role[0].name == "laboratorio"){
+              res.redirect('/laboratorios/home/'+resp.id)
             }else{
               res.send(resp)
             }

@@ -6,6 +6,8 @@ const bodyParser =require('body-parser')
 var cors = require('cors')
 
 
+
+
 app.set('port', process.env.PORT || 7000);
 
 app.set('views', path.join(__dirname, 'views'));
@@ -18,6 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cors());
+
 
 //routas
 
