@@ -3,6 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 const datas = require('./url/export');
+import { user_data1 } from './url/export';
 
 var cie10 = require('cie10');
 var fileAsArray = cie10('array');
@@ -128,7 +129,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                   data_token.medico = resp 
                   if(data_user[data_token.token_id] == null){
                     user(data_token, data_token.token_id)
-                    datas.name.data_user = data_user
+                    user_data1(data_token, data_token.token_id)
                     res.render('consulta_externa/home_consulta',{
                         data_token
                     })
@@ -136,7 +137,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                   }else{
                     remove_user( data_token.token_id)
                     user(data_token, data_token.token_id)
-                    datas.name.data_user = data_user
+                    user_data1(data_token, data_token.token_id)
                     res.render('consulta_externa/home_consulta',{
                         data_token
                     })

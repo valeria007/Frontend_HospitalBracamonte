@@ -139,7 +139,7 @@ router.get('/lab_consulta_externa/:id_consulta/:token_id/:token_p', (req,res) =>
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data_paciente => {
-                console.log(data_paciente, " <<<<<<<<<<<< esto es lo que quiero ver")
+                //console.log(data_paciente, " <<<<<<<<<<<< esto es lo que quiero ver")
                 res.render('consulta_externa/O_Laboratorio',{
                     ConsultaOnly,
                     data_doc:datas.name.data_user[token_id],
