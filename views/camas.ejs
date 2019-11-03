@@ -24,10 +24,30 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
 </style>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	console.log(data)
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
@@ -39,13 +59,13 @@
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
               <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
               <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
               <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+              <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"><i class="fa fa-power-off"></i> Logout</a> </li>
             </ul>
           </div>
         </div>
@@ -57,34 +77,34 @@
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+                <li> <a href="/usuarios/usuarios/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
               </ul>
             </li>
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block">
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Salas</b> </a> </li>
+                <li> <a href="/cuaderno/especialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Salas</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-              <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-              <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-              <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+              <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+              <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+              <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+              <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+                <li> <a href="/backup/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -96,21 +116,7 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div id="main-content" class=" block-web">
-                <%if (m2 != null) {%>
-                  <div class="bs-example mover">
-                    <div class="alert alert-info fade in">
-                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
-                      <strong><%=m2 %></strong>
-                    </div>
-                  </div>
-                <%} else if(m1 != null) { %>
-                <div class="bs-example mover">
-                  <div class="alert alert-danger fade in">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
-                    <strong><%=m1 %></strong>
-                  </div>
-                </div>
-                <% } %>
+                
                 <div class="header">
                   <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
                   <h3 class="content-header ">Camas de <b>/ <%=salas[0].nombre%></b> </h3>
@@ -129,7 +135,7 @@
                         <div class="porlets-contents">
                           <div id="demo" class="collapse in">
                             <%if (onlyCamas == null) { %>
-                            <form class="form-horizontal group-border-dashed" action="/salas/camas/<%=salas[0].id%>" method="POST" parsley-validate novalidate>
+                            <form class="form-horizontal group-border-dashed" action="/salas/camas/<%=salas[0].id%>/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                               <div class="form-group">
                                 <label class="col-sm-4 control-label">Sala:</label>
                                 <div class="col-sm-3">
@@ -147,7 +153,7 @@
                               <div class="form-group">
                                 <div class="col-md-4">
                                   <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
-                                  <a class="btn btn-danger"href="/salas/volverSalas"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
+                                  <a class="btn btn-danger"href="/salas/volverSalas/<%=data_doc.data.token_id%>"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
                                 </div>
                               </div>
                             </form>
@@ -239,7 +245,7 @@
           <div class="modal-footer">
             <div class="center">
              
-              <a v-bind:href="'/salas/delcama/'+id_cama" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+              <a v-bind:href="'/salas/delcama/'+id_cama+'/<%=data_doc.data.token_id%>/<%=salas[0].id%>'" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
              
               <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
             </div>
@@ -250,6 +256,8 @@
   </div>
 <!--====== Scripts -->
 <%- include("partials/scripts") -%>
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
 <script>
   var cama = new Vue({
     el: "#cama",
@@ -259,5 +267,28 @@
     }),
   })
 </script>
+<script>
+  /*  <%if(msg) { %> */
+    /*  <%if(msg.data.success == false) { %> */
+         msg_false()
+         function msg_false(){
+           swal.fire(
+             'Error!',
+             '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+             'error'
+           )
+         }
+     /* <% } else {%> */
+         msg_true()
+         function msg_true(){
+           swal.fire(
+             'Success!',
+             '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+             'success'
+           )
+         }
+    /*  <% } %> */
+  /*  <% } %> */
+ </script>
 </body>
 </html>

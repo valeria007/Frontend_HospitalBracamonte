@@ -93,7 +93,6 @@ router.get('/usuarios/:token_id',(req, res) => {
       fetch('http://localhost:3600/api/personal/',esto)
           .then(resp => resp.json())
           .then(resp =>{
-          console.log(msg_Consulta_emergencia[token_id], "11111111111111111111111122222222222222222222222222222222222222")
           res.render('usuarios',{
             resp, 
             onlyUSer:update_user[token_id],
@@ -107,10 +106,10 @@ router.get('/usuarios/:token_id',(req, res) => {
        .catch(error => {       
         console.error('Error:', error)
         res.render('404error',{
-          msg:"No hay conección con el sevidor de Registros"
+          msg:"No hay conección con el sevidor 3600",
+          //data_doc:datas.name.data_user[token_id],
         })
-
-    })
+      })
   }else{
     res.redirect('/')
   }
@@ -476,104 +475,154 @@ router.get('/volver', (req,res) => {
   res.redirect('/usuarios/roles');
 })
 
-router.get('/roles',(req, res) => {
-  fetch('http://localhost:3600/api/personal')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    
-    fetch('http://localhost:3600/api/allUser')        
+router.get('/roles1/:token_id',(req, res) => {
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){ 
+    fetch('http://localhost:3600/api/personal')        
     .then(resp => resp.json())
-    .then(allusers =>{ 
-      res.render('roles', {
-        data,
-        allusers
+    .then(data =>{  
+
+      fetch('http://localhost:3600/api/allUser')        
+      .then(resp => resp.json())
+      .then(allusers =>{ 
+        res.render('roles', {
+          data,
+          data_doc:datas.name.data_user[token_id],
+          allusers
+        })
       })
+    
     })
-   
-  })
-  .catch(error => {
-    console.error('Error:', error)
-    res.render('404error',{
-      msg:"No hay conección con el sevidor"
-    });
+    .catch(error => {
+      console.error('Error:', error)
+      res.render('404error',{
+        msg:"No hay conección con el sevidor"
+      });
     })
+  }else{
+    res.redirect('/')
+  }
 });
-router.get('/cuentas/:id', (req,res) => {
-  var id = req.params
-    fetch('http://127.0.0.1:3600/api/allrol/'+id.id)
+router.get('/cuentas/:id/:token_id', (req,res) => {
+  const { id,token_id } = req.params
+  if( datas.name.token[token_id] ){ 
+    fetch('http://127.0.0.1:3600/api/allrol/'+id)
     .then(resp => resp.json())
     .then(data =>{ 
 
-      fetch('http://127.0.0.1:3600/api/personal/'+id.id)
+      fetch('http://127.0.0.1:3600/api/personal/'+id)
       .then(resp => resp.json())
       .then(one_person =>{ 
 
         res.render('reporAdmin/detallimpre',{
           data,
+          data_doc:datas.name.data_user[token_id],
           one_person
         })
+
       })
      
     })
+  }else{
+    res.redirect('/')
+  }
   
-  
 })
 
 
-router.get('/onlymedico',(req, res) =>{
-  fetch('http://localhost:3600/api/Only_Medicos')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('reporAdmin/impriA', {
-      data
+router.get('/onlymedico/:token_id',(req, res) =>{
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){ 
+
+    fetch('http://localhost:3600/api/Only_Medicos')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporAdmin/impriA', {
+        data,
+        data_doc:datas.name.data_user[token_id]
+      })
     })
-  })
+
+  }else{
+    res.redirect('/')
+  }
 })
-router.get('/onlyfarma',(req, res) =>{
-  fetch('http://localhost:3600/api/OnlyFarma')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('reporAdmin/impriA', {
-      data
+router.get('/onlyfarma/:token_id',(req, res) =>{
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){ 
+    fetch('http://localhost:3600/api/OnlyFarma')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporAdmin/impriA', {
+        data,
+        data_doc:datas.name.data_user[token_id]
+      })
     })
-  })
+  }else{
+    res.redirect('/')
+  }
 })
-router.get('/onlyperso',(req, res) =>{
-  fetch('http://localhost:3600/api/OnlyPersonal')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('reporAdmin/impriA', {
-      data
+router.get('/onlyperso/:token_id',(req, res) =>{
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){ 
+
+    fetch('http://localhost:3600/api/OnlyPersonal')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporAdmin/impriA', {
+        data,
+        data_doc:datas.name.data_user[token_id]
+      })
     })
-  })
+  }else{
+    res.redirect('/')
+  }
 })
 
-router.get('/onlyenferme',(req, res) =>{
-  fetch('http://localhost:3600/api/OnlyEnfermera')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('reporAdmin/impriA', {
-      data
+router.get('/onlyenferme/:token_id',(req, res) =>{
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){
+    fetch('http://localhost:3600/api/OnlyEnfermera')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporAdmin/impriA', {
+        data,
+        data_doc:datas.name.data_user[token_id]
+      })
     })
-  })
+  }else{
+    res.redirect('/')
+  } 
 })
-router.get('/allcuentas',(req, res) =>{
-  fetch('http://localhost:3600/api/allUser')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('reporAdmin/impriusers', {
-      data
+router.get('/allcuentas/:token_id',(req, res) =>{
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){
+    fetch('http://localhost:3600/api/allUser')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporAdmin/impriusers', {
+        data,
+        data_doc:datas.name.data_user[token_id]
+      })
     })
-  })
+  }else{
+    res.redirect('/')
+  }
 })
-router.get('/allroles',(req, res) =>{
-  fetch('http://localhost:3600/api/roleall')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('reporAdmin/impriRol', {
-      data
+router.get('/allroles/:token_id',(req, res) =>{
+  const { token_id } = req.params
+  if( datas.name.token[token_id] ){
+    fetch('http://localhost:3600/api/roleall')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('reporAdmin/impriRol', {
+        data,
+        data_doc:datas.name.data_user[token_id]
+      })
     })
-  })
+  }else{
+    res.redirect('/')
+  }
 })
 
 module.exports = router;

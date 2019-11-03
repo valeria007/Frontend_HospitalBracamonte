@@ -5,11 +5,28 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/images/gfu.png">
 <title>Cuadernos</title>
 <%- include("../partials/head") -%>	
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 20px 10px 18px;}
 </style>
 </head>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
     <div class="header_bar">
@@ -20,10 +37,10 @@
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span>John Doe</span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
-              <li> <a href=""><i class="fa fa-power-off"></i>Salir</a> </li>
+              <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"><i class="fa fa-power-off"></i>Salir</a> </li>
             </ul>
           </div>
         </div>
@@ -35,34 +52,34 @@
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+                <li> <a href="/usuarios/usuarios/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
               </ul>
             </li>
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block">
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Cuadernos</b> </a> </li>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+                <li> <a href="/cuaderno/especialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+                <li> <a href="/backup/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -94,17 +111,17 @@
                         <div class="porlets-contents">
                           <div id="demo" class="collapse in">
                             <%if(onlyFecha == null) { %>
-                            <form class="form-horizontal group-border-dashed" action="/cuaderno/fechas" method="POST" parsley-validate novalidate>
+                            <form class="form-horizontal group-border-dashed" action="/cuaderno/fechas/<%=id%>/<%=data_doc.data.token_id%>/<%=id_anterior%>" method="POST" parsley-validate novalidate>
                             <div class="form-group">
                               <label class="control-label col-md-4">Fecha de Inicio:</label>
                               <div class="col-md-4 col-xs-10">
-                                <input type="date" size="10" name="fechaini" class="form-control form-control-inline input-medium " required placeholder=""><br>
+                                <input type="date" size="10" name="fechaini" class="form-control form-control-inline input-medium " ><br>
                               </div>                      
                             </div>
                             <div class="form-group">
                               <label class="control-label col-md-4">Fecha de Finalización:</label>
                               <div class="col-md-4 col-xs-10">
-                                <input type="date"  size="10" name="fechafin" class="form-control form-control-inline input-medium "required placeholder=""><br>
+                                <input type="date"  size="10" name="fechafin" class="form-control form-control-inline input-medium "><br>
                               </div>                      
                             </div>
                             <div class="form-group">
@@ -113,32 +130,32 @@
                                 <div class="btn-group">
                                   <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver<span class="caret"></span></button>
                                   <ul role="menu" class="dropdown-menu">
-                                    <li><a href="/cuaderno/cuadernos1">Cuadernos </a></li>
-                                    <li><a href="/cuaderno/docCuaderno ">Asignación Medico</a></li>
-                                    <li><a href="/home">Home</a></li>
+                                    <li><a href="/cuaderno/cuadernos1/<%=data_doc.data.token_id%>">Cuadernos </a></li>
+                                    <li><a href="/cuaderno/volver_docCuaderno/<%=id_anterior%>/<%=data_doc.data.token_id%>">Asignación Medico</a></li>
+                                    <li><a href="/home/<%=data_doc.data.token_id%>">Home</a></li>
                                   </ul>
                                 </div>              
                               </div>
                             </div>
                             </form>
                             <% } else {%>
-                            <form class="form-horizontal group-border-dashed" action="/cuaderno/updateFecha/<%=onlyFecha[0].id%>" method="POST" parsley-validate novalidate>
+                            <form class="form-horizontal group-border-dashed" action="/cuaderno/updateFecha/<%=onlyFecha.data[0].id%>/<%=id%>/<%=data_doc.data.token_id%>/<%=id_anterior%>" method="POST" parsley-validate novalidate>
                             <div class="form-group">
                               <label class="control-label col-md-4">Fecha de Inicio:</label>
                               <div class="col-md-4 col-xs-10">
-                                <input type="date" size="10" name="fechaini" class="form-control form-control-inline input-medium "value="<%=onlyFecha[0].fechaini.split('T')[0]%>"><br>
+                                <input type="date" size="10" name="fechaini" class="form-control form-control-inline input-medium "value="<%=onlyFecha.data[0].fechaini.split('T')[0]%>"><br>
                               </div>                      
                             </div>
                             <div class="form-group">
                               <label class="control-label col-md-4">Fecha de Finalización:</label>
                               <div class="col-md-4 col-xs-10">
-                                <input type="date"  size="10" name="fechafin" class="form-control form-control-inline input-medium "value="<%=onlyFecha[0].fechafin.split('T')[0]%>"><br>
+                                <input type="date"  size="10" name="fechafin" class="form-control form-control-inline input-medium "value="<%=onlyFecha.data[0].fechafin.split('T')[0]%>"><br>
                               </div>                      
                             </div>
                             <div class="form-group">
                               <div class=" col-sm-4"> 
                                 <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
-                                <a class="btn btn-danger"href="/cuaderno/limpiarFecha"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
+                                <a class="btn btn-danger"href="/cuaderno/limpiarFecha/<%=id%>/<%=data_doc.data.token_id%>/<%=id_anterior%>"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
                                 </div>              
                               </div>
                             </div>
@@ -164,8 +181,8 @@
                                     <td class="text-center"><%=docFecha[i].fechaini.split("T")[0]%></td>
                                     <td class="text-center"><%=docFecha[i].fechafin.split("T")[0]%></td>
                                     <td class="text-center">
-                                      <a href="/cuaderno/onlyfecha/<%=docFecha[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil" style="color:rgb(80, 145, 80)"></i></a>
-                                      <a href="/cuaderno/fecahTurn/<%=docFecha[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Días"><i class="fa fa-plus" style="color:black"></i></a>
+                                      <a href="/cuaderno/onlyfecha/<%=docFecha[i].id%>/<%=id%>/<%=data_doc.data.token_id%>/<%=id_anterior%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil" style="color:rgb(80, 145, 80)"></i></a>
+                                      <a href="/cuaderno/turnos/<%=docFecha[i].id%>/<%=data_doc.data.token_id%>/<%=id_anterior%>/<%=id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Días"><i class="fa fa-plus" style="color:black"></i></a>
                                     </td>
                                   </tr>
                                   <% } %>
@@ -191,7 +208,30 @@
     </div>
   </div>
 <%- include("../partials/scripts") -%>
-
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+<script>
+  /*  <%if(msg) { %> */
+    /*  <%if(msg.data.success == false) { %> */
+         msg_false()
+         function msg_false(){
+           swal.fire(
+             'Error!',
+             '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+             'error'
+           )
+         }
+     /* <% } else {%> */
+         msg_true()
+         function msg_true(){
+           swal.fire(
+             'Success!',
+             '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+             'success'
+           )
+         }
+    /*  <% } %> */
+  /*  <% } %> */
+</script>
 
 </body>
 </html>

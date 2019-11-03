@@ -205,6 +205,14 @@ router.get('/home/:id_user',(req, res) => {
                                 })
                                 
                               })
+
+                            })
+                            .catch(error => {       
+                              console.error('Error:', error)
+                              res.render('404error',{
+                                msg:"No hay conección con el sevidor 4600",
+                                /* data_doc:datas.name.data_user[data_token.token_id], */
+                              })
                             })
                           })
                         })
@@ -278,6 +286,13 @@ router.get('/home/:id_user',(req, res) => {
                                 
                               })
                             })
+                            .catch(error => {       
+                              console.error('Error:', error)
+                              res.render('404error',{
+                                msg:"No hay conección con el sevidor 4600",
+                                /* data_doc:datas.name.data_user[data_token.token_id], */
+                              })
+                            })
                           })
                         })
                       })
@@ -303,6 +318,13 @@ router.get('/home/:id_user',(req, res) => {
       res.redirect('/')
     }
     
+  })
+  .catch(error => {       
+    console.error('Error:', error)
+    res.render('404error',{
+      msg:"No hay conección con el sevidor 3600",
+      /* data_doc:datas.name.data_user[data_token.token_id], */
+    })
   })
   });
 
@@ -596,33 +618,52 @@ router.get('/creroles',(req, res) => {
   })
 });
 // role
-router.get('/backup',(req, res) => {
-  res.render('backup')
+router.get('/backup/:token_id',(req, res) => {
+  const { token_id } = req.params
+  if(datas.name.token[token_id]){
+    res.render('backup',{
+      data_doc:datas.name.data_user[token_id]
+    })
+  }else{
+    res.redirect('/');
+  }
 });
 
 ///paciente admin
-router.get('/pacientead',(req, res) => {
-  fetch('http://localhost:3500/api/medicamento')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('pacientead', {
-      data
-    })
-  })
+router.get('/pacientead/:token_id',(req, res) => {
+  const { token_id } = req.params
+  if(datas.name.token[token_id]){
+    fetch('http://localhost:3500/api/medicamento')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('pacientead', {
+        data,
+        data_doc:datas.name.data_user[token_id]  
+      })
+    })  
+  }else{
+    res.redirect('/')
+  }
 });
 // Internacion salas 
 
 
 //Se movio a routas salas
 
-router.get('/paciente_Inter',(req, res) => {
-  fetch('http://localhost:3000/api/pacientes')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('paciente_Inter', {
-      data
+router.get('/paciente_Inter/:token_id',(req, res) => {
+  const { token_id } = req.params
+  if(datas.name.token[token_id]){
+    fetch('http://localhost:3000/api/list_onli_pacientes')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('paciente_Inter', {
+        data,
+        data_doc:datas.name.data_user[token_id]        
+      })
     })
-  })
+  }else{
+    res.redirect('/');
+  }
  
 });
 

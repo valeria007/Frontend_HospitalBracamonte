@@ -46,6 +46,36 @@ router.get('/vude_del_med_especialidad/:id', (req,res) => {
         res.status(200).json(resp)
     });
 })
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+        estas funciones es para poder mandar los mesajes que manda los post
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+ */
+
+var msg_Consulta_emergencia = {}
+function msg_data(data,id){
+  let msg_data = msg_Consulta_emergencia[id];
+    if (!msg_data) {
+        msg_data = msg_Consulta_emergencia[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    msg_data.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in msg_Consulta_emergencia) {
+      arr.push(msg_Consulta_emergencia[id]);
+  }
+  return arr;
+}
+function remove(id) {
+    delete msg_Consulta_emergencia[id];
+}
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -54,99 +84,221 @@ router.get('/cuaderno',(req,res) => {
     res.render('cuadernos/homeCuaderno');
 });
 
-router.get('/limpiar', (req,res) => {
-    mg1= null;
-    mg2=null;
-    espONE = null;
-    res.redirect('/cuaderno/especialidad');
+router.get('/limpiar/:token_id', (req,res) => {
+    const { token_id } = req.params
+    remove(token_id)
+    remove_esp(token_id)
+    res.redirect('/cuaderno/especialidad/'+token_id);
 })
 
-//serv para renderizar y listar todas las especialidades
-router.get('/especialidad', (req,res) => {
-    fetch(url.name.cuadernos+'/api/especialidad')
-    .then(res => res.json())
-    .then(resp => { 
-        fetch(url.name.pruebas+'/api/Only_Medicos')
-        .then(res => res.json())
-        .then(Lista_medicos => {
-            res.render('cuadernos/especialidad',{
-                resp,
-                espONE,
-                mg1,
-                mg2,
-                Lista_medicos
-            });
-        })
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.render('404error',{
-            msg:"No hay conección con el sevidor de Especialidades"
-        });
-    }) 
-    
-});
-//serv para poder sacar una sola especialidad para que pueda ser actualizado
-var espONE;
-router.get('/oneEsp/:id', (req,res) => {
-    const { id } = req.params;
-    fetch(url.name.cuadernos+'/api/EspOne/'+id)
+
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+                serv para renderizar y listar todas las especialidades            
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+ */
+router.get('/especialidad/:token_id', (req,res) => {
+    const { token_id } = req.params
+    if( datas.name.token[token_id] ){
+        fetch(url.name.cuadernos+'/api/especialidad')
         .then(res => res.json())
         .then(resp => { 
-            espONE = resp;
-            res.redirect('/cuaderno/especialidad')
+            fetch(url.name.pruebas+'/api/Only_Medicos')
+            .then(res => res.json())
+            .then(Lista_medicos => {
+                console.log(update_esp[token_id], "  <<   < < < < < < < < < < < << ")
+                res.render('cuadernos/especialidad',{
+                    resp,
+                    espONE:update_esp[token_id],
+                    msg:msg_Consulta_emergencia[token_id],
+                    Lista_medicos,
+                    data_doc:datas.name.data_user[token_id]
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error)
+                res.render('404error',{
+                    msg:"No hay conección con el sevidor 3600",
+                    //data_doc:datas.name.data_user[token_id],
+                });
+            }) 
         })
         .catch(error => {
             console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
+            res.render('404error',{
+                msg:"No hay conección con el sevidor  4600",
+                //data_doc:datas.name.data_user[token_id],
+            });
         }) 
-})
-var mg1,mg2
-//serv para poder insertar en cuadernos
-router.post('/especialidad', (req,res) => {
-    var data = req.body
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/especialidad',esto)
+    }else{
+        res.redirect('/')
+    }
+    
+});
+var update_esp = {}
+function one_esp(data,id){
+  let storedItem = update_esp[id];
+    if (!storedItem) {
+      storedItem = update_esp[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array12 () {
+  let arr = [];
+  for (const id in update_esp) {
+      arr.push(update_esp[id]);
+  }
+  return arr;
+}
+
+function remove_esp(id) {
+  delete update_esp[id];
+}
+//serv para poder sacar una sola especialidad para que pueda ser actualizado
+
+router.get('/oneEsp/:id/:token_id', (req,res) => {
+    const { token_id } = req.params
+    const { id } = req.params;
+    fetch(url.name.cuadernos+'/api/EspOne/'+id)
     .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => { 
-        if(data.success == false){
-            mg1=data.message
-            res.redirect('/cuaderno/especialidad')
+    .then(resp => { 
+        if(update_esp[token_id] == null){
+            one_esp(resp, token_id)
+            res.redirect('/cuaderno/especialidad/'+ token_id) 
         }else{
-            mg2=data.message
-            res.redirect('/cuaderno/especialidad')
+            remove_esp(token_id)
+            one_esp(resp, token_id)
+            res.redirect('/cuaderno/especialidad/'+token_id)
         }
-    })  
+        setTimeout(()=>{
+            remove_esp(token_id)
+        },25000);        
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
+})
+//serv para poder insertar en cuadernos
+router.post('/especialidad/:token_id', (req,res) => {
+    const { token_id } = req.params
+    if( datas.name.token[token_id] ){
+        var data = req.body;
+        var msg_p;
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/especialidad',esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+            if(data.success == false){
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect('/cuaderno/especialidad/'+token_id)
+            }else{
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect('/cuaderno/especialidad/'+token_id)
+            }
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);
+        }) 
+    }else{
+        res.redirect('/')
+    } 
 })
 
 //ser para poder actualizar especialidad
-router.post('/updateEsp/:id', (req,res)=> {
-    const { id } = req.params;
-    var data = req.body;
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/updateEsp/'+id,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => { 
-        if(data.success == false){
-            res.redirect('/cuaderno/oneEsp/'+id)
-        }
-        mg2=data.message
-        res.redirect('/cuaderno/oneEsp/'+id)
-    })  
+router.post('/updateEsp/:id/:token_id', (req,res)=> {
+    const { id, token_id } = req.params;
+    if( datas.name.token[token_id] ){
+        var data = req.body;
+        var msg_p;
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/updateEsp/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+            if(data.success == false){
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.msg
+                    };
+                    msg_data(msg_p,token_id);
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.msg
+                    };
+                    remove(token_id);
+                    msg_data(msg_p,token_id);
+                }
+                res.redirect('/cuaderno/oneEsp/'+id+'/'+token_id);
+            }else{
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    };
+                    msg_data(msg_p,token_id);
+                }else{
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    };
+                    remove(token_id);
+                    msg_data(msg_p,token_id);
+                }
+                res.redirect('/cuaderno/oneEsp/'+id+'/'+token_id);
+            }            
+           
+        }) 
+    }else{
+        res.redirect('/')
+    } 
 })
 
 //asignar medico
@@ -205,30 +357,34 @@ router.get('/vue_list_EspCons/:id_especialidad', (req,res) => {
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */
 
-router.get('/limpiarC', (req,res) => {
-    mess=null;
-    mgconf=null;
-    OnlyC = null;
-    res.redirect('/cuaderno/Cuadernos')
+router.get('/limpiarC/:token_id', (req,res) => {
+    const { token_id } = req.params;
+    remove_cuaderno(token_id);
+    remove(token_id);
+    res.redirect('/cuaderno/Cuadernos/'+token_id);
 })
 router.get('/limpiar2', (req,res) => {
     mgconf = null;
     res.redirect('/cuaderno/Cuadernos')
 })
-router.get('/cuadernos1', (req,res) => {
-    mgconf = null;
-    res.redirect('/cuaderno/Cuadernos')
+router.get('/cuadernos1/:token_id', (req,res) => {
+    const { token_id } = req.params
+    res.redirect('/cuaderno/Cuadernos/'+token_id)
 })
-router.get('/Cuadernos', (req,res) => {
-    fetch(url.name.cuadernos+'/api/liscuaderno')
+//esta ruta es para poder rendirzar cuadernos
+router.get('/Cuadernos/:token_id', (req,res) => {
+    const { token_id } = req.params
+    if( datas.name.token[token_id] ){
+
+        fetch(url.name.cuadernos+'/api/liscuaderno')
         .then(res => res.json())
         .then(resp => { 
-            console.log(OnlyC, " <<<<<<<<<<<<< askjdlaksdjlaksdjs")
+            console.log(update_cuaderno[token_id], "  < < < < < <  < << <  < < << <  < <<  < < < < < < < < < < <<  <")
             res.render('cuadernos/cuadernos',{
                 resp,
-                mess,
-                OnlyC,
-                mgconf
+                data_doc:datas.name.data_user[token_id],
+                msg:msg_Consulta_emergencia[token_id],
+                OnlyC:update_cuaderno[token_id],
             })
         })
         .catch(error => {
@@ -236,17 +392,55 @@ router.get('/Cuadernos', (req,res) => {
             res.render('404error',{
                 msg:"No hay conección con el sevidor de Cuadernos"
             });
-        })     
+        })    
+    }else {
+        res.redirect('/');
+    } 
 })
+
+// esta funcion es para poder mandar un cuaderno para que sea actualizado mediante usario
+var update_cuaderno = {}
+function one_cuaderno(data,id){
+  let storedItem = update_cuaderno[id];
+    if (!storedItem) {
+      storedItem = update_cuaderno[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array13 () {
+  let arr = [];
+  for (const id in update_cuaderno) {
+      arr.push(update_cuaderno[id]);
+  }
+  return arr;
+}
+
+function remove_cuaderno(id) {
+  delete update_cuaderno[id];
+}
+
 //ruta para poder sacar una solo cuaderno
-let OnlyC
-router.get('/onlyCuadernos/:id', (req,res) => {
-    const { id } = req.params;
+router.get('/onlyCuadernos/:id/:token_id', (req,res) => {
+    const { id, token_id } = req.params;
     fetch(url.name.cuadernos+'/api/OnlyCuadernos/'+id)
         .then(res => res.json())
         .then(resp => { 
-            OnlyC = resp;
-            res.redirect('/cuaderno/Cuadernos')
+            
+            if(update_cuaderno[token_id] == null){
+                one_cuaderno(resp, token_id)
+                res.redirect('/cuaderno/Cuadernos/'+token_id)
+            }else{
+                remove_cuaderno(token_id)
+                one_cuaderno(resp, token_id)
+                res.redirect('/cuaderno/Cuadernos/'+token_id)
+            }
+            setTimeout(()=>{
+                remove_cuaderno(token_id)
+            },50000);
         })
         .catch(error => {
             console.error('Error:', error)
@@ -255,58 +449,123 @@ router.get('/onlyCuadernos/:id', (req,res) => {
 })
 
 //ruta para insertar en cuadernos
-var mess, mgconf;
-router.post('/cuadernos',(req,res) => {
-    var data = req.body;
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/cuaderno',esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => { 
-        if (data.success == false){
-            console.log('esto esssssssssssssss',data)
-            mess = data.message;
-           res.redirect('/cuaderno/Cuadernos')
-        }else{
-            mess=null
-            console.log('esto esssssssssssssss',data)
-            mgconf= data.message;
-            res.redirect('/cuaderno/Cuadernos')
-        }
-       
-    })  
+router.post('/cuadernos/:token_id',(req,res) => {
+    const { token_id } = req.params
+    if( datas.name.token[token_id] ){
+        var data = req.body;
+        var msg_p
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/cuaderno',esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+            if (data.success == false){
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect('/cuaderno/Cuadernos/'+token_id)
+            }else{      
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                  }else{
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                  }
+                res.redirect('/cuaderno/Cuadernos/'+token_id)
+            }
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);
+        })  
+    }else{
+        res.redirect('/')
+    }
 })
 
-router.post('/updateCuaderno/:id', (req,res) => {
-    const { id } = req.params;
-    var data = req.body;
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/updateCuaderno/'+id,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {   
-        if(data.success == true){
-            console.log('esto esssssssssssssss',data)
-            mgconf=data.message;
-            res.redirect('/cuaderno/onlyCuadernos/'+id)  
-        }else{
-            mess=data.message;
-            res.redirect('/cuaderno/onlyCuadernos/'+id) 
-        }     
-              
-    })  
+router.post('/updateCuaderno/:id/:token_id', (req,res) => {
+    const { id, token_id } = req.params;
+    if( datas.name.token[token_id] ){
+        var data = req.body;
+        var msg_p;
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/updateCuaderno/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {   
+            if(data.success == true){
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect('/cuaderno/onlyCuadernos/'+id+'/'+token_id)  
+            }else{
+
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect('/cuaderno/onlyCuadernos/'+id+'/'+token_id) 
+                
+            } 
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);    
+
+        })  
+    }else{
+        res.redirect('/')
+    }
 })
 
 /*
@@ -322,139 +581,229 @@ router.get('/volver_a_doctor', (req,res) => {
     res.redirect('/cuaderno/getEsp/'+idCuaderno)
 })
 
-router.get('/limpiarMDoc', (req,res) => {
-    modifDoct = null;
-    res.redirect('/cuaderno/docCuaderno')
+router.get('/limpiarMDoc/:id/:token_id', (req,res) => {
+    const { id, token_id } = req.params
+    remove_one(token_id)
+    res.redirect('/cuaderno/getEsp/'+id+'/'+token_id)
 })
 
-router.get('/docCuaderno', (req,res) => {
-
-    console.log(datas.name.token, " <<< esto deberia funcionar")
-  
-    
-    var token = {
-
-        method: 'GET',
-        headers:{
-          'Content-type' : "application/json",
-          /*'Authorization': datas.name.token*/
-        }
-}
-    fetch(url.name.pruebas+'/api/Only_Medicos',token)
-    .then(res => res.json())
-    .then(resp => { 
-        fetch(url.name.pruebas+'/api/OnlyEnfermera',token)
+router.get('/getEsp/:id/:token_id', (req,res) => {
+    const { id,token_id } = req.params
+    if( datas.name.token[token_id] ){
+        fetch(url.name.cuadernos+'/api/list_consEsp')
         .then(res => res.json())
-        .then(enfermeras => { 
-            res.render('cuadernos/turnos',{
-                resp, // esto contiene los doctores
-                esp,   // esto trae las especialidades
-                listDoc,
-                modifDoct,
-                enfermeras
-            });
+        .then(esp => { 
+
+            fetch(url.name.cuadernos+'/api/doctores/'+id)
+            .then(res => res.json())
+            .then(listDoc => { 
+            
+                fetch(url.name.pruebas+'/api/Only_Medicos')
+                .then(res => res.json())
+                .then(resp => { 
+                    fetch(url.name.pruebas+'/api/OnlyEnfermera')
+                    .then(res => res.json())
+                    .then(enfermeras => { 
+
+                        res.render('cuadernos/turnos',{
+                            id, 
+                            data_doc:datas.name.data_user[token_id],
+                            msg:msg_Consulta_emergencia[token_id],
+                            resp, // esto contiene los doctores
+                            esp,   // esto trae las especialidades
+                            listDoc,
+                            modifDoct:modif_Doct[token_id],
+                            enfermeras
+                        });
+
+                    })
+                
+                })
+                .catch(error => {
+                    console.error('Error:', error)
+                    res.send("no hay coneccion con el servidor");
+                }) 
+            })
+            .catch(error => {
+                console.error('Error:', error)
+                res.send("no hay coneccion con el servidor");
+            }) 
         })
-       
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        }) 
+    }else{
+        res.redirect('/')
+    }
+
 })
 
+// esta funcion es para poder mandar un cuaderno para que sea actualizado mediante usario
+var modif_Doct = {}
+function one(data,id){
+  let storedItem = modif_Doct[id];
+    if (!storedItem) {
+      storedItem = modif_Doct[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
 
+function array14 () {
+  let arr = [];
+  for (const id in modif_Doct) {
+      arr.push(modif_Doct[id]);
+  }
+  return arr;
+}
 
-//ruta que trae la lista segun id
-let listDoc;
-router.get('/ListaDoc', (req,res) => {
-    fetch(url.name.cuadernos+'/api/doctores/'+idCuaderno)
-    .then(res => res.json())
-    .then(resp => { 
-       listDoc = resp;
-       
-       res.redirect('/cuaderno/docCuaderno')
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
-})
+function remove_one(id) {
+  delete modif_Doct[id];
+}
 
 //ruta para modificar o actualizar
-let modifDoct;
-router.get('/midificarDoct/:id', (req,res) => {
-    const { id } = req.params;
-    fetch(url.name.cuadernos+'/api/IdDoct/'+id)
-    .then(res => res.json())
-    .then(resp => { 
-       modifDoct = resp;
-       res.redirect('/cuaderno/ListaDoc')
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
+
+router.get('/midificarDoct/:id/:id2/:token_id', (req,res) => {
+    const { id, id2, token_id } = req.params;
+    if( datas.name.token[token_id] ){
+        fetch(url.name.cuadernos+'/api/IdDoct/'+id)
+        .then(res => res.json())
+        .then(resp => {            
+            if(modif_Doct[token_id] == null){
+                one(resp, token_id)
+                res.redirect('/cuaderno/getEsp/'+id2+'/'+token_id)
+            }else{
+                remove_one(token_id)
+                one(resp, token_id)
+                res.redirect('/cuaderno/getEsp/'+id2+'/'+token_id)
+            }
+            setTimeout(()=>{
+                remove_one(token_id)
+            },50000);   
+
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        })
+    }else{
+        res.redirect('/')
+    } 
 })
 
-
-let idCuaderno, esp; // esto trae el id para insertar datos en la tabla doctor
-router.get('/getEsp/:id', (req,res) => {
-    const { id } = req.params
-    idCuaderno = id;
-    fetch(url.name.cuadernos+'/api/list_consEsp')
-    .then(res => res.json())
-    .then(resp => { 
-        esp = resp;
-       res.redirect('/cuaderno/ListaDoc')
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
-
-})
 
 //ruta para insertar en doctor
 let id_docCuaderno // esta id es para poder insertar en fechas
-router.post('/docCuaderno', (req,res) => {
-    var data = req.body;
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/doctor/'+idCuaderno,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {     
-        id_docCuaderno =  data.data.id
-        res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno )   
-       
-    }) 
+router.post('/docCuaderno/:id/:token_id', (req,res) => {
+    const { id,token_id } = req.params
+    if( datas.name.token[token_id] ){
+
+        var data = req.body;
+        var msg_p;
+        console.log(req.body, " < < < < < < < < <  < < < < < < < < < < <  < < < < < < < < <<<<<<<<<<<<<<<<<<<<<<<<")
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/doctor/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {   
+            console.log(data.message + " <<  < < < < <  esto es xxzxzx< < < < < <  <")
+            if (data.success == true){
+                id_docCuaderno =  data.data.id
+                res.redirect('/cuaderno/FechaDoc/'+data.data.id+'/'+token_id+'/'+id )   
+            }else{
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                        success:false,
+                        data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                        success:false,
+                        data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect( '/cuaderno/getEsp/' + id + '/' + token_id );
+            }
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);
+        }) 
+
+    }else{
+        res.redirect('/')
+    }
 })
 
 //ruta para poder actualizar 
-router.post('/updateDoctCuaderno/:id', (req,res) => {
-    const { id } = req.params
-    var datas = req.body
-    
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(datas),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/modifyDocCuadern/'+id,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {   
+router.post('/updateDoctCuaderno/:id/:id2/:token_id', (req,res) => {
+    const { id,id2, token_id } = req.params
+    if( datas.name.token[token_id] ){
+        var datos = req.body
+        var msg_p;
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/modifyDocCuadern/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {   
+            if(data.success == true){
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect('/cuaderno/midificarDoct/'+id+'/'+id2+'/'+token_id ) 
+            }else{
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    msg_data(msg_p,token_id)
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    remove(token_id)
+                    msg_data(msg_p,token_id)
+                }
+                res.redirect('/cuaderno/midificarDoct/'+id+'/'+id2+'/'+token_id ) 
+            }
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);
         
-        res.redirect('/cuaderno/midificarDoct/'+id )   
-       
-    })  
+        })  
+    }else{
+        res.redirect('/')
+    }
     
 })
 
@@ -468,79 +817,157 @@ router.post('/updateDoctCuaderno/:id', (req,res) => {
 */
 
 
-
-router.get('/volverFechas', (req,res) => {
-    res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno) //    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// esta ruta es para poder volver una pestaña anterior
+router.get('/volver_docCuaderno/:id_anterior/:token_id', (req,res) => {
+    const { id_anterior, token_id } = req.params
+    res.redirect('/cuaderno/getEsp/'+id_anterior+'/'+token_id)
 })
 
-router.get('/limpiarFecha',(req,res) => {
-    onlyFecha = null
-    res.redirect('/cuaderno/fechas')
+
+router.get('/volverFechas/:id/:token_id/:id_anterior', (req,res) => {
+    const { id, token_id, id_anterior } = req.params
+    res.redirect('/cuaderno/FechaDoc/'+id+'/'+token_id+'/'+id_anterior) //    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 })
 
-router.get('/fechas', (req,res) => {
-    res.render('cuadernos/fechas',{
-        docFecha, //trae fecha de contrato del doctor
-        onlyFecha, //para mostar una sola fecha y luego poder actualizar
-    })
+router.get('/limpiarFecha/:id/:token_id/:id_anterior',(req,res) => {
+    const { id, token_id, id_anterior } = req.params;
+    remove(token_id)
+    remove_fecha(token_id);
+    res.redirect('/cuaderno/FechaDoc/'+id+'/'+token_id+'/'+id_anterior);
 })
 
 //ruta para mostrar las fechas del doctor
-let docFecha;
-router.get('/FechaDoc/:id', (req,res) => {
-    const { id } = req.params;
-    id_docCuaderno = id;
-    fetch(url.name.cuadernos+'/api/fechasList/'+id)
-    .then(res => res.json())
-    .then(resp => { 
-        docFecha = resp;
-       res.redirect('/cuaderno/fechas')
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
+
+router.get('/FechaDoc/:id/:token_id/:id_anterior', (req,res) => {
+    const { id, token_id, id_anterior } = req.params;
+    if( datas.name.token[token_id] ){
+        id_docCuaderno = id;
+        fetch(url.name.cuadernos+'/api/fechasList/'+id)
+        .then(res => res.json())
+        .then(docFecha => { 
+            console.log(modif_fecha[token_id], "  <<<<<<<< < < < < < < < < ")
+            res.render('cuadernos/fechas',{
+                id,
+                id_anterior,
+                docFecha, //trae fecha de contrato del doctor
+
+                onlyFecha:modif_fecha[token_id], //para mostar una sola fecha y luego poder actualizar
+
+                data_doc:datas.name.data_user[token_id],
+                msg:msg_Consulta_emergencia[token_id],
+            })
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        }) 
+    }else{
+        res.redirect('/')
+    }
 })
 
+// esta funcion es para poder mandar un cuaderno para que sea actualizado mediante usario
+var modif_fecha = {}
+function one_fecha(data,id){
+  let storedItem = modif_fecha[id];
+    if (!storedItem) {
+      storedItem = modif_fecha[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array15 () {
+  let arr = [];
+  for (const id in modif_fecha) {
+      arr.push(modif_fecha[id]);
+  }
+  return arr;
+}
+
+function remove_fecha(id) {
+  delete modif_fecha[id];
+}
+
+
 //ruta para poder actualizar mostrar una fecha
-let onlyFecha;
-router.get('/onlyfecha/:id', (req,res) => {
-    const { id } = req.params;
-    fetch(url.name.cuadernos+'/api/oneFecha/'+id)
-    .then(res => res.json())
-    .then(resp => { 
-        onlyFecha = resp;
-       res.redirect('/cuaderno/FechaDoc/'+id_docCuaderno)
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
+router.get('/onlyfecha/:id_fechas/:id/:token_id/:id_anterior', (req,res) => {
+    const { id_fechas, id, token_id, id_anterior } = req.params;
+    if( datas.name.token[token_id] ){
+        fetch(url.name.cuadernos+'/api/oneFecha/'+id_fechas)
+        .then(res => res.json())
+        .then(resp => { 
+            if(modif_fecha[token_id] == null){
+                one_fecha(resp, token_id)
+                res.redirect('/cuaderno/FechaDoc/'+id+'/'+token_id+'/'+id_anterior)
+            }else{
+                remove_fecha(token_id)
+                one_fecha(resp, token_id)
+                res.redirect('/cuaderno/FechaDoc/'+id+'/'+token_id+'/'+id_anterior)
+            }
+            setTimeout(()=>{
+                remove_fecha(token_id)
+            },50000);   
+
+        })
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        }) 
+    }else{
+        res.redirect('/')
+    }
 })
+
 var msge1, msge2;
 let idFechas
-router.post('/fechas', (req,res) => {
-    var data = req.body;
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/fechas/'+id_docCuaderno,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {  
-        console.log("aquiiiiiiiiiiiii",data) 
-        idFechas = data.data.id  
-            res.redirect('/cuaderno/turnos')
-        
-        
-        
-        
-       
-    })  
+router.post('/fechas/:id/:token_id/:id_anterior', (req,res) => {
+    const { id, token_id, id_anterior } = req.params;
+    if( datas.name.token[token_id] ){
+        var datos = req.body;
+        var msg_p;
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/fechas/'+id,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {  
+            console.log("aquiiiiiiiiiiiii",data)            
+            if(data.success == true){
+                idFechas = data.data.id  
+                res.redirect('/cuaderno/turnos/'+data.data.id+'/'+token_id+'/'+id_anterior+'/'+id) 
+            }else{
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    };
+                    msg_data(msg_p,token_id);
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    remove(token_id);
+                    msg_data(msg_p,token_id);
+                }
+                res.redirect('/cuaderno/FechaDoc/'+id+'/'+token_id+'/'+id_anterior);
+            }
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);
+            
+        })  
+    }else{
+        res.redirect('/')
+    }
 })
 
 router.get('/vue_list_horas/:id_turno', (req,res) => {
@@ -561,23 +988,62 @@ router.get('/vue_list_horas/:id_turno', (req,res) => {
 })
 
 //ruta para poder actualizar fecha
-router.post('/updateFecha/:id', (req,res ) => {
-    const { id } = req.params;
-    var data = req.body;
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/updateFecha/'+id,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {     
-        res.redirect('/cuaderno/onlyfecha/'+id)
-       
-    })  
+router.post('/updateFecha/:id_fecha/:id/:token_id/:id_anterior', (req,res ) => {
+    const { id_fecha,id, token_id, id_anterior } = req.params;
+    if( datas.name.token[token_id] ){
+        var data = req.body;
+        var msg_p;
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/updateFecha/'+id_fecha,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => { 
+            if(data.success == true){
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    };
+                    msg_data(msg_p,token_id);
+                }else{
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    remove(token_id);
+                    msg_data(msg_p,token_id);
+                }
+                res.redirect('/cuaderno/onlyfecha/'+id_fecha+'/'+id+'/'+token_id+'/'+id_anterior)
+            }else{
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    };
+                    msg_data(msg_p,token_id);
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    remove(token_id);
+                    msg_data(msg_p,token_id);
+                }
+                res.redirect('/cuaderno/onlyfecha/'+id_fecha+'/'+id+'/'+token_id+'/'+id_anterior)
+            };
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);
+        })  
+    }else{
+        res.redirect('/')
+    }
 })
 
 /*
@@ -592,71 +1058,106 @@ router.get('/volver_a_trunos', (req,res) => {
     res.redirect('/cuaderno/turnos')
 })
 
-router.get('/turnos', (req,res) => {
-    fetch(url.name.cuadernos+'/api/oneTurno/'+idFechas)
-    .then(res => res.json())
-    .then(resp => {
-        console.log(resp, "   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   esto") 
-        res.render('cuadernos/diasTurnos',{
-            resp,
-            msge2,
-            msge1
+router.get('/turnos/:id_fechas/:token_id/:id_anterior/:id_volver_fechas', (req,res) => {
+    const { id_fechas, token_id, id_anterior, id_volver_fechas } = req.params
+    if( datas.name.token[token_id] ){
+        fetch(url.name.cuadernos+'/api/oneTurno/'+id_fechas)
+        .then(res => res.json())
+        .then(resp => {
+            console.log(resp, "   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   esto") 
+            res.render('cuadernos/diasTurnos',{
+                id_fechas,// este es el id para insertar en fechas
+                id_anterior,// este es el id que me permite id a asignar doctor
+                id_volver_fechas,// esto es el id que me permite ir a el rango de fechas o el contrato del doctor
+                data_doc:datas.name.data_user[token_id],
+                resp,
+                msg:msg_Consulta_emergencia[token_id]
+            });
         })
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
+        .catch(error => {
+            console.error('Error:', error)
+            res.send("no hay coneccion con el servidor");
+        }) 
+    }else{
+        res.redirect('/');
+    }
    
 })
 
-//ruta para mostrar todas los turnos segun si fecha
-router.get('/fecahTurn/:id', (req,res) => {
-    const { id }= req.params;
-    idFechas = id
-    res.redirect('/cuaderno/turnos')
-})
-
-
-router.post('/turnos', (req,res) => {
-    var data = {
-        cantiFicha: req.body.cantiFicha,
-        diasAten: req.body.diasAten,
-        turno: req.body.turno
-    }
-    var esto = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-type' : "application/json"
-        }
-    };
-    fetch(url.name.cuadernos+'/api/turnos/'+idFechas,esto)
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(data => {   
-        if(data.success == false){
-            console.log("aquiiiiiiiiiiiii",data)
-            msge2=null
-            msge1= data.message
-        res.redirect('/cuaderno/turnos')
+router.post('/turnos/:id_fechas/:token_id/:id_anterior/:id_volver_fechas', (req,res) => {
+    const { id_fechas, token_id, id_anterior, id_volver_fechas } = req.params
+    if( datas.name.token[token_id] ){
+        var data = {
+            cantiFicha: req.body.cantiFicha,
+            diasAten: req.body.diasAten,
+            turno: req.body.turno
+        };
+        var msg_p;
+        var esto = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers:{
+              'Content-type' : "application/json"
+            }
+        };
+        fetch(url.name.cuadernos+'/api/turnos/'+id_fechas,esto)
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(data => {   
+            if(data.success == true){
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    };
+                    msg_data(msg_p,token_id);
+                }else{
+                    msg_p = {
+                      success:true,
+                      data_p:data.message
+                    }
+                    remove(token_id);
+                    msg_data(msg_p,token_id);
+                }
+            res.redirect('/cuaderno/turnos/'+id_fechas+'/'+token_id+'/'+id_anterior+'/'+id_volver_fechas)
+            }else{
+                if(msg_Consulta_emergencia[token_id] == null){
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    };
+                    msg_data(msg_p,token_id);
+                }else{
+                    msg_p = {
+                      success:false,
+                      data_p:data.message
+                    }
+                    remove(token_id);
+                    msg_data(msg_p,token_id);
+                }
+                res.redirect('/cuaderno/turnos/'+id_fechas+'/'+token_id+'/'+id_anterior+'/'+id_volver_fechas)
+            }
+            setTimeout(()=>{
+                remove(token_id)
+            },1000);
+        })  
     }else{
-        msge1=null
-        msge2= data.message
-        res.redirect('/cuaderno/turnos')
+        res.redirect('/');
     }
-    })  
 })
-router.get('/delturno/:id', (req, res) => {
-    const { id }= req.params;
-    fetch('http://localhost:4600/api/delete/'+id)
-    .then(resp => resp.json())
-    .catch(error => console.error('Error:', error))
-    .then(resp =>{
-        
-        res.redirect('/cuaderno/turnos');
-    });
-  });
+router.get('/delturno/:id/:id_fechas/:token_id/:id_anterior/:id_volver_fechas', (req, res) => {
+    const { id, id_fechas, token_id, id_anterior, id_volver_fechas }= req.params;
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:4600/api/delete/'+id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error:', error))
+        .then(resp =>{
+            res.redirect('/cuaderno/turnos/'+id_fechas+'/'+token_id+'/'+id_anterior+'/'+id_volver_fechas)
+        });
+    }else{
+        res.redirect('/')
+    }
+});
 
 
   /* 
@@ -1014,23 +1515,35 @@ router.get('/VueDoctores/:id_cuaderno', (req,res) => {
                              Reportes 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-router.get('/recuadernos',(req, res) => {
-    fetch('http://localhost:4600/api/liscuaderno')        
-    .then(resp => resp.json())
-    .then(data =>{  
-      res.render('reprtescuader', {
-        data
-      })
-    })
-  });
-router.get('/repespecialidad',(req, res) => {
-    fetch('http://localhost:4600/api/especialidad')        
-    .then(resp => resp.json())
-    .then(data =>{  
-      res.render('reporteespe', {
-        data
-      })
-    })
+router.get('/recuadernos/:token_id',(req, res) => {
+    const { token_id } = req.params
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:4600/api/liscuaderno')        
+        .then(resp => resp.json())
+        .then(data =>{  
+            res.render('reprtescuader', {
+              data,
+              data_doc:datas.name.data_user[token_id]
+            })
+        })
+    }else{
+        res.redirect('/')
+    }
+});
+router.get('/repespecialidad/:token_id',(req, res) => {
+    const { token_id } = req.params
+    if( datas.name.token[token_id] ){
+        fetch('http://localhost:4600/api/especialidad')        
+        .then(resp => resp.json())
+        .then(data =>{  
+            res.render('reporteespe', {
+              data,
+              data_doc:datas.name.data_user[token_id]
+            })
+        })
+    }else{
+        res.redirect('/')
+    }
 });
 
 module.exports = router;
