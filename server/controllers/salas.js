@@ -15,15 +15,15 @@ class Sala {
           Especialidad.findAll({
             where: {nombre : req.body.nombre}
           })
-          .then((datos) => {  
-            console.log(datos, " esto es datos")          
+          .then((datos) => {
+            console.log(datos, " esto es datos")
             var id = datos[0].id;
             const { nombre, descripcionSala, piso } = req.body
             var  especialidadID  = id
             return Salas
             .create({
-              nombre, 
-              descripcionSala, 
+              nombre,
+              descripcionSala,
               piso,
               especialidadID
             })
@@ -32,11 +32,11 @@ class Sala {
                 message: 'se inserto con exito',
                 data
             }))
-            .catch(error => res.status(400).send(error)); 
+            .catch(error => res.status(400).send(error));
           })
-            
+
         }
-       
+
     }
     static enviarSala1(req, res){
       if (!req.body.nombre || !req.body.descripcionSala || !req.body.piso){
@@ -45,7 +45,7 @@ class Sala {
             msg: 'Todos los espacios son requeridos'
         })
     } else{
-      fetch('http://localhost:4600/api/especialidad')   
+      fetch('http://localhost:4600/api/especialidad')
       .then(resp => resp.json())
       .then(resp =>{
         for(var i = 0; i< resp.length; i++){
@@ -55,15 +55,15 @@ class Sala {
             const { nombre, descripcionSala, piso } = req.body
             return Salas
             .create({
-              nombre, 
-              descripcionSala, 
+              nombre,
+              descripcionSala,
               piso
-              
+
             })
             .then(data => {
               res.status(200).json({
                 success: true,
-                msg: 'se inserto con exito',
+                message: 'Se inserto correctamente',
                 data
               })
             })
@@ -71,10 +71,10 @@ class Sala {
               console.log(error)
               res.status(400).json({
                 success:false,
-                msg:"no se pudo insertar los datos",
+                message:"No se pudo insertar correctamente",
                 error
               })
-            }); 
+            });
           }
         }
 
@@ -86,12 +86,12 @@ class Sala {
           error
         })
       })
-      
+
       /* const { nombre, descripcionSala, piso } = req.body
       return Salas
       .create({
-        nombre, 
-        descripcionSala, 
+        nombre,
+        descripcionSala,
         piso
       })
         .then(data => res.status(200).send({
@@ -101,20 +101,20 @@ class Sala {
       }))
       .catch(error => res.status(400).send(error)); */
     }
-    
-          
-     /* fetch('http://localhost:4600/api/especialidad')   
+
+
+     /* fetch('http://localhost:4600/api/especialidad')
       .then(resp => resp.json())
-      .then(resp =>{        
+      .then(resp =>{
           for(var i = 0; i< resp.length; i++){
             if(resp[i].nombre == req.body.nombre){
-              
+
               var id = resp[i].id
               console.log(id , " id ")
               const { nombre, descripcionSala, piso } = req.body
               return Salas
-          
-            
+
+
           })
           .then(data => res.status(200).send({
               success: true,
@@ -135,8 +135,8 @@ class Sala {
           var  especialidadID  = id
           return Salas
           .create({
-            nombre, 
-            descripcionSala, 
+            nombre,
+            descripcionSala,
             piso,
             especialidadID
           })
@@ -146,8 +146,8 @@ class Sala {
               data
           }))
           .catch(error => res.status(400).send(error));*/
-     
-     
+
+
   }
     static listSala(req, res){
         return Salas
@@ -156,37 +156,37 @@ class Sala {
         .catch(error => res.status(400).send(error));
     }
      //para mostrar solo uno
-    static one(req, res){                
-       var id = req.params.id;  
+    static one(req, res){
+       var id = req.params.id;
        Salas.findAll({
            where: {id: id}
            //attributes: ['id', ['description', 'descripcion']]
          }).then((data) => {
            res.status(200).json(data);
-         });     
+         });
     }
     //para mostrar que salas tiene un servico
-    static oneSala(req, res){                
-      var id = req.params.id;  
+    static oneSala(req, res){
+      var id = req.params.id;
       Salas.findAll({
           where: {especialidadID : id}
           //attributes: ['id', ['description', 'descripcion']]
         }).then((data) => {
           res.status(200).json(data);
-        });     
+        });
    }
 
     //para mostrar que salas tiene un servico segun el nombre
-    static oneSalaNombre(req, res){                
-      var especialidad = req.params.especialidad;  
+    static oneSalaNombre(req, res){
+      var especialidad = req.params.especialidad;
       Salas.findAll({
           where: {nombre : especialidad}
           //attributes: ['id', ['description', 'descripcion']]
         }).then((data) => {
           res.status(200).json(data);
-        });     
+        });
    }
-    
+
     static update(req, res) {
       const { nombre,descripcionSala, piso } = req.body
       return Salas
@@ -195,7 +195,7 @@ class Sala {
           data.update({
             nombre: nombre || data.nombre,
             descripcionSala: descripcionSala || data.descripcionSala,
-            piso: piso || data.piso                    
+            piso: piso || data.piso
           })
           .then(update => {
             res.status(200).send({
