@@ -346,12 +346,12 @@ router.post('/login', (req,res)  => {
   }else {
     var data = req.body;
     var enviar = {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-type' : "application/json"
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type' : "application/json"
+      }
     }
-  }
   fetch('http://localhost:3600/api/login',enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
@@ -731,6 +731,35 @@ router.get('/table_prueba', (req,res) => {
 router.get('/outcerrar',(req, res) => {
   res.render('index')
 });
+
+router.get('/prueba_fecha', (req,res) => {
+ 
+  fetch('http://localhost:4600/fecha')
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    res.render('prueba_fechas',{
+      resp
+    })
+  })
+})
+
+router.post('/prueba_fecha', (req,res) => {
+  var data = req.body;
+  var enviar = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type' : "application/json"
+    }
+  }
+  fetch('http://localhost:4600/fecha',enviar)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    res.redirect('/prueba_fecha')
+  })
+})
 
 
 module.exports = router;
