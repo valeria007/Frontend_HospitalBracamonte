@@ -4,24 +4,50 @@ import model from '../models';
     const { Salas } = model;
 
     class Cama {
-        static sendCama(req, res){
-            const { historial,estado,descripcion, numeroCama } = req.body
-            const  { salaID }  = req.params
-            return Camas
-            .create({
-              historial,
-              estado,
-              descripcion,
-              numeroCama,
-              salaID               
+      static sendCama(req, res){
+        const { descripcion, numeroCama } = req.body
+        if(!descripcion || !numeroCama){
+          res.status(400).json({
+            success:false,
+            msg:"Todos los campos son obligatorios"
+          })
+        }else{
+          return Camas                
+            .findAll({
+              where:{ salaID: req.params.salaID, numeroCama : numeroCama }
             })
-            .then(data => res.status(200).send({
-                success: true,
-                message: "se introdujo una cama",
-                data
-            }))
-            
-        }
+            .then(data => {
+              if(data != ""){
+                res.status(400).json({
+                  success:false,
+                  msg:"Ya existe ese numero de cama"
+                })
+              }else{
+                const  { salaID }  = req.params
+                return Camas
+                .create({            
+                  descripcion,
+                  numeroCama,
+                  salaID               
+                })
+                .then(data => res.status(200).send({
+                    success: true,
+                    msg: "Se introdujo una cama",
+                    data
+                }))
+                .catch(error => {
+                  console.log(error);
+                  res.status(500).json({
+                    success:false,
+                    msg:"No se pudo insertar los datos",
+                    error
+                  })
+                })
+              }
+            });
+         
+        }       
+      }
         // Servicio para para mostrar todas las camas
         static getCamas(req, res) {
             return Camas                

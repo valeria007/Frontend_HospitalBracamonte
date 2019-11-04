@@ -10,24 +10,24 @@ const { alergias } = model;
         departameto, provincia, municipio,id_user} = req.body
         return Pacientes
           .create({
-            numeroHistorial,
-            nombre,
-            apellidop,
-            apellidom,
-            ci,
-            fechanacimiento,
-            sexo,
-            estadocivil,
-            direccion,
-            zona,
-            telef,
-            ocupacion,
-            idiomas,
-            lugranacimiento,
-            departameto,
-            provincia,
-            municipio,
-            id_user
+              numeroHistorial,
+              nombre,
+              apellidop,
+              apellidom,
+              ci,
+              fechanacimiento,
+              sexo,
+              estadocivil,
+              direccion,
+              zona,
+              telef,
+              ocupacion,
+              idiomas,
+              lugranacimiento,
+              departameto,
+              provincia,
+              municipio,
+              id_user
            })
            .then(pacienteData => res.status(201).send({
               success: true,
@@ -35,12 +35,27 @@ const { alergias } = model;
               pacienteData
             }))
        }
+  // lista de pacientes
   static getPaciente(req, res) {
     return Pacientes
     .findAll({
       include:[
         {model:alergias }
       ]
+    })
+    .then(Pacientes => res.status(200).send(Pacientes));
+  }
+  // lista de pacientes
+  static list_only_pacientes(req, res) {
+    return Pacientes
+    .findAll()
+    .then(Pacientes => res.status(200).send(Pacientes));
+  }
+  // lista de paceintes solo nombre
+  static list_pacientes_name(req, res) {
+    return Pacientes
+    .findAll({
+      attributes:['numeroHistorial','nombre','apellidop','apellidom', 'ci']
     })
     .then(Pacientes => res.status(200).send(Pacientes));
   }

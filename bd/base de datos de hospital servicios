@@ -71,3 +71,5 @@ sequelize model:create --name traslados --attributes fecha_hora:string,enviado_d
 
 
 sequelize model:create --name consulta_lab --attributes fecha:string,hora:string,historial:integer,nombre_doctor:text,examen:json,otros:text,id_internacion:integer,id_consulta:integer,id_user:integer
+
+sequelize model:create --name resp_lab --attributes estado:boolean,estado_update:boolean,fecha:string,hora:string,historial:integer,nombre_user:text,imagen_resp:string,descripcion:text,id_lab:integer,id_user:integer

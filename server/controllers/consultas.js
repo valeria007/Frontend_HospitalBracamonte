@@ -166,6 +166,17 @@ class Consulta {
         }
         
     }
+     //serv para solo una consulta medica
+     static One_Consulta_id(req, res){                
+      var id = req.params.id_consulta;  
+      Consultas.findAll({
+        where: {id: id},        
+         //attributes: ['id', ['description', 'descripcion']]
+         
+        }).then((data) => {
+          res.status(200).json(data);
+        });     
+      }
 }
     export default Consulta;
 

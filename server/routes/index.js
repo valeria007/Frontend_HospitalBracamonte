@@ -66,6 +66,9 @@ app.get('/api/paciente_id/:id', Paciente.paciente_id);
 app.get('/api/paciente_alergias/:id_paciente', Paciente.paciente_alergias)
 app.post('/api/update_data_paciente/:id_paciente', Paciente.update_paciente_data)
 
+app.get('/api/list_pacientes', Paciente.list_pacientes_name)
+app.get('/api/list_onli_pacientes', Paciente.list_only_pacientes);
+
 ////citas
 app.post('/api/reg_cita/:id_Paciente', Citas_medica.reg_cita);
 app.get('/api/reg_citas', Citas_medica.getCitas);
@@ -97,6 +100,8 @@ app.get('/api/pacienteConsulta/:historial/:tipoConsulta', Consulta.getConsultaPa
 app.get('/api/OnlyConsulta/:id', Consulta.onlyConsulta);
 app.get('/api/updateConsulta/:id', Consulta.updateConsulta); //para poder sacar consulta segun cita medica para luego actualizar
 app.post('/api/updateConsulta/:id', Consulta.updateCOnsPost) //serv para actualizar consulta 
+
+app.get('/api/one_consulta_id/:id_consulta', Consulta.One_Consulta_id)
 ///recetas
 app.post('/api/reg_Receta/:id_consulta', Receta.post_recetaConsulta);
 app.post('/api/reg_RecetaEmrg/:id_emergencia', Receta.post_receta);

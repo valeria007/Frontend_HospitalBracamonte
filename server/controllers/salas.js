@@ -40,10 +40,9 @@ class Sala {
     }
     static enviarSala1(req, res){
       if (!req.body.nombre || !req.body.descripcionSala || !req.body.piso){
-        console.log(" todos los campos son requeridos  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         res.status(400).send({
             success: false,
-            message: 'Todos los espacios son requeridos'
+            msg: 'Todos los espacios son requeridos'
         })
     } else{
       fetch('http://localhost:4600/api/especialidad')   
@@ -64,7 +63,7 @@ class Sala {
             .then(data => {
               res.status(200).json({
                 success: true,
-                message: 'se inserto con exito',
+                msg: 'se inserto con exito',
                 data
               })
             })
@@ -189,29 +188,42 @@ class Sala {
    }
     
     static update(req, res) {
-        const { nombre,descripcionSala, piso } = req.body
-        return Salas
-          .findByPk(req.params.id)
-          .then((data) => {
-            data.update({
-              nombre: nombre || data.nombre,
-              descripcionSala: descripcionSala || data.descripcionSala,
-              piso: piso || data.piso                    
-            })
-            .then(update => {
-              res.status(200).send({
-                message: 'Sala actualizado',
-                data: {
-                  nombre: nombre || update.nombre,
-                  descripcionSala: descripcionSala || update.descripcionSala,
-                  piso: piso || update.piso
-                }
-              })
-            })
-            .catch(error => res.status(400).send(error));
+      const { nombre,descripcionSala, piso } = req.body
+      return Salas
+        .findByPk(req.params.id)
+        .then((data) => {
+          data.update({
+            nombre: nombre || data.nombre,
+            descripcionSala: descripcionSala || data.descripcionSala,
+            piso: piso || data.piso                    
           })
-          .catch(error => res.status(400).send(error));
-      }
+          .then(update => {
+            res.status(200).send({
+              success:true,
+              msg: 'Sala actualizado',
+              data: {
+                nombre: nombre || update.nombre,
+                descripcionSala: descripcionSala || update.descripcionSala,
+                piso: piso || update.piso
+              }
+            })
+          })
+          .catch(error => {
+            console.log(error);
+            res.status(400).json({
+              success:false,
+              msg:"No se pudo actualizar los datos"
+            })
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          res.status(500).json({
+            success:false,
+            msg:"No se pudo actualizar los datos"
+          });
+        });
+    }
       static del(req, res) {
         return Salas
           .findByPk(req.params.id)
