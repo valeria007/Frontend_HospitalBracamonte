@@ -6,7 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <%- include("../partials/head") -%>	
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 </head>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	console.log(data)
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
 <body class="light_theme  fixed_header left_nav_fixed">
   	<div class="wrapper">
     	<div class="header_bar">
@@ -16,13 +35,13 @@
       		<div class="header_top_bar">
        			<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i></a>
         		<div class="top_right_bar">
-          			<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          			<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             			<ul class="dropdown-menu">
               				<div class="top_pointer"></div>
               				<li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
               				<li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
               				<li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              				<li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+              				<li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i> Logout</a> </li>
             			</ul>
           			</div> 
         		</div>
@@ -34,25 +53,25 @@
           			<ul>
             			<li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
               				<ul>
-                				<li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+                				<li> <a href="/almacen/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
               				</ul>
             			</li>
             			<li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
              				<ul class="opened" style="display:block">
-               				 	<li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-                				<li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
-                				<li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                				<li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-                				<li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
-                				<li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Stock</b> </a> </li> 
+               				 	<li> <a href="/almacen/grupoAsig/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+                				<li> <a href="/medicamento/medicamentos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Medicamentos</b> </a> </li>
+                				<li> <a href="/proveedores/proveedores/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                				<li> <a href="/almacen/pedidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
+                				<li> <a href="/distribucion/listDistribucion/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                				<li> <a href="/medicamento/stock/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Stock</b> </a> </li> 
 							</ul>
             			</li>
             			<li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
               				<ul>
-                				<li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-                				<li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-                				<li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-                				<li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+                				<li> <a href="/almacen/reportes_pedidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                				<li> <a href="/almacen/reportes_salidas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                				<li> <a href="/almacen/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                				<li> <a href="/almacen/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
               				</ul>
             			</li>
           			</ul>
@@ -66,33 +85,20 @@
 						<div class="col-md-12">
 							<div class="block-web">
 								<div class="header">
-						  			<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/medicamento/volver15"><i class="fa fa-repeat"></i></a></div>
+						  			<div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="refresh" href="/medicamento/volver15/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"><i class="fa fa-repeat"></i></a></div>
 							  		<h2 class="content-header"><div class="info gray_symbols"><i class="fa  fa-medkit icon"></i></div>  Registrar Medicamento</h2>  
 								</div>
 								<div class="porlets-content">
-								<% if(msg_post_false != null) { %>
-									<div class="bs-example mover">
-										<div class="alert alert-danger fade in">
-									  		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-											<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h4 class="text-center" style="color:rgb(99, 4, 4);"><%=msg_post_false%></h4></strong>
-										</div>
-									</div>
-								<% } else if(msg_post_true != null) { %>
-									<div class="bs-example mover">
-										<div class="alert alert-info fade in">
-									  		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-											<span class="glyphicon glyphicon-ok"></span> <strong>Mensaje de Confirmación <h6 class="text-center" style="color:rgb(2, 2, 99);"><%=msg_post_true%></h6></strong>
-										</div>
-									</div>
-								<% } %>
+								
 								<%if(OnlyMedicamento == null) { %>
 									<br>
-								  	<form  action="/medicamento/medicamentos" method="POST" parsley-validate novalidate>
+									  <form  action="/medicamento/medicamentos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" method="POST" parsley-validate novalidate>
+										<input type="hidden" name="id_personal" value="<%=data_doc.data.personal.id%>">
 									  	<div class="col-md-4">
 										  	<div class="form-group">
 											  	<label>Grupo de Asignación:</label>
 												<select  name="grupoAsig" onkeyup="mayus(this);" required class="form-control">
-													<option selected>SELECCIONE AQUI...</option>
+													<option value="" selected>SELECCIONE AQUI...</option>
 												  	<% for(var i=0; i< dataGRUPOa.length; i++) {%>
 												  	<option><%=dataGRUPOa[i].descripcion%></option>
 													<% } %>
@@ -144,12 +150,12 @@
 								  	</form>
 								<% } else { %>
 									<br>
-									<form  action="/medicamento/updateMedicamento/<%=OnlyMedicamento[0].id%>" method="POST" parsley-validate novalidate>
+									<form  action="/medicamento/updateMedicamento/<%=OnlyMedicamento.data[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" method="POST" parsley-validate novalidate>
 										<div class="col-md-4">
 											<div class="form-group">
 												<label>Grupo de Asignación:</label>
 												<select required class="form-control" name="grupoAsig" onkeyup="mayus(this);">
-													<option><%=OnlyMedicamento[0].GrupoDesignado.descripcion%></option>
+													<option><%=OnlyMedicamento.data[0].GrupoDesignado.descripcion%></option>
 													<option>--------------------------</option>
 													<% for(var i=0; i< dataGRUPOa.length; i++) {%>
 													<option><%=dataGRUPOa[i].descripcion%></option>
@@ -158,45 +164,45 @@
 											</div>
 											<div class="form-group">
 												<label>Generico:</label>
-												<input type="text" name="generico" required class="form-control" value="<%=OnlyMedicamento[0].generico%>" onkeyup="mayus(this);">
+												<input type="text" name="generico" required class="form-control" value="<%=OnlyMedicamento.data[0].generico%>" onkeyup="mayus(this);">
 											</div>
 											<div class="form-group">
 												<label>Presentacion:</label>
-												<input type="text" name="presentacion" required class="form-control" value="<%=OnlyMedicamento[0].presentacion%>" onkeyup="mayus(this);">
+												<input type="text" name="presentacion" required class="form-control" value="<%=OnlyMedicamento.data[0].presentacion%>" onkeyup="mayus(this);">
 											</div>
 										</div>  
 										<div class="col-md-4">
 											<div class="form-group">
 												<label>Codificación:</label>
-												<input type="text" name="codificacion" required class="form-control" value="<%=OnlyMedicamento[0].codificacion%>">
+												<input type="text" name="codificacion" required class="form-control" value="<%=OnlyMedicamento.data[0].codificacion%>">
 											</div>
 											<div class="form-group">
 												<label>Unidad de Medida:</label>
-												<input type="text" name="unidadMedida" required class="form-control" value="<%=OnlyMedicamento[0].unidadMedida%>">
+												<input type="text" name="unidadMedida" required class="form-control" value="<%=OnlyMedicamento.data[0].unidadMedida%>">
 											</div>
 											<div class="form-group">
 												<label>Cantidad inicial:</label>
-												<input type="text" name="unidades" required class="form-control" value="<%=OnlyMedicamento[0].unidades%>">
+												<input type="text" name="unidades" required class="form-control" value="<%=OnlyMedicamento.data[0].unidades%>">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group">
 												<label>Nombre:</label>
-												<input  type="text" name="nombre"  required class="form-control" value="<%=OnlyMedicamento[0].nombre%>" onkeyup="mayus(this);">
+												<input  type="text" name="nombre"  required class="form-control" value="<%=OnlyMedicamento.data[0].nombre%>" onkeyup="mayus(this);">
 											</div>
 											<div class="form-group">
 												<label>Concentracion:</label>
-												<input type="text" name="concentracion" required class="form-control" value="<%=OnlyMedicamento[0].concentracion%>" onkeyup="mayus(this);">
+												<input type="text" name="concentracion" required class="form-control" value="<%=OnlyMedicamento.data[0].concentracion%>" onkeyup="mayus(this);">
 											</div>
 											<div class="form-group">
 												<label>Precio:</label>
-												<input type="text" name="precio" value="<%=OnlyMedicamento[0].precio%>" required class="form-control" onkeyup="mayus(this);">
+												<input type="text" name="precio" value="<%=OnlyMedicamento.data[0].precio%>" required class="form-control" onkeyup="mayus(this);">
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-0 col-sm-10">
 												<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>  Guardar</button>
-												<a class="btn btn-danger" href="/medicamento/volver15"><i class="fa fa-times"></i> Cancelar</a>
+												<a class="btn btn-danger" href="/medicamento/volver15/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"><i class="fa fa-times"></i> Cancelar</a>
 											</div>
 										</div>
 									</form>
@@ -234,8 +240,8 @@
 																	<td><%=resp[i].precio%></td>	
 																	<td><%=resp[i].unidades%></td>	
 																	<td class="center hidden-phone">
-																	<a href="/medicamento/OnlyMedicamento/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Actualizar"><i class="fa fa-refresh "></i></a><span>&nbsp;</span>
-																	<a href="/medicamento/medFecha_cantidad/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Fechas"><i class="fa fa-folder-open" style="color:rgb(114, 15, 172)"></i></a><span>&nbsp;</span>
+																	<a href="/medicamento/OnlyMedicamento/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Actualizar"><i class="fa fa-refresh "></i></a><span>&nbsp;</span>
+																	<a href="/medicamento/medFecha_cantidad/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Fechas"><i class="fa fa-folder-open" style="color:rgb(114, 15, 172)"></i></a><span>&nbsp;</span>
 																	</tr>
 								   									<% } %>
 																</tbody>
@@ -255,6 +261,31 @@
 		</div>
 	</div>
 <%- include("../partials/scripts") -%>
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
+<script>
+	/*  <%if(msg) { %> */
+	  /*  <%if(msg.data.success == false) { %> */
+		   msg_false()
+		   function msg_false(){
+			 swal.fire(
+			   'Error!',
+			   '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+			   'error'
+			 )
+		   }
+	   /* <% } else {%> */
+		   msg_true()
+		   function msg_true(){
+			 swal.fire(
+			   'Success!',
+			   '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+			   'success'
+			 )
+		   }
+	  /*  <% } %> */
+	/*  <% } %> */
+</script>
 </body>
 </html>
 

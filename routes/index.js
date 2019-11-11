@@ -3,7 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 const datas = require('./url/export');
-import { user_data1 } from './url/export';
+import { user_data1, remove_user12 } from './url/export';
 
 router.post('/enviar', (req,res) => {
   var data = req.body
@@ -224,6 +224,7 @@ router.get('/home/:id_user',(req, res) => {
             }else{
                 remove_user( data_token.token_id)
                 user(data_token, data_token.token_id)
+                remove_user12(data_token.token_id)
                 user_data1(data_token, data_token.token_id)
                 fetch('http://localhost:3600/api/allUser')        
                 .then(resp => resp.json())
@@ -392,7 +393,7 @@ router.post('/login', (req,res)  => {
           
           if(resp.role[0].name == "Almacen"){
             //res.send(resp.role[0].name)
-            res.redirect('/almacen/home/'+resp.id)
+            res.redirect('/almacen/home/'+resp.id + '/' + token_part )
           }else if(resp.role[0].name == "fichaje"){
             res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
             //res.send(resp.role)
@@ -442,7 +443,7 @@ router.post('/login', (req,res)  => {
           
           if(resp.role[0].name == "Almacen"){
             //res.send(resp.role[0].name)
-            res.redirect('/almacen/home/'+resp.id)
+            res.redirect('/almacen/home/'+resp.id+ '/'+ token_part)
           }else if(resp.role[0].name == "fichaje"){
             res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
             //res.send(resp.role)
@@ -539,7 +540,8 @@ router.post('/login2', (req,res) => {
 router.get('/token', (req,res) => {
   res.send({
     token:datas.name.token,
-    session: datas.name.session
+    session: datas.name.session,
+    datas
   })
 })
 

@@ -10,7 +10,8 @@ const ver_pedido =  new Vue({
         id_pedido:'',
         pedido:'', 
         
-        codigo_compra:''
+        codigo_compra:'',
+        cantidad:''
         
     }),
     methods:{
@@ -78,46 +79,109 @@ const ver_pedido =  new Vue({
             } 
         }, */
 
-        reduceByOne (id) {
-            this.list[id].qty--;
-            this.list[id].price -= this.list[id].item.price;   
-            this.subTotal -= this.list[id].item.price; 
-            if (this.list[id].qty <= 0) {
-                delete this.list[id];
+        add_one (id) {
+            if (this.cantidad == ''){
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;"> Inserte una cantidad por favor </label>',
+                    'error'
+                )
+            }else{
+                for( var i = 0 ; i < this.cantidad; i++){
+                    this.list[id].qty++;
+                    this.list[id].price += this.list[id].item.price * 1;   
+                    this.subTotal  = this.subTotal*1 + this.list[id].item.price *1 ;
+                }
+                
+                this.cantidad = '';
             }
+             
+            
+        },
+
+        reduceByOne (id) {
+            console.log (this.list[id].qty)
+            if (this.cantidad == ''){
+                swal.fire(
+                    'Error!',
+                    '<label style="color:red;"> Inserte una cantidad por favor </label>',
+                    'error'
+                )
+            }else{
+                if (this.list[id].qty < this.cantidad){
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;"> La cantidad que quiere eliminar es mayor a la existente  </label>',
+                        'error'
+                    )
+                }else{
+                    for( var i = 0 ; i < this.cantidad; i++){                    
+                        this.list[id].qty--;
+                        this.list[id].price -= this.list[id].item.price * 1;   
+                        this.subTotal  -= this.list[id].item.price *1 ; 
+                        if (this.list[id].qty <= 0) {
+                            //delete this.list[id];
+                            this.list.splice(id,1)                        
+                        }                    
+                    }
+                }                
+                this.cantidad = ''
+            }
+            
         },
         update(e){
             e.preventDefault();
-            if(this.list == ""){
-                this.error = "Por favor primero muestre la lista de Medicamentos"
-            }else{
-                data = {
-                    ProductosAceptados:{
-                        medicamentos: this.list,
-                        subTotal:this.subTotal,
-                        iva:this.subTotal * 0.13,
-                        total:this.subTotal + this.subTotal * 0.13
-                    } 
+            var data
+            for(var i = 0; i < this.list.length ; i++){
+                if (this.list[i].fehca_vencimineto == ""){
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;"> Inserte fecha de vencimiento del producto  '+this.list[i].item.nombre+' </label>',
+                        'error'
+                    )
+                    data = "error"
                 }
-                var esto = {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers:{
-                      'Content-type' : "application/json"
-                    }
-                };
-                fetch(this.url+'/pedidos/vue_update_pedido/'+this.id_pedido,esto)
-                .then(res => res.json())
-                .catch(error => console.error('Error:', error))
-                .then(data => { 
-                    if (data.success == true){
-                        this.msg = data.msg;
-                        this.insertar();
-                        this.update_cantidad();
-                        this.ver(this.id_pedido);
-                    } 
-                })  
             }
+            if (data == "error"){
+                data = ""
+            }else{
+                if(this.list == ""){
+                    //this.error = "Por favor primero muestre la lista de Medicamentos"
+                    swal.fire(
+                        'Error!',
+                        '<label style="color:red;">Por favor primero muestre la lista de Medicamentos</label>',
+                        'error'
+                    )
+                }else{
+                    data = {
+                        ProductosAceptados:{
+                            medicamentos: this.list,
+                            subTotal:this.subTotal,
+                            iva:this.subTotal * 0.13,
+                            total:this.subTotal + this.subTotal * 0.13
+                        } 
+                    }
+                    var esto = {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers:{
+                          'Content-type' : "application/json"
+                        }
+                    };
+                    fetch(this.url+'/pedidos/vue_update_pedido/'+this.id_pedido,esto)
+                    .then(res => res.json())
+                    .catch(error => console.error('Error:', error))
+                    .then(data => { 
+                        if (data.success == true){
+                            this.msg = data.msg;
+                            this.insertar();
+                            this.update_cantidad();
+                            this.ver(this.id_pedido);
+                        } 
+                    })  
+                }
+            }
+            
             
         },
         insertar(){

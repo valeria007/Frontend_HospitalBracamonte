@@ -29,11 +29,11 @@ const carMedicamentos = new Vue({
       codigoCompra:'',
       responsable:'',
       boletaPago:'',
-      tipoMaterial:'',
+      
       fechaIngreso:'',
       proveedor:'',
       Observaciones:'',
-
+      id_personal:'',
       respuestaPost:'',
 
       //pra medicamentos pag search
@@ -45,7 +45,7 @@ const carMedicamentos = new Vue({
       paginationMeds: {
           range: 5,
           currentPage: 1,
-          itemPerPage: 2,
+          itemPerPage: 5,
           ListMedicamentos: [],
           filteredMeds: [],
       },
@@ -69,6 +69,9 @@ const carMedicamentos = new Vue({
           }) 
         }
       })
+    },
+    mounted(){
+      this.fechaIngreso = moment().format('l')
     },
     ready() {   
       //esta parte es para el modal de buscar mecicamentos
@@ -251,19 +254,24 @@ const carMedicamentos = new Vue({
         formSubmit(e) {
             e.preventDefault();
             if( this.generateArray() == ""){
-                this.respuestaPost = "No se seleciono un producto"
+                swal.fire(
+                  'Error!',
+                  '<label style="color:red;">No se seleciono productos</label>',
+                  'error'
+                )
             }else{
               var data  = {
                 codigoCompra:this.codigoCompra,
                 boletaPago:this.boletaPago,
-                tipoMaterial:this.tipoMaterial,
+                responsable:this.responsable,
                 fechaIngreso:this.fechaIngreso,
                 proveedor:this.proveedor,
                 productosDelPedido: this.generateArray(),
                 Observaciones:this.Observaciones,
                 subTotal:this.totalPrice,
                 iva:this.totalPrice * 0.13,
-                total:this.totalPrice + this.totalPrice * 0.13
+                total:this.totalPrice + this.totalPrice * 0.13,
+                id_personal:this.id_personal
               };
               var esto = {
                   method: 'POST',
@@ -277,22 +285,32 @@ const carMedicamentos = new Vue({
               .catch(error => console.error('Error:', error))
               .then(data => { 
                 if(data.success == false){
-                  this.respuestaPost = data.message;
+                  swal.fire(
+                    'Error!',
+                    '<label style="color:red;">'+data.message+'</label>',
+                    'error'
+                  )
                 }else{
-                  this.respuestaPost = data.message;
-
+                  swal.fire(
+                    'Success!',
+                    '<label style="color:green;">'+data.message+'</label>',
+                    'success'
+                  )
                   this.codigoCompra = ""
                   this.boletaPago = ""
-                  this.tipoMaterial = ""
-                  this.fechaIngreso = ""
+                 
                   this.proveedor = ""
                   this.Observaciones = ""
                   this.totalPrice = 0;
                   this.totalQty = 0;
                   this.listItems = {};   
                 }
+                
               })             
-            }        
+            } 
+            setTimeout(()=>{
+              this.respuestaPost = ""
+            },1000);       
         },
         quitar(a,b){
             this.listItems = {};

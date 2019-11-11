@@ -2,13 +2,15 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+const datas = require('./url/export');
 
 router.get('/pedidos',(req, res) => {
     res.render('Almacen/pedidos')
 });
 
-router.get('/volver', (req,res) => {
-    res.redirect('/almacen/pedidos'); 
+router.get('/volver/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    res.redirect('/almacen/pedidos/'+token_id+'/'+token_part); 
 })
  
 
@@ -54,6 +56,20 @@ router.get('/carrito/:id', (req,res)=>{
         res.send("no hay coneccion con el servidor");
     })    
 });
+
+router.get('/carrito_fehca/:id_fecha', (req,res) => {
+    const { id_fecha } = req.params;
+    fetch('http://localhost:3500/api/list_med_fechas_id/'+id_fecha)   
+        .then(resp => resp.json())
+        .then(resp =>{
+            
+            res.status(200).json(resp);
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }); 
+})
 
 router.post('/PostCarrito', (req,res) => {
     var data= req.body;
@@ -111,74 +127,85 @@ router.get('/onliPedido/:id', (req,res) => {
 })
 
 
+router.get('/cargar/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    res.redirect('/pedidos/pedidos/proveedor/'+token_id+'/'+token_part)
+})
 
 //renderizar vista pedido
-router.get('/est',(req,res)=> {
-    if(proveedor == null){
-        res.redirect('/pedidos/pedidos/proveedor')
+router.get('/pedidos/proveedor/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            } 
+            if(status == "tiene permiso"){
+
+                fetch('http://localhost:3500/api/proveedor')   
+                .then(resp => resp.json())
+                .then(proveedor =>{
+                    
+                    fetch('http://localhost:3500/api/pedido')   
+                    .then(resp => resp.json())
+                    .then(dataPEDIDOS =>{
+
+                        fetch('http://localhost:3500/api/asignacion')   
+                        .then(resp => resp.json())
+                        .then(grup =>{
+
+                            fetch('http://localhost:3500/api/medicamento')   
+                            .then(resp => resp.json())
+                            .then(resp =>{
+                                res.render('Almacen/reg_pedido',{
+                                    proveedor,
+                                    resp,
+                                    products : generateArray(),
+                                    totalQty,
+                                    totalPrice,
+                                    grup,
+                                    dataPEDIDOS,
+                                    message,
+                                    data_doc:datas.name.data_user[token_id],    
+                                    OnlyPedido 
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error:', error)
+                                res.send("no hay coneccion con el servidor");
+                            })  
+                        })
+                        .catch(error => {
+                            console.error('Error:', error)
+                            res.send("no hay coneccion con el servidor");
+                        }) 
+                        
+                    })
+                    .catch(error => {
+                        console.error('Error:', error)
+                        res.send("no hay coneccion con el servidor");
+                    }) 
+                })
+                .catch(error => {
+                    console.error('Error:', error)
+                    res.send("no hay coneccion con el servidor");
+                }) 
+                status = null
+
+            }else{
+                res.redirect('/')
+            }
+        })
+          
     }else{
-        fetch('http://localhost:3500/api/medicamento')   
-        .then(resp => resp.json())
-        .then(resp =>{
-            res.render('Almacen/reg_pedido',{
-                proveedor,
-                resp,
-                products : generateArray(),
-                totalQty,
-                totalPrice,
-                grup,
-                dataPEDIDOS,
-                message,
-                OnlyPedido 
-            });
-    })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-        })    
+        res.redirect('/');
     }
-})
-
-var grup;
-router.get('/grup', (req,res) => {
-    fetch('http://localhost:3500/api/asignacion')   
-    .then(resp => resp.json())
-    .then(resp =>{
-        grup = resp;
-        res.redirect('/pedidos/est');
-})
-.catch(error => {
-    console.error('Error:', error)
-    res.send("no hay coneccion con el servidor");
-})   
-});
-
-var dataPEDIDOS
-router.get('/dataPEDIDOS', (req,res) => {
-    fetch('http://localhost:3500/api/pedido')   
-        .then(resp => resp.json())
-        .then(resp =>{
-            dataPEDIDOS = resp;
-            res.redirect('/pedidos/grup');
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    }) 
-});
-
-var proveedor
-router.get('/pedidos/proveedor', (req,res) => {
-    fetch('http://localhost:3500/api/proveedor')   
-        .then(resp => resp.json())
-        .then(resp =>{
-            proveedor = resp;
-            res.redirect('/pedidos/dataPEDIDOS');
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    })   
 });
 
 
@@ -307,20 +334,40 @@ router.post('/pedidos', (req,res) => {
 });
 
 //ruta para ver los pedi(dos
-router.get('/verPedido/:id', (req,res) => {
-    const { id } = req.params;
-    fetch('http://localhost:3500/api/OnlyPedido/'+id)   
-    .then(resp => resp.json())
-    .then(resp =>{        
-        res.render('Almacen/ver_pedido',{
-            resp
+router.get('/verPedido/:id/:token_id/:token_part', (req,res) => {
+    const { id, token_part, token_id } = req.params;
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            }
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3500/api/OnlyPedido/'+id)   
+                .then(resp => resp.json())
+                .then(resp =>{        
+                    res.render('Almacen/ver_pedido',{
+                        resp,
+                        data_doc:datas.name.data_user[token_id]
+                    })
+                })
+                .catch(error => {
+                    console.error('Error:', error)
+                    res.send("no hay coneccion con el servidor");
+                }) 
+            }else{
+                res.redirect('/')
+            }
         })
-    })
-    .catch(error => {
-        console.error('Error:', error)
-        res.send("no hay coneccion con el servidor");
-    })  
-    
+         
+    }else{
+        res.redirect('/')
+    }
 })
 
 router.get('/vue_verPedido/:id', (req,res) => {

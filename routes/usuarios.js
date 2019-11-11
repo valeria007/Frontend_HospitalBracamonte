@@ -101,7 +101,7 @@ router.get('/usuarios/:token_id',(req, res) => {
           });
           setTimeout(()=>{
             remove(token_id)
-          },5000);
+          },1000);
        })
        .catch(error => {       
         console.error('Error:', error)
