@@ -354,24 +354,26 @@ const pedidos =  new Vue({
         this.totalQty++;
         this.totalPrice += 1*storedItem.item.price;            
       },
-      reducir_cantidad (id) {
-        console.log(id, " sasdasd")
-          this.distribucionList[id].qty--;
-          this.distribucionList[id].price -= this.distribucionList[id].item.price;
-          this.totalQty--;
-          this.totalPrice -= this.distribucionList[id].item.price;
-  
-          if (this.distribucionList[id].qty <= 0) {
-              delete this.distribucionList[id];
-          }
-          this.reducir_cantidad1(id)
+
+      reducir_cantidad (id){
+        this.distribucionList[id].qty--;
+        this.distribucionList[id].price -= this.distribucionList[id].item.price;
+        this.totalQty--;
+        this.totalPrice -= this.distribucionList[id].item.price;
+
+        if (this.distribucionList[id].qty <= 0) {
+            delete this.distribucionList[id];
+        }
+        this.reducir_cantidad1(id)
       },
+
       eliminar_item(id) {
-          this.totalQty -= this.distribucionList[id].qty;
-          this.totalPrice -= this.distribucionList[id].price;
-          delete this.distribucionList[id];
-          this.eliminar_item1(id)
+        this.totalQty -= this.distribucionList[id].qty;
+        this.totalPrice -= this.distribucionList[id].price;
+        delete this.distribucionList[id];
+        this.eliminar_item1(id)
       },
+      
       generateArray: function () {
           let arr = [];
           for (const id in this.distribucionList) {

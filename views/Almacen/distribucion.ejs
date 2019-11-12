@@ -125,7 +125,7 @@
                               <% } %>
                               <td><%=lis_farmacia_pedidos[i].destino%></td>
                               
-                              <td><a href="/almacen/farmacia_ver_pedidos/<%=lis_farmacia_pedidos[i].id%>">ver</a></td>
+                              <td><a href="/almacen/farmacia_ver_pedidos/<%=lis_farmacia_pedidos[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>">ver</a></td>
                             </tr>
                           <% } %>
                         <tbody>
@@ -159,7 +159,7 @@
                               <td><%=resp[i].fechaLlegada%></td>
                               <td class="text-center">
                               <a @click="onlyDistrubucion(<%=resp[i].id%>)" data-target="#myModal" data-toggle="modal" class="btn  tooltips" data-original-title="Ver Distribucion"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-                              <a href="/almacen/distri_imprimir/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print" style="color:rgb(236, 198, 26)"></i></a><span>&nbsp;</span>
+                              <a href="/almacen/distri_imprimir/<%=resp[i].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print" style="color:rgb(236, 198, 26)"></i></a><span>&nbsp;</span>
                               </td>
                               </tr>
                               <% } %>

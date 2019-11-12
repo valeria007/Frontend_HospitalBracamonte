@@ -53,30 +53,51 @@ router.get('/imprimir/:id_pedido/:token_id/:token_part', (req,res) => {
     
 });
 
-router.get('/distri_imprimir/:id_distribucion', (req,res) => {
-    const { id_distribucion } = req.params
-    fetch('http://localhost:3500/api/onlyDist/'+id_distribucion)
-    .then(res => res.json())
-    .then(data => { 
-        res.render('Almacen/distri_imprimir',{
-            data
-        });
-    })
-    .catch(error => {
-        res.render('Almacen/404error',{
-            msg:"No hay cneccion con el sevidor de almacen"
-        })
+router.get('/distri_imprimir/:id_distribucion/:token_id/:token_part', (req,res) => {
+    const { id_distribucion, token_id, token_part } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            } 
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3500/api/onlyDist/'+id_distribucion)
+                .then(res => res.json())
+                .then(data => { 
+                    res.render('Almacen/distri_imprimir',{
+                        data,
+                        data_doc: data_user[token_id]
+                    });
+                })
+                .catch(error => {
+                    res.render('Almacen/404error',{
+                        msg:"No hay cneccion con el sevidor de almacen"
+                    })
         
-    }) 
-    
+                }) 
+                status = null
+            }else{
+                res.redirect('/')
+            }
+        });
+        
+    }else{
+        res.redirect('/');
+    }
 });
 router.get('/volver12/:id/:token_id/:token_part', (req,res) => {
     const { id, token_id, token_part } = req.params
     res.redirect('/almacen/imprimir/'+id+'/'+token_id+'/'+token_part); 
 })
-router.get('/volver13/:id_dis', (req,res) => {
-    const { id_dis } = req.params
-    res.redirect('/almacen/distri_imprimir/'+id_dis); 
+router.get('/volver13/:id_dis/:token_id/:token_part', (req,res) => {
+    const { id_dis, token_id, token_part } = req.params
+    res.redirect('/almacen/distri_imprimir/'+id_dis+'/'+token_id+'/'+token_part); 
 })
 router.post('/loginAlmacen',(req,res) => {
     var data = req.body
@@ -318,45 +339,137 @@ router.get('/home/:id/:token_part', (req,res) => {
     })
 });
 
-router.get('/kardexValorizado', (req,res) => {
-    fetch('http://localhost:3500/api/medicamento')   
-    .then(resp => resp.json())
-    .then(resp =>{ 
-        console.log(resp)       
-        res.render('Almacen/kardexValorizado',{
-            resp
-        });
-    })
+router.get('/kardexValorizado/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            } 
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3500/api/medicamento')   
+                .then(resp => resp.json())
+                .then(resp =>{ 
+                    console.log(resp)       
+                    res.render('Almacen/kardexValorizado',{
+                        resp,
+                        data_doc: data_user[token_id]
+                    });
+                })
+                status = null
+            }else{
+                res.redirect('/')
+            }
+        })
+        
+    }else{
+        res.redirect('/');
+    }
 });
-router.get('/med_ven', (req,res) => {
-    fetch('http://localhost:3500/api/medicamento')   
-    .then(resp => resp.json())
-    .then(resp =>{ 
-        console.log(resp)       
-        res.render('Almacen/med_ven',{
-            resp
-        });
-    })
+router.get('/med_ven/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params;
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            }
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3500/api/medicamento')   
+                .then(resp => resp.json())
+                .then(resp =>{ 
+                    console.log(resp)       
+                    res.render('Almacen/med_ven',{
+                        resp,
+                        data_doc: data_user[token_id]
+                    });
+                })
+                status = null
+            }else{
+                res.redirect('/');
+            }
+        })
+        
+    }else{
+        res.redirect('/')
+    }
 });
-router.get('/reportes_pedidos', (req,res) => {
-    fetch('http://localhost:3500/api/pedido')   
-    .then(resp => resp.json())
-    .then(resp =>{ 
-        console.log(resp)       
-        res.render('Almacen/reportes_pedidos',{
-            resp
-        });
-    })
+router.get('/reportes_pedidos/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            }  
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3500/api/pedido')   
+                .then(resp => resp.json())
+                .then(resp =>{ 
+                    console.log(resp)       
+                    res.render('Almacen/reportes_pedidos',{
+                        resp,
+                        data_doc: data_user[token_id]
+                    });
+                })
+                status = null;
+            }else{
+                res.redirect('/')
+            }
+        })
+        
+    }else{
+        res.redirect('/')
+    }
 });
-router.get('/reportes_salidas', (req,res) => {
-    fetch('http://localhost:3500/api/distribucion')   
-    .then(data => data.json())
-    .then(data =>{ 
-        console.log(data)       
-        res.render('Almacen/reportes_salidas',{
-            data
-        });
-    })
+router.get('/reportes_salidas/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            }  
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3500/api/distribucion')   
+                .then(data => data.json())
+                .then(data =>{ 
+                    console.log(data)       
+                    res.render('Almacen/reportes_salidas',{
+                        data,
+                        data_doc: data_user[token_id]
+                    });
+                })
+                status = null;
+            }else{
+                res.redirect('/');
+            }
+        })
+        
+    }else{
+        res.redirect('/');
+    }
 });
 
 
@@ -636,16 +749,38 @@ router.get('/farmacia_pedidos', (req,res) => {
 })
 
 // ruta para ver el pedido de farmacia
-router.get('/farmacia_ver_pedidos/:id_pedido', (req,res) => {
-    const { id_pedido } = req.params
-    fetch('http://localhost:3200/api/one_pedido/'+id_pedido)
-    .then(resp => resp.json())
-    .catch(error => console.error('Error',error))
-    .then(resp => {
-        res.render('Almacen/farmcia_ver_pedidos', {
-            resp
+router.get('/farmacia_ver_pedidos/:id_pedido/:token_id/:token_part', (req,res) => {
+    const { id_pedido, token_id, token_part } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            }  
+            if(status == "tiene permiso"){
+                fetch('http://localhost:3200/api/one_pedido/'+id_pedido)
+                .then(resp => resp.json())
+                .catch(error => console.error('Error',error))
+                .then(resp => {                    
+                    res.render('Almacen/farmcia_ver_pedidos',{
+                        resp,
+                        data_doc: data_user[token_id]
+                    })
+                })
+                status = null;
+            }else{
+                res.redirect('/');
+            };
         })
-    })
+        
+    }else{
+        res.redirect('/');
+    }
 })
 // ruta para poder sacar un pedido segun id de pedido
 router.get('/Vue_one_pedido_farmacia/:id_pedido', (req,res) => {  

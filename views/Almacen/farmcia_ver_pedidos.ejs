@@ -9,35 +9,76 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	if (data == null){
+		window.location.replace('/')
+    }
+    function delete_local_storage(){
+    		console.log ("ssss")
+    		localStorage.removeItem('data');
+    		localStorage.removeItem('url');
+    }
+    setTimeout(()=>{
+      delete_local_storage()
+      //window.location.replace('/')
+    },500000);
+</script>
 <body class="light_theme  fixed_header left_nav_fixed">
     <div class="wrapper">
-        <%- include("../partials/menu") -%>
+        <div class="header_bar">
+            <!--\\\\\\\ header Start \\\\\\-->
+            <div class="brand">
+              <!--\\\\\\\ brand Start \\\\\\-->
+              <div class="logo" style="display:block"><span class="theme_color">Hospital</span></div>
+              <div class="small_logo" style="display:none"><img src="/images/s-logo.png" width="50" height="47" alt="s-logo" /> <img src="/images/r-logo.png" width="122" height="20" alt="r-logo" /></div>
+            </div>
+            <!--\\\\\\\ brand end \\\\\\-->
+            <div class="header_top_bar">
+              <!--\\\\\\\ header top bar start \\\\\\-->
+              <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+              
+              <div class="top_right_bar">
+                <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
+                  <ul class="dropdown-menu">
+                    <div class="top_pointer"></div>
+                    <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
+                    <li> <a href="#"><i class="fa fa-question-circle"></i> Help</a> </li>
+                    <li> <a href="#"><i class="fa fa-cog"></i> Setting </a></li>
+                    <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i> Logout</a> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!--\\\\\\\ header top bar end \\\\\\-->
+        </div>
+        
         <div class="inner">
             <div class="left_nav">
                 <div class="left_nav_slidebar">
                     <ul>
                         <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul >
-                                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
+                                <li> <a href="/almacen/home/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>" > <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b>Inicio</b> </a> </li>
                             </ul>
                         </li>
                         <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="left_nav_pointer"><i class="fa fa-plus"></i></span></a>
                             <ul class="opened" style="display:block">
-                                <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-                                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
-                                <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-                                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
-                                <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
-                                <li> <a href="/almacen/farmacia_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Pedidos Farmacia</b> </a> </li>
+                                <li> <a href="/almacen/grupoAsig/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+                                <li> <a href="/medicamento/medicamentos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
+                                <li> <a href="/proveedores/proveedores/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                                <li> <a href="/almacen/pedidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
+                                <li> <a href="/distribucion/listDistribucion/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Distribucion</b> </a> </li>
+                                <li> <a href="/medicamento/stock/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
                             </ul>
                         </li>
                         <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul>
-                                <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-                                <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-                                <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-                                <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+                                <li> <a href="/almacen/reportes_pedidos/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                                <li> <a href="/almacen/reportes_salidas/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                                <li> <a href="/almacen/kardexValorizado/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                                <li> <a href="/almacen/med_ven/<%=data_doc.data.token_id%>/<%=data_doc.data.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
                             </ul>
                         </li>
                     </ul>
@@ -99,69 +140,44 @@
                                        <!--/form-group--> 
 
 
-
-                                       <!--  <template v-if="pedido == ''"> -->
-                                            <div class="col-md-12"> 
-                                                <p class="text-center"> <button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success">Lista Productos</button></p>
-                                                <section class="panel default black_title h4">
-                                                    <div class="panel-heading">Observaciones de la llegada del Pedido </div>
-                                                    <div class="panel-body">
-                                                        <table class="table table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                <th>#</th>
-                                                                <th style="color: crimson;">Cantidad</th>
-                                                                <th>Codigo</th>
-                                                                <th>Nombre</th>
-                                                                <th>Precio</th>
+                                       <textarea name="" id="" cols="60" rows="15">{{$data}}</textarea>
+                                       
+                                        <div class="col-md-12"> 
+                                            <p class="text-center"> <button @click="searchInTheListMed('')" type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success">Lista Productos</button></p>
+                                            <section class="panel default black_title h4">
+                                                <div class="panel-heading">Observaciones de la llegada del Pedido </div>
+                                                <div class="panel-body">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                            <th>#</th>
+                                                            <th style="color: crimson;">Cantidad</th>
+                                                            <th>Codigo</th>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            
+                                                            <th>Precio Total</th>
+                                                            
+                                                            
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody v-for="(item, index) in  list">  
+                                                            <tr>
+                                                                <td>{{index+1}}</td>
+                                                                <td style="color: crimson;">{{item.qty}}</td>
+                                                                <td>{{item.item.codificacion}}</td>
+                                                                <td>{{item.item.nombre}}</td>
+                                                                <td>{{item.item.price}}</td>                                                                   
+                                                                <td>{{item.price}}</td>
                                                                 
-                                                                <th>Precio Total</th>
                                                                 
-                                                                <th>Modificar</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody v-for="(item, index) in  list">  
-                                                                <tr>
-                                                                    <td>{{index+1}}</td>
-                                                                    <td style="color: crimson;">{{item.qty}}</td>
-                                                                    <td>{{item.item.codificacion}}</td>
-                                                                    <td>{{item.item.nombre}}</td>
-                                                                    <td>{{item.item.price}}</td>                                                                   
-                                                                    <td>{{item.price}}</td>
-                                                                    
-                                                                    <td><a @click="reduceByOne(index)">Reduce</a></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <!-- <div class="col-md-12">
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <div class="col-sm-9">
-                                                                        <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                                        <input type="text" class="form-control"  disabled="" ></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-9">
-                                                                <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                                <input type="text" class="form-control"  disabled=""></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-9">
-                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                <input type="text" class="form-control" disabled="" ></div>
-                                                            </div>
-                                                        </div> -->
-                                                    </div>
-                                                </section>
-                                            </div>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                </div>
+                                            </section>
+                                        </div>
 
                                             <!--Modal-->
                                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -175,6 +191,7 @@
                                                         <span style="color: red;">{{alert}}</span>
                                                         <span style="color: blue;">{{pass}}</span>
                                                       <!--/////////////table-->
+                                                      
                                                       <div class="col-xs-10 col-md-offset-1">
                                                         <br>
                                                         <label><i class="fa fa-search"> buscar </i></label>
@@ -212,16 +229,16 @@
                                                             <th>Option</th>
                                                             <th>Cantidad</th>												
                                                             <th>Nombre</th>
-                                                            <th>Precentacion</th>
+                                                            <th>Vence en</th>
                                                             <th>Cantidad</th>   
                                                             </tr>
                                                           </thead>
                                                           <tbody v-for="(med, index) in paginatedMeds">
                                                             <tr>
-                                                            <td><a @click="insertar(med.id, med.cant, index)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
+                                                            <td><a @click="insertar1(med.id,med.id_fecha, med.cant, index)" class="btn btn-success btn-raised btn-xs">Insertar</a> </td>		
                                                             <td><input type="number" v-model="med.cant" class="col-sm-7"></td>										
                                                             <td>{{med.nombre}}</td>
-                                                            <td>{{med.presentacion}}</td>
+                                                            <td>{{med.fecha_v}}</td>
                                                             <td>{{med.unidades}}</td>
                                                             </tr>
                                                           </tbody>
@@ -265,8 +282,8 @@
                                                                  
                                                                   <td>{{car.item.price}}</td>
                                                                   <td>{{car.price}}</td>
-                                                                  <td> <a @click="reduceByOne(car.item.id,car.position)">Reducir</a></td>
-                                                                  <td><a @click="removeItem(car.item.id,car.position)">Eliminar</a></td>                                                        
+                                                                  <td> <a @click="reducir_cantidad(car.item.id)">Reducir</a></td>
+                                                                  <td><a @click="eliminar_item(car.item.id)">Eliminar</a></td>                                                        
                                                                 </tr>                                                   
                                                             </tbody>
                                                         </table>
@@ -313,134 +330,13 @@
                                             </div>
                                         </section>
                                     </div>
-                                    <!--   </template> -->
-                                        <!-- <template v-else>
-                                            <div class="page-content">  
-                                                <div class="row">
-                                                    <div class="col-md-11"> 
-                                                        <div class="panel-heading">
-                                                            <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-1"> <i class="fa fa-angle-right"></i> Pedido Realizado </a> </h4>
-                                                        </div>
-                                                        <div style="height: 0px;" id="ac3-1" class="panel-collapse collapse"> 
-                                                            <div class="panel-body">
-                                                                <table class="table table-hover text-center">
-                                                                    <thead>
-                                                                        <tr>
-                                                                        <th>#</th>
-                                                                        <th>Codigo</th>
-                                                                        <th>Nombre</th>
-                                                                        <th>Precio</th>
-                                                                        <th>Cantidad</th>
-                                                                        <th>Precio Total</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody v-for="(item, index) in  list">  
-                                                                        <tr>
-                                                                        <td>{{index+1}}</td>
-                                                                        <td>{{item.item.codificacion}}</td>
-                                                                        <td>{{item.item.nombre}}</td>
-                                                                        <td>{{item.item.price}}</td>
-                                                                        <td>{{item.qty}}</td>
-                                                                        <td>{{item.price}}</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <div class="col-md-12">
-                                                                    <div class="col-md-4">
-                                                                        <div class="form-group">
-                                                                            <div class="col-sm-9">
-                                                                                <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                                                <input type="text" class="form-control"  disabled="" v-model="subTotal"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="form-group">
-                                                                            <div class="col-sm-9">
-                                                                                <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                                                <input type="text" class="form-control"  disabled="" v-model="subTotal * 0.13"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="form-group">
-                                                                            <div class="col-sm-9">
-                                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                                <input type="text" class="form-control" disabled="" v-model="subTotal + subTotal * 0.13"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>   
-                                                        </div>
-                                                        <div class="panel-heading">
-                                                            <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-2"> <i class="fa fa-angle-right"></i> Pedido Actualizado y Guardado </a> </h4>
-                                                        </div>
-                                                        <div id="ac3-2" class="panel-collapse collapse" style="height: 0px;">
-                                                            <div class="panel-body">
-                                                                <table class="table table-hover">
-                                                                    <thead>
-                                                                        <tr>
-                                                                        <th>#</th>
-                                                                        <th>Codigo</th>
-                                                                        <th>Nombre</th>
-                                                                        <th>Precio</th>
-                                                                        <th>Cantidad</th>
-                                                                        <th>Precio Total</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody v-for="(item, index) in  pedido.medicamentos">  
-                                                                        <tr>
-                                                                        <td>{{index+1}}</td>
-                                                                        <td>{{item.item.codificacion}}</td>
-                                                                        <td>{{item.item.nombre}}</td>
-                                                                        <td>{{item.item.price}}</td>
-                                                                        <td>{{item.qty}}</td>
-                                                                        <td>{{item.price}}</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <div class="col-md-12">
-                                                                    <div class="col-md-4">
-                                                                        <div class="form-group">
-                                                                            <div class="col-sm-9">
-                                                                                <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                                                <input type="text" class="form-control"  disabled="" v-model="pedido.subTotal"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <div class="col-sm-9">
-                                                                            <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                                                <input type="text" class="form-control"  disabled="" v-model="pedido.iva"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="form-group">
-                                                                            <div class="col-sm-9">
-                                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                                <input type="text" class="form-control" disabled="" v-model="pedido.total"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><br>
-                                                <p class="text-center">
-                                                    <a class="btn btn-success" href="/almacen/volver"><i class="fa fa-reply"></i> Volve Pedidos</a>
-                                                </p>
-                                            </div>
-                                        </template> -->
-                                        <div class="form-group"  >
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
-                                                <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
-                                            </div>
-                                        </div><!--/form-group--> 
+                                    
+                                    <div class="form-group"  >
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar</button>
+                                            <a class="btn btn-danger" href="/almacen/volver"><i class="fa fa-times"></i> Cancelar</a>
+                                        </div>
+                                    </div><!--/form-group--> 
                                     </form>
 
                                     </template>
@@ -472,125 +368,117 @@
                                                 <div class="col-sm-6">
                                                     <input type="text" class="form-control" readonly="" value="<%=resp[0].responsable%>">
                                                 </div>
-                                            </div><!--/form-group--> 
-                                           <!--/form-group--> 
-    
-    
-    
-                                           <!--  <template v-if="pedido == ''"> -->
-                                                <div class="col-md-12"> 
-                                                   
-                                                    <section class="panel default black_title h4">
-                                                        <div class="panel-heading">Observaciones de la llegada del Pedido </div>
-                                                        <div class="panel-body">
-                                                            <table class="table table-hover">
-                                                                <thead>
-                                                                    <tr>
-                                                                    <th>#</th>
-                                                                    <th style="color: crimson;">Cantidad</th>
-                                                                    <th>Codigo</th>
-                                                                    <th>Nombre</th>
-                                                                    <th>Precio</th>
-                                                                   
-                                                                    <th>Precio Total</th>
-                                                                    
-                                                                    
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody v-for="(item, index) in  list">  
-                                                                    <tr>
-                                                                        <td>{{index+1}}</td>
-                                                                        <td style="color: crimson;">{{item.qty}}</td>
-                                                                        <td>{{item.item.codificacion}}</td>
-                                                                        <td>{{item.item.nombre}}</td>
-                                                                        <td>{{item.item.price}}</td>
-                                                                        
-                                                                        <td>{{item.price}}</td>
-                                                                        
-                                                                      
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                           
-                                                        </div>
-                                                    </section>
-                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-12">                                                
+                                                <section class="panel default black_title h4">
+                                                    <div class="panel-heading">Observaciones de la llegada del Pedido </div>
+                                                    <div class="panel-body">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                <th>#</th>
+                                                                <th style="color: crimson;">Cantidad</th>
+                                                                <th>Codigo</th>
+                                                                <th>Nombre</th>
+                                                                <th>Precio</th>
+                                                               
+                                                                <th>Precio Total</th>
+                                                                
+                                                                
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody v-for="(item, index) in  list">  
+                                                                <tr>
+                                                                    <td>{{index+1}}</td>
+                                                                    <td style="color: crimson;">{{item.qty}}</td>
+                                                                    <td>{{item.item.codificacion}}</td>
+                                                                    <td>{{item.item.nombre}}</td>
+                                                                    <td>{{item.item.price}}</td>                                                                    
+                                                                    <td>{{item.price}}</td>                                                      
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                       
+                                                    </div>
+                                                </section>
+                                            </div>
     
                                              
     
-                                                <div class="col-lg-12"> 
-                                                    <section class="panel default black_title h4">
-                                                        <div class="panel-heading">
-                                                            <span class="semi-bold">Lista Pedidos</span> 
+                                            <div class="col-lg-12"> 
+                                                <section class="panel default black_title h4">
+                                                    <div class="panel-heading">
+                                                        <span class="semi-bold">Lista Pedidos</span> 
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th style="color: crimson;">Cantidad del Producto</th>
+                                                                    <th>Codigo</th>
+                                                                    <th>Descripcion</th>
+                                                                    
+                                                                    <th>Precio</th>
+                                                                    <th>Precio Toal</th>
+                                                                   
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody v-for="(car, index) in lista_med_aceptados">                                                    
+                                                                <tr>
+                                                                  <td>{{index}}</td>
+                                                                  <td style="color: crimson;">{{car.qty}}</td>
+                                                                  <td>{{car.item.codificacion}}</td>
+                                                                  <td>{{car.item.nombre}}</td>
+                                                                 
+                                                                  <td>{{car.item.price}}</td>
+                                                                  <td>{{car.price}}</td>
+                                                                                                                  
+                                                                </tr>                                                   
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </section>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
+                                                                <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalQty">
+                                                            </div>
                                                         </div>
-                                                        <div class="panel-body">
-                                                            <table class="table table-hover">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>#</th>
-                                                                        <th style="color: crimson;">Cantidad del Producto</th>
-                                                                        <th>Codigo</th>
-                                                                        <th>Descripcion</th>
-                                                                        
-                                                                        <th>Precio</th>
-                                                                        <th>Precio Toal</th>
-                                                                       
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody v-for="(car, index) in lista_med_aceptados">                                                    
-                                                                    <tr>
-                                                                      <td>{{index}}</td>
-                                                                      <td style="color: crimson;">{{car.qty}}</td>
-                                                                      <td>{{car.item.codificacion}}</td>
-                                                                      <td>{{car.item.nombre}}</td>
-                                                                     
-                                                                      <td>{{car.item.price}}</td>
-                                                                      <td>{{car.price}}</td>
-                                                                                                                      
-                                                                    </tr>                                                   
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </section>
-                                                    <div class="col-md-12">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <div class="col-sm-9">
-                                                                <div class="input-group"> <span class="input-group-addon">Cantidad:</span>
-                                                                    <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalQty">
+                                                                <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
+                                                                    <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalPrice">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <div class="col-sm-9">
-                                                                    <div class="input-group"> <span class="input-group-addon">S/ Sub Total:</span>
-                                                                        <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalPrice">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                              <div class="col-sm-9">
-                                                                  <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
-                                                                    <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalPrice * 0.13">
-                                                                  </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                          <div class="col-sm-9">
+                                                              <div class="input-group"> <span class="input-group-addon">S/ IVA:</span>
+                                                                <input type="text" class="form-control"  disabled="" v-model="aceptados_list.totalPrice * 0.13">
                                                               </div>
-                                                            </div>
+                                                          </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <div class="col-sm-9">
-                                                                    <div class="input-group"> <span class="input-group-addon">Total:</span>
-                                                                        <input type="text" class="form-control" disabled="" v-model="aceptados_list.totalPrice + aceptados_list.totalPrice * 0.13">
-                                                                    </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-9">
+                                                                <div class="input-group"> <span class="input-group-addon">Total:</span>
+                                                                    <input type="text" class="form-control" disabled="" v-model="aceptados_list.totalPrice + aceptados_list.totalPrice * 0.13">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                           
                                             <div class="form-group"  >
                                                 
