@@ -27,11 +27,11 @@ function array () {
   return arr;
 }
 
-function remove_user(id) {
+function remove_user12(id) {
   delete name.data_user[id];
   //delete datas.name.data_user[id]
 }
     
 exports.name = name ;
 
-export { user_data1 };
+export { user_data1, remove_user12 };

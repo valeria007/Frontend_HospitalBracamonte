@@ -2,14 +2,17 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+const datas = require('./url/export');
 var url = require('./url/export');
 
-router.get('/volver', (req,res) => {
-    res.redirect('/distribucion/listDistribucion'); 
+router.get('/volver/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params;
+    res.redirect('/distribucion/listDistribucion/'+token_id+'/'+token_part); 
 })
 
-router.get('/volver2', (req,res) => {
-    res.redirect('/distribucion/nueva_distribucion'); 
+router.get('/volver2/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params;
+    res.redirect('/distribucion/nueva_distribucion/'+token_id+'/'+token_part); 
 })
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -21,15 +24,15 @@ router.get('/volver2', (req,res) => {
 
 //ruta para traer el medicamento
 router.get('/vueMedicamento', (req,res) => {
-    fetch(url.name.urlFarmacia+'/api/medicamento')
-        .then(res => res.json())
-        .then(resp => { 
-           res.status(200).json(resp);
-        })
-        .catch(error => {
-            console.error('Error:', error)
-            res.send("no hay coneccion con el servidor");
-        }) 
+    fetch(url.name.urlFarmacia+'/api/mostrar_lista_med')
+    .then(res => res.json())
+    .then(resp => { 
+       res.status(200).json(resp);
+    })
+    .catch(error => {
+        console.error('Error:', error)
+        res.send("no hay coneccion con el servidor");
+    }) 
 })
 
 router.post('/vueMedicamento',(req,res) => {
@@ -88,6 +91,25 @@ router.post('/vueReduceStock', (req,res) => {
     }     
 })
 
+///ruta para poder actualizar la cantidad_unidad de fechas 
+router.post('/Vue_reduce_cantidad_fecha/:id', (req,res) => {
+    const { id } = req.params;
+    var data = req.body;
+    var esto = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+          'Content-type' : "application/json"
+        }
+    };
+    fetch(url.name.urlFarmacia+'/api/reduce_fecha_cantidad/'+id,esto)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => { 
+        res.status(200).json(data);
+    })
+})
+
 
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -113,28 +135,50 @@ router.get('/onlyDist/:id', (req,res) => {
 }) 
 
 //serv para listar las distribuciones
-router.get('/listDistribucion', (req,res) => {
-    fetch(url.name.urlFarmacia+'/api/distribucion')
-    .then(res => res.json())
-    .catch(error => console.error('Error',error))
-    .then(resp => { 
+router.get('/listDistribucion/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
 
-        fetch('http://localhost:3200/api/list_pedidos') // est fecth es para mostrar la lista de pedids de farmacia que hace a almancen
+        fetch('http://localhost:3600/api/user/'+token_id)
         .then(resp => resp.json())
         .catch(error => console.error('Error',error))
-        .then(lis_farmacia_pedidos => {
-            res.render('Almacen/distribucion',{
-                resp,
-                lis_farmacia_pedidos
-            })
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            } 
+            if(status == "tiene permiso"){
+                fetch(url.name.urlFarmacia+'/api/distribucion')
+                .then(res => res.json())
+                .catch(error => console.error('Error',error))
+                .then(resp => { 
+                
+                    fetch('http://localhost:3200/api/list_pedidos') // est fecth es para mostrar la lista de pedids de farmacia que hace a almancen
+                    .then(resp => resp.json())
+                    .catch(error => console.error('Error',error))
+                    .then(lis_farmacia_pedidos => {
+                        res.render('Almacen/distribucion',{
+                            resp,
+                            lis_farmacia_pedidos,
+                            data_doc:datas.name.data_user[token_id]
+                        })
+                    })
+                    
+                })
+                status = null
+            }else{
+                res.redirect('/');
+            }
         })
-        
-    })
+       
+    }else{
+        res.redirect('/');
+    }
 })
 
 //ruta para pedidos  de farmacia
-
-
 //serv para enviar distribucion
 var message;
 router.post('/distribucion', (req,res) => {
@@ -165,12 +209,34 @@ router.post('/distribucion', (req,res) => {
         res.redirect('/distribucion/listDistribucion');      
     }
 })
-
-
 //rutas de nueva  distribucion
 
-router.get('/nueva_distribucion', (req,res) => {
-    res.render('Almacen/reg_distribucion')
+router.get('/nueva_distribucion/:token_id/:token_part', (req,res) => {
+    const { token_id, token_part } = req.params
+    if(datas.name.token[token_id] && datas.name.token[token_id].data.token.split(" ")[1].split(".")[2] == token_part){
+        fetch('http://localhost:3600/api/user/'+token_id)
+        .then(resp => resp.json())
+        .catch(error => console.error('Error',error))
+        .then(resp => {
+            var status
+            for(var i = 0; i < resp.role.length; i++ ){
+                if(resp.role[i].name == "Almacen"){
+                    status = "tiene permiso"
+                }
+            } 
+            if(status == "tiene permiso"){
+                res.render('Almacen/reg_distribucion',{
+                    data_doc:datas.name.data_user[token_id]
+                })
+                status = null
+            }else{
+                res.redirect('/');
+            }  
+        })
+       
+    }else{
+        res.redirect('/');
+    }
 })
 
 
