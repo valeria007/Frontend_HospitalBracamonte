@@ -4,163 +4,119 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Especialidad</title>
 <%- include("../partials/head") -%>	
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
 </style>
 
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
+
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper" id="reg_sala">
-  <%- include("../partials/menusali") -%>	
-  <div class="inner">
-    <div class="left_nav">
-      <div class="left_nav_slidebar">
-        <ul>
-          <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul >
-              <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+    <div class="header_bar">
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <div class="header_top_bar">
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"><i class="fa fa-power-off"></i>Salir</a> </li>
             </ul>
-          </li>
-          <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul  >
-              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
-            </ul>
-          </li>
-          <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul class="opened" style="display:block">
-              <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Especialidades</b> </a> </li>
-              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
-              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul>
-              <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-              <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
-            </ul>
-          </li>
-        </ul>
+          </div>
+         
+        </div>
       </div>
     </div>
-    <div class="contentpanel">
-      <div class="container clear_both padding_fix col-lg-8">
-        <br>
-        <div class="row">
-          <div class="col-lg-12 ">
-            <div id="main-content" class=" block-web">
-              <%if (mg1 != null) {%>
-                <div class="bs-example mover">
-                  <div class="alert alert-danger fade in">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <strong><%=mg1 %></strong></div>
+    <div class="inner">
+      <div class="left_nav">
+        <div class="left_nav_slidebar">
+          <ul>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul  >
+                <li> <a href="/usuarios/usuarios/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/cuaderno/especialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                  <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                  <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                  <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                  <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>      
+      <div class="contentpanel">
+        <div class="container clear_both padding_fix col-lg-8">
+          <br>
+          <div class="row">
+            <div class="col-lg-12 ">
+              <div id="main-content" class=" block-web">
+                
+                <div class="header">
+                  <div class="info blue_symbols"><i class="fa fa-heart icon"></i></div>
+                  <h3 class="content-header ">Creación Especialidad </h3>
                 </div>
-              <%} else if(mg2 != null) { %>
-                <div class="bs-example mover">
-                  <div class="alert alert-success fade in">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <strong><%=mg2 %></strong>
-                  </div>
-                </div>
-              <% } %>
-              <div class="header">
-                <div class="info blue_symbols"><i class="fa fa-heart icon"></i></div>
-                <h3 class="content-header ">Creación Especialidad </h3>
-              </div>
-              <div class="page-content">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="block-web">
-                      <div class="header">
-                        <div class="actions"> 
-                          <a class="minimize" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a> 
-                          <a class="refresh" href="/cuaderno/limpiar"><i class="fa fa-repeat"></i></a>
+                <div class="page-content">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="block-web">
+                        <div class="header">
+                          <div class="actions"> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down" style="color: blue;"></i></a> 
+                            <a class="refresh" href="/cuaderno/limpiar/<%=data_doc.data.token_id%>"><i class="fa fa-repeat" style="color: blue;"></i></a>
+                          </div>
                         </div>
-                      </div>
-                      <br><br>
-                      <div class="porlets-contents">
-                        <div id="demo" class="collapse in ">
-                          <%if (espONE == null) { %>
-                            <form class="form-horizontal group-border-dashed" action="/cuaderno/especialidad" method="POST" parsley-validate novalidate>
-                              <div class="form-group">
-                                <label class=" col-sm-4 control-label">Especialidad o Servicio :</label>
-                                <div class="col-sm-4">
-                                  <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nombre" >
-                                    <option value="" selected disabled hidden >--Seleccione--</option>
-                                    <option>EMERGENCIA</option>
-                                    <option>ANATOMÍA PATOLÓGICA</option>
-                                    <option>CARDIOLOGÍA</option>
-                                    <option>CIRUGÍA GENERAL</option>
-                                    <option>CIRUGÍA MAXILOFACIAL</option>
-                                    <option>CIRUGÍA PEDIATRICA</option>
-                                    <option>CIRUGÍA PLASTACA</option>
-                                    <option>DERMATOLOGÍA</option>
-                                    <option>ECOGRAFÍA</option>
-                                    <option>ENDOCRINOLOGÍA</option>
-                                    <option>ESPIROMETRÍA</option>
-                                    <option>FISIOTERAPIA</option>
-                                    <option>GASTROENTEROLOGÍA</option>
-                                    <option>GENÉTICA</option>
-                                    <option>GINECOLOGÍA</option>
-                                    <option>HEMODIÁLISIA</option>
-                                    <option>LABORATORIO</option>
-                                    <option>MEDICINA INTERNA</option>
-                                    <option>MEDICINA TRADICIONAL</option>
-                                    <option>NEFROLOGÍA</option>
-                                    <option>NEUMOLOGÍA</option>
-                                    <option>NEUROCIRUGÍA</option>
-                                    <option>NEUROCIRUGÍA CLINICA</option>
-                                    <option>NUEROCIRUGÍA PEDIÁTRICA</option>
-                                    <option>OBSTETRICIA</option>
-                                    <option>ODONTOLOGÍA</option>
-                                    <option>OFTANMOLOGÍA</option>
-                                    <option>OTORRINOLARINGOLOGÍA</option>
-                                    <option>PEDIATRÍA</option>
-                                    <option>PSIQUIATRÍA INFANTIL</option>
-                                    <option>RAYOS X</option>
-                                    <option>REUMATOLOGÍA</option>
-                                    <option>SALUD MENTAL</option>
-                                    <option>TELE SALUD</option>
-                                    <option>TERAPIA INTENSIVA ADULTOS</option>
-                                    <option>TERAPIA INTENSIVA PEDIATRIA</option>
-                                    <option>TERAPIA INTENSIVA NEONATAL</option>
-                                    <option>TRAUMATOLOGÍA</option>
-                                    <option>TRAUMATOLOGÍA PEDIÁTRICA</option>
-                                    <option>TOMOGRAFÍA</option>
-                                    <option>UROLOGÍA</option>
-                                  </select>
-                                </div>
-                              </div>
-                              
-                              <div class="form-group">
-                                <label class="col-sm-4  control-label">Area :</label>
-                                <div class="col-sm-4">
-                                  <input class="form-control" name="descripcion" parsley-trigger="change" required placeholder="Introdusca Area" onkeyup="mayus(this)" />
-                                </div>
-                              </div>
-                              <br><br>
-                              <div class="col-md-4">
-                                <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
-                                <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
-                              </div>
-                            </form>
-                          <% } else { %>
-                            <form class="form-horizontal group-border-dashed" action="/cuaderno/updateEsp/<%=espONE[0].id%>" method="POST" parsley-validate novalidate >
-                              <div class="form-group">
+                        <br><br>
+                        <!--<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>-->
+                        <div class="porlets-contents">
+                          <div id="demo" class="collapse in ">
+                            <%if (espONE == null) { %>
+                              <form class="form-horizontal group-border-dashed" action="/cuaderno/especialidad/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
+                                <div class="form-group">
                                   <label class=" col-sm-4 control-label">Especialidad o Servicio :</label>
                                   <div class="col-sm-4">
-                                    <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="nombre" required placeholder="" >
-                                      <option ><%=espONE[0].nombre%></option>
-                                      <option value="" disabled>-----------------------</option>
+                                    <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="nombre" >
+                                      <option value="" selected disabled hidden >--Seleccione--</option>
                                       <option>EMERGENCIA</option>
                                       <option>ANATOMÍA PATOLÓGICA</option>
                                       <option>CARDIOLOGÍA</option>
@@ -184,7 +140,7 @@
                                       <option>NEUMOLOGÍA</option>
                                       <option>NEUROCIRUGÍA</option>
                                       <option>NEUROCIRUGÍA CLINICA</option>
-                                      <option>NEUROCIRUGÍA PEDIÁTRICA</option>
+                                      <option>NUEROCIRUGÍA PEDIÁTRICA</option>
                                       <option>OBSTETRICIA</option>
                                       <option>ODONTOLOGÍA</option>
                                       <option>OFTANMOLOGÍA</option>
@@ -208,82 +164,230 @@
                                 <div class="form-group">
                                   <label class="col-sm-4  control-label">Area :</label>
                                   <div class="col-sm-4">
-                                    <input class="form-control" name="descripcion" value="<%=espONE[0].descripcion%>" parsley-trigger="change" required placeholder onkeyup="mayus(this)"/>
+                                    <input class="form-control" name="descripcion" parsley-trigger="change" required placeholder="Introdusca Area" onkeyup="mayus(this)" />
                                   </div>
-                                </div> 
-                              <div class="col-md-4">
-                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
-                                  <a class="btn btn-danger"href="/cuaderno/limpiar"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
-                              </div>
-                            </form>
-                          <% } %>
-                        </div>
-                        <br><br>
-                        <div class="porlets-content">
-                          <div class="table-responsive">
-                            <table  class="display table table-bordered table-striped" id="dynamic-table">
-                              <thead>
-                                <tr>
-                                  <th class="text-center">#</th>
-                                  <th class="text-center">Especilidad</th>
-                                  <th class="text-center">Area</th>
-                                  <th class="text-center">Opciones</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <% for (var i=0; i< resp.length; i++) { %>
-                                <tr>
-                                  <td class="text-center"><%= i+1%></td>
-                                  <td class="text-center"><%=resp[i].nombre%></td>
-                                  <td class="text-center"><%=resp[i].descripcion%></td>
-                                  <td class="text-center">
-                                    <a @click="data(<%=resp[i].id%>),lista_consulta()" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-wheelchair "></i></a>
-                                    <!--<a href=""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a>-->
-                                    <a href="/cuaderno/oneEsp/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a>
-                                    <a @click="data(<%=resp[i].id%>),lista_doctores()" data-target="#myModal3" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar Doctor"><i class="fa fa-user-md"></i></a>                        
-                                  </td>							
-                                </tr>
-                                <% } %>
-                              </tbody>
-                            </table>
+                                </div>
+                                <br><br>
+                                <div class="col-md-4">
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                  <a class="btn btn-danger"href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                                </div>
+                              </form>
+                            <% } else { %>
+                              <form class="form-horizontal group-border-dashed" action="/cuaderno/updateEsp/<%=espONE.data[0].id%>/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate >
+                                <div class="form-group">
+                                    <label class=" col-sm-4 control-label">Especialidad o Servicio :</label>
+                                    <div class="col-sm-4">
+                                      <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="nombre" required placeholder="" >
+                                        <option ><%=espONE.data[0].nombre%></option>
+                                        <option value="" disabled>-----------------------</option>
+                                        <option>EMERGENCIA</option>
+                                        <option>ANATOMÍA PATOLÓGICA</option>
+                                        <option>CARDIOLOGÍA</option>
+                                        <option>CIRUGÍA GENERAL</option>
+                                        <option>CIRUGÍA MAXILOFACIAL</option>
+                                        <option>CIRUGÍA PEDIATRICA</option>
+                                        <option>CIRUGÍA PLASTACA</option>
+                                        <option>DERMATOLOGÍA</option>
+                                        <option>ECOGRAFÍA</option>
+                                        <option>ENDOCRINOLOGÍA</option>
+                                        <option>ESPIROMETRÍA</option>
+                                        <option>FISIOTERAPIA</option>
+                                        <option>GASTROENTEROLOGÍA</option>
+                                        <option>GENÉTICA</option>
+                                        <option>GINECOLOGÍA</option>
+                                        <option>HEMODIÁLISIA</option>
+                                        <option>LABORATORIO</option>
+                                        <option>MEDICINA INTERNA</option>
+                                        <option>MEDICINA TRADICIONAL</option>
+                                        <option>NEFROLOGÍA</option>
+                                        <option>NEUMOLOGÍA</option>
+                                        <option>NEUROCIRUGÍA</option>
+                                        <option>NEUROCIRUGÍA CLINICA</option>
+                                        <option>NEUROCIRUGÍA PEDIÁTRICA</option>
+                                        <option>OBSTETRICIA</option>
+                                        <option>ODONTOLOGÍA</option>
+                                        <option>OFTANMOLOGÍA</option>
+                                        <option>OTORRINOLARINGOLOGÍA</option>
+                                        <option>PEDIATRÍA</option>
+                                        <option>PSIQUIATRÍA INFANTIL</option>
+                                        <option>RAYOS X</option>
+                                        <option>REUMATOLOGÍA</option>
+                                        <option>SALUD MENTAL</option>
+                                        <option>TELE SALUD</option>
+                                        <option>TERAPIA INTENSIVA ADULTOS</option>
+                                        <option>TERAPIA INTENSIVA PEDIATRIA</option>
+                                        <option>TERAPIA INTENSIVA NEONATAL</option>
+                                        <option>TRAUMATOLOGÍA</option>
+                                        <option>TRAUMATOLOGÍA PEDIÁTRICA</option>
+                                        <option>TOMOGRAFÍA</option>
+                                        <option>UROLOGÍA</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-sm-4  control-label">Area :</label>
+                                    <div class="col-sm-4">
+                                      <input class="form-control" name="descripcion" value="<%=espONE.data[0].descripcion%>" parsley-trigger="change" required placeholder onkeyup="mayus(this)"/>
+                                    </div>
+                                  </div> 
+                                <div class="col-md-4">
+                                    <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
+                                    <a class="btn btn-danger"href="/cuaderno/limpiar/<%=data_doc.data.token_id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
+                                </div>
+                              </form>
+                            <% } %>
+                          </div>
+                          <br><br>
+                          <div class="porlets-content">
+                            <div class="table-responsive">
+                              <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Especilidad</th>
+                                    <th class="text-center">Area</th>
+                                    <th class="text-center">Opciones</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% for (var i=0; i< resp.length; i++) { %>
+                                  <tr>
+                                    <td class="text-center"><%= i+1%></td>
+                                    <td class="text-center"><%=resp[i].nombre%></td>
+                                    <td class="text-center"><%=resp[i].descripcion%></td>
+                                    <td class="text-center">
+                                      <a @click="data(<%=resp[i].id%>),lista_consulta()" data-target="#myModal2" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Crear Consultorio"><i class="fa fa-wheelchair "></i></a>
+                                      <!--<a href=""  data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a>-->
+                                      <a href="/cuaderno/oneEsp/<%=resp[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a>
+                                      <a @click="data(<%=resp[i].id%>),lista_doctores()" data-target="#myModal3" data-toggle="modal"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar Doctor"><i class="fa fa-user-md"></i></a>                        
+                                    </td>							
+                                  </tr>
+                                  <% } %>
+                                </tbody>
+                              </table>
+                            </div>
                           </div>
                         </div>
+                        <!--/porlets-content-->
                       </div>
-                      <!--/porlets-content-->
+                      <!--/block-web-->
                     </div>
-                    <!--/block-web-->
+                    <!--/col-md-12-->
                   </div>
-                  <!--/col-md-12-->
+                  <!--/row-->
                 </div>
-                <!--/row-->
+                <!--/page-content end-->
               </div>
-              <!--/page-content end-->
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Consultorios  </h4>
+            <div class="center">
+              <h6 style="color: blue">{{msg}}</h6>
+              <h6 style="color: red">{{msg_false}} </h6>
+            </div>
+          </div>
+          <div class="modal-body"> 
+            <section class="panel default blue_title h2">
+              <div class="panel-group accordion accordion-semi" id="accordion3">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-2"> <i class="fa fa-angle-right"></i>Lista de Consultorios</a> </h4>
+                  </div>
+                  <div id="ac3-2" class="panel-collapse collapse" style="height: 0px;" >
+                    <div class="panel-body"> 
+                      <div class="col-md-12">
+                        <div class="table-responsive" >
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Sigla de Especialidad</th>
+                                <th class="text-center">Nombre Especialidad </th>
+                                <th class="text-center">Opciones</th>
+                              </tr>
+                            </thead>
+                            <tbody v-for="(list, index) in list_consulta_especialidad">
+                              <tr>
+                                <td class="text-center">{{index+1}}</td>
+                                <td class="text-center">{{list.sigla}}</td>
+                                <td class="text-center">{{list.nombre}}</td>
+                                <td class="text-center">
+                                  <a @click="id_for_delete_consultorio = list.id" data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          <form class="form-horizontal" @submit="reg_consultorio" parsley-validate novalidate>
+            <div class="form-group">
+              <label  class="col-sm-4 control-label">Sigla Especialidad:</label>
+              <div class="col-sm-6">
+                <input type="text" v-model="sigla" class="form-control"  required placeholder="Introdusca Sigla"  />
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-4 control-label">Nombre Especialidad:</label>
+              <div class="col-sm-6">
+                <!--<ul class="list-group">
+                  <li class="list-group-item">
+                    <input type="text" placeholder="Buscar" v-model="buscar" class="form-control">
+                  </li>
+                  <li class="list-group-item" v-for="list in buscar_consultorio">
 
-  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Consultorios  </h4>
-          <div class="center">
-            <h6 style="color: blue">{{msg}}</h6>
-            <h6 style="color: red">{{msg_false}} </h6>
+                      <a @click="selected(list.name)">{{list.name}}</a>
+                  </li>
+                </ul>-->
+                <v-select :options="options" v-model="nombre" required placeholder="Selecione Especialidad" >
+
+                </v-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-5 ">
+                <button type="submit" class="btn btn-success btn-icon"  >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+	  			  		<button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+              </div>
+            </div> 
+          </form>
           </div>
         </div>
-        <div class="modal-body"> 
-          <section class="panel default blue_title h2">
+      </div>
+    </div>
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Asignación de Médico Area Hospitalización </h4>
+            <div class="center">
+              <h6 style="color: blue">{{msg}}</h6>
+              <h6 style="color: red">{{msg_false}} </h6>
+            </div>
+          </div>
+          <div class="modal-body"> 
+            <section class="panel default blue_title h2">
             <div class="panel-group accordion accordion-semi" id="accordion3">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-2"> <i class="fa fa-angle-right"></i>Lista de Consultorios</a> </h4>
+                  <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-3"> <i class="fa fa-angle-right"></i>Lista de Consultorios</a> </h4>
                 </div>
-                <div id="ac3-2" class="panel-collapse collapse" style="height: 0px;" >
+                <div id="ac3-3" class="panel-collapse collapse" style="height: 0px;" >
                   <div class="panel-body"> 
                     <div class="col-md-12">
                       <div class="table-responsive" >
@@ -291,15 +395,19 @@
                           <thead>
                             <tr>
                               <th class="text-center">#</th>
-                              <th class="text-center">Sigla de Especialidad</th>
-                              <th class="text-center">Nombre Especialidad </th>
+                              <th class="text-center">Nombre del Médico</th>
+                              <th class="text-center">C.I.</th>
+                              <th class="text-center">Opciones</th>
                             </tr>
                           </thead>
-                          <tbody v-for="(list, index) in list_consulta_especialidad">
+                          <tbody v-for="(list, index) in especilidad_lista_medicas">
                             <tr>
                               <td class="text-center">{{index+1}}</td>
-                              <td class="text-center">{{list.sigla}}</td>
-                              <td class="text-center">{{list.nombre}}</td>
+                              <td class="text-center">{{list.nombre_doctor}}</td>
+                              <td class="text-center">{{list.ci}}</td>
+                              <td class="text-center">
+                                <a @click="id_med_delete = list.id" data-target="#myModal6" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                              </td>
                             </tr>
                           </tbody>
                         </table>
@@ -309,118 +417,84 @@
                 </div>
               </div>
             </div>
-          </section>
-        <form class="form-horizontal" @submit="reg_consultorio" parsley-validate novalidate>
-          <div class="form-group">
-            <label  class="col-sm-4 control-label">Sigla Especialidad:</label>
-            <div class="col-sm-6">
-              <input type="text" v-model="sigla" class="form-control"  required placeholder="Introdusca Sigla"  />
+            </section>
+            <form class="form-horizontal" @submit="register_medicos" parsley-validate novalidate>
+            <div class="form-group">
+	    	  		<label for="inputPassword3" class="col-sm-4 control-label">C.I.:</label>
+	    	  		<div class="col-sm-4">
+	    	  		  <select v-model="ci_medico" @click="list_medicos">
+                    <option value="">--Seleccione--</option>
+	    	    	  	<% for(var i = 0; i< Lista_medicos.length; i++) { %>
+                    <option><%=Lista_medicos[i].ci%></option>
+                  <% } %>
+	    	  		  </select>
+	    	  		</div>
+	    	  	</div><!--/form-group-->
+            <div class="form-group">
+              <label  class="col-sm-4 control-label">Personal Médico:</label>
+              <div class="col-sm-5">
+                  <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change" readonly/>
+              </div>
             </div>
+            <div class="form-group">
+              <div class="col-sm-5">
+                  <button type="submit" class="btn btn-success btn-icon"  >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
+                  <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+              </div>
+            </div> 
+            </form>
           </div>
-          <div class="form-group">
-            <label  class="col-sm-4 control-label">Nombre Especialidad:</label>
-            <div class="col-sm-6">
-              <!--<ul class="list-group">
-                <li class="list-group-item">
-                  <input type="text" placeholder="Buscar" v-model="buscar" class="form-control">
-                </li>
-                <li class="list-group-item" v-for="list in buscar_consultorio">
-                    
-                    <a @click="selected(list.name)">{{list.name}}</a>
-                </li>
-              </ul>-->
-              <v-select :options="options" v-model="nombre" required placeholder="Selecione Especialidad" >
-                
-              </v-select>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-5 ">
-              <button type="submit" class="btn btn-success btn-icon"  >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-				  		<button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
-            </div>
-          </div> 
-        </form>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      <div class="modal-header">
-
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Asignación de Médico Area Hospitalización </h4>
-        <div class="center">
-          <h6 style="color: blue">{{msg}}</h6>
-          <h6 style="color: red">{{msg_false}} </h6>
-        </div>
-        
-      </div>
-      <div class="modal-body"> 
-          <section class="panel default blue_title h2">
-              <div class="panel-group accordion accordion-semi" id="accordion3">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4  > <a class="collapsed" data-toggle="collapse" data-parent="#accordion3" href="#ac3-3"> <i class="fa fa-angle-right"></i>Lista de Consultorios</a> </h4>
-                    </div>
-                    <div id="ac3-3" class="panel-collapse collapse" style="height: 0px;" >
-                      <div class="panel-body"> 
-                          <div class="col-md-12">
-                              <div class="table-responsive" >
-                                  <table class="table table-bordered">
-                                      <thead>
-                                        <tr>
-                                          <th class="text-center">#</th>
-                                          <th class="text-center">Nombre del Médico</th>
-                                          <th class="text-center">C.I.</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody v-for="(list, index) in especilidad_lista_medicas">
-                                        <tr>
-                                          <td class="text-center">{{index+1}}</td>
-                                          <td class="text-center">{{list.nombre_doctor}}</td>
-                                          <td class="text-center">{{list.ci}}</td>
-                                        </tr>
-                                      </tbody>
-                                  </table>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          </section>
-          <form class="form-horizontal" @submit="register_medicos" parsley-validate novalidate>
-            <div class="form-group">
-	  		  			<label for="inputPassword3" class="col-sm-4 control-label">C.I.:</label>
-	  		  			<div class="col-sm-4">
-	  						<select v-model="ci_medico" @click="list_medicos">
-                  <option value="" selected disabled hidden >--Seleccione--</option>
-	  			  			<% for(var i = 0; i< Lista_medicos.length; i++) { %>
-                    <option><%=Lista_medicos[i].ci%></option>
-                  <% } %>
-	  						</select>
-	  		  			</div>
-	  				</div><!--/form-group-->
-        <div class="form-group">
-          <label  class="col-sm-4 control-label">Personal Médico:</label>
-          <div class="col-sm-5">
-              <input type="text" v-model="nombre_medico" class="form-control" parsley-trigger="change" readonly/>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="center">
+              <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Estás seguro?</b></h5>
+              <p>Una vez eliminado no se podra volver atras</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+              <a @click="eliminar_Consultorio()" data-dismiss="modal" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <div class="col-sm-5">
-              <button type="submit" class="btn btn-success btn-icon"  >Guardar <span>&nbsp;</span><i class="fa fa-check-square"></i></button><span>&nbsp;&nbsp;&nbsp;</span>
-              <button type="reset"class="btn btn-danger btn-icon" data-dismiss="modal">Cancelar <span>&nbsp;</span><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-        </div> 
-          </form>
+          <div class="modal-body">
+            <div class="center">
+              <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Estás seguro?</b></h5>
+              <p>Una vez eliminado no se podra volver atras</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+              <a @click="eliminaMedico"data-dismiss="modal" data-dismiss="modal" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
       </div>
-      </div>
-  </div>
-  </div>
+    </div>
   </div>
 <!-- include VueJS first -->
 <script src="https://unpkg.com/vue@latest"></script>
@@ -442,6 +516,9 @@
 <script src="/js/selectvue.js"></script>
 <!--Alertas-->
 <script src="/js/alert.js"></script>
+
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
 
 <!--select Buscar-->
 <script src="/js/selectbuscador.js"></script>
@@ -476,7 +553,7 @@
 }
 </script>
  
- <script src="/js/jPushMenu.js"></script> 
+<script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
 
 
@@ -486,6 +563,30 @@
 <script src="/axios/dist/axios.min.js"></script>
 
 <script src="/js/vue/reg_consultorio.js"></script>
+
+<script>
+  /*  <%if(msg) { %> */
+    /*  <%if(msg.data.success == false) { %> */
+         msg_false()
+         function msg_false(){
+           swal.fire(
+             'Error!',
+             '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+             'error'
+           )
+         }
+     /* <% } else {%> */
+         msg_true()
+         function msg_true(){
+           swal.fire(
+             'Success!',
+             '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+             'success'
+           )
+         }
+    /*  <% } %> */
+  /*  <% } %> */
+</script>
 
 </body>
 </html>

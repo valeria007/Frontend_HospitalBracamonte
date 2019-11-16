@@ -3,6 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 const datas = require('./url/export');
+import { user_data1 } from './url/export';
 
 var cie10 = require('cie10');
 var fileAsArray = cie10('array');
@@ -108,6 +109,7 @@ router.get('/home/:id/:token_part', (req,res) => {
     .then(resp => resp.json())
     .catch(error => console.error('Error',error))
     .then(resp => {
+      console.log(resp, "   esto es user <<<<<<<<<<<<<<<<<<<     >>>>>>>>>>>>>>>>>>>>>>>>>>>< api/user")
       data_token.token_id = resp.id     // esto manda el el id para el token
       
         if(datas.name.token[resp.id] && datas.name.token[resp.id].data.token.split(" ")[1].split(".")[2] == token_part ){
@@ -123,10 +125,11 @@ router.get('/home/:id/:token_part', (req,res) => {
                 .then(resp => resp.json())
                 .catch(error => console.error('Error',error))
                 .then(resp => {
+                  console.log(resp, " esto es lo que quiero ver  api/personal")
                   data_token.medico = resp 
                   if(data_user[data_token.token_id] == null){
                     user(data_token, data_token.token_id)
-                    datas.name.data_user = data_user
+                    user_data1(data_token, data_token.token_id)
                     res.render('consulta_externa/home_consulta',{
                         data_token
                     })
@@ -134,7 +137,7 @@ router.get('/home/:id/:token_part', (req,res) => {
                   }else{
                     remove_user( data_token.token_id)
                     user(data_token, data_token.token_id)
-                    datas.name.data_user = data_user
+                    user_data1(data_token, data_token.token_id)
                     res.render('consulta_externa/home_consulta',{
                         data_token
                     })

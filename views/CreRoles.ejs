@@ -24,6 +24,9 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 <style>
   .info2{ border-radius:100%; float: left; height:80px; width:80px; }
   .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
@@ -34,6 +37,23 @@
 			text-transform: uppercase;
 		}
 </style>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	console.log(data)
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper" id="roles">
@@ -44,13 +64,13 @@
     <div class="header_top_bar">
       <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
       <div class="top_right_bar">
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
             <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
             <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
             <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i> Logout</a> </li>
           </ul>
         </div>
       </div>
@@ -63,34 +83,34 @@
         <ul>
           <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul >
-              <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+              <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
             </ul>
           </li>
           <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul  >
-              <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              <li> <a href="/usuarios/usuarios/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
             </ul>
           </li>
           <li > <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul >
-              <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-              <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
-              <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+              <li> <a href="/cuaderno/especialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+              <li> <a href="/cuaderno/Cuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+              <li> <a href="/salas/salas/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
             </ul>
           </li>
           <li > <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul >
-              <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-              <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-              <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-              <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
+              <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+              <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+              <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+              <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+              <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
             </ul>
           </li>
           <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul class="opened" style="display:block">
-              <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-              <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b class="theme_color">Regs. Roles</b> </a> </li>
+              <li> <a href="/backup/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+              <li> <a href="/role/role/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b class="theme_color">Regs. Roles</b> </a> </li>
             </ul>
           </li>
         </ul>
@@ -102,21 +122,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="block-web">
-              <%if (msg != null) {%>
-                <div class="bs-example mover">
-                  <div class="alert alert-danger fade in">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <strong><%=msg %></strong></div>
-                </div>
-              <%} else if(mg2 != null) { %>
-                <div class="bs-example mover">
-                  <div class="alert alert-success fade in">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    
-                    <strong><%=mg2 %></strong>
-                  </div>
-                </div>
-              <% } %>
+              
               <div class="header">
                 <div class="info blue_symbols"><i class="fa fa-list-ol icon"></i></div>
                 <h3 class="content-header ">Creación de Roles</h3>
@@ -124,7 +130,7 @@
               <br>
               <br>
               <div class="porlets-content">
-                <form class="form-horizontal" action="/role/role" method="POST" parsley-validate novalidate>
+                <form class="form-horizontal" action="/role/role/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                   <div class="form-group">
                     <label  class="col-sm-4 control-label">Tipo de Rol:</label>
                     <div class="col-sm-4">
@@ -137,6 +143,7 @@
                       <option value="emergencia">EMERGENCIA</option>
                       <option value="farmacia">FARMACEUTICO</option>
                       <option value="hospitalizacion">HOSPITALIZACIÓN </option>
+                      <option value="laboratorio">LABORATORIO</option>
                     </select>
                     </div>
                   </div>
@@ -190,7 +197,7 @@
           </div>
           <div class="center">
             <h5><b>¿Estás seguro?</b></h5>
-            <p>Una vez eliminado no se podar dar roles a <b> Usuarios</b>....</p>
+            <p>Una vez eliminado no se podra dar roles a <b> Usuarios</b>....</p>
           </div>
         </div>
         <div class="modal-footer">
@@ -288,6 +295,8 @@
 <script src="/moment/moment.js"></script>
 <script src="/moment/locale/af.js"></script>
 
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+
 <script>
   
   var roles = new Vue({
@@ -302,6 +311,31 @@
             },
         }
   })
+</script>
+
+  
+<script>
+  /*  <%if(msg) { %> */
+    /*  <%if(msg.data.success == false) { %> */
+         msg_false()
+         function msg_false(){
+           swal.fire(
+             'Error!',
+             '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+             'error'
+           )
+         }
+     /* <% } else {%> */
+         msg_true()
+         function msg_true(){
+           swal.fire(
+             'Success!',
+             '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+             'success'
+           )
+         }
+    /*  <% } %> */
+  /*  <% } %> */
 </script>
 
 </body>

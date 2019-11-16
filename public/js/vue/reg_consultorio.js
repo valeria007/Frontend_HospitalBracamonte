@@ -3,6 +3,8 @@ Vue.component('v-select', VueSelect.VueSelect);
 var reg_sala = new Vue({
   el : "#reg_sala",
   data: () =>({
+      id_for_delete_consultorio:'',
+      id_med_delete:'',
       buscar:'',
       msg: "",
       msg_false :'',
@@ -15,7 +17,6 @@ var reg_sala = new Vue({
       ci_medico:'',
       nombre_medico: '',
       especilidad_lista_medicas:'',
-     
       /*list_consultorios:[
         {
           id:1,
@@ -130,6 +131,7 @@ var reg_sala = new Vue({
                 this.sigla = "",
                 this.nombre = ""
                 this.lista_consulta()
+                this.msg_false=""
               }else{
                 this.msg_false = data.msg
                 this.msg =""
@@ -188,6 +190,24 @@ var reg_sala = new Vue({
           .then(data => {
             console.log(data)
             this.list_consulta_especialidad = data
+          })
+        },        
+        ////**eliminar consultorio */
+        eliminar_Consultorio(){
+          fetch(this.url.url_front_end+'/cuaderno/VueliminarConsulta/'+this.id_for_delete_consultorio)
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            this.lista_consulta()
+          })
+        },
+        ///**eliminar medico */
+        eliminaMedico(){
+          fetch(this.url.url_front_end+'/cuaderno/vude_del_med_especialidad/'+this.id_med_delete)
+          .then(res => res.json())
+          .then(data => {
+            console.log(data , "#ssssssssssssssssssss  <<<<<<<<<<<<<<<<<<<<<<<<")
+            this.lista_doctores()
           })
         }
     }

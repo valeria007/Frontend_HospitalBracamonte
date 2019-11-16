@@ -28,9 +28,26 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
-        .info2{ border-radius:100%; float: left; height:80px; width:80px; }
-      .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
-      </style>
+  .info2{ border-radius:100%; float: left; height:80px; width:80px; }
+  .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 9px 9px 18px;}
+</style>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	console.log(data)
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
@@ -42,13 +59,13 @@
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
               <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
               <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
               <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+              <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i> Logout</a> </li>
             </ul>
           </div>
         </div>
@@ -60,34 +77,34 @@
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+                <li> <a href="/usuarios/usuarios/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
               </ul>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul >
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+                <li> <a href="/cuaderno/especialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
               </ul>
             </li>
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul class="opened" style="display:block">
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
+                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Espc.</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+                <li> <a href="/backup/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -112,10 +129,10 @@
                         <div class="btn-group">
                           <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Generales<span class="caret"></span></button>
                           <ul role="menu" class="dropdown-menu">
-                            <li><a href="/usuarios/onlymedico">Medicos</a></li>
-                            <li><a href="/usuarios/onlyperso">Personales</a></li>
-                            <li><a href="/usuarios/onlyenferme">Enfermeras</a></li>
-                            <li><a href="/usuarios/onlyfarma">Farmaceuticos</a></li>
+                            <li><a href="/usuarios/onlymedico/<%=data_doc.data.token_id%>">Medicos</a></li>
+                            <li><a href="/usuarios/onlyperso/<%=data_doc.data.token_id%>">Personales</a></li>
+                            <li><a href="/usuarios/onlyenferme/<%=data_doc.data.token_id%>">Enfermeras</a></li>
+                            <li><a href="/usuarios/onlyfarma/<%=data_doc.data.token_id%>">Farmaceuticos</a></li>
 
                           </ul>
                         </div>  
@@ -126,121 +143,12 @@
                       <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Reportes Usuarios<span class="caret"></span></button>
                         <ul role="menu" class="dropdown-menu">
-                          <li><a href="/usuarios/allcuentas">Cuentas</a></li>
-                          <li><a href="/usuarios/allroles">Roles</a></li>
+                          <li><a href="/usuarios/allcuentas/<%=data_doc.data.token_id%>">Cuentas</a></li>
+                          <li><a href="/usuarios/allroles/<%=data_doc.data.token_id%>">Roles</a></li>
                           
                         </ul>
                       </div>
                     </div>
-                    </div>
-                    <div>
-                      <div class="learndash-group-results">
-                        <div class="filters-groups">
-                        <h4>User Last Score Filter</h4>
-                        <p>Min Date : <input class="date-picker-min" type="text"></p>
-                        <p>Max Date : <input class="date-picker-max" type="text"></p>
-                      </div>
-                      <table class="datatables-users-quiz-table" data-scroll-x="true" >
-                        <thead>
-                          <tr>
-                            <th scope="col">Users</th>
-                            <th data-filter="1473600269">Introduce yourself : Micki B1</th>
-                            <th data-filter="1412794047">Present perfect A2</th>
-                            <th data-filter="1473331264">Reading: Gandhi</th>
-                            <th data-filter="1475060251">Might A2</th>
-                            <th data-filter="1475340780">Viva the vuvuzela B1</th>
-                            <th data-filter="1475861112">Nelson Mandela B1</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">Anderson</th>
-                            <td class="quiz-not-passed" data-order="63.16">63.16</td>
-                            <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                            <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                            <td class="quiz-passed" data-order="90">90</td>
-                            <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                            <td class="quiz-passed" data-order="91.89">91.89</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Anderson</th>
-                              <td class="quiz-not-passed" data-order="57.14">57.14</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Christopher</th>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-passed" data-order="80.77">80.77</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-passed" data-order="90">90</td><td class="quiz-passed" data-order="92.86">92.86</td>
-                              <td class="quiz-passed" data-order="83.78">83.78</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Cunningham</th>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-not-passed" data-order="0">0</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Cunningham</th>
-                              <td class="quiz-not-passed" data-order="73.68">73.68</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-passed" data-order="95">95</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-passed" data-order="81.08">81.08</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Cunningham</th>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-not-passed" data-order="73.08">73.08</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-not-passed" data-order="60">60</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Ethan</th>
-                              <td class="quiz-passed" data-order="94.74">94.74</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-passed" data-order="95">95</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">John</th>
-                              <td class="quiz-passed" data-order="85.71">85.71</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-passed" data-order="85">85</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-not-passed" data-order="75.68">75.68</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Johnson</th>
-                              <td class="quiz-passed" data-order="100">100</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-passed" data-order="95">95</td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-passed" data-order="81.08">81.08</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Mercado</th>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td>
-                              <td class="quiz-not-passed" data-order="70">70</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-not-passed" data-order="56.76">56.76</td></tr><tr><th scope="row">Mercado</th><td class="quiz-not-passed" data-order="26.32">26.32</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="80">80</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="83.78">83.78</td></tr><tr><th scope="row">Mercado</th><td class="quiz-not-passed" data-order="73.68">73.68</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="90">90</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td></tr><tr><th scope="row">Mercado</th><td class="quiz-not-passed" data-order="26.32">26.32</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-not-passed" data-order="0">0</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td></tr><tr><th scope="row">Samantha</th><td class="quiz-passed" data-order="100">100</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="100">100</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="94.59">94.59</td></tr><tr><th scope="row">Samantha</th><td class="quiz-passed" data-order="94.74">94.74</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="85">85</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td></tr><tr><th scope="row">Sarah</th><td class="quiz-not-passed" data-order="73.68">73.68</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="100">100</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="100">100</td></tr><tr><th scope="row">Simpson</th><td class="quiz-passed" data-order="85.71">85.71</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td></tr><tr><th scope="row">Thompson</th><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="80">80</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-not-passed" data-order="75.68">75.68</td></tr><tr><th scope="row">Thompson</th><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-not-passed" data-order="75.68">75.68</td></tr><tr><th scope="row">Tremblay</th><td class="quiz-not-passed" data-order="61.9">61.9</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="95">95</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td></tr><tr><th scope="row">Tremblay</th><td class="quiz-not-passed" data-order="68.42">68.42</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-not-passed" data-order="70">70</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td></tr><tr><th scope="row">Walker</th><td class="quiz-not-passed" data-order="26.32">26.32</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="95">95</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="91.89">91.89</td></tr><tr><th scope="row">Zoey</th><td class="quiz-not-passed" data-order="63.16">63.16</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-passed" data-order="80">80</td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td><td class="quiz-none"><span class="learndash-users-tables-none" data-order="-1">None</span></td></tr>
-                            </tbody>
-                          </table>
-                        </div>
                     </div>
                   </form>
                   <br>
@@ -266,7 +174,7 @@
                             <td class="text-center"><%=data[i].apellidop%></td>
                             <td class="text-center"><%=data[i].apellidom%></td>
                             <td class="text-center"><%=data[i].cargo%></td>
-                            <td><a href="/usuarios/cuentas/<%=data[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
+                            <td><a href="/usuarios/cuentas/<%=data[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Imprimir"><i class="fa fa-print " style="color:rgb(168, 168, 16)"></i></a>
                             </td>
                           </tr>
                         <% } %>
@@ -281,76 +189,7 @@
     </div>
     
   </div>
-<script>
-  // No conflict for WordPress
-var $j = jQuery.noConflict();
 
-$j( function() {
-	$j( ".date-picker-min" ).datepicker({
-	  dateFormat: "yy-mm-dd"
-	});
-	$j( ".date-picker-max" ).datepicker({
-	  dateFormat: "yy-mm-dd"
-	});
-});
-
-/* DataTable */
-$j(document).ready(function(){
-
-    var table2 = $j('.datatables-users-quiz-table').DataTable({
-		"order": [[ 0, "asc" ]],
-		"paging": false,
-		"bLengthChange": false,
-		"bInfo": false,
-		"dom": 'Bfrtip',
-		"buttons": [
-			'copyHtml5',
-			'excelHtml5', // deactivated because JSZip dependency
-			'csvHtml5',
-			'pdfHtml5' // deactivated because PDFMake dependency
-		]
-	});
-
-  // https://datatables.net/reference/type/column-selector
-  $j(
-    ".filters-groups .date-picker-max, .filters-groups .date-picker-min"
-  ).change(function() {
-    var val = parseInt((new Date(this.value).getTime() / 1000).toFixed(0));
-
-    var op = "min";
-    if ($j(this).hasClass("date-picker-max")) {
-      op = "max";
-    }
-
-    table2.columns().every(function() {
-      var header = this.header();
-      var date = $j(header).data("filter");
-      if (date) {
-        if (op === "min") {
-          if (date < val) {
-            this.visible(false);
-          } else {
-            this.visible(true);
-          }
-        } else {
-          if (date > val) {
-            this.visible(false);
-          } else {
-            this.visible(true);
-          }
-        }
-      }
-    });
-
-    // column.visible( ! column.visible() );
-
-    table2.draw();
-  });
-
-
-});
-
-</script>
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/common-script.js"></script>
@@ -419,5 +258,6 @@ $j(document).ready(function(){
 
 <script src="/js/jPushMenu.js"></script> 
 <script src="/js/side-chats.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
 </body>
+</html>

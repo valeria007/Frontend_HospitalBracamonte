@@ -4,49 +4,83 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Salas</title>
 <%- include("partials/head") -%>	
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
 <style>
       .info2{ border-radius:100%; float: left; height:80px; width:80px; }
       .info2 .icon{ font-size:50px; color:#FFFFFF; float:left; margin-right:50px; margin:15px 20px 10px 18px;}
       </style>
 
 </head>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	console.log(data)
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
-    <%- include("partials/menusali") -%>	
+    <div class="header_bar">
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <div class="header_top_bar">
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/admin.png" /><span class="user_adminname"><span>&nbsp;&nbsp;</span><%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i>Salir</a> </li>
+            </ul>
+          </div>
+         
+        </div>
+      </div>
+    </div>
     <div class="inner">
       <div class="left_nav">
         <div class="left_nav_slidebar">
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
             <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul  >
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+                <li> <a href="/usuarios/usuarios/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
               </ul>
             </li>
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block">
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Salas</b> </a> </li>
+                <li> <a href="/cuaderno/especialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Salas</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+                <li> <a href="/backup/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -58,6 +92,7 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div id="main-content" class=" block-web">
+                
                 <div class="header">
                   <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
                   <h3 class="content-header ">Creación Salas</h3>
@@ -65,7 +100,8 @@
                 <div class="page-content">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="block-web">
+                      <div id="main-content" class="block-web">
+                      
                         <div class="header">
                           <div class="actions"> 
                             <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
@@ -79,15 +115,15 @@
                               <%if (dataSala == null) { %>   
                               <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
                               <% } else { %>
-                            <form class="form-horizontal group-border-dashed" action="/salas/updateSalas/<%=OnlySala[0].id%>"  method="POST" parsley-validate novalidate>
+                            <form class="form-horizontal group-border-dashed" action="/salas/updateSalas/<%=OnlySala.data[0].id%>/<%=data_doc.data.token_id%>"  method="POST" parsley-validate novalidate>
                               <div class="form-group ">
                                 <label class="col-sm-4 control-label">Especialidad:</label>
                                 <div class="col-sm-4">
                                   <select class="form-control" id="source" name="nombre">
-                                    <option><%=OnlySala[0].nombre%></option>
+                                    <option><%=OnlySala.data[0].nombre%></option>
                                     <option> ------------------------------------------</option>
                                     <%for(var i = 0; i< dataSala.length; i++) { %>
-                                      <option><%=dataSala[i.nombre]%></option>
+                                      <option><%=dataSala[i].nombre%></option>
                                     <% } %>
                                     <!-- <option >INTERNACIÓN GENERAL</option>
                                     <option >UNIDAD DE TERAPIA INTENSIVA</option>
@@ -104,10 +140,10 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-sm-4 control-label">Descricion:</label>
+                                <label class="col-sm-4 control-label">Ubicación:</label>
                                 <div class="col-sm-3">
                                   <select  class="form-control" id="source" name="descripcionSala">
-                                    <option><%=OnlySala[0].descripcionSala%></option>
+                                    <option><%=OnlySala.data[0].descripcionSala%></option>
                                     <option>-----------------</option>
                                     <option>Sala H.- Niños</option>
                                     <option>Sala H.- Hombres</option>
@@ -121,7 +157,7 @@
                                 <label class="col-sm-4 control-label">Piso:</label>
                                 <div class="col-sm-4">
                                   <select  class="form-control" id="source"  name="piso">
-                                    <option><%=OnlySala[0].piso%></option>
+                                    <option><%=OnlySala.data[0].piso%></option>
                                     <option>-------------------------</option>
                                     <option>P.: P. B.(PLANTA BAJA)</option>
                                     <option>1.ª PLANTA(PRIMER PLANTA)</option>
@@ -134,7 +170,7 @@
                               <div class="form-group">
                                 <div class="col-md-5">
                                   <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
-                                  <a href="/salas/limpiar" class="btn btn-danger"href=""><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
+                                  <a href="/salas/limpiar/<%=data_doc.data.token_id%>" class="btn btn-danger"href=""><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
                                 </div>
                               </div>
                             </form>
@@ -142,7 +178,7 @@
                             <% } else if (dataSala == null) { %>
                             <h1>No Se puede establecer una coneccion con Especialidades porfavor vuelva a cargar esta pagina desde una pestaña o vista anterior</h1>
                             <% } else { %>
-                            <form class="form-horizontal group-border-dashed" action="/salas/salas" method="POST" parsley-validate novalidate>
+                            <form class="form-horizontal group-border-dashed" action="/salas/salas/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                               <div class="form-group ">
                                 <label class="col-sm-4 control-label">Sala:</label>
                                 <div class="col-sm-4">
@@ -166,7 +202,7 @@
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-sm-4 control-label">Descricion:</label>
+                                <label class="col-sm-4 control-label">Ubicación:</label>
                                 <div class="col-sm-3">
                                   <select  class="form-control" id="source"  name="descripcionSala" required placeholder="">
                                     <option value="" selected disabled hidden >--Seleccione--</option>
@@ -195,7 +231,7 @@
                               <div class="form-group">
                                 <div class="col-md-4">
                                   <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
-                                  <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                                  <a class="btn btn-danger"href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
                                 </div>
                               </div>
                             </form>
@@ -210,7 +246,7 @@
                                     <tr>
                                       <th class="text-center">#</th>
                                       <th class="text-center">Sala</th>
-                                      <th class="text-center">Area</th>
+                                      <th class="text-center">Ubicación</th>
                                       <th class="text-center">Piso</th>
                                       <th class="text-center">Opciones</th>
                                     </tr>
@@ -224,8 +260,8 @@
                                     <td class="text-center"><%=resp[i].descripcionSala%></td>
                                     <td class="text-center"><%=resp[i].piso%></td>
                                     <td class="text-center">
-                                      <a href="/salas/renderCamas/<%=resp[i].id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Camas"><i class="fa fa-plus" style="color:black"></i></a>
-                                      <a href="/salas/updateSalas/<%=resp[i].id%>""  data-toggle="tooltip" class="btn  tooltips" data-original-title="editar"><i class="fa fa-pencil " style="color: darkgreen"></i></a><span>&nbsp;</span>
+                                      <a href="/salas/renderCamas/<%=resp[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Asignar_Camas"><i class="fa fa-plus" style="color:black"></i></a>
+                                      <a href="/salas/updateSalas/<%=resp[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="editar"><i class="fa fa-pencil " style="color: darkgreen"></i></a><span>&nbsp;</span>
                                     </td>							
                                   </tr>
                                   <% } %> 
@@ -251,7 +287,30 @@
     </div>
   </div>
 <%- include("partials/scripts") -%>
-
+<script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+<script>
+  /*  <%if(msg) { %> */
+    /*  <%if(msg.data.success == false) { %> */
+         msg_false()
+         function msg_false(){
+           swal.fire(
+             'Error!',
+             '<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+             'error'
+           )
+         }
+     /* <% } else {%> */
+         msg_true()
+         function msg_true(){
+           swal.fire(
+             'Success!',
+             '<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+             'success'
+           )
+         }
+    /*  <% } %> */
+  /*  <% } %> */
+ </script>
 
 </body>
 </html>

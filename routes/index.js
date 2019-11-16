@@ -3,6 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 const datas = require('./url/export');
+import { user_data1, remove_user12 } from './url/export';
 
 router.post('/enviar', (req,res) => {
   var data = req.body
@@ -72,6 +73,33 @@ function remove_session(id) {
 }
 
 
+//esta funcion es para el data user
+var data_user = {}
+function user(data,id){
+  let storedItem = data_user[id];
+    if (!storedItem) {
+      storedItem = data_user[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    storedItem.qty++;
+}
+
+function array () {
+  let arr = [];
+  for (const id in data_user) {
+      arr.push(data_user[id]);
+  }
+  return arr;
+}
+
+function remove_user(id) {
+  delete data_user[id];
+}
+
+
+
 
 router.get('/',(req, res) => {
   res.render('index', { msg1, msg2, msg3 })
@@ -82,60 +110,223 @@ router.get('/index2', (req,res) => {
 });
 /**home aquiiiiiiiiiiiii */
 
-router.get('/home',(req, res) => {
-  
-  fetch('http://localhost:3600/api/allUser')        
+router.get('/delete_token/:token_id', (req,res) => {
+  const { token_id } = req.params;
+  remove_Token(token_id);
+  res.redirect('/')
+})
+
+router.get('/home/:id_user',(req, res) => {
+  const { id_user } = req.params
+
+  var data_token = {
+    token_id: {},
+    personal:{},        
+  }
+
+  fetch('http://localhost:3600/api/user/'+id_user)  // esto es para sacar el token del usuario
   .then(resp => resp.json())
-  .then(data =>{  
-    var lo = data.length
-    fetch('http://localhost:3600/api/Only_Medicos')        
-      .then(resp => resp.json())
-      .then(medi =>{
-        fetch('http://localhost:3600/api/OnlyPersonal')
+  .then(resp => {
+
+    if(datas.name.token[resp.id]){
+      data_token.token_id = resp.id 
+      var status
+      for(var i = 0; i < resp.role.length; i++ ){
+          if(resp.role[i].name == "administrcion"){
+              status = "tiene permiso"
+          }
+      } 
+      if(status == "tiene permiso"){
+        fetch('http://localhost:3600/api/personal/'+resp.perso_id)
         .then(resp => resp.json())
-        .then(personal =>{
-          fetch('http://localhost:3600/api/OnlyEnfermera')
-          .then(resp => resp.json())
-          .then(enfe =>{
-            fetch('http://localhost:3600/api/OnlyFarma')
-            .then(resp => resp.json())
-            .then( fer =>{
-              fetch('http://localhost:4600/api/liscuaderno')
-              .then(resp => resp.json())
-              .then(cua =>{
-                fetch('http://localhost:4600/api/especialidad')
+        .catch(error => console.error('Error',error))
+        .then(personal => {
+            data_token.personal = personal 
+            if(data_user[data_token.token_id] == null){
+                user(data_token, data_token.token_id)
+                user_data1(data_token, data_token.token_id)
+                fetch('http://localhost:3600/api/allUser')        
                 .then(resp => resp.json())
-                .then(esp =>{
-                  fetch('http://localhost:3000/api/pacientes')
-                  .then(resp => resp.json())
-                  .then(paci =>{
-                    res.render('home',{
-                      lo,
-                      medi,
-                      data,
-                      fer,
-                      personal,
-                      enfe,
-                      cua,
-                      esp,
-                      paci,
-                      log5:esp.length,
-                      log4:cua.length,
-                      lar: medi.length,
-                      long: personal.length,
-                      long1:enfe.length,
-                      log3: fer.length,
-                      log6:paci.length
-                    })
-                  })
-                  
-                })
-              })
-            })
-          })
+                .then(data =>{  
+                  var lo = data.length
+                  fetch('http://localhost:3600/api/Only_Medicos')        
+                    .then(resp => resp.json())
+                    .then(medi =>{
+                      fetch('http://localhost:3600/api/OnlyPersonal')
+                      .then(resp => resp.json())
+                      .then(personal =>{
+                        fetch('http://localhost:3600/api/OnlyEnfermera')
+                        .then(resp => resp.json())
+                        .then(enfe =>{
+                          fetch('http://localhost:3600/api/OnlyFarma')
+                          .then(resp => resp.json())
+                          .then( fer =>{
+                            fetch('http://localhost:4600/api/liscuaderno')
+                            .then(resp => resp.json())
+                            .then(cua =>{
+                              fetch('http://localhost:4600/api/especialidad')
+                              .then(resp => resp.json())
+                              .then(esp =>{
+                                fetch('http://localhost:3000/api/pacientes')
+                                .then(resp => resp.json())
+                                .then(paci =>{
+
+                                  res.render('home',{
+                                    lo,
+                                    medi,
+                                    data,
+                                    fer,
+                                    personal,
+                                    enfe,
+                                    cua,
+                                    esp,
+                                    paci,
+                                    log5:esp.length,
+                                    log4:cua.length,
+                                    lar: medi.length,
+                                    long: personal.length,
+                                    long1:enfe.length,
+                                    log3: fer.length,
+                                    log6:paci.length,
+                                    data_token,
+                                    token:{
+                                        success: datas.name.token[resp.id].data.success,
+                                        token:datas.name.token[resp.id].data.token,
+                                        user:{
+                                            id: datas.name.token[resp.id].data.user.id,
+                                            perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                            username: datas.name.token[resp.id].data.user.username,
+                                            email:  datas.name.token[resp.id].data.user.email,
+                                        } 
+                                    },
+                                    login:datas.name.session[resp.id]
+                                  })
+
+                                })
+                                
+                              })
+
+                            })
+                            .catch(error => {       
+                              console.error('Error:', error)
+                              res.render('404error',{
+                                msg:"No hay conección con el sevidor 4600",
+                                /* data_doc:datas.name.data_user[data_token.token_id], */
+                              })
+                            })
+                          })
+                        })
+                      })
+                    })    
+                  }) 
+
+                status = null
+            }else{
+                remove_user( data_token.token_id)
+                user(data_token, data_token.token_id)
+                remove_user12(data_token.token_id)
+                user_data1(data_token, data_token.token_id)
+                fetch('http://localhost:3600/api/allUser')        
+                .then(resp => resp.json())
+                .then(data =>{  
+                  var lo = data.length
+                  fetch('http://localhost:3600/api/Only_Medicos')        
+                    .then(resp => resp.json())
+                    .then(medi =>{
+                      fetch('http://localhost:3600/api/OnlyPersonal')
+                      .then(resp => resp.json())
+                      .then(personal =>{
+                        fetch('http://localhost:3600/api/OnlyEnfermera')
+                        .then(resp => resp.json())
+                        .then(enfe =>{
+                          fetch('http://localhost:3600/api/OnlyFarma')
+                          .then(resp => resp.json())
+                          .then( fer =>{
+                            fetch('http://localhost:4600/api/liscuaderno')
+                            .then(resp => resp.json())
+                            .then(cua =>{
+                              fetch('http://localhost:4600/api/especialidad')
+                              .then(resp => resp.json())
+                              .then(esp =>{
+                                fetch('http://localhost:3000/api/pacientes')
+                                .then(resp => resp.json())
+                                .then(paci =>{
+
+                                  res.render('home',{
+                                    lo,
+                                    medi,
+                                    data,
+                                    fer,
+                                    personal,
+                                    enfe,
+                                    cua,
+                                    esp,
+                                    paci,
+                                    log5:esp.length,
+                                    log4:cua.length,
+                                    lar: medi.length,
+                                    long: personal.length,
+                                    long1:enfe.length,
+                                    log3: fer.length,
+                                    log6:paci.length,
+                                    data_token,
+                                    token:{
+                                        success: datas.name.token[resp.id].data.success,
+                                        token:datas.name.token[resp.id].data.token,
+                                        user:{
+                                            id: datas.name.token[resp.id].data.user.id,
+                                            perso_id: datas.name.token[resp.id].data.user.perso_id,
+                                            username: datas.name.token[resp.id].data.user.username,
+                                            email:  datas.name.token[resp.id].data.user.email,
+                                        } 
+                                    },
+                                    login:datas.name.session[resp.id]        
+                                  })
+
+                                })
+                                
+                              })
+                            })
+                            .catch(error => {       
+                              console.error('Error:', error)
+                              res.render('404error',{
+                                msg:"No hay conección con el sevidor 4600",
+                                /* data_doc:datas.name.data_user[data_token.token_id], */
+                              })
+                            })
+                          })
+                        })
+                      })
+                    })    
+                  }) 
+
+                status = null
+            }
+            setTimeout(()=>{
+              remove_session(resp.id)
+                function remove_session(id) {
+                delete datas.name.session[id]
+              }
+            },5000);
+            
+           
         })
-      })    
-    }) 
+      }else{
+        res.redirect('/')
+      }
+      
+    }else{
+      res.redirect('/')
+    }
+    
+  })
+  .catch(error => {       
+    console.error('Error:', error)
+    res.render('404error',{
+      msg:"No hay conección con el sevidor 3600",
+      /* data_doc:datas.name.data_user[data_token.token_id], */
+    })
+  })
   });
 
 var msg1,msg2,msg3, token_part;
@@ -156,17 +347,17 @@ router.post('/login', (req,res)  => {
   }else {
     var data = req.body;
     var enviar = {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-type' : "application/json"
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type' : "application/json"
+      }
     }
-  }
   fetch('http://localhost:3600/api/login',enviar)
   .then(resp => resp.json())
   .catch(error => console.error('Error',error))
   .then(resp => {
-    
+    //console.log(resp, " esto es http://localhost:3600/api/login")
     if(resp.user == false){
       msg1=null;
       msg2=null;
@@ -198,28 +389,28 @@ router.post('/login', (req,res)  => {
             msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
           })
         }else{
-          console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
-          if(resp.role.length <=1){
-            if(resp.role[0].name == "Almacen"){
-              //res.send(resp.role[0].name)
-              res.redirect('/almacen/home/'+resp.id)
-            }else if(resp.role[0].name == "fichaje"){
-              res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
-              //res.send(resp.role)
-            }else if(resp.role[0].name == "medico"){
-              res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
-            }else if(resp.role[0].name == "emergencia"){
-              res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
-            }else if(resp.role[0].name == "farmacia"){
-              res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
-            }else if(resp.role[0].name == "hospitalizacion"){
-              res.redirect('/Internaciones/home/'+resp.id)
-            }else{
-              res.send(resp)
-            }
-          }else{
-            res.redirect('/home')
+          //console.log(resp, "  <<<<<<<< esto es lo que quiero ver <<<<<<<<<<<<<<<<<<<")
+          
+          if(resp.role[0].name == "Almacen"){
+            //res.send(resp.role[0].name)
+            res.redirect('/almacen/home/'+resp.id + '/' + token_part )
+          }else if(resp.role[0].name == "fichaje"){
+            res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
+            //res.send(resp.role)
+          }else if(resp.role[0].name == "medico"){
+            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+          }else if(resp.role[0].name == "emergencia"){
+            res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)
+          }else if(resp.role[0].name == "farmacia"){
+            res.redirect('/farmacia/home/' + resp.id + '/' + token_part)            
+          }else if(resp.role[0].name == "hospitalizacion"){
+            res.redirect('/Internaciones/home/'+resp.id)
+          }else  if(resp.role[0].name == "laboratorio") {
+            res.redirect('/laboratorios/home/'+resp.id)
+          }else if (resp.role[0].name == "administrcion"){
+            res.redirect('/home/'+resp.id)
           }
+          
         }
         //res.redirect('/almacen/home/'+resp.user.id)
       }) 
@@ -249,28 +440,28 @@ router.post('/login', (req,res)  => {
             msg:"El paciente todavia no tiene un rol o no se creo la especilidad donde el paciente esta queriendo entrar"
           })
         }else{
-          if(resp.role.length <=1){
-            if(resp.role[0].name == "Almacen"){
-              //res.send(resp.role[0].name)
-              res.redirect('/almacen/home/'+resp.id)
-            }else if(resp.role[0].name == "fichaje"){
-              res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
-              //res.send(resp.role)
-            }else if(resp.role[0].name == "medico"){
-              res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
-              console.log(resp, " entro y mostro esto")
-            }else if(resp.role[0].name == "emergencia"){
-              res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
-            }else if(resp.role[0].name == "farmacia"){
-              res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
-            }else if(resp.role[0].name == "hospitalizacion"){
-              res.redirect('/Internaciones/home/'+resp.id)
-            }else{
-              res.send(resp)
-            }
-          }else{
-            res.redirect('/home')
+          
+          if(resp.role[0].name == "Almacen"){
+            //res.send(resp.role[0].name)
+            res.redirect('/almacen/home/'+resp.id+ '/'+ token_part)
+          }else if(resp.role[0].name == "fichaje"){
+            res.redirect('/paciente/home/'+resp.id + '/'+ token_part)
+            //res.send(resp.role)
+          }else if(resp.role[0].name == "medico"){
+            res.redirect('/consulta_externa/home/'+resp.id + '/'+ token_part)
+            console.log(resp, " entro y mostro esto")
+          }else if(resp.role[0].name == "emergencia"){
+            res.redirect('/emergencia2.0/home/'+resp.id + '/'+ token_part)            
+          }else if(resp.role[0].name == "farmacia"){
+            res.redirect('/farmacia/home/' + resp.id + '/' + token_part)
+          }else if(resp.role[0].name == "hospitalizacion"){
+            res.redirect('/Internaciones/home/'+resp.id)
+          }else if(resp.role[0].name == "laboratorio"){
+            res.redirect('/laboratorios/home/'+resp.id)
+          }else if (resp.role[0].name == "administrcion"){
+            res.redirect('/home/'+resp.id)
           }
+          
         }
         //res.redirect('/almacen/home/'+resp.user.id)
       }) 
@@ -349,7 +540,8 @@ router.post('/login2', (req,res) => {
 router.get('/token', (req,res) => {
   res.send({
     token:datas.name.token,
-    session: datas.name.session
+    session: datas.name.session,
+    datas
   })
 })
 
@@ -428,33 +620,52 @@ router.get('/creroles',(req, res) => {
   })
 });
 // role
-router.get('/backup',(req, res) => {
-  res.render('backup')
+router.get('/backup/:token_id',(req, res) => {
+  const { token_id } = req.params
+  if(datas.name.token[token_id]){
+    res.render('backup',{
+      data_doc:datas.name.data_user[token_id]
+    })
+  }else{
+    res.redirect('/');
+  }
 });
 
 ///paciente admin
-router.get('/pacientead',(req, res) => {
-  fetch('http://localhost:3500/api/medicamento')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('pacientead', {
-      data
-    })
-  })
+router.get('/pacientead/:token_id',(req, res) => {
+  const { token_id } = req.params
+  if(datas.name.token[token_id]){
+    fetch('http://localhost:3500/api/medicamento')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('pacientead', {
+        data,
+        data_doc:datas.name.data_user[token_id]  
+      })
+    })  
+  }else{
+    res.redirect('/')
+  }
 });
 // Internacion salas 
 
 
 //Se movio a routas salas
 
-router.get('/paciente_Inter',(req, res) => {
-  fetch('http://localhost:3000/api/pacientes')        
-  .then(resp => resp.json())
-  .then(data =>{  
-    res.render('paciente_Inter', {
-      data
+router.get('/paciente_Inter/:token_id',(req, res) => {
+  const { token_id } = req.params
+  if(datas.name.token[token_id]){
+    fetch('http://localhost:3000/api/list_onli_pacientes')        
+    .then(resp => resp.json())
+    .then(data =>{  
+      res.render('paciente_Inter', {
+        data,
+        data_doc:datas.name.data_user[token_id]        
+      })
     })
-  })
+  }else{
+    res.redirect('/');
+  }
  
 });
 
@@ -517,5 +728,40 @@ router.get('/ordenLaboratorio', (req,res) => {
 router.get('/table_prueba', (req,res) => {
   res.render('hospitalizaciones/z_prueba_table')
 })
+
+///**Cerrar secion */
+router.get('/outcerrar',(req, res) => {
+  res.render('index')
+});
+
+router.get('/prueba_fecha', (req,res) => {
+ 
+  fetch('http://localhost:4600/fecha')
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    res.render('prueba_fechas',{
+      resp
+    })
+  })
+})
+
+router.post('/prueba_fecha', (req,res) => {
+  var data = req.body;
+  var enviar = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type' : "application/json"
+    }
+  }
+  fetch('http://localhost:4600/fecha',enviar)
+  .then(resp => resp.json())
+  .catch(error => console.error('Error',error))
+  .then(resp => {
+    res.redirect('/prueba_fecha')
+  })
+})
+
 
 module.exports = router;

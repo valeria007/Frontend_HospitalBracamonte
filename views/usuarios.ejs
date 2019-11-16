@@ -31,6 +31,10 @@
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+
 <style type="text/css">
     div.a {
 			text-align: center;
@@ -57,6 +61,23 @@
 
 
 </head>
+<script type="text/javascript">
+	// este scrip es para verificar si esta el token en local starge
+	var data = localStorage.getItem('data')
+	console.log(data)
+	if (data == null){
+		window.location.replace('/')
+  }
+  function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+</script>
 
 <body class="light_theme  fixed_header left_nav_fixed">
 	<div class="wrapper" id="roles">
@@ -75,14 +96,11 @@
 				<div class="top_right_bar">
 
 					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname">John Doe</span> <b
+								src="/images/user.png" /><span class="user_adminname"> <%=data_doc.data.personal.nombre%> <%=data_doc.data.personal.apellidop%></span> <b
 								class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
-							<li> <a href="/profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-							<li> <a href="/help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-							<li> <a href="/settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-							<li> <a href="/login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+							<li> <a  data-target="#myModalCerrar" data-toggle="modal"><i class="fa fa-power-off"></i> Salir</a> </li>
 						</ul>
 					</div>
 				</div>
@@ -95,35 +113,35 @@
           <ul>
             <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul >
-                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+                <li> <a href="/home/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
               </ul>
             </li>
             <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Usuarios<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul class="opened" style="display:block" >
-                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Registros</b> </a> </li>
+                <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Registros</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
-                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
+                <li> <a href="/cuaderno/especialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Salas</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+                <li> <a href="/paciente_Inter/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+                <li> <a href="/pacientead/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+                <li> <a href="/usuarios/roles1/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+                <li> <a href="/cuaderno/recuadernos/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+                <li> <a href="/cuaderno/repespecialidad/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
 
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+                <li> <a href="/backup/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role/<%=data_doc.data.token_id%>"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
               </ul>
             </li>
           </ul>
@@ -135,17 +153,6 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div id="main-content" class=" block-web">
-                <%if (msm1 != null) {%>
-                
-                      <strong style="color: red;"><%=msm1 %></strong>
-                <%} else if(sms2 != null) { %>
-                  <div class="bs-example mover">
-                    <div class="alert alert-success fade in">
-                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
-                      <strong><%=sms2 %></strong>
-                    </div>
-                  </div>
-                <% } %>
                 <div class="header">
                   <div class="info blue_symbols"><i class="fa fa-users icon"></i></div>
                   <h3 class="content-header ">Registros</h3>
@@ -157,14 +164,14 @@
                         <div class="header">
                           <div class="actions"> 
                             <a class="minimize" data-toggle="collapse" data-target="#demo" ><i class="fa fa-chevron-down" style="color: blue;"></i></a> 
-                            <a class="refresh" href="/usuarios/quitar"><i class="fa fa-repeat" style="color: blue;"></i></a>
+                            <a class="refresh" href="/usuarios/quitar/<%=data_doc.data.token_id%>"><i class="fa fa-repeat" style="color: blue;"></i></a>
                           </div>
                         </div>
                         <br>
                         <div class="porlets-contents">
                           <div id="demo" class="collapse in">
                             <%if (onlyUSer == null) { %>
-                              <form class="form-horizontal group-border-dashed" action="/usuarios/usuarios" method="POST" parsley-validate novalidate >
+                              <form class="form-horizontal group-border-dashed" action="/usuarios/usuarios/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate >
                                 <div class="form-group">
                                   <div class="col-sm-4">
                                     <label class="control-label">Apellido Paterno :</label>
@@ -202,60 +209,66 @@
                                       <option value="enfermera">EFERMERA</option>
                                       <option value="personal">PERSONAL ADMINSTRATIVO</option>
                                       <option value="farmaseutico">FARMACÉUTICO</option>
+                                      <option value="ECOGRAFIA">LABORATORISTA DE ECOGRAFIA</option>
+                                      <option value="Rayos_x">LABORATORISTA DE RAYOS X</option>
+                                      <option value="LABORATORIO">LABORATORISTA</option>
                                     </select>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
-                                  <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                                  <button class="btn btn-success"  type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                  <a class="btn btn-danger"href="/home/<%=data_doc.data.token_id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
                                 </div>
                               </form>
                               <% } else { %>
-                              <form class="form-horizontal group-border-dashed" action="/usuarios/updatePersonal/<%=onlyUSer.id%>" method="POST" parsley-validate novalidate>
+                              <form class="form-horizontal group-border-dashed" action="/usuarios/updatePersonal/<%=onlyUSer.data.id%>/<%=data_doc.data.token_id%>" method="POST" parsley-validate novalidate>
                                 <div class="form-group">
                                   <div class="col-sm-4">
                                     <label class="control-label">Apellido Paterno :</label>
-                                    <input type="text" id="one" class="form-control ma" parsley-trigger="change"  name="apellidop" value="<%=onlyUSer.apellidop%>" required placeholder="" onkeyup="mayus(this);" />
+                                    <input type="text" id="one" class="form-control ma" parsley-trigger="change"  name="apellidop" value="<%=onlyUSer.data.apellidop%>" required placeholder="" onkeyup="mayus(this);" />
                                   </div>
                                   <div class="col-sm-4">
                                     <label class="control-label">Apellido Materno :</label>
-                                    <input type="text" class="form-control ma" parsley-trigger="change" name="apellidom" value="<%=onlyUSer.apellidom%>" required placeholder=""  onkeyup="mayus(this);"/>
+                                    <input type="text" class="form-control ma" parsley-trigger="change" name="apellidom" value="<%=onlyUSer.data.apellidom%>" required placeholder=""  onkeyup="mayus(this);"/>
                                   </div>
                                   <div class="col-sm-4">
                                     <label class="control-label">Nombre(s) :</label>
-                                    <input type="text" class="form-control ma" parsley-trigger="change"  name="nombre" value="<%=onlyUSer.nombre%>" required placeholder=""  onkeyup="mayus(this);"/>
+                                    <input type="text" class="form-control ma" parsley-trigger="change"  name="nombre" value="<%=onlyUSer.data.nombre%>" required placeholder=""  onkeyup="mayus(this);"/>
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <div class="col-sm-4">
                                     <label class="control-label">C.I. :</label>
-                                    <input type="text" name="ci" value="<%=onlyUSer.ci%>"  class="form-control" parsley-trigger="change"   required placeholder="" />
+                                    <input type="text" name="ci" value="<%=onlyUSer.data.ci%>"  class="form-control" parsley-trigger="change"   required placeholder="" />
                                   </div>
                                   <div class="col-sm-4">
                                     <label class="control-label">Dirección :</label>
-                                    <input type="text" class="form-control ma" name="direcion" value="<%=onlyUSer.direcion%>" parsley-trigger="change"   required placeholder=""  onkeyup="mayus(this);"/>
+                                    <input type="text" class="form-control ma" name="direcion" value="<%=onlyUSer.data.direcion%>" parsley-trigger="change"   required placeholder=""  onkeyup="mayus(this);"/>
                                   </div>
                                   <div class="col-sm-4">
                                     <label class="control-label">Cel.-Telf. :</label>
-                                    <input parsley-type="number" type="text" class="form-control" name="telefono" value="<%=onlyUSer.telefono%>" required placeholder="" />
+                                    <input parsley-type="number" type="text" class="form-control" name="telefono" value="<%=onlyUSer.data.telefono%>" required placeholder="" />
                                   </div>
                                 </div>
                                 <div class="form-group ">
                                   <div class="col-sm-4 ">
                                     <label  class="control-label">Cargo :</label>
                                     <select class="form-control" id="source" name="cargo" required placeholder="">
-                                      <option class="uppercase"><%=onlyUSer.cargo%></option>
+                                      <option class="uppercase"><%=onlyUSer.data.cargo%></option>
                                       <option>-----------------------</option>
                                       <option class="uppercase" value="medico">MÉDICO</option>
                                       <option class="uppercase"value="enfermera">Enfermera</option>
                                       <option class="uppercase" value="personal">Personal</option>
                                       <option class="uppercase" value="farmaseutico">Farmaseutico</option>
+                                      <option value="ECOGRAFIA">LABORATORISTA DE ECOGRAFIA</option>
+                                      <option value="Rayos_x">LABORATORISTA DE RAYOS X</option>
+                                      <option value="LABORATORIO">LABORATORISTA</option>
                                     </select>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
                                   <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o" ></i><span>&nbsp;</span>Actualizar</button>
-                                  <a class="btn btn-danger" href="/usuarios/quitar"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
+                                  <a class="btn btn-danger" href="/usuarios/quitar/<%=data_doc.data.token_id%>"><i class="fa fa-times"></i><span>&nbsp;</span>Limpiar</a>
                                 </div>
                               </form>
                             <% } %>
@@ -286,9 +299,9 @@
                                     <td class="text-center"><%=resp[i].ci %></td>
                                     <td class="text-center uppercase"><%=resp[i].cargo %></td>										
                                     <td class="text-center">
-                                      <a href="/usuarios/UsuraioCuenta/<%=resp[i].id %>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user "></i></a><span>&nbsp;</span>
+                                      <a href="/usuarios/UsuraioCuenta/<%=resp[i].id%>/<%=data_doc.data.token_id%>" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar Cuenta"><i class="fa fa-user "></i></a><span>&nbsp;</span>
                                       <a href="#!"  data-target="#myModal2" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Dar_Baja"><i class="fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                                      <a href="/usuarios/usuarios/<%=resp[i].id %>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
+                                      <a href="/usuarios/usuarios/<%=resp[i].id%>/<%=data_doc.data.token_id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar" data-original-title="Editar"><i class="fa fa-pencil " style="color:rgb(80, 145, 80)"></i></a><span>&nbsp;</span>
                                       <a v-on:click="traer(<%=resp[i].id %>)"   data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Detalles"><i class="fa fa-eye " style="color:black"></i></a>
                                     </td>
                                   </tr>
@@ -400,8 +413,91 @@
           </div>
         </div>
     </div>
-  
-  </div>
+    <div class="modal fade" id="myModalCerrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="center">
+              <i  class="fa fa-sign-out blue fa-6x"></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Cerrar Seccion?</b></h5>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+              <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModalerror" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="center">
+              <i  class="fa fa-sign-out blue fa-6x"></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Cerrar Seccion?</b></h5>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="myModalerror" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="center">
+              <i  class="fa fa-sign-out blue fa-6x"></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Cerrar Seccion?</b></h5>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <script>
     window.setTimeout(function() {
       $(".alert").fadeTo(700, 0).slideUp(700, function(){
@@ -425,7 +521,10 @@
 	<script src="/plugins/data-tables/DT_bootstrap.js"></script>
 	<script src="/plugins/data-tables/dynamic_table_init.js"></script>
 	<script src="/plugins/data-tables/dynamic_table_init2.js"></script>
-	<script src="/plugins/edit-table/edit-table.js"></script>
+  <script src="/plugins/edit-table/edit-table.js"></script>
+  
+  <script src="/js/toastr.js"></script>
+  <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
 
   <!--validaciones-->
   <script type="text/javascript"  src="/plugins/toggle-switch/toggles.min.js"></script> 
@@ -480,7 +579,7 @@
     $('.close-down').click(function(e){
       var h = $(this).parents(".header");
       var p = h.parent();
-      
+
       p.fadeOut(function(){
         $(this).remove();
       });
@@ -495,6 +594,30 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="/axios/dist/axios.min.js"></script>
 <script src="/js/vue/roles.js"></script>
+
+<script>
+ /*  <%if(msg) { %> */
+   /*  <%if(msg.data.success == false) { %> */
+        msg_false()
+        function msg_false(){
+          swal.fire(
+						'Error!',
+						'<label style="color:red;">'+`<%=msg.data.data_p%>`+'</label>',
+						'error'
+					)
+        }
+    /* <% } else {%> */
+        msg_true()
+        function msg_true(){
+          swal.fire(
+						'Success!',
+						'<label style="color:green;">'+ `<%=msg.data.data_p%>` +'</label>',
+						'success'
+					)
+        }
+   /*  <% } %> */
+ /*  <% } %> */
+</script>
 
 </body>
 

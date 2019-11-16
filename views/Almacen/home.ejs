@@ -83,6 +83,40 @@ td.uppercase
 }
 
 </style>
+<script>
+  /* <%if(login != null){%> */
+        var esto  = `<%- JSON.stringify(token) %>`
+        var url = "/almacen/home/"
+        localStorage.setItem('data', esto ) 
+        localStorage.setItem('url', url) 
+  /* <% } else { %> */
+    /* 	<%if(token == "") {%> */
+      console.log("no hay token")
+    /* 	<% } else { %> */
+        var data = localStorage.getItem('data')
+        if (data == null){     // esto no esta funcionando como deberia de fucnionar 
+          window.location.replace('/')
+        }else{
+          var esto  = `<%- JSON.stringify(token) %>`
+          var url = "/almacen/home/"
+          localStorage.setItem('data', esto ) 
+          localStorage.setItem('url', url) 
+        }
+    /* 	<% } %> */
+  /* <% } %> */
+
+  
+	function delete_local_storage(){
+		console.log ("ssss")
+		localStorage.removeItem('data');
+		localStorage.removeItem('url');
+  }
+  setTimeout(()=>{
+    delete_local_storage()
+    //window.location.replace('/')
+  },500000);
+
+</script>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
   <div class="wrapper">
@@ -93,13 +127,13 @@ td.uppercase
       <div class="header_top_bar">
         <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
         <div class="top_right_bar">
-          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=resp.nombre%> <%=resp.apellidop%></span> <b class="caret"></b> </a>
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname"><%=data_token.personal.nombre%> <%=data_token.personal.apellidop%></span> <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <div class="top_pointer"></div>
               <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
               <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
               <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+              <li> <a href="/delete_token/<%=data_token.token_id%>" onclick="delete_local_storage()" ><i class="fa fa-power-off"></i> Logout</a> </li>
             </ul>
           </div> 
         </div>
@@ -111,25 +145,25 @@ td.uppercase
           <ul>
             <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul class="opened" style="display:block">
-                <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Inicio</b> </a> </li>
+                <li> <a href="/almacen/home/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Inicio</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-hospital-o icon"></i>Almacen <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="/almacen/grupoAsig"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
-                <li> <a href="/medicamento/dataGrupoA"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
-                <li> <a href="/proveedores/proveedores"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
-                <li> <a href="/almacen/pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
-                <li> <a href="/distribucion/listDistribucion"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
-                <li> <a href="/medicamento/stock"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
+                <li> <a href="/almacen/grupoAsig/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Grupos de Asignacion</b> </a> </li>
+                <li> <a href="/medicamento/medicamentos/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Medicamentos</b> </a> </li>
+                <li> <a href="/proveedores/proveedores/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Proveedores</b> </a> </li>
+                <li> <a href="/almacen/pedidos/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Pedidos</b> </a> </li>
+                <li> <a href="/distribucion/listDistribucion/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Distribucion</b> </a> </li>
+                <li> <a href="/medicamento/stock/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Stock</b> </a> </li>
               </ul>
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-paste"></i> Reportes Almacen<span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="/almacen/reportes_pedidos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
-                <li> <a href="/almacen/reportes_salidas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
-                <li> <a href="/almacen/kardexValorizado"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
-                <li> <a href="/almacen/med_ven"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
+                <li> <a href="/almacen/reportes_pedidos/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b></b>Reportes de Pedidos </a> </li>
+                <li> <a href="/almacen/reportes_salidas/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reportes de Salidas</b> </a> </li>
+                <li> <a href="/almacen/kardexValorizado/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Kardex Valorizado</b> </a> </li>
+                <li> <a href="/almacen/med_ven/<%=data_token.token_id%>/<%=data_token.token_part%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Med. Vencidos</b> </a> </li>
               </ul>
             </li>
           </ul>

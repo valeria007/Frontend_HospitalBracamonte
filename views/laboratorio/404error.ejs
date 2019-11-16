@@ -10,16 +10,20 @@
 <link href="/css/admin.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-  <div class="wrapper">
-    <div class="login_page">
-      <div class="error500">
-        <i class="fa fa-frown-o"></i>	
-        <div class="">404</div>
-        <h2><%=msg%></h2>
-        <a href="#" class="btn btn-primary">Volver</a>
-      </div>
-    </div>  
+<div class="wrapper">
+  <!--\\\\\\\ wrapper Start \\\\\\-->
+  
+  
+  <div class="login_page">
+    <div class="error500">
+    <i class="fa fa-exclamation-triangle"></i>	
+    <div class="">404</div><h2><%=msg%></h2>
+    <form action="/laboratorios/home/<%=data_doc.data.token_id%>"">
+          <button class="btn btn-primary">Volver</button>
+    </form>  
+    </div>
   </div>
+</div> 
 
 <script src="/js/jquery-2.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
