@@ -1,9 +1,15 @@
 const lab_consulta_externa = new Vue({
     el: '#lab_consulta_externa',    
     data : () => ({
+        //vue_alert:false,
+
+        url:data_url.url_front_end,
         msg: "alejandro",
+        view_list:true,   
+        
         // datas
         id_consulta:'',
+        id_medico:'',
         historial:'',
         nombre_doctor:'',
         fecha:'',
@@ -12,7 +18,11 @@ const lab_consulta_externa = new Vue({
         tipo_laboratorio_rayosX:'Rayos_x',
         tipo_laboratorio_lab:'LABORATORIO',
 
-        //ecografia        
+        //ecografia  
+        list_eco:false,
+        data_list_eco:'',
+        msg_eco:'',
+        msg_eco_false:'',   
         ecografia:[],
         eco_data:{
             
@@ -23,7 +33,12 @@ const lab_consulta_externa = new Vue({
             5:{estado:false}
         },
         otros_eco:'',
+
         //rayosX 
+        list_rayosX:false,
+        data_list_rayosX:'',
+        msg_rayos_x:'',
+        msg_rayos_x_false:'',
         x_data:{
             1:{estado:false},
             2:{estado:false},
@@ -118,7 +133,12 @@ const lab_consulta_externa = new Vue({
             Miembros_inferiores:[]
         }, 
          otros_rayosX:'',
+         examen_x:[],
         //LABORATORIOS
+        lis_lab:false,
+        data_list_lab:'',
+        msg_lab:'',
+        msg_lab_false:'',
         group_laboratorio:{
             Hemotología:[],
             Química_Sanguínea:[],
@@ -206,15 +226,58 @@ const lab_consulta_externa = new Vue({
             68:{estado:false},
             
         },
-        otros_lab:''
+        otros_lab:'',
+        examen_lab:[],
+
+        lab_one:''
     }),
     mounted(){
         this.fecha = moment().format('l'); 
-        this.hora = moment().format('HH:mm:ss')
+        this.hora = moment().format('HH:mm:ss')        
     },
     methods:{  
+        
+        /* alert_vue(){
+            setTimeout(()=>{
+                this.vue_alert = false;
+            },2100);
+        }, */
+
+        volver(){
+            this.view_list = true
+            this.list_eco = false
+            this.list_rayosX = false
+            this.lis_lab = false
+        },
+        one_lab(id_lab){
+            fetch(this.url+'/laboratorios/vue_one_lab/'+id_lab)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                this.lab_one = data[0]
+                if (data[0].tipo_laboratorio == "Rayos_x"){
+                    this.examen_x = data[0].examen
+                    console.log(this.examen_x, "  asdasdasdasd" )
+                }else if (data[0].tipo_laboratorio == "LABORATORIO"){
+                    this.examen_lab = data[0].examen
+                    console.log(this.examen_lab, "  asdasdasdasd" )
+                }
+            })
+        },
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         //ecografia 
+        list_ecografias_data(){
+            this.view_list = false
+            this.list_eco = true
+            this.list_rayosX = false
+            this.lis_lab = false
+            fetch(this.url+'/laboratorios/list_ecografias/'+this.historial)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                this.data_list_eco = data
+            })
+        },
         ecografia_select(id,estudio,descripcion){
             this.eco_data[id].estado = !this.eco_data[id].estado
             var existe, position            
@@ -242,6 +305,7 @@ const lab_consulta_externa = new Vue({
         
         register_ecografia(e){
             e.preventDefault();
+            
             var data = {
                 tipo_laboratorio : this.tipo_laboratorio_eco,
                 fecha : this.fecha,
@@ -250,6 +314,7 @@ const lab_consulta_externa = new Vue({
                 nombre_doctor : this.nombre_doctor,
                 examen : this.ecografia,
                 otros : this.otros_eco,
+                id_user: this.id_medico
             };
             var esto = {
                 method: 'POST',
@@ -262,11 +327,47 @@ const lab_consulta_externa = new Vue({
             .then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(data => {
-                console.log(data, " esto es lo que quiero ver")
+                if (data.success == true){
+                    
+                    for (var i = 1; i <= 5; i++){
+                        this.eco_data[i].estado = false
+                    }
+                    this.ecografia = []
+                    this.otros_eco = ""
+                    this.msg_eco_false = ""
+                    toastr.success(data.msg,'Error' ,{
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "closeButton": true,
+                    })
+                }else{
+                    this.msg_eco_false = data.msg
+                    this.msg_eco = ""
+                    setTimeout(()=>{
+                        this.msg_eco_false = ""
+                    },5000);
+                    toastr.error(data.msg,'Error' ,{
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "closeButton": true,
+                    } )
+                }                
             })
         },  
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         //rayos X
+        list_rayosX_data(){
+            this.view_list = false
+            this.list_eco = false
+            this.list_rayosX = true
+            this.lis_lab = false
+            fetch(this.url+'/laboratorios/list_rayosX/'+this.historial)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                this.data_list_rayosX = data
+            })
+        },
         rayosX_select(id,num,descripcion){
             this.x_data[num].estado = !this.x_data[num].estado
             if( id==1 ){               
@@ -421,7 +522,92 @@ const lab_consulta_externa = new Vue({
             
         },
 
+        register_rayosX(e){
+            e.preventDefault();
+            if( this.group_rayosX.torax.length == 0 && this.group_rayosX.abdomen.length == 0 && this.group_rayosX.craneo_Macizo_Facial.length == 0 && this.group_rayosX.Placas_Radiograficas.length == 0 && this.group_rayosX.Columna_vertebral.length == 0 &&this.group_rayosX.Miembros_superiores.length == 0 &&this.group_rayosX.Miembros_inferiores.length == 0  ){
+                this.msg_rayos_x_false = "Selecione uno o varios por favor"
+                setTimeout(()=>{
+                    this.msg_rayos_x_false = ""
+                },5000);
+                toastr.error('Selecione uno o varios por favor','Error' ,{
+                    "progressBar": true,
+                    "positionClass": "toast-top-center",
+                    "closeButton": true,
+                } )
+            }else{
+                var data = {
+                    tipo_laboratorio : this.tipo_laboratorio_rayosX,
+                    fecha : this.fecha,
+                    hora : this.hora,
+                    historial : this.historial,
+                    nombre_doctor : this.nombre_doctor,
+                    examen : this.group_rayosX,
+                    otros : this.otros_rayosX,
+                    id_user: this.id_medico
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch(this.url+'/laboratorios/vue_insert_lab_consultaExterna/'+this.id_consulta,esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => {
+                    console.log(data, "esto es de rayos x")
+                    if (data.success == true){
+                        
+                        for(var i = 1; i <= 80; i++){
+                            this.x_data[i].estado = false
+                        }
+
+                        this.otros_rayosX = ""
+                        this.group_rayosX.torax =[]
+                        this.group_rayosX.abdomen =[]
+                        this.group_rayosX.craneo_Macizo_Facial =[]
+                        this.group_rayosX.Placas_Radiograficas =[]
+                        this.group_rayosX.Columna_vertebral =[]
+                        this.group_rayosX.Miembros_superiores =[]
+                        this.group_rayosX.Miembros_inferiores =[]
+                       
+                        this.msg_rayos_x_false = ""
+                        toastr.success(data.msg,'Error' ,{
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "closeButton": true,
+                        })
+                    }else{
+                        this.msg_rayos_x_false = data.msg
+                        this.msg_rayos_x = ""
+                        setTimeout(()=>{
+                            this.msg_rayos_x_false = ""
+                        },5000);
+                        toastr.error(data.msg,'Error' ,{
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "closeButton": true,
+                        } )
+                    }           
+                }) 
+            }
+        },
+
         //laboratorios
+        list_lab_data(){
+            this.view_list = false
+            this.list_eco = false
+            this.list_rayosX = false
+            this.lis_lab = true
+            fetch(this.url+'/laboratorios/list_laboratorios/'+this.historial)
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(data => {
+                console.log(data, " aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                this.data_list_lab = data
+            })
+        },
         laboratorios(id,num,descripcion){
             this.lab_data[num].estado = !this.lab_data[num].estado
             if( id == 1 ){               
@@ -684,6 +870,87 @@ const lab_consulta_externa = new Vue({
             }
         },
         
+        register_lab(e){
+            e.preventDefault();
+            if(
+                this.group_laboratorio.Hemotología.length == 0 && this.group_laboratorio.Química_Sanguínea.length == 0 && this.group_laboratorio.Orina.length == 0 && this.group_laboratorio.Prueba_Embarazo.length == 0 &&
+                this.group_laboratorio.Heces.length == 0 && this.group_laboratorio.Expectoración.length == 0 && this.group_laboratorio.Exámenes_Especiales.length == 0 && this.group_laboratorio.Perfil_Preoperatorio.length == 0 &&
+                this.group_laboratorio.Perfil_Obstetrico.length == 0 && this.group_laboratorio.Perfil_Reumático.length == 0 && this.group_laboratorio.Perfil_hepatico.length == 0 && this.group_laboratorio.Perfil_lipidico.length == 0
+                ){
+                this.msg_lab_false = "Selecione uno o varios por favor"
+                setTimeout(()=>{
+                    this.msg_lab_false = ""
+                },5000);
+                toastr.error('Selecione uno o varios por favor','Error' ,{
+                    "progressBar": true,
+                    "positionClass": "toast-top-center",
+                    "closeButton": true,
+                } )
+            }else{
+                var data = {
+                    tipo_laboratorio : this.tipo_laboratorio_lab,
+                    fecha : this.fecha,
+                    hora : this.hora,
+                    historial : this.historial,
+                    nombre_doctor : this.nombre_doctor,
+                    examen : this.group_laboratorio,
+                    otros : this.otros_lab,
+                    id_user: this.id_medico
+                };
+                var esto = {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers:{
+                      'Content-type' : "application/json"
+                    }
+                };
+                fetch(this.url+'/laboratorios/vue_insert_lab_consultaExterna/'+this.id_consulta,esto)
+                .then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(data => {
+                    console.log(data, "esto es de rayos x")
+                    if (data.success == true){     
+                                     
+                        for( var i = 1; i <=  68; i++){
+                            
+                            this.lab_data[i].estado = false
+                        }                       
+                        this.group_laboratorio.Hemotología = []
+                        this.group_laboratorio.Química_Sanguínea = []
+                        this.group_laboratorio.Orina = []
+                        this.group_laboratorio.Prueba_Embarazo = []
+                        this.group_laboratorio.Heces = []
+                        this.group_laboratorio.Expectoración = []
+
+                        this.group_laboratorio.Exámenes_Especiales = []
+                        this.group_laboratorio.Perfil_Preoperatorio = []
+                        this.group_laboratorio.Perfil_Obstetrico = []
+                        this.group_laboratorio.Perfil_Reumático = []
+                        this.group_laboratorio.Perfil_hepatico = []
+                        this.group_laboratorio.Perfil_lipidico = [] 
+                        this.otros_lab = ""
+                                              
+                        this.msg_lab_false = ""
+                        toastr.success(data.msg,'Error' ,{
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "closeButton": true,
+                        })
+                    }else{
+                        this.msg_lab_false = data.msg
+                        this.msg_lab = ""
+                        setTimeout(()=>{
+                            this.msg_lab_false = ""
+                        },5000);
+                        toastr.error(data.msg,'Error' ,{
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "closeButton": true,
+                        } )
+                    }           
+                }) 
+            }
+        }
 
 
        

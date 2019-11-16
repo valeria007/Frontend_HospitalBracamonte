@@ -9,6 +9,7 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
+        <link rel="stylesheet" type="text/css" href="/css/imprimirR.css" media="print" />    
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -54,7 +55,7 @@
     <!-- Content page-->
     <div class="wrapper">
         <!--\\\\\\\ wrapper Start \\\\\\-->
-        <div class="header_bar">
+        <div id="ocultoI" class="header_bar">
             <!--\\\\\\\ header Start \\\\\\-->
             <div class="brand">
                 <!--\\\\\\\ brand Start \\\\\\-->
@@ -78,11 +79,11 @@
             </div>
             <!--\\\\\\\ header top bar end \\\\\\-->
         </div>
-        <div class="inner">
+        <div class="inner sinmagen">
             <!--\\\\\\\ inner start \\\\\\-->
-            <div class="left_nav">
+            <div  id="ocultoI" class="left_nav">
                 <!--\\\\\\\left_nav start \\\\\\-->
-                <div class="left_nav_slidebar">
+                <div  class="left_nav_slidebar">
                     <ul>
                         <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul>
@@ -101,10 +102,11 @@
                 </div>
             </div>
             <!--\\\\\\\left_nav end \\\\\\-->
-            <div class="contentpanel" id="papeleta">
+            <div class="sinmagen" id="papeleta">
+            <div class="contentpanel sinmagen" id="sinMargen">
                 <!--\\\\\\\ contentpanel start\\\\\\-->
                 <!--\\\\\\\ contentpanel start\\\\\\-->
-                <div class="container clear_both padding_fix col-lg-8">
+                <div  class="container clear_both padding_fix col-lg-8">
                     <br>
                     <div class="main-content">
                         <div class="  col-xs-12 ">
@@ -112,12 +114,12 @@
                                 <div class="col-lg-12 block-web">
                                         
                                     <div class=" head">
-                                            <div class="actions">
-                                                    <a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
-                                                </div>
+                                        <div class="actions">
+                                            <a id="ocultoI"href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i>    ATRAS</a>	
+                                        </div>
                                         <div class="header">
                                             
-                                            <div class="info blue_symbols "> 
+                                            <div id="ocultoI"class="info blue_symbols "> 
                                                 <i class="fa fa-file-text icon "></i>
                                             </div>
                                             <h2 class="content-header "><span>&nbsp;&nbsp;&nbsp;</span> Papeleta Internación {{msg}}</h2>
@@ -129,7 +131,7 @@
                                     <section class="panel default  ">
                                         <div class=" ">
                                             <div class=" col-md-14">
-                                                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                                <ul id="ocultoI" class="nav nav-tabs" style="margin-bottom: 15px;">
                                                     <li class=" col-lg-6 active active  text-center"><a href="#PapeletaInternacion" data-toggle="tab"><i class="fa fa-medkit "></i><span>&nbsp;&nbsp;&nbsp;</span> Papeleta de Internación</a></li>
                                                     <li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt  "></i><span>&nbsp;&nbsp;&nbsp;</span> Lista de Internación del Paciente</a>
                                                     </li>
@@ -290,7 +292,7 @@
                                                             <div class="col-md-8 ">
                                                                 <button type="reset" class="btn btn-info"  style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
                                                                 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
-                                                                <button type="submit" class="btn btn-warning"><i class="fa fa-print"></i> &nbsp;&nbsp; Imprimir</button>
+                                                                
                                                             </div>
                                                         </div>
                                                         </form>
@@ -299,7 +301,7 @@
                                                         <form action="/consulta_externa/updateInternacion/<%=resp[0].id%>/<%=one_consulta[0].id%>/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>" method="POST">
                                                            
                                                             <div class="block-web">
-                                                                <div class="header">
+                                                                <div id="ocultoI"class="header">
                                                                     <div class="actions">
                                                                         
                                                                     </div>
@@ -441,7 +443,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                               
+                                                                <p class="firmaPa center cafirmaP"></p>
+																<p class="firmaDoc center cafirmaDoc"></p></p>
                                                             </div>
                                                             <%if(resp[0].estado_update == true) { %>
                                                                 <p class="modal-footer">
@@ -450,6 +453,7 @@
                                                                     <button type="submit" class="btn btn-warning"><i  class="fa fa-print"></i> &nbsp;&nbsp;  Imprimir</button>
                                                                 </p>
                                                             <% } %>
+                                                            <a id="ocultoI"onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
                                                         </form>
                                                         <% } %>
                                                         <div class="container-fluid">
@@ -576,6 +580,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 

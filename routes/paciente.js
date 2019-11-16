@@ -81,10 +81,16 @@ router.get('/citas/:id/:token_part',(req, res) => {
       fetch('http://localhost:3000/api/pacientes/')
       .then(resp => resp.json())
       .then(resp =>{
+        console.log(msg_Consulta_Externa[id], "  <<<<<<<<<<<<   sadasdasdasdasdasdasd"   )
+        console.log(data_token , " <<<<<<<<<<<<<<< < < < < <  < < < << ")
         res.render('Fichas/citas',{         //aqui esta la ruta
           resp,
-          data_token
+          data_token,
+          msg:msg_Consulta_Externa[id],
         });    
+        setTimeout(() => {
+          remove(id)
+        }, 5000)
       })
       .catch(error => {
         console.error('Error:', error)
@@ -105,7 +111,28 @@ router.get('/citas/:id/:token_part',(req, res) => {
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
+var msg_Consulta_Externa = {}
+function msg_data(data,id){
+  let msg_data = msg_Consulta_Externa[id];
+    if (!msg_data) {
+        msg_data = msg_Consulta_Externa[id] = {
+        data: data,
+        qty: 0
+      };
+    }
+    msg_data.qty++;
+}
 
+function array () {
+  let arr = [];
+  for (const id in msg_Consulta_Externa) {
+      arr.push(msg_Consulta_Externa[id]);
+  }
+  return arr;
+}
+function remove(id) {
+    delete msg_Consulta_Externa[id];
+}
 var url = require('./url/export');
 
 router.get('/reg_paciente',(req, res) => {
@@ -113,8 +140,10 @@ router.get('/reg_paciente',(req, res) => {
   });
  
   
-router.post('/postPaciente', (req,res) => {
+router.post('/postPaciente/:token_id', (req,res) => {
+  const { token_id } = req.params
   var aleatorio = Math.floor(Math.random()*(9000-1000))+1000
+  var msg_p;
   var paciente = {
     numeroHistorial : aleatorio,
     nombre: req.body.nombre,
@@ -147,7 +176,40 @@ fetch('http://localhost:3000/api/pacientes',esto)
 .then(res => res.json())
 .catch(error => console.error('Error:', error))
 .then(data => {
-  res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial + '/' + data_token.token_p);
+  if (data.success == true){
+
+    if(msg_Consulta_Externa[token_id] == null){
+      msg_p = {
+        success:true,
+        msg:data.msg
+      }
+      msg_data(msg_p,token_id)
+    }else{
+      msg_p = {
+        success:true,
+        msg:data.msg
+      }
+      remove(token_id)
+      msg_data(msg_p,token_id)
+    }
+    res.redirect('/paciente/citaPAciente/'+data.pacienteData.id+"/"+data.pacienteData.numeroHistorial + '/' + data_token.token_p);
+  }else{
+    if(msg_Consulta_Externa[token_id] == null){
+      msg_p = {
+        success:false,
+        msg:data.msg
+      }
+      msg_data(msg_p,token_id)
+    }else{
+      msg_p = {
+        success:false,
+        msg:data.msg
+      }
+      remove(token_id)
+      msg_data(msg_p,token_id)
+    }
+    res.redirect('/paciente/citas/'+token_id+'/'+data_token.token_p);
+  }
 })
 });
 

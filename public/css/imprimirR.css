@@ -1,13 +1,300 @@
-@media print {
-    body * {
-    visibility: hidden;
-    }
-    #print_data_holder, #print_data_holder * {
-    visibility: visible;
-    }
-    #print_data_holder {
-    position: absolute;
-    left: 0;
-    top: 0;
-    }
+@page {
+    top: 0px;
+    margin: 1cm;
+    margin-top: 0px;
+    border: 1px;
+    padding: 0px;
+    left: 0px;
+    right: 0px;
+    width: 0px;
+    bottom: 0px;
+    size:auto;
+    page-break-before: always;
+}   
+.ocultartabla{
+    display: none;
+}
+#ocultoI{
+    display: none;   
+}
+.sinmagen{
+    border: 0%;
+    margin-bottom: 0px;
+    contain: 0px;
+    height: 100%;
+    width: auto;
+    margin: 0cm;
+    padding: 0px;
+   
+}
+#sinMargen{
+
+    border: 0%;
+    margin-bottom: 0px;
+    contain: 0px;
+    height: 100%;
+    width: auto;
+    margin: 0cm;
+    padding: 0px;
+   
+ 
+
+}
+
+#costI{
+    border-top-left-radius: 3;
+    margin: 0px;
+    margin-top: 0px;
+
+    border-top-style: double;
+    border-right-style: double;
+    border-bottom-style: double;
+    border-left-style: double;
+    height: auto;
+}
+#margendiv{
+
+    top: 0px;
+    margin: 0%;
+    margin-top: 0px;
+    border: 1px;
+    padding: 0px;
+    left: 0px;
+    right: 0px;
+    height: 100%;
+    
+
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+   
+}
+#margendiv2{
+
+    padding: 0% 0;
+    left: 0px;
+    width: 110%;
+    margin:0%;
+    height: 50%;
+    float:left;
+  
+
+  
+   
+}
+.clasdiv{
+    top: 1px;
+    margin: 0px;
+    margin-top: 0px;
+    border: 1px;
+    padding: 0px;
+    left: 0px;
+    right: 0px;
+    
+
+
+}
+.fech{
+    padding: 0px;
+    left: 1px;
+    width: auto;
+    margin:0px;
+    float: right;;
+    height: auto;
+
+    position: relative;
+   
+}
+.nom{
+    padding: 0%;
+    left: 0px;
+    height: 140%;
+	width: 100%;
+    margin:0px;
+    bottom: 0%;
+    float:left;
+    margin-left: 0%;
+    border: 0px;
+    margin-bottom: 0%;
+
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+}
+.nom1{
+    padding: 0%;
+    left: 0px;
+    height: 120%;
+	width: 100%;
+    margin:0px;
+    bottom: 0%;
+    float:left;
+    margin-left: 0%;
+    border: 0px;
+    margin-bottom: 0%;
+
+   
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid; 
+}
+.his{
+    padding: 0% 0;
+    left: 0px;
+    height: auto;
+	width: auto;;
+    margin:0px;
+    float:left;
+   
+
+    position: relative;
+
+}
+.tablaI{
+    padding: 0% 0;
+    left: 0px;
+    height: auto;
+	width:100%;
+    margin:0px;
+    float:left;
+   
+
+    position: relative;
+
+}
+.his2{
+    padding: 0%;
+    left: 0px;
+    height: 5%;
+	width: 100%;
+    margin:0px;
+    bottom: 0%;
+    float:left;
+    margin-left: 0%;
+    border: 0px;
+    margin-bottom: 0%;
+    
+
+    
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+}
+.centerTodo{
+    widows: 900px;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.clear
+{
+clear:both;
+}
+.flotados
+{
+border:2px solid #FF0100;
+background:#fff;
+width:120px;
+margin:10px;
+float:left;
+}
+
+
+.ceroarriba{
+    margin-top: auto;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+    
+}
+
+.contentpanelS{
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+}
+
+.texTitulo1:before {
+    content: " RECETA MEDICA ";
+    font-weight: negrita;
+    color:black;
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+    font: Arial;
+    border: 0px;
+    padding-top: 1%;
+}
+.texTitulo2:before{
+    content: "HOSPITAL ";
+    font-weight: negrita;
+    color:black;
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+    font: Arial;
+    border: 0px;
+    padding-top: 10px;
+}
+.texTitulo3:before{
+    content: " DANIEL BRACAMONTE";
+    font-weight: negrita;
+    color:black;
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+    font: Arial;
+    border: 0px;
+    padding-top: 10px;
+}
+.firmaPa:before {
+    content: " FIRMA DEL PACIENTE ";
+    font-weight: negrita;
+    color:black;
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+    font: Arial;
+    border: 0px;
+    padding-top: 1%;
+}
+.firmaDoc:before {
+    content: " FIRMA DEL DOCTOR ";
+    font-weight: negrita;
+    color:black;
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+    font: Arial;
+    border: 0px;
+    padding-top: 1%;
+
+    margin-top: auto;
+    border-top-style: dashed;
+    border-right-style: double;
+    border-bottom-style: dotted;
+    border-left-style: solid;
+}
+.cafirmaP{
+    width: 30%;
+    float:left;
+
+    border-top-style: dotted;
+  
+}
+.cafirmaDoc{
+    width: 30%;   
+    float: right;
+
+    border-top-style: dotted;
 }

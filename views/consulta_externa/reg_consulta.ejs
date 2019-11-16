@@ -68,11 +68,6 @@
                             <li> <a href="/consulta_externa/lista_pacientes/<%=data_doc.data.token_id%>/<%=data_doc.data.token_p%>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Listas de Citas</b>  </a> </li>
                         </ul>
                     </li>
-                    <li > <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Historial<span class="plus"><i class="fa fa-plus"></i></span></a>
-                        <ul >
-                            <li> <a href="/paciente/ultimaCOnsultaH"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Última Consulta</b> </a></li>
-                        </ul>
-                    </li>
                     <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Reporte<span class="plus"><i class="fa fa-plus"></i></span></a>
                         <ul >
                             <li> <a href="/paciente/HistorialGeneral"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Historial Clinico </b>  </a> </li>
@@ -811,7 +806,25 @@
     <script src="/url/export.js"></script>
     <script src="/plugins/data-tables/dynamic_table_init2.js"></script>
     <script src="/js/vue/cunsulta_externa.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
+    <script>
+        /* <% if(msg != null) { %> */
+            /* <%if (msg.data.success == false ) {%> */
+        modal()
+        function modal(){
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: `<%=msg.data.msg%>` ,
+                //footer: '<a href>Why do I have this issue?</a>'
+            })
+        }
+            /* <% } %> */
+        /* <% } %> */
+                
+    </script>
 </body>
 
 </html>

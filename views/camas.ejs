@@ -31,175 +31,218 @@
 
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
-    <div class="wrapper">
-        <div class="header_bar">
-            <div class="brand">
-                <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
-            </div>
-            <div class="header_top_bar">
-                <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-                <div class="top_right_bar">
-                    <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
-                        <ul class="dropdown-menu">
-                          <div class="top_pointer"></div>
-                          <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                          <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-                          <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                          <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  <div class="wrapper" id="cama">
+    <div class="header_bar">
+      <div class="brand">
+        <div class="logo" style="display:block"><span class="theme_color">Hospital</div>
+      </div>
+      <div class="header_top_bar">
+        <a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+        <div class="top_right_bar">
+          <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="/images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+          </div>
         </div>
-        <div class="inner">
-            <div class="left_nav">
-                <div class="left_nav_slidebar">
-                  <ul>
-                    <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                      <ul >
-                        <li> <a href="home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
-                      </ul>
-                    </li>
-                    <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
-                      <ul  >
-                        <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
-                      </ul>
-                    </li>
-                    <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
-                      <ul class="opened" style="display:block">
-                        <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
-                        <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
-                        <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Salas</b> </a> </li>
-                      </ul>
-                    </li>
-                    <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
-                      <ul>
-                        <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
-                      <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
-                      <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
-                      <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
-                      <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
-                      </ul>
-                    </li>
-                    <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
-                      <ul>
-                        <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
-                      </ul>
-                    </li>
-                  </ul>
+      </div>
+    </div>
+    <div class="inner">
+      <div class="left_nav">
+        <div class="left_nav_slidebar">
+          <ul>
+            <li ><a href="javascript:void(0);"><i class="fa fa-home"></i> Home <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul >
+                <li> <a href="/home"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Inicio</b> </a> </li>
+              </ul>
+            </li>
+            <li > <a href="javascript:void(0);"> <i class="fa fa-users icon"></i>Admin Sistema  <span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul  >
+                <li> <a href="/usuarios/usuarios"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Registros</b> </a> </li>
+              </ul>
+            </li>
+            <li class="left_nav_active theme_border"> <a href="javascript:void(0);"> <i class="fa fa-clipboard"></i>Servicios<span class="left_nav_pointer"></span><span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul class="opened" style="display:block">
+                <li> <a href="/cuaderno/especialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Especialidades</b> </a> </li>
+                <li> <a href="/cuaderno/Cuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadernos</b> </a> </li>
+                <li> <a href="/salas/salas"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b class="theme_color">Salas</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-folder-open-o"></i> Reportes <span class="plus"><i class="fa fa-plus"></i></span> </a>
+              <ul>
+                <li> <a href="/paciente_Inter"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Pacientes</b> </a> </li>
+              <li> <a href="/pacientead"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Farmacia</b></a> </li>
+              <li> <a href="/usuarios/roles"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Person.</b> </a> </li>
+              <li> <a href="/cuaderno/recuadernos"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Reporte de Cuadr.</b> </a> </li>
+              <li> <a href="/cuaderno/repespecialidad"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Espc.</b> </a> </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:void(0);"> <i class="fa fa-cogs"></i>CFG del Sistema<span class="plus"><i class="fa fa-plus"></i></span></a>
+              <ul>
+                <li> <a href="/backup"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Backup</b> </a> </li>
+                <li> <a href="/role/role"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Regs. Roles</b> </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="contentpanel">
+        <div class="container clear_both padding_fix col-lg-8">
+          <br>
+          <div class="row">
+            <div class="col-lg-12 ">
+              <div id="main-content" class=" block-web">
+                <div class="header">
+                  <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
+                  <h3 class="content-header ">Camas de <b>/ <%=salas[0].nombre%></b> </h3>
                 </div>
-            </div>
-            <div class="contentpanel">
-              <div class="container clear_both padding_fix col-lg-8">
-                <br>
-                <div class="row">
-                  <div class="col-lg-12 ">
-                    <div id="main-content" class=" block-web">
-                      <div class="header">
-                        <div class="info2 blue_symbols"><i class="fa fa-hospital-o icon"></i></div>
-                        <h3 class="content-header ">Camas de <%=salas[0].nombre%></h3>
-                      </div>
-                      <div class="page-content">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="block-web">
-                              <div class="header">
-                                <div class="actions"> 
-                                  <a class="minimize" data-toggle="collapse" data-target="#demo" href="#demo"><i class="fa fa-chevron-down"></i></a> 
-                                  <a class="refresh" href=""><i class="fa fa-repeat"></i></a>
-                                </div>
-                              </div>
-                              <br>
-                              <div class="porlets-contents">
-                                <div id="demo" class="collapse in">
-                                  <%if (onlyCamas == null) { %>
-                                  <form class="form-horizontal group-border-dashed" action="/salas/camas/<%=salas[0].id%>" method="POST" parsley-validate novalidate>
-                                    <div class="form-group col-sm-12">
-                                      <div class="col-sm-6">
-                                          <label class="control-label">Descripcion</label>
-                                          <select class="form-control" id="source"  name="descripcion">
-                                              <option><%=salas[0].descripcionSala%></option>
-                                          </select>
-                                      </div>
-                                      <div class="col-sm-6">
-                                          <label class="control-label">Número de Cama</label>
-                                          <input class="form-control" type="text" name="numeroCama">
-                                      </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-4">
-                                          <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Actualizar</button>
-                                          <a class="btn btn-danger"href=""><i class="fa fa-reply"></i><span>&nbsp;</span>Cancelar</a>
-                                        </div>
-                                    </div>
-                                  </form>
-                                  <% } else { %>
-                                  <form class="form-horizontal group-border-dashed" action="/salas/updateCama/<%=resp[0].id%>" method="POST" parsley-validate novalidate>
-                                    <div class="form-group col-sm-12">
-                                      <div class="col-sm-6">
-                                        <label class="control-label">Descripcion</label>
-                                        <select class="form-control" id="source"  name="descripcion">
-                                          <option><%=resp[0].descripcion%></option>
-                                        </select>
-                                      </div>
-                                      <div class="col-sm-6">
-                                        <label class="control-label">Número de Cama</label>
-                                        <input class="form-control" type="text" name="numeroCama" value="<%=resp[0].numeroCama%>">
-                                      </div>
-                                    </div>
-                                    <div class="form-group">
-                                      <div class="col-md-4">
-                                        <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
-                                        <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
-                                      </div>
-                                    </div>
-                                  </form>
-                                  <% } %>
-                                </div>
-                                  <br><br>
-                                  <div class="porlets-content">
-                                    <div class="table-responsive">
-                                      <table  class="table table-bordered" >
-                                        <thead>
-                                          <tr>
-                                              <th class="text-center">Cama</th>
-                                              <th class="text-center">Descripcion</th>
-                                              <th class="text-center">Estado</th>
-                                              <th class="text-center">Opciones</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                            <% for(var i=0; i< resp.length; i++) { %>
-                                            <tr>
-                                              <td class="text-center"><%=resp[i].numeroCama%></td>
-                                              <td class="text-center"><%=resp[i].descripcion%></td>
-                                              <td class="text-center"><%=resp[i].estado%></td>
-                                              <td class="text-center"><a href="/salas/updateCama/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a>
-                                              <a href="/historial"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Cama"><i class="fa fa-eye text-muted"></i></a></td>
-                                            </tr>
-                                            <% } %>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                              </div>
-                              <!--/porlets-content-->
-                            </div>
-                            <!--/block-web-->
+                <div class="page-content">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="block-web">
+                        <div class="header">
+                          <div class="actions"> 
+                            <a class="minimize" data-toggle="collapse" data-target="#demo" ><i class="fa fa-chevron-down"></i></a> 
+                            <a class="refresh" href=""><i class="fa fa-repeat"></i></a>
                           </div>
-                          <!--/col-md-12-->
                         </div>
-                        <!--/row-->
+                        <br>
+                        <div class="porlets-contents">
+                          <div id="demo" class="collapse in">
+                            <%if (onlyCamas == null) { %>
+                            <form class="form-horizontal group-border-dashed" action="/salas/camas/<%=salas[0].id%>" method="POST" parsley-validate novalidate>
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Sala:</label>
+                                <div class="col-sm-3">
+                                  <select class="form-control" id="source"  name="descripcion" required placeholder="">
+                                    <option><%=salas[0].descripcionSala%></option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Número de Cama:</label>
+                                <div class="col-sm-3">
+                                  <input class="form-control" type="text" name="numeroCama" required placeholder="">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="col-md-4">
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                  <a class="btn btn-danger"href="/salas/volverSalas"><i class="fa fa-reply"></i><span>&nbsp;</span>Volver</a>
+                                </div>
+                              </div>
+                            </form>
+                            <% } else { %>
+                            <form class="form-horizontal group-border-dashed" action="/salas/updateCama/<%=onlyCamas[0].id%>" method="POST" parsley-validate novalidate>
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Sala:</label>
+                                <div class="col-sm-3">
+                                  <select class="form-control" id="source"  name="descripcion">
+                                    <option><%=onlyCamas[0].descripcion%></option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-4 control-label">Número de Cama :</label>
+                                <div class="col-sm-3">
+                                  <input class="form-control" type="text" name="numeroCama" value="<%=onlyCamas[0].numeroCama%>">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="col-md-4">
+                                  <button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i><span>&nbsp;</span>Guardar</button>
+                                  <a class="btn btn-danger"href="/home"><i class="fa fa-times"></i><span>&nbsp;</span>Cancelar</a>
+                                </div>
+                              </div>
+                            </form>
+                            <% } %>
+                          </div>
+                            <br><br>
+                            <div class="porlets-content">
+                              <div class="table-responsive">
+                                <table  class="table table-bordered" >
+                                  <thead>
+                                    <tr>
+                                        <th class="text-center">N° de Cama</th>
+                                        <th class="text-center">Sala</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Opciones</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <% for(var i=0; i< resp.length; i++) { %>
+                                      <tr>
+                                        <td class="text-center"><%=resp[i].numeroCama%></td>
+                                        <td class="text-center"><%=resp[i].descripcion%></td>
+                                        <td class="text-center"><%=resp[i].estado%></td>
+                                        <td class="text-center">
+                                          <!--<a href="/salas/onlyCamas/<%=resp[i].id%>"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Editar"><i class="fa fa-pencil text-muted"></i></a>
+                                          <a href="/historial"  data-toggle="tooltip" class="btn  tooltips" data-original-title="Ver Cama"><i class="fa fa-eye text-muted"></i></a>-->
+                                          <a @click="id_cama = '<%=resp[i].id%>'" data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
+                                        </td>
+                                      </tr>
+                                      <% } %>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                        <!--/porlets-content-->
                       </div>
-                      <!--/page-content end-->
+                      <!--/block-web-->
                     </div>
+                    <!--/col-md-12-->
                   </div>
+                  <!--/row-->
                 </div>
+                <!--/page-content end-->
               </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="center">
+              <i  class="fa fa-exclamation-triangle red fa-6x"></i>
+            </div>
+            <div class="center">
+              <h5><b>¿Estás seguro?</b></h5>
+              <p>Una vez eliminado no se podar dar roles a <b> Usuarios</b>....</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="center">
+             
+              <a v-bind:href="'/salas/delcama/'+id_cama" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+             
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <!--====== Scripts -->
 <%- include("partials/scripts") -%>
+<script>
+  var cama = new Vue({
+    el: "#cama",
+    data: () =>({
+      id_cama:''
+
+    }),
+  })
+</script>
 </body>
 </html>

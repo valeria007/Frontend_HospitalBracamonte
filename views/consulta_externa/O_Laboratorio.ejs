@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
-		<link href="/css/moldeable.css" rel="stylesheet" type="text/css" />
+	<link href="/css/moldeable.css" rel="stylesheet" type="text/css" />
 
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -34,6 +34,9 @@
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-datepicker/css/datepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-timepicker/compiled/timepicker.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/bootstrap-colorpicker/css/colorpicker.css" />
+
+	<link href="/css/toastr.css" rel="stylesheet" type="text/css" />
+
 
 	<style>
 		div.a {
@@ -62,7 +65,7 @@
 			<!--\\\\\\\ brand end \\\\\\-->
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
-				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
+				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>		
 
 				<div class="top_right_bar">
 
@@ -123,16 +126,32 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="block-web">
-										<div class="header">
-											<div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i>
+										<div class="head">
+											<div class="actions">
+												<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> ATRAS</a>
 											</div>
-											<h2 class="content-header " > <span>&nbsp;&nbsp;&nbsp;</span>Orden de Examen </h2>
-											<div  class="col-md-2"><br>
-												<div class="">
-													<a href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-hand-o-left"></i> ATRAS</a>
+											<div class="header">
+												<div class="info blue_symbols "> <i class="fa fa-stack-overflow icon "></i>
 												</div>
+												<h2 class="content-header " > <span>&nbsp;&nbsp;&nbsp;</span>Orden de Examen 
+													<div class="btn-group">
+														<button type="button" class="btn btn-info btn-flat" @click="volver()">Listas</button>
+														<button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+															  <span class="caret"></span>
+															  <span class="sr-only">Toggle Dropdown</span>
+														</button>
+														<ul class="dropdown-menu" role="menu">
+															  <li><a @click="list_ecografias_data()">Ecografia</a></li>
+															  <li><a @click="list_rayosX_data()">Rayos X</a></li>
+															  <li><a  @click="list_lab_data()">Laboratorios</a></li>
+															  <li class="divider"></li>
+															  <li><a @click="volver()">Volver</a></li>
+														</ul>
+													</div>
+												</h2>
 											</div>
 										</div>
+										
 										<br>
 										<br>
 										<div class="block-web">
@@ -177,11 +196,11 @@
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 									 -->
-									<textarea name="" id="" cols="30" rows="10">{{$data}}</textarea>
-									<div class="col-lg-14">
+									<div class="col-lg-14" v-if="view_list" v-if="view_list">
 										<section class="panel default blue_title h2">
-											  <div class="panel-heading">LABORATORIOS<span class="semi-bold"> </span> </div>
-											  <div class="panel-body">
+											<div class="panel-heading">LABORATORIOS <span class="semi-bold"> </span> </div>										
+									
+											<div class="panel-body" >
 												<ul class="nav nav-tabs" id="myTab">
 													  <li class="active"><a data-toggle="tab" href="#Tab1">Ecografia</a></li>
 													  <li><a data-toggle="tab" href="#Tab2">Rayos X</a></li>
@@ -192,6 +211,7 @@
 														<input type="hidden" :value="historial = '<%=data_paciente[0].numeroHistorial%>'">
 														<input type="hidden" :value="id_consulta = '<%=ConsultaOnly[0].id%>'">
 														<input type="hidden" :value="nombre_doctor = '<%=ConsultaOnly[0].Citas_Medica.medico%>'">
+														<input type="hidden" :value="id_medico = '<%=data_doc.data.medico.id%>'">
 														<!-- 
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -199,11 +219,27 @@
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 														 -->
+														 <!-- <div class="bs-example mover" v-if="vue_alert">
+															<div class="alert alert-danger fade in">
+															  <button class="close" type="button"></button>
+															  <strong>Esto es el mensaje que quiero ver</strong>
+															</div>
+														</div>
+														 <button @click="vue_alert = true, alert_vue()">pruevas</button> -->
 														
 														 <h4>ECOGRAFIA</h4>
+														 
+													<!-- 	<div class="bs-example mover" v-if="msg_eco_false">
+															<div class="alert alert-danger fade in">
+															  <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+															  <strong>{{msg_eco_false}}</strong>
+															</div>
+														</div> -->
+														<span style="color: crimson;" >{{msg_eco_false}}</span>
+														<span style="color: darkblue;" >{{msg_eco}}</span>
 														 <div class="row">
 															<div class="col-md-14 row">
-
+																
 																<form @submit="register_ecografia" method="POST">
 																	<div class="col-md-12">
 																		
@@ -262,7 +298,7 @@
 
 																	<div class="col-md-12 ">
 																		<label class="">Otros:</label><br>
-																		<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" class="form-control"></textarea>
+																		<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" v-model="otros_eco" class="form-control"></textarea>
 																	</div>
 																	
 																	<div class="col-md-12 page-content ">
@@ -281,9 +317,17 @@
 													</div>
 
 													<div id="Tab2" class="tab-pane fade">
-
+														<!-- 
+															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																							rayos x
+															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+														 -->
 														<div class="col-md-14">
-															<form action="" method="POST">
+															<span style="color: crimson;">{{msg_rayos_x_false}}</span>
+															<span style="color: blue;">{{msg_rayos_x}}</span>
+															<form @submit="register_rayosX" method="POST">
 															
 																<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Torax >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 																<div class="col-md-3">
@@ -925,7 +969,7 @@
 																</div>
 																<div class="col-md-12 ">
 																	<label class=" ">Otros:</label><br>
-																	<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" class="form-control"></textarea>
+																	<textarea class="large-compact"   cols="117" rows="3" class="form-control" v-model="otros_rayosX"></textarea>
 																</div>
 																<div class="col-md-12 page-content ">
 																	<div class="col-md-8 ">
@@ -939,9 +983,11 @@
 														</div>														
 														
 													</div>
-													<div id="Tab3" class="tab-pane fade">											
+													<div id="Tab3" class="tab-pane fade">	
+														<span style="color: crimson;">{{msg_lab_false}}</span>		
+														<span style="color: blue;">{{msg_lab}}</span>										
 														<div class="col-md-14">
-															<form action="" method="POST">
+															<form @submit="register_lab" method="POST">
 																<!---<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Laboratorio (sangre Y orina)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 																		>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
@@ -1589,7 +1635,7 @@
 																</div>
 																<div class="col-md-12 ">
 																	<label class=" ">Otros:</label><br>
-																	<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" class="form-control"></textarea>
+																	<textarea class="large-compact" name="anamnesis"  cols="117" rows="3" class="form-control" v-model="otros_lab"></textarea>
 																</div>
 																<div class="col-md-12 page-content ">
 																	<div class="col-md-8 ">
@@ -1602,9 +1648,123 @@
 														</div>
 													</div>
 												</div>
-											  </div>
+											</div>
+
+										
+
 										</section>
 									</div>
+									<!-- 
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																						lista  de ecografias
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+									 -->
+									<div class="col-lg-14" v-if="list_eco"> 
+										<section class="panel default blue_title h2">
+											<div class="panel-heading">
+												<span class="semi-bold">Lista de ecografias del paciente</span> 
+											</div>
+											<div class="panel-body">
+											
+								  				<table class="table table-hover">
+													<thead>
+													  	<tr>
+															<th>#</th>
+															<th>Fecha hora</th>
+															<th>Doctor</th>
+															<th>Ver</th>
+													  	</tr>
+													</thead>
+													<tbody v-for="(list, index) in data_list_eco">
+													  	<tr>
+															<td>{{index+1}}</td>
+															<td>{{list.fecha}}  {{list.hora}}</td>
+															<td>{{list.nombre_doctor}}</td>
+															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info" @click="one_lab(list.id)">Ver</button></td>
+													  	</tr>											  
+													</tbody>
+								  				</table>
+										  
+											</div>
+										</section>
+									</div>
+									<!-- 
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																						lista  de Rayos X
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+									-->
+									<div class="col-lg-14" v-if="list_rayosX"> 
+										<section class="panel default blue_title h2">
+											<div class="panel-heading">
+												<span class="semi-bold">Lista de Rayos X del paciente</span> 
+											</div>
+											<div class="panel-body">
+											
+												<table class="table table-hover">
+													<thead>
+													  	<tr>
+															<th>#</th>
+															<th>Fecha hora</th>
+															<th>Doctor</th>
+															<th>Ver</th>
+													  	</tr>
+													</thead>
+													<tbody v-for="(list, index) in data_list_rayosX">
+													  	<tr>
+															<td>{{index+1}}</td>
+															<td>{{list.fecha}}  {{list.hora}}</td>
+															<td>{{list.nombre_doctor}}</td>
+															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_x" @click="one_lab(list.id)"  >Ver</button></td>
+															
+													  	</tr>											  
+													</tbody>
+											  	</table>
+											  
+											</div>
+										</section>
+									</div>
+									<!-- 
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+																						lista  de laboratorios
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+										<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+									-->
+									<div class="col-lg-14" v-if="lis_lab"> 
+										<section class="panel default blue_title h2">
+											<div class="panel-heading">
+												<span class="semi-bold">Lista de laboratorios del paciente</span> 
+											</div>
+											<div class="panel-body">
+											
+												<table class="table table-hover">
+													<thead>
+													  	<tr>
+															<th>#</th>
+															<th>Fecha hora</th>
+															<th>Doctor</th>
+															<th>Ver</th>
+													  	</tr>
+													</thead>
+													<tbody v-for="(list, index) in data_list_lab">
+													  	<tr>
+															<td>{{index+1}}</td>
+															<td>{{list.fecha}}  {{list.hora}}</td>
+															<td>{{list.nombre_doctor}}</td>
+															<td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_lab" @click="one_lab(list.id)"  >Ver</button></td>
+															
+													  	</tr>											  
+													</tbody>
+											  	</table>
+											  
+											</div>
+										</section>
+									</div>
+
 								</div>
 							</div>
 						</div>
@@ -1614,6 +1774,297 @@
 				</div>
 				<!--\\\\\\\ inner end\\\\\\-->
 			</div>
+			<!-- 
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+															modal de ecografia del paciente
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			-->
+			<div class="modal modal-info fade" id="modal-info">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span></button>
+					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
+					</div>
+					
+					<div class="modal-body">
+						<div class="">
+							<div class="card row" style="width: 55rem;">
+								<div class="col-md-14">									
+									<div class="col-md-9">										
+										<p>Fecha: {{lab_one.fecha}}</p>
+										<p> Medico:  {{lab_one.nombre_doctor}}</p>
+										<p> N° Historial: {{lab_one.historial}}</p>
+										<p>Otros Examenes:</p>
+										<p>{{lab_one.otros}}</p>
+										
+									</div>
+									<div class="col-md-3"> 										
+										<p for="">Hora: {{lab_one.hora}}</p>
+									</div>
+									<div class="col-md-12">
+										<label for="">Examene diagnosticado</label>
+										<ul v-for="list in lab_one.examen">
+											<li>{{list.estudio}}: {{list.descripcion}}</li>
+										</ul>
+									</div>
+											
+								</div>
+								
+							</div>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
+					</div>
+				  </div>
+				  <!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- 
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+															modal de rayos x del paciente
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			-->
+			<div class="modal modal-info fade" id="modal_x">
+					<div class="modal-dialog">
+					  <div class="modal-content">
+						<div class="modal-header">
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span></button>
+						  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
+						</div>
+						
+						<div class="modal-body">
+							<div class="">
+								<div class="card row" style="width: 55rem;">
+									<div class="col-md-14">									
+										<div class="col-md-9">										
+											<p>Fecha: {{lab_one.fecha}}</p>
+											<p> Medico:  {{lab_one.nombre_doctor}}</p>
+											<p> N° Historial: {{lab_one.historial}}</p>
+											<p>Otros Examenes:</p>
+											<p>{{lab_one.otros}}</p>
+
+											
+										</div>
+										<div class="col-md-3"> 										
+											<p for="">Hora: {{lab_one.hora}}</p>
+										</div>
+										<div class="col-md-12">
+											<label for="">Examene diagnosticado</label><br>
+											<div class="col-md-3" v-if="examen_x.torax != ''">
+												<p>Torax:</p>
+												<ul v-for="list in examen_x.torax">
+													<li>{{list.descripcion}}</li>
+												</ul> 
+
+											</div> 
+											<div class="col-md-3" v-if="examen_x.abdomen != ''">
+												<p>Abdomen:</p>
+												<ul v-for="list in examen_x.abdomen">
+													<li>{{list.descripcion}}</li>
+												</ul> 
+
+											</div> 
+											<div class="col-md-3" v-if="examen_x.craneo_Macizo_Facial != ''">
+												<p>Craneo Macizo Facial:</p>
+												<ul v-for="list in examen_x.craneo_Macizo_Facial">
+													<li>{{list.descripcion}}</li>
+												</ul> 
+
+											</div> 
+
+											<div class="col-md-3" v-if="examen_x.Placas_Radiograficas != ''">
+												<p>Placas Radiograficas:</p>
+												<ul v-for="list in examen_x.Placas_Radiograficas">
+													<li>{{list.descripcion}}</li>
+												</ul> 
+
+											</div> 
+											<div class="col-md-3" v-if="examen_x.Columna_vertebral != ''">
+												<p>Columna vertebral:</p>
+												<ul v-for="list in examen_x.Columna_vertebral">
+													<li>{{list.descripcion}}</li>
+												</ul> 
+
+											</div> 
+											<div class="col-md-3" v-if="examen_x.Miembros_superiores != ''">
+												<p>Miembros superiores:</p>
+												<ul v-for="list in examen_x.Miembros_superiores">
+													<li>{{list.descripcion}}</li>
+												</ul> 
+
+											</div> 
+												<div class="col-md-3" v-if="examen_x.Miembros_inferiores != ''">
+												<p>Miembros inferiores:</p>
+												<ul v-for="list in examen_x.Miembros_inferiores">
+													<li>{{list.descripcion}}</li>
+												</ul> 
+
+											</div> 
+										
+										</div>
+												
+									</div>
+									
+								</div>
+							</div>
+							
+						</div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+						 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
+						</div>
+					  </div>
+					  <!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+			</div>
+			<!-- 
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+															modal de rayos x del paciente
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			-->
+			<div class="modal modal-info fade" id="modal_lab">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span></button>
+					  <h4 class="modal-title"> {{lab_one.tipo_laboratorio}}</h4>
+					</div>
+					
+					<div class="modal-body">
+						<div class="">
+							<div class="card row" style="width: 55rem;">
+								<div class="col-md-14">									
+									<div class="col-md-9">										
+										<p>Fecha: {{lab_one.fecha}}</p>
+										<p> Medico:  {{lab_one.nombre_doctor}}</p>
+										<p> N° Historial: {{lab_one.historial}}</p>
+										<p>Otros Examenes:</p>
+										<p>{{lab_one.otros}}</p>										
+									</div>
+									<div class="col-md-3"> 										
+										<p for="">Hora: {{lab_one.hora}}</p>
+									</div>
+									<div class="col-md-12">
+										<label for="">Examene diagnosticado</label><br>
+										<div class="col-md-3" v-if="examen_lab.Hemotología != ''">
+											<p>Hemotología:</p>
+											<ul v-for="list in examen_lab.Hemotología">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Química_Sanguínea != ''">
+											<p>Química Sanguínea:</p>
+											<ul v-for="list in examen_lab.Química_Sanguínea">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Orina != ''">
+											<p>Orina:</p>
+											<ul v-for="list in examen_lab.Orina">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+									
+										<div class="col-md-3" v-if="examen_lab.Prueba_Embarazo != ''">
+											<p>Prueba Embarazo:</p>
+											<ul v-for="list in examen_lab.Prueba_Embarazo">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Heces != ''">
+											<p>Heces:</p>
+											<ul v-for="list in examen_lab.Heces">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Expectoración != ''">
+											<p>Expectoración:</p>
+											<ul v-for="list in examen_lab.Expectoración">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Exámenes_Especiales != ''">
+											<p>Exámenes Especiales:</p>
+											<ul v-for="list in examen_lab.Exámenes_Especiales">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Perfil_Preoperatorio != ''">
+											<p>Perfil Preoperatorio:</p>
+											<ul v-for="list in examen_lab.Perfil_Preoperatorio">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Perfil_Obstetrico != ''">
+											<p>Perfil Obstetrico:</p>
+											<ul v-for="list in examen_lab.Perfil_Obstetrico">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Perfil_Reumático != ''">
+											<p>Perfil Reumático:</p>
+											<ul v-for="list in examen_lab.Perfil_Reumático">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Perfil_hepatico != ''">
+											<p>Perfil hepatico:</p>
+											<ul v-for="list in examen_lab.Perfil_hepatico">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+										<div class="col-md-3" v-if="examen_lab.Perfil_lipidico != ''">
+											<p>Perfil lipidico:</p>
+											<ul v-for="list in examen_lab.Perfil_lipidico">
+												<li>{{list.descripcion}}</li>
+											</ul> 
+										
+										</div> 
+									
+									</div>
+											
+								</div>
+								
+							</div>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+					 <!--  <button type="button" class="btn btn-outline">Save changes</button> -->
+					</div>
+				  </div>
+				  <!-- /.modal-content -->
+				</div>
+					<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
 			<!--\\\\\\\ wrapper end\\\\\\-->
 		</div>
 	</div>
@@ -1625,15 +2076,30 @@
 
 
 		<!--====== Scripts -->
+		<!-- 
+		<script>
+			window.setTimeout(function() {
+			  $(".alert").fadeTo(500, 0).slideUp(500, function(){
+				$(this).remove(); 
+			  });
+		   	}, 2000);
+		</script>  -->
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautifier.js"></script>
 
 		<script src="/js/jquery-2.1.0.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/common-script.js"></script>
 		<script src="/js/jquery.slimscroll.min.js"></script>
+
+		<script src="/js/toastr.js"></script>
+
 		<script src="/plugins/data-tables/jquery.dataTables.js"></script>
 		<script src="/plugins/data-tables/DT_bootstrap.js"></script>
 		<script src="/plugins/data-tables/dynamic_table_init.js"></script>
 		<script src="/plugins/edit-table/edit-table.js"></script>
+
+
 		<script>
 			jQuery(document).ready(function () {
 				EditableTable.init();

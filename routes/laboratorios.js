@@ -39,6 +39,7 @@ router.get('/lab_consulta_externa/:id_consulta/:token_id/:token_p', (req,res) =>
 router.post('/vue_insert_lab_consultaExterna/:id_consulta', (req,res) => {
     const { id_consulta } = req.params
     var data = req.body
+    console.log(data, " z<<<")
     var esto = {
         method: 'POST',
         body: JSON.stringify(data),
@@ -50,7 +51,46 @@ router.post('/vue_insert_lab_consultaExterna/:id_consulta', (req,res) => {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then( data => {
-        res.status(400).json(data)
+        res.status(200).json(data)
+    })
+})
+
+//rutas para la lista de laboratorios
+router.get('/list_ecografias/:historial', (req,res) => {
+    const { historial } = req.params
+    fetch('http://localhost:3050/api/list_ecografia/'+historial)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+router.get('/list_rayosX/:historial', (req,res) => {
+    const { historial } = req.params
+    fetch('http://localhost:3050/api/list_rayosX/'+historial)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+router.get('/list_laboratorios/:historial', (req,res) => {
+    const { historial } = req.params
+    fetch('http://localhost:3050/api/list_lab/'+historial)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
+    })
+})
+
+router.get('/vue_one_lab/:id_lab', (req,res) => {
+    const { id_lab } = req.params
+    fetch('http://localhost:3050/api/one_lab/'+id_lab)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(data => {
+        res.status(200).json(data)
     })
 })
 
