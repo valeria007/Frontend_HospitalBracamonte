@@ -111,6 +111,9 @@
 							<ul >
 								<li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Citas </b> </a></li>
 						   </ul>
+						   <ul >
+								<li> <a href="/paciente/listasdeCitas"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b >Listas de Citas </b> </a></li>
+						   </ul>
 						</li>
 			
 					</ul>
@@ -129,8 +132,9 @@
 
 							<div id="main-content" class=" block-web">
 							<div class="header">
-									<div class="actions"> 
-									</div>
+								<div class="actions"> 
+									<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
+								</div>
 								<div class="info blue_symbols "> <i class="fa fa-list-alt icon "></i></div>
 								<h2 class="content-header " class="text-titles"><span>&nbsp;&nbsp;&nbsp;</span>Reserva de Ficha Médica </h2>
 							</div>
@@ -164,14 +168,6 @@
 														</div>
 														<div class="form-group">
 															<div class="row">
-																<div class="header">
-																	<div class="actions"> 
-																		<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
-																	</div>
-																	<h3 class="text-center"> Nueva Cita</h3>
-																</div>
-																
-																<br>
 																<div class="col-md-12">
 																	<div class="col-md-4">
 																		<div class="form-group">
@@ -333,11 +329,7 @@
 											<div class="block-web">
 
 												<div class="header">
-													<div class="actions">
-														
-														<div  id="tab1default"><textarea  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></textarea></div>
-														
-													</div>
+												
 													
 													<h3 class="content-header">  <a  href="/paciente/clean" class="btn btn-primary" >
 														<i class="fa fa-arrow-left"></i> <span> Volver a Fichas</span> </a> Nueva Cita<span class="semi-bold">/Actualizar</span>
@@ -499,7 +491,6 @@
 																	<td><%=pacienteCita[i].saldo_total%></td>
 																	<td class="center">
 																		<a href="/paciente/onliCita/<%=pacienteCita[i].id%>" data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a><span>&nbsp;</span>
-																		
 																	</td>
 																</tr>
 																<% } %>
