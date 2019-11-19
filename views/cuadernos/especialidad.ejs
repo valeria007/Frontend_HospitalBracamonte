@@ -324,7 +324,6 @@
                                 <th class="text-center">#</th>
                                 <th class="text-center">Sigla de Especialidad</th>
                                 <th class="text-center">Nombre Especialidad </th>
-                                <th class="text-center">Opciones</th>
                               </tr>
                             </thead>
                             <tbody v-for="(list, index) in list_consulta_especialidad">
@@ -332,9 +331,9 @@
                                 <td class="text-center">{{index+1}}</td>
                                 <td class="text-center">{{list.sigla}}</td>
                                 <td class="text-center">{{list.nombre}}</td>
-                                <td class="text-center">
+                                <!--<td class="text-center">
                                   <a @click="id_for_delete_consultorio = list.id" data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                                </td>
+                                </td>-->
                               </tr>
                             </tbody>
                           </table>
@@ -501,6 +500,25 @@
             <div class="center">
               <a @click="eliminaMedico"data-dismiss="modal" data-dismiss="modal" class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
               <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center modal-sm ">
+          <div class="modal-content">
+            <br>
+              <div class="center">
+                <i><img src="/images/salir.gif" width="100" height="100" /></i>
+              </div>
+              <div class="center">
+                <h5><b>¿Cerrar Sesión?</b></h5>
+              </div>
+            <div class="modal-footer">
+              <div class="center">
+                <a href="/delete_token/<%=data_doc.data.token_id%>" onclick="delete_local_storage()"  class="btn btn-success"><i class="fa fa-check"></i><span>&nbsp;</span>Sí, Confirmar</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;</span>No, Cancelar</button>
+              </div>
             </div>
           </div>
         </div>

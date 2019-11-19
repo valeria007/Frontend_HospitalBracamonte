@@ -160,7 +160,6 @@
                         <th class="text-center">#</th>
                         <th class="text-center">Roles</th>
                         <th class="text-center">Fecha de Creación</th>
-                        <th class="text-center">Opciones</th>
                         
                       </tr>
                     </thead>
@@ -170,9 +169,9 @@
                           <td class="text-center"><%=i+1%></td>
                           <td class="text-center uppercase"><%=resp[i].name%></td>
                           <td class="text-center"><%=resp[i].createdAt.split("T")[0]%></td>
-                          <td class="text-center">
+                          <!--<td class="text-center">
                             <a @click="id_rol = '<%=resp[i].id%>'" data-target="#myModal" data-toggle="modal" data-toggle="tooltip" class="btn  tooltips" data-original-title="Eliminar"><i  class=" fa fa-trash-o red"></i></a><span>&nbsp;</span>
-                          </td>
+                          </td>-->
                         </tr>
                         <% } %>
                     </tbody>
