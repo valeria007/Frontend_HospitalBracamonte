@@ -9,7 +9,7 @@
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 	<meta name="viewport"
 		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+		<link href="/css/cosasOcultar.css" rel="stylesheet" type="text/css" />
 	<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/animate.css" rel="stylesheet" type="text/css" />
@@ -70,12 +70,14 @@
 			<div class="header_top_bar">
 				<!--\\\\\\\ header top bar start \\\\\\-->
 				<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
-
+				<li href="/medico/volver" class="btn btn-info " ><i class="fa fa-reply"></i> <span> ATRAS</span> </li>
+													
 				<div class="top_right_bar">
 
-					<div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
-								src="/images/user.png" /><span class="user_adminname"><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></span> <b
-								class="caret"></b> </a>
+					<div class=" dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img
+						src="/images/user.png" /> <font size=2><%=data_doc.data.medico.nombre%> <%=data_doc.data.medico.apellidop%></font><span class="user_adminname">
+						<FONT SIZE=1></FONT>
+						</span> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
 							<div class="top_pointer"></div>
 							
@@ -114,29 +116,42 @@
 					<div id="" class="main-content his2">
 						<div  id="margendiv" class="  col-xs-12 " >
 							<div  class="col-lg-12 block-web"> 
+								
 								<!-- Content page -->
 								<div id="" class="head his2 ">
 									<div id="" class="actions">
-											<div  id="tab1default"><p  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></p></div>   
-										<a id="ocultoI" href="/medico/volver" class="list-group-item  blue_bg text-center "><i class="fa fa-reply"></i> ATRAS</a>	
+										
+										<span id="weekDay" class="weekDay"></span>, 
+										<span id="day" class="day"></span> de
+										<span id="month" class="month"></span> del
+										<span id="year" class="year"></span>/
+												
+										<span id="hours" class="hours"></span> :
+										<span id="minutes" class="minutes"></span> :
+										<span id="seconds" class="seconds"></span>
+												
+										<div class="oculVistaReal verOculto" id="tab1default"><p  name="fechaConsulta" id="Fecha_Reloj" class="form-control" readonly=""  cols="23" rows="1,9px" ></p></div>   
 									</div>
+									<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
 									<p class="texTitulo2 "></p>
-									<div class="header">
-										<div id="ocultoI"class="info blue_symbols "> <i class="fa fa-file-text icon"></i></div>
-										
-										
-										<h2 id="ocultoI" class="content-header"><span>&nbsp;&nbsp;&nbsp;</span> Recetas</h2>
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+									<div id="ocultoI"class="header">
+										<div class="info blue_symbols "> <i class="fa fa-file-text icon"></i></div>
+										<h2  class="content-header"><span>&nbsp;&nbsp;&nbsp;</span> Recetas</h2>
 										
 									</div>
+									<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
 									<p class="texTitulo3 "></p>
-									
+									<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 								</div>	
 							</div>
+							<!--<<<<<<<<<<<<<< Solo se vera en la hoja de impresion>>>>>>>>>>>>>>>>>>>>>>>-->
 							<h5 class="texTitulo1 text-center"></h5>
+							<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 							<div class="main-content his2" id="recetas">
 								
 								<section class="panel default  h2 nom"id="">
-									<div class="page-content ">
+									<div class=" ">
 										<ul id="ocultoI" class="nav nav-tabs" style="margin-bottom: 15px;">
 											<li class=" col-lg-6 active active  text-center"><a href="#new" data-toggle="tab"><i class="fa fa-medkit"></i> Receta</a></li>
 											<li class="col-lg-6 text-center"><a href="#list" data-toggle="tab"><i class="fa fa-list-alt "></i> Lita de Recetas del Paciente</a></li>
@@ -147,11 +162,8 @@
 												<input type="hidden" :value="data_receta.id_medico = '<%=data_doc.data.medico.id%>'">	
 												<!-- 
 												 -->
-												<div id=""class="block-web nom">
-													<div id="ocultoI" class="header">
-														<div class="actions"> 
-															                                             
-														</div>
+												<div id=""class="">
+													<div id="ocultoI" class="">
 														<h3 class="content-header"></h3>
 														<span style="color: red;">{{data_msg.msg_false}}</span>
 														<span style="color: blue;">{{data_msg.msg_true}}</span>
@@ -213,7 +225,7 @@
 																	<div id="ocultoI"class=" panel panel-default">
 																		<li href="#ac3-2" data-parent="#accordion" data-toggle="collapse" class=" list-group-item  blue_bg text-center">Datos de la Cita</li>            
 																	</div>
-																	<div style="height: 0px;" id="ac3-2" class="panel-collapse collapse in <">
+																	<div style="height: 0px;" id="ac3-2" class="panel-collapse collapse in ">
 																		<div class="col-md-12 row his">
 																			<div class="col-md-6 ">
 																				<div class="">
@@ -370,7 +382,6 @@
 														
 														<div class="col-md-12 page-content ">
 															<div class="col-md-8 ">
-															 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class=" fa fa-bars"></i> &nbsp;&nbsp; Limpiar</button>
 															 <button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-success"><i class="fa fa-save"></i> &nbsp;&nbsp; Guardar</button>
 															</div>
 													 	</div>
@@ -389,17 +400,17 @@
 																<div class="actions"> 
 																	<a @click="insertar_update" class="list-group-item  blue_bg text-center "><i class="fa fa-folder-open"></i> Insertar</a>
 																</div><br>
-																<h3 class="content-header">Receta</h3>
+																<h3 class="content-header">Lista de Medicamentos </h3>
 															</div>										
 														</div>
 
 														<!-- 
 															<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 														 -->
-														 <div class="col-md-12 tablaI">
+														 <div class="col-md-12 row tablaI">
 															<div class="">
 
-																<div id="ocultoI" class="col-sm-2 col-sm-6">
+																<div id="ocultoI" class="col-sm-3 col-sm-6">
 																	<ul class="list-group">
 																		<div class="entrada">
 																			<h6 class="">Medicamento:</h6>
@@ -407,7 +418,6 @@
 																		</div>
 																		<div id="scroll"  v-if="ocultar" @mouseleave="ocultar = false">
 																			<li  class="list-group-item" v-for="(list, index) in buscar_medicamentos">
-																			
 																				<a @click="name_insert(list.nombre)" >{{list.nombre}}</a>
 																			</li>			
 																		</div>
@@ -417,25 +427,25 @@
 
 																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" blue_info">Dosis:</h6>
+																		<h6 class=" ">Dosis:</h6>
 																		<input type="text"  class="form-control" v-model="lista.dosis">                                           
 																	</div>
 																</div>
 																<div id="ocultoI" class="col-sm-3 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" blue_info">Via de Administración:</h6>
+																		<h6 class="">Via de Administración:</h6>
 																		<input class="form-control"  v-model="lista.frecuencia">                                                  
 																	</div>
 																</div>
-																<div id="ocultoI" class="col-sm-3 col-sm-6">
+																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" blue_info">Duracion: </h6>
+																		<h6 class=" ">Duracion: </h6>
 																		<input class="form-control" v-model="lista.duracion">                                                           
 																	</div>
 																</div>
 																<div id="ocultoI" class="col-sm-2 col-sm-6">
 																	<div class="entrada">
-																		<h6 class=" blue_info">Cantidad: </h6>
+																		<h6 class="">Cantidad: </h6>
 																		<input type="number" class="form-control" v-model="lista.cantidad">   																					                                                    
 																	</div>
 																</div>
@@ -443,7 +453,7 @@
 																					lista de medicamentos
 																>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
-																<div class="col-lg-12 tablaI"> 
+																<div class="tablaI"> 
 																	<section class="panel default blue_title h2">																			
 																		<div class="panel-body">
 																		
@@ -467,7 +477,10 @@
 																						<td>{{list.frecuencia}}</td>
 																						<td>{{list.duracion}}</td>
 																						<td>{{list.cantidad}}</td>
-																						<td id="ocultoI"><a @click="eliminar_update(index)">eliminar</a></td>
+																						<td id="ocultoI">
+																							<a @click="eliminar_update(index)" data-toggle="tooltip" class="btn tooltips" data-original-title="Eliminar"><i class="fa fa-trash-o "></i></a>
+																		
+																						</td>
 																					</tr> 
 
 																				</tbody>
@@ -483,16 +496,16 @@
 															
 																
 														</div>
+														<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< solo se vera en  imprimir >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 														<p class="firmaPa center cafirmaP"></p>
-																<p class="firmaDoc center cafirmaDoc"></p></p>
+														<p class="firmaDoc center cafirmaDoc"></p></p>
+														<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>-->
 														<div id="ocultoI" class="col-md-12"><br>
-															<template v-if="One_receta.estado == false">														
-																<button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-																<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-danger"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp;  Actualizar</button>
-															</template>
+															<template v-if="One_receta.estado == false">
+																<button href="javascript:void(0);" data-toggle="modal" data-target="#Alerta" type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> &nbsp;&nbsp;  Actualizar</button>&nbsp;&nbsp;
+															</template>&nbsp;&nbsp;
 															<a onclick="window.print();" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-																<a href="/paciente/imprimirRecetas" class="btn btn-warning btn-raised" style="margin-right: 20px;"> <i class='fa fa-print'></i>&nbsp;&nbsp; Imprimir</a> 
-														</div>
+													</div>
 													</form>
 												</template>
 	
@@ -508,7 +521,7 @@
 																
 																<th>Fecha</th>
 																<th>Doctor</th>
-																<th class="text-center" WIDTH="20%">Modificar</th>
+																<th class="text-center" WIDTH="20%">Opciones </th>
 															</tr>
 														</thead>
 														<tbody>															
@@ -520,20 +533,13 @@
 																	<td  @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=List_recetas[i].fecha%></td>
 																	<td  @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><%=List_recetas[i].doctor%></td>
 																	
-																	<td @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias"><a >ver</a></td>
+																	<td @click="one_receta_id(<%=List_recetas[i].id%>)" href="javascript:void(0);" data-toggle="modal" data-target="#alergias">
+																		<a data-toggle="tooltip" class="btn tooltips" data-original-title="Ver"><i class="fa fa-eye "></i></a>
+																	</td>
 																</tr> 
 															<% } %>															
 														</tbody>
 													</table>
-													<ul class="pagination pagination-sm">
-														<li class="disabled"><a href="#!">«</a></li>
-														<li class="active"><a href="#!">1</a></li>
-														<li><a href="#!">2</a></li>
-														<li><a href="#!">3</a></li>
-														<li><a href="#!">4</a></li>
-														<li><a href="#!">5</a></li>
-														<li><a href="#!">»</a></li>
-													</ul>
 												</div>
 											</div>
 										</div><br>
@@ -654,6 +660,7 @@
 		e.value = e.value.toUpperCase();
 		}
 	</script>
+	<script src="/js/reloj.js"></script>
 	<script src="/js/fecha.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   <!-- vue cdn -->
 	<script src="/js/jquery-2.1.0.js"></script>

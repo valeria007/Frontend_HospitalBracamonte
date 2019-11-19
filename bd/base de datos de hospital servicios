@@ -1,0 +1,75 @@
+sequelize model:create --name User --attributes name:string,username:string,email:string,password:string
+
+sequelize model:create --name Book --attributes title:string,author:string,description:string,quantity:integer,userId:integer
+
+
+
+sequelize model:create --name Especialidad --attributes nombre:string,sigla:string,descripcion:string,idEspecilidadSNIS:integer,idEstablecimientoSNIS:integer
+
+sequelize model:create --name Salas --attributes nombre:string,descripcionSala:string,piso:integer,especialidadID:integer  
+
+sequelize model:create --name Camas --attributes descripcion:string,numeroCama:integer,salaID:integer
+
+sequelize model:create --name Especialidadsnis --attributes nombreEspecialidad:string,descripcion:string,sigla:string
+
+sequelize model:create --name Establecimientosnis --attributes departamento:string,municipio:string,establecimiento:string,direccion:string
+
+sequelize model:create --name HistorialCinico --attributes 
+numeroDeEC:string,fechaIngreso:date,hora:string,nombres:text,apellido1:text,apellido2:text,ocupacion:string,edad:integer,fechaNacimineto:date,
+lugarNacimineto:text,sexo:string,raza:string,lugarProcendencia:text,domicilio:text,ocupacion:text,telefono:integer,datosPadres:text,personaResponsable:text,
+seguroMedico:string
+
+
+notas clinicas
+sequelize model:create --name PapeletaInternacion --attributes fechaIngreso:string,Historial:integer,nombre:text,apellido1:text,apellido2:text,sexo:string,edad:string,nombreDoctor:text,apellidoD1:text,apellidoD2:text,diagnostico:text 
+
+
+
+<<< tablahistorial Clinico >>>>>>>>>
+sequelize model:create --name Internaciones --attributes historial:integer,nombre:text,apellido1:text,apellido2:text,edad:integer,tipoPaciente:string,institucion:string,provieneDE:string,observacion:text,especialidad:string,sala:string,cama:string,doctor:string,diagnostico:text,IDemergencia:integer,IDConsulta:integer,IDsala:integer
+
+
+<<< emergencia >>>>>>>>>>
+sequelize model:create --name emergencia --attributes tipoAtencion:string,Nhistorial:bigint,nombreDoctor:text,apellidoD1:text,apellidoD2:text,motivoConsulta:text,diagnostico:text,tratamiento:text,observaciones:text,idCita:integer
+ 
+
+para paciente
+
+sequelize model:create --name responsables --attributes nombre:text,apellido1:text,apellido2:text,direccion:text,id_paciente:integer
+
+sequelize model:create --name antecedentes --attributes familiares:text,personales_patologicos:text,personales_no_patologicos:text,gineco_obstetrico:text,id_paciente:integer
+
+
+sequelize model:create --name alergias --attributes tipoAlergia:string,descripcion:text,id_paciente:integer
+
+sequelize model:create --name examen_fisico --attributes estado_general:text,facies:string,precion_arterial:string,estado_nutricional:string,peso:string,frecuencia_cardiaca:string,saturacion_oxigeno:string,fecha_revision:string
+
+sequelize model:create --name receta_internacion --attributes receta_de:string,historial:integer,fechaEmicion:string,nombre_doctor:text,medicamentos:text,id_internacion:integer
+ 
+
+epicrisis
+
+sequelize model:create --name epicrisis --attributes historial:integer,diagnostico_ingreso:text,resumenExmen_clinico:text,resumen_evolucion:text,medicamentos_usados:text,diagnosticoPos_operatorio:text,intervenciones_quirurgicas:text,resAnatomia_patologica:text,resAllasgos_lab:text,diagnostico_final:text,estadoPaciente_alta:text,result_autopcia:text
+
+Orden de intervencion
+sequelize model:create --name orden_Intervencion --attributes historial:integer,fechaOrden:string,motivoInternacion:text,resumneDatosClinicos:text,examenComplementario:text,diagnostico:text,resumenEgreso:text,tratamientoindica:text,diagnosticoEgreso:text,planManejoTratamiento:text,resAutopcio:text,observacion:text,condicionEgreso:string,CausaEgreso:string,id_internacion:integer
+
+
+
+notas de evolucion del paciente en internacion
+
+sequelize model:create --name nota_evolucion_Paciente --attributes fecha:string,hora:string,nota_evolucion:text,id_internacion:integer
+
+diganostico y tratamientos
+
+sequelize model:create --name diagnostico_tratamientos --attributes historial:integer,fehca:string,sintomas:text,examenFisico:text,diagnostico:text,tratamiento:text,medicamentos:string,dosis:string,frecuencia:string,duracion:string,estudios:string
+ 
+
+sequelize model:create --name diagnostico --attributes codigo:string,descripcion:text
+
+sequelize model:create --name traslados --attributes fecha_hora:string,enviado_de:string,operaciones:text,diagnostico_principal:text,otros_diagnosticos:text,causa_externa:text,id_paleta_internacion:integer,id_internacio:integer,id_medico:integer
+
+
+sequelize model:create --name consulta_lab --attributes fecha:string,hora:string,historial:integer,nombre_doctor:text,examen:json,otros:text,id_internacion:integer,id_consulta:integer,id_user:integer
+
+sequelize model:create --name resp_lab --attributes estado:boolean,estado_update:boolean,fecha:string,hora:string,historial:integer,nombre_user:text,imagen_resp:string,descripcion:text,id_lab:integer,id_user:integer
